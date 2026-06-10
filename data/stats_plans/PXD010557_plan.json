@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD010557",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 135,
+  "n_patients_hint": 120,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "\"Proteomic ruler\" approach (estimation of copy numbers without spike-ins) and batch correction",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

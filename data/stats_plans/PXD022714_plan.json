@@ -1,0 +1,18 @@
+{
+  "project_id": "IPX0002532001 (PXD022714)",
+  "design_type": "paired",
+  "patient_level": "unknown",
+  "n_samples_used": null,
+  "n_patients_hint": 50,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "Within-batch total intensity normalization; T/N ratio calculation (adjusted protein intensities)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

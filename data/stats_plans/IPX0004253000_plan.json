@@ -1,0 +1,16 @@
+{
+  "project_id": "IPX0004253000",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 65,
+  "n_patients_hint": 65,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Not explicitly stated; low-abundance proteins removed, proteins missing >20% removed, KNN imputation for <20% missing, limma normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

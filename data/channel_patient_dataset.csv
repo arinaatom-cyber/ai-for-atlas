@@ -1,0 +1,150 @@
+﻿channel_tag,label,patient_id,condition,source,confidence,project_id,role,protomix_status,organ,disease
+126,Patient 1	126	127N,patient_1,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+127N,Patient 1	126	127N,patient_1,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+127C,Patient 2	127C	128N,patient_2,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+128N,Patient 2	127C	128N,patient_2,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+128C,Patient 3	128C	129N,patient_3,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+129N,Patient 3	128C	129N,patient_3,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+129C,Patient 4	129C	130N,patient_4,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+130N,Patient 4	129C	130N,patient_4,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+130C,Patient 5	130C	131,patient_5,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+131,Patient 5	130C	131,patient_5,,csv:TMT Channels Used,0.85,PXD026279,,complete,Stomach,Gastric cancer
+131N,Supermix (standard / “SuperMix”),unknown_131N,Supermix (standard / “SuperMix”),csv:TMT Channels Used,0.5,PXD024322,unknown,complete,Breast,Breast cancer
+131C,PIS (pooled internal standard; плюс IsoDoping peptides),reference_131C,PIS (pooled internal standard; плюс IsoDoping peptides),csv:TMT Channels Used,0.5,PXD024322,reference,complete,Breast,Breast cancer
+126,Normal,control_126,Normal (healthy),csv:TMT Channels Used+learned,0.45,PXD024322,,complete,Breast,Breast cancer
+127N,Luminal A,,Luminal A,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+127C,Luminal A,,Luminal A,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+128N,Luminal B,,Luminal B,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+128C,Luminal B,,Luminal B,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+129N,Basal-like,,Basal-like,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+129C,Basal-like,,Basal-like,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+130N,Her2-Enriched,,Her2-Enriched,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+130C,Her2-Enriched,,Her2-Enriched,csv:TMT Channels Used,0.8,PXD024322,,complete,Breast,Breast cancer
+103B,X103B        103        Normal (adjacent)        Squamous epithelium        paired with X103A,sample_103,Normal (adjacent),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+105B,X105B        105        Normal (adjacent)        Squamous epithelium        paired with X105A,sample_105,Normal (adjacent),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+109B,X109B        109        Normal (adjacent)        Squamous epithelium        paired with X109A,sample_109,Normal (adjacent),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+111B,X111B        111        Normal (adjacent)        Squamous epithelium        paired with X111A,sample_111,Normal (adjacent),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+112B,X112B        112        Normal (adjacent)        Squamous epithelium        paired with X112A,sample_112,Normal (adjacent),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+101A,X101A        101        Normal (healthy)        Squamous epithelium        replicate,sample_101,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+101B,X101B        101        Normal (healthy)        Squamous epithelium        replicate,sample_101,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+104A,X104A        104        Normal (healthy)        Squamous epithelium        replicate,sample_104,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+104B,X104B        104        Normal (healthy)        Squamous epithelium        replicate,sample_104,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+106A,X106A        106        Normal (healthy)        Squamous epithelium        replicate,sample_106,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+106B,X106B        106        Normal (healthy)        Squamous epithelium        replicate,sample_106,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+107A,X107A        107        Normal (healthy)        Squamous epithelium        replicate,sample_107,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+107B,X107B        107        Normal (healthy)        Squamous epithelium        replicate,sample_107,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+108A,X108A        108        Normal (healthy)        Squamous epithelium        replicate,sample_108,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+108B,X108B        108        Normal (healthy)        Squamous epithelium        replicate,sample_108,Normal (healthy),csv:TMT Channels Used,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+103A,X103A        103        Disease (Barrett’s esophagus)        Barrett’s lesion        paired with X103B,sample_103,Disease (Barrett’s esophagus),csv:TMT Channels Comparison,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+105A,X105A        105        Disease (Barrett’s esophagus)        Barrett’s lesion        paired with X105B,sample_105,Disease (Barrett’s esophagus),csv:TMT Channels Comparison,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+109A,X109A        109        Disease (Barrett’s esophagus)        Barrett’s lesion        paired with X109B,sample_109,Disease (Barrett’s esophagus),csv:TMT Channels Comparison,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+111A,X111A        111        Disease (Barrett’s esophagus)        Barrett’s lesion        paired with X111B,sample_111,Disease (Barrett’s esophagus),csv:TMT Channels Comparison,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+112A,X112A        112        Disease (Barrett’s esophagus)        Barrett’s lesion        paired with X112B,sample_112,Disease (Barrett’s esophagus),csv:TMT Channels Comparison,0.82,PXD023293,,complete,Esophagus,Barrett's Esophagus
+126,126 pooled reference,reference_126,126 pooled reference,csv:TMT Additional Channels,0.5,PXD051882,reference,complete,Gastrointestinal,Colorectal Cancer
+126,126 pooled reference,reference_126,126 pooled reference,csv:TMT Additional Channels,0.5,PXD051907,reference,complete,Hematologic,Colorectal Cancer
+207,2074 annotated blast channels,unknown_207,2074 annotated blast channels,csv:TMT Channels Used,0.5,PXD029216,unknown,complete,Hematopoietic system,Acute Myeloid Leukemia (AML)
+126,126–130C = tumor/normal samples,control_126,126–130C = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000110,control,complete,Ovary; Fallopian tube,HGSOC
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000110,reference,complete,Ovary; Fallopian tube,HGSOC
+130C,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000110,,complete,Ovary; Fallopian tube,HGSOC
+126,126–130C = tumor/normal samples,control_126,126–130C = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000116,control,complete,Colon,COAD
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000116,reference,complete,Colon,COAD
+130C,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000116,,complete,Colon,COAD
+126,126–130C = tumor/normal samples,control_126,126–130C = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000118,control,complete,Ovary; Fallopian tube,HGSC
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000118,reference,complete,Ovary; Fallopian tube,HGSC
+130C,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000118,,complete,Ovary; Fallopian tube,HGSC
+126,126–130C = tumor samples (9 per plex),case_126,126–130C = tumor samples (9 per plex),csv:TMT Channels Comparison,0.5,PDC000120,case,complete,Breast,Breast invasive carcinoma (BRCA)
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000120,reference,complete,Breast,Breast invasive carcinoma (BRCA)
+130C,tumor samples (9 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000120,,complete,Breast,Breast invasive carcinoma (BRCA)
+126,126–130C = tumor/NAT samples,case_126,126–130C = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000125,case,complete,Uterus,Endometrial carcinoma (EC)
+131,CompRef (pooled normal uterus),reference_131,CompRef (pooled normal uterus),csv:TMT Additional Channels,0.5,PDC000125,reference,complete,Uterus,Endometrial carcinoma (EC)
+130C,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000125,,complete,Uterus,Endometrial carcinoma (EC)
+126,126–130C = tumor samples,case_126,126–130C = tumor samples,csv:TMT Channels Comparison,0.5,PDC000127,case,complete,Kidney,ccRCC
+131,CompRef (pooled normal kidney),reference_131,CompRef (pooled normal kidney),csv:TMT Additional Channels,0.5,PDC000127,reference,complete,Kidney,ccRCC
+130C,tumor samples; one plex has NAT as sample,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000127,,complete,Kidney,ccRCC
+126,126–130C = tumor/NAT samples,case_126,126–130C = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000153,case,complete,Lung,Lung adenocarcinoma
+131,CompRef (pooled normal lung),reference_131,CompRef (pooled normal lung),csv:TMT Additional Channels,0.5,PDC000153,reference,complete,Lung,Lung adenocarcinoma
+130C,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000153,,complete,Lung,Lung adenocarcinoma
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000180,case,complete,Brain,Pediatric/AYA Brain Tumors
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000180,reference,complete,Brain,Pediatric/AYA Brain Tumors
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000180,,complete,Brain,Pediatric/AYA Brain Tumors
+126,126–131N = tumor/normal samples (10 per plex),control_126,126–131N = tumor/normal samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000198,control,complete,Liver,Hepatocellular carcinoma
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000198,reference,complete,Liver,Hepatocellular carcinoma
+131N,tumor/normal samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000198,,complete,Liver,Hepatocellular carcinoma
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000204,case,complete,Brain,Glioblastoma multiforme (GBM)
+131C,CompRef (pooled normal brain),reference_131C,CompRef (pooled normal brain),csv:TMT Additional Channels,0.5,PDC000204,reference,complete,Brain,Glioblastoma multiforme (GBM)
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000204,,complete,Brain,Glioblastoma multiforme (GBM)
+126,126–130C = tumor/NAT samples,case_126,126–130C = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000219,case,complete,Lung,Lung adenocarcinoma
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000219,reference,complete,Lung,Lung adenocarcinoma
+130C,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000219,,complete,Lung,Lung adenocarcinoma
+126,126–131N = tumor/normal samples,control_126,126–131N = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000221,control,complete,Head and neck,Head and Neck Squamous Cell Carcinoma
+131C,CompRef (pooled normal),reference_131C,CompRef (pooled normal),csv:TMT Additional Channels,0.5,PDC000221,reference,complete,Head and neck,Head and Neck Squamous Cell Carcinoma
+131N,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000221,,complete,Head and neck,Head and Neck Squamous Cell Carcinoma
+126,126–131N = tumor/NAT samples,case_126,126–131N = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000234,case,complete,Lung,Lung squamous cell carcinoma
+131C,CompRef (pooled normal lung),reference_131C,CompRef (pooled normal lung),csv:TMT Additional Channels,0.5,PDC000234,reference,complete,Lung,Lung squamous cell carcinoma
+131N,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000234,,complete,Lung,Lung squamous cell carcinoma
+126,126–130C = tumor/normal samples,control_126,126–130C = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000248,control,complete,Pancreas,Pancreatic ductal adenocarcinoma
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000248,reference,complete,Pancreas,Pancreatic ductal adenocarcinoma
+130C,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000248,,complete,Pancreas,Pancreatic ductal adenocarcinoma
+126,126–131N = tumor/NAT samples,case_126,126–131N = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000270,case,complete,Pancreas,Pancreatic ductal adenocarcinoma
+131C,CompRef (pooled NAT),reference_131C,CompRef (pooled NAT),csv:TMT Additional Channels,0.5,PDC000270,reference,complete,Pancreas,Pancreatic ductal adenocarcinoma
+131N,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000270,,complete,Pancreas,Pancreatic ductal adenocarcinoma
+126,126–130C = cell lines and mixes,reference_126,126–130C = cell lines and mixes,csv:TMT Channels Comparison,0.5,PDC000295,reference,complete,Lung; Breast; Colon; Blood,Multiple cancer cell lines
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000295,reference,complete,Lung; Breast; Colon; Blood,Multiple cancer cell lines
+130C,cell lines and mixes,,cell lines and mixes,csv:TMT Channels Comparison,0.8,PDC000295,,complete,Lung; Breast; Colon; Blood,Multiple cancer cell lines
+126,126–131N = cell line conditions/timepoints,reference_126,126–131N = cell line conditions/timepoints,csv:TMT Channels Comparison,0.5,PDC000315,reference,complete,Hematopoietic system,Acute myeloid leukemia
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000315,reference,complete,Hematopoietic system,Acute myeloid leukemia
+131N,cell line conditions/timepoints,,cell line conditions/timepoints,csv:TMT Channels Comparison,0.8,PDC000315,,complete,Hematopoietic system,Acute myeloid leukemia
+126,126–131N = time points per plex,reference_126,126–131N = time points per plex,csv:TMT Channels Comparison,0.5,PDC000316,reference,complete,Hematopoietic system,Acute Myeloid Leukemia
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000316,reference,complete,Hematopoietic system,Acute Myeloid Leukemia
+131N,time points per plex,,time points per plex,csv:TMT Channels Comparison,0.8,PDC000316,,complete,Hematopoietic system,Acute Myeloid Leukemia
+126,126–131N = cell line conditions,reference_126,126–131N = cell line conditions,csv:TMT Channels Comparison,0.5,PDC000317,reference,complete,Hematopoietic system,Acute Myeloid Leukemia
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000317,reference,complete,Hematopoietic system,Acute Myeloid Leukemia
+131N,cell line conditions,,cell line conditions,csv:TMT Channels Comparison,0.8,PDC000317,,complete,Hematopoietic system,Acute Myeloid Leukemia
+126,126–131N = biopsy samples,reference_126,126–131N = biopsy samples,csv:TMT Channels Comparison,0.5,PDC000325,reference,complete,Breast,Breast invasive carcinoma
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000325,reference,complete,Breast,Breast invasive carcinoma
+131N,biopsy samples,,biopsy samples,csv:TMT Channels Comparison,0.8,PDC000325,,complete,Breast,Breast invasive carcinoma
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000342,case,complete,Cervix,Cervical cancer
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000342,reference,complete,Cervix,Cervical cancer
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000342,,complete,Cervix,Cervical cancer
+126,126–130C = tumor/normal samples,control_126,126–130C = tumor/normal samples,csv:TMT Channels Comparison,0.5,PDC000356,control,complete,Liver,Cholangiocarcinoma
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000356,reference,complete,Liver,Cholangiocarcinoma
+130C,tumor/normal samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000356,,complete,Liver,Cholangiocarcinoma
+126,126–131N = FFPE tumor samples,case_126,126–131N = FFPE tumor samples,csv:TMT Channels Comparison,0.5,PDC000358,case,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000358,reference,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131N,FFPE tumor samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000358,,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+126,126–131N = FFPE tumor samples (10 per plex),case_126,126–131N = FFPE tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000360,case,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000360,reference,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131N,FFPE tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000360,,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000362,case,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000362,reference,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000362,,complete,Ovary,High-Grade Serous Ovarian Carcinoma
+126,126–130C = LCM/macro samples,reference_126,126–130C = LCM/macro samples,csv:TMT Channels Comparison,0.5,PDC000393,reference,complete,Pancreas,Pancreatic ductal adenocarcinoma
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000393,reference,complete,Pancreas,Pancreatic ductal adenocarcinoma
+130C,LCM/macro samples,,LCM/macro samples,csv:TMT Channels Comparison,0.8,PDC000393,,complete,Pancreas,Pancreatic ductal adenocarcinoma
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000408,case,complete,Breast,TNBC
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000408,reference,complete,Breast,TNBC
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000408,,complete,Breast,TNBC
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000434,case,complete,Lung,LUAD
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000434,reference,complete,Lung,LUAD
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000434,,complete,Lung,LUAD
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000446,case,complete,Brain,GBM
+131C,CompRef (pooled normal brain),reference_131C,CompRef (pooled normal brain),csv:TMT Additional Channels,0.5,PDC000446,reference,complete,Brain,GBM
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000446,,complete,Brain,GBM
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000464,case,complete,Kidney,RCC
+131C,CompRef,reference_131C,CompRef,csv:TMT Additional Channels,0.5,PDC000464,reference,complete,Kidney,RCC
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000464,,complete,Kidney,RCC
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000489,case,complete,Lung,LUAD
+131C,CompRef,reference_131C,CompRef,csv:TMT Additional Channels,0.5,PDC000489,reference,complete,Lung,LUAD
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000489,,complete,Lung,LUAD
+126,126–131N = tumor samples per plex,case_126,126–131N = tumor samples per plex,csv:TMT Channels Comparison,0.5,PDC000514,case,complete,Brain,GBM
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000514,reference,complete,Brain,GBM
+131N,tumor samples per plex,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000514,,complete,Brain,GBM
+126,126–130C = tumor/NAT samples,case_126,126–130C = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000519,case,complete,Oral cavity / Head and neck,OSCC
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000519,reference,complete,Oral cavity / Head and neck,OSCC
+130C,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000519,,complete,Oral cavity / Head and neck,OSCC
+126,126–130C = tumor/NAT samples,case_126,126–130C = tumor/NAT samples,csv:TMT Channels Comparison,0.5,PDC000563,case,complete,Lung,LUAD
+131,pooled reference,reference_131,pooled reference,csv:TMT Additional Channels,0.5,PDC000563,reference,complete,Lung,LUAD
+130C,tumor/NAT samples,case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000563,,complete,Lung,LUAD
+126,126–131N = tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison,0.5,PDC000585,case,complete,Ovary,HGSOC
+131C,pooled reference,reference_131C,pooled reference,csv:TMT Additional Channels,0.5,PDC000585,reference,complete,Ovary,HGSOC
+131N,tumor samples (10 per plex),case_126,126–131N = tumor samples (10 per plex),csv:TMT Channels Comparison+learned,0.45,PDC000585,,complete,Ovary,HGSOC

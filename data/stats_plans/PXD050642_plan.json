@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD050642",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 48,
+  "n_patients_hint": 48,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Reporter ion intensity-based protein normalization (not fully specified)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

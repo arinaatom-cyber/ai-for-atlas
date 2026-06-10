@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD022252",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 5,
+  "n_patients_hint": null,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Normalized PSMs were then log2-transformed and collapsed to proteins by arithmetic average, with priority given to uniquely mapping peptides",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

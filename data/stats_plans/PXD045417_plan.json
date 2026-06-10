@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD045417",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 70,
+  "n_patients_hint": 70,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "TMT reporter intensities normalized to pooled reference (126), median normalization, log2 transformation",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

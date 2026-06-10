@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD006291",
+  "design_type": "cell_line",
+  "patient_level": "sample",
+  "n_samples_used": 17,
+  "n_patients_hint": 17,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "pooled (internal standard) ratio normalization at protein level",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

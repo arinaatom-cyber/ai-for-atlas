@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD030092",
+  "design_type": "paired",
+  "patient_level": "cell_line",
+  "n_samples_used": 16,
+  "n_patients_hint": 8,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "Normalization to reference (linker) channel; log2 transformation",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

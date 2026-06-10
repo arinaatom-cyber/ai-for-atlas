@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD016563",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 15,
+  "n_patients_hint": 15,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Median normalization + batch normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,27 @@
+# Скопируйте в config.yaml и поправьте пути.
+
+sheet:
+  # Таблица проектов — только локальный CSV в этой папке
+  projects_csv: "./data/projects.csv"
+
+paths:
+  tmt_projects_dir: "../tmt-projects/Projects"
+  atlas_data_dir: "../лаб иеб/human-proteome-atlas/data"
+  reports_dir: "./reports"
+
+github:
+  atlas_repo: "https://github.com/arinaatom-cyber/TMT"
+  data_repo: "https://github.com/arinaatom-cyber/tmt-projects"
+  raw_branch: "main"
+
+scan:
+  pride_max_results: 40
+  pride_keywords: ["TMT", "tandem mass tag", "isobaric"]
+
+agent:
+  language: "ru"
+
+claude:
+  enabled: true
+  model: "claude-sonnet-4-6"
+  max_tokens: 4096

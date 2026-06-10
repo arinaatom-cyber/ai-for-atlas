@@ -1,0 +1,19 @@
+{
+  "trained_at": "2026-05-26T20:13:42.610486+00:00",
+  "n_labeled_channels": 105,
+  "n_rules": 2,
+  "rules": [
+    {
+      "token": "tumor",
+      "predict_patient_id": "case_126",
+      "support": 22,
+      "condition": "126–131N = tumor samples (10 per plex)"
+    },
+    {
+      "token": "normal",
+      "predict_patient_id": "control_126",
+      "support": 7,
+      "condition": "Normal (healthy)"
+    }
+  ]
+}

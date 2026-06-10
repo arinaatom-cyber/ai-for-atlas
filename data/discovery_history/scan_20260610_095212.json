@@ -1,0 +1,259 @@
+{
+  "generated_at": "2026-06-10T06:52:12.768237+00:00",
+  "policy": {
+    "catalog_file": "data/projects.csv",
+    "catalog_mode": "read_only",
+    "delete_allowed": false,
+    "auto_update_allowed": false,
+    "agent_role": "discover_and_propose_only",
+    "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+  },
+  "catalog_profile": {
+    "n_rows": 139,
+    "n_unique_ids": 122,
+    "project_ids_sample": [
+      "IPX0004253000",
+      "MSV000085836",
+      "MSV000090700",
+      "PDC000110",
+      "PDC000116",
+      "PDC000118",
+      "PDC000120",
+      "PDC000125",
+      "PDC000127",
+      "PDC000153",
+      "PDC000180",
+      "PDC000198",
+      "PDC000204",
+      "PDC000219",
+      "PDC000221",
+      "PDC000234",
+      "PDC000248",
+      "PDC000270",
+      "PDC000295",
+      "PDC000315",
+      "PDC000316",
+      "PDC000317",
+      "PDC000325",
+      "PDC000342",
+      "PDC000356",
+      "PDC000358",
+      "PDC000360",
+      "PDC000362",
+      "PDC000393",
+      "PDC000398"
+    ],
+    "databases": {
+      "PRIDE": 76,
+      "PDC": 45,
+      "nan": 12,
+      "iProX": 2,
+      "CLLE": 1,
+      "GTEx": 1,
+      "MassIVE": 1
+    },
+    "top_organs": [
+      "brain",
+      "nan",
+      "lung",
+      "ovary",
+      "breast",
+      "blood",
+      "hematopoietic system",
+      "pancreas",
+      "bone marrow",
+      "kidney",
+      "liver",
+      "uterus"
+    ],
+    "top_diseases": [
+      "nan",
+      "acute myeloid leukemia (aml)",
+      "acute myeloid leukemia",
+      "cancer",
+      "breast cancer",
+      "glioblastoma",
+      "pancreatic ductal adenocarcinoma",
+      "colorectal cancer",
+      "aml",
+      "leukemia",
+      "medulloblastoma",
+      "lung adenocarcinoma"
+    ],
+    "tmt_plexes": [
+      "TMT 10-plex",
+      "TMT 11-plex",
+      "TMTpro 16-plex",
+      "TMT-10-plex",
+      "TMT 16-plex"
+    ],
+    "search_keywords": [
+      "TMT",
+      "tandem mass tag",
+      "human proteomics",
+      "isobaric",
+      "brain",
+      "lung",
+      "ovary",
+      "breast",
+      "acute myeloid leukemia (aml)",
+      "acute myeloid leukemia",
+      "cancer",
+      "breast cancer",
+      "PDC",
+      "CPTAC",
+      "CCLE",
+      "GTEx",
+      "proteogenomics"
+    ]
+  },
+  "summary": {
+    "catalog_rows": 139,
+    "catalog_unique_ids": 122,
+    "novel_pride": 0,
+    "novel_publications": 30,
+    "novel_consortia": 48,
+    "novel_total": 78,
+    "new_projects": 0,
+    "review_recommended": 0,
+    "already_in_catalog": 0,
+    "filtered_out": 3,
+    "duplicate_similar": 0,
+    "articles_skipped": 75
+  },
+  "filters_applied": {
+    "human_only": true,
+    "min_tmt_channels": 7,
+    "max_tmt_channels": 16,
+    "allow_healthy_only": true,
+    "allow_cancer_only": true,
+    "allow_case_control": true,
+    "allowed_databases": [
+      "PRIDE",
+      "PDC",
+      "iProX",
+      "MassIVE",
+      "IPX",
+      "MSV"
+    ],
+    "reject_non_human": true
+  },
+  "new_projects": [],
+  "recommended": [],
+  "already_in_catalog": [],
+  "filtered_out": [
+    {
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "journal": "Proteomics",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "Дизайн образцов не ясен — проверить healthy/cancer",
+        "Обзор/методы без номера проекта (PXD/PDC/MSV/IPX)"
+      ],
+      "extracted_ids": {
+        "PMID": [
+          "41742694"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "recommendation": "filtered_out"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41742694/",
+      "consortium_group": "PDC",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "Дизайн образцов не ясен — проверить healthy/cancer",
+        "Обзор/методы без номера проекта (PXD/PDC/MSV/IPX)"
+      ],
+      "extracted_ids": {
+        "PMID": [
+          "41742694"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "recommendation": "filtered_out"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41742694/",
+      "consortium_group": "GTEx",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "GTEx: tissue reference — сопоставить с organ-level atlas",
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "Дизайн образцов не ясен — проверить healthy/cancer",
+        "Обзор/методы без номера проекта (PXD/PDC/MSV/IPX)"
+      ],
+      "extracted_ids": {
+        "PMID": [
+          "41742694"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "recommendation": "filtered_out"
+    }
+  ],
+  "duplicate_similar": [],
+  "novel_pride": [],
+  "novel_publications": [],
+  "novel_consortia": [],
+  "consortia_raw_counts": {
+    "PDC": 12,
+    "CCLE": 12,
+    "GTEx": 12,
+    "CPTAC": 12,
+    "PDC_API": 0
+  },
+  "processing_notes": [
+    "Каталог projects.csv только читается — удаление запрещено",
+    "Новые PXD/PDC добавляются вручную или через run_revisor.py add --apply",
+    "Запускайте scan еженедельно: python run_discovery.py scan"
+  ],
+  "saved_at": "2026-06-10T06:52:12.768237+00:00"
+}

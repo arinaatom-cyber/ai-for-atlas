@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD037371",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 9,
+  "n_patients_hint": 9,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Median normalization (MaxQuant, protein ratio median)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

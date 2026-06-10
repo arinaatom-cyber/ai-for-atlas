@@ -1,0 +1,18 @@
+{
+  "project_id": "MSV000085836",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 375,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Ratio-to-bridge normalization Summed S/N equalization (>200); log2-transformation; bridge ratio subtraction; mean centering within each ten-plex",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

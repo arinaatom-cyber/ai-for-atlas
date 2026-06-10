@@ -1,0 +1,20 @@
+{
+  "project_id": "PXD012173",
+  "design_type": "cell_line",
+  "patient_level": "sample",
+  "n_samples_used": 68,
+  "n_patients_hint": 68,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "nan",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": [
+    "Normalization Strategy пуст — извлечь из статьи перед DE"
+  ]
+}

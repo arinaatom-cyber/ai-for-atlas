@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD013284",
+  "design_type": "case_control",
+  "patient_level": "unknown",
+  "n_samples_used": null,
+  "n_patients_hint": 3,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "131 (internal pooled standard; normalization )TMT reporter ion ratios normalized to pooled internal standard (channel 131); median normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

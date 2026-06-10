@@ -1,0 +1,16 @@
+{
+  "project_id": "PDC000110",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 97,
+  "n_patients_hint": 97,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Universal pooled reference normalization; CDAP harmonization; log2 relative abundance ratios",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

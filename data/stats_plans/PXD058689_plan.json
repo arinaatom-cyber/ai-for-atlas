@@ -1,0 +1,20 @@
+{
+  "project_id": "PXD058689",
+  "design_type": "paired",
+  "patient_level": "sample",
+  "n_samples_used": 55,
+  "n_patients_hint": 30,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "Not specified",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": [
+    "Normalization Strategy пуст — извлечь из статьи перед DE"
+  ]
+}

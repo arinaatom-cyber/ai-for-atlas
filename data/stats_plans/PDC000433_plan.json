@@ -1,0 +1,16 @@
+{
+  "project_id": "PDC000433",
+  "design_type": "other",
+  "patient_level": "sample",
+  "n_samples_used": 46,
+  "n_patients_hint": 46,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "N/A — no processed data in PDC",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

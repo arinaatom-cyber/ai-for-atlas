@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD030671",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 5,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Reporter ion MS2 quantification; isotopic correction; Sample Loading (SL) normalization (intra-run)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

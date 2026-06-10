@@ -1,0 +1,18 @@
+{
+  "project_id": "PDC000514",
+  "design_type": "paired",
+  "patient_level": "sample",
+  "n_samples_used": 111,
+  "n_patients_hint": 111,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "Median norm; log2 ratio",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

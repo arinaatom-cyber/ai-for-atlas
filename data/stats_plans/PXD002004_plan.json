@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD002004",
+  "design_type": "case_control",
+  "patient_level": "unknown",
+  "n_samples_used": null,
+  "n_patients_hint": 16,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "SPIQuE (weighted PSM contributions); Regulation score (Rs); Batch effect reduction via bridging controls; platelet protein filtering",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

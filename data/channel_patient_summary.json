@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-05-26T20:13:42.634510+00:00",
+  "green_projects": 41,
+  "total_channel_rows": 149,
+  "with_patient_id": 135,
+  "paths": {
+    "dataset": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\data\\channel_patient_dataset.csv",
+    "training_green": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\data\\channel_patient_training_green.csv",
+    "model": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\data\\channel_patient_model.json"
+  }
+}

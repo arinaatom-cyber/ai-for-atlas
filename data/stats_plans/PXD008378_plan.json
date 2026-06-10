@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD008378",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 10,
+  "n_patients_hint": 10,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Median normalized; log2-transformed reporter ion intensities",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

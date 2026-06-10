@@ -1,0 +1,40 @@
+---
+description: Discovery Agent — профессиональный поиск новых TMT-проектов
+globs: atlas_agent/discovery/**,atlas_agent/sources/pdc.py,atlas_agent/sources/dataset_resolve.py,atlas_agent/discovery/sources/**,discovery_app.py,run_discovery.py,atlas_agent/viz/discovery_html.py
+alwaysApply: false
+---
+
+# Discovery Agent
+
+## Стратегия поиска (repository-first)
+
+1. **PRIDE v3** — `GET /search/projects` с `keyword`, не `/projects`
+2. **PDC** — GraphQL `uiStudySummary`, фильтр `experiment_type` TMT7–TMT16
+3. **Europe PMC** — `resultType=core`, резолв PMID→PXD/PDC через `dataset_resolve.py`
+4. Исключать ID уже в `projects.csv` **до** финального отчёта
+
+## Выход
+
+- Только `new_projects` с accession PXD/PDC/MSV/IPX
+- `reports/discovery_index.html` — сайт со списком
+- `data/discovery_history/latest.json` — последний скан
+
+## Команды
+
+```powershell
+python run_discovery.py scan
+python run_discovery.py latest
+streamlit run discovery_app.py
+```
+
+## QC материала (sample_material_qc.py)
+
+- **candidate** — human tumor / adjacent / plasma·blood / human cancer cell lines
+- **requires_manual_check** — tissue + organoids/spheroids в одном dataset
+- **rejected** — only organoids, PDX-only, xenograft-only, animal tissue, non-human cell lines
+- `projects.csv` **не менять** — только `candidates`, `manual_check`, `rejected_material`, `discovery_qc_report.html`
+
+## При изменении кода
+
+- Не ломать `projects_only` / `select_new_projects`
+- После скана: `discovery_index.html` (candidates) + `discovery_qc_report.html`

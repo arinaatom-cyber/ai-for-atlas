@@ -1,0 +1,16 @@
+{
+  "project_id": "PDC000342",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 151,
+  "n_patients_hint": 150,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "N/A — no processed mass spectra in PDC",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

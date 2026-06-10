@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD034337",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 9,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Reporter intensity corrected (MaxQuant), median normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

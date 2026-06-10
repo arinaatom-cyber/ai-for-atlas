@@ -1,0 +1,997 @@
+{
+  "generated_at": "2026-06-10T06:42:30.218435+00:00",
+  "policy": {
+    "catalog_file": "data/projects.csv",
+    "catalog_mode": "read_only",
+    "delete_allowed": false,
+    "auto_update_allowed": false,
+    "agent_role": "discover_and_propose_only",
+    "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+  },
+  "catalog_profile": {
+    "n_rows": 139,
+    "n_unique_ids": 122,
+    "project_ids_sample": [
+      "IPX0004253000",
+      "MSV000085836",
+      "MSV000090700",
+      "PDC000110",
+      "PDC000116",
+      "PDC000118",
+      "PDC000120",
+      "PDC000125",
+      "PDC000127",
+      "PDC000153",
+      "PDC000180",
+      "PDC000198",
+      "PDC000204",
+      "PDC000219",
+      "PDC000221",
+      "PDC000234",
+      "PDC000248",
+      "PDC000270",
+      "PDC000295",
+      "PDC000315",
+      "PDC000316",
+      "PDC000317",
+      "PDC000325",
+      "PDC000342",
+      "PDC000356",
+      "PDC000358",
+      "PDC000360",
+      "PDC000362",
+      "PDC000393",
+      "PDC000398"
+    ],
+    "databases": {
+      "PRIDE": 76,
+      "PDC": 45,
+      "nan": 12,
+      "iProX": 2,
+      "CLLE": 1,
+      "GTEx": 1,
+      "MassIVE": 1
+    },
+    "top_organs": [
+      "brain",
+      "nan",
+      "lung",
+      "ovary",
+      "breast",
+      "blood",
+      "hematopoietic system",
+      "pancreas",
+      "bone marrow",
+      "kidney",
+      "liver",
+      "uterus"
+    ],
+    "top_diseases": [
+      "nan",
+      "acute myeloid leukemia (aml)",
+      "acute myeloid leukemia",
+      "cancer",
+      "breast cancer",
+      "glioblastoma",
+      "pancreatic ductal adenocarcinoma",
+      "colorectal cancer",
+      "aml",
+      "leukemia",
+      "medulloblastoma",
+      "lung adenocarcinoma"
+    ],
+    "tmt_plexes": [
+      "TMT 10-plex",
+      "TMT 11-plex",
+      "TMTpro 16-plex",
+      "TMT-10-plex",
+      "TMT 16-plex"
+    ],
+    "search_keywords": [
+      "TMT",
+      "tandem mass tag",
+      "human proteomics",
+      "isobaric",
+      "brain",
+      "lung",
+      "ovary",
+      "breast",
+      "acute myeloid leukemia (aml)",
+      "acute myeloid leukemia",
+      "cancer",
+      "breast cancer",
+      "PDC",
+      "CPTAC",
+      "CCLE",
+      "GTEx",
+      "proteogenomics"
+    ]
+  },
+  "summary": {
+    "catalog_rows": 139,
+    "catalog_unique_ids": 122,
+    "novel_pride": 0,
+    "novel_publications": 30,
+    "novel_consortia": 48,
+    "novel_total": 78,
+    "review_recommended": 48
+  },
+  "novel_pride": [],
+  "novel_publications": [
+    {
+      "pmid": "41771895",
+      "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
+      "journal": "Nat Commun",
+      "year": "2026",
+      "doi": "10.1038/s41467-026-70118-7",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41622683",
+      "title": "UltraPlex-TMT: Expanding Isobaric Hyperplexing via Orthogonal Protease Cleavage.",
+      "journal": "J Proteome Res",
+      "year": "2026",
+      "doi": "10.1021/acs.jproteome.5c01084",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "journal": "Sci Rep",
+      "year": "2026",
+      "doi": "10.1038/s41598-026-44561-x",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41575784",
+      "title": "Single-Cell Proteomic Technologies: Tools in the Quest for Principles.",
+      "journal": "Annu Rev Biophys",
+      "year": "2026",
+      "doi": "10.1146/annurev-biophys-021424-011450",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "journal": "Proteomics",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41740022",
+      "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
+      "journal": "Anal Chem",
+      "year": "2026",
+      "doi": "10.1021/acs.analchem.5c07275",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41301916",
+      "title": "Mass Spectrometry for Lysine Methylation: Principles, Progress, and Prospects.",
+      "journal": "Biomedicines",
+      "year": "2025",
+      "doi": "10.3390/biomedicines13112825",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41567026",
+      "title": "Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.",
+      "journal": "Cancer Sci",
+      "year": "2026",
+      "doi": "10.1111/cas.70323",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41931001",
+      "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
+      "journal": "Invest Ophthalmol Vis Sci",
+      "year": "2026",
+      "doi": "10.1167/iovs.67.4.9",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "PMC13006395",
+      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics",
+      "journal": "Cell Rep Med",
+      "year": "2026",
+      "doi": "",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41472394",
+      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
+      "journal": "Proteomics",
+      "year": "2026",
+      "doi": "10.1002/pmic.70103",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41055288",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "journal": "Proteomics",
+      "year": "2025",
+      "doi": "10.1002/pmic.70052",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41293887",
+      "title": "Multiplexed Data-Independent Acquisition-Based Proteomics Enabled by TMTpro Complementary Ions.",
+      "journal": "Anal Chem",
+      "year": "2025",
+      "doi": "10.1021/acs.analchem.5c03563",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42051158",
+      "title": "Urine-Derived iPSC Neurospheres Uncover Proteomic Correlates of Clinical Severity in Dravet Syndrome.",
+      "journal": "J Neurochem",
+      "year": "2026",
+      "doi": "10.1111/jnc.70452",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41121580",
+      "title": "JUMPshiny: A User-Friendly Platform for Comprehensive Analysis and Visualization of Quantitative Proteomics Data.",
+      "journal": "Proteomics",
+      "year": "2025",
+      "doi": "10.1002/pmic.70061",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42025763",
+      "title": "In Depth Characterization of the Promoter Proximal Proteome of Single Copy Locus FOXP2.",
+      "journal": "Mol Cell Proteomics",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2026.101570",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41862993",
+      "title": "Proteomic landscape analysis of undifferentiated pleomorphic sarcoma.",
+      "journal": "Genome Med",
+      "year": "2026",
+      "doi": "10.1186/s13073-026-01626-w",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41053940",
+      "title": "13-Plex DeAla Isobaric Reagents for High-Throughput Proteome Quantification.",
+      "journal": "Anal Chem",
+      "year": "2025",
+      "doi": "10.1021/acs.analchem.5c03910",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42015365",
+      "title": "An environmentally relevant mixture of organophosphate esters induces cholesterol biosynthesis in THP-1 macrophages.",
+      "journal": "Toxicol Sci",
+      "year": "2026",
+      "doi": "10.1093/toxsci/kfag048",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "PPR1029201",
+      "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform",
+      "journal": "",
+      "year": "2025",
+      "doi": "10.1101/2025.05.27.656447",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42235871",
+      "title": "Co-eluting post-translational modification isoforms in collagen reveal fundamental challenge of LC-MS/MS site-specific analysis.",
+      "journal": "Biochim Biophys Acta Proteins Proteom",
+      "year": "2026",
+      "doi": "10.1016/j.bbapap.2026.141157",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41453614",
+      "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
+      "journal": "Mol Cell Proteomics",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2025.101502",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42029488",
+      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
+      "journal": "Proteomes",
+      "year": "2026",
+      "doi": "10.3390/proteomes14020016",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "39999392",
+      "title": "Isobaric Labeling Update in MaxQuant.",
+      "journal": "J Proteome Res",
+      "year": "2025",
+      "doi": "10.1021/acs.jproteome.4c00869",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41811792",
+      "title": "Data-Independent Acquisition (DIA) Strategy for Measuring Protein Stability Using Stability of Proteins from Rates of Oxidation (SPROX).",
+      "journal": "J Am Soc Mass Spectrom",
+      "year": "2026",
+      "doi": "10.1021/jasms.5c00316",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "PPR1209367",
+      "title": "Comprehensive online two-dimensional nanoLCxCZE-MS for deep top-down proteomics",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.64898/2026.05.14.725123",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "42080264",
+      "title": "Impact of alternative splicing on Arabidopsis proteome.",
+      "journal": "Nucleic Acids Res",
+      "year": "2026",
+      "doi": "10.1093/nar/gkag400",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "40883461",
+      "title": "IQUP identifies quantitatively unreliable spectra with machine learning for isobaric labeling-based proteomics.",
+      "journal": "Sci Rep",
+      "year": "2025",
+      "doi": "10.1038/s41598-025-16774-z",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41033462",
+      "title": "Zscan4 as a Candidate Conveyor of Early Developmental Defects in O-GlcNAc Transferase Intellectual Disability.",
+      "journal": "Mol Cell Proteomics",
+      "year": "2025",
+      "doi": "10.1016/j.mcpro.2025.101077",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    },
+    {
+      "pmid": "41441881",
+      "title": "Free D-aspartate modulates the expression of proteins linked to schizophrenia and autism spectrum disorder during early postnatal life.",
+      "journal": "Cell Mol Life Sci",
+      "year": "2025",
+      "doi": "10.1007/s00018-025-05938-9",
+      "pxd_mentioned": [],
+      "source": "europe_pmc",
+      "similar_in_catalog": [],
+      "processing_tips": [
+        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+      ]
+    }
+  ],
+  "novel_consortia": [
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41771895",
+      "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
+      "year": "2026",
+      "doi": "10.1038/s41467-026-70118-7",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41453614",
+      "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2025.101502",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41931001",
+      "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
+      "year": "2026",
+      "doi": "10.1167/iovs.67.4.9",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41931001/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41328725",
+      "title": "Evaluating and Optimizing Mass Spectrometry Proteomics Data to Deconvolve Cell-Type-Specific Protein Expression in Tumors.",
+      "year": "2026",
+      "doi": "10.1021/acs.jproteome.5c00980",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41328725/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "42013851",
+      "title": "A 15-layer multi-omics analysis of gastric cancer ecotypes provides therapeutic insights.",
+      "year": "2026",
+      "doi": "10.1016/j.xcrm.2026.102756",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42013851/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "42056117",
+      "title": "Longitudinal Proteomics Analysis of Cerebrospinal Fluid in Survivors of Childhood Acute Lymphoblastic Leukemia.",
+      "year": "2026",
+      "doi": "10.1038/s41597-026-07326-9",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42056117/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "42029488",
+      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
+      "year": "2026",
+      "doi": "10.3390/proteomes14020016",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42029488/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41472394",
+      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70103",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "42192865",
+      "title": "Multi Omics Integration in Colorectal Cancer: From Molecular Insights to Precision Oncology.",
+      "year": "2026",
+      "doi": "10.3390/cancers18101504",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42192865/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41742694/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41584047",
+      "title": "Complement and Coagulation Cascades Pathway was Inactivated in HIV-Associated Colorectal Cancer: Results from a Proteomics Study.",
+      "year": "2026",
+      "doi": "10.7150/jca.124804",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41584047/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_pdc",
+      "consortium": "PDC",
+      "pmid": "41567026",
+      "title": "Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.",
+      "year": "2026",
+      "doi": "10.1111/cas.70323",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41567026/",
+      "consortium_group": "PDC"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "42025763",
+      "title": "In Depth Characterization of the Promoter Proximal Proteome of Single Copy Locus FOXP2.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2026.101570",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42025763/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "42140987",
+      "title": "Mechanistic insights into 18β-glycyrrhetinic acid-induced apoptosis in SCC-9 cells revealed by TMT proteomics and network pharmacology.",
+      "year": "2026",
+      "doi": "10.1038/s41598-026-50655-3",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42140987/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41622683",
+      "title": "UltraPlex-TMT: Expanding Isobaric Hyperplexing via Orthogonal Protease Cleavage.",
+      "year": "2026",
+      "doi": "10.1021/acs.jproteome.5c01084",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41883410",
+      "title": "Adipose tissue protein profiling: modulation by vitamin D receptor.",
+      "year": "2026",
+      "doi": "10.3389/fnut.2026.1715659",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41883410/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41740022",
+      "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
+      "year": "2026",
+      "doi": "10.1021/acs.analchem.5c07275",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41740022/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41780889",
+      "title": "Non-Reducing Proteomics Reveals Disulfide-dependent Proteoform Remodeling Under Oxidative Stress.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2026.101548",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41780889/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41966223",
+      "title": "Proteomic Analysis of Paired FFPE Tissue and Extracellular Vesicles Reveals Proteins Associated with Recurrence in Stage II Colorectal Cancer.",
+      "year": "2026",
+      "doi": "10.1021/acs.jproteome.5c01148",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41981497",
+      "title": "Plasma extracellular vesicle proteomic analysis identifies WARS as a potential biomarker of infectious mononucleosis.",
+      "year": "2026",
+      "doi": "10.1186/s12879-026-13234-5",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41981497/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41771895",
+      "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
+      "year": "2026",
+      "doi": "10.1038/s41467-026-70118-7",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41453614",
+      "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2025.101502",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "year": "2026",
+      "doi": "10.1038/s41598-026-44561-x",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_ccle",
+      "consortium": "CCLE",
+      "pmid": "42015365",
+      "title": "An environmentally relevant mixture of organophosphate esters induces cholesterol biosynthesis in THP-1 macrophages.",
+      "year": "2026",
+      "doi": "10.1093/toxsci/kfag048",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42015365/",
+      "consortium_group": "CCLE"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "42025763",
+      "title": "In Depth Characterization of the Promoter Proximal Proteome of Single Copy Locus FOXP2.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2026.101570",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42025763/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "42249273",
+      "title": "Quantitative tandem mass tag-based serum proteomics for longitudinal biomarker monitoring in Duchenne muscular dystrophy.",
+      "year": "2026",
+      "doi": "10.1186/s12014-026-09613-4",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42249273/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41931001",
+      "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
+      "year": "2026",
+      "doi": "10.1167/iovs.67.4.9",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41931001/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70114",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41742694/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41775934",
+      "title": "Longitudinal deep multi-omics profiling in a CLN3&lt;sup&gt;Δex7/8&lt;/sup&gt; minipig model identifies biomarker signatures of disease.",
+      "year": "2026",
+      "doi": "10.1038/s43856-025-01227-5",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41775934/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "42223798",
+      "title": "Multi-omics of barley Fusarium Head Blight converge on pathogen-triggered biosynthesis of aromatic amino acid derived chemical defense compounds.",
+      "year": "2026",
+      "doi": "10.1007/s44154-026-00313-5",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42223798/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "year": "2026",
+      "doi": "10.1038/s41598-026-44561-x",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41883410",
+      "title": "Adipose tissue protein profiling: modulation by vitamin D receptor.",
+      "year": "2026",
+      "doi": "10.3389/fnut.2026.1715659",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41883410/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "42015365",
+      "title": "An environmentally relevant mixture of organophosphate esters induces cholesterol biosynthesis in THP-1 macrophages.",
+      "year": "2026",
+      "doi": "10.1093/toxsci/kfag048",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42015365/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "42080264",
+      "title": "Impact of alternative splicing on Arabidopsis proteome.",
+      "year": "2026",
+      "doi": "10.1093/nar/gkag400",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42080264/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41472394",
+      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
+      "year": "2026",
+      "doi": "10.1002/pmic.70103",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_gtex",
+      "consortium": "GTEx",
+      "pmid": "41981497",
+      "title": "Plasma extracellular vesicle proteomic analysis identifies WARS as a potential biomarker of infectious mononucleosis.",
+      "year": "2026",
+      "doi": "10.1186/s12879-026-13234-5",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41981497/",
+      "consortium_group": "GTEx"
+    },
+    {
+      "source": "europe_pmc_cptac",
+      "consortium": "CPTAC",
+      "pmid": "41453614",
+      "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2025.101502",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
+      "consortium_group": "CPTAC"
+    },
+    {
+      "source": "europe_pmc_cptac",
+      "consortium": "CPTAC",
+      "pmid": "41771895",
+      "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
+      "year": "2026",
+      "doi": "10.1038/s41467-026-70118-7",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
+      "consortium_group": "CPTAC"
+    },
+    {
+      "source": "europe_pmc_cptac",
+      "consortium": "CPTAC",
+      "pmid": "42192865",
+      "title": "Multi Omics Integration in Colorectal Cancer: From Molecular Insights to Precision Oncology.",
+      "year": "2026",
+      "doi": "10.3390/cancers18101504",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42192865/",
+      "consortium_group": "CPTAC"
+    },
+    {
+      "source": "europe_pmc_cptac",
+      "consortium": "CPTAC",
+      "pmid": "42029488",
+      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
+      "year": "2026",
+      "doi": "10.3390/proteomes14020016",
+      "accessions_mentioned": [],
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42029488/",
+      "consortium_group": "CPTAC"
+    }
+  ],
+  "consortia_raw_counts": {
+    "PDC": 12,
+    "CCLE": 12,
+    "GTEx": 12,
+    "CPTAC": 12,
+    "PDC_API": 0
+  },
+  "processing_notes": [
+    "Каталог projects.csv только читается — удаление запрещено",
+    "Новые PXD/PDC добавляются вручную или через run_revisor.py add --apply",
+    "Запускайте scan еженедельно: python run_discovery.py scan"
+  ],
+  "saved_at": "2026-06-10T06:42:30.219088+00:00"
+}

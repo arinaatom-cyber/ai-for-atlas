@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD055089",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 16,
+  "n_patients_hint": 4,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Median-normalized averaged log2 TMT ratios across 3 sets",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

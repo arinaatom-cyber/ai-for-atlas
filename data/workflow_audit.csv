@@ -1,0 +1,140 @@
+﻿project_id,status,score_pct,missing,patient_level,n_samples
+PXD005361,partial,85.7,Quantification_Format,cell_line,5.0
+PXD005410,partial,85.7,Quantification_Format,cell_line,4.0
+PXD006430,partial,85.7,Quantification_Format,cell_line,4.0
+PXD002004,partial,85.7,Quantification_Format,unknown,
+PXD008378,partial,85.7,Quantification_Format,sample,10.0
+PXD006291,partial,85.7,Quantification_Format,sample,17.0
+PXD006895,partial,85.7,Quantification_Format,cell_line,5.0
+PXD010779,partial,85.7,Quantification_Format,sample,1.0
+PXD010846,partial,85.7,Quantification_Format,cell_line,1.0
+PXD012845,partial,85.7,Quantification_Format,sample,36.0
+PXD011456,partial,85.7,Quantification_Format,cell_line,1.0
+PXD010744,partial,85.7,Quantification_Format,sample,27.0
+PXD013024,partial,85.7,Quantification_Format,cell_line,1.0
+PXD014186,partial,85.7,Quantification_Format,cell_line,6.0
+PXD012173,partial,85.7,Normalization Strategy,sample,68.0
+PXD013284,partial,85.7,Quantification_Format,unknown,
+MSV000085836,partial,85.7,Quantification_Format,cell_line,375.0
+PXD017025,partial,85.7,Quantification_Format,cell_line,18.0
+PXD016192,partial,71.4,Normalization Strategy; Quantification_Format,cell_line,0.0
+PXD016563,partial,85.7,Quantification_Format,sample,15.0
+PXD015359,partial,85.7,Quantification_Format,cell_line,
+PXD010425,partial,85.7,FDR (Unified %),cell_line,6.0
+PXD013408,partial,85.7,Quantification_Format,cell_line,3.0
+PXD017852,partial,85.7,Quantification_Format,cell_line,
+PXD017857,partial,71.4,Normalization Strategy; Quantification_Format,cell_line,
+PXD019240,partial,85.7,Quantification_Format,cell_line,4.0
+PXD016999,partial,71.4,FDR (Unified %); Quantification_Format,unknown,
+PXD017291,partial,85.7,Quantification_Format,cell_line,5.0
+PXD019544,partial,71.4,FDR (Unified %); Quantification_Format,cell_line,12.0
+PXD022834,partial,85.7,Quantification_Format,cell_line,13.0
+PXD022252,partial,85.7,Quantification_Format,cell_line,5.0
+PXD022733,partial,85.7,Quantification_Format,patient,32.0
+PXD010557,complete,100.0,,cell_line,135.0
+PXD020586,partial,85.7,Quantification_Format,cell_line,2514.0
+PXD022714,partial,85.7,Quantification_Format,unknown,
+PXD025052,partial,85.7,Quantification_Format,unknown,
+PXD026279,complete,100.0,,unknown,
+PXD030818,partial,85.7,Quantification_Format,sample,6.0
+PXD030671,partial,85.7,Quantification_Format,cell_line,5.0
+PXD024322,complete,100.0,,sample,338.0
+PXD021265,partial,85.7,Quantification_Format,cell_line,18.0
+PXD021265,partial,85.7,Quantification_Format,patient,10.0
+PXD029320,partial,85.7,Quantification_Format,cell_line,140.0
+PXD034370,partial,85.7,Quantification_Format,cell_line,
+PXD023293,complete,100.0,,unknown,
+IPX0004253000,partial,85.7,Quantification_Format,sample,65.0
+PXD032355,partial,85.7,Quantification_Format,sample,292.0
+PXD027341,partial,85.7,Quantification_Format,sample,7.0
+PXD027339,partial,85.7,Quantification_Format,cell_line,14.0
+PXD027335,partial,85.7,Quantification_Format,cell_line,24.0
+PXD031107,complete,100.0,,patient,47.0
+PXD031107,complete,100.0,,patient,38.0
+PXD037371,complete,100.0,,sample,9.0
+PXD030034,partial,71.4,Normalization Strategy; Quantification_Format,sample,105.0
+PXD028285,partial,71.4,Normalization Strategy; Quantification_Format,cell_line,4.0
+PXD030092,complete,100.0,,cell_line,16.0
+PXD036226,partial,85.7,Quantification_Format,sample,321.0
+PXD036238,partial,85.7,Quantification_Format,sample,8.0
+PXD054500,complete,100.0,,cell_line,36.0
+PXD034337,partial,85.7,Quantification_Format,cell_line,9.0
+MSV000090700,complete,100.0,,cell_line,12.0
+PXD040309,complete,100.0,,cell_line,20.0
+PXD045417,complete,100.0,,sample,70.0
+PXD043580,complete,100.0,,patient,147.0
+PXD039319,complete,100.0,,sample,70.0
+PXD052353,complete,100.0,,cell_line,6.0
+PXD057703,complete,100.0,,sample,15.0
+PXD058995,complete,100.0,,sample,9.0
+PXD051882,complete,100.0,,sample,36.0
+PXD051907,complete,100.0,,sample,36.0
+PXD059755,complete,100.0,,sample,10.0
+PXD058689,partial,85.7,Normalization Strategy,sample,55.0
+PXD055089,complete,100.0,,sample,16.0
+PXD060290,partial,85.7,FASTA (Unified),sample,60.0
+PXD066224,complete,100.0,,sample,68.0
+PXD057700,complete,100.0,,sample,182.0
+PXD050642,complete,100.0,,sample,48.0
+PXD029216,complete,100.0,,sample,2074.0
+PXD029216,complete,100.0,,sample,259.0
+PXD029216,complete,100.0,,sample,181.0
+PXD029216,complete,100.0,,sample,2003.0
+PDC000110,complete,100.0,,sample,97.0
+PDC000116,complete,100.0,,sample,102.0
+PDC000118,complete,100.0,,sample,95.0
+PDC000120,complete,100.0,,sample,127.0
+PDC000125,complete,100.0,,sample,123.0
+PDC000127,complete,100.0,,sample,124.0
+PDC000153,complete,100.0,,sample,115.0
+PDC000180,complete,100.0,,sample,207.0
+PDC000198,complete,100.0,,sample,171.0
+PDC000204,complete,100.0,,sample,111.0
+PDC000219,complete,100.0,,sample,110.0
+PDC000221,complete,100.0,,sample,124.0
+PDC000234,complete,100.0,,sample,115.0
+PDC000248,complete,100.0,,sample,154.0
+PDC000270,complete,100.0,,sample,166.0
+PDC000295,complete,100.0,,cell_line,1.0
+PDC000315,complete,100.0,,cell_line,3.0
+PDC000316,complete,100.0,,cell_line,2.0
+PDC000317,complete,100.0,,cell_line,2.0
+PDC000325,complete,100.0,,patient,17.0
+PDC000342,complete,100.0,,sample,151.0
+PDC000356,complete,100.0,,sample,106.0
+PDC000358,complete,100.0,,sample,21.0
+PDC000360,complete,100.0,,sample,161.0
+PDC000362,complete,100.0,,sample,66.0
+PDC000393,complete,100.0,,sample,7.0
+PDC000398,partial,85.7,FASTA (Unified),sample,18.0
+PDC000400,partial,85.7,FASTA (Unified),sample,5.0
+PDC000402,partial,85.7,FASTA (Unified),sample,20.0
+PDC000408,complete,100.0,,sample,58.0
+PDC000433,partial,71.4,FASTA (Unified); Result Files,sample,46.0
+PDC000434,complete,100.0,,sample,101.0
+PDC000439,partial,85.7,TMT Label (Unified),sample,159.0
+PDC000446,complete,100.0,,sample,118.0
+PDC000464,complete,100.0,,sample,44.0
+PDC000477,partial,85.7,FASTA (Unified),sample,211.0
+PDC000489,complete,100.0,,sample,131.0
+PDC000514,complete,100.0,,sample,111.0
+PDC000519,complete,100.0,,sample,107.0
+PDC000563,complete,100.0,,sample,127.0
+PDC000579,partial,85.7,FASTA (Unified),sample,60.0
+PDC000582,partial,85.7,FASTA (Unified),sample,59.0
+PDC000585,complete,100.0,,sample,72.0
+PDC000588,partial,85.7,FASTA (Unified),sample,53.0
+PDC000590,partial,85.7,FASTA (Unified),sample,138.0
+nan,todo,14.3,Platform MS (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,
+nan,todo,0.0,Platform MS (Unified); TMT Label (Unified); Normalization Strategy; FASTA (Unified); FDR (Unified %); Result Files; Quantification_Format,unknown,

@@ -1,0 +1,23 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Локальные отчёты (на GitHub — docs/site/)
+reports/
+
+# Бинарники / личные
+atlas_app.zip
+*.xlsx
+project of Proteomics.xlsx
+
+# IDE
+.idea/
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml

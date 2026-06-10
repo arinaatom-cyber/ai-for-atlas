@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD017025",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 18,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Equal total protein normalization per TMT channel; inter-set batch correction using pooled reference (TMT 126); log2-ratio to pooled median",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

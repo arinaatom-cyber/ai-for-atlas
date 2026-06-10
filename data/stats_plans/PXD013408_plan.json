@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD013408",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 3,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Proteome-based median normalization (pH8 global proteome) 131 = pooled EGF (cross-time reference)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

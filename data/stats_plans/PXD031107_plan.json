@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD031107",
+  "design_type": "paired",
+  "patient_level": "patient",
+  "n_samples_used": 38,
+  "n_patients_hint": 22,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "TMT reporter ratios normalized to internal reference and median and log2 transformed",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

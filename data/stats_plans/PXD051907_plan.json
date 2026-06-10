@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD051907",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 36,
+  "n_patients_hint": 36,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Reference channel + within-channel normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,70 @@
+# Discovery scan + GitHub Pages (только новые проекты на сайте, projects.csv не публикуется как список)
+name: Discovery Scan & Pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "atlas_agent/**"
+      - "run_discovery.py"
+      - "discovery_app.py"
+      - "config.yaml"
+      - "data/projects.csv"
+      - ".github/workflows/discovery_pages.yml"
+  schedule:
+    - cron: "0 6 * * 1"   # Monday 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: discovery-pages
+  cancel-in-progress: false
+
+jobs:
+  scan-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Config
+        run: test -f config.yaml || cp config.example.yaml config.yaml
+
+      - name: Run Discovery (read-only catalog)
+        run: python run_discovery.py scan
+
+      - name: Publish site (new projects only)
+        run: python scripts/publish_site.py
+
+      - name: Commit site updates
+        run: |
+          git config user.name "Atlas Discovery Bot"
+          git config user.email "discovery@atlas.local"
+          git add docs/site/ data/discovery_history/latest.json
+          git diff --staged --quiet || git commit -m "discovery: update site $(date -u +%Y-%m-%d)"
+          git push || true
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

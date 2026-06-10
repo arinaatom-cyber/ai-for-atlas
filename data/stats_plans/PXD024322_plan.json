@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD024322",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 338,
+  "n_patients_hint": 338,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "log2(PSM abundance / PIS); within-plex normalization to pooled internal standard (131C)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD025052",
+  "design_type": "paired",
+  "patient_level": "unknown",
+  "n_samples_used": null,
+  "n_patients_hint": 6,
+  "test": "limma_paired",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "Reporter ion intensity normalization in MaxQuant",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "project_id": "PDC000315",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 3,
+  "n_patients_hint": 3,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "CDAP; median norm; log2 ratio",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

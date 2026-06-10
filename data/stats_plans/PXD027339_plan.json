@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD027339",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 14,
+  "n_patients_hint": 11,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Median of PSM ratios (OpenMS IsobaricAnalyzer)",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

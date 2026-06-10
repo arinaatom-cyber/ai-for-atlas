@@ -1,0 +1,22 @@
+# Stats plan for PXD045417
+# Design: case_control | Patient level: sample
+library(limma)
+
+# 1) Load protein matrix from Result File: 41698_2024_519_MOESM4_ESM (1)
+# mat <- read_protein_matrix("tmt-projects/Projects/PXD045417/...")
+
+# 2) Filter: >=70% valid values per comparison group
+# mat_f <- filter_by_group_presence(mat, groups, min_frac=0.7)
+
+# 3) Log2 if not already (check Normalization Strategy in sheet)
+# norm_in_sheet: TMT reporter intensities normalized to pooled reference (126), median normalization, log2 transforma
+
+# 4) Design matrix
+# design <- model.matrix(~ 0 + group + group)
+
+# 5) Test: limma
+# fit <- lmFit(mat_f, design)
+# fit2 <- eBayes(contrasts.fit(fit, contrast_matrix))
+# topTable(fit2, adjust.method="BH", number=Inf)
+
+# 6) Patient-level: aggregate technical replicates to patient before DE if needed

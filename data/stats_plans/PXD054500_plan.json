@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD054500",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 36,
+  "n_patients_hint": 0,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Reporter ion intensities normalized by total peptide amount; scaled to global average; SDC/SDS technical replicates averaged; rescaled by mean abundance within each TMT batch; log2-transformed and mean-centered per batch",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

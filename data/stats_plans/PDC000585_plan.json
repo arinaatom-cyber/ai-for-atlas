@@ -1,0 +1,16 @@
+{
+  "project_id": "PDC000585",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 72,
+  "n_patients_hint": 72,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Median norm; log2 ratio",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

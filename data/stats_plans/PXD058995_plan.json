@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD058995",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 9,
+  "n_patients_hint": 3,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Normalized reporter ion intensities exported from Proteome Discoverer",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

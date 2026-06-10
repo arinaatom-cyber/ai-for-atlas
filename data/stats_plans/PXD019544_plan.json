@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD019544",
+  "design_type": "cell_line",
+  "patient_level": "cell_line",
+  "n_samples_used": 12,
+  "n_patients_hint": null,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "cell_line"
+  ],
+  "normalization_sheet": "Pooled internal standard (IRS) + ComBat batch correction",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

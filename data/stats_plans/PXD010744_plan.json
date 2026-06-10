@@ -1,0 +1,16 @@
+{
+  "project_id": "PXD010744",
+  "design_type": "case_control",
+  "patient_level": "sample",
+  "n_samples_used": 27,
+  "n_patients_hint": 27,
+  "test": "limma",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [],
+  "normalization_sheet": "Protein ratios against the internal standard (TMT126 channel) were computed and then log2-transformed. For each sample, the log2-transformed ratios were normalized against the Tukey’s bi-weight mean, which calculates a robust average that is unaffected by outliers, with the assumption that most identified cellular proteins are not significantly differentially expressed across the samples",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}

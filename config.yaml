@@ -1,0 +1,69 @@
+# Только локальные файлы (без Google Sheets)
+
+sheet:
+  projects_csv: "./data/projects.csv"
+
+paths:
+  tmt_projects_dir: "../tmt-projects/Projects"
+  atlas_data_dir: "../лаб иеб/human-proteome-atlas/data"
+  reports_dir: "./reports"
+
+github:
+  atlas_repo: "https://github.com/arinaatom-cyber/TMT"
+  data_repo: "https://github.com/arinaatom-cyber/tmt-projects"
+  raw_branch: "main"
+  # Пути к папкам проектов внутри репозиториев
+  atlas_projects_path: "projects"
+  data_projects_path: "Projects"
+  # Только чтение — удаление/push запрещены в коде
+  read_only: true
+  # Для приватного tmt-projects: export GITHUB_TOKEN=ghp_... (scope: repo read)
+  token_env: "GITHUB_TOKEN"
+
+scan:
+  pride_max_results: 40
+  pride_year_from: 2020
+  pride_keywords: ["TMT", "tandem mass tag", "isobaric"]
+  publications_year_from: 2023
+  publications_max: 25
+
+# Discovery Agent — еженедельный поиск похожих проектов (projects.csv только чтение)
+discovery:
+  enabled: true
+  schedule: "weekly"          # run_discovery.py scan раз в неделю
+  year_from: 2024
+  year_to: 2026
+  pride_max: 60
+  publications_max: 40
+  pride_keywords: ["TMT", "tandem mass tag", "isobaric", "TMTpro", "TMT10", "TMT11"]
+  search_mode: "professional"   # PRIDE v3 search + PDC uiStudySummary + PMID→accession resolve
+  consortia: ["PDC", "CCLE", "GTEx", "CPTAC"]
+  # Каталог НИКОГДА не удаляется и не перезаписывается агентом
+  catalog_read_only: true
+  projects_only: true   # выдавать только новые PXD/PDC/MSV/IPX, не статьи без проекта
+  filters:
+    human_only: true
+    allowed_tmt_plexes: [10, 11, 12, 16]   # >6ch: TMT10/11/12/16, TMTpro16
+    min_tmt_channels: 10
+    max_tmt_channels: 16
+    allow_healthy_only: true
+    allow_cancer_only: true
+    allow_case_control: true     # smokers vs healthy OK
+    allowed_databases: ["PRIDE", "PDC", "iProX", "MassIVE", "IPX", "MSV"]
+    reject_non_human: true
+    material_qc: true
+
+agent:
+  language: "ru"
+  mode: "ai"
+
+# ИИ без ключей: auto → Ollama (если запущен) → GPT4All (Qwen2-1.5B) → правила
+llm:
+  enabled: true
+  provider: "auto"
+  # Ollama (опционально): ollama pull qwen2.5:3b
+  model: "qwen2.5:3b"
+  base_url: "http://127.0.0.1:11434/v1"
+  # GPT4All — скачивает open-source Qwen при первом запуске (~1 GB)
+  gpt4all_model: "qwen2-1_5b-instruct-q4_0.gguf"
+  max_tokens: 2048

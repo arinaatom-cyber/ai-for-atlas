@@ -1,0 +1,18 @@
+{
+  "project_id": "PXD057703",
+  "design_type": "time_course",
+  "patient_level": "sample",
+  "n_samples_used": 15,
+  "n_patients_hint": 2,
+  "test": "mixed_model_or_limma_time",
+  "multiple_testing": "FDR_BH",
+  "blocking_factors": [
+    "patient_id"
+  ],
+  "normalization_sheet": "LOESS normalization; reporter ion intensity normalization",
+  "software": [
+    "R",
+    "limma"
+  ],
+  "warnings": []
+}
