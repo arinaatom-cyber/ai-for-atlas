@@ -39,9 +39,21 @@ Or enable GitHub Action: `.github/workflows/weekly_discovery.yml`
 
 ## Output
 
-- `reports/discovery_report_YYYYMMDD_HHMMSS.md` — human-readable
-- `data/discovery_history/scan_*.json` — machine-readable log
+- `reports/discovery_report_YYYYMMDD_HHMMSS.md` — human-readable (local)
+- `docs/site/discovery.html` — **public site: only new projects** (not catalog)
+- `docs/site/qc.html` — QC report
 - `data/discovery_history/latest.json` — last run
+
+**Каталог `projects.csv` не публикуется на сайте** — только фильтр «уже есть».
+
+## Any computer
+
+```powershell
+git clone https://github.com/arinaatom-cyber/ai-for-atlas.git
+powershell -File scripts/setup_anywhere.ps1
+python run_discovery.py scan
+streamlit run discovery_app.py
+```
 
 Each candidate includes:
 
