@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Atlas Discovery UI — http://localhost:8501"""
+"""
+Sirius TMT Atlas — Streamlit portal (read-only).
+
+Tabs: New projects · AI search · Body map · Catalog (WIP).
+"""
 
 from __future__ import annotations
 
@@ -11,330 +15,538 @@ import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).parent
-HTML_REPORT = ROOT / "reports" / "discovery_index.html"
-SITE_REPORT = ROOT / "docs" / "site" / "discovery.html"
-QC_REPORT = ROOT / "reports" / "discovery_qc_report.html"
+SITE_DISCOVERY = ROOT / "docs" / "site" / "discovery.html"
 SITE_QC = ROOT / "docs" / "site" / "qc.html"
-GITHUB_SITE = "https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html"
 
-st.set_page_config(page_title="Atlas Discovery", page_icon="🔬", layout="wide")
+st.set_page_config(
+    page_title="Sirius TMT Atlas Portal",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+APP_VERSION = "2026.07.15-portal-v5-tabs"
 
 st.markdown(
-    """<style>
-    .main-header { font-size:2rem; font-weight:700;
-      background:linear-gradient(90deg,#6cb6ff,#3dd68c);
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .metric-card { background:#1a2332; border:1px solid #2a3548; border-radius:12px; padding:1rem; }
-    .metric-val { font-size:1.6rem; font-weight:700; color:#6cb6ff; }
-    .metric-lbl { color:#8b9cb3; font-size:.85rem; }
-    </style>""",
+    """
+    <style>
+    .portal-title { font-size: 1.75rem; font-weight: 600; color: #e8eef7; margin-bottom: 0.25rem; }
+    .portal-sub { color: #8b9cb3; font-size: 0.9rem; margin-bottom: 1rem; }
+    .metric-box {
+        background: #151d2b; border: 1px solid #2a3548; border-radius: 8px;
+        padding: 0.75rem 1rem; text-align: center;
+    }
+    .metric-num { font-size: 1.5rem; font-weight: 600; color: #6cb6ff; }
+    .metric-lbl { font-size: 0.8rem; color: #8b9cb3; }
+    .wip-banner {
+        background: #2a2418; border: 1px solid #5c4a20; border-radius: 8px;
+        padding: 0.6rem 1rem; color: #d4b86a; font-size: 0.85rem; margin-bottom: 1rem;
+    }
+    </style>
+    """,
     unsafe_allow_html=True,
 )
 
 
-def source_label(item: dict) -> str:
+@st.cache_data(ttl=180)
+def load_catalog_bundle():
+    from pathlib import Path
+
+    from atlas_agent.config import load_config
+    from atlas_agent.discovery.catalog_profile import build_catalog_profile
+    from atlas_agent.sources.projects_table import load_catalog
+    from atlas_agent.viz.portal_index import build_organ_index
+
+    cfg = load_config()
+    sheet = cfg.get("sheet") or {}
+    catalog_path = sheet.get("projects_file") or ""
+    try:
+        if catalog_path and not Path(catalog_path).is_file():
+            raise FileNotFoundError(catalog_path)
+        from atlas_agent.discovery.agent import load_catalog_readonly
+
+        df = load_catalog_readonly(cfg)
+    except (FileNotFoundError, OSError):
+        cloud_cfg = dict(cfg)
+        cloud_cfg["sheet"] = dict(sheet)
+        cloud_cfg["sheet"]["projects_file"] = str(ROOT / "data" / "projects.csv")
+        cloud_cfg["sheet"]["projects_sheet"] = None
+        df = load_catalog(cloud_cfg)
+        st.sidebar.caption("Catalog: data/projects.csv (cloud fallback)")
+    profile = build_catalog_profile(df)
+    profile["n_atlas_projects"] = profile["n_unique_ids"]
+    organ_index = build_organ_index(df, cfg)
+    return df, profile, cfg, organ_index
+
+
+def load_scan_report():
+    from atlas_agent.discovery.history import load_latest
+
+    return load_latest(ROOT)
+
+
+def run_full_scan(cfg, df, year_from: int):
+    from atlas_agent.discovery.agent import run_discovery_scan
+
+    sc = dict(cfg.get("discovery") or {})
+    sc["year_from"] = year_from
+    merged = dict(cfg)
+    merged["discovery"] = sc
+    return run_discovery_scan(df, merged, root=ROOT)
+
+
+def run_keyword_search(cfg, df, keywords, extra_query, y0, y1):
+    from atlas_agent.discovery.keyword_search import run_keyword_ai_search
+
+    return run_keyword_ai_search(
+        df, cfg, keywords=keywords, extra_query=extra_query, year_from=y0, year_to=y1
+    )
+
+
+def _source_label(item: dict) -> str:
     acc = (item.get("project_accession") or item.get("accession") or "").upper()
     if acc.startswith("PDC"):
         return "PDC"
     if acc.startswith("PXD"):
         return "PRIDE"
-    return item.get("source") or "?"
+    if acc.startswith("MSV"):
+        return "MassIVE"
+    if acc.startswith("IPX"):
+        return "iProX"
+    return str(item.get("source") or item.get("database") or "")
 
 
-def to_df(items: list[dict]) -> pd.DataFrame:
+def _ai_summary(ai: dict) -> str:
+    return ai.get("summary_en") or ai.get("summary_ru") or ""
+
+
+def _pub_index(pubs: list[dict]) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for p in pubs:
+        pmid = str(p.get("pmid") or "").strip()
+        if pmid:
+            out[pmid] = p
+    return out
+
+
+def _analysis_text(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
+    from atlas_agent.viz.portal_index import format_finding_note
+
+    parts: list[str] = []
+    note = item.get("finding_note") or format_finding_note(item)
+    if note:
+        parts.append(note[:200])
+    pmid = str(item.get("pmid") or "").strip()
+    pub = pubs_by_pmid.get(pmid) if pmid else None
+    if pub:
+        summary = pub.get("summary_en") or ""
+        fit = pub.get("atlas_fit")
+        if summary:
+            parts.append(summary[:180])
+        if fit:
+            parts.append(f"fit: {fit}")
+    else:
+        ai = item.get("abstract_ai") or {}
+        if ai.get("summary_en"):
+            parts.append(ai["summary_en"][:180])
+    return " · ".join(parts) if parts else ""
+
+
+def _data_label(item: dict) -> str:
+    da = item.get("data_availability") or {}
+    if not da:
+        return ""
+    label = da.get("label") or da.get("status") or ""
+    samples = da.get("proteome_files") or da.get("quant_files") or da.get("sample_files") or []
+    if samples:
+        return f"{label} · {samples[0][:40]}"
+    return label
+
+
+def new_projects_table(items: list[dict], pubs: list[dict]) -> pd.DataFrame:
+    from atlas_agent.viz.portal_index import format_finding_note, resolve_publication_links
+
+    pubs_by_pmid = _pub_index(pubs)
     rows = []
     for p in items:
+        resolve_publication_links(p, fetch_pride_pmid=True)
+        p["finding_note"] = format_finding_note(p)
         acc = p.get("project_accession") or p.get("accession", "")
         sim = (p.get("similar_in_catalog") or [{}])[0]
-        sig = p.get("material_signals") or {}
         rows.append({
             "ID": acc,
-            "Название": (p.get("title") or "")[:120],
-            "QC": p.get("qc_status", ""),
+            "Title": (p.get("title") or "")[:90],
+            "Source": _source_label(p),
             "Plex": p.get("tmt_label") or p.get("inferred_plex", ""),
-            "Материал +": ", ".join(sig.get("included") or [])[:50],
-            "Материал −": ", ".join(sig.get("excluded") or [])[:50],
-            "Причина": "; ".join((p.get("qc_reasons") or p.get("filter_reasons") or [])[:2]),
-            "Похож на": sim.get("project_id", ""),
-            "Источник": source_label(p),
+            "Design": str(p.get("sample_design") or "").replace("_", "-"),
+            "Similar to": f"{sim.get('project_id', '')} ({sim.get('score', '')})",
+            "Analysis": _analysis_text(p, pubs_by_pmid),
+            "Data": _data_label(p),
+            "Project": p.get("repository_url") or "",
+            "PubMed": p.get("pubmed_url") or "",
         })
     return pd.DataFrame(rows)
 
 
-def pubs_to_df(items: list[dict]) -> pd.DataFrame:
+def papers_without_id_table(manual: list[dict], literature: list[dict]) -> pd.DataFrame:
+    seen: set[str] = set()
+    rows = []
+    for p in manual + literature:
+        pmid = str(p.get("pmid") or "").strip()
+        key = pmid or str(p.get("title") or "")[:80]
+        if key in seen:
+            continue
+        seen.add(key)
+        ai = p.get("abstract_ai") or {}
+        rows.append({
+            "PMID": pmid,
+            "Title": (p.get("title") or "")[:90],
+            "Fit": p.get("atlas_fit") or ai.get("atlas_fit", ""),
+            "Analysis": ai.get("summary_en") or p.get("summary_en") or "",
+            "PubMed": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/" if pmid else "",
+        })
+    return pd.DataFrame(rows)
+
+
+def keyword_pub_table(items: list[dict]) -> pd.DataFrame:
     rows = []
     for p in items:
         ai = p.get("abstract_ai") or {}
-        sim = (p.get("similar_in_catalog") or [{}])[0]
         accs = p.get("accessions_mentioned") or p.get("pxd_mentioned") or []
         rows.append({
             "PMID": p.get("pmid", ""),
-            "Atlas fit": ai.get("atlas_fit") or p.get("atlas_fit") or "",
-            "Score": ai.get("atlas_fit_score", ""),
-            "Название": (p.get("title") or "")[:100],
+            "Fit": ai.get("atlas_fit") or p.get("atlas_fit", ""),
+            "Finding": p.get("finding_note") or _ai_summary(ai),
             "TMT": ai.get("tmt", ""),
-            "Материал": ai.get("material", ""),
-            "PXD/PDC": ", ".join(accs[:3]),
-            "Похож на": sim.get("project_id", ""),
-            "ИИ (RU)": (ai.get("summary_ru") or "")[:120],
-            "Reader": p.get("abstract_reader") or ai.get("reader", ""),
+            "Material": ai.get("material", ""),
+            "IDs in text": ", ".join(accs[:3]),
+            "Title": (p.get("title") or "")[:80],
         })
     return pd.DataFrame(rows)
 
 
-def repo_search_to_df(items: list[dict]) -> pd.DataFrame:
+def keyword_repo_table(items: list[dict]) -> pd.DataFrame:
+    from atlas_agent.sources.dataset_resolve import _url_for_accession
+
     rows = []
     for p in items:
         acc = p.get("accession") or p.get("project_accession") or ""
         sim = (p.get("similar_in_catalog") or [{}])[0]
         rows.append({
             "ID": acc,
-            "Название": (p.get("title") or p.get("projectTitle") or "")[:100],
-            "Источник": source_label(p),
-            "Plex": p.get("tmt_label") or p.get("inferred_plex") or "",
-            "Похож на": sim.get("project_id", ""),
-            "Score": sim.get("score", ""),
+            "Source": _source_label(p),
+            "Finding": p.get("finding_note", ""),
+            "Similar to": sim.get("project_id", ""),
+            "Link": _url_for_accession(acc.upper()) if acc else "",
+            "Title": (p.get("title") or p.get("projectTitle") or "")[:80],
         })
     return pd.DataFrame(rows)
 
 
-@st.cache_data(ttl=120)
-def load_catalog():
-    from atlas_agent.config import load_config
-    from atlas_agent.discovery.agent import load_catalog_readonly
-    from atlas_agent.discovery.catalog_profile import build_catalog_profile
-
-    cfg = load_config()
-    df = load_catalog_readonly(cfg)
-    profile = build_catalog_profile(df)
-    profile["n_atlas_projects"] = profile["n_unique_ids"]
-    return df, profile, cfg
-
-
-def load_report():
-    from atlas_agent.discovery.history import load_latest
-
-    return load_latest(ROOT)
+def render_project_links(card: dict):
+    c1, c2, c3, c4 = st.columns(4)
+    if card.get("repository_url"):
+        c1.link_button("PRIDE / PDC / MSV", card["repository_url"], use_container_width=True)
+    if card.get("pubmed_url"):
+        c2.link_button("PubMed", card["pubmed_url"], use_container_width=True)
+    if card.get("atlas_map_url"):
+        c3.link_button("Organ map", card["atlas_map_url"], use_container_width=True)
+    gh = card.get("github") or {}
+    if gh.get("tmt_projects_folder"):
+        c4.link_button("GitHub: data", gh["tmt_projects_folder"], use_container_width=True)
+    if gh.get("atlas_repo_folder"):
+        st.link_button("GitHub: TMT repo", gh["atlas_repo_folder"], use_container_width=False)
 
 
-def run_search(cfg, df, year_from):
-    from atlas_agent.discovery.agent import run_discovery_scan
+# --- Header ---
+st.markdown('<p class="portal-title">Sirius Human TMT Proteome Atlas — Portal</p>', unsafe_allow_html=True)
+st.markdown(
+    '<p class="portal-sub">New projects · AI search · organ map · catalog (WIP)</p>',
+    unsafe_allow_html=True,
+)
 
-    sc = dict(cfg.get("discovery") or {})
-    sc["year_from"] = year_from
-    cfg = dict(cfg)
-    cfg["discovery"] = sc
-    return run_discovery_scan(df, cfg, root=ROOT)
-
-
-def run_ai_keyword_search(cfg, df, keywords, extra_query, year_from, year_to):
-    from atlas_agent.discovery.keyword_search import run_keyword_ai_search
-
-    return run_keyword_ai_search(
-        df,
-        cfg,
-        keywords=keywords,
-        extra_query=extra_query,
-        year_from=year_from,
-        year_to=year_to,
-    )
-
-
-st.markdown('<p class="main-header">Atlas Discovery + QC</p>', unsafe_allow_html=True)
-st.caption("Каталог: TMT ATLAS · Homo sapiens · TMT 10/11/12/16 · GitHub: ai-for-atlas")
-
-df, profile, cfg = load_catalog()
+df, profile, cfg, organ_index = load_catalog_bundle()
 disc = cfg.get("discovery") or {}
+gh_meta = organ_index.get("github") or {}
 
 with st.sidebar:
-    st.header("Скан")
-    year = st.slider("Год с", 2020, 2026, int(disc.get("year_from") or 2024))
-    if st.button("Обновить с диска", use_container_width=True):
-        st.session_state["report"] = load_report()
+    st.subheader("Controls")
+    year_scan = st.slider("Year from (full scan)", 2020, 2026, int(disc.get("year_from") or 2024))
+    if st.button("Reload scan from disk", use_container_width=True):
+        st.session_state["scan_report"] = load_scan_report()
         st.rerun()
-    if st.button("Полный scan", type="primary", use_container_width=True):
-        st.session_state["do_scan"] = True
-    st.metric("TMT ATLAS", profile.get("n_unique_ids", 0))
-    sh = (cfg.get("sheet") or {}).get("projects_sheet", "TMT ATLAS")
-    st.caption(f"{sh} · read-only")
+    if st.button("Run full Discovery scan", type="primary", use_container_width=True):
+        st.session_state["run_full_scan"] = True
     st.divider()
-    st.markdown(f"[Сайт на GitHub]({GITHUB_SITE})")
+    st.metric("TMT ATLAS projects", organ_index["n_projects"])
+    st.caption(f"UI version: {APP_VERSION}")
+    st.markdown(f"[Discovery site]({gh_meta.get('discovery_site', '')})")
+    st.markdown(f"[QC site]({gh_meta.get('discovery_site', '').replace('discovery.html', 'qc.html')})")
+    st.markdown(f"[Interactive map]({gh_meta.get('streamlit_map') or gh_meta.get('atlas_map', '')})")
+    st.divider()
+    st.markdown("**Tabs:**")
+    st.markdown("1. **New projects** — scan results only")
+    st.markdown("2. **AI search** — keyword discovery")
+    st.markdown("3. **Body map** — external organ map")
+    st.markdown("4. **Catalog** — WIP browse")
 
-if "report" not in st.session_state:
-    st.session_state["report"] = load_report()
+if "scan_report" not in st.session_state:
+    st.session_state["scan_report"] = load_scan_report()
 
-if st.session_state.pop("do_scan", False):
-    with st.spinner("Полный поиск + QC…"):
-        st.session_state["report"] = run_search(cfg, df, year)
+if st.session_state.pop("run_full_scan", False):
+    with st.spinner("Discovery scan (PRIDE, PDC, MassIVE, iProX, Europe PMC)…"):
+        st.session_state["scan_report"] = run_full_scan(cfg, df, year_scan)
 
-tab_qc, tab_ai, tab_site = st.tabs(["QC кандидаты", "ИИ поиск (ключевые слова)", "Сайт / GitHub"])
+tab_found, tab_keywords, tab_map, tab_catalog = st.tabs([
+    "New projects",
+    "AI search",
+    "Body map",
+    "Catalog (WIP)",
+])
 
-with tab_qc:
-    report = st.session_state.get("report")
+# --- Tab 1: New projects (found only) ---
+with tab_found:
+    report = st.session_state.get("scan_report")
     if not report:
-        st.warning("Нет скана. Нажмите «Полный scan» или `python run_discovery.py scan`")
+        st.info("No saved scan. Run a full scan in the sidebar or `python run_discovery.py scan`.")
     else:
         s = report.get("summary") or {}
         cand = report.get("candidates") or report.get("new_projects") or []
+        pubs = report.get("publications_analyzed") or []
         manual = report.get("manual_check") or []
-        rejected = report.get("rejected_material") or []
+        literature = report.get("literature_semantic") or []
+        papers = papers_without_id_table(manual, literature)
 
-        c1, c2, c3, c4, c5 = st.columns(5)
-        for col, n, lbl in [
-            (c1, len(cand), "Candidate"),
-            (c2, len(manual), "Manual check"),
-            (c3, len(rejected), "Rejected"),
-            (c4, s.get("filtered_out", 0), "Technical filt."),
-            (c5, profile.get("n_atlas_projects") or s.get("catalog_unique_ids", 0), "TMT ATLAS"),
-        ]:
-            col.markdown(
-                f'<div class="metric-card"><div class="metric-val">{n}</div>'
-                f'<div class="metric-lbl">{lbl}</div></div>',
-                unsafe_allow_html=True,
+        table_n = sum(
+            1 for x in cand
+            if (x.get("data_availability") or {}).get("status") == "quant_table"
+        )
+        pride_n = sum(1 for x in cand if _source_label(x) == "PRIDE")
+        pdc_n = sum(1 for x in cand if _source_label(x) == "PDC")
+
+        m1, m2, m3, m4, m5 = st.columns(5)
+        m1.markdown(f'<div class="metric-box"><div class="metric-num">{len(cand)}</div><div class="metric-lbl">New projects</div></div>', unsafe_allow_html=True)
+        m2.markdown(f'<div class="metric-box"><div class="metric-num">{table_n}</div><div class="metric-lbl">Protein table</div></div>', unsafe_allow_html=True)
+        m3.markdown(f'<div class="metric-box"><div class="metric-num">{pride_n}</div><div class="metric-lbl">PRIDE</div></div>', unsafe_allow_html=True)
+        m4.markdown(f'<div class="metric-box"><div class="metric-num">{pdc_n}</div><div class="metric-lbl">PDC</div></div>', unsafe_allow_html=True)
+        m5.markdown(f'<div class="metric-box"><div class="metric-num">{len(papers)}</div><div class="metric-lbl">Papers w/o ID</div></div>', unsafe_allow_html=True)
+
+        st.caption(
+            "One table per section — same layout as GitHub Pages. "
+            "PDC: protein-level quant table only. Manual/rejected QC → separate QC page."
+        )
+
+        link_col1, link_col2, link_col3 = st.columns(3)
+        if SITE_DISCOVERY.is_file():
+            link_col1.link_button("Discovery site (local)", SITE_DISCOVERY.resolve().as_uri(), use_container_width=True)
+        link_col2.link_button("Discovery site (GitHub)", gh_meta.get("discovery_site", ""), use_container_width=True)
+        if SITE_QC.is_file():
+            link_col3.link_button("QC report", SITE_QC.resolve().as_uri(), use_container_width=True)
+        else:
+            link_col3.link_button("QC report (GitHub)", gh_meta.get("discovery_site", "").replace("discovery.html", "qc.html"), use_container_width=True)
+
+        st.subheader(f"New projects ({len(cand)})")
+        search = st.text_input("Search projects", placeholder="PXD, PDC, gastric, TMT…", key="found_search")
+        proj_df = new_projects_table(cand, pubs)
+        if search:
+            fl = search.lower()
+            proj_df = proj_df[
+                proj_df.astype(str).apply(lambda row: fl in " ".join(row.values).lower(), axis=1)
+            ]
+        if not proj_df.empty:
+            st.dataframe(
+                proj_df,
+                use_container_width=True,
+                hide_index=True,
+                height=min(520, 80 + 35 * len(proj_df)),
+                column_config={
+                    "Project": st.column_config.LinkColumn("Project", display_text="Open"),
+                    "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
+                },
+            )
+        else:
+            st.caption("No new projects in latest scan")
+
+        if len(papers):
+            st.subheader(f"Papers without accession ({len(papers)})")
+            st.dataframe(
+                papers,
+                use_container_width=True,
+                hide_index=True,
+                height=min(280, 80 + 35 * len(papers)),
+                column_config={
+                    "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
+                },
             )
 
-        col1, col2 = st.columns(2)
-        site_html = SITE_REPORT if SITE_REPORT.is_file() else HTML_REPORT
-        with col1:
-            if site_html.is_file():
-                st.link_button("Сайт: только новые", site_html.resolve().as_uri(), use_container_width=True)
-        with col2:
-            qc_path = SITE_QC if SITE_QC.is_file() else Path(report.get("report_qc_html") or QC_REPORT)
-            if qc_path.is_file():
-                st.link_button("QC Report", qc_path.resolve().as_uri(), use_container_width=True)
-
-        t1, t2, t3 = st.tabs([
-            f"Candidate ({len(cand)})",
-            f"Manual check ({len(manual)})",
-            f"Rejected ({len(rejected)})",
-        ])
-        for tab, data in [(t1, cand), (t2, manual), (t3, rejected)]:
-            with tab:
-                q = st.text_input("Поиск", key=f"q_{id(data)}", placeholder="PXD, PDC, tumor, organoid…")
-                items = data
-                if q:
-                    ql = q.lower()
-                    items = [
-                        p
-                        for p in data
-                        if ql
-                        in " ".join(
-                            str(p.get(k, "")) for k in ("project_accession", "accession", "title", "qc_reasons")
-                        ).lower()
-                    ]
-                st.caption(f"Показано: {len(items)}")
-                if items:
-                    st.dataframe(to_df(items), use_container_width=True, hide_index=True, height=420)
-                else:
-                    st.info("Пусто")
-
-        with st.expander("Скачать JSON"):
+        with st.expander("Scan JSON"):
             st.download_button(
-                "JSON",
-                json.dumps(report, ensure_ascii=False, indent=2),
+                "Download",
+                json.dumps(report, ensure_ascii=False, indent=2, default=str),
                 file_name=f"discovery_{datetime.now():%Y%m%d}.json",
             )
 
-with tab_ai:
+# --- Tab 2: AI keyword search ---
+with tab_keywords:
+    st.subheader("AI keyword search")
     from atlas_agent.discovery.keyword_search import default_search_keywords
 
-    default_kw = default_search_keywords(cfg, profile)
-    st.markdown("**ИИ-поиск** по ключевым словам из TMT ATLAS и `config.yaml` (PRIDE, PDC, Europe PMC).")
+    st.markdown(
+        "Search by **atlas profile keywords** (organs, diseases, TMT) across repositories "
+        "and Europe PMC. LLM scores abstracts by meaning (not exact title match)."
+    )
 
-    kw_cols = st.columns([2, 1])
-    with kw_cols[0]:
-        kw_text = st.text_area(
-            "Ключевые слова (по одному в строке или через запятую)",
-            value="\n".join(default_kw),
-            height=140,
-            help="Органы, болезни, TMT, PDC… из каталога + pride_keywords",
-        )
-    with kw_cols[1]:
-        ai_year_from = st.number_input("Год с", 2020, 2026, int(disc.get("year_from") or 2024))
-        ai_year_to = st.number_input("Год по", 2020, 2026, int(disc.get("year_to") or 2026))
-        extra_q = st.text_input("Доп. запрос Europe PMC", placeholder="gastric cancer TMT adjacent normal")
+    default_kw = default_search_keywords(cfg, profile)
+    kw_left, kw_right = st.columns([2, 1])
+    with kw_left:
+        kw_raw = st.text_area("Keywords", value="\n".join(default_kw), height=120)
+    with kw_right:
+        y0 = st.number_input("Year from", 2020, 2026, int(disc.get("year_from") or 2024))
+        y1 = st.number_input("Year to", 2020, 2026, int(disc.get("year_to") or 2026))
+        extra = st.text_input("Extra Europe PMC query", placeholder="gastric TMT adjacent normal")
 
     keywords = []
-    for line in kw_text.replace(",", "\n").splitlines():
+    for line in kw_raw.replace(",", "\n").splitlines():
         k = line.strip()
         if k and k not in keywords:
             keywords.append(k)
 
-    st.caption(f"Из каталога: {', '.join(profile.get('top_organs') or [])[:5]} · "
-               f"{', '.join(profile.get('top_diseases') or [])[:5]}")
+    st.caption(
+        f"Catalog profile: {', '.join(profile.get('top_organs') or [])[:4]} · "
+        f"{', '.join(profile.get('top_diseases') or [])[:4]}"
+    )
 
-    if st.button("Искать с ИИ", type="primary", use_container_width=True):
-        with st.spinner("PRIDE + PDC + Europe PMC + ИИ…"):
-            st.session_state["ai_search"] = run_ai_keyword_search(
-                cfg, df, keywords, extra_q, int(ai_year_from), int(ai_year_to)
-            )
+    if st.button("Run search", type="primary", use_container_width=True):
+        with st.spinner("Steps 1–4: repositories → literature → filters → LLM…"):
+            st.session_state["kw_result"] = run_keyword_search(cfg, df, keywords, extra, int(y0), int(y1))
 
-    ai_result = st.session_state.get("ai_search")
-    if ai_result:
-        stats = ai_result.get("source_stats") or {}
-        m1, m2, m3, m4, m5 = st.columns(5)
-        m1.metric("PRIDE", stats.get("pride", 0))
-        m2.metric("PDC", stats.get("pdc", 0))
-        m3.metric("Статьи", stats.get("publications", 0))
-        m4.metric("Новые репо", len(ai_result.get("repository_novel") or []))
-        m5.metric("ИИ прочитано", stats.get("llm_read", 0))
+    kw_res = st.session_state.get("kw_result")
+    if kw_res:
+        stats = kw_res.get("source_stats") or {}
+        c1, c2, c3, c4, c5 = st.columns(5)
+        c1.metric("PRIDE", stats.get("pride", 0))
+        c2.metric("PDC", stats.get("pdc", 0))
+        c3.metric("Papers", stats.get("publications", 0))
+        c4.metric("New IDs", len(kw_res.get("repository_novel") or []))
+        c5.metric("LLM", stats.get("llm_read", 0))
 
-        with st.expander("Запрос Europe PMC"):
-            st.code(ai_result.get("literature_query") or "")
+        with st.expander("Europe PMC query (step 2)"):
+            st.code(kw_res.get("literature_query") or "")
 
-        sub_repo, sub_pub = st.tabs([
-            f"Репозитории ({len(ai_result.get('repository_candidates') or ai_result.get('repository_novel') or [])})",
-            f"Статьи / абстракты ({len(ai_result.get('publications') or [])})",
-        ])
-        with sub_repo:
-            repo_items = ai_result.get("repository_candidates") or ai_result.get("repository_novel") or []
-            if repo_items:
-                st.dataframe(repo_search_to_df(repo_items), use_container_width=True, hide_index=True, height=360)
+        sub_r, sub_p = st.tabs(["Repositories", "Publications"])
+        with sub_r:
+            repos = kw_res.get("repository_candidates") or kw_res.get("repository_novel") or []
+            if repos:
+                st.dataframe(keyword_repo_table(repos), use_container_width=True, hide_index=True, height=360)
             else:
-                st.info("Новых ID в репозиториях не найдено по этим ключевым словам.")
-        with sub_pub:
-            pubs = ai_result.get("publications") or []
-            fit_filter = st.selectbox("Atlas fit", ["Все", "yes", "maybe", "no"], index=0)
-            if fit_filter != "Все":
+                st.caption("No new repository IDs")
+        with sub_p:
+            pubs = kw_res.get("publications") or []
+            fit = st.selectbox("Atlas fit", ["All", "yes", "maybe", "no"])
+            if fit != "All":
                 pubs = [
                     p
                     for p in pubs
-                    if (p.get("abstract_ai") or {}).get("atlas_fit") == fit_filter
-                    or p.get("atlas_fit") == fit_filter
+                    if (p.get("abstract_ai") or {}).get("atlas_fit") == fit or p.get("atlas_fit") == fit
                 ]
             if pubs:
-                st.dataframe(pubs_to_df(pubs), use_container_width=True, hide_index=True, height=360)
+                st.dataframe(keyword_pub_table(pubs), use_container_width=True, hide_index=True, height=360)
             else:
-                st.info("Статей не найдено. Измените ключевые слова или год.")
+                st.caption("No publications")
 
         st.download_button(
-            "JSON результатов",
-            json.dumps(ai_result, ensure_ascii=False, indent=2, default=str),
-            file_name=f"ai_search_{datetime.now():%Y%m%d_%H%M}.json",
+            "Download JSON",
+            json.dumps(kw_res, ensure_ascii=False, indent=2, default=str),
+            file_name=f"keyword_search_{datetime.now():%Y%m%d}.json",
         )
 
-with tab_site:
-    st.markdown("### Публикация на GitHub Pages")
-    st.markdown(f"**Репозиторий:** [arinaatom-cyber/ai-for-atlas](https://github.com/arinaatom-cyber/ai-for-atlas)")
-    st.markdown(f"**URL сайта:** [{GITHUB_SITE}]({GITHUB_SITE})")
-
-    if st.button("Пересобрать docs/site", use_container_width=True):
-        from atlas_agent.viz.publish_site import publish_discovery_site
-
-        rep = st.session_state.get("report") or load_report()
-        if rep:
-            publish_discovery_site(rep, ROOT)
-            st.success("docs/site обновлён")
-        else:
-            st.error("Нет latest.json — сначала полный scan")
-
-    site_html = SITE_REPORT if SITE_REPORT.is_file() else HTML_REPORT
-    if site_html.is_file():
-        st.link_button("Открыть локальный сайт", site_html.resolve().as_uri(), use_container_width=True)
-
-    st.code(
-        "powershell -File scripts\\setup_github_pages.ps1   # первый раз\n"
-        "powershell -File scripts\\push_site_github.ps1     # обновить сайт\n"
-        "powershell -File scripts\\serve_site.ps1           # localhost:8765",
-        language="powershell",
+# --- Tab 3: Body map (external link, no heavy embed) ---
+with tab_map:
+    st.subheader("Human body organ map")
+    streamlit_map = gh_meta.get("streamlit_map") or gh_meta.get("atlas_map", "")
+    github_map = gh_meta.get("atlas_map", "")
+    st.markdown(
+        "Open the interactive map in a **separate tab** (faster than embedding). "
+        "Streamlit Cloud hosts the portal; GitHub Pages hosts the static SVG map."
     )
+    c1, c2 = st.columns(2)
+    if streamlit_map:
+        c1.link_button("Open on Streamlit Cloud", streamlit_map, use_container_width=True)
+    if github_map:
+        c2.link_button("Open on GitHub Pages (TMT)", github_map, use_container_width=True)
+    st.caption("Deep link example: add `?organ=gastric` to filter by organ.")
+
+    organs = sorted(
+        organ_index["organ_counts"].keys(),
+        key=lambda o: (-organ_index["organ_counts"][o], o),
+    )
+    st.markdown("**Organs in catalog** (quick index — full map opens above)")
+    cols = st.columns(4)
+    for i, organ in enumerate(organs[:16]):
+        n = organ_index["organ_counts"][organ]
+        cols[i % 4].markdown(f"· {organ.replace('_', ' ')} ({n})")
+    if len(organs) > 16:
+        st.caption(f"+ {len(organs) - 16} more organs — see full map")
+
+# --- Tab 4: Catalog browse (WIP) ---
+with tab_catalog:
+    st.markdown(
+        '<div class="wip-banner">Work in progress — raw catalog browse. '
+        "Full organ→project UI will be finished later.</div>",
+        unsafe_allow_html=True,
+    )
+    st.subheader("Catalog by organ")
+    st.caption(f"{organ_index['n_projects']} projects · data: [tmt-projects]({gh_meta.get('data_repo', '')})")
+
+    organs = sorted(
+        organ_index["organ_counts"].keys(),
+        key=lambda o: (-organ_index["organ_counts"][o], o),
+    )
+    organ_labels = {o: f"{o.replace('_', ' ')} ({organ_index['organ_counts'][o]})" for o in organs}
+
+    selected = st.selectbox("Organ", organs, format_func=lambda o: organ_labels[o], key="catalog_organ")
+    from atlas_agent.viz.portal_index import atlas_organ_map_url
+
+    github_map = gh_meta.get("atlas_map", "")
+    st.link_button(
+        f"Map: {selected.replace('_', ' ')}",
+        atlas_organ_map_url(selected, base=github_map),
+        use_container_width=True,
+    )
+
+    projects = organ_index["by_organ"].get(selected, [])
+    filter_text = st.text_input("Filter list", placeholder="PXD, gastric, PDC…", key="catalog_filter")
+    if filter_text:
+        fl = filter_text.lower()
+        projects = [
+            p
+            for p in projects
+            if fl in " ".join(
+                str(p.get(k, "")) for k in ("project_id", "disease", "tissue", "description", "title")
+            ).lower()
+        ]
+
+    st.caption(f"{len(projects)} project(s) for {selected.replace('_', ' ')}")
+    for card in projects[:30]:
+        with st.expander(f"{card['project_id']} · {card['database']} · {(card['disease'] or '')[:50]}", expanded=False):
+            st.markdown(f"**Summary:** {card['description'] or card['title']}")
+            st.markdown(
+                f"TMT: `{card['tmt'] or '—'}` · Tissue: {card['tissue'] or '—'} · "
+                f"Organ (catalog): {card['organ_raw'] or '—'}"
+            )
+            if card.get("pmid"):
+                st.markdown(f"PMID: [{card['pmid']}]({card['pubmed_url']})")
+            render_project_links(card)
+    if len(projects) > 30:
+        st.caption(f"Showing 30 of {len(projects)} — use filter or open organ map")
+
+    with st.expander("Rebuild docs/site from scan"):
+        if st.button("Publish discovery site"):
+            from atlas_agent.viz.publish_site import publish_discovery_site
+
+            rep = st.session_state.get("scan_report") or load_scan_report()
+            if rep:
+                publish_discovery_site(rep, ROOT)
+                st.success("docs/site updated")
+                st.cache_data.clear()
+            else:
+                st.warning("No scan — run full Discovery scan first")

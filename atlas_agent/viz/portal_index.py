@@ -12,6 +12,7 @@ from atlas_agent.sources.github_client import parse_repo_url
 from atlas_agent.sources.projects_table import primary_project_id
 
 ATLAS_MAP_BASE = "https://arinaatom-cyber.github.io/TMT/"
+STREAMLIT_ATLAS_URL = "https://human-cancser-tmt-proteome-atlas.streamlit.app/#human-proteome-atlas"
 DISCOVERY_SITE = "https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html"
 PORTAL_SITE = "https://arinaatom-cyber.github.io/ai-for-atlas/"
 
@@ -40,12 +41,15 @@ def europe_pmc_url(pmid: Any) -> str:
     return f"https://europepmc.org/article/MED/{p}" if p else ""
 
 
-def atlas_organ_map_url(organ_canon: str) -> str:
-    """Диплинк на интерактивную карту (параметр ?organ= как в TMT Pages)."""
+def atlas_organ_map_url(organ_canon: str, *, base: str | None = None) -> str:
+    """Deep link to organ map (?organ= on GitHub Pages, or Streamlit portal base)."""
+    map_base = (base or ATLAS_MAP_BASE).rstrip("/")
     key = (organ_canon or "").strip().replace(" ", "_")
+    if "streamlit.app" in map_base:
+        return map_base if not key or key == "Other" else f"{map_base}?organ={key}"
     if not key or key == "Other":
-        return ATLAS_MAP_BASE
-    return f"{ATLAS_MAP_BASE}?organ={key}"
+        return f"{map_base}/" if not map_base.endswith("/") else map_base
+    return f"{map_base}?organ={key}"
 
 
 def github_tree_url(repo_url: str, branch: str, subpath: str) -> str:
@@ -134,6 +138,7 @@ def build_organ_index(df: pd.DataFrame, cfg: dict) -> dict[str, Any]:
 
     organ_counts = {k: len(v) for k, v in sorted(by_organ.items(), key=lambda x: (-len(x[1]), x[0]))}
     gh_cfg = cfg.get("github") or {}
+    streamlit_map = gh_cfg.get("streamlit_app") or STREAMLIT_ATLAS_URL
 
     return {
         "n_projects": len(all_projects),
@@ -144,53 +149,178 @@ def build_organ_index(df: pd.DataFrame, cfg: dict) -> dict[str, Any]:
             "atlas_repo": gh_cfg.get("atlas_repo", ""),
             "data_repo": gh_cfg.get("data_repo", ""),
             "atlas_map": ATLAS_MAP_BASE,
+            "streamlit_map": streamlit_map,
             "discovery_site": DISCOVERY_SITE,
             "portal_site": PORTAL_SITE,
         },
     }
 
 
-def format_finding_note(item: dict, *, keywords: list[str] | None = None) -> str:
-    """
-    Текст «что найдено» для Discovery / keyword search.
-    Не дублирует заголовок статьи — поясняет, почему запись попала в выдачу.
-    """
-    parts: list[str] = []
-    acc = item.get("project_accession") or item.get("accession") or ""
-    src = item.get("source") or item.get("consortium") or ""
+MATERIAL_SIGNAL_EN: dict[str, str] = {
+    "clinical_human": "human clinical samples",
+    "pdc_clinical_tumor": "PDC clinical tumor cohort",
+    "human_tumor_tissue": "tumor tissue",
+    "normal_adjacent": "adjacent normal tissue",
+    "patient_fluid": "patient plasma/serum/blood/CSF",
+    "human_cancer_cell_line": "human cancer cell line",
+}
 
-    if keywords:
-        parts.append(f"Совпадение по ключевым словам: {', '.join(keywords[:6])}")
+MATERIAL_KEYWORD_PATTERNS: list[tuple[str, str]] = [
+    ("vitreous", r"\bvitreous\b"),
+    ("retinal", r"\bretinal\b"),
+    ("case-control", r"case[- ]?control"),
+    ("paired tumor/normal", r"paired\s+(tumor|normal)|tumor[- ]adjacent"),
+    ("adjacent normal", r"adjacent\s+normal|peritumoral"),
+    ("tumor tissue", r"\b(tumor\s+tissue|ffpe|biopsy|resected)\b"),
+    ("plasma", r"\b(plasma|serum|blood)\b"),
+    ("CSF", r"\b(csf|cerebrospinal)\b"),
+    ("urine", r"\burine\b"),
+    ("cancer cell line", r"\b(cell\s+line|mcf[- ]?7|a549|hct116)\b"),
+    ("gastric", r"\bgastric\b"),
+    ("lung", r"\b(lung|luad|adenocarcinoma)\b"),
+    ("proteome", r"\bproteome\b"),
+]
+
+
+def material_keywords_from_item(item: dict) -> list[str]:
+    blob = " ".join(
+        str(item.get(k) or "")
+        for k in ("title", "description", "abstract", "disease", "experiment_type", "analytical_fraction")
+    )
+    found: list[str] = []
+    for label, pat in MATERIAL_KEYWORD_PATTERNS:
+        if re.search(pat, blob, re.I) and label not in found:
+            found.append(label)
+    return found[:8]
+
+
+def _resolve_pmid_from_literature(item: dict) -> str:
+    """Fallback: Europe PMC search by accession or title."""
+    acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
+    title = (item.get("title") or "").strip()
+    queries: list[str] = []
+    if acc:
+        queries.append(acc)
+    if title and len(title) > 20:
+        queries.append(f'"{title[:120]}"')
+    if not queries:
+        return ""
+    try:
+        import requests
+
+        for q in queries:
+            r = requests.get(
+                "https://www.ebi.ac.uk/europepmc/webservices/rest/search",
+                params={"query": q, "format": "json", "pageSize": 1, "resultType": "core"},
+                timeout=25,
+            )
+            r.raise_for_status()
+            hits = (r.json().get("resultList") or {}).get("result") or []
+            if hits:
+                pmid = _clean_pmid(hits[0].get("pmid"))
+                if pmid:
+                    return pmid
+    except Exception:
+        pass
+    return ""
+
+
+def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> None:
+    """Set repository_url, pubmed_url, pmid on discovery items (in-place)."""
+    acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
+    item["repository_url"] = item.get("repository_url") or item.get("url") or repository_url(acc)
+    pmid = _clean_pmid(item.get("pmid"))
+    if not pmid and fetch_pride_pmid and acc.startswith("PXD"):
+        try:
+            from atlas_agent.sources.pride import fetch_project
+
+            detail = fetch_project(acc) or {}
+            for ref in detail.get("references") or []:
+                pmid = _clean_pmid(ref.get("pubmedID"))
+                if pmid:
+                    break
+        except Exception:
+            pass
+    if not pmid:
+        pmid = _resolve_pmid_from_literature(item)
+        if pmid:
+            item["pmid"] = pmid
+    item["pubmed_url"] = pubmed_url(item.get("pmid"))
+    if item.get("pmid") and not item.get("doi"):
+        item.setdefault("doi", "")
+
+
+def _data_file_hint(item: dict) -> str:
+    da = item.get("data_availability") or {}
+    layer = da.get("omics_layer") or ""
+    proteome = da.get("proteome_files") or []
+    phospho = da.get("phospho_files") or []
+    files = da.get("quant_files") or da.get("sample_files") or []
+    if layer == "phospho_only" or da.get("status") == "phospho_table":
+        top = phospho[0] if phospho else (files[0] if files else "")
+        return f"Phospho table only (not global proteome){': ' + top[:70] if top else ''}"
+    if proteome:
+        return f"Download: {proteome[0][:70]} (protein-level table)"
+    if not files:
+        return ""
+    top = files[0]
+    low = top.lower()
+    if low == "protein.txt" or ("proteome" in low and "phospho" not in low):
+        layer_hint = "protein-level table"
+    elif "phospho" in low:
+        layer_hint = "phospho layer (not global proteome)"
+    elif "peptide" in low:
+        layer_hint = "peptide table"
+    else:
+        layer_hint = "quant table"
+    return f"Download: {top[:70]} ({layer_hint})"
+
+
+def format_finding_note(item: dict, *, keywords: list[str] | None = None) -> str:
+    """English note: why this hit appears + what material/files to inspect."""
+    parts: list[str] = []
+
+    kw = list(keywords or []) + material_keywords_from_item(item)
+    if kw:
+        seen: set[str] = set()
+        uniq = []
+        for k in kw:
+            kl = k.lower()
+            if kl not in seen:
+                seen.add(kl)
+                uniq.append(k)
+        parts.append("Keywords from title: " + ", ".join(uniq[:8]))
+
+    sig = item.get("material_signals") or {}
+    inc = [MATERIAL_SIGNAL_EN.get(x, x.replace("_", " ")) for x in (sig.get("included") or [])]
+    if inc:
+        parts.append("Material type: " + ", ".join(inc[:3]))
+
+    design = str(item.get("sample_design") or "").strip()
+    if design and design != "unknown":
+        parts.append(f"Design: {design.replace('_', '-')}")
+
+    file_hint = _data_file_hint(item)
+    if file_hint:
+        parts.append(file_hint)
+    elif (item.get("data_availability") or {}).get("guidance"):
+        parts.append(str(item["data_availability"]["guidance"])[:120])
 
     sim = (item.get("similar_in_catalog") or [{}])[0]
     if sim.get("project_id"):
-        parts.append(f"Похоже на {sim['project_id']} (score {sim.get('score', '—')})")
+        parts.append(f"Similar to catalog {sim['project_id']} (score {sim.get('score', '—')})")
 
     ai = item.get("abstract_ai") or {}
-    if ai.get("summary_ru"):
-        parts.append(ai["summary_ru"])
-    elif ai.get("similar_atlas_theme"):
-        parts.append(f"Тема: {ai['similar_atlas_theme']}")
+    if ai.get("summary_en"):
+        parts.append(ai["summary_en"])
+    elif ai.get("material") and ai.get("material") != "unclear":
+        parts.append(f"LLM material: {ai['material']}")
 
     if item.get("atlas_fit"):
         parts.append(f"Atlas fit: {item['atlas_fit']}")
 
-    reasons = item.get("qc_reasons") or item.get("filter_reasons") or []
-    if reasons:
-        parts.append("; ".join(str(r) for r in reasons[:2]))
-
-    sig = item.get("material_signals") or {}
-    inc = sig.get("included") or []
-    if inc:
-        parts.append(f"Материал: {', '.join(inc[:3])}")
-
-    if acc and src:
-        parts.append(f"Источник {src}, ID {acc}")
-    elif acc:
-        parts.append(f"Репозиторий {acc}")
-
     if not parts:
         title = (item.get("title") or "")[:80]
-        return f"Кандидат TMT human proteomics{f' — {title}' if title else ''}"
+        return f"TMT human proteomics candidate{f' — {title}' if title else ''}"
 
-    return " · ".join(parts)[:400]
+    return " · ".join(parts)[:420]

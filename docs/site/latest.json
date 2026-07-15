@@ -8,13 +8,13 @@
     "novel_publications": 24,
     "novel_consortia": 62,
     "novel_total": 113,
-    "new_projects": 15,
-    "candidates": 15,
+    "new_projects": 4,
+    "candidates": 4,
     "manual_check": 20,
     "rejected_material": 0,
     "review_recommended": 37,
     "already_in_catalog": 11,
-    "filtered_out": 94,
+    "filtered_out": 116,
     "requires_manual_check": 20,
     "rejected": 0,
     "human_filtered": 40,
@@ -195,383 +195,6 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/"
     },
     {
-      "accession": "PDC000649",
-      "title": "Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium",
-      "description": "Other;Stomach Adenocarcinoma · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Other;Stomach Adenocarcinoma",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Stomach",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000649"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000649",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000649",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 496,
-        "n_listed": 496,
-        "sample_files": [
-          "20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw",
-          "20231108_GC_TMT11_Phos_B17re_F05_01.raw",
-          "20221025_GC_Batch03_TMT11_phos_F03_02.raw",
-          "20230503_GC_Batch10re_TMT11_phos_F02_01.raw",
-          "20231227_GC_TMT11_Phos_B22_F01_01.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: gastric, lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000645",
-      "title": "Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium",
-      "description": "Other;Stomach Adenocarcinoma · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Other;Stomach Adenocarcinoma",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Stomach",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000645"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000645",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000645",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 744,
-        "n_listed": 744,
-        "sample_files": [
-          "20241014_GC_TMT11_B27_prot_F19.raw",
-          "20240226_GC_TMT11_Prot_B23_F15.raw",
-          "20230822_GC_TMT11_Prot_B16_F10.raw",
-          "20240301_GC_TMT11_Prot_B24_F01.raw",
-          "20231222_GC_TMT11_B20re_prot_F23.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: gastric, lung, proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20241014_GC_TMT11_B27_prot_F19.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000430",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Acetylome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Acetylome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000430"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000430",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000430",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 17,
-        "n_listed": 17,
-        "sample_files": [
-          "BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw",
-          "BA20161202_BI_FM_Medullo_KAc_Plex04_Fxn3.raw",
-          "BA20161203_BI_FM_Medullo_KAc_Plex05_Fxn3.raw",
-          "BA20161201_BI_FM_Medullo_KAc_Plex03_Fxn3.raw",
-          "BA20161201_BI_FM_Medullo_KAc_Plex02_Fxn1.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
-      "pmid": "36267416",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000431",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Phosphoproteome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000431"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000431",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000431",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 10,
-        "n_listed": 10,
-        "sample_files": [
-          "BL20161004_BI_FM_Medullo_pY_Plex01_Fxn1.raw",
-          "BL20170113_BI_FM_Medullo_pY_Plex05_Fxn1.raw",
-          "BA20161122_BI_FM_Medullo_pY_Plex04_Fxn1.raw",
-          "BL20161004_BI_FM_Medullo_pY_Plex02_Fxn1.raw",
-          "BL20161004_BI_FM_Medullo_pY_Plex03_Fxn1.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161004_BI_FM_Medullo_pY_Plex01_Fxn1.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
-      "pmid": "36267416",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000432",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Phosphoproteome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000432"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000432",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000432",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 65,
-        "n_listed": 65,
-        "sample_files": [
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn02.raw",
-          "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn07.raw",
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn03.raw",
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex01_Fxn03.raw",
-          "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn11.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn02.raw (phospho layer (not global proteome))",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38702309/",
-      "pmid": "38702309",
-      "doi": ""
-    },
-    {
       "accession": "PDC000495",
       "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
       "description": "Other · Proteome",
@@ -662,79 +285,6 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000499",
-      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
-      "description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Glycoproteome",
-      "program": "Pediatric Brain Tumor Atlas - CBTN",
-      "disease": "Gliomas;Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Glycoproteome",
-      "primary_site": "Brain;Not Reported",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000499"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000499",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000499",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 120,
-        "n_listed": 243,
-        "sample_files": [
-          "09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz",
-          "10CPTAC_AYA_G_JHU_20230326_B2S5_f07.mzML.gz",
-          "01CPTAC_AYA_G_JHU_20230303_B1S1_f11.raw",
-          "02CPTAC_AYA_G_JHU_20230305_B1S2_f10.raw",
-          "06CPTAC_AYA_G_JHU_20230317_B2S1_f11.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
       "pubmed_url": ""
     },
     {
@@ -946,364 +496,6 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
       "doi": ""
-    },
-    {
-      "accession": "PDC000607",
-      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
-      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Gallbladder",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000607"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000607",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000607",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 396,
-        "n_listed": 396,
-        "sample_files": [
-          "20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw",
-          "20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F09.raw",
-          "20220920_HFX_SYL_GBC_TMT16_Pho_Group17_F06.raw",
-          "20221024_HFX_SYL_GBC_TMT16_Pho_Group30_F03.raw",
-          "20221023_HFX_SYL_GBC_TMT16_Pho_Group32_F07.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000606",
-      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
-      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Gallbladder",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000606"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000606",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000606",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 768,
-        "n_listed": 768,
-        "sample_files": [
-          "20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw",
-          "20220516_HF_LDY_GBC_TMT16_Pro_Group_05_F12.raw",
-          "20220726_HF_SYL_GBC_TMT16_Pro_Group_25_F20.raw",
-          "20220830_HF_SYL_GBC_TMT16_Pro_Group_03_F24.raw",
-          "20220826_HF_SYL_GBC_TMT16_Pro_Group_28_F06.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000696",
-      "title": "Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium",
-      "description": "Breast Invasive Carcinoma;Not Reported · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Breast Invasive Carcinoma;Not Reported",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Breast;Not Reported",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000696"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000696",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000696",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 96,
-        "n_listed": 96,
-        "sample_files": [
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S03_F08.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F03.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S04_F07.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F01.raw",
-          "TNBC_NCC_TMTpro16plex_Phospho_S03_F01.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: TNBC_NCC_OP_TMTpro16plex_Phospho_S03_F08.raw (phospho layer (not global proteome))",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
-      "pmid": "41975515",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000695",
-      "title": "Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium",
-      "description": "Breast Invasive Carcinoma;Not Reported · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Breast Invasive Carcinoma;Not Reported",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Breast;Not Reported",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000695"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000695",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000695",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 216,
-        "n_listed": 216,
-        "sample_files": [
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F03.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F07.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S03_F24.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F23.raw",
-          "TNBC_NCC_TMTpro16plex_Global_S04_F18.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: TNBC_NCC-OP_TMTpro16plex_Global_S04_F03.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
-      "pmid": "41975515",
-      "doi": ""
-    },
-    {
-      "accession": "MSV000102463",
-      "title": "TMT10 quantitative proteomic analysis of depleted neonatal cerebrospinal fluid from infants with hydrocephalus and controls",
-      "description": "This dataset contains TMT10 quantitative tandem mass spectrometry data from depleted neonatal cerebrospinal fluid samples, including hydrocephalus cases and controls. Samples were multiplexed using TMT channels with reference-pool channels included across runs. The original search parameters used Homo sapiens taxonomy, SwissProt plus cRAP contaminant FASTA databases, Trypsin/P digestion with up to 4 missed cleavages, 20 ppm precursor mass tolerance, 0.02 Da fragment mass tolerance, fixed carbamidomethylation of cysteine, fixed TMT labeling of peptide N-termini and lysine residues, and variable oxidation of methionine, protein N-terminal acetylation, asparagine deamidation, and N-terminal glutamine to pyroglutamate conversion. The submitted files include original Thermo RAW files, MGF peak ",
-      "url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "source": "massive_api",
-      "tmt_detected": true,
-      "human": null,
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "MSV": [
-          "MSV000102463"
-        ]
-      },
-      "inferred_plex": 10,
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "patient_fluid"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "MSV000102463",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "MSV000102463",
-        "source_checked": "MassIVE",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -1387,383 +579,6 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/"
     },
     {
-      "accession": "PDC000649",
-      "title": "Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium",
-      "description": "Other;Stomach Adenocarcinoma · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Other;Stomach Adenocarcinoma",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Stomach",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000649"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000649",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000649",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 496,
-        "n_listed": 496,
-        "sample_files": [
-          "20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw",
-          "20231108_GC_TMT11_Phos_B17re_F05_01.raw",
-          "20221025_GC_Batch03_TMT11_phos_F03_02.raw",
-          "20230503_GC_Batch10re_TMT11_phos_F02_01.raw",
-          "20231227_GC_TMT11_Phos_B22_F01_01.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: gastric, lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000645",
-      "title": "Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium",
-      "description": "Other;Stomach Adenocarcinoma · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Other;Stomach Adenocarcinoma",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Stomach",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000645"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000645",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000645",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 744,
-        "n_listed": 744,
-        "sample_files": [
-          "20241014_GC_TMT11_B27_prot_F19.raw",
-          "20240226_GC_TMT11_Prot_B23_F15.raw",
-          "20230822_GC_TMT11_Prot_B16_F10.raw",
-          "20240301_GC_TMT11_Prot_B24_F01.raw",
-          "20231222_GC_TMT11_B20re_prot_F23.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: gastric, lung, proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20241014_GC_TMT11_B27_prot_F19.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000430",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Acetylome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Acetylome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000430"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000430",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000430",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 17,
-        "n_listed": 17,
-        "sample_files": [
-          "BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw",
-          "BA20161202_BI_FM_Medullo_KAc_Plex04_Fxn3.raw",
-          "BA20161203_BI_FM_Medullo_KAc_Plex05_Fxn3.raw",
-          "BA20161201_BI_FM_Medullo_KAc_Plex03_Fxn3.raw",
-          "BA20161201_BI_FM_Medullo_KAc_Plex02_Fxn1.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
-      "pmid": "36267416",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000431",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Phosphoproteome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000431"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000431",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000431",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 10,
-        "n_listed": 10,
-        "sample_files": [
-          "BL20161004_BI_FM_Medullo_pY_Plex01_Fxn1.raw",
-          "BL20170113_BI_FM_Medullo_pY_Plex05_Fxn1.raw",
-          "BA20161122_BI_FM_Medullo_pY_Plex04_Fxn1.raw",
-          "BL20161004_BI_FM_Medullo_pY_Plex02_Fxn1.raw",
-          "BL20161004_BI_FM_Medullo_pY_Plex03_Fxn1.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161004_BI_FM_Medullo_pY_Plex01_Fxn1.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
-      "pmid": "36267416",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000432",
-      "title": "Broad — Broad Institute",
-      "description": "Other;Pediatric/AYA Brain Tumors · Phosphoproteome",
-      "program": "Broad Institute",
-      "disease": "Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT10",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Brain;Not Applicable",
-      "inferred_plex": 10,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000432"
-        ]
-      },
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000432",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000432",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 65,
-        "n_listed": 65,
-        "sample_files": [
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn02.raw",
-          "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn07.raw",
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn03.raw",
-          "BL20160819_FM_Medullo_Phosphoproteome_Plex01_Fxn03.raw",
-          "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn11.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn02.raw (phospho layer (not global proteome))",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38702309/",
-      "pmid": "38702309",
-      "doi": ""
-    },
-    {
       "accession": "PDC000495",
       "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
       "description": "Other · Proteome",
@@ -1854,79 +669,6 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000499",
-      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
-      "description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Glycoproteome",
-      "program": "Pediatric Brain Tumor Atlas - CBTN",
-      "disease": "Gliomas;Other;Pediatric/AYA Brain Tumors",
-      "experiment_type": "TMT11",
-      "analytical_fraction": "Glycoproteome",
-      "primary_site": "Brain;Not Reported",
-      "inferred_plex": 11,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000499"
-        ]
-      },
-      "tmt_label": "TMT 11-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000499",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000499",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 120,
-        "n_listed": 243,
-        "sample_files": [
-          "09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz",
-          "10CPTAC_AYA_G_JHU_20230326_B2S5_f07.mzML.gz",
-          "01CPTAC_AYA_G_JHU_20230303_B1S1_f11.raw",
-          "02CPTAC_AYA_G_JHU_20230305_B1S2_f10.raw",
-          "06CPTAC_AYA_G_JHU_20230317_B2S1_f11.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
       "pubmed_url": ""
     },
     {
@@ -2138,364 +880,6 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
       "doi": ""
-    },
-    {
-      "accession": "PDC000607",
-      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
-      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Gallbladder",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000607"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000607",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000607",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 396,
-        "n_listed": 396,
-        "sample_files": [
-          "20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw",
-          "20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F09.raw",
-          "20220920_HFX_SYL_GBC_TMT16_Pho_Group17_F06.raw",
-          "20221024_HFX_SYL_GBC_TMT16_Pho_Group30_F03.raw",
-          "20221023_HFX_SYL_GBC_TMT16_Pho_Group32_F07.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000606",
-      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
-      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Gallbladder",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000606"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000606",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000606",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 768,
-        "n_listed": 768,
-        "sample_files": [
-          "20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw",
-          "20220516_HF_LDY_GBC_TMT16_Pro_Group_05_F12.raw",
-          "20220726_HF_SYL_GBC_TMT16_Pro_Group_25_F20.raw",
-          "20220830_HF_SYL_GBC_TMT16_Pro_Group_03_F24.raw",
-          "20220826_HF_SYL_GBC_TMT16_Pro_Group_28_F06.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
-    },
-    {
-      "accession": "PDC000696",
-      "title": "Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium",
-      "description": "Breast Invasive Carcinoma;Not Reported · Phosphoproteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Breast Invasive Carcinoma;Not Reported",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Phosphoproteome",
-      "primary_site": "Breast;Not Reported",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000696"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000696",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000696",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 96,
-        "n_listed": 96,
-        "sample_files": [
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S03_F08.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F03.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S04_F07.raw",
-          "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F01.raw",
-          "TNBC_NCC_TMTpro16plex_Phospho_S03_F01.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: TNBC_NCC_OP_TMTpro16plex_Phospho_S03_F08.raw (phospho layer (not global proteome))",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
-      "pmid": "41975515",
-      "doi": ""
-    },
-    {
-      "accession": "PDC000695",
-      "title": "Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium",
-      "description": "Breast Invasive Carcinoma;Not Reported · Proteome",
-      "program": "International Cancer Proteogenome Consortium",
-      "disease": "Breast Invasive Carcinoma;Not Reported",
-      "experiment_type": "TMT16",
-      "analytical_fraction": "Proteome",
-      "primary_site": "Breast;Not Reported",
-      "inferred_plex": 16,
-      "tmt_detected": true,
-      "human": true,
-      "source": "pdc_api",
-      "consortium": "PDC",
-      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [],
-      "extracted_ids": {
-        "PDC": [
-          "PDC000695"
-        ]
-      },
-      "tmt_label": "TMT 16-plex",
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "pdc_clinical_tumor"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "PDC000695",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "PDC000695",
-        "source_checked": "PDC",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "raw_only",
-        "label": "raw only",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 216,
-        "n_listed": 216,
-        "sample_files": [
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F03.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F07.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S03_F24.raw",
-          "TNBC_NCC-OP_TMTpro16plex_Global_S04_F23.raw",
-          "TNBC_NCC_TMTpro16plex_Global_S04_F18.raw"
-        ],
-        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
-      },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: TNBC_NCC-OP_TMTpro16plex_Global_S04_F03.raw (quant table)",
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
-      "pmid": "41975515",
-      "doi": ""
-    },
-    {
-      "accession": "MSV000102463",
-      "title": "TMT10 quantitative proteomic analysis of depleted neonatal cerebrospinal fluid from infants with hydrocephalus and controls",
-      "description": "This dataset contains TMT10 quantitative tandem mass spectrometry data from depleted neonatal cerebrospinal fluid samples, including hydrocephalus cases and controls. Samples were multiplexed using TMT channels with reference-pool channels included across runs. The original search parameters used Homo sapiens taxonomy, SwissProt plus cRAP contaminant FASTA databases, Trypsin/P digestion with up to 4 missed cleavages, 20 ppm precursor mass tolerance, 0.02 Da fragment mass tolerance, fixed carbamidomethylation of cysteine, fixed TMT labeling of peptide N-termini and lysine residues, and variable oxidation of methionine, protein N-terminal acetylation, asparagine deamidation, and N-terminal glutamine to pyroglutamate conversion. The submitted files include original Thermo RAW files, MGF peak ",
-      "url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "source": "massive_api",
-      "tmt_detected": true,
-      "human": null,
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "recommended",
-      "filter_reasons": [
-        "Sample design unclear — check healthy/cancer labels"
-      ],
-      "extracted_ids": {
-        "MSV": [
-          "MSV000102463"
-        ]
-      },
-      "inferred_plex": 10,
-      "tmt_label": "TMT 10-plex",
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "candidate",
-      "qc_reasons": [
-        "Material matches atlas criteria"
-      ],
-      "material_signals": {
-        "included": [
-          "patient_fluid"
-        ],
-        "excluded": []
-      },
-      "recommendation": "review_for_catalog",
-      "project_accession": "MSV000102463",
-      "is_new_project": true,
-      "data_availability": {
-        "accession": "MSV000102463",
-        "source_checked": "MassIVE",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "pubmed_url": ""
     }
   ],
   "manual_check": [
@@ -2525,7 +909,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
@@ -2591,7 +974,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
@@ -2658,7 +1040,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
@@ -2724,7 +1105,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
@@ -2790,7 +1170,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
@@ -2856,7 +1235,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
@@ -2986,7 +1364,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
@@ -3053,7 +1430,6 @@
         "material": "tumor tissue|plasma|blood|cancer cell line",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -3120,7 +1496,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
@@ -3187,7 +1562,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
@@ -3253,7 +1627,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -3319,7 +1692,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -3385,7 +1757,6 @@
         "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
@@ -3451,7 +1822,6 @@
         "material": "plasma/serum from patients, cancer cell lines",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
@@ -3518,7 +1888,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
@@ -3585,7 +1954,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
@@ -3651,7 +2019,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
@@ -3781,7 +2148,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },
@@ -4455,7 +2821,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
@@ -4500,7 +2865,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
@@ -4546,7 +2910,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
@@ -4591,7 +2954,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
@@ -4636,7 +2998,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
@@ -4681,7 +3042,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
@@ -4769,7 +3129,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
@@ -4815,7 +3174,6 @@
         "material": "tumor tissue|plasma|blood|cancer cell line",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -4861,7 +3219,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
@@ -4907,7 +3264,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
@@ -4952,7 +3308,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -4997,7 +3352,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -5042,7 +3396,6 @@
         "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
@@ -5087,7 +3440,6 @@
         "material": "plasma/serum from patients, cancer cell lines",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
@@ -5133,7 +3485,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
@@ -5179,7 +3530,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
@@ -5224,7 +3574,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
@@ -5312,7 +3661,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },

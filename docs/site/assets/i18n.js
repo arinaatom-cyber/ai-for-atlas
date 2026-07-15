@@ -93,8 +93,10 @@
       sec_qc: "QC — manual / rejected",
       search_projects: "Поиск по ID, названию…",
       search_abstracts: "Поиск по названию, анализу…",
-      note_abstracts:
-        "ИИ читает абстракты по смыслу (few-shot из TMT ATLAS). Accession в тексте не извлекаются. PDC: TMT 10/11/12/16, без программ CPTAC.",
+      kpi_papers_no_id: "статей без ID",
+      kpi_with_table: "с protein table",
+      note_projects_unified:
+        "Одна строка на проект: ID → репозиторий, название → PubMed, finding + LLM, файлы. PDC: только protein-level table. QC manual/rejected — на qc.html.",
       no_projects: "Нет новых проектов",
       no_pubs: "Нет проанализированных статей",
       no_literature: "Нет статей для ручной проверки",
@@ -172,8 +174,10 @@
       search_abstracts: "Search title, analysis…",
       note_abstracts:
         "LLM reads abstracts by meaning (few-shot from TMT ATLAS). Accessions are not regex-extracted. PDC: TMT 10/11/12/16, CPTAC programs excluded.",
-      note_finding:
-        "Finding column: English keywords from the paper title, material type, and which file to download (protein table vs phospho layer).",
+      kpi_papers_no_id: "papers w/o ID",
+      kpi_with_table: "with protein table",
+      note_projects_unified:
+        "One row per new project: ID → repository, title → PubMed, finding + LLM summary, data files. PDC: protein-level table only. QC manual/rejected: see qc.html.",
       no_projects: "No new projects",
       no_pubs: "No analyzed publications",
       no_literature: "No papers for manual review",

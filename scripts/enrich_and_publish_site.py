@@ -15,6 +15,7 @@ from atlas_agent.discovery.data_availability import (
     data_guidance,
     literature_data_hint,
     partition_phospho_only_candidates,
+    partition_table_only_candidates,
 )
 from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.viz.publish_site import publish_discovery_site
@@ -55,11 +56,26 @@ def enrich_report(report: dict, cfg: dict) -> dict:
                 fo = list(report.get("filtered_out") or [])
                 fo.extend(moved)
                 report["filtered_out"] = fo
+
+    if da_cfg.get("require_protein_table", True):
+        for key in ("candidates", "new_projects"):
+            items = report.get(key) or []
+            if not items:
+                continue
+            kept, moved = partition_table_only_candidates(
+                items,
+                pdc_requires_table=da_cfg.get("pdc_requires_table", True),
+                reject_raw_no_files=da_cfg.get("reject_raw_no_files", True),
+            )
+            if moved:
+                report[key] = kept
+                fo = list(report.get("filtered_out") or [])
+                fo.extend(moved)
+                report["filtered_out"] = fo
                 s = report.setdefault("summary", {})
                 s["candidates"] = len(kept)
                 s["new_projects"] = len(kept)
                 s["filtered_out"] = len(fo)
-                s["phospho_only_filtered"] = s.get("phospho_only_filtered", 0) + len(moved)
 
     pubs = report.get("publications_analyzed") or []
     for p in pubs:

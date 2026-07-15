@@ -494,8 +494,41 @@ td b, .cell-title {
 }
 
 .analysis-cell {
-  max-width: 320px;
+  max-width: 360px;
+  min-width: 280px;
   line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.table-standard table.data-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-standard .col-id { width: 9%; }
+.table-standard .col-title { width: 18%; }
+.table-standard .col-src { width: 6%; }
+.table-standard .col-plex { width: 6%; }
+.table-standard .col-design { width: 8%; }
+.table-standard .col-sim { width: 9%; }
+.table-standard .col-analysis { width: 28%; }
+.table-standard .col-data { width: 14%; }
+.table-standard .col-links { width: 7%; }
+.table-standard .col-fit { width: 8%; }
+
+.llm-block {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--text-xs);
+}
+
+.note-box {
+  margin: 1.5rem 0;
+  padding: 12px 16px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
   color: var(--text-secondary);
 }
 

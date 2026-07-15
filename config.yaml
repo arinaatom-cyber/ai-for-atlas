@@ -1,7 +1,11 @@
 # Только локальные файлы (без Google Sheets)
 
 sheet:
-  projects_csv: "./data/projects.csv"
+  # Основной каталог — лист TMT ATLAS (123 проекта), read-only для агентов
+  projects_file: "./project of Proteomics.xlsx"
+  projects_sheet: "TMT ATLAS"
+  proteomics_workbook: "./project of Proteomics.xlsx"
+  # legacy (не использовать): ./data/projects.csv
 
 paths:
   tmt_projects_dir: "../tmt-projects/Projects"
@@ -11,6 +15,7 @@ paths:
 github:
   atlas_repo: "https://github.com/arinaatom-cyber/TMT"
   data_repo: "https://github.com/arinaatom-cyber/tmt-projects"
+  streamlit_app: "https://human-cancser-tmt-proteome-atlas.streamlit.app/#human-proteome-atlas"
   raw_branch: "main"
   # Пути к папкам проектов внутри репозиториев
   atlas_projects_path: "projects"
@@ -34,13 +39,37 @@ discovery:
   year_from: 2024
   year_to: 2026
   pride_max: 60
+  massive_max: 25
+  iprox_max: 25
   publications_max: 40
+  abstract_llm: true          # ИИ читает абстракты по смыслу (без PXD/PDC в тексте)
+  abstract_llm_max: 25
+  abstract_resolve_accessions: false   # не искать PXD/PDC в абстракте
+  abstract_semantic_resolve: false     # не искать PRIDE по PMID из абстракта
+  abstract_semantic_max: 12
+  pdc:
+    min_plex_channels: 10       # только TMT >6 каналов (10/11/12/16)
+    reject_plexes: [6, 7, 8, 9, 18]
+    allowed_plexes: [10, 11, 12, 16]
+    exclude_programs:           # уже в CPTAC-листе / не для нового атласа
+      - "Clinical Proteomic Tumor Analysis"
+      - "CPTAC-Human Cancer Models"
   pride_keywords: ["TMT", "tandem mass tag", "isobaric", "TMTpro", "TMT10", "TMT11"]
   search_mode: "professional"   # PRIDE v3 search + PDC uiStudySummary + PMID→accession resolve
   consortia: ["PDC", "CCLE", "GTEx", "CPTAC"]
   # Каталог НИКОГДА не удаляется и не перезаписывается агентом
   catalog_read_only: true
   projects_only: true   # выдавать только новые PXD/PDC/MSV/IPX, не статьи без проекта
+  data_availability:
+    enabled: true
+    fetch_remote: true
+    delay_s: 0.12
+  cohort_literature:
+    enabled: true
+    year_from: 2023
+    max_results: 30
+    min_patients: 50
+    min_score: 25
   filters:
     human_only: true
     allowed_tmt_plexes: [10, 11, 12, 16]   # >6ch: TMT10/11/12/16, TMTpro16
@@ -57,13 +86,13 @@ agent:
   language: "ru"
   mode: "ai"
 
-# ИИ без ключей: auto → Ollama (если запущен) → GPT4All (Qwen2-1.5B) → правила
+# ИИ: Z.AI (GLM) → Qwen → Claude → Ollama → GPT4All → regex
+# Ключи в .env (см. .env.example): ZAI_API_KEY, DASHSCOPE_API_KEY, ANTHROPIC_API_KEY
 llm:
   enabled: true
-  provider: "auto"
-  # Ollama (опционально): ollama pull qwen2.5:3b
-  model: "qwen2.5:3b"
-  base_url: "http://127.0.0.1:11434/v1"
-  # GPT4All — скачивает open-source Qwen при первом запуске (~1 GB)
+  provider: "auto"          # auto | zai | qwen | claude | ollama | gpt4all
+  prefer_cloud: true        # при auto — сначала облако с API-ключом
+  model: "glm-4-flash"      # Z.AI; qwen-plus; claude-sonnet-4-6; qwen2.5:3b
+  base_url: "https://api.z.ai/api/paas/v4"
   gpt4all_model: "qwen2-1_5b-instruct-q4_0.gguf"
   max_tokens: 2048

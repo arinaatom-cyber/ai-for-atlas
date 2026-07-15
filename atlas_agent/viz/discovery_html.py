@@ -1,4 +1,4 @@
-"""HTML Discovery: new projects + LLM abstract analysis (bilingual UI)."""
+"""HTML Discovery: unified new-projects table + papers without accession."""
 from __future__ import annotations
 
 import html
@@ -40,19 +40,39 @@ def _fit_class(fit: str) -> str:
     return {"yes": "fit-yes", "maybe": "fit-maybe", "no": "fit-no"}.get(str(fit).lower(), "fit-unk")
 
 
-def _ai_summary(item: dict) -> str:
-    ai = item.get("abstract_ai") or {}
-    parts = []
-    summary = ai.get("summary_en") or ai.get("summary_ru") or item.get("summary_en") or ""
-    if summary:
-        parts.append(_esc(summary))
-    fit = ai.get("atlas_fit") or item.get("atlas_fit")
-    score = ai.get("atlas_fit_score") or item.get("atlas_fit_score")
-    if fit:
-        parts.append(f'<span class="badge {_fit_class(fit)}">{_esc(fit)} {score or ""}</span>')
-    ev = ai.get("semantic_evidence") or item.get("semantic_evidence") or []
-    if ev:
-        parts.append(f'<span class="muted">→ {_esc("; ".join(ev[:3]))}</span>')
+def _pub_index(pubs: list[dict]) -> dict[str, dict]:
+    out: dict[str, dict] = {}
+    for p in pubs:
+        pmid = str(p.get("pmid") or "").strip()
+        if pmid:
+            out[pmid] = p
+    return out
+
+
+def _analysis_cell(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
+    """Finding + optional LLM abstract summary for linked PMID."""
+    parts: list[str] = []
+    note = it.get("finding_note") or format_finding_note(it)
+    if note:
+        parts.append(f'<span class="muted">{_esc(note[:380])}</span>')
+
+    ai = it.get("abstract_ai") or {}
+    pmid = str(it.get("pmid") or "").strip()
+    pub = pubs_by_pmid.get(pmid) if pmid else None
+    if pub:
+        summary = pub.get("summary_en") or ""
+        fit = pub.get("atlas_fit")
+        score = pub.get("atlas_fit_score")
+        if summary:
+            parts.append(f'<span class="muted llm-block">{_esc(summary[:280])}</span>')
+        if fit:
+            parts.append(f'<span class="badge {_fit_class(fit)}">{_esc(fit)} {score or ""}</span>')
+    elif ai.get("summary_en"):
+        parts.append(f'<span class="muted llm-block">{_esc(ai["summary_en"][:280])}</span>')
+        fit = ai.get("atlas_fit")
+        if fit:
+            parts.append(f'<span class="badge {_fit_class(fit)}">{_esc(fit)}</span>')
+
     return "<br/>".join(parts) if parts else "—"
 
 
@@ -71,29 +91,14 @@ def _data_cell(it: dict) -> str:
         "raw_only": "badge-bad",
         "no_files": "badge-bad",
     }.get(status, "badge-muted")
-    samples = (
-        da.get("proteome_files")
-        or da.get("quant_files")
-        or da.get("phospho_files")
-        or da.get("sample_files")
-        or []
-    )
+    samples = da.get("proteome_files") or da.get("quant_files") or da.get("sample_files") or []
     hint = ""
     if samples:
-        hint = f'<br/><span class="muted">{_esc(samples[0][:50])}</span>'
-    if da.get("local_mirror"):
-        hint += '<br/><span class="muted">local</span>'
+        hint = f'<br/><span class="muted">{_esc(samples[0][:55])}</span>'
     guidance = _esc(da.get("guidance") or "")
     if guidance:
-        hint += f'<br/><span class="muted">{guidance}</span>'
+        hint += f'<br/><span class="muted">{guidance[:90]}</span>'
     return f'<span class="badge {cls}">{label}</span>{hint}'
-
-
-def _finding_cell(it: dict) -> str:
-    note = it.get("finding_note") or format_finding_note(it)
-    if note:
-        return f'<span class="muted">{_esc(note[:420])}</span>'
-    return _ai_summary(it)
 
 
 def _links_cell(it: dict) -> str:
@@ -112,21 +117,19 @@ def _links_cell(it: dict) -> str:
     return " · ".join(parts) if parts else '<span class="cell-empty">—</span>'
 
 
-def _project_rows(items: list[dict]) -> str:
+def _project_rows(items: list[dict], pubs_by_pmid: dict[str, dict]) -> str:
     rows = []
     for it in items:
         raw_acc = (it.get("project_accession") or it.get("accession") or "").strip().upper()
         acc_esc = _esc(raw_acc or "—")
-        title_raw = (it.get("title") or "")[:140]
+        title_raw = (it.get("title") or "")[:120]
         title = _esc(title_raw)
         src = _esc(_source_label(it))
-        plex = it.get("inferred_plex") or it.get("tmt_label") or ""
-        design = _esc(str(it.get("sample_design") or ""))
+        plex = _esc(str(it.get("tmt_label") or it.get("inferred_plex") or "—"))
+        design = _esc(str(it.get("sample_design") or "—").replace("_", "-"))
         sim = (it.get("similar_in_catalog") or [{}])[0]
-        sim_id = _esc(str(sim.get("project_id") or ""))
-        sim_score = sim.get("score", "")
-        analysis = _ai_summary(it)
-        finding = _finding_cell(it)
+        sim_txt = _esc(f"{sim.get('project_id') or '—'} ({sim.get('score', '—')})")
+        analysis = _analysis_cell(it, pubs_by_pmid)
         data = _data_cell(it)
         links = _links_cell(it)
         repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
@@ -136,122 +139,89 @@ def _project_rows(items: list[dict]) -> str:
         else:
             id_cell = f'<span class="cell-mono"><b>{acc_esc}</b></span>'
         if pub:
-            title_cell = (
-                f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
-            )
+            title_cell = f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
         elif repo:
-            title_cell = (
-                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
-            )
+            title_cell = f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
         else:
             title_cell = f'<span class="cell-title">{title}</span>'
         program = _esc(str(it.get("program") or it.get("disease") or "")[:60])
         rows.append(
             f"<tr data-src='{src.lower()}' data-search='{acc_esc.lower()} {title.lower()} {program.lower()}'>"
-            f"<td>{id_cell}</td><td>{title_cell}</td><td>{src}</td>"
-            f"<td>{plex}</td><td>{design}</td><td>{sim_id} ({sim_score})</td>"
-            f"<td class='analysis-cell'>{analysis}</td><td class='analysis-cell'>{finding}</td>"
-            f"<td>{data}</td><td class='cell-links'>{links}</td></tr>"
-        )
-    return "\n".join(rows) or '<tr><td colspan="10" data-i18n="no_projects"></td></tr>'
-
-
-def _publication_rows(pubs: list[dict]) -> str:
-    rows = []
-    for p in pubs:
-        pmid = _esc(p.get("pmid") or "—")
-        title = _esc((p.get("title") or "")[:120])
-        fit = p.get("atlas_fit") or "?"
-        score = p.get("atlas_fit_score", "")
-        reader = _esc(p.get("abstract_reader") or "")
-        org = _esc(p.get("organism") or "")
-        tmt = _esc(p.get("tmt") or "")
-        mat = _esc(p.get("material") or "")
-        theme = _esc(p.get("similar_atlas_theme") or "")
-        search = _esc(p.get("pride_search_terms") or "")
-        summary = _esc(p.get("summary_en") or p.get("summary_ru") or "")
-        data_hint = _esc(p.get("data_hint") or "")
-        ev = _esc("; ".join(p.get("semantic_evidence") or [])[:4])
-        acc = p.get("accessions") or {}
-        ids = ", ".join(x for k in ("PXD", "PDC", "MSV", "IPX") for x in (acc.get(k) or [])) or "—"
-        pmid_link = (
-            f'<a href="https://pubmed.ncbi.nlm.nih.gov/{_esc(p["pmid"])}/" '
-            f'target="_blank" rel="noopener">{pmid}</a>'
-            if p.get("pmid")
-            else pmid
-        )
-        rows.append(
-            f"<tr data-fit='{_esc(fit)}' data-search='{title.lower()} {summary.lower()}'>"
-            f"<td>{pmid_link}</td><td>{title}</td>"
-            f"<td><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
-            f"<td>{org}</td><td>{tmt}</td><td>{mat}</td>"
-            f"<td>{ids}</td><td>{theme}</td><td>{search}</td>"
-            f"<td class='analysis-cell'>{summary}<br/><span class='muted'>{ev}</span></td>"
-            f"<td class='muted'>{data_hint}</td>"
-            f"<td class='muted'>{reader}</td></tr>"
+            f"<td class='col-id'>{id_cell}</td>"
+            f"<td class='col-title'>{title_cell}</td>"
+            f"<td class='col-src'>{src}</td>"
+            f"<td class='col-plex'>{plex}</td>"
+            f"<td class='col-design'>{design}</td>"
+            f"<td class='col-sim'>{sim_txt}</td>"
+            f"<td class='col-analysis analysis-cell'>{analysis}</td>"
+            f"<td class='col-data'>{data}</td>"
+            f"<td class='col-links cell-links'>{links}</td></tr>"
         )
     return "\n".join(rows)
 
 
-def _literature_rows(items: list[dict]) -> str:
+def _paper_rows(items: list[dict]) -> str:
     rows = []
     for it in items:
-        pmid = it.get("pmid") or ""
-        label = _esc(it.get("project_accession") or f"PMID:{pmid}")
+        pmid = str(it.get("pmid") or "").strip()
+        label = _esc(f"PMID:{pmid}" if pmid else (it.get("project_accession") or "—"))
         title = _esc((it.get("title") or "")[:120])
-        fit = it.get("atlas_fit") or "?"
-        score = it.get("atlas_fit_score", "")
-        search = _esc(it.get("pride_search_terms") or (it.get("abstract_ai") or {}).get("pride_search_terms", ""))
-        summary = _ai_summary(it)
-        note = _esc(it.get("finding_note") or format_finding_note(it) or "; ".join((it.get("filter_reasons") or [])[:2]))
+        fit = it.get("atlas_fit") or (it.get("abstract_ai") or {}).get("atlas_fit") or "?"
+        score = it.get("atlas_fit_score") or (it.get("abstract_ai") or {}).get("atlas_fit_score") or ""
+        ai = it.get("abstract_ai") or {}
+        summary = _esc(ai.get("summary_en") or it.get("summary_en") or "")
+        note = _esc(it.get("finding_note") or format_finding_note(it) or "")
         link = (
             f'<a href="https://pubmed.ncbi.nlm.nih.gov/{_esc(pmid)}/" target="_blank" rel="noopener">PubMed</a>'
             if pmid
             else ""
         )
         rows.append(
-            f"<tr><td><b>{label}</b></td><td>{title}</td>"
-            f"<td><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
-            f"<td>{search}</td><td class='analysis-cell'>{summary}</td>"
-            f"<td>{note}</td><td>{link}</td></tr>"
+            f"<tr data-search='{title.lower()} {note.lower()}'>"
+            f"<td class='col-id'><b>{label}</b></td>"
+            f"<td class='col-title'>{title}</td>"
+            f"<td class='col-fit'><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
+            f"<td class='col-analysis analysis-cell'>{summary}<br/><span class='muted'>{note}</span></td>"
+            f"<td class='col-links cell-links'>{link}</td></tr>"
         )
     return "\n".join(rows)
 
 
-def _qc_rows(items: list[dict]) -> str:
-    rows = []
-    for it in items:
-        acc = _esc(it.get("project_accession") or it.get("accession") or "—")
-        title = _esc((it.get("title") or "")[:100])
-        reasons = _esc("; ".join((it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]))
-        sig = it.get("material_signals") or {}
-        inc = _esc(", ".join(sig.get("included") or [])[:60])
-        exc = _esc(", ".join(sig.get("excluded") or [])[:60])
-        rows.append(
-            f"<tr><td><b>{acc}</b></td><td>{title}</td>"
-            f"<td>{inc}</td><td>{exc}</td><td>{reasons}</td></tr>"
-        )
-    return "\n".join(rows)
+def _papers_without_accession(manual: list[dict], literature: list[dict]) -> list[dict]:
+    seen: set[str] = set()
+    out: list[dict] = []
+    for item in manual + literature:
+        pmid = str(item.get("pmid") or "").strip()
+        key = pmid or str(item.get("title") or "")[:80]
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(item)
+    return out
 
 
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
     items = report.get("candidates") or report.get("new_projects") or []
     pubs = report.get("publications_analyzed") or []
-    literature = report.get("literature_semantic") or []
     manual = report.get("manual_check") or []
-    rejected = report.get("rejected_material") or []
+    literature = report.get("literature_semantic") or []
+    papers = _papers_without_accession(manual, literature)
     stats = s.get("source_stats") or {}
     gen = report.get("generated_at") or ""
+    pubs_by_pmid = _pub_index(pubs)
 
     pride_n = sum(1 for x in items if _source_label(x) == "PRIDE")
     pdc_n = sum(1 for x in items if _source_label(x) == "PDC")
-    fit_yes = sum(1 for p in pubs if p.get("atlas_fit") == "yes")
-    fit_maybe = sum(1 for p in pubs if p.get("atlas_fit") == "maybe")
+    table_n = sum(
+        1 for x in items
+        if (x.get("data_availability") or {}).get("status") == "quant_table"
+    )
 
-    proj_rows = _project_rows(items) or '<tr><td colspan="10" data-i18n="no_projects"></td></tr>'
-    pub_rows = _publication_rows(pubs) or '<tr><td colspan="12" data-i18n="no_pubs"></td></tr>'
-    lit_rows = _literature_rows(literature) or '<tr><td colspan="7" data-i18n="no_literature"></td></tr>'
+    proj_rows = _project_rows(items, pubs_by_pmid) or '<tr><td colspan="9" data-i18n="no_projects"></td></tr>'
+    paper_rows = _paper_rows(papers) or '<tr><td colspan="5" data-i18n="no_literature"></td></tr>'
+
+    qc_link = '<p class="note-box"><a href="qc.html">QC report</a> — manual review &amp; rejected material (separate page).</p>'
 
     body = (
         page_hero(
@@ -265,12 +235,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         + kpi_grid(
             [
                 (str(len(items)), "kpi_new"),
+                (str(table_n), "kpi_with_table"),
                 (str(pride_n), "kpi_pride"),
                 (str(pdc_n), "kpi_pdc"),
-                (str(stats.get("abstract_llm_read", 0)), "kpi_abstracts_ai"),
-                (f"{fit_yes}/{fit_maybe}", "kpi_yes_maybe"),
-                (str(len(manual)), "kpi_manual"),
-                (str(len(rejected)), "kpi_rejected"),
+                (str(len(papers)), "kpi_papers_no_id"),
             ]
         )
         + f"""
@@ -278,6 +246,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   <section class="section" id="projects">
     {section_head("sec_projects", len(items))}
     {section_desc("sec_projects_desc")}
+    {note_i18n("note_projects_unified")}
     <div class="toolbar" id="proj-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_projects"/>
       <button type="button" class="chip active" data-filter="all" data-i18n="filter_all"></button>
@@ -285,74 +254,33 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       <button type="button" class="chip" data-filter="pdc" data-i18n="filter_pdc"></button>
       <span class="count-badge" id="count"></span>
     </div>
-    <div class="table-wrap">
-      <table id="tbl">
+    <div class="table-wrap table-standard">
+      <table id="tbl" class="data-table">
         <thead><tr>
           <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_source"></th>
           <th data-i18n="th_plex"></th><th data-i18n="th_design"></th><th data-i18n="th_similar"></th>
-          <th data-i18n="th_ai"></th><th data-i18n="th_finding"></th><th data-i18n="th_data"></th><th data-i18n="th_links"></th>
+          <th data-i18n="th_analysis"></th><th data-i18n="th_data"></th><th data-i18n="th_links"></th>
         </tr></thead>
         <tbody>{proj_rows}</tbody>
       </table>
     </div>
   </section>
 
-  <section class="section" id="abstracts">
-    {section_head("sec_abstracts")}
-    {note_i18n("note_abstracts")}
-    <p class="stats-line">{_esc(f"PRIDE {stats.get('pride_v3_search', 0)} · PDC {stats.get('pdc_uiStudySummary', 0)} · MassIVE {stats.get('massive_json', 0)} · {stats.get('publications_scanned', 0)} pubs")}</p>
-    <div class="toolbar">
-      <input type="search" id="q-abs" data-i18n-placeholder="search_abstracts"/>
-      <button type="button" class="chip active" data-afilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip" data-afilter="yes" data-i18n="filter_yes"></button>
-      <button type="button" class="chip" data-afilter="maybe" data-i18n="filter_maybe"></button>
-      <button type="button" class="chip" data-afilter="no" data-i18n="filter_no"></button>
-    </div>
-    <div class="table-wrap">
-      <table id="tbl-abs">
-        <thead><tr>
-          <th data-i18n="th_pmid"></th><th data-i18n="th_title"></th><th data-i18n="th_fit"></th>
-          <th data-i18n="th_organism"></th><th data-i18n="th_tmt"></th><th data-i18n="th_material"></th>
-          <th data-i18n="th_ids"></th><th data-i18n="th_theme"></th><th data-i18n="th_pride"></th>
-          <th data-i18n="th_analysis"></th><th data-i18n="th_supplementary"></th><th data-i18n="th_reader"></th>
-        </tr></thead>
-        <tbody>{pub_rows}</tbody>
-      </table>
-    </div>
-  </section>
-
   <section class="section" id="literature">
-    {section_head("sec_literature", len(literature))}
+    {section_head("sec_literature", len(papers))}
     {section_desc("sec_literature_desc")}
-    <div class="table-wrap">
-      <table>
+    <div class="table-wrap table-standard">
+      <table id="tbl-papers" class="data-table">
         <thead><tr>
           <th data-i18n="th_pmid"></th><th data-i18n="th_title"></th><th data-i18n="th_fit"></th>
-          <th data-i18n="th_pride"></th><th data-i18n="th_ai"></th><th data-i18n="th_reason"></th>
-          <th data-i18n="th_link"></th>
+          <th data-i18n="th_analysis"></th><th data-i18n="th_links"></th>
         </tr></thead>
-        <tbody>{lit_rows}</tbody>
+        <tbody>{paper_rows}</tbody>
       </table>
     </div>
   </section>
 
-  <section class="section" id="qc">
-    {section_head("sec_qc")}
-    <h3 class="text-secondary"><span data-i18n="qc_manual"></span> <span class="section-count">{len(manual)}</span></h3>
-    <div class="table-wrap">
-      <table><thead><tr>
-        <th data-i18n="th_id"></th><th data-i18n="th_title"></th>
-        <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_reason"></th>
-      </tr></thead><tbody>{_qc_rows(manual)}</tbody></table>
-    </div>
-    <h3 class="text-secondary"><span data-i18n="qc_rejected"></span> <span class="section-count">{len(rejected)}</span></h3>
-    <div class="table-wrap">
-      <table><thead><tr>
-        <th data-i18n="th_id"></th><th data-i18n="th_title"></th>
-        <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_reason"></th>
-      </tr></thead><tbody>{_qc_rows(rejected)}</tbody></table>
-    </div>
-  </section>
+  {qc_link}
 </div>
 
 <script>
@@ -386,30 +314,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     }});
   }});
   applyProjects();
-
-  const qAbs = document.getElementById('q-abs');
-  const absRows = [...document.querySelectorAll('#tbl-abs tbody tr')];
-  let aFilter = 'all';
-  function applyAbs() {{
-    const term = (qAbs?.value || '').toLowerCase().trim();
-    absRows.forEach(r => {{
-      const fit = (r.dataset.fit || '').toLowerCase();
-      const search = (r.dataset.search || '');
-      const fitOk = aFilter === 'all' || fit === aFilter;
-      const textOk = !term || search.includes(term);
-      r.style.display = fitOk && textOk ? '' : 'none';
-    }});
-  }}
-  qAbs?.addEventListener('input', applyAbs);
-  document.querySelectorAll('[data-afilter]').forEach(btn => {{
-    btn.addEventListener('click', () => {{
-      document.querySelectorAll('[data-afilter]').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      aFilter = btn.dataset.afilter;
-      applyAbs();
-    }});
-  }});
-  applyAbs();
 }})();
 </script>
 """
