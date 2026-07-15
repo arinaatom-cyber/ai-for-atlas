@@ -84,6 +84,11 @@ def _write_json_bundle(site: Path, report: dict, site_report: dict, meta: dict, 
         "cohort_literature": site_report["cohort_literature"],
     }
     (site / "latest.json").write_text(json.dumps(slim, ensure_ascii=False, indent=2), encoding="utf-8")
+    manifest = report.get("methods_manifest")
+    if manifest:
+        (site / "methods_manifest.json").write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
 
 
 def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:

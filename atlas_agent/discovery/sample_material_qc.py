@@ -292,42 +292,24 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
 
     if NON_HUMAN_ORG.search(blob) and not re.search(r"\bhuman|homo\s+sapiens|patient\b", blob, re.I):
 
-        return _result("rejected", ["Организм не human (бактерия/растение/др.)"], [], [])
-
-
+        return _result("rejected", ["Non-human organism (bacteria/plant/etc.)"], [], [])
 
     if ANIMAL_TISSUE.search(blob):
-
         if not re.search(r"\b(patient|patients|clinical|human\s+tissue|human\s+plasma)\b", blob, re.I):
-
-            return _result("rejected", ["Животные ткани без human component"], [], ["animal_tissue"])
-
-
+            return _result("rejected", ["Animal tissue without human component"], [], ["animal_tissue"])
 
     if NON_HUMAN_CELL.search(blob):
-
         if not HUMAN_CANCER_CELL_LINE.search(blob):
-
             return _result("rejected", ["Non-human cell line"], [], ["non_human_cell_line"])
 
-
-
     real_include = _real_include_signals(blob)
-
     has_non_cancer_cell = bool(NON_CANCER_HUMAN_CELL.search(blob))
-
     if has_non_cancer_cell and not real_include:
-
         return _result(
-
             "rejected",
-
-            ["Human cell material не cancer cell line (MSC/fibroblast/iPSC и др.)"],
-
+            ["Human cells but not cancer cell line (MSC/fibroblast/iPSC etc.)"],
             [],
-
             ["non_cancer_human_cell"],
-
         )
 
 
@@ -359,15 +341,10 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
         if not human_comp:
 
             return _result(
-
                 "rejected",
-
-                ["Только PDX/xenograft без отдельного human component"],
-
+                ["PDX/xenograft only — no separate human component"],
                 included_hits,
-
                 excluded_hits,
-
             )
 
 
@@ -387,27 +364,17 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
         if mixed:
 
             return _result(
-
                 "requires_manual_check",
-
-                ["Смешаны tissue/fluid/cell line и spheroids/organoids/3D — проверить вручную"],
-
+                ["Mixed tissue/fluid/cell line and spheroids/organoids/3D — review manually"],
                 included_hits or real_include,
-
                 excluded_hits,
-
             )
 
         return _result(
-
             "rejected",
-
-            ["Только spheroids/organoids/tumoroids/3D culture"],
-
+            ["Spheroids/organoids/tumoroids/3D culture only"],
             [],
-
             excluded_hits,
-
         )
 
 
@@ -417,47 +384,27 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
         if has_non_cancer_cell and "human_cancer_cell_line" not in included_hits:
 
             return _result(
-
                 "rejected",
-
-                ["Human cell material не cancer cell line (MSC/fibroblast/iPSC и др.)"],
-
+                ["Human cells but not cancer cell line (MSC/fibroblast/iPSC etc.)"],
                 included_hits,
-
                 excluded_hits + ["non_cancer_human_cell"],
-
             )
 
-        return _result("candidate", ["Материал соответствует критериям атласа"], included_hits, excluded_hits)
-
-
+        return _result("candidate", ["Material matches atlas criteria"], included_hits, excluded_hits)
 
     if CLINICAL_HUMAN.search(blob) or (item.get("human") is True):
-
         return _result(
-
             "requires_manual_check",
-
-            ["Human подтверждён, но тип материала (tissue/fluid/cell line) не ясен"],
-
+            ["Human confirmed; tissue/fluid/cell-line type unclear"],
             included_hits,
-
             excluded_hits,
-
         )
 
-
-
     return _result(
-
         "rejected",
-
-        ["Нет подтверждённого human tumor/adjacent/fluid/cancer cell line материала"],
-
+        ["No confirmed human tumor/adjacent/fluid/cancer cell-line material"],
         included_hits,
-
         excluded_hits,
-
     )
 
 

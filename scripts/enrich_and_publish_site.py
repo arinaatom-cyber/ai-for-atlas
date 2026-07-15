@@ -19,6 +19,9 @@ from atlas_agent.discovery.data_availability import (
     partition_table_only_candidates,
 )
 from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url, resolve_publication_links
+from atlas_agent.discovery.methods_manifest import build_methods_manifest
+from atlas_agent.discovery.confidence import attach_confidence
+from atlas_agent.sources.dataset_resolve import resolve_accessions_from_publication
 from atlas_agent.viz.publish_site import publish_discovery_site
 from atlas_agent.viz.site_sanitize import sanitize_report_for_site
 
@@ -100,6 +103,49 @@ def enrich_report(report: dict, cfg: dict) -> dict:
     return report
 
 
+def enrich_nature_quality(report: dict, cfg: dict) -> dict:
+    """Confidence tiers, Europe PMC accession resolution, methods manifest."""
+    from atlas_agent.discovery.benchmark import evaluate_literature_benchmark, evaluate_project_benchmark
+
+    for key, kind in (
+        ("candidates", "project"),
+        ("new_projects", "project"),
+        ("manual_check", "paper"),
+        ("literature_semantic", "paper"),
+        ("cohort_literature", "cohort"),
+    ):
+        for item in report.get(key) or []:
+            acc = str(item.get("project_accession") or item.get("accession") or "")
+            has_acc = acc.upper().startswith(("PXD", "PDC", "MSV", "IPX"))
+            attach_confidence(item, kind=kind, has_accession=has_acc)
+
+    for bucket in ("manual_check", "literature_semantic"):
+        for item in report.get(bucket) or []:
+            if item.get("accessions_resolved"):
+                continue
+            ids = resolve_accessions_from_publication(
+                pmid=str(item.get("pmid") or ""),
+                doi=str(item.get("doi") or ""),
+                title=str(item.get("title") or ""),
+                abstract=str(item.get("data_availability") or item.get("abstract") or ""),
+            )
+            if any(ids.values()):
+                item["accessions_resolved"] = ids
+                item["resolution_source"] = "europe_pmc_data_availability"
+                ai = dict(item.get("abstract_ai") or {})
+                ai["accessions"] = ids
+                item["abstract_ai"] = ai
+
+    report["methods_manifest"] = build_methods_manifest(report, cfg)
+    report["quality_metrics"] = {
+        "benchmark_literature": evaluate_literature_benchmark(),
+        "benchmark_projects": evaluate_project_benchmark(),
+    }
+    s = report.setdefault("summary", {})
+    s["quality_metrics"] = report["quality_metrics"]
+    return report
+
+
 def main() -> int:
     latest = ROOT / "data" / "discovery_history" / "latest.json"
     if not latest.is_file():
@@ -110,6 +156,7 @@ def main() -> int:
     report = json.loads(latest.read_text(encoding="utf-8"))
     print("Обогащение finding_note + data availability…")
     report = enrich_report(report, cfg)
+    report = enrich_nature_quality(report, cfg)
     report = sanitize_report_for_site(report)
     latest.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     site = publish_discovery_site(report, ROOT)

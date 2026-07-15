@@ -9,7 +9,8 @@ import re
 from collections import Counter
 from typing import Any
 
-from atlas_agent.discovery.catalog_profile import format_atlas_context_for_llm
+from atlas_agent.discovery.filters import PHOSPHOPROTEOMICS, PEPTIDE_ONLY_OMICS, PROTEIN_LEVEL_OMICS
+from atlas_agent.discovery.fit_rules import sanitize_summary
 from atlas_agent.llm_client import _run_llm, resolve_engine
 
 ABSTRACT_SYSTEM = """You are a curator assistant for a human TMT proteomics atlas.
@@ -34,6 +35,8 @@ Task:
    (patients, tumor tissue, adjacent normal, plasma, cancer cell lines)?
 2) Do NOT search for or return PXD, PDC, MSV, IPX — repository IDs are usually absent.
 3) Reject TMT6 or <=6-plex; atlas uses TMT10/11/12/16 only.
+4) Reject phosphoproteomics / phosphorylation profiling — atlas needs global protein-level proteome only.
+5) Reject peptide-only quantification — need protein groups / proteome, not peptides.
 
 JSON schema:
 {{
@@ -114,6 +117,14 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         atlas_fit = "no"
         score = 0.1
         evidence.append("TMT6 / <=6-plex — не атлас")
+    elif PHOSPHOPROTEOMICS.search(blob):
+        atlas_fit = "no"
+        score = 0.1
+        evidence.append("фосфопротеомика — нужен protein-level proteome")
+    elif PEPTIDE_ONLY_OMICS.search(blob) and not PROTEIN_LEVEL_OMICS.search(blob):
+        atlas_fit = "no"
+        score = 0.1
+        evidence.append("peptide-level — нужны белки (protein groups)")
     elif organism in ("human", "unclear") and re.search(
         r"\b(proteom|mass spectrom|tmt|isobaric|quantitative)\b", blob_l
     ):
@@ -126,10 +137,10 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
             atlas_fit = "maybe"
         if re.search(r"\b(tmt|isobaric)\b", blob_l) and re.search(
             r"\b(patient|tumor|plasma|ffpe)\b", blob_l
-        ):
-            score = 0.75
-            atlas_fit = "yes"
-            evidence.append("TMT + patient samples")
+        ) and PROTEIN_LEVEL_OMICS.search(blob_l):
+            score = 0.6
+            atlas_fit = "maybe"
+            evidence.append("TMT + patient samples (regex — conservative maybe)")
     if organism == "mouse" or material in ("organoid", "pdx"):
         atlas_fit = "no"
         score = 0.15
@@ -155,19 +166,20 @@ def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
     tmt = str(parsed.get("tmt") or "unclear")
     if _tmt6_or_low_plex("", tmt):
         fit = "no"
+    blob = f"{parsed.get('title', '')} {parsed.get('summary_ru', '')}"
+    if PHOSPHOPROTEOMICS.search(blob):
+        fit = "no"
     if fit not in ("yes", "maybe", "no"):
         fit = "maybe" if parsed.get("human_suitable") and parsed.get("material_suitable") else "no"
     try:
         score = float(parsed.get("atlas_fit_score") or 0)
     except (TypeError, ValueError):
         score = 0.0
-    if fit == "yes" and score < 0.55:
-        score = 0.7
-    elif fit == "maybe" and score < 0.4:
-        score = 0.5
-    elif fit == "no" and score > 0.3:
-        score = 0.2
-    score = max(0.0, min(1.0, score))
+    # Do not inflate scores — 0.7 floor was misleading on the public site.
+    score = max(0.0, min(1.0, score)) if score else None
+
+    summary_ru = sanitize_summary(parsed.get("summary_ru"))
+    summary_en = sanitize_summary(parsed.get("summary_en")) or summary_ru
 
     return {
         "atlas_fit": fit,
@@ -180,7 +192,8 @@ def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
         "material": str(parsed.get("material") or "unclear"),
         "human_suitable": bool(parsed.get("human_suitable", True)),
         "material_suitable": bool(parsed.get("material_suitable", True)),
-        "summary_ru": str(parsed.get("summary_ru") or "")[:300],
+        "summary_ru": summary_ru,
+        "summary_en": summary_en,
     }
 
 
@@ -272,7 +285,9 @@ def read_abstract_with_llm(
     out["accessions_mentioned"] = []
     out["atlas_fit"] = parsed.get("atlas_fit")
     out["atlas_fit_score"] = parsed.get("atlas_fit_score")
-    return out
+    from atlas_agent.discovery.fit_rules import apply_literature_exclusions
+
+    return apply_literature_exclusions(out)
 
 
 def enrich_publications_with_ai(

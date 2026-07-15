@@ -58,6 +58,8 @@ def _translate_list(values: list[Any] | None) -> list[str]:
 
 def sanitize_discovery_item(item: dict[str, Any]) -> None:
     """In-place English cleanup for one discovery item."""
+    from atlas_agent.discovery.fit_rules import apply_literature_exclusions, sanitize_summary
+
     item["qc_reasons"] = _translate_list(item.get("qc_reasons"))
     item["filter_reasons"] = _translate_list(item.get("filter_reasons"))
     item["processing_tips"] = _translate_list(item.get("processing_tips"))
@@ -65,12 +67,19 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
     ai = item.get("abstract_ai")
     if isinstance(ai, dict):
         if ai.get("summary_en"):
+            ai["summary_en"] = sanitize_summary(ai["summary_en"])
             ai.pop("summary_ru", None)
-        elif ai.get("summary_ru") and not _CYRILLIC.search(str(ai.get("summary_ru"))):
-            ai["summary_en"] = ai["summary_ru"]
+        elif ai.get("summary_ru"):
+            ai["summary_en"] = sanitize_summary(ai["summary_ru"])
+            if not ai["summary_en"]:
+                ai.pop("summary_ru", None)
+    apply_literature_exclusions(item)
+    ai = item.get("abstract_ai")
+    if isinstance(ai, dict):
+        ai.pop("atlas_fit_score", None)
     if item.get("summary_ru") and not item.get("summary_en"):
         if not _CYRILLIC.search(str(item["summary_ru"])):
-            item["summary_en"] = item["summary_ru"]
+            item["summary_en"] = sanitize_summary(item["summary_ru"])
 
 
 def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:

@@ -53,8 +53,9 @@ def find_similar(
     *,
     threshold: float = 0.18,
     top_k: int = 5,
+    index: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
-    """Возвращает похожие строки каталога (не дубликат по PXD)."""
+    """Возвращает похожие строки каталога (не дубликат по PXD). Jaccard по токенам title/organ/tissue."""
     cand_acc = (
         candidate.get("accession") or candidate.get("project_id") or candidate.get("pxd") or ""
     ).upper()
@@ -67,9 +68,9 @@ def find_similar(
             ]
         )
     )
-    index = catalog_token_index(df)
+    catalog_index = index if index is not None else catalog_token_index(df)
     scored = []
-    for entry in index:
+    for entry in catalog_index:
         if entry["project_id"] == cand_acc:
             continue
         score = jaccard(cand_tokens, entry["tokens"])
@@ -92,10 +93,12 @@ def annotate_candidates(
     *,
     threshold: float = 0.18,
 ) -> list[dict]:
+    """Похожесть к каталогу: Jaccard по словам (не ИИ). Индекс каталога строится один раз."""
+    catalog_index = catalog_token_index(df)
     out = []
     for c in candidates:
         c = dict(c)
-        sim = find_similar(c, df, threshold=threshold)
+        sim = find_similar(c, df, threshold=threshold, index=catalog_index)
         c["similar_in_catalog"] = sim
         c["has_close_match"] = bool(sim and sim[0]["score"] >= 0.35)
         out.append(c)

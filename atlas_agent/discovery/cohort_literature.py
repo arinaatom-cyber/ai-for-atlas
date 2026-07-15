@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from atlas_agent.discovery.fit_rules import is_cohort_excluded
 from atlas_agent.revisor.literature_watch import search_new_publications
 
 PATIENT_N_PATTERNS = [
@@ -255,6 +256,8 @@ def search_cohort_literature(
     mined = [mine_publication(p) for p in raw]
     kept: list[dict[str, Any]] = []
     for item in mined:
+        if is_cohort_excluded(str(item.get("title") or ""), str(item.get("abstract") or "")):
+            continue
         n = item.get("patient_n") or 0
         score = item.get("cohort_score") or 0
         has_prot = "proteomics" in (item.get("omics") or []) or "phosphoproteomics" in (

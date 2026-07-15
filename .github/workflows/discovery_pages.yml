@@ -1,4 +1,4 @@
-# Discovery scan + GitHub Pages (только новые проекты на сайте, projects.csv не публикуется как список)
+﻿# Discovery scan + GitHub Pages (new projects on site; full catalog not published)
 name: Discovery Scan & Pages
 
 on:
@@ -10,6 +10,9 @@ on:
       - "discovery_app.py"
       - "config.yaml"
       - "data/projects.csv"
+      - "data/discovery_history/**"
+      - "scripts/enrich_and_publish_site.py"
+      - "scripts/publish_site.py"
       - ".github/workflows/discovery_pages.yml"
   schedule:
     - cron: "0 6 * * 1"   # Monday 06:00 UTC
@@ -43,19 +46,26 @@ jobs:
       - name: Config
         run: test -f config.yaml || cp config.example.yaml config.yaml
 
-      - name: Run Discovery (read-only catalog)
+      - name: Run Discovery scan (weekly / manual only)
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: python run_discovery.py scan
 
-      - name: Publish site (new projects only)
-        run: python scripts/publish_site.py
+      - name: Publish site from latest.json
+        run: |
+          test -f data/discovery_history/latest.json || { echo "No latest.json — run scan first"; exit 1; }
+          python scripts/enrich_and_publish_site.py
 
       - name: Commit site updates
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "Atlas Discovery Bot"
           git config user.email "discovery@atlas.local"
           git add docs/site/ data/discovery_history/latest.json
           git diff --staged --quiet || git commit -m "discovery: update site $(date -u +%Y-%m-%d)"
           git push || true
+
+      - name: Jekyll bypass
+        run: touch docs/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

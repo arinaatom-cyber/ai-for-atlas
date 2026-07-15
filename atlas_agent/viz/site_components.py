@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import html
 
-from atlas_agent.viz.i18n_defaults import ru as i18n_ru
+from atlas_agent.viz.i18n_defaults import en as i18n_default
 
 
 def esc(s: object) -> str:
@@ -11,7 +11,7 @@ def esc(s: object) -> str:
 
 
 def i18n_el(key: str, *, tag: str = "span", cls: str = "") -> str:
-    text = esc(i18n_ru(key))
+    text = esc(i18n_default(key))
     extra = f' class="{cls}"' if cls else ""
     return f"<{tag}{extra} data-i18n=\"{key}\">{text}</{tag}>"
 
@@ -20,13 +20,13 @@ def meta_time(generated_at: str) -> str:
     gen = (generated_at or "")[:19].replace("T", " ")
     return (
         f'<span class="meta-pill badge badge-muted">'
-        f'<span data-i18n="meta_updated">{esc(i18n_ru("meta_updated"))}</span> {esc(gen)} UTC</span>'
+        f'<span data-i18n="meta_updated">{esc(i18n_default("meta_updated"))}</span> {esc(gen)} UTC</span>'
     )
 
 
 def meta_pill_i18n(key: str, *, css: str = "badge-muted") -> str:
     return (
-        f'<span class="meta-pill badge {css}" data-i18n="{key}">{esc(i18n_ru(key))}</span>'
+        f'<span class="meta-pill badge {css}" data-i18n="{key}">{esc(i18n_default(key))}</span>'
     )
 
 

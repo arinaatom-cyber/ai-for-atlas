@@ -182,7 +182,11 @@ def resolve_semantic_publications(
         if _pub_has_accession(pub):
             continue
         fit, score = _atlas_fit(pub)
-        if fit == "no" or score < min_score:
+        if fit == "no":
+            continue
+        if fit == "maybe" and score and score < min_score:
+            continue
+        if fit == "yes" and score and score < min_score:
             continue
         ai = pub.get("abstract_ai") or {}
         pmid = str(pub.get("pmid") or "")
@@ -232,7 +236,9 @@ def literature_semantic_candidates(
         if _pub_has_accession(pub):
             continue
         fit, score = _atlas_fit(pub)
-        if fit not in ("yes", "maybe") or score < min_score:
+        if fit not in ("yes", "maybe"):
+            continue
+        if score and score < min_score:
             continue
         pmid = re.sub(r"\D", "", str(pub.get("pmid") or ""))
         if pmid and pmid in known:
@@ -253,7 +259,7 @@ def literature_semantic_candidates(
                 "summary_ru": ai.get("summary_ru", ""),
                 "verdict": "requires_manual_check",
                 "filter_reasons": [
-                    "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+                    "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
                 ],
                 "human": ai.get("human_suitable", True),
                 "tmt_detected": str(ai.get("tmt") or "") not in ("none", "unclear", ""),

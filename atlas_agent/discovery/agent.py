@@ -171,6 +171,8 @@ def run_discovery_scan(
     known = _known_accessions(df, cfg)
 
     filter_cfg = {**default_filter_config(), **(scan_cfg.get("filters") or {})}
+    if scan_cfg.get("strict_sample_design") is not None:
+        filter_cfg["strict_sample_design"] = scan_cfg.get("strict_sample_design")
 
     pro = discover_projects_professional(
         year_from=year,
@@ -257,6 +259,7 @@ def run_discovery_scan(
         annotate_data_availability,
         literature_data_hint,
         partition_phospho_only_candidates,
+        partition_table_only_candidates,
         summarize_availability,
     )
 
@@ -284,6 +287,19 @@ def run_discovery_scan(
             qc_out["new_projects"] = kept
             new_projects = kept
             buckets.setdefault("filtered_out", []).extend(phospho_moved)
+
+    reject_table = scan_cfg_da.get("require_protein_table", True)
+    if reject_table and new_projects:
+        kept, table_moved = partition_table_only_candidates(
+            new_projects,
+            pdc_requires_table=scan_cfg_da.get("pdc_requires_table", True),
+            reject_raw_no_files=scan_cfg_da.get("reject_raw_no_files", True),
+        )
+        if table_moved:
+            qc_out["candidates"] = kept
+            qc_out["new_projects"] = kept
+            new_projects = kept
+            buckets.setdefault("filtered_out", []).extend(table_moved)
 
     from atlas_agent.viz.portal_index import format_finding_note
 

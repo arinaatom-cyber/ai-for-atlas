@@ -11,7 +11,13 @@ DEFAULT_ATLAS_SHEET = "TMT ATLAS"
 
 
 def catalog_path(sheet_cfg: dict[str, Any]) -> str | None:
-    return sheet_cfg.get("projects_file") or sheet_cfg.get("projects_csv")
+    primary = sheet_cfg.get("projects_file") or sheet_cfg.get("projects_csv")
+    if primary and Path(primary).is_file():
+        return primary
+    fallback = sheet_cfg.get("projects_csv")
+    if fallback and Path(fallback).is_file():
+        return fallback
+    return primary
 
 
 def catalog_sheet(sheet_cfg: dict[str, Any]) -> str | None:

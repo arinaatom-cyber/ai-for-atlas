@@ -1,6 +1,7 @@
 """HTML Discovery: one unified table (projects + papers + cohorts)."""
 from __future__ import annotations
 
+import html
 import re
 from pathlib import Path
 
@@ -29,6 +30,56 @@ def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, d
         if pmid:
             out[pmid] = p
     return out
+
+
+def _methods_panel(report: dict) -> str:
+    m = report.get("methods_manifest") or {}
+    s = report.get("summary") or {}
+    st = s.get("source_stats") or {}
+    qm = report.get("quality_metrics") or s.get("quality_metrics") or {}
+    lit_b = qm.get("benchmark_literature") or {}
+    proj_b = qm.get("benchmark_projects") or {}
+    funnel = m.get("funnel") or {}
+    lit = m.get("literature_screening") or {}
+    inc = m.get("inclusion_criteria") or {}
+    exc = m.get("exclusion_criteria") or []
+
+    exc_li = "".join(f"<li>{html.escape(str(x))}</li>" for x in exc[:6])
+    return f"""
+<section class="section methods-panel" id="methods">
+  <h2 class="section-title" data-i18n="sec_methods"></h2>
+  <p class="section-desc" data-i18n="sec_methods_desc"></p>
+  <div class="methods-grid">
+    <div class="methods-card">
+      <h3 data-i18n="methods_funnel"></h3>
+      <ul class="methods-stats">
+        <li>Raw repos (PRIDE+PDC): <b>{st.get('pride_v3_search', 0) + st.get('pdc_uiStudySummary', 0)}</b></li>
+        <li>Candidates: <b>{funnel.get('candidates', s.get('candidates', 0))}</b></li>
+        <li>Technical filtered: <b>{funnel.get('filtered_out', s.get('filtered_out', 0))}</b></li>
+        <li>Literature LLM-read: <b>{lit.get('abstract_llm_read', st.get('abstract_llm_read', 0))}</b></li>
+        <li>IDs resolved (EPMC DA): <b>{lit.get('literature_resolved', st.get('literature_resolved', 0))}</b></li>
+      </ul>
+    </div>
+    <div class="methods-card">
+      <h3 data-i18n="methods_confidence"></h3>
+      <p data-i18n="methods_tier_legend"></p>
+      <ul class="methods-stats">
+        <li>Benchmark literature: <b>{lit_b.get('correct', '?')}/{lit_b.get('n', '?')}</b></li>
+        <li>Benchmark projects: <b>{proj_b.get('correct', '?')}/{proj_b.get('n', '?')}</b></li>
+      </ul>
+    </div>
+    <div class="methods-card">
+      <h3 data-i18n="methods_inclusion"></h3>
+      <ul class="methods-stats">
+        <li>{html.escape(str(inc.get('organism', '')))}</li>
+        <li>{html.escape(str(inc.get('quantification', '')))}</li>
+        <li>{html.escape(str(inc.get('omics_layer', '')))}</li>
+      </ul>
+      <h4 data-i18n="methods_exclusion"></h4>
+      <ul class="methods-stats">{exc_li}</ul>
+    </div>
+  </div>
+</section>"""
 
 
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
@@ -81,10 +132,11 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
     {note_i18n("note_unified_table")}
+    {_methods_panel(report)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
-      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
+      <button type="button" class="chip" data-tfilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip active" data-tfilter="project" data-i18n="filter_projects"></button>
       <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers"></button>
       <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts"></button>
       <button type="button" class="chip" data-sfilter="all" data-i18n="filter_all_src"></button>
@@ -99,9 +151,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <tr class="head-groups">
             <th colspan="4" class="th-group" data-i18n="th_group_record"></th>
             <th colspan="5" class="th-group col-split" data-i18n="th_group_context"></th>
-            <th colspan="3" class="th-group col-split" data-i18n="th_group_details"></th>
+            <th colspan="6" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
+          <th class="col-type" data-i18n="th_type"></th>
           <th class="col-id"><span class="th-main" data-i18n="th_project_id"></span><span class="th-hint" data-i18n="th_project_id_hint"></span></th>
           <th data-i18n="th_year"></th>
           <th data-i18n="th_title"></th>
@@ -110,7 +163,9 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th data-i18n="th_omics"></th>
           <th data-i18n="th_patients"></th>
           <th data-i18n="th_n"></th>
-          <th data-i18n="th_weight" class="col-split"></th>
+          <th data-i18n="th_verdict" class="col-split"></th>
+          <th data-i18n="th_confidence"></th>
+          <th data-i18n="th_fit"></th>
           <th data-i18n="th_analysis"></th>
           <th data-i18n="th_data"></th>
           <th data-i18n="th_links"></th>
@@ -129,7 +184,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'all';
+  let tFilter = 'project';
   let sFilter = 'all';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();

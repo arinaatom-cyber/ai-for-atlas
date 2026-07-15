@@ -2,7 +2,7 @@
 """
 Sirius TMT Atlas — Streamlit portal (read-only).
 
-Tabs: New projects · AI search · Body map · Catalog (WIP).
+Tabs: AI search · New projects · Papers · Cohorts · Body map.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-APP_VERSION = "2026.07.15-portal-v6-layout"
+APP_VERSION = "2026.07.15-portal-v7-tabs"
 
 st.markdown(
     """
@@ -219,24 +219,24 @@ def papers_without_id_table(manual: list[dict], literature: list[dict]) -> pd.Da
 
 
 def cohorts_table(items: list[dict]) -> pd.DataFrame:
-    from atlas_agent.viz.portal_index import pubmed_url
+    from atlas_agent.viz.portal_index import europe_pmc_url, pubmed_url
 
     rows = []
     for p in items:
         pmid = str(p.get("pmid") or "").strip()
         omics = ", ".join(p.get("omics") or [])[:80]
-        journal = f"{p.get('journal') or ''} {p.get('year') or ''}".strip()
         rows.append({
             "PMID": pmid,
             "Title": (p.get("title") or "")[:100],
-            "Description": (p.get("description_en") or "")[:120],
+            "Weight": p.get("cohort_score") or "",
+            "Europe PMC": europe_pmc_url(pmid) if pmid else "",
+            "Year": p.get("year") or "",
+            "Journal": (p.get("journal") or "")[:60],
             "Patients": p.get("has_patients") or "",
             "N": p.get("patient_n") or "",
             "Omics": omics,
             "TMT": "yes" if p.get("tmt_detected") else "",
-            "Multi-omics": "yes" if p.get("multi_omics") else "",
-            "Journal": journal,
-            "Score": p.get("cohort_score") or "",
+            "Analysis": (p.get("description_en") or "")[:140],
             "PubMed": pubmed_url(pmid),
         })
     return pd.DataFrame(rows)
@@ -295,7 +295,7 @@ def render_project_links(card: dict):
 # --- Header ---
 st.markdown('<p class="portal-title">Sirius Human TMT Proteome Atlas — Portal</p>', unsafe_allow_html=True)
 st.markdown(
-    '<p class="portal-sub">New projects · AI search · organ map · catalog (WIP)</p>',
+    '<p class="portal-sub">🔍 AI search · New projects · Papers · Cohorts · Body map</p>',
     unsafe_allow_html=True,
 )
 
@@ -318,11 +318,12 @@ with st.sidebar:
     st.markdown(f"[QC site]({gh_meta.get('discovery_site', '').replace('discovery.html', 'qc.html')})")
     st.markdown(f"[Interactive map]({gh_meta.get('streamlit_map') or gh_meta.get('atlas_map', '')})")
     st.divider()
-    st.markdown("**Tabs (left → right):**")
-    st.markdown("1. **🔍 AI search** — keywords + Run search")
-    st.markdown("2. **Discovery** — new projects / papers / cohorts")
-    st.markdown("3. **Body map** — open organ map")
-    st.markdown("4. **Catalog** — link only (WIP)")
+    st.markdown("**Tabs:**")
+    st.markdown("1. **🔍 AI search** — Run search")
+    st.markdown("2. **New projects** — PXD/PDC from scan")
+    st.markdown("3. **Papers** — without accession")
+    st.markdown("4. **Cohorts** — large patient cohorts")
+    st.markdown("5. **Body map**")
 
 if "scan_report" not in st.session_state:
     st.session_state["scan_report"] = load_scan_report()
@@ -331,11 +332,12 @@ if st.session_state.pop("run_full_scan", False):
     with st.spinner("Discovery scan (PRIDE, PDC, MassIVE, iProX, Europe PMC)…"):
         st.session_state["scan_report"] = run_full_scan(cfg, df, year_scan)
 
-tab_keywords, tab_found, tab_map, tab_catalog = st.tabs([
+tab_keywords, tab_projects, tab_papers, tab_cohorts, tab_map = st.tabs([
     "🔍 AI search",
-    "Discovery",
+    "New projects",
+    "Papers",
+    "Cohorts",
     "Body map",
-    "Catalog",
 ])
 
 # --- Tab 1: AI keyword search ---
@@ -414,74 +416,61 @@ with tab_keywords:
     else:
         st.info("Click **Run search** above to start AI keyword discovery.")
 
-# --- Tab 2: Discovery (scan results) ---
-with tab_found:
+# --- Tab 2: New projects only ---
+with tab_projects:
     report = st.session_state.get("scan_report")
     if not report:
-        st.info("No saved scan. Run a full scan in the sidebar or `python run_discovery.py scan`.")
+        st.info("No saved scan. Sidebar → **Run full Discovery scan** or `python run_discovery.py scan`.")
     else:
-        s = report.get("summary") or {}
         cand = report.get("candidates") or report.get("new_projects") or []
         pubs = report.get("publications_analyzed") or []
-        manual = report.get("manual_check") or []
-        literature = report.get("literature_semantic") or []
-        papers = papers_without_id_table(manual, literature)
+        table_n = sum(1 for x in cand if (x.get("data_availability") or {}).get("status") == "quant_table")
 
-        table_n = sum(
-            1 for x in cand
-            if (x.get("data_availability") or {}).get("status") == "quant_table"
-        )
-        pride_n = sum(1 for x in cand if _source_label(x) == "PRIDE")
-        pdc_n = sum(1 for x in cand if _source_label(x) == "PDC")
-
-        m1, m2, m3, m4, m5 = st.columns(5)
-        m1.markdown(f'<div class="metric-box"><div class="metric-num">{len(cand)}</div><div class="metric-lbl">New projects</div></div>', unsafe_allow_html=True)
-        m2.markdown(f'<div class="metric-box"><div class="metric-num">{table_n}</div><div class="metric-lbl">Protein table</div></div>', unsafe_allow_html=True)
-        m3.markdown(f'<div class="metric-box"><div class="metric-num">{pride_n}</div><div class="metric-lbl">PRIDE</div></div>', unsafe_allow_html=True)
-        m4.markdown(f'<div class="metric-box"><div class="metric-num">{pdc_n}</div><div class="metric-lbl">PDC</div></div>', unsafe_allow_html=True)
-        m5.markdown(f'<div class="metric-box"><div class="metric-num">{len(papers)}</div><div class="metric-lbl">Papers w/o ID</div></div>', unsafe_allow_html=True)
-        cohorts = report.get("cohort_literature") or []
-
-        st.caption("Same tables as GitHub Discovery page. Source = clickable repository. Plex/Similar removed.")
-
-        link_col1, link_col2, link_col3 = st.columns(3)
+        st.caption("Only new PXD/PDC with protein-level table. Plex/Similar removed. Source = clickable repo.")
+        link_col1, link_col2 = st.columns(2)
         if SITE_DISCOVERY.is_file():
-            link_col1.link_button("Discovery site (local)", SITE_DISCOVERY.resolve().as_uri(), use_container_width=True)
-        link_col2.link_button("Discovery site (GitHub)", gh_meta.get("discovery_site", ""), use_container_width=True)
-        if SITE_QC.is_file():
-            link_col3.link_button("QC report", SITE_QC.resolve().as_uri(), use_container_width=True)
-        else:
-            link_col3.link_button("QC report (GitHub)", gh_meta.get("discovery_site", "").replace("discovery.html", "qc.html"), use_container_width=True)
+            link_col1.link_button("GitHub Discovery", gh_meta.get("discovery_site", ""), use_container_width=True)
+        link_col2.link_button("QC report", gh_meta.get("discovery_site", "").replace("discovery.html", "qc.html"), use_container_width=True)
 
-        st.subheader(f"New projects ({len(cand)})")
-        search = st.text_input("Search projects", placeholder="PXD, PDC, gastric, TMT…", key="found_search")
+        st.metric("New projects", len(cand))
+        st.metric("With protein table", table_n)
+        search = st.text_input("Search", placeholder="PXD, PDC, gastric…", key="proj_search")
         proj_df = new_projects_table(cand, pubs)
         if search:
             fl = search.lower()
-            proj_df = proj_df[
-                proj_df.astype(str).apply(lambda row: fl in " ".join(row.values).lower(), axis=1)
-            ]
+            proj_df = proj_df[proj_df.astype(str).apply(lambda row: fl in " ".join(row.values).lower(), axis=1)]
         if not proj_df.empty:
             st.dataframe(
                 proj_df,
                 use_container_width=True,
                 hide_index=True,
-                height=min(520, 80 + 35 * len(proj_df)),
+                height=min(480, 80 + 38 * len(proj_df)),
                 column_config={
                     "Repository": st.column_config.LinkColumn("Repository", display_text="Open"),
                     "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
                 },
             )
         else:
-            st.caption("No new projects in latest scan")
+            st.caption("No new projects")
 
-        if len(papers):
-            st.subheader(f"Papers without accession ({len(papers)})")
+# --- Tab 3: Papers without accession ---
+with tab_papers:
+    report = st.session_state.get("scan_report")
+    if not report:
+        st.info("No scan data.")
+    else:
+        manual = report.get("manual_check") or []
+        literature = report.get("literature_semantic") or []
+        papers = papers_without_id_table(manual, literature)
+        st.caption("Atlas-like papers where dataset ID was not resolved. Weight = LLM fit (score).")
+        if papers.empty:
+            st.caption("No papers")
+        else:
             st.dataframe(
                 papers,
                 use_container_width=True,
                 hide_index=True,
-                height=min(320, 80 + 35 * len(papers)),
+                height=min(520, 80 + 38 * len(papers)),
                 column_config={
                     "Europe PMC": st.column_config.LinkColumn("Europe PMC", display_text="EPMC"),
                     "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
@@ -489,26 +478,30 @@ with tab_found:
                 },
             )
 
-        if cohorts:
-            st.subheader(f"Large cohorts ({len(cohorts)})")
+# --- Tab 4: Cohorts ---
+with tab_cohorts:
+    report = st.session_state.get("scan_report")
+    if not report:
+        st.info("No scan data.")
+    else:
+        cohorts = report.get("cohort_literature") or []
+        st.caption("Large human proteomics cohorts from Europe PMC. Same columns as on GitHub Discovery → Cohorts.")
+        if not cohorts:
+            st.caption("No cohort papers — run full scan with cohort_literature enabled.")
+        else:
+            cdf = cohorts_table(cohorts)
             st.dataframe(
-                cohorts_table(cohorts),
+                cdf,
                 use_container_width=True,
                 hide_index=True,
-                height=min(400, 80 + 35 * min(len(cohorts), 12)),
+                height=min(560, 80 + 38 * min(len(cohorts), 14)),
                 column_config={
+                    "Europe PMC": st.column_config.LinkColumn("Europe PMC", display_text="EPMC"),
                     "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
                 },
             )
 
-        with st.expander("Scan JSON"):
-            st.download_button(
-                "Download",
-                json.dumps(report, ensure_ascii=False, indent=2, default=str),
-                file_name=f"discovery_{datetime.now():%Y%m%d}.json",
-            )
-
-# --- Tab 3: Body map (external link, no heavy embed) ---
+# --- Tab 5: Body map ---
 with tab_map:
     st.subheader("Human body organ map")
     streamlit_map = gh_meta.get("streamlit_map") or gh_meta.get("atlas_map", "")
@@ -535,23 +528,3 @@ with tab_map:
         cols[i % 4].markdown(f"· {organ.replace('_', ' ')} ({n})")
     if len(organs) > 16:
         st.caption(f"+ {len(organs) - 16} more organs — see full map")
-
-# --- Tab 4: Catalog (link only — not the discovery list) ---
-with tab_catalog:
-    st.markdown(
-        '<div class="wip-banner">Catalog browse is WIP. The PXD list below was removed from here — '
-        "use <b>Discovery</b> tab for new projects, or open the organ map.</div>",
-        unsafe_allow_html=True,
-    )
-    st.subheader("TMT ATLAS catalog")
-    st.markdown(
-        f"**{organ_index['n_projects']}** projects in master catalog (read-only). "
-        f"Not the same as Discovery scan results."
-    )
-    github_map = gh_meta.get("atlas_map", "")
-    streamlit_map = gh_meta.get("streamlit_map") or github_map
-    c1, c2, c3 = st.columns(3)
-    c1.link_button("Organ map (Streamlit)", streamlit_map, use_container_width=True)
-    c2.link_button("Organ map (GitHub Pages)", github_map, use_container_width=True)
-    c3.link_button("tmt-projects data", gh_meta.get("data_repo", ""), use_container_width=True)
-    st.caption("Full catalog UI will be added later. For now use GitHub Pages map or Excel locally.")

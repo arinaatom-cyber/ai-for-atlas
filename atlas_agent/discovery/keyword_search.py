@@ -5,12 +5,13 @@ from typing import Any
 
 import pandas as pd
 
-from atlas_agent.discovery.agent import _known_accessions
+from atlas_agent.discovery.agent import _apply_removed_from_workbook, _known_accessions
 from atlas_agent.discovery.catalog_profile import build_atlas_semantic_context, build_catalog_profile
 from atlas_agent.discovery.filters import apply_filters, default_filter_config
 from atlas_agent.discovery.sources.pro_search import discover_projects_professional
-from atlas_agent.revisor.literature_watch import build_known_sets, filter_novel_items, search_new_publications
+from atlas_agent.revisor.literature_watch import search_new_publications
 from atlas_agent.revisor.similarity import annotate_candidates
+from atlas_agent.sources.proteomics_workbook import filter_items_not_in_known
 
 
 def default_search_keywords(cfg: dict, profile: dict | None = None) -> list[str]:
@@ -67,7 +68,6 @@ def run_keyword_ai_search(
     profile = build_catalog_profile(df)
     kw = [k.strip() for k in (keywords or default_search_keywords(cfg, profile)) if k.strip()]
     known = _known_accessions(df, cfg)
-    known_pmids, known_pxds = build_known_sets(df)
     atlas_ctx = build_atlas_semantic_context(df)
 
     disc = cfg.get("discovery") or {}
@@ -113,8 +113,8 @@ def run_keyword_ai_search(
     else:
         ai_stats = {}
 
-    repo_novel = filter_novel_items(repo_raw, known_pmids, known_pxds, id_key="accession")
-    pubs_novel = filter_novel_items(pubs_raw, known_pmids, known_pxds)
+    repo_novel = filter_items_not_in_known(repo_raw, known)
+    pubs_novel = filter_items_not_in_known(pubs_raw, known)
 
     repo_novel = annotate_candidates(repo_novel, df)
     pubs_novel = annotate_candidates(pubs_novel, df)
@@ -124,7 +124,9 @@ def run_keyword_ai_search(
     for item in repo_novel + pubs_novel:
         item["finding_note"] = format_finding_note(item, keywords=kw)
 
-    filtered_repo, filter_stats = apply_filters(repo_novel, df, filt_cfg)
+    filter_buckets = apply_filters(repo_novel, df, cfg=filt_cfg)
+    removed_moved = _apply_removed_from_workbook(filter_buckets, cfg)
+    filtered_repo = filter_buckets.get("recommended", [])
 
     return {
         "keywords": kw,
@@ -141,8 +143,11 @@ def run_keyword_ai_search(
             "massive": pro.get("massive_count", 0),
             "iprox": pro.get("iprox_count", 0),
             "publications": len(pubs_raw),
+            "removed_from_workbook": removed_moved,
+            "recommended": len(filtered_repo),
+            "filtered_out": len(filter_buckets.get("filtered_out", [])),
+            "rejected": len(filter_buckets.get("rejected", [])),
             **(ai_stats or {}),
-            **(filter_stats or {}),
         },
         "abstract_ai_stats": ai_stats,
     }

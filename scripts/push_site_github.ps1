@@ -37,4 +37,3 @@ git push -u origin HEAD
 Write-Host ""
 Write-Host "Готово. Сайт обновится через 1-2 мин (GitHub Actions -> Pages)." -ForegroundColor Green
 Write-Host "URL: https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html"
-Write-Host "     (замените USER/REPO если другой репозиторий)"

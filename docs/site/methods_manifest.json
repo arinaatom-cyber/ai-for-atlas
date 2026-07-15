@@ -1,0 +1,91 @@
+{
+  "pipeline": "Atlas Discovery Agent",
+  "pipeline_version": "2026.07.15-nature",
+  "generated_at": "2026-07-15T10:17:27.694932+00:00",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "catalog_policy": {
+    "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
+    "catalog_mirror": "data/projects.csv",
+    "catalog_mode": "read_only",
+    "delete_allowed": false,
+    "auto_update_allowed": false,
+    "agent_role": "discover_and_propose_only",
+    "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+  },
+  "inclusion_criteria": {
+    "organism": "Homo sapiens (reject mouse/rat/xenograft-only)",
+    "quantification": "TMT/isobaric ≥10-plex (reject TMT6)",
+    "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
+    "material": "Tumor / adjacent normal / plasma·serum / human cancer cell lines",
+    "literature": "Europe PMC semantic screening; repository IDs from data availability only"
+  },
+  "exclusion_criteria": [
+    "Non-human or xenograft-only",
+    "TMT6 or ≤6-plex",
+    "Phosphoproteomics-only emphasis",
+    "Peptide-level quantification only",
+    "Review / methods / software papers without cohort data",
+    "Phospho-only or RAW-only repository files"
+  ],
+  "search_config": {
+    "year_from": 2024,
+    "year_to": 2026,
+    "pride_max": 60,
+    "publications_max": 40,
+    "abstract_llm": true,
+    "abstract_llm_max": 25,
+    "abstract_resolve_accessions": true,
+    "abstract_semantic_resolve": false,
+    "strict_sample_design": true,
+    "search_mode": "professional"
+  },
+  "filters_applied": {
+    "human_only": true,
+    "allowed_tmt_plexes": [
+      10,
+      11,
+      12,
+      16
+    ],
+    "min_tmt_channels": 10,
+    "max_tmt_channels": 16,
+    "allow_healthy_only": true,
+    "allow_cancer_only": true,
+    "allow_case_control": true,
+    "allowed_databases": [
+      "PRIDE",
+      "PDC",
+      "iProX",
+      "MassIVE",
+      "IPX",
+      "MSV"
+    ],
+    "reject_non_human": true,
+    "material_qc": true
+  },
+  "funnel": {
+    "raw_novel_repos": 88,
+    "candidates": 4,
+    "manual_check": 20,
+    "rejected_material": 0,
+    "filtered_out": 116,
+    "already_in_catalog": 11
+  },
+  "literature_screening": {
+    "publications_scanned": 24,
+    "abstract_llm_read": 22,
+    "abstract_regex_only": 2,
+    "atlas_fit_yes": 19,
+    "atlas_fit_maybe": 3,
+    "literature_resolved": 0,
+    "semantic_from_abstract": 0
+  },
+  "data_availability_gate": {
+    "quant_table": 26,
+    "raw_only": 10,
+    "no_files": 21
+  },
+  "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
+  "catalog_read_only": true
+}

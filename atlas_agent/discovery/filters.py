@@ -4,6 +4,7 @@
 Правила (из вашего каталога + запрос):
 - Human only (без mouse/rat)
 - TMT >6 каналов, обычно до 16-plex (как в атласе)
+- Protein-level proteome (не phosphoproteomics, не peptide-only)
 - Healthy-only / cancer-only / case-control (с healthy) — OK
 - PMID, PXD, PDC, MSV, IPX, iProX — извлечение из текста
 - Уже в каталоге → not recommended
@@ -59,6 +60,27 @@ TMT_PLEX = re.compile(
 )
 ATLAS_TMT_PLEXES = (10, 11, 12, 16)
 
+PHOSPHOPROTEOMICS = re.compile(
+    r"\b(phosphoproteom\w*|phospho[- ]?proteom\w*|phosphorylome|phosphosite\w*|"
+    r"phosphorylation[- ]?profil\w*|phospho[- ]?peptide|kinase[- ]?substrate|"
+    r"tiO2\s+enrichment|tio2\s+enrichment)\b",
+    re.I,
+)
+PROTEIN_LEVEL_OMICS = re.compile(
+    r"\b(global\s+proteome|whole[- ]?cell\s+proteome|protein[- ]?level|"
+    r"protein\s+group|protein\s+abundance|protein\s+expression|"
+    r"protein\s+quantif|quantitative\s+proteomics|proteome\s+profil|"
+    r"proteomics\s+analysis|proteome\s+analysis|proteomic\s+analysis)\b",
+    re.I,
+)
+PEPTIDE_ONLY_OMICS = re.compile(
+    r"\b(peptide[- ]?level|peptidome|neuropeptidom|peptide\s+quantif|"
+    r"peptide\s+profil|peptide\s+centric|peptide\s+atlas|"
+    r"peptide\s+identification\s+only|peptide\s+spectral\s+library|"
+    r"peptide\s+turnover|peptidoform)\b",
+    re.I,
+)
+
 
 def default_filter_config() -> dict[str, Any]:
     return {
@@ -71,7 +93,35 @@ def default_filter_config() -> dict[str, Any]:
         "allow_case_control": True,    # smokers vs healthy OK
         "allowed_databases": ["PRIDE", "PDC", "iProX", "MassIVE", "IPX", "MSV"],
         "reject_non_human": True,
+        "reject_phosphoproteomics": True,
+        "reject_peptide_only": True,
     }
+
+
+def assess_proteome_layer(
+    item: dict[str, Any],
+    blob: str,
+    *,
+    cfg: dict[str, Any] | None = None,
+) -> list[str]:
+    """Фосфопротеомика и peptide-only — не подходят (нужен protein-level proteome)."""
+    cfg = cfg or default_filter_config()
+    reasons: list[str] = []
+
+    if cfg.get("reject_phosphoproteomics", True):
+        frac = str(item.get("analytical_fraction") or "").strip().lower()
+        if frac and re.search(r"phospho", frac):
+            reasons.append("Phosphoproteomics (analytical_fraction) — atlas needs protein-level proteome, not phospho-PTM")
+        elif PHOSPHOPROTEOMICS.search(blob):
+            reasons.append("Phosphoproteomics — atlas needs protein-level proteome, not phospho")
+
+    if cfg.get("reject_peptide_only", True):
+        if PEPTIDE_ONLY_OMICS.search(blob) and not PROTEIN_LEVEL_OMICS.search(blob):
+            reasons.append("Peptide-level only — need protein groups / proteome, not peptides")
+        elif re.search(r"\bonly\s+peptide", blob, re.I) and not PROTEIN_LEVEL_OMICS.search(blob):
+            reasons.append("Peptide-level data only — need protein-level proteome")
+
+    return reasons
 
 
 def extract_ids_from_text(text: str) -> dict[str, list[str]]:
@@ -205,15 +255,15 @@ def classify_candidate(
 
     if accs:
         verdict = "already_in_catalog"
-        reasons.append(f"Уже в каталоге: {', '.join(sorted(accs)[:5])}")
+        reasons.append(f"Already in catalog: {', '.join(sorted(accs)[:5])}")
 
     if cfg.get("human_only") and verdict == "recommended":
         if not is_confirmed_human(item, blob):
             verdict = "filtered_out"
-            reasons.append("Human only: не подтверждён Homo sapiens")
+            reasons.append("Human only: Homo sapiens not confirmed")
     elif cfg.get("reject_non_human") and NON_HUMAN.search(blob) and not is_confirmed_human(item, blob):
         verdict = "filtered_out"
-        reasons.append("Не human (mouse/rat/rodent/бактерии)")
+        reasons.append("Not human (mouse/rat/rodent/bacteria)")
 
     plex = item.get("inferred_plex") or _infer_plex(blob)
     if item.get("experiment_type"):
@@ -224,7 +274,7 @@ def classify_candidate(
     if item.get("tmt_detected") is False and verdict == "recommended":
         if "tmt" not in blob_lower and "isobaric" not in blob_lower:
             verdict = "filtered_out"
-            reasons.append("TMT не обнаружен в метаданных")
+            reasons.append("TMT not detected in metadata")
 
     if (
         verdict == "recommended"
@@ -234,14 +284,19 @@ def classify_candidate(
         and not item.get("experiment_type", "").upper().startswith("TMT")
     ):
         verdict = "filtered_out"
-        reasons.append("Label-free, не TMT")
+        reasons.append("Label-free, not TMT")
     allowed_plex = cfg.get("allowed_tmt_plexes") or list(ATLAS_TMT_PLEXES)
     if verdict == "recommended" and not plex_allowed(plex, cfg, blob=blob):
         if plex is not None:
-            reasons.append(f"TMT plex {plex} не в атласе (только {allowed_plex})")
+            reasons.append(f"TMT plex {plex} not in atlas (allowed: {allowed_plex})")
         else:
-            reasons.append(f"TMT plex не определён (нужен {allowed_plex})")
+            reasons.append(f"TMT plex unknown (need {allowed_plex})")
         verdict = "filtered_out"
+
+    omics_reasons = assess_proteome_layer(item, blob, cfg=cfg)
+    if omics_reasons and verdict == "recommended":
+        verdict = "filtered_out"
+        reasons.extend(omics_reasons)
 
     design = _infer_sample_design(blob)
     allowed_designs = []
@@ -252,15 +307,17 @@ def classify_candidate(
     if cfg.get("allow_case_control"):
         allowed_designs.append("case_control")
     if design == "unknown" and verdict == "recommended":
-        reasons.append("Дизайн образцов не ясен — проверить healthy/cancer")
+        reasons.append("Sample design unclear — check healthy/cancer labels")
+        if cfg.get("strict_sample_design", True):
+            verdict = "requires_manual_check"
     elif design not in allowed_designs and design != "unknown" and verdict == "recommended":
         verdict = "filtered_out"
-        reasons.append(f"Дизайн не подходит: {design}")
+        reasons.append(f"Design not allowed: {design}")
 
     if item.get("has_close_match") and verdict == "recommended":
         verdict = "duplicate_similar"
         sim = (item.get("similar_in_catalog") or [{}])[0]
-        reasons.append(f"Очень похож на {sim.get('project_id')} (score {sim.get('score')})")
+        reasons.append(f"Very similar to {sim.get('project_id')} (score {sim.get('score')})")
 
     has_project_id = bool(extracted.get("PXD") or extracted.get("PDC") or extracted.get("MSV") or extracted.get("IPX"))
     has_pmid = bool(extracted.get("PMID") or item.get("pmid"))
@@ -268,10 +325,11 @@ def classify_candidate(
         verdict == "recommended"
         and REVIEW_ONLY.search(blob)
         and not has_project_id
+        and not has_pmid
         and not (item.get("accession") or "").startswith(("PXD", "PDC", "MSV", "IPX"))
     ):
         verdict = "filtered_out"
-        reasons.append("Обзор/методы без номера проекта (PXD/PDC/MSV/IPX)")
+        reasons.append("Review/methods paper without project ID (PXD/PDC/MSV/IPX) or PMID")
 
     out = dict(item)
     out["verdict"] = verdict

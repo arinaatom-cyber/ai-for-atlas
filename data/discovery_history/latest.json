@@ -282,7 +282,19 @@
       "multi_omics": 12,
       "min_patients_threshold": 50
     },
-    "phospho_only_filtered": 44
+    "phospho_only_filtered": 44,
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
+    }
   },
   "filters_applied": {
     "human_only": true,
@@ -387,7 +399,16 @@
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "year": "2026",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 10",
+        "design: healthy_only"
+      ]
     },
     {
       "accession": "PDC000495",
@@ -480,7 +501,16 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ]
     },
     {
       "accession": "PDC000498",
@@ -573,7 +603,16 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ]
     },
     {
       "accession": "PDC000176",
@@ -691,7 +730,15 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
       "doi": "",
-      "year": "2025"
+      "year": "2025",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "Mixed protein+phospho files — manual matrix check",
+        "design: cancer_only"
+      ]
     }
   ],
   "candidates": [
@@ -773,7 +820,16 @@
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "year": "2026",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 10",
+        "design: healthy_only"
+      ]
     },
     {
       "accession": "PDC000495",
@@ -866,7 +922,16 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ]
     },
     {
       "accession": "PDC000498",
@@ -959,7 +1024,16 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ]
     },
     {
       "accession": "PDC000176",
@@ -1077,7 +1151,15 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
       "doi": "",
-      "year": "2025"
+      "year": "2025",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "Mixed protein+phospho files — manual matrix check",
+        "design: cancer_only"
+      ]
     }
   ],
   "recommended": [
@@ -3948,10 +4030,9 @@
       "abstract_snippet": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers ",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -3968,7 +4049,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
+        "summary_en": ""
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3999,13 +4080,20 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41771895",
@@ -4013,11 +4101,10 @@
       "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
       "abstract_snippet": "Isobaric mass tags, such as isobaric tags for relative and absolute quantitation (iTRAQ) and tandem mass tag (TMT), are widely utilized for peptide and protein quantification in multiplex quantitative proteomics. We present TMT-Integrator, a bioinformatics tool for processing quantitation results from TMT and iTRAQ experiments, offering integrative reports at the gene, protein, peptide, and post-translational modification site levels. We demonstrate the versatility of TMT-Integrator using five p",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4034,7 +4121,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
+        "summary_en": "",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4065,13 +4153,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41622683",
@@ -4080,10 +4174,9 @@
       "abstract_snippet": "Isobaric labeling is widely used in quantitative proteomics for its multiplexing capabilities, but scaling beyond current limits remains a challenge. Here, we introduce UltraPlex-TMT, a streamlined and scalable workflow that integrates orthogonal protease digestion with hyperplex TMT/TMTpro labeling to effectively double sample throughput. UltraPlex-TMT can be readily implemented without custom chemistry or instrumentation. We benchmarked UltraPlex-TMT using lysine- and arginine-specific proteas",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -4101,7 +4194,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
+        "summary_en": ""
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4132,13 +4225,21 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41851243",
@@ -4147,10 +4248,9 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "isobaric quantitative proteomics"
         ],
@@ -4204,7 +4304,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42051158",
@@ -4213,10 +4320,9 @@
       "abstract_snippet": "Dravet syndrome (DS) is a rare and severe childhood-onset developmental epileptic encephalopathy caused primarily by mutations in the sodium channel gene SCN1A. Animal models have undeniably advanced our understanding of DS, but they still do not fully capture its clinical heterogeneity, highlighting the need for complementary human in vitro systems. Here, we generated induced pluripotent stem cells (iPSCs) from urine epithelial cells of three DS patients carrying distinct SCN1A variants and dif",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4270,7 +4376,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42273731",
@@ -4278,11 +4391,10 @@
       "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
       "abstract_snippet": "Phosphoregulatory events underlie vascular responses to environmental and pathological stimuli, regulate hemostasis and thrombosis, and drive vascular remodeling in health and disease. Consequently, defining phosphorylation-dependent signaling networks in vascular physiology and pathology has enabled biomarker discovery and informed therapeutic interventions. Advances in mass spectrometry-based phosphoproteomics have enabled accurate and high-resolution mapping of dynamic phosphorylation events ",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4299,7 +4411,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
+        "exclusion_reason": "phospho-only emphasis"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4330,13 +4443,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42273731/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "phospho-only emphasis",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41862993",
@@ -4345,10 +4464,9 @@
       "abstract_snippet": "BACKGROUND: Proteins represent the dynamic downstream products of genes, and have the potential to substantially increase understanding of the complexities of cancer biology. Undifferentiated pleomorphic sarcoma (UPS) is a rare disease, the proteomic landscape of which has not been fully investigated. METHODS: We performed isobaric TMT-based proteomic analysis for 80 UPS tumor and 28 corresponding adjacent non-tumor muscle tissues. The underlying molecular subtypes, therapeutic targets, local re",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "proteomics + patients + TMT/isobaric"
         ],
@@ -4401,7 +4519,14 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41862993/",
       "qc_reasons": [],
       "processing_tips": [],
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "proteomics + patients + TMT/isobaric",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41472394",
@@ -4410,10 +4535,9 @@
       "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4467,7 +4591,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41453614",
@@ -4475,11 +4606,10 @@
       "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
       "abstract_snippet": "Investigating multiple protein post-translational modifications (PTMs) is critical for unraveling the complexities of protein regulation and the dynamic interplay among PTMs, a growing focus in proteomics. However, simultaneous analysis of diverse PTMs remains a significant technical challenge, as existing workflows struggle to balance throughput, sensitivity, and reproducibility, particularly when sample amounts are limited. To address these limitations, we present MoSAIC, a multi-PTM workflow ",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "quantitative proteomics",
           "patients"
@@ -4497,7 +4627,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4528,13 +4659,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42155730",
@@ -4543,10 +4680,9 @@
       "abstract_snippet": "Partial downregulation of pancreatic endoplasmic reticulum kinase (PERK) activity recovered insulin content in human islets exposed to glucolipotoxicity (GLT), resulting in improved insulin secretion and glucose-lowering effects in a mouse model of type 2 diabetes. We conducted this study to elucidate the beta-cell-enhancing mechanisms of PERK attenuation. Pancreatic islets isolated from non-diabetic living donors were divided into three groups: control, GLT mimicking diabetes conditions, and GL",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -4601,7 +4737,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41567026",
@@ -4609,11 +4753,10 @@
       "title": "Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.",
       "abstract_snippet": "Protein phosphorylation is a central post-translational modification regulating cellular signaling, frequently dysregulated in cancer. Mass spectrometry (MS)-based phosphoproteomics has emerged as a powerful approach to systematically profile phosphorylation events, thereby revealing aberrant kinase activity and therapeutic vulnerabilities that are not captured by genomic or transcriptomic analyses. Recent advances across the workflow-including optimized sample preparation and phosphopeptide enr",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -4631,7 +4774,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
+        "exclusion_reason": "phospho-only emphasis"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4662,13 +4806,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41567026/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "phospho-only emphasis",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41966223",
@@ -4677,10 +4827,9 @@
       "abstract_snippet": "Colorectal cancer (CRC) remains a leading cause of cancer-related mortality worldwide. Stage II CRC poses a clinical challenge due to its heterogeneous outcomes, with 15-20% of patients experiencing recurrence. Current prognostic models based on clinicopathologic features lack sufficient precision, highlighting the need for new molecular markers. In this study, we employed an integrative TMT-based proteomics strategy to identify biomarkers of recurrence in stage II CRC. We analyzed paired formal",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4734,7 +4883,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41870234",
@@ -4743,10 +4899,9 @@
       "abstract_snippet": "Tissue breakdown, especially extracellular matrix or secretome breakdown is a significant aspect of physiological remodeling and disease processes in solid organs, with profound structural and regulatory impact. Tissue and circulating proteins undergo breakdown through a chemical process mediated by proteases, that is, hydrolysis of peptide bonds. Proteolysis has immense biological impact because it is irreversible, results in protein inactivation or activation, and can generate fragments with n",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4800,7 +4955,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42192865",
@@ -4809,10 +4971,9 @@
       "abstract_snippet": "Colorectal cancer (CRC) is a biologically heterogeneous disease in which single-omics analyses incompletely capture the cross-layer mechanisms underlying tumor progression, immune evasion, and therapeutic resistance. This review critically examines how the integration of genomics, transcriptomics, proteomics, metabolomics, and microbiome profiling is redefining CRC biology and precision oncology. Landmark integrative efforts, including TCGA analyses of 276 colorectal cancer samples, CPTAC proteo",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "multi-omics integration"
         ],
@@ -4866,7 +5027,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "multi-omics integration",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41740022",
@@ -4874,11 +5042,10 @@
       "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
       "abstract_snippet": "Single-cell proteomics (SCP) platforms are widely sought-after biomedical tools to complement existing omics technologies. Here, we present MiProChip, a microfluidic platform that integrates cell capture, lysis, protein digestion, tandem mass tag (TMT) labeling, on-chip pooling, and desalting a streamlined workflow for multiplexed SCP profiling. We optimized a chip-compatible TMT multiplexing protocol with a carrier-boosting strategy, enabling high-throughput operation and deep proteome coverage",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -4895,7 +5062,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -4926,13 +5094,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41740022/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41699065",
@@ -4941,10 +5115,9 @@
       "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -4999,7 +5172,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42294822",
@@ -5008,10 +5189,9 @@
       "abstract_snippet": "Maintaining mitochondrial integrity and function is fundamental to cellular homeostasis. Cells rely on coordinated protein quality control (QC) systems-including intricate chaperone-protease networks, the ubiquitin-proteasome system, and cytosolic surveillance pathways-that together form a dynamic, cell-wide mitostasis network governing the import, folding, synthesis, and degradation of mitochondrial proteins. Disruption of mitochondrial homeostasis, for example, by impairing mitochondrial prote",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "mass spectrometry",
           "quantitative proteomics"
@@ -5066,7 +5246,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "mass spectrometry",
+        "quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41575784",
@@ -5074,11 +5262,10 @@
       "title": "Single-Cell Proteomic Technologies: Tools in the Quest for Principles.",
       "abstract_snippet": "Over the last decade, proteomics analysis of single cells by mass spectrometry transitioned from an uncertain possibility to a set of robust and rapidly advancing technologies supporting the accurate quantification of thousands of proteins. We review the major drivers of this progress, from establishing feasibility to powerful and increasingly scalable methods. We focus on the trade-offs and synergies of different technological solutions within a coherent conceptual framework, which projects con",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -5095,7 +5282,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
+        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -5126,13 +5314,19 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: no",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41575784/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
-      "year": "2026"
+      "year": "2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "13006395",
@@ -5141,10 +5335,9 @@
       "abstract_snippet": "",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.55,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "maybe",
-        "atlas_fit_score": 0.55,
         "semantic_evidence": [
           "human clinical proteomics"
         ],
@@ -5197,7 +5390,13 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/",
       "qc_reasons": [],
       "processing_tips": [],
-      "year": "1952"
+      "year": "1952",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -5206,10 +5405,9 @@
       "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -5226,7 +5424,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
+        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -5257,13 +5455,20 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,  · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, · Atlas fit: yes",
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
-      "year": "2025"
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     }
   ],
   "rejected_material": [],
@@ -5757,7 +5962,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: gastric, lung · Design: cancer-only"
+      "finding_note": "Keywords from title: gastric, lung · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079927",
@@ -5806,7 +6013,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Immune Complex-Induced Migration of Slan+ Non-Classical Monocytes"
+      "finding_note": "TMT human proteomics candidate — Immune Complex-Induced Migration of Slan+ Non-Classical Monocytes",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079670",
@@ -5871,7 +6080,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples · Similar to catalog PDC000316 (score 0.152)"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples · Similar to catalog PDC000316 (score 0.152)",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079334",
@@ -5922,7 +6133,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079333",
@@ -5973,7 +6186,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — DNAJB9 promotes epithelial-mesenchymal transition in the nasal epithelium of chr"
+      "finding_note": "TMT human proteomics candidate — DNAJB9 promotes epithelial-mesenchymal transition in the nasal epithelium of chr",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079076",
@@ -6024,7 +6239,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: lung · Design: cancer-only"
+      "finding_note": "Keywords from title: lung · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD078921",
@@ -6073,7 +6290,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: cancer-only"
+      "finding_note": "Keywords from title: proteome · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD078504",
@@ -6124,7 +6343,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human clinical samples"
+      "finding_note": "Material type: human clinical samples",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077673",
@@ -6173,7 +6394,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — PMS2 inhibitor NP1867 cysteinome adduction by cell-based proteomincs"
+      "finding_note": "TMT human proteomics candidate — PMS2 inhibitor NP1867 cysteinome adduction by cell-based proteomincs",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077507",
@@ -6222,7 +6445,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077448",
@@ -6275,7 +6500,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077182",
@@ -6328,7 +6555,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — The raw data of competitive chemoproteomics for validating the interaction betwe"
+      "finding_note": "TMT human proteomics candidate — The raw data of competitive chemoproteomics for validating the interaction betwe",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077137",
@@ -6381,7 +6610,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — The raw data of chemoproteomics related to IDRB-Probe-2 for validating the effec"
+      "finding_note": "TMT human proteomics candidate — The raw data of chemoproteomics related to IDRB-Probe-2 for validating the effec",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077084",
@@ -6430,7 +6661,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077028",
@@ -6483,7 +6716,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077016",
@@ -6536,7 +6771,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076790",
@@ -6585,7 +6822,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Loss of mitochondrial complex II causes severe respiratory chain dysfunction"
+      "finding_note": "TMT human proteomics candidate — Loss of mitochondrial complex II causes severe respiratory chain dysfunction",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076568",
@@ -6638,7 +6877,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076393",
@@ -6691,7 +6932,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076311",
@@ -6744,7 +6987,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: plasma · Material type: patient plasma/serum/blood/CSF"
+      "finding_note": "Keywords from title: plasma · Material type: patient plasma/serum/blood/CSF",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076158",
@@ -6793,7 +7038,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076071",
@@ -6842,7 +7089,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075707",
@@ -6893,7 +7142,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075094",
@@ -6944,7 +7195,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075040",
@@ -6993,7 +7246,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Genetic and pharmacological inactivation of peptidoglycan remodeling increases a"
+      "finding_note": "TMT human proteomics candidate — Genetic and pharmacological inactivation of peptidoglycan remodeling increases a",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074619",
@@ -7045,7 +7300,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074488",
@@ -7097,7 +7354,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074439",
@@ -7150,7 +7409,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human cancer cell line · Design: case-control"
+      "finding_note": "Material type: human cancer cell line · Design: case-control",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074343",
@@ -7201,7 +7462,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: tumor tissue · Material type: tumor tissue"
+      "finding_note": "Keywords from title: tumor tissue · Material type: tumor tissue",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074308",
@@ -7250,7 +7513,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074236",
@@ -7303,7 +7568,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: healthy-only"
+      "finding_note": "Keywords from title: proteome · Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074143",
@@ -7355,7 +7622,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: tumor tissue, plasma · Material type: tumor tissue, patient plasma/serum/blood/CSF · Design: cancer-only"
+      "finding_note": "Keywords from title: tumor tissue, plasma · Material type: tumor tissue, patient plasma/serum/blood/CSF · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074087",
@@ -7404,7 +7673,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: healthy-only"
+      "finding_note": "Keywords from title: proteome · Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074014",
@@ -7457,7 +7728,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — HR3/RORα-mediated cholesterol sensing regulates TOR signaling"
+      "finding_note": "TMT human proteomics candidate — HR3/RORα-mediated cholesterol sensing regulates TOR signaling",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073843",
@@ -7509,7 +7782,13 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: plasma · Material type: human clinical samples · Design: healthy-only"
+      "finding_note": "Keywords from title: plasma · Material type: human clinical samples · Design: healthy-only · Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      },
+      "atlas_fit": "no",
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073763",
@@ -7562,7 +7841,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human cancer cell line · Design: cancer-only"
+      "finding_note": "Material type: human cancer cell line · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073793",
@@ -7613,7 +7894,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Material type: human clinical samples"
+      "finding_note": "Keywords from title: proteome · Material type: human clinical samples",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073725",
@@ -7665,7 +7948,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073606",
@@ -7714,7 +7999,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Harnessing FBXO31 with terminal amide-functionalized molecules for targeted prot"
+      "finding_note": "TMT human proteomics candidate — Harnessing FBXO31 with terminal amide-functionalized molecules for targeted prot",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073582",
@@ -7765,7 +8052,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Role of ADAR1 in human macrophages"
+      "finding_note": "TMT human proteomics candidate — Role of ADAR1 in human macrophages",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073468",
@@ -7819,7 +8108,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Evaluation of deep and dynamic proteomic screening strategies at sub-50Hz scan r"
+      "finding_note": "TMT human proteomics candidate — Evaluation of deep and dynamic proteomic screening strategies at sub-50Hz scan r",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073405",
@@ -7870,7 +8161,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073342",
@@ -7921,7 +8214,13 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: vitreous, retinal"
+      "finding_note": "Keywords from title: vitreous, retinal · Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      },
+      "atlas_fit": "no",
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073367",
@@ -7977,7 +8276,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073248",
@@ -8028,7 +8329,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073249",
@@ -8081,7 +8384,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Systematic Quantification of Protein O-GlcNAcylation Reveals Common and Cell-Typ"
+      "finding_note": "TMT human proteomics candidate — Systematic Quantification of Protein O-GlcNAcylation Reveals Common and Cell-Typ",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073007",
@@ -8133,7 +8438,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD072858",
@@ -8184,7 +8491,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: case-control"
+      "finding_note": "Design: case-control",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD072851",
@@ -8239,7 +8548,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD072589",
@@ -8294,7 +8605,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Modelling Synaptic Maturation from Growth Cone to Synapse in Human Organoids"
+      "finding_note": "TMT human proteomics candidate — Modelling Synaptic Maturation from Growth Cone to Synapse in Human Organoids",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000564",
@@ -8393,7 +8706,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000564",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41115212/",
       "pmid": "41115212",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000220",
@@ -8492,7 +8807,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000220",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40690206/",
       "pmid": "40690206",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000436",
@@ -8589,7 +8906,9 @@
       },
       "finding_note": "Keywords from title: lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): APOLLO_LUAD_Phosphoproteome_FeNTA.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000436",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000435",
@@ -8686,7 +9005,9 @@
       },
       "finding_note": "Keywords from title: lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): APOLLO_LUAD_Phosphoproteome_TiO2.sample.txt",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000435",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000520",
@@ -8783,7 +9104,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphopeptide.tmt10.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000520",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000521",
@@ -8880,7 +9203,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphosite.tmt10.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000521",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000199",
@@ -8991,7 +9316,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000199",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41775913/",
       "pmid": "41775913",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000496",
@@ -9088,7 +9415,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.summary.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000496",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000497",
@@ -9185,7 +9514,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000497",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000515",
@@ -9284,7 +9615,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000515",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41556041/",
       "pmid": "41556041",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000343",
@@ -9383,7 +9716,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000343",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40087745/",
       "pmid": "40087745",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000249",
@@ -9482,7 +9817,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000249",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41402909/",
       "pmid": "41402909",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000363",
@@ -9579,7 +9916,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): iCC_NCC_Phosphoproteome.qcmetrics.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000363",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000591",
@@ -9690,7 +10029,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.phosphopeptide.tmt11.tsv · Similar to catalog PXD066224 (score 0.2)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000591",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000589",
@@ -9801,7 +10142,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphopeptide.tmt16.ts · Similar to catalog PXD066224 (score 0.2)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000589",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000403",
@@ -9899,7 +10242,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.peptides",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000403",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000399",
@@ -9997,7 +10342,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.qcmetr",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000399",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000401",
@@ -10095,7 +10442,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.peptides.t",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000401",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000318",
@@ -10193,7 +10542,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.phosphosite.tmt11.ts",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000318",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000319",
@@ -10291,7 +10642,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000319",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000320",
@@ -10389,7 +10742,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.sample.txt",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000320",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000478",
@@ -10489,7 +10844,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000478",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38232702/",
       "pmid": "38232702",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000564",
@@ -10588,7 +10945,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000564",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41115212/",
       "pmid": "41115212",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000220",
@@ -10687,7 +11046,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000220",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40690206/",
       "pmid": "40690206",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000436",
@@ -10784,7 +11145,9 @@
       },
       "finding_note": "Keywords from title: lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): APOLLO_LUAD_Phosphoproteome_FeNTA.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000436",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000435",
@@ -10881,7 +11244,9 @@
       },
       "finding_note": "Keywords from title: lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): APOLLO_LUAD_Phosphoproteome_TiO2.sample.txt",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000435",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000520",
@@ -10978,7 +11343,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphopeptide.tmt10.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000520",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000521",
@@ -11075,7 +11442,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphosite.tmt10.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000521",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000199",
@@ -11186,7 +11555,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000199",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41775913/",
       "pmid": "41775913",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000496",
@@ -11283,7 +11654,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.summary.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000496",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000497",
@@ -11380,7 +11753,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000497",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000515",
@@ -11479,7 +11854,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000515",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41556041/",
       "pmid": "41556041",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000343",
@@ -11578,7 +11955,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000343",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40087745/",
       "pmid": "40087745",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000249",
@@ -11677,7 +12056,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000249",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41402909/",
       "pmid": "41402909",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000363",
@@ -11774,7 +12155,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): iCC_NCC_Phosphoproteome.qcmetrics.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000363",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000591",
@@ -11885,7 +12268,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.phosphopeptide.tmt11.tsv · Similar to catalog PXD066224 (score 0.2)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000591",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000589",
@@ -11996,7 +12381,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphopeptide.tmt16.ts · Similar to catalog PXD066224 (score 0.2)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000589",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000403",
@@ -12094,7 +12481,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.peptides",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000403",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000399",
@@ -12192,7 +12581,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.qcmetr",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000399",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000401",
@@ -12290,7 +12681,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.peptides.t",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000401",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000318",
@@ -12388,7 +12781,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.phosphosite.tmt11.ts",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000318",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000319",
@@ -12486,7 +12881,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.peptides.tsv",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000319",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000320",
@@ -12584,7 +12981,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Phospho table only (not global proteome): PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.sample.txt",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000320",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000478",
@@ -12684,7 +13083,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000478",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38232702/",
       "pmid": "38232702",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000649",
@@ -12760,7 +13161,9 @@
       },
       "finding_note": "Keywords from title: gastric, lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000645",
@@ -12836,7 +13239,9 @@
       },
       "finding_note": "Keywords from title: gastric, lung, proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20241014_GC_TMT11_B27_prot_F19.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000430",
@@ -12915,7 +13320,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
       "pmid": "36267416",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000431",
@@ -12994,7 +13401,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
       "pmid": "36267416",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000432",
@@ -13073,7 +13482,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38702309/",
       "pmid": "38702309",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000499",
@@ -13149,7 +13560,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000607",
@@ -13225,7 +13638,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000606",
@@ -13301,7 +13716,9 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000696",
@@ -13379,7 +13796,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
       "pmid": "41975515",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000695",
@@ -13457,7 +13876,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
       "pmid": "41975515",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "MSV000102463",
@@ -13520,7 +13941,9 @@
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000649",
@@ -13596,7 +14019,9 @@
       },
       "finding_note": "Keywords from title: gastric, lung · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220719_GC_NTUH_Batch01_TMT11_phos_F02_01.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000649",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000645",
@@ -13672,7 +14097,9 @@
       },
       "finding_note": "Keywords from title: gastric, lung, proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20241014_GC_TMT11_B27_prot_F19.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000645",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000430",
@@ -13751,7 +14178,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
       "pmid": "36267416",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000431",
@@ -13830,7 +14259,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000431",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
       "pmid": "36267416",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000432",
@@ -13909,7 +14340,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000432",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38702309/",
       "pmid": "38702309",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000499",
@@ -13985,7 +14418,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 09CPTAC_AYA_G_JHU_20230323_B2S4_f06.mzML.gz (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000499",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000607",
@@ -14061,7 +14496,9 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220906_HFX_SYL_GBC_TMT16_Pho_Group10_F05.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000607",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000606",
@@ -14137,7 +14574,9 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: 20220813_HF_SYL_GBC_TMT16_Pro_Group_32_F15.raw (quant table)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000696",
@@ -14215,7 +14654,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000696",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
       "pmid": "41975515",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000695",
@@ -14293,7 +14734,9 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000695",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41975515/",
       "pmid": "41975515",
-      "doi": ""
+      "doi": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "MSV000102463",
@@ -14356,7 +14799,9 @@
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     }
   ],
   "requires_manual_check_raw": [
@@ -15813,7 +16258,7 @@
       "abstract_snippet": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -15827,7 +16272,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41771895",
@@ -15837,8 +16283,8 @@
       "year": "2026",
       "abstract_snippet": "Isobaric mass tags, such as isobaric tags for relative and absolute quantitation (iTRAQ) and tandem mass tag (TMT), are widely utilized for peptide and protein quantification in multiplex quantitative proteomics. We present TMT-Integrator, a bioinformatics tool for processing quantitation results from TMT and iTRAQ experiments, offering integrative reports at the gene, protein, peptide, and post-translational modification site levels. We demonstrate the versatility of TMT-Integrator using five p",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -15852,7 +16298,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      }
     },
     {
       "pmid": "41622683",
@@ -15863,7 +16313,7 @@
       "abstract_snippet": "Isobaric labeling is widely used in quantitative proteomics for its multiplexing capabilities, but scaling beyond current limits remains a challenge. Here, we introduce UltraPlex-TMT, a streamlined and scalable workflow that integrates orthogonal protease digestion with hyperplex TMT/TMTpro labeling to effectively double sample throughput. UltraPlex-TMT can be readily implemented without custom chemistry or instrumentation. We benchmarked UltraPlex-TMT using lysine- and arginine-specific proteas",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry"
@@ -15878,7 +16328,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41851243",
@@ -15889,7 +16340,7 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "isobaric quantitative proteomics"
       ],
@@ -15903,7 +16354,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "42051158",
@@ -15914,7 +16366,7 @@
       "abstract_snippet": "Dravet syndrome (DS) is a rare and severe childhood-onset developmental epileptic encephalopathy caused primarily by mutations in the sodium channel gene SCN1A. Animal models have undeniably advanced our understanding of DS, but they still do not fully capture its clinical heterogeneity, highlighting the need for complementary human in vitro systems. Here, we generated induced pluripotent stem cells (iPSCs) from urine epithelial cells of three DS patients carrying distinct SCN1A variants and dif",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -15928,7 +16380,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
-      "finding_note": "Keywords from title: urine · Atlas fit: yes"
+      "finding_note": "Keywords from title: urine · Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "42273731",
@@ -15938,8 +16391,8 @@
       "year": "2026",
       "abstract_snippet": "Phosphoregulatory events underlie vascular responses to environmental and pathological stimuli, regulate hemostasis and thrombosis, and drive vascular remodeling in health and disease. Consequently, defining phosphorylation-dependent signaling networks in vascular physiology and pathology has enabled biomarker discovery and informed therapeutic interventions. Advances in mass spectrometry-based phosphoproteomics have enabled accurate and high-resolution mapping of dynamic phosphorylation events ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -15953,7 +16406,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      }
     },
     {
       "pmid": "41862993",
@@ -15964,7 +16421,7 @@
       "abstract_snippet": "BACKGROUND: Proteins represent the dynamic downstream products of genes, and have the potential to substantially increase understanding of the complexities of cancer biology. Undifferentiated pleomorphic sarcoma (UPS) is a rare disease, the proteomic landscape of which has not been fully investigated. METHODS: We performed isobaric TMT-based proteomic analysis for 80 UPS tumor and 28 corresponding adjacent non-tumor muscle tissues. The underlying molecular subtypes, therapeutic targets, local re",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "proteomics + patients + TMT/isobaric"
       ],
@@ -15977,7 +16434,8 @@
       "qc_reasons": [],
       "filter_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41472394",
@@ -15988,7 +16446,7 @@
       "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16002,7 +16460,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41453614",
@@ -16012,8 +16471,8 @@
       "year": "2026",
       "abstract_snippet": "Investigating multiple protein post-translational modifications (PTMs) is critical for unraveling the complexities of protein regulation and the dynamic interplay among PTMs, a growing focus in proteomics. However, simultaneous analysis of diverse PTMs remains a significant technical challenge, as existing workflows struggle to balance throughput, sensitivity, and reproducibility, particularly when sample amounts are limited. To address these limitations, we present MoSAIC, a multi-PTM workflow ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "patients"
@@ -16028,7 +16487,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      }
     },
     {
       "pmid": "42155730",
@@ -16039,7 +16502,7 @@
       "abstract_snippet": "Partial downregulation of pancreatic endoplasmic reticulum kinase (PERK) activity recovered insulin content in human islets exposed to glucolipotoxicity (GLT), resulting in improved insulin secretion and glucose-lowering effects in a mouse model of type 2 diabetes. We conducted this study to elucidate the beta-cell-enhancing mechanisms of PERK attenuation. Pancreatic islets isolated from non-diabetic living donors were divided into three groups: control, GLT mimicking diabetes conditions, and GL",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry"
@@ -16054,7 +16517,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41931001",
@@ -16065,7 +16529,7 @@
       "abstract_snippet": "<h4>Purpose</h4>To evaluate whether extending the postmortem interval (PMI) from 12 to 18 hours affects transcript and protein abundances in the human retina.<h4>Methods</h4>Donor eyes were recovered from postmortem donors (n = 7 pairs) and stored at 2°C-8°C. Only donor eyes with ocular cooling within eight hours of death were examined. The OD retina was preserved at 12 hours and the OS retina at 18 hours postmortem. Retinas were flash frozen with liquid nitrogen. The macular region superior to ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.5,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16079,7 +16543,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits in terms of material and organism.",
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "abstract_ai": {}
     },
     {
       "pmid": "41742694",
@@ -16090,7 +16555,7 @@
       "abstract_snippet": "",
       "abstract_reader": "regex",
       "atlas_fit": "no",
-      "atlas_fit_score": 0.2,
+      "atlas_fit_score": null,
       "semantic_evidence": [],
       "similar_atlas_theme": "",
       "summary_ru": "",
@@ -16101,7 +16566,11 @@
       "qc_reasons": [],
       "filter_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: no"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      }
     },
     {
       "pmid": "42029488",
@@ -16112,7 +16581,7 @@
       "abstract_snippet": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.5,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry"
@@ -16127,7 +16596,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits because it focuses on tumor/adjacent normal, plasma/plasma from patients, cancer cell lines.",
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "abstract_ai": {}
     },
     {
       "pmid": "41567026",
@@ -16137,8 +16607,8 @@
       "year": "2026",
       "abstract_snippet": "Protein phosphorylation is a central post-translational modification regulating cellular signaling, frequently dysregulated in cancer. Mass spectrometry (MS)-based phosphoproteomics has emerged as a powerful approach to systematically profile phosphorylation events, thereby revealing aberrant kinase activity and therapeutic vulnerabilities that are not captured by genomic or transcriptomic analyses. Recent advances across the workflow-including optimized sample preparation and phosphopeptide enr",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry"
@@ -16153,7 +16623,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      }
     },
     {
       "pmid": "41966223",
@@ -16164,7 +16638,7 @@
       "abstract_snippet": "Colorectal cancer (CRC) remains a leading cause of cancer-related mortality worldwide. Stage II CRC poses a clinical challenge due to its heterogeneous outcomes, with 15-20% of patients experiencing recurrence. Current prognostic models based on clinicopathologic features lack sufficient precision, highlighting the need for new molecular markers. In this study, we employed an integrative TMT-based proteomics strategy to identify biomarkers of recurrence in stage II CRC. We analyzed paired formal",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16178,7 +16652,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "Keywords from title: tumor tissue · Atlas fit: yes"
+      "finding_note": "Keywords from title: tumor tissue · Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41870234",
@@ -16189,7 +16664,7 @@
       "abstract_snippet": "Tissue breakdown, especially extracellular matrix or secretome breakdown is a significant aspect of physiological remodeling and disease processes in solid organs, with profound structural and regulatory impact. Tissue and circulating proteins undergo breakdown through a chemical process mediated by proteases, that is, hydrolysis of peptide bonds. Proteolysis has immense biological impact because it is irreversible, results in protein inactivation or activation, and can generate fragments with n",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16203,7 +16678,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "42192865",
@@ -16214,7 +16690,7 @@
       "abstract_snippet": "Colorectal cancer (CRC) is a biologically heterogeneous disease in which single-omics analyses incompletely capture the cross-layer mechanisms underlying tumor progression, immune evasion, and therapeutic resistance. This review critically examines how the integration of genomics, transcriptomics, proteomics, metabolomics, and microbiome profiling is redefining CRC biology and precision oncology. Landmark integrative efforts, including TCGA analyses of 276 colorectal cancer samples, CPTAC proteo",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "multi-omics integration"
       ],
@@ -16228,7 +16704,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41740022",
@@ -16238,8 +16715,8 @@
       "year": "2026",
       "abstract_snippet": "Single-cell proteomics (SCP) platforms are widely sought-after biomedical tools to complement existing omics technologies. Here, we present MiProChip, a microfluidic platform that integrates cell capture, lysis, protein digestion, tandem mass tag (TMT) labeling, on-chip pooling, and desalting a streamlined workflow for multiplexed SCP profiling. We optimized a chip-compatible TMT multiplexing protocol with a carrier-boosting strategy, enabling high-throughput operation and deep proteome coverage",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16253,7 +16730,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      }
     },
     {
       "pmid": "41699065",
@@ -16264,7 +16745,7 @@
       "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry"
@@ -16279,7 +16760,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "42294822",
@@ -16290,7 +16772,7 @@
       "abstract_snippet": "Maintaining mitochondrial integrity and function is fundamental to cellular homeostasis. Cells rely on coordinated protein quality control (QC) systems-including intricate chaperone-protease networks, the ubiquitin-proteasome system, and cytosolic surveillance pathways-that together form a dynamic, cell-wide mitostasis network governing the import, folding, synthesis, and degradation of mitochondrial proteins. Disruption of mitochondrial homeostasis, for example, by impairing mitochondrial prote",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "mass spectrometry",
         "quantitative proteomics"
@@ -16305,7 +16787,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     },
     {
       "pmid": "41575784",
@@ -16315,8 +16798,8 @@
       "year": "2026",
       "abstract_snippet": "Over the last decade, proteomics analysis of single cells by mass spectrometry transitioned from an uncertain possibility to a set of robust and rapidly advancing technologies supporting the accurate quantification of thousands of proteins. We review the major drivers of this progress, from establishing feasibility to powerful and increasingly scalable methods. We focus on the trade-offs and synergies of different technological solutions within a coherent conceptual framework, which projects con",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16330,7 +16813,11 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      }
     },
     {
       "pmid": "41301916",
@@ -16341,7 +16828,7 @@
       "abstract_snippet": "Lysine methylation is a regulatory post-translational modification with diverse roles across both histone and non-histone proteins. Despite its biological relevance, comprehensive characterization of lysine methylation remains analytically challenging due to its low stoichiometry, subtle mass changes, and the absence of standardized, robust enrichment strategies. Mass spectrometry (MS) has become the cornerstone of methylation analysis, supporting both targeted and proteome-wide investigations. ",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.5,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "mass spectrometry",
         "quantitative proteomics"
@@ -16356,7 +16843,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal, plasma/plasma from patients, cancer cell lines.",
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "abstract_ai": {}
     },
     {
       "pmid": "PMC13006395",
@@ -16367,7 +16855,7 @@
       "abstract_snippet": "",
       "abstract_reader": "regex",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.55,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "human clinical proteomics"
       ],
@@ -16380,7 +16868,8 @@
       "qc_reasons": [],
       "filter_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
+      "abstract_ai": {}
     },
     {
       "pmid": "41055288",
@@ -16391,7 +16880,7 @@
       "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT isobaric quantitative proteomics"
       ],
@@ -16405,7 +16894,8 @@
       "filter_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
-      "finding_note": "Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "abstract_ai": {}
     }
   ],
   "literature_semantic": [
@@ -16416,10 +16906,9 @@
       "abstract_snippet": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers ",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16436,7 +16925,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
+        "summary_en": ""
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16451,7 +16940,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
-      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research. · Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41771895",
@@ -16459,11 +16955,10 @@
       "title": "Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.",
       "abstract_snippet": "Isobaric mass tags, such as isobaric tags for relative and absolute quantitation (iTRAQ) and tandem mass tag (TMT), are widely utilized for peptide and protein quantification in multiplex quantitative proteomics. We present TMT-Integrator, a bioinformatics tool for processing quantitation results from TMT and iTRAQ experiments, offering integrative reports at the gene, protein, peptide, and post-translational modification site levels. We demonstrate the versatility of TMT-Integrator using five p",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16480,7 +16975,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
+        "summary_en": "",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16495,7 +16991,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
-      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags. · Atlas fit: yes"
+      "finding_note": "Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41622683",
@@ -16504,10 +17006,9 @@
       "abstract_snippet": "Isobaric labeling is widely used in quantitative proteomics for its multiplexing capabilities, but scaling beyond current limits remains a challenge. Here, we introduce UltraPlex-TMT, a streamlined and scalable workflow that integrates orthogonal protease digestion with hyperplex TMT/TMTpro labeling to effectively double sample throughput. UltraPlex-TMT can be readily implemented without custom chemistry or instrumentation. We benchmarked UltraPlex-TMT using lysine- and arginine-specific proteas",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -16525,7 +17026,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
+        "summary_en": ""
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16540,7 +17041,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
-      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples. · Atlas fit: yes"
+      "finding_note": "Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41851243",
@@ -16549,10 +17058,9 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "isobaric quantitative proteomics"
         ],
@@ -16584,7 +17092,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
-      "finding_note": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme. · Atlas fit: yes"
+      "finding_note": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42051158",
@@ -16593,10 +17108,9 @@
       "abstract_snippet": "Dravet syndrome (DS) is a rare and severe childhood-onset developmental epileptic encephalopathy caused primarily by mutations in the sodium channel gene SCN1A. Animal models have undeniably advanced our understanding of DS, but they still do not fully capture its clinical heterogeneity, highlighting the need for complementary human in vitro systems. Here, we generated induced pluripotent stem cells (iPSCs) from urine epithelial cells of three DS patients carrying distinct SCN1A variants and dif",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16628,7 +17142,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
-      "finding_note": "Keywords from title: urine · This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome. · Atlas fit: yes"
+      "finding_note": "Keywords from title: urine · This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42273731",
@@ -16636,11 +17157,10 @@
       "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
       "abstract_snippet": "Phosphoregulatory events underlie vascular responses to environmental and pathological stimuli, regulate hemostasis and thrombosis, and drive vascular remodeling in health and disease. Consequently, defining phosphorylation-dependent signaling networks in vascular physiology and pathology has enabled biomarker discovery and informed therapeutic interventions. Advances in mass spectrometry-based phosphoproteomics have enabled accurate and high-resolution mapping of dynamic phosphorylation events ",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16657,7 +17177,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
+        "exclusion_reason": "phospho-only emphasis"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16672,7 +17193,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
-      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: yes"
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "phospho-only emphasis",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41862993",
@@ -16681,10 +17208,9 @@
       "abstract_snippet": "BACKGROUND: Proteins represent the dynamic downstream products of genes, and have the potential to substantially increase understanding of the complexities of cancer biology. Undifferentiated pleomorphic sarcoma (UPS) is a rare disease, the proteomic landscape of which has not been fully investigated. METHODS: We performed isobaric TMT-based proteomic analysis for 80 UPS tumor and 28 corresponding adjacent non-tumor muscle tissues. The underlying molecular subtypes, therapeutic targets, local re",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "proteomics + patients + TMT/isobaric"
         ],
@@ -16715,7 +17241,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue|plasma|blood|cancer cell line · Atlas fit: yes"
+      "finding_note": "LLM material: tumor tissue|plasma|blood|cancer cell line · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "proteomics + patients + TMT/isobaric",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41472394",
@@ -16724,10 +17257,9 @@
       "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16759,7 +17291,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
-      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines. · Atlas fit: yes"
+      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41453614",
@@ -16767,11 +17306,10 @@
       "title": "MoSAIC: An Integrated and Modular Workflow for Confident Analysis of Protein Post-Translational Modification Landscapes.",
       "abstract_snippet": "Investigating multiple protein post-translational modifications (PTMs) is critical for unraveling the complexities of protein regulation and the dynamic interplay among PTMs, a growing focus in proteomics. However, simultaneous analysis of diverse PTMs remains a significant technical challenge, as existing workflows struggle to balance throughput, sensitivity, and reproducibility, particularly when sample amounts are limited. To address these limitations, we present MoSAIC, a multi-PTM workflow ",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "quantitative proteomics",
           "patients"
@@ -16789,7 +17327,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16804,7 +17343,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42155730",
@@ -16813,10 +17358,9 @@
       "abstract_snippet": "Partial downregulation of pancreatic endoplasmic reticulum kinase (PERK) activity recovered insulin content in human islets exposed to glucolipotoxicity (GLT), resulting in improved insulin secretion and glucose-lowering effects in a mouse model of type 2 diabetes. We conducted this study to elucidate the beta-cell-enhancing mechanisms of PERK attenuation. Pancreatic islets isolated from non-diabetic living donors were divided into three groups: control, GLT mimicking diabetes conditions, and GL",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -16849,7 +17393,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
-      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes. · Atlas fit: yes"
+      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41567026",
@@ -16857,11 +17409,10 @@
       "title": "Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.",
       "abstract_snippet": "Protein phosphorylation is a central post-translational modification regulating cellular signaling, frequently dysregulated in cancer. Mass spectrometry (MS)-based phosphoproteomics has emerged as a powerful approach to systematically profile phosphorylation events, thereby revealing aberrant kinase activity and therapeutic vulnerabilities that are not captured by genomic or transcriptomic analyses. Recent advances across the workflow-including optimized sample preparation and phosphopeptide enr",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -16879,7 +17430,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
+        "exclusion_reason": "phospho-only emphasis"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -16894,7 +17446,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
-      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: yes"
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "phospho-only emphasis",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41966223",
@@ -16903,10 +17461,9 @@
       "abstract_snippet": "Colorectal cancer (CRC) remains a leading cause of cancer-related mortality worldwide. Stage II CRC poses a clinical challenge due to its heterogeneous outcomes, with 15-20% of patients experiencing recurrence. Current prognostic models based on clinicopathologic features lack sufficient precision, highlighting the need for new molecular markers. In this study, we employed an integrative TMT-based proteomics strategy to identify biomarkers of recurrence in stage II CRC. We analyzed paired formal",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16938,7 +17495,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "Keywords from title: tumor tissue · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
+      "finding_note": "Keywords from title: tumor tissue · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41870234",
@@ -16947,10 +17511,9 @@
       "abstract_snippet": "Tissue breakdown, especially extracellular matrix or secretome breakdown is a significant aspect of physiological remodeling and disease processes in solid organs, with profound structural and regulatory impact. Tissue and circulating proteins undergo breakdown through a chemical process mediated by proteases, that is, hydrolysis of peptide bonds. Proteolysis has immense biological impact because it is irreversible, results in protein inactivation or activation, and can generate fragments with n",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -16982,7 +17545,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42192865",
@@ -16991,10 +17561,9 @@
       "abstract_snippet": "Colorectal cancer (CRC) is a biologically heterogeneous disease in which single-omics analyses incompletely capture the cross-layer mechanisms underlying tumor progression, immune evasion, and therapeutic resistance. This review critically examines how the integration of genomics, transcriptomics, proteomics, metabolomics, and microbiome profiling is redefining CRC biology and precision oncology. Landmark integrative efforts, including TCGA analyses of 276 colorectal cancer samples, CPTAC proteo",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "multi-omics integration"
         ],
@@ -17026,7 +17595,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
-      "finding_note": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote · Atlas fit: yes"
+      "finding_note": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "multi-omics integration",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41740022",
@@ -17034,11 +17610,10 @@
       "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
       "abstract_snippet": "Single-cell proteomics (SCP) platforms are widely sought-after biomedical tools to complement existing omics technologies. Here, we present MiProChip, a microfluidic platform that integrates cell capture, lysis, protein digestion, tandem mass tag (TMT) labeling, on-chip pooling, and desalting a streamlined workflow for multiplexed SCP profiling. We optimized a chip-compatible TMT multiplexing protocol with a carrier-boosting strategy, enabling high-throughput operation and deep proteome coverage",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -17055,7 +17630,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -17070,7 +17646,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
-      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: yes"
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41699065",
@@ -17079,10 +17661,9 @@
       "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "quantitative proteomics",
           "mass spectrometry"
@@ -17115,7 +17696,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
-      "finding_note": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery. · Atlas fit: yes"
+      "finding_note": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "quantitative proteomics",
+        "mass spectrometry",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "42294822",
@@ -17124,10 +17713,9 @@
       "abstract_snippet": "Maintaining mitochondrial integrity and function is fundamental to cellular homeostasis. Cells rely on coordinated protein quality control (QC) systems-including intricate chaperone-protease networks, the ubiquitin-proteasome system, and cytosolic surveillance pathways-that together form a dynamic, cell-wide mitostasis network governing the import, folding, synthesis, and degradation of mitochondrial proteins. Disruption of mitochondrial homeostasis, for example, by impairing mitochondrial prote",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "mass spectrometry",
           "quantitative proteomics"
@@ -17160,7 +17748,15 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
-      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines. · Atlas fit: yes"
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines. · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "mass spectrometry",
+        "quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "41575784",
@@ -17168,11 +17764,10 @@
       "title": "Single-Cell Proteomic Technologies: Tools in the Quest for Principles.",
       "abstract_snippet": "Over the last decade, proteomics analysis of single cells by mass spectrometry transitioned from an uncertain possibility to a set of robust and rapidly advancing technologies supporting the accurate quantification of thousands of proteins. We review the major drivers of this progress, from establishing feasibility to powerful and increasingly scalable methods. We focus on the trade-offs and synergies of different technological solutions within a coherent conceptual framework, which projects con",
       "source": "literature_semantic_candidate",
-      "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
       "abstract_ai": {
-        "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
+        "atlas_fit": "no",
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -17189,7 +17784,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
+        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
+        "exclusion_reason": "review / methods / software"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -17204,7 +17800,13 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
-      "finding_note": "Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: yes"
+      "finding_note": "Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: no",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "review / methods / software",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     },
     {
       "pmid": "13006395",
@@ -17213,10 +17815,9 @@
       "abstract_snippet": "",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.55,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "maybe",
-        "atlas_fit_score": 0.55,
         "semantic_evidence": [
           "human clinical proteomics"
         ],
@@ -17247,7 +17848,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -17256,10 +17863,9 @@
       "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
       "source": "literature_semantic_candidate",
       "atlas_fit": "yes",
-      "atlas_fit_score": 0.7,
+      "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "yes",
-        "atlas_fit_score": 0.7,
         "semantic_evidence": [
           "TMT isobaric quantitative proteomics"
         ],
@@ -17276,7 +17882,7 @@
         "human_suitable": true,
         "material_suitable": true,
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
-        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
+        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -17291,7 +17897,14 @@
       "qc_reasons": [],
       "processing_tips": [],
       "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
-      "finding_note": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,  · Atlas fit: yes"
+      "finding_note": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, · Atlas fit: yes",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM yes — no verified PXD/PDC",
+        "TMT isobaric quantitative proteomics",
+        "reader: gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+      ]
     }
   ],
   "cohort_literature": [
@@ -17318,7 +17931,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 93,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈1000",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "41998177",
@@ -17341,7 +17960,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42381624",
@@ -17364,7 +17989,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 73,
-      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈132",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42310533",
@@ -17386,7 +18017,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "41785305",
@@ -17411,7 +18049,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42204136",
@@ -17434,7 +18077,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 40,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "41964867",
@@ -17459,7 +18107,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "Review / software / narrative"
+      ]
     },
     {
       "pmid": "42366266",
@@ -17485,7 +18138,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "Review / software / narrative"
+      ]
     },
     {
       "pmid": "42134687",
@@ -17509,7 +18167,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -17533,7 +18196,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42167233",
@@ -17556,7 +18224,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "41718110",
@@ -17580,7 +18253,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, genomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, genomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42183196",
@@ -17606,7 +18284,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ],
   "novel_publications": [
@@ -18495,5 +19178,108 @@
   "report_html": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\reports\\discovery_index.html",
   "report_qc_html": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\reports\\discovery_qc_report.html",
   "report_site_dir": "C:\\Users\\Arina1996\\Desktop\\AI for atlas\\docs\\site",
-  "saved_at": "2026-07-15T10:17:27.772927+00:00"
+  "saved_at": "2026-07-15T10:17:27.772927+00:00",
+  "methods_manifest": {
+    "pipeline": "Atlas Discovery Agent",
+    "pipeline_version": "2026.07.15-nature",
+    "generated_at": "2026-07-15T10:17:27.694932+00:00",
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "catalog_policy": {
+      "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
+      "catalog_mirror": "data/projects.csv",
+      "catalog_mode": "read_only",
+      "delete_allowed": false,
+      "auto_update_allowed": false,
+      "agent_role": "discover_and_propose_only",
+      "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+    },
+    "inclusion_criteria": {
+      "organism": "Homo sapiens (reject mouse/rat/xenograft-only)",
+      "quantification": "TMT/isobaric ≥10-plex (reject TMT6)",
+      "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
+      "material": "Tumor / adjacent normal / plasma·serum / human cancer cell lines",
+      "literature": "Europe PMC semantic screening; repository IDs from data availability only"
+    },
+    "exclusion_criteria": [
+      "Non-human or xenograft-only",
+      "TMT6 or ≤6-plex",
+      "Phosphoproteomics-only emphasis",
+      "Peptide-level quantification only",
+      "Review / methods / software papers without cohort data",
+      "Phospho-only or RAW-only repository files"
+    ],
+    "search_config": {
+      "year_from": 2024,
+      "year_to": 2026,
+      "pride_max": 60,
+      "publications_max": 40,
+      "abstract_llm": true,
+      "abstract_llm_max": 25,
+      "abstract_resolve_accessions": true,
+      "abstract_semantic_resolve": false,
+      "strict_sample_design": true,
+      "search_mode": "professional"
+    },
+    "filters_applied": {
+      "human_only": true,
+      "allowed_tmt_plexes": [
+        10,
+        11,
+        12,
+        16
+      ],
+      "min_tmt_channels": 10,
+      "max_tmt_channels": 16,
+      "allow_healthy_only": true,
+      "allow_cancer_only": true,
+      "allow_case_control": true,
+      "allowed_databases": [
+        "PRIDE",
+        "PDC",
+        "iProX",
+        "MassIVE",
+        "IPX",
+        "MSV"
+      ],
+      "reject_non_human": true,
+      "material_qc": true
+    },
+    "funnel": {
+      "raw_novel_repos": 88,
+      "candidates": 4,
+      "manual_check": 20,
+      "rejected_material": 0,
+      "filtered_out": 116,
+      "already_in_catalog": 11
+    },
+    "literature_screening": {
+      "publications_scanned": 24,
+      "abstract_llm_read": 22,
+      "abstract_regex_only": 2,
+      "atlas_fit_yes": 19,
+      "atlas_fit_maybe": 3,
+      "literature_resolved": 0,
+      "semantic_from_abstract": 0
+    },
+    "data_availability_gate": {
+      "quant_table": 26,
+      "raw_only": 10,
+      "no_files": 21
+    },
+    "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
+    "catalog_read_only": true
+  },
+  "quality_metrics": {
+    "benchmark_literature": {
+      "accuracy": 0.75,
+      "n": 4,
+      "correct": 3
+    },
+    "benchmark_projects": {
+      "accuracy": 1.0,
+      "n": 3,
+      "correct": 3
+    }
+  }
 }

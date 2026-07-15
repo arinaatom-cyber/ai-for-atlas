@@ -109,6 +109,12 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
       <table>{_table_head()}<tbody>{_rows(rejected)}</tbody></table>
     </div>
   </section>
+  <section class="section">
+    {section_head("qc_filtered", len(technical))}
+    <div class="table-wrap">
+      <table>{_table_head()}<tbody>{_rows(technical)}</tbody></table>
+    </div>
+  </section>
 </div>"""
     )
 

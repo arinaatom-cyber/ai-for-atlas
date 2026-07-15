@@ -137,6 +137,50 @@ def _classify_files(names: list[str]) -> dict[str, Any]:
     }
 
 
+def has_protein_level_table(item: dict[str, Any]) -> bool:
+    """True when repository lists a protein-level quant table (not raw/phospho-only)."""
+    da = item.get("data_availability") or {}
+    if da.get("proteome_files"):
+        return True
+    if da.get("status") == "quant_table" and da.get("omics_layer") in ("protein", "mixed"):
+        return True
+    if da.get("status") == "local_mirror":
+        return True
+    return False
+
+
+def partition_table_only_candidates(
+    candidates: list[dict[str, Any]],
+    *,
+    pdc_requires_table: bool = True,
+    reject_raw_no_files: bool = True,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Drop PDC without protein table; optionally drop raw-only / no-files for all sources."""
+    kept: list[dict[str, Any]] = []
+    moved: list[dict[str, Any]] = []
+    for item in candidates:
+        acc = primary_project_id(str(item.get("project_accession") or item.get("accession") or ""))
+        da = item.get("data_availability") or {}
+        status = da.get("status") or ""
+        reasons: list[str] = []
+        if acc.startswith("PDC") and pdc_requires_table and not has_protein_level_table(item):
+            reasons.append("PDC requires protein-level quant table in repository (no raw-only)")
+        if reject_raw_no_files and status in ("raw_only", "no_files") and not has_protein_level_table(item):
+            reasons.append("No protein-level quant table in repository API listing")
+        if reasons:
+            row = dict(item)
+            row["verdict"] = "filtered_out"
+            merged = list(row.get("filter_reasons") or [])
+            for r in reasons:
+                if r not in merged:
+                    merged.append(r)
+            row["filter_reasons"] = merged
+            moved.append(row)
+        else:
+            kept.append(item)
+    return kept, moved
+
+
 def partition_phospho_only_candidates(
     candidates: list[dict[str, Any]],
     *,

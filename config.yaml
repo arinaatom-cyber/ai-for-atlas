@@ -3,6 +3,7 @@
 sheet:
   # Основной каталог — лист TMT ATLAS (123 проекта), read-only для агентов
   projects_file: "./project of Proteomics.xlsx"
+  projects_csv: "./data/projects.csv"   # CI fallback when xlsx is absent
   projects_sheet: "TMT ATLAS"
   proteomics_workbook: "./project of Proteomics.xlsx"
   # legacy (не использовать): ./data/projects.csv
@@ -44,8 +45,9 @@ discovery:
   publications_max: 40
   abstract_llm: true          # ИИ читает абстракты по смыслу (без PXD/PDC в тексте)
   abstract_llm_max: 25
-  abstract_resolve_accessions: false   # не искать PXD/PDC в абстракте
-  abstract_semantic_resolve: false     # не искать PRIDE по PMID из абстракта
+  abstract_resolve_accessions: true    # Europe PMC data availability → PXD/PDC (not LLM hallucination)
+  abstract_semantic_resolve: false     # PRIDE search from abstract semantics (conservative, off by default)
+  strict_sample_design: true           # unknown healthy/cancer design → manual check, not auto-candidate
   abstract_semantic_max: 12
   pdc:
     min_plex_channels: 10       # только TMT >6 каналов (10/11/12/16)

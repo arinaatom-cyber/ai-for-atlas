@@ -1,81 +1,83 @@
-"""RU fallback strings for static HTML (mirrors site_assets/i18n.js PAGE.ru + SHARED)."""
+"""English fallback strings for static HTML (mirrors site_assets/i18n.js PAGE.en + SHARED)."""
 from __future__ import annotations
 
-# Shared keys (same in both languages or RU default)
 _SHARED: dict[str, str] = {
     "brand_title": "Sirius Human TMT Proteome Atlas",
-    "nav_atlas": "Атлас",
+    "nav_atlas": "Atlas",
     "nav_discovery": "Discovery",
-    "nav_cohorts": "Когорты",
+    "nav_cohorts": "Cohorts",
     "nav_qc": "QC",
-    "meta_updated": "Обновлено",
-    "badge_readonly": "только чтение",
-    "meta_candidates": "кандидатов",
-    "meta_atlas_ids": "ID в атласе",
+    "meta_updated": "Updated",
+    "badge_readonly": "read-only",
+    "meta_candidates": "candidates",
+    "meta_atlas_ids": "atlas IDs",
     "footer_github": "GitHub TMT",
     "footer_projects": "tmt-projects",
     "footer_live": "Live (GitHub Pages)",
-    "filter_all": "Все",
+    "filter_all": "All",
     "filter_pride": "PRIDE",
     "filter_pdc": "PDC",
-    "card_open": "Открыть",
+    "card_open": "Open",
     "card_json": "latest.json (API)",
-    "th_link_open": "Открыть",
+    "th_link_open": "Open",
     "cell_empty": "—",
 }
 
-_RU: dict[str, str] = {
-    "brand_sub": "Discovery · Когорты · QC · каталог read-only",
-    "nav_home": "Главная",
-    "nav_map": "Карта органов",
+_EN: dict[str, str] = {
+    "brand_sub": "Discovery · Cohorts · QC · read-only catalog",
+    "nav_home": "Home",
+    "nav_map": "Organ map",
     "footer_policy": (
-        "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ."
+        "Excel catalog is not published. Site shows new candidates, literature, and analysis only."
     ),
     "portal_title": "Atlas Discovery Portal",
     "portal_lead": (
-        "Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · "
-        "крупные когорты в литературе"
+        "Monitor human TMT in PRIDE, PDC, MassIVE, iProX · LLM abstract screening · "
+        "large literature cohorts"
     ),
-    "card_discovery_title": "Полный анализ Discovery",
-    "card_discovery_desc": "Новые PXD/PDC · Europe PMC · QC · доступность Result Files",
-    "card_qc_title": "QC отчёт",
-    "card_qc_desc": "Кандидаты / manual / rejected с ИИ-анализом и колонкой данных",
-    "card_atlas_title": "Профиль атласа",
-    "card_atlas_desc": "Статистика каталога: репозитории, органы, нозологии, TMT-плексы",
-    "card_cohorts_title": "Крупные когорты",
-    "card_cohorts_desc": "Протеомика и мульти-омика: большие patient cohorts, text mining абстрактов",
-    "card_map_title": "Интерактивная карта",
-    "card_map_desc": "TMT-проекты по органам · диплинки ?organ= · каталог read-only",
-    "card_update_title": "Обновление данных",
-    "card_update_desc": "Локально: python run_discovery.py scan · publish · export для GitHub Pages",
-    "disc_title": "Discovery — полный анализ",
+    "card_discovery_title": "Full Discovery analysis",
+    "card_discovery_desc": "New PXD/PDC · Europe PMC · QC · Result Files availability",
+    "card_qc_title": "QC report",
+    "card_qc_desc": "Candidates / manual / rejected with LLM analysis and data column",
+    "card_atlas_title": "Atlas profile",
+    "card_atlas_desc": "Catalog stats: repositories, organs, diseases, TMT plexes",
+    "card_cohorts_title": "Large cohorts",
+    "card_cohorts_desc": "Proteomics & multi-omics: large patient cohorts, abstract text mining",
+    "card_map_title": "Interactive map",
+    "card_map_desc": "TMT projects by organ · deep links ?organ= · read-only catalog",
+    "card_update_title": "Update data",
+    "card_update_desc": "Run: python run_discovery.py scan · publish · export for GitHub Pages",
+    "disc_title": "Discovery — full analysis",
     "disc_lead": (
-        "Новые human TMT проекты · семантический разбор абстрактов · QC материала · "
-        "доступность данных"
+        "New human TMT projects · semantic abstract screening · material QC · data availability"
     ),
-    "disc_catalog_hidden": "каталог скрыт",
-    "disc_catalog_n": "проектов в атласе",
-    "atlas_title": "Профиль атласа",
-    "atlas_lead": "Сводка Sirius Human TMT Proteome Atlas — только метаданные, без выгрузки каталога",
-    "atlas_datasets": "датасетов",
-    "atlas_publications": "уникальных ID",
-    "atlas_repos": "Репозитории",
-    "atlas_organs": "Топ органов / тканей",
-    "atlas_diseases": "Топ нозологий",
-    "atlas_tmt": "TMT-плексы",
-    "atlas_keywords": "Ключевые слова поиска",
-    "atlas_link": "Реестр на GitHub",
-    "atlas_discovery": "Анализ новых наборов",
-    "qc_title": "QC отчёт Discovery",
-    "qc_lead": "Кандидаты · ручная проверка · отклонённые · технический фильтр",
-    "cohorts_title": "Крупные когорты — протеомика и мульти-омика",
-    "cohorts_lead": "Europe PMC + text mining: пациенты, N, омики, TMT",
+    "disc_catalog_hidden": "catalog hidden",
+    "disc_catalog_n": "projects in atlas",
+    "atlas_title": "Atlas profile",
+    "atlas_lead": "Sirius Human TMT Proteome Atlas summary — metadata only, catalog not exported",
+    "atlas_datasets": "datasets",
+    "atlas_publications": "unique IDs",
+    "atlas_repos": "Repositories",
+    "atlas_organs": "Top organs / tissues",
+    "atlas_diseases": "Top diseases",
+    "atlas_tmt": "TMT plexes",
+    "atlas_keywords": "Search keywords",
+    "atlas_link": "Registry on GitHub",
+    "atlas_discovery": "New dataset analysis",
+    "qc_title": "Discovery QC report",
+    "qc_lead": "Candidates · manual review · rejected · technical filter",
+    "cohorts_title": "Large cohorts — proteomics & multi-omics",
+    "cohorts_lead": "Europe PMC + text mining: patients, N, omics, TMT",
 }
 
 
-def ru(key: str) -> str:
-    if key in _RU:
-        return _RU[key]
+def en(key: str) -> str:
+    if key in _EN:
+        return _EN[key]
     if key in _SHARED:
         return _SHARED[key]
     return key
+
+
+# Back-compat alias — site defaults to English
+ru = en
