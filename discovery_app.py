@@ -2,7 +2,7 @@
 """
 Sirius TMT Atlas — Streamlit portal (read-only).
 
-Tabs: AI search · New projects · Papers · Cohorts · Body map.
+Tabs: AI search · Discovery (unified table) · Body map.
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-APP_VERSION = "2026.07.15-portal-v7-tabs"
+APP_VERSION = "2026.07.15-portal-v8-unified"
 
 st.markdown(
     """
@@ -242,7 +242,65 @@ def cohorts_table(items: list[dict]) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def keyword_pub_table(items: list[dict]) -> pd.DataFrame:
+def unified_discovery_table(report: dict) -> pd.DataFrame:
+    """One table: projects + papers without ID + literature cohorts."""
+    if not report:
+        return pd.DataFrame()
+    cand = report.get("candidates") or report.get("new_projects") or []
+    pubs = report.get("publications_analyzed") or []
+    manual = report.get("manual_check") or []
+    literature = report.get("literature_semantic") or []
+    cohorts = report.get("cohort_literature") or []
+
+    rows: list[dict] = []
+    for _, r in new_projects_table(cand, pubs).iterrows():
+        rows.append({
+            "Type": "Project",
+            "Project ID": r["ID"],
+            "Title": r["Title"],
+            "Source": r["Source"],
+            "Design": r["Design"],
+            "Patients": "",
+            "N": "",
+            "Fit": "",
+            "Analysis": r["Analysis"],
+            "Data": r["Data"],
+            "Repository": r["Repository"],
+            "PubMed": r["PubMed"],
+        })
+    for _, r in papers_without_id_table(manual, literature).iterrows():
+        rows.append({
+            "Type": "Paper",
+            "Project ID": "No PXD",
+            "Title": r["Title"],
+            "Source": "Europe PMC",
+            "Design": "",
+            "Patients": "",
+            "N": "",
+            "Fit": r["Weight"],
+            "Analysis": r["Analysis"],
+            "Data": "",
+            "Repository": r["Project"],
+            "PubMed": r["PubMed"],
+        })
+    for _, r in cohorts_table(cohorts).iterrows():
+        rows.append({
+            "Type": "Cohort",
+            "Project ID": r["PMID"],
+            "Title": r["Title"],
+            "Source": "Europe PMC",
+            "Design": r["Omics"],
+            "Patients": r["Patients"],
+            "N": r["N"],
+            "Fit": r["Weight"],
+            "Analysis": r["Analysis"],
+            "Data": "TMT" if r["TMT"] else "",
+            "Repository": r["Europe PMC"],
+            "PubMed": r["PubMed"],
+        })
+    return pd.DataFrame(rows)
+
+
     rows = []
     for p in items:
         ai = p.get("abstract_ai") or {}
@@ -295,7 +353,7 @@ def render_project_links(card: dict):
 # --- Header ---
 st.markdown('<p class="portal-title">Sirius Human TMT Proteome Atlas — Portal</p>', unsafe_allow_html=True)
 st.markdown(
-    '<p class="portal-sub">🔍 AI search · New projects · Papers · Cohorts · Body map</p>',
+    '<p class="portal-sub">🔍 AI search · Discovery (unified table) · Body map</p>',
     unsafe_allow_html=True,
 )
 
@@ -320,10 +378,8 @@ with st.sidebar:
     st.divider()
     st.markdown("**Tabs:**")
     st.markdown("1. **🔍 AI search** — Run search")
-    st.markdown("2. **New projects** — PXD/PDC from scan")
-    st.markdown("3. **Papers** — without accession")
-    st.markdown("4. **Cohorts** — large patient cohorts")
-    st.markdown("5. **Body map**")
+    st.markdown("2. **Discovery** — projects + papers + cohorts (one table)")
+    st.markdown("3. **Body map**")
 
 if "scan_report" not in st.session_state:
     st.session_state["scan_report"] = load_scan_report()
@@ -332,11 +388,9 @@ if st.session_state.pop("run_full_scan", False):
     with st.spinner("Discovery scan (PRIDE, PDC, MassIVE, iProX, Europe PMC)…"):
         st.session_state["scan_report"] = run_full_scan(cfg, df, year_scan)
 
-tab_keywords, tab_projects, tab_papers, tab_cohorts, tab_map = st.tabs([
+tab_keywords, tab_discovery, tab_map = st.tabs([
     "🔍 AI search",
-    "New projects",
-    "Papers",
-    "Cohorts",
+    "Discovery",
     "Body map",
 ])
 
@@ -416,96 +470,61 @@ with tab_keywords:
     else:
         st.info("Click **Run search** above to start AI keyword discovery.")
 
-# --- Tab 2: New projects only ---
-with tab_projects:
-    st.subheader("New PXD / PDC (not in atlas)")
+# --- Tab 2: Unified Discovery ---
+with tab_discovery:
+    st.subheader("Discovery — unified table")
     report = st.session_state.get("scan_report")
     if not report:
         st.info("No saved scan. Sidebar → **Run full Discovery scan** or `python run_discovery.py scan`.")
     else:
+        s = report.get("summary") or {}
         cand = report.get("candidates") or report.get("new_projects") or []
-        pubs = report.get("publications_analyzed") or []
+        manual = report.get("manual_check") or []
+        literature = report.get("literature_semantic") or []
+        cohorts = report.get("cohort_literature") or []
         table_n = sum(1 for x in cand if (x.get("data_availability") or {}).get("status") == "quant_table")
-        atlas_n = (report.get("summary") or {}).get("catalog_unique_ids", "?")
+        atlas_n = s.get("catalog_unique_ids", "?")
+        papers_df = papers_without_id_table(manual, literature)
+        total = len(cand) + len(papers_df) + len(cohorts)
 
-        st.caption(f"**{len(cand)} new** repository IDs outside the atlas ({atlas_n} already in catalog). This is not the full project list.")
+        st.caption(
+            f"**{total} rows** in one table: {len(cand)} projects · "
+            f"{len(papers_df)} papers · {len(cohorts)} cohorts "
+            f"({atlas_n} already in atlas). Same view as GitHub **discovery.html**."
+        )
         link_col1, link_col2 = st.columns(2)
         if SITE_DISCOVERY.is_file():
             link_col1.link_button("GitHub Discovery", gh_meta.get("discovery_site", ""), use_container_width=True)
         link_col2.link_button("QC report", gh_meta.get("discovery_site", "").replace("discovery.html", "qc.html"), use_container_width=True)
 
-        st.metric("New projects", len(cand))
-        st.metric("With protein table", table_n)
-        search = st.text_input("Search", placeholder="PXD, PDC, gastric…", key="proj_search")
-        proj_df = new_projects_table(cand, pubs)
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("Projects", len(cand))
+        m2.metric("Papers", len(papers_df))
+        m3.metric("Cohorts", len(cohorts))
+        m4.metric("With protein table", table_n)
+
+        type_filter = st.selectbox("Type filter", ["All", "Project", "Paper", "Cohort"], key="disc_type_filter")
+        search = st.text_input("Search", placeholder="PXD, PDC, gastric, cohort…", key="disc_search")
+        udf = unified_discovery_table(report)
+        if type_filter != "All":
+            udf = udf[udf["Type"] == type_filter]
         if search:
             fl = search.lower()
-            proj_df = proj_df[proj_df.astype(str).apply(lambda row: fl in " ".join(row.values).lower(), axis=1)]
-        if not proj_df.empty:
+            udf = udf[udf.astype(str).apply(lambda row: fl in " ".join(row.values).lower(), axis=1)]
+        if not udf.empty:
             st.dataframe(
-                proj_df,
+                udf,
                 use_container_width=True,
                 hide_index=True,
-                height=min(480, 80 + 38 * len(proj_df)),
+                height=min(560, 80 + 38 * min(len(udf), 16)),
                 column_config={
                     "Repository": st.column_config.LinkColumn("Repository", display_text="Open"),
                     "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
                 },
             )
         else:
-            st.caption("No new projects")
+            st.caption("No rows match filter")
 
-# --- Tab 3: Papers without accession ---
-with tab_papers:
-    st.subheader("Papers without PXD/PDC (LLM atlas fit)")
-    report = st.session_state.get("scan_report")
-    if not report:
-        st.info("No scan data.")
-    else:
-        manual = report.get("manual_check") or []
-        literature = report.get("literature_semantic") or []
-        papers = papers_without_id_table(manual, literature)
-        st.caption("Semantic literature watch — LLM yes/maybe/no. Different from **Cohorts** (patient N mining).")
-        if papers.empty:
-            st.caption("No papers")
-        else:
-            st.dataframe(
-                papers,
-                use_container_width=True,
-                hide_index=True,
-                height=min(520, 80 + 38 * len(papers)),
-                column_config={
-                    "Europe PMC": st.column_config.LinkColumn("Europe PMC", display_text="EPMC"),
-                    "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
-                    "Project": st.column_config.LinkColumn("Project", display_text="Project"),
-                },
-            )
-
-# --- Tab 4: Cohorts ---
-with tab_cohorts:
-    st.subheader("Large cohorts (Europe PMC)")
-    report = st.session_state.get("scan_report")
-    if not report:
-        st.info("No scan data.")
-    else:
-        cohorts = report.get("cohort_literature") or []
-        st.caption("Patient N, omics, TMT hints — surveillance list. Dedicated page: GitHub **Cohorts** tab (not Discovery table).")
-        if not cohorts:
-            st.caption("No cohort papers — run full scan with cohort_literature enabled.")
-        else:
-            cdf = cohorts_table(cohorts)
-            st.dataframe(
-                cdf,
-                use_container_width=True,
-                hide_index=True,
-                height=min(560, 80 + 38 * min(len(cohorts), 14)),
-                column_config={
-                    "Europe PMC": st.column_config.LinkColumn("Europe PMC", display_text="EPMC"),
-                    "PubMed": st.column_config.LinkColumn("PubMed", display_text="PubMed"),
-                },
-            )
-
-# --- Tab 5: Body map ---
 with tab_map:
     st.subheader("Human body organ map")
     streamlit_map = gh_meta.get("streamlit_map") or gh_meta.get("atlas_map", "")

@@ -36,7 +36,7 @@ _EN: dict[str, str] = {
         "large literature cohorts"
     ),
     "card_discovery_title": "Full Discovery analysis",
-    "card_discovery_desc": "New PXD/PDC · Europe PMC · QC · Result Files availability",
+    "card_discovery_desc": "Unified table: new PXD/PDC · papers · cohorts · QC · data files",
     "card_qc_title": "QC report",
     "card_qc_desc": "Candidates / manual / rejected with LLM analysis and data column",
     "card_atlas_title": "Atlas profile",

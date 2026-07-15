@@ -35,14 +35,13 @@ def _lang_toggle() -> str:
     return ""
 
 
-def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
-    """home, atlas, discovery, cohorts, qc, optional map_href."""
+def _nav_paths(deploy: str) -> tuple[str, str, str, str, str | None]:
+    """home, atlas, discovery, qc, optional map_href."""
     if deploy == DEPLOY_DOCS_PORTAL:
         return (
             "index.html",
             "site/atlas.html",
             "site/discovery.html",
-            "site/cohorts.html",
             "site/qc.html",
             None,
         )
@@ -51,7 +50,6 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
             "index.html",
             "atlas.html",
             "discovery.html",
-            "cohorts.html",
             "qc.html",
             "../index.html",
         )
@@ -59,7 +57,6 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
         "../index.html",
         "atlas.html",
         "discovery.html",
-        "cohorts.html",
         "qc.html",
         None,
     )
@@ -92,7 +89,7 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str = "Atlas Discovery")
 
 
 def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
-    home, atlas, disc, cohorts, qc, map_href = _nav_paths(deploy)
+    home, atlas, disc, qc, map_href = _nav_paths(deploy)
 
     def nav(href: str, key: str, page: str) -> str:
         cls = "active" if active == page else ""
@@ -114,7 +111,6 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
       {nav(home, "nav_home", "home")}
       {nav(atlas, "nav_atlas", "atlas")}
       {nav(disc, "nav_discovery", "discovery")}
-      {nav(cohorts, "nav_cohorts", "cohorts")}
       {nav(qc, "nav_qc", "qc")}{map_link}
     </nav>
     {_lang_toggle()}

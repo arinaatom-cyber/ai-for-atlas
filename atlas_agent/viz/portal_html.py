@@ -74,7 +74,6 @@ def generate_portal_html(
     {card("card_map_title", "card_map_desc", map_href, target=map_target)}
     {card("card_discovery_title", "card_discovery_desc", _page_href(deploy, "discovery"))}
     {card("card_atlas_title", "card_atlas_desc", _page_href(deploy, "atlas"))}
-    {card("card_cohorts_title", "card_cohorts_desc", _page_href(deploy, "cohorts"))}
     {card("card_qc_title", "card_qc_desc", _page_href(deploy, "qc"), primary=False, extra=json_extra)}
     <div class="card">
       {i18n_el("card_update_title", tag="h2")}

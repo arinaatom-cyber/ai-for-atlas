@@ -162,7 +162,7 @@
       portal_lead:
         "Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе",
       card_discovery_title: "Полный анализ Discovery",
-      card_discovery_desc: "Новые PXD/PDC · Europe PMC · QC · доступность Result Files",
+      card_discovery_desc: "Единая таблица: PXD/PDC · статьи · когорты · QC · файлы",
       card_qc_title: "QC отчёт",
       card_qc_desc: "Кандидаты / manual / rejected с ИИ-анализом и колонкой данных",
       card_atlas_title: "Профиль атласа",
@@ -266,7 +266,7 @@
       portal_lead:
         "Monitor human TMT in PRIDE, PDC, MassIVE, iProX · LLM abstracts · large literature cohorts",
       card_discovery_title: "Full Discovery analysis",
-      card_discovery_desc: "New PXD/PDC · Europe PMC · QC · Result Files availability",
+      card_discovery_desc: "Unified table: new PXD/PDC · papers · cohorts · QC · data files",
       card_qc_title: "QC report",
       card_qc_desc: "Candidates / manual / rejected with AI analysis and data column",
       card_atlas_title: "Atlas profile",
