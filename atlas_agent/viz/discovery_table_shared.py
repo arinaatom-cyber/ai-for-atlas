@@ -313,19 +313,33 @@ def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
 
 def _id_cell(*, acc: str, repo: str, pmid: str, fit_score: object) -> str:
     if acc:
+        kind = source_label({"accession": acc})
         acc_esc = _esc(acc)
         if repo:
-            return (
-                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-mono">'
+            body = (
+                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-mono id-acc">'
                 f"<b>{acc_esc}</b></a>"
             )
-        return f'<span class="cell-mono"><b>{acc_esc}</b></span>'
+        else:
+            body = f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
+        return (
+            f'<div class="cell-stack id-cell">'
+            f'<span class="cell-label">{_esc(kind)}</span>{body}</div>'
+        )
     score_s = _fit_score_fmt(fit_score)
-    label = f"No, {score_s}" if score_s else "No"
     pub = pubmed_url(pmid) if pmid else ""
+    no_acc = '<span class="id-no-acc">No PXD/PDC</span>'
     if pub:
-        return f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="cell-mono"><b>{_esc(label)}</b></a>'
-    return f'<span class="cell-mono"><b>{_esc(label)}</b></span>'
+        no_acc = (
+            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc">No PXD/PDC</a>'
+        )
+    fit_line = (
+        f'<span class="id-fit">Atlas fit · {_esc(score_s)}</span>' if score_s else ""
+    )
+    return (
+        f'<div class="cell-stack id-cell">'
+        f'<span class="cell-label">Paper</span>{no_acc}{fit_line}</div>'
+    )
 
 
 def _title_cell(title: str, pub_url: str, repo: str) -> str:

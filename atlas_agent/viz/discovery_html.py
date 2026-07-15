@@ -102,7 +102,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
             <th colspan="3" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
-          <th data-i18n="th_id"></th>
+          <th class="col-id"><span class="th-main" data-i18n="th_project_id"></span><span class="th-hint" data-i18n="th_project_id_hint"></span></th>
           <th data-i18n="th_year"></th>
           <th data-i18n="th_title"></th>
           <th data-i18n="th_source" class="col-split"></th>

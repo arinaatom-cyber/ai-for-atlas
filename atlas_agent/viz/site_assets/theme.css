@@ -401,7 +401,44 @@ code {
   text-decoration: none;
 }
 
-.table-unified .col-id { min-width: 110px; }
+.table-unified .th-main {
+  display: block;
+  font-size: var(--text-sm);
+}
+
+.table-unified .th-hint {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+.id-cell .id-acc {
+  font-size: 0.92rem;
+}
+
+.id-no-acc {
+  display: block;
+  font-weight: 600;
+  color: var(--warn);
+  text-decoration: none;
+}
+
+a.id-no-acc:hover {
+  text-decoration: underline;
+}
+
+.id-fit {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.table-unified .col-id { min-width: 128px; }
 .table-unified .col-year { min-width: 56px; }
 .table-unified .col-title { min-width: 220px; }
 .table-unified .col-src { min-width: 90px; }

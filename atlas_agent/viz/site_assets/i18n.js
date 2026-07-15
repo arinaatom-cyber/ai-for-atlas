@@ -31,6 +31,8 @@
     filter_patients_yes: { ru: "пациенты: да", en: "patients: yes" },
     filter_patients_maybe: { ru: "пациенты: возможно", en: "patients: maybe" },
     th_id: { ru: "ID", en: "ID" },
+    th_project_id: { ru: "ID проекта", en: "Project ID" },
+    th_project_id_hint: { ru: "PXD · PDC · нет", en: "PXD · PDC · none" },
     th_title: { ru: "Название", en: "Title" },
     th_source: { ru: "Источник", en: "Source" },
     th_plex: { ru: "Plex", en: "Plex" },
@@ -111,7 +113,7 @@
       sec_unified_discovery_desc:
         "Новые PXD/PDC, статьи без accession и крупные когорты в одном списке.",
       note_unified_table:
-        "ID: PXD/PDC или «No, 0.7» если accession не найден. Title → абстракт. Weight: fit 0–1 (ИИ-оценка атласа) · cohort 0–100 (когортный score). Горизонтальная прокрутка на узком экране.",
+        "Project ID: номер в PRIDE/PDC (PXD, PDC) или «No PXD/PDC» для статей без датасета. Title → абстракт. Weight: fit 0–1 · cohort 0–100.",
       search_unified: "Поиск по ID, названию, анализу…",
       filter_projects: "проекты",
       filter_papers: "статьи",
@@ -205,7 +207,7 @@
       sec_unified_discovery_desc:
         "New PXD/PDC, papers without accession, and large cohorts in a single list.",
       note_unified_table:
-        "ID: PXD/PDC or «No, 0.7» when no accession. Title → abstract. Weight: fit 0–1 (LLM atlas match) · cohort 0–100 (cohort relevance). Scroll horizontally on narrow screens.",
+        "Project ID: PRIDE/PDC accession (PXD, PDC) or «No PXD/PDC» when the paper has no dataset. Title → abstract. Weight: fit 0–1 · cohort 0–100.",
       search_unified: "Search ID, title, analysis…",
       filter_projects: "projects",
       filter_papers: "papers",
