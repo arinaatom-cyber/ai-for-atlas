@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from atlas_agent.viz.i18n_defaults import en as i18n_default
+from atlas_agent.viz.i18n_defaults import BRAND_NAME, en as i18n_default
 from atlas_agent.viz.site_components import esc, i18n_el, meta_pill_text, meta_time, page_hero
 from atlas_agent.viz.site_theme import (
     DEPLOY_DOCS_PORTAL,
@@ -91,7 +91,7 @@ def generate_portal_html(
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(
-        page_wrap(active="home", body=body, title="Portal", deploy=deploy),
+        page_wrap(active="home", body=body, title=BRAND_NAME, deploy=deploy),
         encoding="utf-8",
     )
     return out

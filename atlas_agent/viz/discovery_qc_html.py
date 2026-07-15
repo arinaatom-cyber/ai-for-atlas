@@ -7,6 +7,7 @@ from pathlib import Path
 from atlas_agent.viz.portal_index import format_finding_note
 from atlas_agent.viz.site_sanitize import translate_legacy_text
 from atlas_agent.viz.site_components import kpi_grid, meta_time, note_rules, page_hero, section_head
+from atlas_agent.viz.i18n_defaults import BRAND_NAME
 from atlas_agent.viz.site_theme import page_wrap
 
 
@@ -120,7 +121,7 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
 
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page_wrap(active="qc", body=body, title="QC", deploy=deploy), encoding="utf-8")
+    out.write_text(page_wrap(active="qc", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
     return out
 
 

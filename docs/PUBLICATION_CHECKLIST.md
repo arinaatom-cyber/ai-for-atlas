@@ -1,4 +1,4 @@
-# Чеклист публикации — Sirius TMT Atlas + Discovery
+# Чеклист публикации — Human Cancser Assosiated TMT Proteome Atlas + Discovery
 
 Статус на 2026-07-15. Отмечайте `[x]` по мере выполнения.
 

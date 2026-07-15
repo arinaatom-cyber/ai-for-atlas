@@ -1,8 +1,10 @@
 """English fallback strings for static HTML (mirrors site_assets/i18n.js PAGE.en + SHARED)."""
 from __future__ import annotations
 
+BRAND_NAME = "Human Cancser Assosiated TMT Proteome Atlas"
+
 _SHARED: dict[str, str] = {
-    "brand_title": "Sirius Human TMT Proteome Atlas",
+    "brand_title": BRAND_NAME,
     "nav_atlas": "Atlas",
     "nav_discovery": "Discovery",
     "nav_cohorts": "Cohorts",
@@ -30,7 +32,7 @@ _EN: dict[str, str] = {
     "footer_policy": (
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only."
     ),
-    "portal_title": "Atlas Discovery Portal",
+    "portal_title": BRAND_NAME,
     "portal_lead": (
         "Monitor human TMT in PRIDE, PDC, MassIVE, iProX · LLM abstract screening · "
         "large literature cohorts"
@@ -54,7 +56,7 @@ _EN: dict[str, str] = {
     "disc_catalog_hidden": "catalog hidden",
     "disc_catalog_n": "projects in atlas",
     "atlas_title": "Atlas profile",
-    "atlas_lead": "Sirius Human TMT Proteome Atlas summary — metadata only, catalog not exported",
+    "atlas_lead": f"{BRAND_NAME} summary — metadata only, catalog not exported",
     "atlas_datasets": "datasets",
     "atlas_publications": "unique IDs",
     "atlas_repos": "Repositories",

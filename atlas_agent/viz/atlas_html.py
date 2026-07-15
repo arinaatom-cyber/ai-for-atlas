@@ -12,6 +12,7 @@ from atlas_agent.viz.site_components import (
     page_hero,
     section_head,
 )
+from atlas_agent.viz.i18n_defaults import BRAND_NAME
 from atlas_agent.viz.site_theme import page_wrap
 
 GITHUB_TMT = "https://github.com/arinaatom-cyber/TMT"
@@ -100,5 +101,5 @@ def generate_atlas_html(report: dict, out_path: str | Path, *, deploy: str = "do
 
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page_wrap(active="atlas", body=body, title="Atlas", deploy=deploy), encoding="utf-8")
+    out.write_text(page_wrap(active="atlas", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
     return out

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sirius TMT Atlas — Streamlit portal (read-only).
+Human Cancser Assosiated TMT Proteome Atlas — Streamlit portal (read-only).
 
 Tabs: AI search · Discovery (unified table) · Body map.
 """
@@ -18,8 +18,10 @@ ROOT = Path(__file__).parent
 SITE_DISCOVERY = ROOT / "docs" / "site" / "discovery.html"
 SITE_QC = ROOT / "docs" / "site" / "qc.html"
 
+from atlas_agent.viz.i18n_defaults import BRAND_NAME
+
 st.set_page_config(
-    page_title="Sirius TMT Atlas Portal",
+    page_title=BRAND_NAME,
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -351,7 +353,7 @@ def render_project_links(card: dict):
 
 
 # --- Header ---
-st.markdown('<p class="portal-title">Sirius Human TMT Proteome Atlas — Portal</p>', unsafe_allow_html=True)
+st.markdown(f'<p class="portal-title">{BRAND_NAME}</p>', unsafe_allow_html=True)
 st.markdown(
     '<p class="portal-sub">🔍 AI search · Discovery (unified table) · Body map</p>',
     unsafe_allow_html=True,

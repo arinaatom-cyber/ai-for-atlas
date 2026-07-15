@@ -20,6 +20,7 @@ from atlas_agent.viz.site_components import (
     section_desc,
     section_head,
 )
+from atlas_agent.viz.i18n_defaults import BRAND_NAME
 from atlas_agent.viz.site_theme import page_wrap
 
 
@@ -228,5 +229,5 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 
     out = Path(out_path or "reports/discovery_index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page_wrap(active="discovery", body=body, title="Discovery", deploy=deploy), encoding="utf-8")
+    out.write_text(page_wrap(active="discovery", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
     return out

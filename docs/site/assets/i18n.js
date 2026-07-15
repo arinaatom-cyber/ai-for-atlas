@@ -3,7 +3,7 @@
   const STORAGE_KEY = "atlas_site_lang";
 
   const SHARED = {
-    brand_title: "Sirius Human TMT Proteome Atlas",
+    brand_title: "Human Cancser Assosiated TMT Proteome Atlas",
     nav_home: { ru: "Главная", en: "Home" },
     nav_map: { ru: "Карта органов", en: "Organ map" },
     nav_atlas: { ru: "Атлас", en: "Atlas" },
@@ -148,7 +148,7 @@
       qc_filtered: "Отфильтровано (техн.)",
       qc_pubs: "статей проанализировано",
       atlas_title: "Профиль атласа",
-      atlas_lead: "Сводка Sirius Human TMT Proteome Atlas — только метаданные, без выгрузки каталога",
+      atlas_lead: "Сводка Human Cancser Assosiated TMT Proteome Atlas — только метаданные, без выгрузки каталога",
       atlas_datasets: "датасетов",
       atlas_publications: "уникальных ID",
       atlas_repos: "Репозитории",
@@ -158,7 +158,7 @@
       atlas_keywords: "Ключевые слова поиска",
       atlas_link: "Реестр на GitHub",
       atlas_discovery: "Анализ новых наборов",
-      portal_title: "Atlas Discovery Portal",
+      portal_title: "Human Cancser Assosiated TMT Proteome Atlas",
       portal_lead:
         "Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе",
       card_discovery_title: "Полный анализ Discovery",
@@ -252,7 +252,7 @@
       qc_filtered: "Filtered (technical)",
       qc_pubs: "publications analyzed",
       atlas_title: "Atlas profile",
-      atlas_lead: "Sirius Human TMT Proteome Atlas summary — metadata only, catalog not exported",
+      atlas_lead: "Human Cancser Assosiated TMT Proteome Atlas summary — metadata only, catalog not exported",
       atlas_datasets: "datasets",
       atlas_publications: "unique IDs",
       atlas_repos: "Repositories",
@@ -262,7 +262,7 @@
       atlas_keywords: "Discovery search keywords",
       atlas_link: "Registry on GitHub",
       atlas_discovery: "Analyze new datasets",
-      portal_title: "Atlas Discovery Portal",
+      portal_title: "Human Cancser Assosiated TMT Proteome Atlas",
       portal_lead:
         "Monitor human TMT in PRIDE, PDC, MassIVE, iProX · LLM abstracts · large literature cohorts",
       card_discovery_title: "Full Discovery analysis",

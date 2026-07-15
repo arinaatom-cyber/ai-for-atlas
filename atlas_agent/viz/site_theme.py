@@ -5,7 +5,7 @@ import html
 import shutil
 from pathlib import Path
 
-from atlas_agent.viz.i18n_defaults import en as i18n_default
+from atlas_agent.viz.i18n_defaults import BRAND_NAME, en as i18n_default
 
 _ASSETS_DIR = Path(__file__).resolve().parent / "site_assets"
 
@@ -74,7 +74,8 @@ def _i18n_el(key: str, *, tag: str = "span", href: str = "", cls: str = "") -> s
     return f"<{tag}{extra} data-i18n=\"{key}\">{text}</{tag}>"
 
 
-def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str = "Atlas Discovery") -> str:
+def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str | None = None) -> str:
+    page_title = title or BRAND_NAME
     prefix = assets_prefix_for(deploy)
     css = f"{prefix}/theme.css"
     js = f"{prefix}/i18n.js"
@@ -82,7 +83,7 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str = "Atlas Discovery")
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{_esc(i18n_default('portal_lead')[:160])}"/>
-  <title>{_esc(title)}</title>
+  <title>{_esc(page_title)}</title>
   <link rel="stylesheet" href="{css}"/>
   <script src="{js}" defer></script>
 </head>"""

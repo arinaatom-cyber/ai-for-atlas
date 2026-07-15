@@ -1,9 +1,9 @@
-# Atlas TMT Proteomics Platform
+# Human Cancser Assosiated TMT Proteome Atlas
 
 A local, reproducible platform for **curating a human TMT proteomics atlas** and for
-**discovering new TMT proteomics projects** across public repositories. It powers the
-data behind the interactive [Human Proteome Atlas](https://github.com/arinaatom-cyber/TMT)
-(live: https://arinaatom-cyber.github.io/TMT/).
+**discovering new TMT proteomics projects** across public repositories. It powers
+**Human Cancser Assosiated TMT Proteome Atlas** and the interactive map at
+[GitHub TMT](https://github.com/arinaatom-cyber/TMT) (live: https://arinaatom-cyber.github.io/TMT/).
 
 It contains:
 
