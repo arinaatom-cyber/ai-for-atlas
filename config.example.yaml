@@ -1,8 +1,9 @@
 # Скопируйте в config.yaml и поправьте пути.
 
 sheet:
-  # Таблица проектов — только локальный CSV в этой папке
-  projects_csv: "./data/projects.csv"
+  projects_file: "./project of Proteomics.xlsx"
+  projects_sheet: "TMT ATLAS"
+  proteomics_workbook: "./project of Proteomics.xlsx"
 
 paths:
   tmt_projects_dir: "../tmt-projects/Projects"
@@ -20,6 +21,16 @@ scan:
 
 agent:
   language: "ru"
+
+# ИИ — ключи в .env (не коммитить!)
+llm:
+  enabled: true
+  provider: "auto"          # auto | zai | qwen | claude | ollama | gpt4all
+  prefer_cloud: true
+  model: "glm-4-flash"
+  base_url: "https://api.z.ai/api/paas/v4"
+  gpt4all_model: "qwen2-1_5b-instruct-q4_0.gguf"
+  max_tokens: 2048
 
 claude:
   enabled: true

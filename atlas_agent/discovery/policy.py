@@ -33,7 +33,8 @@ def assert_catalog_read_only(operation: str) -> None:
 
 def policy_summary() -> dict:
     return {
-        "catalog_file": "data/projects.csv",
+        "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
+        "catalog_mirror": "data/projects.csv",
         "catalog_mode": "read_only",
         "delete_allowed": False,
         "auto_update_allowed": False,

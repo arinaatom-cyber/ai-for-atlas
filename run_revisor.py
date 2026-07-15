@@ -22,12 +22,13 @@ from pathlib import Path
 from atlas_agent.config import load_config
 from atlas_agent.revisor import fix_and_save, run_full_audit, scan_new_content
 from atlas_agent.revisor.catalog_update import append_candidates
-from atlas_agent.sources.projects_table import load_projects_table
+from atlas_agent.sources.projects_table import catalog_path, is_excel_catalog, load_catalog
 from atlas_agent.viz.dashboard import generate_dashboard
 
 
 def _csv_path(cfg: dict) -> str:
-    return (cfg.get("sheet") or {}).get("projects_csv", "./data/projects.csv")
+    sc = cfg.get("sheet") or {}
+    return catalog_path(sc) or "./project of Proteomics.xlsx"
 
 
 def _reports_dir(cfg: dict) -> Path:
@@ -38,7 +39,7 @@ def _reports_dir(cfg: dict) -> Path:
 
 def cmd_audit(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    df = load_projects_table(_csv_path(cfg))
+    df = load_catalog(cfg)
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir", "")
     audit = run_full_audit(df, tmt_root=tmt_root, file_check_limit=args.file_limit)
     payload = audit.to_dict()
@@ -61,6 +62,9 @@ def cmd_audit(args: argparse.Namespace) -> int:
 
 def cmd_fix(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
+    if is_excel_catalog(cfg.get("sheet") or {}):
+        print("Каталог — Excel (TMT ATLAS). Авто-правки только для CSV; Excel не изменяется.")
+        return 0
     csv_path = _csv_path(cfg)
     result = fix_and_save(csv_path, dry_run=not args.apply)
     mode = "ПРИМЕНЕНО" if result.get("saved") else "dry-run"
@@ -79,7 +83,7 @@ def cmd_fix(args: argparse.Namespace) -> int:
 
 def cmd_scan(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    df = load_projects_table(_csv_path(cfg))
+    df = load_catalog(cfg)
     scan_cfg = cfg.get("scan") or {}
     year = int(scan_cfg.get("scan_year") or 2026)
     data = scan_new_content(

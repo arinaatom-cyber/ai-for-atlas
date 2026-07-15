@@ -3,56 +3,104 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Atlas Discovery</title>
-  <style>
-    :root { --bg:#0f1419; --card:#1a2332; --text:#e7ecf3; --muted:#8b9cb3; --ok:#3dd68c; --accent:#6cb6ff; }
-    body { margin:0; font-family:Segoe UI,system-ui,sans-serif; background:var(--bg); color:var(--text); }
-    header { padding:32px; border-bottom:1px solid #2a3548; max-width:900px; margin:0 auto; }
-    main { padding:32px; max-width:900px; margin:0 auto; }
-    h1 { color:var(--accent); margin:0 0 8px; }
-    .sub { color:var(--muted); line-height:1.5; }
-    .cards { display:grid; gap:16px; margin-top:24px; }
-    .card { background:var(--card); border:1px solid #2a3548; border-radius:12px; padding:20px; }
-    .card h2 { margin:0 0 8px; font-size:1.1rem; color:var(--ok); }
-    a.btn { display:inline-block; margin-top:12px; padding:10px 18px; background:#1e3a5f; color:var(--accent);
-      border-radius:8px; text-decoration:none; border:1px solid #2a3548; }
-    a.btn:hover { border-color:var(--accent); }
-    code { background:#121a24; padding:2px 6px; border-radius:4px; }
-    ol { color:var(--muted); line-height:1.7; }
-    .warn { color:#f0c14d; font-size:.9rem; margin-top:16px; }
-  </style>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>Portal</title>
+  <link rel="stylesheet" href="site/assets/theme.css"/>
+  <script src="site/assets/i18n.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>Atlas Discovery</h1>
-    <p class="sub">Поиск новых human TMT проектов (PRIDE, PDC).<br/>
-    <b>На сайте — только новые PXD/PDC.</b> Проекты из вашего каталога <code>projects.csv</code> не публикуются.</p>
-  </header>
-  <main>
-    <div class="cards">
-      <div class="card">
-        <h2>Новые проекты (candidate)</h2>
-        <p class="sub">Результат последнего скана — только ID, которых нет в каталоге.</p>
-        <a class="btn" href="site/discovery.html">Открыть список →</a>
-      </div>
-      <div class="card">
-        <h2>QC отчёт</h2>
-        <p class="sub">Candidate / manual-check / rejected по материалу образцов.</p>
-        <a class="btn" href="site/qc.html">QC Report →</a>
-      </div>
-      <div class="card">
-        <h2>Запуск на любом компьютере</h2>
-        <ol>
-          <li><code>git clone</code> репозиторий</li>
-          <li><code>pip install -r requirements.txt</code></li>
-          <li>Скопировать <code>config.example.yaml</code> → <code>config.yaml</code></li>
-          <li>Положить свой <code>data/projects.csv</code> (каталог, read-only)</li>
-          <li><code>python run_discovery.py scan</code></li>
-          <li>UI: <code>streamlit run discovery_app.py</code> → localhost:8501</li>
-        </ol>
-        <p class="warn">Каталог используется только для фильтра «уже есть» — на сайт не выкладывается.</p>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <span class="brand-title" data-i18n="brand_title">Sirius Human TMT Proteome Atlas</span>
+      <span class="brand-sub" data-i18n="brand_sub">Discovery · Когорты · QC · каталог read-only</span>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html" class="active" data-i18n="nav_home">Главная</a>
+      <a href="site/atlas.html" class="" data-i18n="nav_atlas">Атлас</a>
+      <a href="site/discovery.html" class="" data-i18n="nav_discovery">Discovery</a>
+      <a href="site/cohorts.html" class="" data-i18n="nav_cohorts">Когорты</a>
+      <a href="site/qc.html" class="" data-i18n="nav_qc">QC</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+  <button type="button" data-lang="ru" class="active">RU</button>
+  <button type="button" data-lang="en">EN</button>
+</div>
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="portal_title">Atlas Discovery Portal</h1>
+  <p class="lead" data-i18n="portal_lead">Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Обновлено</span> 2026-06-18 17:32:58 UTC</span><span class="meta-pill badge badge-ok">36</span> <span class="meta-pill badge badge-ok" data-i18n="meta_candidates">кандидатов</span><span class="meta-pill badge badge-muted">123</span> <span class="meta-pill badge badge-muted" data-i18n="meta_atlas_ids">ID в атласе</span></div>
+</div>
+<div class="page-content">
+  <div class="card-grid">
+    
+    <div class="card">
+      <h2 data-i18n="card_map_title">Интерактивная карта</h2>
+      <p data-i18n="card_map_desc">TMT-проекты по органам · диплинки ?organ= · каталог read-only</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://arinaatom-cyber.github.io/TMT/" target="_blank" rel="noopener" data-i18n="card_open">Открыть</a>
+        
       </div>
     </div>
-  </main>
+    
+    <div class="card">
+      <h2 data-i18n="card_discovery_title">Полный анализ Discovery</h2>
+      <p data-i18n="card_discovery_desc">Новые PXD/PDC · Europe PMC · QC · доступность Result Files</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="site/discovery.html" data-i18n="card_open">Открыть</a>
+        
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 data-i18n="card_atlas_title">Профиль атласа</h2>
+      <p data-i18n="card_atlas_desc">Статистика каталога: репозитории, органы, нозологии, TMT-плексы</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="site/atlas.html" data-i18n="card_open">Открыть</a>
+        
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 data-i18n="card_cohorts_title">Крупные когорты</h2>
+      <p data-i18n="card_cohorts_desc">Протеомика и мульти-омика: большие patient cohorts, text mining абстрактов</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="site/cohorts.html" data-i18n="card_open">Открыть</a>
+        
+      </div>
+    </div>
+    
+    <div class="card">
+      <h2 data-i18n="card_qc_title">QC отчёт</h2>
+      <p data-i18n="card_qc_desc">Кандидаты / manual / rejected с ИИ-анализом и колонкой данных</p>
+      <div class="btn-row">
+        <a class="btn" href="site/qc.html" data-i18n="card_open">Открыть</a>
+        <a class="btn" href="latest.json" title="JSON API for scripts" data-i18n="card_json">latest.json (API)</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="card_update_title">Обновление данных</h2>
+      <p data-i18n="card_update_desc">Локально: python run_discovery.py scan · publish · export для GitHub Pages</p>
+      <p class="muted"><code>python run_discovery.py scan</code></p>
+    </div>
+  </div>
+  <p class="note muted" style="margin-top:1rem">
+    <strong>Deploy:</strong> корень <code>TMT/index.html</code> — интерактивная карта органов
+    (<code>?organ=</code>); портал Discovery — только <code>discovery/</code>, не заменяет корень.
+  </p>
+</div>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
 </body>
 </html>

@@ -45,16 +45,18 @@ def search_new_publications(
         pmid = str(h.get("pmid") or h.get("id") or "")
         title = h.get("title") or ""
         abstract = h.get("abstractText") or ""
-        blob = f"{title} {abstract}"
+        data_avail = ""
         for key in ("dataAvailability", "dataAvailabilityStatement"):
             if h.get(key):
-                blob += " " + str(h[key])
+                data_avail += " " + str(h[key])
+        blob = f"{title} {abstract} {data_avail}"
         ids = extract_ids_from_text(blob)
         out.append(
             {
                 "pmid": pmid,
-                "title": title[:300],
-                "abstract": abstract[:600],
+                "title": title[:500],
+                "abstract": abstract[:4000],
+                "data_availability": data_avail.strip()[:2000],
                 "journal": h.get("journalTitle", ""),
                 "year": h.get("pubYear", ""),
                 "doi": h.get("doi", ""),

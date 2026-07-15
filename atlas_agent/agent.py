@@ -17,7 +17,7 @@ from atlas_agent.config import load_config
 from atlas_agent.sources.literature import fetch_abstract, text_mentions_normalization
 from atlas_agent.sources.pride import fetch_project, search_human_tmt_projects
 from atlas_agent.llm_client import analyze_report, ask_about_project, is_llm_available, resolve_engine
-from atlas_agent.sources.projects_table import load_projects_table, primary_project_id
+from atlas_agent.sources.projects_table import load_catalog, primary_project_id
 
 
 class AtlasAgent:
@@ -26,7 +26,7 @@ class AtlasAgent:
     def __init__(self, config_path: str | None = None):
         self.cfg = load_config(config_path)
         sheet_cfg = self.cfg.get("sheet") or {}
-        self.df = load_projects_table(sheet_cfg.get("projects_csv"))
+        self.df = load_catalog(self.cfg)
         paths = self.cfg.get("paths") or {}
         self.tmt_root = paths.get("tmt_projects_dir") or ""
         self.reports_dir = Path(paths.get("reports_dir") or Path(__file__).parents[1] / "reports")
@@ -37,6 +37,7 @@ class AtlasAgent:
         self.llm_base_url = llm_cfg.get("base_url")
         self.gpt4all_model = llm_cfg.get("gpt4all_model")
         self.llm_max_tokens = int(llm_cfg.get("max_tokens") or 2048)
+        self.llm_prefer_cloud = bool(llm_cfg.get("prefer_cloud", True))
         self.ai_enabled = bool(llm_cfg.get("enabled", True))
         # совместимость
         self.claude_model = self.llm_model
@@ -97,6 +98,7 @@ class AtlasAgent:
                 max_tokens=self.llm_max_tokens,
                 df=self.df,
                 use_ai=True,
+                prefer_cloud=self.llm_prefer_cloud,
             )
         else:
             report["ai_analysis"] = {
@@ -127,6 +129,7 @@ class AtlasAgent:
             gpt4all_model=self.gpt4all_model,
             question=question,
             max_tokens=min(self.llm_max_tokens, 2048),
+            prefer_cloud=self.llm_prefer_cloud,
         )
 
     def _validate_normalization(self, df: pd.DataFrame, limit: int) -> list[dict]:

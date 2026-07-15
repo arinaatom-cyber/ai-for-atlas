@@ -11,7 +11,7 @@ from typing import Any
 
 import pandas as pd
 
-from atlas_agent.discovery.catalog_profile import build_catalog_profile
+from atlas_agent.discovery.catalog_profile import build_atlas_semantic_context, build_catalog_profile
 from atlas_agent.discovery.history import save_scan
 from atlas_agent.discovery.policy import assert_catalog_read_only, policy_summary
 from atlas_agent.discovery.sources.consortia import scan_all_consortia
@@ -21,16 +21,32 @@ from atlas_agent.discovery.filters import apply_filters, default_filter_config
 from atlas_agent.discovery.qc_outputs import build_qc_outputs
 from atlas_agent.viz.discovery_qc_html import generate_qc_html, qc_markdown_summary
 from atlas_agent.revisor.similarity import annotate_candidates
-from atlas_agent.sources.projects_table import load_projects_table, primary_project_id
+from atlas_agent.sources.projects_table import load_catalog, primary_project_id
+from atlas_agent.sources.proteomics_workbook import (
+    atlas_project_count,
+    ids_from_discovery_item,
+    known_accessions_from_workbook,
+    known_rejected_from_workbook,
+    load_deleted_catalog,
+)
 
 
-def _known_accessions(df: pd.DataFrame) -> set[str]:
+def _known_accessions(df: pd.DataFrame, cfg: dict | None = None) -> set[str]:
     known_pmids, known_pxds = build_known_sets(df)
-    return known_pmids | known_pxds | {
+    known = known_pmids | known_pxds | {
         primary_project_id(str(x)).upper()
         for x in df["Project ID"].dropna()
         if str(x).strip()
     }
+    # TMT ATLAS + CPTAC из project of Proteomics.xlsx (read-only)
+    wb = (cfg or {}).get("sheet", {}).get("proteomics_workbook")
+    if wb:
+        path = Path(wb)
+        if not path.is_absolute():
+            path = Path(__file__).resolve().parents[2] / wb
+        if path.is_file():
+            known |= known_accessions_from_workbook(path)
+    return known
 
 
 def _flatten_consortia(consortia: dict) -> list[dict]:
@@ -95,7 +111,26 @@ def run_discovery_scan(
     scan_cfg = cfg.get("discovery") or cfg.get("scan") or {}
     year = int(scan_cfg.get("year_from") or 2024)
     profile = build_catalog_profile(df)
-    known = _known_accessions(df)
+    wb_cfg = (cfg.get("sheet") or {}).get("proteomics_workbook")
+    rejected_titles: list[str] = []
+    wb_path: Path | None = None
+    if wb_cfg:
+        wb_path = Path(wb_cfg)
+        if not wb_path.is_absolute():
+            wb_path = root / wb_cfg
+        if wb_path.is_file():
+            profile["n_atlas_projects"] = atlas_project_count(wb_path)
+            profile["n_unique_ids"] = profile["n_atlas_projects"]
+            try:
+                rej_df = load_deleted_catalog(wb_path)
+                rejected_titles = [
+                    str(t) for t in rej_df.get("Title", pd.Series(dtype=str)).dropna().tolist()
+                ]
+            except Exception:
+                rejected_titles = []
+    atlas_context = build_atlas_semantic_context(df, rejected_titles=rejected_titles)
+    profile["semantic"] = atlas_context
+    known = _known_accessions(df, cfg)
 
     filter_cfg = {**default_filter_config(), **(scan_cfg.get("filters") or {})}
 
@@ -104,16 +139,37 @@ def run_discovery_scan(
         year_to=int(scan_cfg.get("year_to") or 2026),
         pride_max=int(scan_cfg.get("pride_max") or 50),
         pub_max=int(scan_cfg.get("publications_max") or 30),
+        massive_max=int(scan_cfg.get("massive_max") or 25),
+        iprox_max=int(scan_cfg.get("iprox_max") or 25),
         pride_keywords=scan_cfg.get("pride_keywords") or ["TMT", "tandem mass tag", "isobaric"],
         profile_keywords=profile.get("search_keywords"),
         known_accessions=known,
         min_tmt_channels=int(filter_cfg.get("min_tmt_channels") or 7),
         max_tmt_channels=int(filter_cfg.get("max_tmt_channels") or 16),
+        cfg=cfg,
+        atlas_context=atlas_context,
     )
+    literature_semantic = pro.get("literature_semantic_candidates") or []
     pride_raw = [p for p in pro["repository_projects"] if p.get("source", "").startswith("pride")]
     pdc_raw = [p for p in pro["repository_projects"] if p.get("source") == "pdc_api" or p.get("consortium") == "PDC"]
     pubs_raw = pro["publications"]
     source_stats = pro.get("sources") or {}
+
+    cohort_literature: list[dict] = []
+    cohort_stats: dict[str, Any] = {}
+    cohort_cfg = scan_cfg.get("cohort_literature") or {}
+    if cohort_cfg.get("enabled", True):
+        from atlas_agent.discovery.cohort_literature import search_cohort_literature
+
+        known_pmids, _ = build_known_sets(df)
+        cohort_literature, cohort_stats = search_cohort_literature(
+            year_from=int(cohort_cfg.get("year_from") or year),
+            year_to=int(scan_cfg.get("year_to") or 2026),
+            page_size=int(cohort_cfg.get("max_results") or 30),
+            min_patients=int(cohort_cfg.get("min_patients") or 50),
+            min_score=int(cohort_cfg.get("min_score") or 25),
+            known_pmids=known_pmids,
+        )
 
     # Консорциумы (литература CPTAC/CCLE/GTEx — дополнительно)
     consortia = scan_all_consortia(profile.get("search_keywords"), year_from=year)
@@ -127,6 +183,34 @@ def run_discovery_scan(
         item["is_novel"] = _is_novel(item, known)
 
     buckets = apply_filters(all_raw, df, cfg=filter_cfg)
+
+    if literature_semantic:
+        buckets.setdefault("requires_manual_check", []).extend(literature_semantic)
+
+    rejected_known: set[str] = set()
+    wb = (cfg.get("sheet") or {}).get("proteomics_workbook")
+    if wb:
+        wb_path = Path(wb)
+        if not wb_path.is_absolute():
+            wb_path = root / wb
+        if wb_path.is_file():
+            rejected_known = known_rejected_from_workbook(wb_path)
+
+    if rejected_known:
+        for key in list(buckets.keys()):
+            kept = []
+            for item in buckets.get(key, []):
+                if ids_from_discovery_item(item) & rejected_known:
+                    item = dict(item)
+                    item["verdict"] = "rejected"
+                    item["filter_reasons"] = (item.get("filter_reasons") or []) + [
+                        "удалено из general (лист отклонённых)"
+                    ]
+                    item["recommendation"] = "rejected_previously_removed"
+                    buckets.setdefault("rejected", []).append(item)
+                else:
+                    kept.append(item)
+            buckets[key] = kept
 
     pride_novel = [p for p in pride_raw if _is_novel(p, known)]
     pdc_novel = [p for p in pdc_raw if _is_novel(p, known)]
@@ -154,13 +238,57 @@ def run_discovery_scan(
     qc_out = build_qc_outputs(buckets, known_acc)
     new_projects = qc_out["candidates"]
 
+    from atlas_agent.discovery.data_availability import annotate_data_availability, summarize_availability
+
+    tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir") or ""
+    scan_cfg_da = scan_cfg.get("data_availability") or {}
+    if scan_cfg_da.get("enabled", True):
+        for key in ("candidates", "manual_check", "rejected_material"):
+            items = qc_out.get(key) or []
+            if items:
+                annotate_data_availability(
+                    items,
+                    tmt_root=tmt_root,
+                    fetch_remote=scan_cfg_da.get("fetch_remote", True),
+                    delay_s=float(scan_cfg_da.get("delay_s", 0.12)),
+                )
+        new_projects = qc_out["candidates"]
+
+    data_avail_summary = summarize_availability(
+        (qc_out.get("candidates") or [])
+        + (qc_out.get("manual_check") or [])
+    )
+
+    pubs_for_site: list[dict] = []
+    for p in pubs_raw[:50]:
+        ai = p.get("abstract_ai") or {}
+        pubs_for_site.append(
+            {
+                "pmid": p.get("pmid", ""),
+                "title": (p.get("title") or "")[:400],
+                "doi": p.get("doi", ""),
+                "journal": p.get("journal", ""),
+                "year": p.get("year", ""),
+                "abstract_snippet": (p.get("abstract") or "")[:500],
+                "abstract_reader": p.get("abstract_reader", ""),
+                "atlas_fit": ai.get("atlas_fit") or p.get("atlas_fit"),
+                "atlas_fit_score": ai.get("atlas_fit_score") or p.get("atlas_fit_score"),
+                "semantic_evidence": (ai.get("semantic_evidence") or [])[:6],
+                "similar_atlas_theme": ai.get("similar_atlas_theme", ""),
+                "summary_ru": ai.get("summary_ru", ""),
+                "organism": ai.get("organism", ""),
+                "tmt": ai.get("tmt", ""),
+                "material": ai.get("material", ""),
+            }
+        )
+
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "policy": policy_summary(),
         "catalog_profile": profile,
         "summary": {
             "catalog_rows": len(df),
-            "catalog_unique_ids": profile["n_unique_ids"],
+            "catalog_unique_ids": profile.get("n_atlas_projects") or profile["n_unique_ids"],
             "novel_pride": len(pride_novel),
             "novel_pdc": len(pdc_novel),
             "novel_publications": len(pub_novel),
@@ -182,6 +310,8 @@ def run_discovery_scan(
             "duplicate_similar": len(buckets.get("duplicate_similar", [])),
             "articles_skipped": max(0, len(buckets.get("recommended", [])) - len(new_projects)),
             "source_stats": source_stats,
+            "data_availability": data_avail_summary,
+            "cohort_literature": cohort_stats,
         },
         "filters_applied": filter_cfg,
         "new_projects": new_projects,
@@ -195,7 +325,10 @@ def run_discovery_scan(
         "rejected_raw": buckets.get("rejected", [])[:50],
         "duplicate_similar": buckets.get("duplicate_similar", [])[:15],
         "novel_pride": pride_novel[:30],
-        "novel_publications": [],
+        "publications_analyzed": pubs_for_site,
+        "literature_semantic": literature_semantic[:40],
+        "cohort_literature": cohort_literature,
+        "novel_publications": pub_novel[:30],
         "novel_consortia": [],
         "consortia_raw_counts": {k: len(v) for k, v in consortia.items()},
         "processing_notes": [
@@ -261,6 +394,29 @@ def _to_markdown(report: dict) -> str:
         f"- **QC rejected (material):** {s.get('rejected_material', 0)}",
         "",
     ]
+    da = s.get("data_availability") or {}
+    if da:
+        lines.append("## Data availability (Result Files)")
+        lines.append("")
+        for st, n in sorted(da.items(), key=lambda x: -x[1]):
+            lines.append(f"- **{st}:** {n}")
+        lines.append("")
+    cl = s.get("cohort_literature") or {}
+    if cl:
+        lines.append("## Cohort literature (text mining)")
+        lines.append("")
+        lines.append(f"- Scanned: **{cl.get('scanned', 0)}** · kept: **{cl.get('kept', 0)}**")
+        lines.append("")
+    cohort_items = report.get("cohort_literature") or []
+    if cohort_items:
+        lines.append("### Top cohort papers")
+        lines.append("")
+        for it in cohort_items[:10]:
+            n = it.get("patient_n") or "?"
+            lines.append(
+                f"- PMID **{it.get('pmid', '?')}** N≈{n} — {(it.get('title') or '')[:70]}"
+            )
+        lines.append("")
     lines.extend(qc_markdown_summary(report).splitlines())
     lines.append("")
 
@@ -288,6 +444,6 @@ def _to_markdown(report: dict) -> str:
     return "\n".join(lines)
 
 
-def load_catalog_readonly(csv_path: str) -> pd.DataFrame:
+def load_catalog_readonly(cfg: dict) -> pd.DataFrame:
     assert_catalog_read_only("read")
-    return load_projects_table(csv_path)
+    return load_catalog(cfg)

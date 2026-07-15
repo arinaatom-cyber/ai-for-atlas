@@ -58,6 +58,14 @@ def save_table(df: pd.DataFrame, csv_path: Path) -> None:
 
 def fix_and_save(csv_path: str | Path, *, dry_run: bool = True) -> dict:
     path = Path(csv_path)
+    if path.suffix.lower() in (".xlsx", ".xlsm"):
+        return {
+            "dry_run": dry_run,
+            "changes": 0,
+            "log": ["Excel catalog is read-only; edit TMT ATLAS sheet in Excel"],
+            "backup": None,
+            "saved": False,
+        }
     df = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
     fixed, log = apply_safe_fixes(df)
     result = {"dry_run": dry_run, "changes": len(log), "log": log[:200]}

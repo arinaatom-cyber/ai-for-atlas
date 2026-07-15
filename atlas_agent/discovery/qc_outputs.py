@@ -1,14 +1,30 @@
 """Сборка candidate / manual-check / rejected списков (без изменения CSV)."""
 from __future__ import annotations
 
+import re
+
 from atlas_agent.discovery.filters import get_project_accession, select_new_projects
 
 
 def _with_accession(items: list[dict], known: set[str] | None = None) -> list[dict]:
     known = {a.upper() for a in (known or set())}
+    known_pmids = {re.sub(r"\D", "", x) for x in known if re.sub(r"\D", "", x)}
     out = []
     seen: set[str] = set()
     for item in items:
+        if item.get("source") == "literature_semantic_candidate":
+            pmid = re.sub(r"\D", "", str(item.get("pmid") or ""))
+            if not pmid or pmid in known_pmids:
+                continue
+            label = f"PMID:{pmid}"
+            if label in seen:
+                continue
+            seen.add(label)
+            row = dict(item)
+            row["project_accession"] = label
+            row["accession"] = label
+            out.append(row)
+            continue
         acc = get_project_accession(item)
         if not acc or acc in seen or acc in known:
             continue

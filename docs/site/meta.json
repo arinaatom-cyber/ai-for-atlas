@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-06-10T07:43:57.580231+00:00",
-  "new_projects_count": 109,
-  "catalog_unique_ids": 122,
-  "policy": "Only new PXD/PDC/MSV/IPX. Catalog projects.csv is never published."
+  "generated_at": "2026-06-18T17:32:58.977816+00:00",
+  "new_projects_count": 36,
+  "publications_analyzed": 24,
+  "literature_semantic": 12,
+  "cohort_literature_count": 12,
+  "abstract_llm_read": 0,
+  "abstract_atlas_fit_yes": 4,
+  "semantic_from_abstract": 0,
+  "catalog_unique_ids": 123,
+  "catalog_rows": 123,
+  "policy": "New projects + abstract AI analysis. Catalog rows are never published.",
+  "languages": [
+    "ru",
+    "en"
+  ]
 }

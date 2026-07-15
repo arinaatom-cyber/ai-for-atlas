@@ -1,10 +1,24 @@
-"""HTML-страница новых проектов Discovery (без Streamlit)."""
+"""HTML Discovery: new projects + LLM abstract analysis (bilingual UI)."""
 from __future__ import annotations
 
 import html
-import json
-from datetime import datetime
 from pathlib import Path
+
+from atlas_agent.viz.site_components import (
+    kpi_grid,
+    meta_pill_i18n,
+    meta_pill_text,
+    meta_time,
+    note_i18n,
+    page_hero,
+    section_desc,
+    section_head,
+)
+from atlas_agent.viz.site_theme import page_wrap
+
+
+def _esc(s: object) -> str:
+    return html.escape(str(s or ""))
 
 
 def _source_label(item: dict) -> str:
@@ -21,151 +35,337 @@ def _source_label(item: dict) -> str:
     return str(src) or "other"
 
 
+def _fit_class(fit: str) -> str:
+    return {"yes": "fit-yes", "maybe": "fit-maybe", "no": "fit-no"}.get(str(fit).lower(), "fit-unk")
+
+
+def _ai_summary(item: dict) -> str:
+    ai = item.get("abstract_ai") or {}
+    parts = []
+    summary = ai.get("summary_ru") or item.get("summary_ru") or ai.get("summary_en") or ""
+    if summary:
+        parts.append(_esc(summary))
+    fit = ai.get("atlas_fit") or item.get("atlas_fit")
+    score = ai.get("atlas_fit_score") or item.get("atlas_fit_score")
+    if fit:
+        parts.append(f'<span class="badge {_fit_class(fit)}">{_esc(fit)} {score or ""}</span>')
+    ev = ai.get("semantic_evidence") or item.get("semantic_evidence") or []
+    if ev:
+        parts.append(f'<span class="muted">→ {_esc("; ".join(ev[:3]))}</span>')
+    return "<br/>".join(parts) if parts else "—"
+
+
+def _data_cell(it: dict) -> str:
+    da = it.get("data_availability") or {}
+    if not da:
+        return "—"
+    status = da.get("status") or "unknown"
+    label = _esc(da.get("label") or status)
+    cls = {
+        "quant_table": "badge-ok",
+        "local_mirror": "badge-ok",
+        "maybe_table": "badge-warn",
+        "processed_psm": "badge-warn",
+        "raw_only": "badge-bad",
+        "no_files": "badge-bad",
+    }.get(status, "badge-muted")
+    samples = da.get("quant_files") or da.get("sample_files") or []
+    hint = ""
+    if samples:
+        hint = f'<br/><span class="muted">{_esc(samples[0][:50])}</span>'
+    if da.get("local_mirror"):
+        hint += '<br/><span class="muted">local</span>'
+    return f'<span class="badge {cls}">{label}</span>{hint}'
+
+
 def _project_rows(items: list[dict]) -> str:
     rows = []
     for it in items:
-        acc = html.escape(it.get("project_accession") or it.get("accession") or "—")
-        title = html.escape((it.get("title") or "")[:140])
-        src = html.escape(_source_label(it))
-        plex = it.get("inferred_plex") or ""
-        design = html.escape(str(it.get("sample_design") or ""))
+        acc = _esc(it.get("project_accession") or it.get("accession") or "—")
+        title = _esc((it.get("title") or "")[:140])
+        src = _esc(_source_label(it))
+        plex = it.get("inferred_plex") or it.get("tmt_label") or ""
+        design = _esc(str(it.get("sample_design") or ""))
         sim = (it.get("similar_in_catalog") or [{}])[0]
-        sim_id = html.escape(str(sim.get("project_id") or ""))
+        sim_id = _esc(str(sim.get("project_id") or ""))
         sim_score = sim.get("score", "")
+        analysis = _ai_summary(it)
+        data = _data_cell(it)
         url = it.get("url") or ""
-        if not url and acc.startswith("PXD"):
-            url = f"https://www.ebi.ac.uk/pride/archive/projects/{acc}"
-        elif not url and acc.startswith("PDC"):
-            url = f"https://proteomic.datacommons.cancer.gov/pdc/study/{acc}"
-        link = f'<a href="{html.escape(url)}" target="_blank" rel="noopener">open</a>' if url else ""
-        program = html.escape(str(it.get("program") or it.get("disease") or "")[:60])
+        raw_acc = (it.get("accession") or "").upper()
+        if not url and raw_acc.startswith("PXD"):
+            url = f"https://www.ebi.ac.uk/pride/archive/projects/{raw_acc}"
+        elif not url and raw_acc.startswith("PDC"):
+            url = f"https://proteomic.datacommons.cancer.gov/pdc/study/{raw_acc}"
+        link = f'<a href="{_esc(url)}" target="_blank" rel="noopener" data-i18n="th_link_open"></a>' if url else '<span class="cell-empty" data-i18n="cell_empty"></span>'
+        program = _esc(str(it.get("program") or it.get("disease") or "")[:60])
         rows.append(
             f"<tr data-src='{src.lower()}' data-search='{acc.lower()} {title.lower()} {program.lower()}'>"
-            f"<td><b>{acc}</b></td><td>{title}</td><td>{src}</td>"
+            f"<td class='cell-mono'><b>{acc}</b></td><td class='cell-title'>{title}</td><td>{src}</td>"
             f"<td>{plex}</td><td>{design}</td><td>{sim_id} ({sim_score})</td>"
-            f"<td>{program}</td><td>{link}</td></tr>"
+            f"<td class='analysis-cell'>{analysis}</td><td>{data}</td><td>{link}</td></tr>"
         )
-    return "\n".join(rows) or "<tr><td colspan='8'>Нет новых проектов</td></tr>"
+    return "\n".join(rows) or '<tr><td colspan="9" data-i18n="no_projects"></td></tr>'
 
 
-def generate_discovery_html(report: dict, out_path: str | Path | None = None) -> Path:
+def _publication_rows(pubs: list[dict]) -> str:
+    rows = []
+    for p in pubs:
+        pmid = _esc(p.get("pmid") or "—")
+        title = _esc((p.get("title") or "")[:120])
+        fit = p.get("atlas_fit") or "?"
+        score = p.get("atlas_fit_score", "")
+        reader = _esc(p.get("abstract_reader") or "")
+        org = _esc(p.get("organism") or "")
+        tmt = _esc(p.get("tmt") or "")
+        mat = _esc(p.get("material") or "")
+        theme = _esc(p.get("similar_atlas_theme") or "")
+        search = _esc(p.get("pride_search_terms") or "")
+        summary = _esc(p.get("summary_ru") or p.get("summary_en") or "")
+        ev = _esc("; ".join(p.get("semantic_evidence") or [])[:4])
+        acc = p.get("accessions") or {}
+        ids = ", ".join(x for k in ("PXD", "PDC", "MSV", "IPX") for x in (acc.get(k) or [])) or "—"
+        pmid_link = (
+            f'<a href="https://pubmed.ncbi.nlm.nih.gov/{_esc(p["pmid"])}/" '
+            f'target="_blank" rel="noopener">{pmid}</a>'
+            if p.get("pmid")
+            else pmid
+        )
+        rows.append(
+            f"<tr data-fit='{_esc(fit)}' data-search='{title.lower()} {summary.lower()}'>"
+            f"<td>{pmid_link}</td><td>{title}</td>"
+            f"<td><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
+            f"<td>{org}</td><td>{tmt}</td><td>{mat}</td>"
+            f"<td>{ids}</td><td>{theme}</td><td>{search}</td>"
+            f"<td class='analysis-cell'>{summary}<br/><span class='muted'>{ev}</span></td>"
+            f"<td class='muted'>{reader}</td></tr>"
+        )
+    return "\n".join(rows)
+
+
+def _literature_rows(items: list[dict]) -> str:
+    rows = []
+    for it in items:
+        pmid = it.get("pmid") or ""
+        label = _esc(it.get("project_accession") or f"PMID:{pmid}")
+        title = _esc((it.get("title") or "")[:120])
+        fit = it.get("atlas_fit") or "?"
+        score = it.get("atlas_fit_score", "")
+        search = _esc(it.get("pride_search_terms") or (it.get("abstract_ai") or {}).get("pride_search_terms", ""))
+        summary = _ai_summary(it)
+        reasons = _esc("; ".join((it.get("filter_reasons") or [])[:2]))
+        link = (
+            f'<a href="https://pubmed.ncbi.nlm.nih.gov/{_esc(pmid)}/" target="_blank" rel="noopener">PubMed</a>'
+            if pmid
+            else ""
+        )
+        rows.append(
+            f"<tr><td><b>{label}</b></td><td>{title}</td>"
+            f"<td><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
+            f"<td>{search}</td><td class='analysis-cell'>{summary}</td>"
+            f"<td>{reasons}</td><td>{link}</td></tr>"
+        )
+    return "\n".join(rows)
+
+
+def _qc_rows(items: list[dict]) -> str:
+    rows = []
+    for it in items:
+        acc = _esc(it.get("project_accession") or it.get("accession") or "—")
+        title = _esc((it.get("title") or "")[:100])
+        reasons = _esc("; ".join((it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]))
+        sig = it.get("material_signals") or {}
+        inc = _esc(", ".join(sig.get("included") or [])[:60])
+        exc = _esc(", ".join(sig.get("excluded") or [])[:60])
+        rows.append(
+            f"<tr><td><b>{acc}</b></td><td>{title}</td>"
+            f"<td>{inc}</td><td>{exc}</td><td>{reasons}</td></tr>"
+        )
+    return "\n".join(rows)
+
+
+def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
-    # Только новые candidates — никогда каталог projects.csv
     items = report.get("candidates") or report.get("new_projects") or []
+    pubs = report.get("publications_analyzed") or []
+    literature = report.get("literature_semantic") or []
+    manual = report.get("manual_check") or []
+    rejected = report.get("rejected_material") or []
     stats = s.get("source_stats") or {}
-    gen = (report.get("generated_at") or "")[:19].replace("T", " ")
+    gen = report.get("generated_at") or ""
 
     pride_n = sum(1 for x in items if _source_label(x) == "PRIDE")
     pdc_n = sum(1 for x in items if _source_label(x) == "PDC")
-    other_n = len(items) - pride_n - pdc_n
+    fit_yes = sum(1 for p in pubs if p.get("atlas_fit") == "yes")
+    fit_maybe = sum(1 for p in pubs if p.get("atlas_fit") == "maybe")
+
+    proj_rows = _project_rows(items) or '<tr><td colspan="9" data-i18n="no_projects"></td></tr>'
+    pub_rows = _publication_rows(pubs) or '<tr><td colspan="11" data-i18n="no_pubs"></td></tr>'
+    lit_rows = _literature_rows(literature) or '<tr><td colspan="7" data-i18n="no_literature"></td></tr>'
+
+    body = (
+        page_hero(
+            "disc_title",
+            "disc_lead",
+            meta_time(gen)
+            + meta_pill_i18n("disc_catalog_hidden", css="badge-ok")
+            + meta_pill_text(f"{s.get('catalog_unique_ids', '?')}")
+            + ' <span class="meta-pill badge badge-muted" data-i18n="disc_catalog_n"></span>',
+        )
+        + kpi_grid(
+            [
+                (str(len(items)), "kpi_new"),
+                (str(pride_n), "kpi_pride"),
+                (str(pdc_n), "kpi_pdc"),
+                (str(stats.get("abstract_llm_read", 0)), "kpi_abstracts_ai"),
+                (f"{fit_yes}/{fit_maybe}", "kpi_yes_maybe"),
+                (str(len(manual)), "kpi_manual"),
+                (str(len(rejected)), "kpi_rejected"),
+            ]
+        )
+        + f"""
+<div class="page-content">
+  <section class="section" id="projects">
+    {section_head("sec_projects", len(items))}
+    {section_desc("sec_projects_desc")}
+    <div class="toolbar" id="proj-toolbar">
+      <input type="search" id="q" data-i18n-placeholder="search_projects"/>
+      <button type="button" class="chip active" data-filter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip" data-filter="pride" data-i18n="filter_pride"></button>
+      <button type="button" class="chip" data-filter="pdc" data-i18n="filter_pdc"></button>
+      <span class="count-badge" id="count"></span>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl">
+        <thead><tr>
+          <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_source"></th>
+          <th data-i18n="th_plex"></th><th data-i18n="th_design"></th><th data-i18n="th_similar"></th>
+          <th data-i18n="th_ai"></th><th data-i18n="th_data"></th><th data-i18n="th_link"></th>
+        </tr></thead>
+        <tbody>{proj_rows}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="abstracts">
+    {section_head("sec_abstracts")}
+    {note_i18n("note_abstracts")}
+    <p class="stats-line">{_esc(f"PRIDE {stats.get('pride_v3_search', 0)} · PDC {stats.get('pdc_uiStudySummary', 0)} · MassIVE {stats.get('massive_json', 0)} · {stats.get('publications_scanned', 0)} pubs")}</p>
+    <div class="toolbar">
+      <input type="search" id="q-abs" data-i18n-placeholder="search_abstracts"/>
+      <button type="button" class="chip active" data-afilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip" data-afilter="yes" data-i18n="filter_yes"></button>
+      <button type="button" class="chip" data-afilter="maybe" data-i18n="filter_maybe"></button>
+      <button type="button" class="chip" data-afilter="no" data-i18n="filter_no"></button>
+    </div>
+    <div class="table-wrap">
+      <table id="tbl-abs">
+        <thead><tr>
+          <th data-i18n="th_pmid"></th><th data-i18n="th_title"></th><th data-i18n="th_fit"></th>
+          <th data-i18n="th_organism"></th><th data-i18n="th_tmt"></th><th data-i18n="th_material"></th>
+          <th data-i18n="th_ids"></th><th data-i18n="th_theme"></th><th data-i18n="th_pride"></th>
+          <th data-i18n="th_analysis"></th><th data-i18n="th_reader"></th>
+        </tr></thead>
+        <tbody>{pub_rows}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="literature">
+    {section_head("sec_literature", len(literature))}
+    {section_desc("sec_literature_desc")}
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th data-i18n="th_pmid"></th><th data-i18n="th_title"></th><th data-i18n="th_fit"></th>
+          <th data-i18n="th_pride"></th><th data-i18n="th_ai"></th><th data-i18n="th_reason"></th>
+          <th data-i18n="th_link"></th>
+        </tr></thead>
+        <tbody>{lit_rows}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" id="qc">
+    {section_head("sec_qc")}
+    <h3 class="text-secondary"><span data-i18n="qc_manual"></span> <span class="section-count">{len(manual)}</span></h3>
+    <div class="table-wrap">
+      <table><thead><tr>
+        <th data-i18n="th_id"></th><th data-i18n="th_title"></th>
+        <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_reason"></th>
+      </tr></thead><tbody>{_qc_rows(manual)}</tbody></table>
+    </div>
+    <h3 class="text-secondary"><span data-i18n="qc_rejected"></span> <span class="section-count">{len(rejected)}</span></h3>
+    <div class="table-wrap">
+      <table><thead><tr>
+        <th data-i18n="th_id"></th><th data-i18n="th_title"></th>
+        <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_reason"></th>
+      </tr></thead><tbody>{_qc_rows(rejected)}</tbody></table>
+    </div>
+  </section>
+</div>
+
+<script>
+(function() {{
+  const q = document.getElementById('q');
+  const tbl = document.getElementById('tbl');
+  const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
+  const count = document.getElementById('count');
+  let filter = 'all';
+  function applyProjects() {{
+    const term = (q?.value || '').toLowerCase().trim();
+    let visible = 0;
+    rows.forEach(r => {{
+      const src = (r.dataset.src || '');
+      const search = (r.dataset.search || '');
+      const srcOk = filter === 'all' || (filter === 'pride' && src === 'pride') || (filter === 'pdc' && src === 'pdc');
+      const textOk = !term || search.includes(term);
+      const show = srcOk && textOk;
+      r.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }});
+    if (count) count.textContent = visible + ' / {len(items)}';
+  }}
+  q?.addEventListener('input', applyProjects);
+  document.querySelectorAll('#proj-toolbar .chip[data-filter]').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      document.querySelectorAll('#proj-toolbar .chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filter = btn.dataset.filter;
+      applyProjects();
+    }});
+  }});
+  applyProjects();
+
+  const qAbs = document.getElementById('q-abs');
+  const absRows = [...document.querySelectorAll('#tbl-abs tbody tr')];
+  let aFilter = 'all';
+  function applyAbs() {{
+    const term = (qAbs?.value || '').toLowerCase().trim();
+    absRows.forEach(r => {{
+      const fit = (r.dataset.fit || '').toLowerCase();
+      const search = (r.dataset.search || '');
+      const fitOk = aFilter === 'all' || fit === aFilter;
+      const textOk = !term || search.includes(term);
+      r.style.display = fitOk && textOk ? '' : 'none';
+    }});
+  }}
+  qAbs?.addEventListener('input', applyAbs);
+  document.querySelectorAll('[data-afilter]').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      document.querySelectorAll('[data-afilter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      aFilter = btn.dataset.afilter;
+      applyAbs();
+    }});
+  }});
+  applyAbs();
+}})();
+</script>
+"""
+    )
 
     out = Path(out_path or "reports/discovery_index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
-
-    page = f"""<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Atlas Discovery — новые проекты</title>
-  <style>
-    :root {{ --bg:#0f1419; --card:#1a2332; --text:#e7ecf3; --muted:#8b9cb3; --ok:#3dd68c; --accent:#6cb6ff; --warn:#f0c14d; }}
-    * {{ box-sizing:border-box; }}
-    body {{ margin:0; font-family:Segoe UI,system-ui,sans-serif; background:var(--bg); color:var(--text); }}
-    header {{ padding:24px 32px; border-bottom:1px solid #2a3548; }}
-    h1 {{ margin:0 0 6px; font-size:1.7rem; color:var(--accent); }}
-    .sub {{ color:var(--muted); margin:0; }}
-    .toolbar {{ padding:16px 32px; display:flex; flex-wrap:wrap; gap:12px; align-items:center; border-bottom:1px solid #2a3548; }}
-    input[type=search] {{ flex:1; min-width:220px; padding:10px 14px; border-radius:8px; border:1px solid #2a3548; background:#121a24; color:var(--text); }}
-    .chip {{ padding:8px 14px; border-radius:20px; border:1px solid #2a3548; background:#121a24; cursor:pointer; color:var(--muted); }}
-    .chip.active {{ border-color:var(--accent); color:var(--accent); }}
-    .kpis {{ display:flex; gap:14px; flex-wrap:wrap; padding:20px 32px; }}
-    .kpi {{ background:var(--card); border:1px solid #2a3548; border-radius:10px; padding:14px 18px; min-width:120px; }}
-    .kpi b {{ display:block; font-size:1.6rem; color:var(--accent); }}
-    .kpi span {{ color:var(--muted); font-size:.85rem; }}
-    main {{ padding:0 32px 32px; }}
-    .table-wrap {{ overflow-x:auto; background:var(--card); border-radius:12px; border:1px solid #2a3548; }}
-    table {{ width:100%; border-collapse:collapse; font-size:.88rem; }}
-    th,td {{ text-align:left; padding:10px 12px; border-bottom:1px solid #2a3548; vertical-align:top; }}
-    th {{ color:var(--muted); position:sticky; top:0; background:#1e2838; }}
-    tr:hover td {{ background:#121a24; }}
-    a {{ color:var(--accent); }}
-    .badge {{ display:inline-block; background:#1e3a2f; color:var(--ok); padding:3px 10px; border-radius:12px; font-size:.75rem; }}
-    #count {{ color:var(--muted); margin-left:auto; }}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Atlas Discovery — новые проекты</h1>
-    <p class="sub">PXD · PDC · MSV · IPX · <b>только НЕ в каталоге</b> · обновлено {gen} UTC</p>
-    <p class="sub"><span class="badge">projects.csv не на сайте</span> <span class="badge">каталог: {s.get('catalog_unique_ids', '?')} ID (скрыт)</span></p>
-  </header>
-  <div class="kpis">
-    <div class="kpi"><b>{len(items)}</b><span>всего новых</span></div>
-    <div class="kpi"><b>{pride_n}</b><span>PRIDE (PXD)</span></div>
-    <div class="kpi"><b>{pdc_n}</b><span>PDC</span></div>
-    <div class="kpi"><b>{other_n}</b><span>другие</span></div>
-    <div class="kpi"><b>{stats.get('pride_v3_search', 0)}</b><span>PRIDE API</span></div>
-    <div class="kpi"><b>{stats.get('pdc_uiStudySummary', 0)}</b><span>PDC API</span></div>
-  </div>
-  <div class="toolbar">
-    <input type="search" id="q" placeholder="Поиск по ID, названию, болезни…"/>
-    <button class="chip active" data-filter="all">Все</button>
-    <button class="chip" data-filter="pride">PRIDE</button>
-    <button class="chip" data-filter="pdc">PDC</button>
-    <button class="chip" data-filter="other">Другие</button>
-    <span id="count"></span>
-  </div>
-  <main>
-    <div class="table-wrap">
-      <table id="tbl">
-        <thead>
-          <tr>
-            <th>ID</th><th>Название</th><th>Источник</th><th>Plex</th>
-            <th>Дизайн</th><th>Похож на</th><th>Программа/болезнь</th><th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {_project_rows(items)}
-        </tbody>
-      </table>
-    </div>
-  </main>
-  <script>
-    const q = document.getElementById('q');
-    const tbl = document.getElementById('tbl');
-    const rows = [...tbl.querySelectorAll('tbody tr')];
-    const count = document.getElementById('count');
-    let filter = 'all';
-    function apply() {{
-      const term = (q.value || '').toLowerCase().trim();
-      let visible = 0;
-      rows.forEach(r => {{
-        const src = (r.dataset.src || '');
-        const search = (r.dataset.search || '');
-        const srcOk = filter === 'all'
-          || (filter === 'pride' && src === 'pride')
-          || (filter === 'pdc' && src === 'pdc')
-          || (filter === 'other' && src !== 'pride' && src !== 'pdc');
-        const textOk = !term || search.includes(term);
-        const show = srcOk && textOk;
-        r.style.display = show ? '' : 'none';
-        if (show) visible++;
-      }});
-      count.textContent = visible + ' / {len(items)}';
-    }}
-    q.addEventListener('input', apply);
-    document.querySelectorAll('.chip').forEach(btn => {{
-      btn.addEventListener('click', () => {{
-        document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        filter = btn.dataset.filter;
-        apply();
-      }});
-    }});
-    apply();
-  </script>
-</body>
-</html>"""
-    out.write_text(page, encoding="utf-8")
+    out.write_text(page_wrap(active="discovery", body=body, title="Discovery", deploy=deploy), encoding="utf-8")
     return out

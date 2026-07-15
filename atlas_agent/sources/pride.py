@@ -238,7 +238,84 @@ def search_recent_tmt(keywords: list[str], page_size: int = 40) -> list[dict]:
     return _parse_project_list(r.json())
 
 
+def _references_match_pmid(p: dict, pmid: str) -> bool:
+    pmid = re.sub(r"\D", "", str(pmid or ""))
+    if not pmid:
+        return False
+    for ref in p.get("references") or []:
+        if not isinstance(ref, dict):
+            continue
+        if str(ref.get("pubmedID") or "") == pmid:
+            return True
+        line = str(ref.get("referenceLine") or "")
+        if pmid in re.sub(r"\D", "", line):
+            return True
+    return False
+
+
+def find_pride_project_by_pmid(
+    pmid: str,
+    *,
+    known_accessions: set[str] | None = None,
+) -> dict[str, Any] | None:
+    """PRIDE v3: найти PXD по PMID (в references), если в абстракте номера нет."""
+    pmid = re.sub(r"\D", "", str(pmid or ""))
+    if not pmid:
+        return None
+    known = {a.upper() for a in (known_accessions or set())}
+    try:
+        r = requests.get(
+            f"{PRIDE_API}/search/projects",
+            params={"keyword": pmid, "pageSize": 30, "page": 0},
+            timeout=45,
+        )
+        r.raise_for_status()
+        batch = _parse_search_results(r.json())
+    except requests.RequestException:
+        return None
+    for summary in batch:
+        acc = (summary.get("accession") or "").upper()
+        if not acc or acc in known:
+            continue
+        detail = summary
+        if not summary.get("references"):
+            full = _fetch_project_detail(acc)
+            if full:
+                detail = full
+        if not _references_match_pmid(detail, pmid):
+            continue
+        if not _is_tmt_project(detail) or not _is_human(detail):
+            continue
+        rec = project_to_record(detail, source="pride_pmid_match")
+        rec["pmid"] = pmid
+        return rec
+    return None
+
+
+def search_pride_by_terms(
+    terms: str,
+    *,
+    year_from: int = 2020,
+    year_to: int = 2030,
+    limit: int = 3,
+    known_accessions: set[str] | None = None,
+) -> list[dict[str, Any]]:
+    """Узкий поиск PRIDE по ключевым словам из смысла абстракта."""
+    terms = re.sub(r"[^\w\s\-]", " ", terms or "").strip()
+    if len(terms) < 4:
+        return []
+    return search_pride_json(
+        keywords=[terms],
+        year_from=year_from,
+        year_to=year_to,
+        page_size=limit,
+        max_pages=2,
+        exclude_accessions=known_accessions,
+    )
+
+
 def search_human_tmt_projects(
+
     keywords: list[str] | None = None,
     *,
     page_size: int = 40,

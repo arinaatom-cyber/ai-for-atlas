@@ -14,6 +14,17 @@ reports/
 atlas_app.zip
 *.xlsx
 project of Proteomics.xlsx
+*.docx
+
+# Local runtime config (publish config.example.yaml only)
+config.yaml
+
+# Heavy generated data / scan history (not for the public code repo)
+data/discovery_history/*
+!data/discovery_history/latest.json
+data/project-cache/
+*.log
+agent-tools/
 
 # IDE
 .idea/

@@ -8,8 +8,10 @@ from typing import Any
 import requests
 
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
-TMT_TYPE_RE = re.compile(r"tmtpro\s*(\d{1,2})|tmt\s*(\d{1,2})", re.I)
+TMT_TYPE_RE = re.compile(r"tmtpro\s*(\d{1,2})|tmt\s*[- ]?(\d{1,2})\b", re.I)
 ATLAS_PLEXES = {10, 11, 12, 16}
+REJECT_PLEXES = {6, 7, 8, 9, 18}  # TMT6 и прочие <10ch / TMT18 — не атлас
+MIN_ATLAS_CHANNELS = 10
 
 
 def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
@@ -83,20 +85,30 @@ def _study_to_record(s: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _program_excluded(program_name: str, exclude_patterns: list[str]) -> bool:
+    prog = (program_name or "").lower()
+    return any(pat.lower() in prog for pat in exclude_patterns if pat)
+
+
 def search_pdc_tmt_studies(
     *,
     known_accessions: set[str] | None = None,
     allowed_plexes: set[int] | None = None,
-    min_channels: int = 10,
+    reject_plexes: set[int] | None = None,
+    min_channels: int = MIN_ATLAS_CHANNELS,
     max_channels: int = 16,
     programs: list[str] | None = None,
+    exclude_programs: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     """
-    TMT-исследования из PDC, отсутствующие в каталоге.
-    experiment_type: TMT10, TMT11, TMT16 и т.д.
+    TMT-исследования PDC: только >6 каналов (10/11/12/16), без TMT6/TMT18.
+    Исключает ID из TMT ATLAS + CPTAC + exclude_programs (напр. CPTAC program).
     """
     known = {a.upper() for a in (known_accessions or set())}
     program_filter = {p.lower() for p in (programs or [])}
+    reject = reject_plexes if reject_plexes is not None else REJECT_PLEXES
+    ok_plex = allowed_plexes or ATLAS_PLEXES
+    exclude_prog = list(exclude_programs or [])
     out: list[dict[str, Any]] = []
 
     for s in fetch_study_summary():
@@ -106,9 +118,14 @@ def search_pdc_tmt_studies(
         acc = (s.get("pdc_study_id") or "").upper()
         if not acc or acc in known:
             continue
+        if exclude_prog and _program_excluded(str(s.get("program_name") or ""), exclude_prog):
+            continue
         plex = _infer_plex_from_experiment(exp)
-        ok_plex = allowed_plexes or ATLAS_PLEXES
-        if plex is None or plex not in ok_plex:
+        if plex is None:
+            continue
+        if plex in reject or plex < min_channels or plex > max_channels:
+            continue
+        if plex not in ok_plex:
             continue
         if program_filter:
             prog = str(s.get("program_name") or "").lower()

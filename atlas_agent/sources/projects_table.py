@@ -2,20 +2,50 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
 PID_RE = re.compile(r"(PXD\d+|PDC\d+|IPX\d+|MSV\d+)", re.I)
+DEFAULT_ATLAS_SHEET = "TMT ATLAS"
 
 
-def load_projects_table(projects_csv: str | None) -> pd.DataFrame:
-    """Только локальный CSV — без Google Sheets."""
-    if not projects_csv:
-        raise FileNotFoundError("Укажите sheet.projects_csv в config.yaml")
-    path = Path(projects_csv)
+def catalog_path(sheet_cfg: dict[str, Any]) -> str | None:
+    return sheet_cfg.get("projects_file") or sheet_cfg.get("projects_csv")
+
+
+def catalog_sheet(sheet_cfg: dict[str, Any]) -> str | None:
+    return sheet_cfg.get("projects_sheet")
+
+
+def load_projects_table(
+    projects_path: str | None,
+    *,
+    sheet: str | None = None,
+) -> pd.DataFrame:
+    """Локальный каталог: CSV или Excel (лист TMT ATLAS)."""
+    if not projects_path:
+        raise FileNotFoundError("Укажите sheet.projects_file в config.yaml")
+    path = Path(projects_path)
     if not path.is_file():
         raise FileNotFoundError(f"Файл таблицы не найден: {path}")
+
+    if path.suffix.lower() in (".xlsx", ".xlsm"):
+        sheet_name = sheet or DEFAULT_ATLAS_SHEET
+        return pd.read_excel(path, sheet_name=sheet_name, engine="openpyxl")
     return pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
+
+
+def load_catalog(cfg: dict[str, Any] | None = None, *, sheet_cfg: dict | None = None) -> pd.DataFrame:
+    """Каталог из config.yaml (по умолчанию TMT ATLAS в project of Proteomics.xlsx)."""
+    sc = sheet_cfg or (cfg or {}).get("sheet") or {}
+    path = catalog_path(sc)
+    return load_projects_table(path, sheet=catalog_sheet(sc))
+
+
+def is_excel_catalog(sheet_cfg: dict[str, Any]) -> bool:
+    path = catalog_path(sheet_cfg)
+    return bool(path and Path(path).suffix.lower() in (".xlsx", ".xlsm"))
 
 
 def primary_project_id(raw: str) -> str:

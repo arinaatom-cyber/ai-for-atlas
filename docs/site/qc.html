@@ -1,149 +1,130 @@
 <!DOCTYPE html>
-<html lang="ru"><head>
-<meta charset="utf-8"/>
-<title>Discovery QC Report</title>
-<style>
-  body { font-family: Segoe UI, sans-serif; background:#0f1419; color:#e7ecf3; margin:0; padding:24px; }
-  h1 { color:#6cb6ff; } h2 { color:#3dd68c; margin-top:2rem; }
-  .kpi { display:flex; gap:16px; flex-wrap:wrap; margin:16px 0; }
-  .kpi div { background:#1a2332; border:1px solid #2a3548; border-radius:8px; padding:12px 18px; }
-  .kpi b { font-size:1.4rem; color:#6cb6ff; display:block; }
-  table { width:100%; border-collapse:collapse; font-size:.88rem; margin-top:8px; }
-  th,td { text-align:left; padding:8px; border-bottom:1px solid #2a3548; vertical-align:top; }
-  th { color:#8b9cb3; } .sub { color:#8b9cb3; }
-  .rules { background:#1a2332; padding:16px; border-radius:8px; font-size:.9rem; line-height:1.5; }
-</style></head><body>
-<h1>Discovery QC Report</h1>
-<p class="sub">projects.csv не изменялся · 2026-06-10 07:43:57 UTC</p>
-<div class="kpi">
-  <div><b>109</b>candidate</div>
-  <div><b>0</b>requires_manual_check</div>
-  <div><b>4</b>rejected (material)</div>
-  <div><b>0</b>filtered (TMT/technical)</div>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>QC</title>
+  <link rel="stylesheet" href="assets/theme.css"/>
+  <script src="assets/i18n.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <span class="brand-title" data-i18n="brand_title">Sirius Human TMT Proteome Atlas</span>
+      <span class="brand-sub" data-i18n="brand_sub">Discovery · Когорты · QC · каталог read-only</span>
+    </div>
+    <nav class="site-nav">
+      <a href="../index.html" class="" data-i18n="nav_home">Главная</a>
+      <a href="atlas.html" class="" data-i18n="nav_atlas">Атлас</a>
+      <a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a>
+      <a href="cohorts.html" class="" data-i18n="nav_cohorts">Когорты</a>
+      <a href="qc.html" class="active" data-i18n="nav_qc">QC</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+  <button type="button" data-lang="ru" class="active">RU</button>
+  <button type="button" data-lang="en">EN</button>
 </div>
-<div class="rules">
-<b>Правила материала:</b> Homo sapiens only · tumor tissue / adjacent normal / patient plasma·serum·blood /
-human-derived cancer cell lines OK · reject spheroids/organoids-only, PDX/xenograft-only, animal tissue,
-non-human cell lines · mixed tissue+organoids → manual check.
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="qc_title">QC отчёт Discovery</h1>
+  <p class="lead" data-i18n="qc_lead">Кандидаты · ручная проверка · отклонённые · технический фильтр</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Обновлено</span> 2026-06-18 17:32:58 UTC</span> <span class="meta-pill badge badge-muted" data-i18n="badge_readonly"></span></div>
+</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">36</span><span class="kpi-label" data-i18n="qc_candidate"></span></div><div class="kpi"><span class="kpi-value">12</span><span class="kpi-label" data-i18n="qc_manual"></span></div><div class="kpi"><span class="kpi-value">0</span><span class="kpi-label" data-i18n="qc_rejected"></span></div><div class="kpi"><span class="kpi-value">50</span><span class="kpi-label" data-i18n="qc_filtered"></span></div><div class="kpi"><span class="kpi-value">0</span><span class="kpi-label" data-i18n="kpi_abstracts_ai"></span></div><div class="kpi"><span class="kpi-value">24</span><span class="kpi-label" data-i18n="qc_pubs"></span></div></div>
+<div class="page-content">
+  <div class="note"><strong data-i18n="qc_rules_title"></strong> <span data-i18n="qc_rules"></span></div>
+
+  <section class="section">
+    <div class="section-head"><h2 data-i18n="qc_candidate"></h2><span class="section-count">36</span></div>
+    <div class="table-wrap">
+      <table><thead><tr>
+      <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_plex"></th>
+      <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_ai"></th>
+      <th data-i18n="th_data"></th><th data-i18n="th_notes"></th>
+    </tr></thead><tbody><tr><td class='cell-mono'><b>PXD077831</b></td><td class='cell-title'>The baseline vitreous proteome in rhegmatogenous retinal detachment: a case–control study of proliferative vitreoretinop</td><td>TMT 10-plex</td><td>clinical_human</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>Protein.txt</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000649</b></td><td class='cell-title'>Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000645</b></td><td class='cell-title'>Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000564</b></td><td class='cell-title'>Academia Sinica LUAD-100 — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.qcmetrics.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000220</b></td><td class='cell-title'>Academia Sinica LUAD-100 — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>Academia_Sinica_LUAD100_Phosphoproteome.label.txt</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000436</b></td><td class='cell-title'>APOLLO1 — Applied Proteogenomics OrganizationaL Learning and Outcomes - APOLLO</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>APOLLO_LUAD_Phosphoproteome_FeNTA.peptides.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000435</b></td><td class='cell-title'>APOLLO1 — Applied Proteogenomics OrganizationaL Learning and Outcomes - APOLLO</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>APOLLO_LUAD_Phosphoproteome_TiO2.sample.txt</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000430</b></td><td class='cell-title'>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000431</b></td><td class='cell-title'>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000432</b></td><td class='cell-title'>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000520</b></td><td class='cell-title'>International Cancer Proteogenome Consortium (ICPC): Proteogenomics of Oral Squamous Cell Carcinoma  — International Can</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphopeptide.tmt1</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000521</b></td><td class='cell-title'>International Cancer Proteogenome Consortium (ICPC): Proteogenomics of Oral Squamous Cell Carcinoma  — International Can</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphosite.tmt10</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000199</b></td><td class='cell-title'>Integrated Proteogenomic Characterization of HBV-related Hepatocellular carcinoma — International Cancer Proteogenome Co</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>Zhou_Liver_Cancer_Phosphoproteome.qcmetrics.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000496</b></td><td class='cell-title'>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.summary.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000495</b></td><td class='cell-title'>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000499</b></td><td class='cell-title'>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>raw only</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000497</b></td><td class='cell-title'>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.peptides.tsv</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000498</b></td><td class='cell-title'>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000515</b></td><td class='cell-title'>Cancer Proteogenomics  Group of National Cancer Center Korea — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>table<br/><span class='muted'>KNCC_Glioblastoma_Evolution_Phosphoproteome.phosphopeptide.t</span></td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000343</b></td><td class='cell-title'>Korea University - Cervical cancer — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000249</b></td><td class='cell-title'>Proteogenomics Analysis to Develop Precision Medicine for Treatment-Resistant Pancreatic Cancer — International Cancer P</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000363</b></td><td class='cell-title'>National Cancer Center Korea - iCC — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000591</b></td><td class='cell-title'>Proteogenomic characterization of non-functional pancreatic neuroendocrine tumors — International Cancer Proteogenome Co</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000589</b></td><td class='cell-title'>Proteogenomic characterization of non-functional pancreatic neuroendocrine tumors — International Cancer Proteogenome Co</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000176</b></td><td class='cell-title'>Proteogenomic Analysis of Pediatric Brain Cancer Tumors Pilot Study — Pediatric Brain Tumor Atlas - CBTN</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000607</b></td><td class='cell-title'>Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — Interna</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000606</b></td><td class='cell-title'>Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — Interna</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000696</b></td><td class='cell-title'>Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000695</b></td><td class='cell-title'>Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000403</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000399</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000401</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000318</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000319</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000320</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr>
+<tr><td class='cell-mono'><b>PDC000478</b></td><td class='cell-title'>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td>—</td><td class='analysis-cell'><span class="cell-empty" data-i18n="cell_empty"></span></td><td>no data</td><td>Материал соответствует критериям атласа</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2 data-i18n="qc_manual"></h2><span class="section-count">12</span></div>
+    <div class="table-wrap">
+      <table><thead><tr>
+      <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_plex"></th>
+      <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_ai"></th>
+      <th data-i18n="th_data"></th><th data-i18n="th_reason"></th>
+    </tr></thead><tbody><tr><td class='cell-mono'><b>PMID:41771895</b></td><td class='cell-title'>Analysis of isobaric quantitative proteomic data using TMT-Integrator and FragPipe computational platform.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-yes">yes 0.75</span><br/><span class="muted">human clinical proteomics; TMT + patient samples</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41622683</b></td><td class='cell-title'>UltraPlex-TMT: Expanding Isobaric Hyperplexing via Orthogonal Protease Cleavage.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:42051158</b></td><td class='cell-title'>Urine-Derived iPSC Neurospheres Uncover Proteomic Correlates of Clinical Severity in Dravet Syndrome.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-yes">yes 0.75</span><br/><span class="muted">human clinical proteomics; TMT + patient samples</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41851243</b></td><td class='cell-title'>Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucom</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41472394</b></td><td class='cell-title'>Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular V</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41981497</b></td><td class='cell-title'>Plasma extracellular vesicle proteomic analysis identifies WARS as a potential biomarker of infectious mononucleosis.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-yes">yes 0.75</span><br/><span class="muted">human clinical proteomics; TMT + patient samples</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41567026</b></td><td class='cell-title'>Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.55</span><br/><span class="muted">human clinical proteomics</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41966223</b></td><td class='cell-title'>Proteomic Analysis of Paired FFPE Tissue and Extracellular Vesicles Reveals Proteins Associated with Recurrence in Stage</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-yes">yes 0.75</span><br/><span class="muted">human clinical proteomics; TMT + patient samples</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41301916</b></td><td class='cell-title'>Mass Spectrometry for Lysine Methylation: Principles, Progress, and Prospects.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:13006395</b></td><td class='cell-title'>Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.55</span><br/><span class="muted">human clinical proteomics</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41055288</b></td><td class='cell-title'>Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr>
+<tr><td class='cell-mono'><b>PMID:41293887</b></td><td class='cell-title'>Multiplexed Data-Independent Acquisition-Based Proteomics Enabled by TMTpro Complementary Ions.</td><td>—</td><td>—</td><td>—</td><td class='analysis-cell'><span class="badge fit-maybe">maybe 0.65</span></td><td>no data</td><td>По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2 data-i18n="qc_rejected"></h2><span class="section-count"></span></div>
+    <div class="table-wrap">
+      <table><thead><tr>
+      <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_plex"></th>
+      <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_ai"></th>
+      <th data-i18n="th_data"></th><th data-i18n="th_reason"></th>
+    </tr></thead><tbody><tr><td colspan="8" data-i18n="no_rows"></td></tr></tbody></table>
+    </div>
+  </section>
 </div>
-<h2>Candidate (109)</h2>
-<table><tr><th>ID</th><th>Title</th><th>Plex</th><th>Included</th><th>Excluded</th><th>Notes</th></tr>
-<tr><td><b>PXD077831</b></td><td>The baseline vitreous proteome in rhegmatogenous retinal detachment: a case–control study of proliferative vitreoretinop</td><td>TMT 10-plex</td><td>clinical_human</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000649</b></td><td>Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000645</b></td><td>Academia Sinica-Gastric Cancer-154 — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000564</b></td><td>Academia Sinica LUAD-100 — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000220</b></td><td>Academia Sinica LUAD-100 — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000403</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000399</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000401</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000318</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000319</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000320</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000436</b></td><td>APOLLO1 — Applied Proteogenomics OrganizationaL Learning and Outcomes - APOLLO</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000435</b></td><td>APOLLO1 — Applied Proteogenomics OrganizationaL Learning and Outcomes - APOLLO</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000478</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000430</b></td><td>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000431</b></td><td>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000432</b></td><td>Broad — Broad Institute</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000520</b></td><td>International Cancer Proteogenome Consortium (ICPC): Proteogenomics of Oral Squamous Cell Carcinoma  — International Can</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000521</b></td><td>International Cancer Proteogenome Consortium (ICPC): Proteogenomics of Oral Squamous Cell Carcinoma  — International Can</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000130</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000129</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000471</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000128</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000450</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000451</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000449</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000447</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000454</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000448</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000245</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000246</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000206</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000203</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000205</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000222</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000233</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000232</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000237</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000491</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000490</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000492</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000224</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000225</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000155</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000154</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000149</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000627</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000466</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000465</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000272</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000271</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000626</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000443</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000444</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000442</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000440</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000445</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000441</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000226</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000227</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000123</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000124</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000126</b></td><td>CPTAC3 Discovery and Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000199</b></td><td>Integrated Proteogenomic Characterization of HBV-related Hepatocellular carcinoma — International Cancer Proteogenome Co</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000496</b></td><td>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000495</b></td><td>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000499</b></td><td>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000497</b></td><td>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000498</b></td><td>Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas -</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000515</b></td><td>Cancer Proteogenomics  Group of National Cancer Center Korea — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000343</b></td><td>Korea University - Cervical cancer — International Cancer Proteogenome Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000249</b></td><td>Proteogenomics Analysis to Develop Precision Medicine for Treatment-Resistant Pancreatic Cancer — International Cancer P</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000326</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000328</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000327</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000330</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000329</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000363</b></td><td>National Cancer Center Korea - iCC — International Cancer Proteogenome Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000297</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000296</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000591</b></td><td>Proteogenomic characterization of non-functional pancreatic neuroendocrine tumors — International Cancer Proteogenome Co</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000589</b></td><td>Proteogenomic characterization of non-functional pancreatic neuroendocrine tumors — International Cancer Proteogenome Co</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000176</b></td><td>Proteogenomic Analysis of Pediatric Brain Cancer Tumors Pilot Study — Pediatric Brain Tumor Atlas - CBTN</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000240</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000244</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000242</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000239</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000121</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000117</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000250</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000251</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000119</b></td><td>CPTAC2 Confirmatory — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000583</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000359</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000357</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000361</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000409</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000410</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 11-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000580</b></td><td>Proteogenomic Translational Research Centers (PTRC) — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000312</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000309</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000313</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000311</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000314</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000310</b></td><td>CPTAC3-Other — Clinical Proteomic Tumor Analysis Consortium</td><td>TMT 10-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000607</b></td><td>Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — Interna</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000606</b></td><td>Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — Interna</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000696</b></td><td>Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr>
-<tr><td><b>PDC000695</b></td><td>Yonsei Cancer Center - TNBC — International Cancer Proteogenome Consortium</td><td>TMT 16-plex</td><td>pdc_clinical_tumor</td><td></td><td>Материал соответствует критериям атласа</td></tr></table>
-<h2>Requires manual check (0)</h2>
-<table><tr><th>ID</th><th>Title</th><th>Plex</th><th>Included</th><th>Excluded</th><th>Reason</th></tr>
-<tr><td colspan='6'>Нет записей (manual)</td></tr></table>
-<h2>Rejected — material (4)</h2>
-<table><tr><th>ID</th><th>Title</th><th>Plex</th><th>Included</th><th>Excluded</th><th>Reason</th></tr>
-<tr><td><b>PDC000713</b></td><td>CPTAC-HCMI-Organoids — CPTAC-Human Cancer Models Initiative</td><td>TMT 16-plex</td><td></td><td>3d_model</td><td>Только spheroids/organoids/tumoroids/3D culture</td></tr>
-<tr><td><b>PDC000712</b></td><td>CPTAC-HCMI-Organoids — CPTAC-Human Cancer Models Initiative</td><td>TMT 16-plex</td><td></td><td>3d_model</td><td>Только spheroids/organoids/tumoroids/3D culture</td></tr>
-<tr><td><b>PDC000711</b></td><td>CPTAC-HCMI-Organoids — CPTAC-Human Cancer Models Initiative</td><td>TMT 16-plex</td><td></td><td>3d_model</td><td>Только spheroids/organoids/tumoroids/3D culture</td></tr>
-<tr><td><b>PDC000714</b></td><td>CPTAC-HCMI-Organoids — CPTAC-Human Cancer Models Initiative</td><td>TMT 16-plex</td><td></td><td>3d_model</td><td>Только spheroids/organoids/tumoroids/3D culture</td></tr></table>
-</body></html>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
+</body>
+</html>

@@ -8,6 +8,7 @@ from typing import Any
 import requests
 
 from atlas_agent.discovery.filters import extract_ids_from_text
+from atlas_agent.sources.pride import find_pride_project_by_pmid, search_pride_by_terms
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 PRIDE_API = "https://www.ebi.ac.uk/pride/ws/archive/v3"
@@ -91,12 +92,26 @@ def publications_to_projects(
     out: list[dict[str, Any]] = []
 
     for pub in pubs[:max_resolve]:
-        ids = resolve_accessions_from_publication(
-            pmid=str(pub.get("pmid") or ""),
-            doi=str(pub.get("doi") or ""),
-            title=str(pub.get("title") or ""),
-            abstract=str(pub.get("abstract") or pub.get("abstract_snippet") or ""),
-        )
+        ai = pub.get("abstract_ai") or {}
+        ai_acc = ai.get("accessions") or {}
+        ids = {k: list(ai_acc.get(k) or []) for k in ("PXD", "PDC", "MSV", "IPX")}
+        if not any(ids.values()):
+            ids = resolve_accessions_from_publication(
+                pmid=str(pub.get("pmid") or ""),
+                doi=str(pub.get("doi") or ""),
+                title=str(pub.get("title") or ""),
+                abstract=str(pub.get("abstract") or pub.get("abstract_snippet") or ""),
+            )
+        else:
+            # дополнить из Europe PMC data availability
+            extra = resolve_accessions_from_publication(
+                pmid=str(pub.get("pmid") or ""),
+                doi=str(pub.get("doi") or ""),
+                title="",
+                abstract=str(pub.get("data_availability") or ""),
+            )
+            for k in ("PXD", "PDC", "MSV", "IPX"):
+                ids[k] = sorted(set((ids.get(k) or []) + (extra.get(k) or [])))
         for kind in ("PXD", "PDC", "MSV", "IPX"):
             for acc in ids.get(kind) or []:
                 acc = acc.upper()
@@ -109,6 +124,8 @@ def publications_to_projects(
                         rec["source"] = "pride_via_publication"
                         rec["pmid"] = pub.get("pmid", "")
                         rec["doi"] = pub.get("doi", "")
+                        rec["abstract_ai"] = pub.get("abstract_ai")
+                        rec["abstract_reader"] = pub.get("abstract_reader")
                         out.append(rec)
                 else:
                     out.append(
@@ -121,8 +138,128 @@ def publications_to_projects(
                             "url": _url_for_accession(acc),
                             "tmt_detected": True,
                             "human": True,
+                            "abstract_ai": pub.get("abstract_ai"),
+                            "abstract_reader": pub.get("abstract_reader"),
                         }
                     )
+    return out
+
+
+def _pub_has_accession(pub: dict[str, Any]) -> bool:
+    """Семантический режим: абстракты без номеров проекта."""
+    return False
+
+
+def _atlas_fit(pub: dict[str, Any]) -> tuple[str, float]:
+    ai = pub.get("abstract_ai") or {}
+    fit = str(ai.get("atlas_fit") or pub.get("atlas_fit") or "no").lower()
+    try:
+        score = float(ai.get("atlas_fit_score") or pub.get("atlas_fit_score") or 0)
+    except (TypeError, ValueError):
+        score = 0.0
+    return fit, score
+
+
+def resolve_semantic_publications(
+    pubs: list[dict[str, Any]],
+    *,
+    known_accessions: set[str],
+    year_from: int = 2024,
+    year_to: int = 2026,
+    max_resolve: int = 12,
+    min_score: float = 0.5,
+) -> list[dict[str, Any]]:
+    """
+    Абстракт без PXD, но по смыслу как атлас → PRIDE по PMID или pride_search_terms.
+    """
+    known = {a.upper() for a in known_accessions}
+    seen: set[str] = set()
+    out: list[dict[str, Any]] = []
+
+    for pub in pubs[: max_resolve * 3]:
+        if len(out) >= max_resolve:
+            break
+        if _pub_has_accession(pub):
+            continue
+        fit, score = _atlas_fit(pub)
+        if fit == "no" or score < min_score:
+            continue
+        ai = pub.get("abstract_ai") or {}
+        pmid = str(pub.get("pmid") or "")
+        rec = find_pride_project_by_pmid(pmid, known_accessions=known | seen) if pmid else None
+        if not rec:
+            terms = str(ai.get("pride_search_terms") or "").strip()
+            if not terms:
+                title = str(pub.get("title") or "")
+                terms = " ".join(re.findall(r"[A-Za-z]{4,}", title)[:6])
+            hits = search_pride_by_terms(
+                terms,
+                year_from=year_from,
+                year_to=year_to,
+                limit=2,
+                known_accessions=known | seen,
+            )
+            rec = hits[0] if hits else None
+        if not rec:
+            continue
+        acc = (rec.get("accession") or "").upper()
+        if not acc or acc in known or acc in seen:
+            continue
+        seen.add(acc)
+        rec = dict(rec)
+        rec["source"] = "pride_via_semantic_abstract"
+        rec["pmid"] = pmid
+        rec["doi"] = pub.get("doi", "")
+        rec["abstract_ai"] = ai
+        rec["abstract_reader"] = pub.get("abstract_reader")
+        rec["atlas_fit"] = fit
+        rec["atlas_fit_score"] = score
+        rec["semantic_resolve"] = "pmid" if pmid and rec.get("pmid") else "search_terms"
+        out.append(rec)
+    return out
+
+
+def literature_semantic_candidates(
+    pubs: list[dict[str, Any]],
+    *,
+    known_accessions: set[str],
+    min_score: float = 0.55,
+) -> list[dict[str, Any]]:
+    """Статьи похожи на атлас, но PXD так и не найден — ручная проверка."""
+    known = {a.upper() for a in known_accessions}
+    out: list[dict[str, Any]] = []
+    for pub in pubs:
+        if _pub_has_accession(pub):
+            continue
+        fit, score = _atlas_fit(pub)
+        if fit not in ("yes", "maybe") or score < min_score:
+            continue
+        pmid = re.sub(r"\D", "", str(pub.get("pmid") or ""))
+        if pmid and pmid in known:
+            continue
+        ai = pub.get("abstract_ai") or {}
+        out.append(
+            {
+                "pmid": pmid,
+                "doi": pub.get("doi", ""),
+                "title": (pub.get("title") or "")[:400],
+                "abstract_snippet": (pub.get("abstract") or "")[:500],
+                "source": "literature_semantic_candidate",
+                "atlas_fit": fit,
+                "atlas_fit_score": score,
+                "abstract_ai": ai,
+                "abstract_reader": pub.get("abstract_reader"),
+                "pride_search_terms": ai.get("pride_search_terms", ""),
+                "summary_ru": ai.get("summary_ru", ""),
+                "verdict": "requires_manual_check",
+                "filter_reasons": [
+                    "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+                ],
+                "human": ai.get("human_suitable", True),
+                "tmt_detected": str(ai.get("tmt") or "") not in ("none", "unclear", ""),
+                "recommendation": "literature_manual_resolve",
+            }
+        )
     return out
 
 

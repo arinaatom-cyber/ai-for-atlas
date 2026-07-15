@@ -7,6 +7,13 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(ROOT / ".env")
+except ImportError:
+    pass
+
 
 def load_config(path: str | Path | None = None) -> dict:
     cfg_path = Path(path) if path else ROOT / "config.yaml"
@@ -25,7 +32,7 @@ def load_config(path: str | Path | None = None) -> dict:
 
     sheet = cfg.get("sheet") or {}
     paths = cfg.get("paths") or {}
-    for key in ("projects_csv",):
+    for key in ("projects_csv", "projects_file", "proteomics_workbook"):
         if sheet.get(key):
             sheet[key] = resolve(sheet[key])
     for key in ("tmt_projects_dir", "atlas_data_dir", "reports_dir"):

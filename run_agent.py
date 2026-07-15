@@ -16,12 +16,11 @@ def cmd_run(args: argparse.Namespace) -> int:
     print(f"Загружено проектов: {len(agent.df)}")
     use_ai = not getattr(args, "no_ai", False) and not args.no_claude
     if use_ai:
-        eng = resolve_engine(agent.llm_provider, agent.llm_base_url)
+        eng = resolve_engine(agent.llm_provider, agent.llm_base_url, prefer_cloud=agent.llm_prefer_cloud)
         if eng == "local_rules":
-            print("ИИ: gpt4all (Qwen open-source, без ключа) — первый запуск скачает ~1 GB")
-            print("  pip install gpt4all   (если ещё не установлен)")
+            print("ИИ: regex (нет API-ключа — добавьте ZAI_API_KEY в .env)")
         else:
-            print(f"ИИ: {eng}")
+            print(f"ИИ: {eng} · model={agent.llm_model or '(default)'}")
     else:
         print("ИИ: выключен")
     report = agent.run_full(

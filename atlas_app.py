@@ -24,7 +24,13 @@ import sys
 from pathlib import Path
 
 from atlas_agent.config import load_config
-from atlas_agent.sources.projects_table import load_projects_table, primary_project_id
+from atlas_agent.sources.projects_table import (
+    catalog_path,
+    catalog_sheet,
+    load_catalog,
+    load_projects_table,
+    primary_project_id,
+)
 from atlas_agent.workflow.completeness import audit_table, row_completeness
 from atlas_agent.workflow.project_lookup import find_project_row, project_card
 
@@ -32,21 +38,25 @@ from atlas_agent.workflow.project_lookup import find_project_row, project_card
 def _paths(cfg: dict) -> tuple[str, Path]:
     sheet = cfg.get("sheet") or {}
     paths = cfg.get("paths") or {}
-    csv_path = sheet.get("projects_csv")
+    catalog = catalog_path(sheet) or "./project of Proteomics.xlsx"
     root = Path(__file__).parent
     out = Path(paths.get("reports_dir") or root / "data")
-    return csv_path, out
+    return catalog, out
+
+
+def _load_df(cfg: dict):
+    return load_catalog(cfg)
 
 
 def cmd_lookup(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    csv_path, _ = _paths(cfg)
-    df = load_projects_table(csv_path)
+    catalog, _ = _paths(cfg)
+    df = _load_df(cfg)
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir", "")
     card = project_card(df, args.project, tmt_root)
 
     if not card.get("found"):
-        print(f"Проект {args.project} не найден в {csv_path}")
+        print(f"Проект {args.project} не найден в каталоге TMT ATLAS")
         return 1
 
     if args.json:
@@ -88,8 +98,8 @@ def cmd_lookup(args: argparse.Namespace) -> int:
 
 def cmd_todo(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    csv_path, out = _paths(cfg)
-    df = load_projects_table(csv_path)
+    _, out = _paths(cfg)
+    df = _load_df(cfg)
     audit = audit_table(df)
     todo = audit[audit["status"].isin(["todo", "partial"])]
     if args.status:
@@ -109,8 +119,8 @@ def cmd_todo(args: argparse.Namespace) -> int:
 
 def cmd_stats(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    csv_path, _ = _paths(cfg)
-    df = load_projects_table(csv_path)
+    catalog, _ = _paths(cfg)
+    df = _load_df(cfg)
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir", "")
 
     if args.project:
@@ -214,8 +224,8 @@ def cmd_channels(args: argparse.Namespace) -> int:
 
 def cmd_tmt_all(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    csv_path, out = _paths(cfg)
-    df = load_projects_table(csv_path)
+    _, out = _paths(cfg)
+    df = _load_df(cfg)
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir", "")
 
     from atlas_agent.analysis.tmt_batch import run_tmt_batch
@@ -242,8 +252,8 @@ def cmd_tmt_all(args: argparse.Namespace) -> int:
 
 def cmd_tmt(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
-    csv_path, out = _paths(cfg)
-    df = load_projects_table(csv_path)
+    _, out = _paths(cfg)
+    df = _load_df(cfg)
     row = find_project_row(df, args.project)
     if row is None:
         print(f"Проект {args.project} не найден")
