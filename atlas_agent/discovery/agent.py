@@ -24,10 +24,13 @@ from atlas_agent.revisor.similarity import annotate_candidates
 from atlas_agent.sources.projects_table import load_catalog, primary_project_id
 from atlas_agent.sources.proteomics_workbook import (
     atlas_project_count,
+    filter_items_not_in_known,
     ids_from_discovery_item,
     known_accessions_from_workbook,
     known_rejected_from_workbook,
     load_deleted_catalog,
+    rejection_reasons_from_workbook,
+    workbook_path_from_cfg,
 )
 
 
@@ -38,15 +41,50 @@ def _known_accessions(df: pd.DataFrame, cfg: dict | None = None) -> set[str]:
         for x in df["Project ID"].dropna()
         if str(x).strip()
     }
-    # TMT ATLAS + CPTAC из project of Proteomics.xlsx (read-only)
-    wb = (cfg or {}).get("sheet", {}).get("proteomics_workbook")
-    if wb:
-        path = Path(wb)
-        if not path.is_absolute():
-            path = Path(__file__).resolve().parents[2] / wb
-        if path.is_file():
-            known |= known_accessions_from_workbook(path)
+    # TMT ATLAS + CPTAC + removed for general из project of Proteomics.xlsx (read-only)
+    wb_path = workbook_path_from_cfg(cfg)
+    if wb_path:
+        known |= known_accessions_from_workbook(wb_path)
+        known |= known_rejected_from_workbook(wb_path)
     return known
+
+
+def _apply_removed_from_workbook(
+    buckets: dict[str, list[dict]],
+    cfg: dict | None,
+    *,
+    root: Path | None = None,
+) -> int:
+    """Перенос совпадений с листом removed for general в rejected."""
+    wb_path = workbook_path_from_cfg(cfg, root=root)
+    if not wb_path:
+        return 0
+    rejected_known = known_rejected_from_workbook(wb_path)
+    if not rejected_known:
+        return 0
+    reason_map = rejection_reasons_from_workbook(wb_path)
+    moved = 0
+    for key in list(buckets.keys()):
+        if key == "rejected":
+            continue
+        kept = []
+        for item in buckets.get(key, []):
+            matched = ids_from_discovery_item(item) & rejected_known
+            if matched:
+                item = dict(item)
+                hit = next(iter(matched))
+                reason = reason_map.get(hit) or reason_map.get(hit.upper()) or (
+                    "удалено из general (лист removed for general)"
+                )
+                item["verdict"] = "rejected"
+                item["filter_reasons"] = (item.get("filter_reasons") or []) + [reason]
+                item["recommendation"] = "rejected_previously_removed"
+                buckets.setdefault("rejected", []).append(item)
+                moved += 1
+            else:
+                kept.append(item)
+        buckets[key] = kept
+    return moved
 
 
 def _flatten_consortia(consortia: dict) -> list[dict]:
@@ -187,30 +225,7 @@ def run_discovery_scan(
     if literature_semantic:
         buckets.setdefault("requires_manual_check", []).extend(literature_semantic)
 
-    rejected_known: set[str] = set()
-    wb = (cfg.get("sheet") or {}).get("proteomics_workbook")
-    if wb:
-        wb_path = Path(wb)
-        if not wb_path.is_absolute():
-            wb_path = root / wb
-        if wb_path.is_file():
-            rejected_known = known_rejected_from_workbook(wb_path)
-
-    if rejected_known:
-        for key in list(buckets.keys()):
-            kept = []
-            for item in buckets.get(key, []):
-                if ids_from_discovery_item(item) & rejected_known:
-                    item = dict(item)
-                    item["verdict"] = "rejected"
-                    item["filter_reasons"] = (item.get("filter_reasons") or []) + [
-                        "удалено из general (лист отклонённых)"
-                    ]
-                    item["recommendation"] = "rejected_previously_removed"
-                    buckets.setdefault("rejected", []).append(item)
-                else:
-                    kept.append(item)
-            buckets[key] = kept
+    removed_moved = _apply_removed_from_workbook(buckets, cfg, root=root)
 
     pride_novel = [p for p in pride_raw if _is_novel(p, known)]
     pdc_novel = [p for p in pdc_raw if _is_novel(p, known)]
@@ -238,7 +253,12 @@ def run_discovery_scan(
     qc_out = build_qc_outputs(buckets, known_acc)
     new_projects = qc_out["candidates"]
 
-    from atlas_agent.discovery.data_availability import annotate_data_availability, literature_data_hint, summarize_availability
+    from atlas_agent.discovery.data_availability import (
+        annotate_data_availability,
+        literature_data_hint,
+        partition_phospho_only_candidates,
+        summarize_availability,
+    )
 
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir") or ""
     scan_cfg_da = scan_cfg.get("data_availability") or {}
@@ -253,6 +273,17 @@ def run_discovery_scan(
                     delay_s=float(scan_cfg_da.get("delay_s", 0.12)),
                 )
         new_projects = qc_out["candidates"]
+
+    reject_phospho_files = scan_cfg_da.get("reject_phospho_only_files", True)
+    if reject_phospho_files and new_projects:
+        kept, phospho_moved = partition_phospho_only_candidates(
+            new_projects, reject_phospho_only=True
+        )
+        if phospho_moved:
+            qc_out["candidates"] = kept
+            qc_out["new_projects"] = kept
+            new_projects = kept
+            buckets.setdefault("filtered_out", []).extend(phospho_moved)
 
     from atlas_agent.viz.portal_index import format_finding_note
 
@@ -310,8 +341,13 @@ def run_discovery_scan(
             "review_recommended": len(new_projects),
             "already_in_catalog": len(buckets.get("already_in_catalog", [])),
             "filtered_out": len(buckets.get("filtered_out", [])),
+            "phospho_only_filtered": sum(
+                1 for x in buckets.get("filtered_out", [])
+                if any("Phosphoproteomics only" in r for r in (x.get("filter_reasons") or []))
+            ),
             "requires_manual_check": len(buckets.get("requires_manual_check", [])),
             "rejected": len(buckets.get("rejected", [])),
+            "removed_from_workbook": removed_moved,
             "human_filtered": sum(
                 1 for x in buckets.get("filtered_out", [])
                 if any("Human only" in r or "Не human" in r for r in (x.get("filter_reasons") or []))
@@ -342,6 +378,7 @@ def run_discovery_scan(
         "consortia_raw_counts": {k: len(v) for k, v in consortia.items()},
         "processing_notes": [
             "Каталог projects.csv только читается — удаление запрещено",
+            "Лист removed for general в project of Proteomics.xlsx — автоисключение из кандидатов",
             "Новые PXD/PDC добавляются вручную или через run_revisor.py add --apply",
             "Запускайте scan еженедельно: python run_discovery.py scan",
         ],

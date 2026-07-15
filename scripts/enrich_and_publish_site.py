@@ -14,8 +14,9 @@ from atlas_agent.discovery.data_availability import (
     annotate_data_availability,
     data_guidance,
     literature_data_hint,
+    partition_phospho_only_candidates,
 )
-from atlas_agent.viz.portal_index import format_finding_note
+from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.viz.publish_site import publish_discovery_site
 
 
@@ -36,16 +37,32 @@ def enrich_report(report: dict, cfg: dict) -> dict:
                 delay_s=float(da_cfg.get("delay_s", 0.12)),
             )
         for item in items:
-            if not item.get("finding_note"):
-                item["finding_note"] = format_finding_note(item)
+            resolve_publication_links(item, fetch_pride_pmid=da_cfg.get("fetch_pride_pmid", True))
+            item["finding_note"] = format_finding_note(item)
             da = item.get("data_availability") or {}
-            if da and not da.get("guidance"):
+            if da:
                 da["guidance"] = data_guidance(da)
+
+    if da_cfg.get("reject_phospho_only_files", True):
+        for key in ("candidates", "new_projects"):
+            items = report.get(key) or []
+            if not items:
+                continue
+            kept, moved = partition_phospho_only_candidates(items)
+            if moved:
+                report[key] = kept
+                fo = list(report.get("filtered_out") or [])
+                fo.extend(moved)
+                report["filtered_out"] = fo
+                s = report.setdefault("summary", {})
+                s["candidates"] = len(kept)
+                s["new_projects"] = len(kept)
+                s["filtered_out"] = len(fo)
+                s["phospho_only_filtered"] = s.get("phospho_only_filtered", 0) + len(moved)
 
     pubs = report.get("publications_analyzed") or []
     for p in pubs:
-        if not p.get("data_hint"):
-            p["data_hint"] = literature_data_hint(p)
+        p["data_hint"] = literature_data_hint(p)
 
     return report
 

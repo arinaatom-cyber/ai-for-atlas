@@ -15,8 +15,11 @@
 | `python run_discovery.py profile` | `discovery/catalog_profile.py` | Профиль атласа (органы, болезни, TMT) |
 | `python run_discovery.py policy` | `discovery/policy.py` | Правила read-only |
 | `python run_discovery.py publish` | `viz/publish_site.py` | Пересобрать `docs/site/` |
+| `python scripts/enrich_and_publish_site.py` | `scripts/enrich_and_publish_site.py` | Обогатить `latest.json` (finding_note, PubMed, data files) + publish |
+| `python scripts/dump_scan_results.py` | `scripts/dump_scan_results.py` | Дамп кандидатов с tier PROTEOME / PHOSPHO-ONLY |
+| `python scripts/analyze_latest_scan.py` | `scripts/analyze_latest_scan.py` | Сводка воронки и источников |
 | `python run_discovery.py llm` | `llm_client.resolve_engine` | Какой ИИ сейчас активен |
-| `streamlit run discovery_app.py` | `discovery_app.py` | UI в браузере |
+| `streamlit run discovery_app.py` | `discovery_app.py` | Портал: органы → GitHub · Discovery · ключевые слова |
 | `powershell scripts\serve_site.ps1` | — | Локальный сайт :8765 |
 | `powershell scripts\setup_github_pages.ps1` | — | Первый push на GitHub Pages |
 | `powershell scripts\push_site_github.ps1` | — | Обновить сайт на GitHub |
@@ -53,7 +56,10 @@ flowchart TD
     S --> T
     T --> U[build_qc_outputs]
     U --> V[candidate / manual / rejected]
-    V --> W[docs/site/discovery.html]
+    V --> W[data_availability.py]
+    W --> X{omics_layer}
+    X -->|protein / mixed / raw| Y[docs/site/discovery.html]
+    X -->|phospho_only| Z[filtered_out]
     J --> R
 ```
 
@@ -82,8 +88,10 @@ flowchart TD
 | verdict | Условие (код) |
 |---------|----------------|
 | `already_in_catalog` | PXD/PDC/PMID уже в TMT ATLAS / CPTAC |
-| `filtered_out` | не human, не TMT 10–16, label-free, обзор без ID |
-| `duplicate_similar` | очень похож на проект в каталоге (Jaccard) |
+| `filtered_out` | не human, не TMT 10–16, label-free, **phosphoproteomics** (`analytical_fraction` / title), обзор без ID |
+| `duplicate_similar` | очень похож на проект в каталоге (Jaccard по словам, **не ИИ**) |
+
+**Похожесть vs ИИ:** `similarity.py` считает пересечение токенов заголовка/органа/ткани (Jaccard, пороги 0.18 / 0.35). Это дешёвая эвристика для дедупликации. Смысловой разбор абстрактов — отдельно в `abstract_reader.py` (LLM или regex).
 | `requires_manual_check` | неясный материал / органоиды+ткань / статья по смыслу |
 | `rejected` | organoid-only, PDX-only, mouse, MSC и т.д. |
 | `recommended` | прошёл все технические фильтры |
@@ -98,7 +106,20 @@ flowchart TD
 | **requires_manual_check** | смешанный дизайн, неясно |
 | **rejected** | organoid-only, PDX-only, не-human |
 
-### Шаг 5 — Выход
+### Шаг 5 — Проверка файлов (`data_availability.py`)
+
+После QC, до публикации сайта:
+
+| Поле | Смысл |
+|------|--------|
+| `omics_layer: protein` | есть protein-level table (`Protein.txt`, `*Proteome*.tsv`) |
+| `omics_layer: phospho_only` | только phospho-таблицы → **не candidate** |
+| `omics_layer: mixed` | и proteome, и phospho — остаётся candidate (смотреть proteome file) |
+| `status: phospho_table` | отдельный статус, не смешивается с `quant_table` |
+
+Функция `partition_phospho_only_candidates()` в `agent.py` убирает phospho-only из `candidates`.
+
+### Шаг 6 — Выход
 
 - **candidate** → `docs/site/discovery.html` (только новые PXD/PDC/MSV/IPX)
 - **manual_check** / **rejected** → QC-таблицы на сайте
@@ -200,21 +221,56 @@ llm:
 | `atlas_agent/discovery/filters.py` | Воронка verdict |
 | `atlas_agent/discovery/sample_material_qc.py` | QC материала |
 | `atlas_agent/discovery/qc_outputs.py` | candidate / manual / rejected |
+| `atlas_agent/discovery/data_availability.py` | Файлы репозитория: `omics_layer`, phospho vs proteome |
+| `atlas_agent/sources/proteomics_workbook.py` | Read-only: лист removed-for-general из `project of Proteomics.xlsx` |
+| `scripts/enrich_and_publish_site.py` | Обогащение `latest.json` + publish (без полного scan) |
+| `scripts/dump_scan_results.py` | Tier-дамп кандидатов для ручного разбора |
 | `atlas_agent/sources/pdc.py` | PDC TMT10+ фильтр |
 | `atlas_agent/llm_client.py` | Выбор Qwen / Claude / GPT4All |
-| `config.yaml` | discovery + llm + pdc |
+| `atlas_agent/discovery/keyword_search.py` | Поиск по ключевым словам (Streamlit) |
+| `atlas_agent/viz/portal_index.py` | Органы → GitHub / PRIDE / PubMed |
+| `discovery_app.py` | Streamlit-портал (4 вкладки) |
+| `docs/PUBLICATION_CHECKLIST.md` | Чеклист перед публикацией |
+
+---
+
+## Streamlit-портал (`discovery_app.py`)
+
+| Вкладка | Назначение |
+|---------|------------|
+| **TMT ATLAS (органы)** | Выбор органа → проекты каталога → папка `tmt-projects/Projects/PXD…`, PRIDE, PubMed, карта `?organ=` |
+| **Discovery** | Кандидаты полного scan; колонка «Что найдено» (не только заголовок) |
+| **Поиск по ключевым словам** | Отдельный лёгкий поиск: keywords из каталога + Europe PMC + ИИ |
+| **Ресурсы и этапы** | URL GitHub Pages, описание multi-stage pipeline |
+
+```bash
+streamlit run discovery_app.py
+```
 
 ---
 
 ## GitHub
 
-Код на GitHub появится после:
+Репозиторий: **https://github.com/arinaatom-cyber/ai-for-atlas**
+
+Сайт: **https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html**
+
+Обновление:
 
 ```powershell
-gh auth login
-powershell -File scripts\setup_github_pages.ps1
+python run_discovery.py publish
+powershell -File scripts\push_site_github.ps1
 ```
 
-Сайт: `https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html`
+Чеклист публикации: `docs/PUBLICATION_CHECKLIST.md`
 
-Тесты: `python -m pytest tests/ -q` (20 тестов: QC + PDC + semantic).
+Тесты: `python -m pytest tests/ -q`
+
+### Карта кода (имена в репозитории)
+
+| В документе / устно | Фактически в коде |
+|---------------------|-------------------|
+| `_known_accessions()` | `agent.py` → `_known_accessions()`; workbook через `proteomics_workbook.known_rejected_from_workbook()` |
+| `_apply_removed_from_workbook()` | Инлайн в `agent.py`: `filter_items_not_in_known()` + перенос в `rejected` |
+| Tier PROTEOME / PHOSPHO-ONLY | `data_availability.omics_layer` + `scripts/dump_scan_results.py` |
+| Phospho filter | metadata: `filters.assess_proteome_layer()`; files: `partition_phospho_only_candidates()` |

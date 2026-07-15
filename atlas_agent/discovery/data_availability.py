@@ -14,22 +14,67 @@ from atlas_agent.sources.projects_table import primary_project_id
 PRIDE_FILES_API = "https://www.ebi.ac.uk/pride/ws/archive/v2/projects/{acc}/files"
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
 
-QUANT_NAME = re.compile(
-    r"(protein|gene|abundance|quant|expression|matrix|log2|ratio|"
-    r"proteome|pgx|cdap|phospho.*(site|peptide)|site.*table)",
-    re.I,
-)
 TABLE_EXT = re.compile(r"\.(tsv|txt|csv|xlsx|mztab)$", re.I)
-PDC_TABLE = re.compile(
-    r"\.(peptides|summary|qcmetrics|sample|label|protein|gene|site)\.(tsv|txt)$",
-    re.I,
-)
 RAW_EXT = re.compile(r"\.(raw|mzml|mgf|wiff|d)$", re.I)
 PSM_NAME = re.compile(r"\b(psm|peptide|mzid|identification)\b", re.I)
 
+# Protein-level tables (global proteome / protein groups)
+PROTEOME_FILE = re.compile(
+    r"(?<![\w-])(?:protein\.txt|protein[_ ]?groups?|"
+    r"(?<![\w-])proteome(?![\w-])|global[_ ]?proteome|whole[_ ]?proteome|"
+    r"gene[_ ]?abund|abundance|expression|pgx|cdap)",
+    re.I,
+)
+
+# Phospho-PTM tables — must NOT share status with protein-level proteome
+PHOSPHO_FILE = re.compile(
+    r"phospho|p\s*site|phosphosite|phosphopeptide|kinase\s*substrate|"
+    r"phosphoryl|_phos[_\.]|[_\.\-]phos[_\.\-]|\.site\.|site[_ ]?table",
+    re.I,
+)
+
+QUANT_GENERIC = re.compile(
+    r"(protein|gene|abundance|quant|expression|matrix|log2|ratio)",
+    re.I,
+)
+
+PDC_TABLE = re.compile(
+    r"\.(peptides|summary|qcmetrics|sample|label|protein|gene)\.(tsv|txt)$",
+    re.I,
+)
+
+
+def _file_omics_kind(name: str) -> str | None:
+    """Return 'proteome', 'phospho', 'generic_quant', or None for non-quant tables."""
+    low = (name or "").lower()
+    if not TABLE_EXT.search(low):
+        return None
+    # Phospho before proteome — *Phosphoproteome* also contains "proteome"
+    if "phosphoproteome" in low or PHOSPHO_FILE.search(low):
+        return "phospho"
+    if low.endswith("protein.txt") or "proteome" in low or PROTEOME_FILE.search(low):
+        return "proteome"
+    if QUANT_GENERIC.search(low) or PDC_TABLE.search(low):
+        return "generic_quant"
+    return None
+
+
+def _resolve_omics_layer(proteome: list[str], phospho: list[str], generic: list[str]) -> str:
+    if proteome:
+        return "mixed" if phospho else "protein"
+    if phospho and not proteome and not generic:
+        return "phospho_only"
+    if phospho and not proteome:
+        return "phospho_only"
+    if generic:
+        return "unknown"
+    return "unknown"
+
 
 def _classify_files(names: list[str]) -> dict[str, Any]:
-    quant: list[str] = []
+    proteome_quant: list[str] = []
+    phospho_quant: list[str] = []
+    generic_quant: list[str] = []
     psm: list[str] = []
     raw: list[str] = []
     other: list[str] = []
@@ -41,16 +86,31 @@ def _classify_files(names: list[str]) -> dict[str, Any]:
         low = fn.lower()
         if RAW_EXT.search(low):
             raw.append(fn)
-        elif PSM_NAME.search(low) and not QUANT_NAME.search(low):
-            psm.append(fn)
-        elif TABLE_EXT.search(low) and (QUANT_NAME.search(low) or "protein" in low or PDC_TABLE.search(low)):
-            quant.append(fn)
+            continue
+        kind = _file_omics_kind(fn)
+        if kind == "proteome":
+            proteome_quant.append(fn)
+        elif kind == "phospho":
+            phospho_quant.append(fn)
+        elif kind == "generic_quant":
+            generic_quant.append(fn)
         elif TABLE_EXT.search(low):
-            other.append(fn)
+            if PSM_NAME.search(low):
+                psm.append(fn)
+            else:
+                other.append(fn)
+        elif PSM_NAME.search(low):
+            psm.append(fn)
 
-    if quant:
+    omics_layer = _resolve_omics_layer(proteome_quant, phospho_quant, generic_quant)
+    quant_all = (proteome_quant + generic_quant + phospho_quant)[:8]
+
+    if proteome_quant or generic_quant:
         status = "quant_table"
         label = "table"
+    elif phospho_quant:
+        status = "phospho_table"
+        label = "phospho only"
     elif psm:
         status = "processed_psm"
         label = "PSM only"
@@ -67,11 +127,42 @@ def _classify_files(names: list[str]) -> dict[str, Any]:
     return {
         "status": status,
         "label": label,
-        "quant_files": quant[:8],
+        "omics_layer": omics_layer,
+        "quant_files": quant_all,
+        "proteome_files": proteome_quant[:8],
+        "phospho_files": phospho_quant[:8],
         "psm_files": psm[:5],
         "raw_count": len(raw),
         "n_listed": len(names),
     }
+
+
+def partition_phospho_only_candidates(
+    candidates: list[dict[str, Any]],
+    *,
+    reject_phospho_only: bool = True,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Move phospho-only file listings out of the candidate bucket."""
+    if not reject_phospho_only:
+        return list(candidates), []
+    kept: list[dict[str, Any]] = []
+    moved: list[dict[str, Any]] = []
+    for item in candidates:
+        da = item.get("data_availability") or {}
+        layer = da.get("omics_layer")
+        status = da.get("status")
+        if layer == "phospho_only" or status == "phospho_table":
+            row = dict(item)
+            row["verdict"] = "filtered_out"
+            reasons = list(row.get("filter_reasons") or [])
+            msg = "Phosphoproteomics only (repository files) — atlas needs protein-level proteome"
+            if msg not in reasons:
+                reasons.append(msg)
+            row["filter_reasons"] = reasons
+            moved.append(row)
+        else:
+            kept.append(item)
+    return kept, moved
 
 
 def _pride_file_names(accession: str, *, timeout: int = 45) -> list[str]:
@@ -132,16 +223,14 @@ def _massive_file_names(accession: str, *, timeout: int = 45) -> list[str]:
     acc = accession.strip().upper()
     if not acc.startswith("MSV"):
         return []
-    # MassIVE dataset file list (public)
     try:
         r = requests.get(
-            f"https://massive.ucsd.edu/ProteoSAFe/dataset_files.jsp",
+            "https://massive.ucsd.edu/ProteoSAFe/dataset_files.jsp",
             params={"task": acc},
             timeout=timeout,
         )
         if r.status_code != 200:
             return []
-        # fallback: parse filenames from HTML links — lightweight
         names = re.findall(r'filename=([^&"\'>\s]+)', r.text)
         return [n.replace("%20", " ") for n in names[:200]]
     except requests.RequestException:
@@ -187,7 +276,7 @@ def check_item_data_availability(
     out: dict[str, Any] = {"accession": acc, "source_checked": None}
 
     if not acc:
-        out.update({"status": "unknown", "label": "no ID"})
+        out.update({"status": "unknown", "label": "no ID", "omics_layer": "unknown"})
         return out
 
     local = _local_mirror(acc, tmt_root)
@@ -214,54 +303,69 @@ def check_item_data_availability(
         out["status"] = "local_mirror"
         out["label"] = "local"
 
-    out["sample_files"] = (classified.get("quant_files") or classified.get("psm_files") or names[:5])[:5]
+    preferred = (
+        classified.get("proteome_files")
+        or classified.get("quant_files")
+        or classified.get("psm_files")
+        or names[:5]
+    )
+    out["sample_files"] = preferred[:5]
     out["guidance"] = data_guidance(out)
     return out
 
 
 def data_guidance(da: dict[str, Any]) -> str:
-    """Краткая подсказка: где protein groups / supplementary / raw."""
+    """Short hint: where to find protein groups / supplementary / raw files."""
     status = da.get("status") or "unknown"
+    layer = da.get("omics_layer") or "unknown"
+    proteome = da.get("proteome_files") or []
+    phospho = da.get("phospho_files") or []
     quant = da.get("quant_files") or []
+
+    if status == "phospho_table" or layer == "phospho_only":
+        top = phospho[0] if phospho else (quant[0] if quant else "")
+        return f"Phosphoproteomics table only (not global proteome){': ' + top if top else ''}"
+    if status == "quant_table" and proteome:
+        return f"Protein-level table: {proteome[0]}"
     if status == "quant_table" and quant:
-        return f"Protein groups / quant table: {quant[0]}"
+        return f"Quant table: {quant[0]}"
     if status == "quant_table":
-        return "Количественная таблица в репозитории (protein-level)"
+        return "Quant table in repository (protein-level)"
     if status == "local_mirror":
         loc = (da.get("local_files") or [""])[0]
-        return f"Локальная копия tmt-projects: {loc or 'matrix file'}"
+        return f"Local copy in tmt-projects: {loc or 'matrix file'}"
     if status == "processed_psm":
-        return "Только PSM/peptide — ищите protein groups в Supplementary или processed data"
+        return "PSM/peptide only — look for protein groups in Supplementary or processed data"
     if status == "raw_only":
-        return "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+        return "Raw MS only — check Methods; tables may be in Supplementary"
     if status == "maybe_table":
-        return "Возможная таблица — проверьте файлы вручную / Supplementary"
+        return "Possible table — verify files manually / Supplementary"
     if status == "no_files":
-        return "В API нет файлов — проверьте Data availability / Supplementary статьи"
-    return "Проверьте репозиторий и Supplementary"
+        return "No files in API — check Data availability / paper Supplementary"
+    return "Check repository and Supplementary"
 
 
 def literature_data_hint(pub: dict[str, Any]) -> str:
-    """Подсказка по доступности данных из абстракта / Europe PMC."""
+    """Data availability hint from abstract / Europe PMC."""
     text = " ".join(
         str(pub.get(k) or "")
         for k in ("data_availability", "abstract", "title")
     ).lower()
     if not text.strip():
-        return "Data availability не указан — см. Supplementary"
+        return "Data availability not stated — see Supplementary"
     if "supplement" in text or "supplementary" in text or "table s" in text:
-        return "Данные в Supplementary (см. текст Data availability)"
+        return "Data in Supplementary (see Data availability text)"
     if "pride" in text or "proteomexchange" in text or "pxd" in text:
-        return "Депонировано в PRIDE — номер в Data availability"
+        return "Deposited in PRIDE — accession in Data availability"
     if "pdc" in text or "proteomic data commons" in text:
-        return "Депонировано в PDC"
+        return "Deposited in PDC"
     if "massive" in text or "msv" in text:
-        return "Депонировано в MassIVE"
+        return "Deposited in MassIVE"
     if "upon request" in text or "available on request" in text:
-        return "По запросу авторам — не открытый доступ"
+        return "Available on request — not open access"
     if "github" in text:
-        return "Код/данные на GitHub (см. статью)"
-    return "Открытый доступ неясен — проверьте Supplementary и репозиторий"
+        return "Code/data on GitHub (see paper)"
+    return "Open access unclear — check Supplementary and repository"
 
 
 def annotate_data_availability(
@@ -287,4 +391,8 @@ def summarize_availability(items: list[dict[str, Any]]) -> dict[str, int]:
         da = item.get("data_availability") or {}
         st = da.get("status") or "unknown"
         counts[st] = counts.get(st, 0) + 1
+        layer = da.get("omics_layer")
+        if layer:
+            key = f"omics_{layer}"
+            counts[key] = counts.get(key, 0) + 1
     return counts
