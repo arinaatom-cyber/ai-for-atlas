@@ -238,10 +238,7 @@
   const T = { ru: buildDict("ru"), en: buildDict("en") };
 
   function getLang() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "en" || stored === "ru") return stored;
-    const nav = (navigator.language || "").toLowerCase();
-    return nav.startsWith("ru") ? "ru" : "en";
+    return "en";
   }
 
   function setLang(lang) {
