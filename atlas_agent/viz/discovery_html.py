@@ -131,12 +131,13 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
+    {note_i18n("note_kpi_new_projects")}
     {note_i18n("note_unified_table")}
     {_methods_panel(report)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
-      <button type="button" class="chip" data-tfilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip active" data-tfilter="project" data-i18n="filter_projects"></button>
+      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
       <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers"></button>
       <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts"></button>
       <button type="button" class="chip" data-sfilter="all" data-i18n="filter_all_src"></button>
@@ -184,7 +185,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'project';
+  let tFilter = 'all';
   let sFilter = 'all';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();

@@ -67,9 +67,6 @@ def _confidence_cell(tier: str, css: str, bullets: list[str]) -> str:
     tip = "; ".join(bullets[:4])
     t = f' title="{_esc(tip)}"' if tip else ""
     body = f'<span class="badge tier-badge {css}"{t}><b>{_esc(tier)}</b></span>'
-    if bullets:
-        items = "".join(f"<li>{_esc(b)}</li>" for b in bullets[:3])
-        body += f'<ul class="cell-bullets tier-bullets">{items}</ul>'
     return body
 
 
@@ -400,12 +397,12 @@ def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
         ai = it.get("abstract_ai") or {}
         summary = ai.get("summary_en") or ""
     if summary:
-        blocks.append(f'<p class="cell-summary">{_esc(summary[:320])}</p>')
+        blocks.append(f'<p class="cell-summary cell-clip">{_esc(summary[:280])}</p>')
     ev = list(it.get("confidence_evidence") or [])
-    reasons = list(it.get("filter_reasons") or [])[:3]
+    reasons = list(it.get("filter_reasons") or [])[:2]
     inline = _evidence_inline(ev or reasons)
     if inline:
-        blocks.append(inline)
+        blocks.append(f'<div class="cell-clip">{inline}</div>')
     if len(blocks) == 1:
         blocks.append('<span class="cell-empty">—</span>')
     blocks.append("</div>")
@@ -422,10 +419,10 @@ def _analysis_literature(paper: dict | None, cohort: dict | None) -> str:
         ai = paper.get("abstract_ai") or {}
         summary = ai.get("summary_en") or paper.get("summary_en") or ""
         if summary and summary not in note:
-            blocks.append(f'<p class="cell-summary">{_esc(summary[:300])}</p>')
-        ev = list((paper or {}).get("confidence_evidence") or (paper or {}).get("abstract_ai", {}).get("semantic_evidence") or [])
+            blocks.append(f'<p class="cell-summary cell-clip">{_esc(summary[:240])}</p>')
+        ev = list((paper or {}).get("confidence_evidence") or (paper or {}).get("abstract_ai", {}).get("semantic_evidence") or [])[:2]
         if ev:
-            blocks.append(_evidence_inline(ev))
+            blocks.append(f'<div class="cell-clip">{_evidence_inline(ev)}</div>')
     if cohort:
         desc = cohort.get("description_en") or cohort.get("description_ru") or ""
         if desc:

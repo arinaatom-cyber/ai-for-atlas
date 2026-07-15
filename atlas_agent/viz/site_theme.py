@@ -42,7 +42,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
             "index.html",
             "site/atlas.html",
             "site/discovery.html",
-            "site/discovery.html#discovery",
+            "site/cohorts.html",
             "site/qc.html",
             None,
         )
@@ -51,7 +51,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
             "index.html",
             "atlas.html",
             "discovery.html",
-            "discovery.html#discovery",
+            "cohorts.html",
             "qc.html",
             "../index.html",
         )
@@ -59,7 +59,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
         "../index.html",
         "atlas.html",
         "discovery.html",
-        "discovery.html#discovery",
+        "cohorts.html",
         "qc.html",
         None,
     )

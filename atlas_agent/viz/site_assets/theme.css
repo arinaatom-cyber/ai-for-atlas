@@ -283,16 +283,29 @@ code {
 }
 
 .table-unified table.data-table {
-  table-layout: auto;
-  min-width: 1520px;
-  border-collapse: separate;
-  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+  min-width: 1680px;
+  border-collapse: collapse;
 }
 
 .table-unified .data-table th,
 .table-unified .data-table td {
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  vertical-align: top;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  padding: 10px 8px;
+}
+
+.table-unified .data-table th {
+  max-width: none;
+}
+
+.table-unified .data-table td {
+  max-width: 0;
 }
 
 .table-unified .data-table th:last-child,
@@ -393,7 +406,9 @@ code {
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .link-chip:hover {
@@ -438,18 +453,67 @@ a.id-no-acc:hover {
   color: var(--muted);
 }
 
-.table-unified .col-id { min-width: 128px; }
-.table-unified .col-year { min-width: 56px; }
-.table-unified .col-title { min-width: 220px; }
-.table-unified .col-src { min-width: 90px; }
-.table-unified .col-design { min-width: 100px; }
-.table-unified .col-omics { min-width: 130px; }
-.table-unified .col-pat { min-width: 72px; }
-.table-unified .col-n { min-width: 48px; }
-.table-unified .col-weight { min-width: 120px; }
-.table-unified .col-analysis { min-width: 280px; }
-.table-unified .col-data { min-width: 120px; }
-.table-unified .col-links { min-width: 100px; }
+.cell-clip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  line-height: 1.45;
+  max-height: 6.2em;
+}
+
+.table-cohort {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+}
+
+.table-cohort table.data-table {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+}
+
+.table-cohort .data-table th,
+.table-cohort .data-table td {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  vertical-align: top;
+  padding: 10px 8px;
+  word-wrap: break-word;
+}
+
+.table-unified .col-type { width: 4%; }
+.table-unified .col-id { width: 8%; }
+.table-unified .col-year { width: 4%; }
+.table-unified .col-title { width: 13%; }
+.table-unified .col-src { width: 5%; }
+.table-unified .col-design { width: 6%; }
+.table-unified .col-omics { width: 6%; }
+.table-unified .col-pat { width: 4%; }
+.table-unified .col-n { width: 3%; }
+.table-unified .col-verdict { width: 5%; }
+.table-unified .col-confidence { width: 4%; }
+.table-unified .col-weight { width: 5%; }
+.table-unified .col-analysis { width: 22%; }
+.table-unified .col-data { width: 8%; }
+.table-unified .col-links { width: 8%; }
+
+.table-unified .col-id { min-width: 0; }
+.table-unified .col-year { min-width: 0; }
+.table-unified .col-title { min-width: 0; }
+.table-unified .col-src { min-width: 0; }
+.table-unified .col-design { min-width: 0; }
+.table-unified .col-omics { min-width: 0; }
+.table-unified .col-pat { min-width: 0; }
+.table-unified .col-n { min-width: 0; }
+.table-unified .col-weight { min-width: 0; }
+.table-unified .col-analysis { min-width: 0; }
+.table-unified .col-data { min-width: 0; }
+.table-unified .col-links { min-width: 0; }
 
 .table-standard .col-year { width: 5%; }
 .table-standard .col-journal { width: 8%; }

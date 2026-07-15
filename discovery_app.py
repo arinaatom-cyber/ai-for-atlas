@@ -418,6 +418,7 @@ with tab_keywords:
 
 # --- Tab 2: New projects only ---
 with tab_projects:
+    st.subheader("New PXD / PDC (not in atlas)")
     report = st.session_state.get("scan_report")
     if not report:
         st.info("No saved scan. Sidebar → **Run full Discovery scan** or `python run_discovery.py scan`.")
@@ -425,8 +426,9 @@ with tab_projects:
         cand = report.get("candidates") or report.get("new_projects") or []
         pubs = report.get("publications_analyzed") or []
         table_n = sum(1 for x in cand if (x.get("data_availability") or {}).get("status") == "quant_table")
+        atlas_n = (report.get("summary") or {}).get("catalog_unique_ids", "?")
 
-        st.caption("Only new PXD/PDC with protein-level table. Plex/Similar removed. Source = clickable repo.")
+        st.caption(f"**{len(cand)} new** repository IDs outside the atlas ({atlas_n} already in catalog). This is not the full project list.")
         link_col1, link_col2 = st.columns(2)
         if SITE_DISCOVERY.is_file():
             link_col1.link_button("GitHub Discovery", gh_meta.get("discovery_site", ""), use_container_width=True)
@@ -455,6 +457,7 @@ with tab_projects:
 
 # --- Tab 3: Papers without accession ---
 with tab_papers:
+    st.subheader("Papers without PXD/PDC (LLM atlas fit)")
     report = st.session_state.get("scan_report")
     if not report:
         st.info("No scan data.")
@@ -462,7 +465,7 @@ with tab_papers:
         manual = report.get("manual_check") or []
         literature = report.get("literature_semantic") or []
         papers = papers_without_id_table(manual, literature)
-        st.caption("Atlas-like papers where dataset ID was not resolved. Weight = LLM fit (score).")
+        st.caption("Semantic literature watch — LLM yes/maybe/no. Different from **Cohorts** (patient N mining).")
         if papers.empty:
             st.caption("No papers")
         else:
@@ -480,12 +483,13 @@ with tab_papers:
 
 # --- Tab 4: Cohorts ---
 with tab_cohorts:
+    st.subheader("Large cohorts (Europe PMC)")
     report = st.session_state.get("scan_report")
     if not report:
         st.info("No scan data.")
     else:
         cohorts = report.get("cohort_literature") or []
-        st.caption("Large human proteomics cohorts from Europe PMC. Same columns as on GitHub Discovery → Cohorts.")
+        st.caption("Patient N, omics, TMT hints — surveillance list. Dedicated page: GitHub **Cohorts** tab (not Discovery table).")
         if not cohorts:
             st.caption("No cohort papers — run full scan with cohort_literature enabled.")
         else:

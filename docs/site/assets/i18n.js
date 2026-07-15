@@ -115,8 +115,8 @@
       sec_unified_discovery: "Все находки — одна таблица",
       sec_unified_discovery_desc:
         "Новые PXD/PDC, статьи без accession и крупные когорты в одном списке.",
-      note_unified_table:
-        "ИИ-поиск на профиле TMT ATLAS + жёсткие исключения. Confidence A–D — rule-based (не LLM-вероятность). Verdict: Candidate / Watch / Exclude.",
+      note_kpi_new_projects:
+        "KPI «новые проекты» = только PXD/PDC вне атласа (сейчас 4). В таблице ниже — все строки: проекты + статьи + когорты. Фильтр «проекты» для PXD/PDC.",
       sec_methods: "Методы и воронка",
       sec_methods_desc: "Воспроизводимый скрининг: API → QC → protein table gate → tier A–D. Каталог read-only.",
       methods_funnel: "Воронка скана",
@@ -124,7 +124,8 @@
       methods_tier_legend: "A = protein table + design OK · B = quant files / mixed · C = watch · D = exclude",
       methods_inclusion: "Включение",
       methods_exclusion: "Исключение",
-      qc_filtered: "Отфильтровано (техн.)",
+      note_unified_table:
+        "ИИ-поиск на профиле TMT ATLAS + жёсткие исключения. Confidence A–D — rule-based. Verdict: Candidate / Watch / Exclude.",
       search_unified: "Поиск по ID, названию, анализу…",
       filter_projects: "проекты",
       filter_papers: "статьи",
@@ -217,8 +218,10 @@
       sec_unified_discovery: "All findings — one table",
       sec_unified_discovery_desc:
         "New PXD/PDC, papers without accession, and large cohorts in a single list.",
+      note_kpi_new_projects:
+        "KPI «new projects» = PXD/PDC not yet in atlas (currently 4). Table below shows all rows. Use filter «projects» for repo IDs only.",
       note_unified_table:
-        "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based (not LLM probability). Verdict: Candidate / Watch / Exclude.",
+        "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",
       sec_methods_desc: "Reproducible screening: API → QC → protein table gate → tier A–D. Catalog is read-only.",
       methods_funnel: "Scan funnel",

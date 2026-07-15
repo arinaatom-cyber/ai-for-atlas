@@ -19,18 +19,96 @@
       <a href="../index.html" class="" data-i18n="nav_home">Home</a>
       <a href="atlas.html" class="" data-i18n="nav_atlas">Atlas</a>
       <a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a>
-      <a href="discovery.html#discovery" class="active" data-i18n="nav_cohorts">Cohorts</a>
+      <a href="cohorts.html" class="active" data-i18n="nav_cohorts">Cohorts</a>
       <a href="qc.html" class="" data-i18n="nav_qc">QC</a>
     </nav>
     
   </div>
 </header>
 <main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="cohorts_title">Large cohorts — proteomics &amp; multi-omics</h1>
+  <p class="lead" data-i18n="cohorts_lead">Europe PMC + text mining: patients, N, omics, TMT</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-07-15 10:17:27 UTC</span> <span class="meta-pill badge badge-muted" data-i18n="cohorts_method"></span></div>
+</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">13</span><span class="kpi-label" data-i18n="kpi_cohorts"></span></div><div class="kpi"><span class="kpi-value">6</span><span class="kpi-label" data-i18n="kpi_with_n"></span></div><div class="kpi"><span class="kpi-value">12</span><span class="kpi-label" data-i18n="kpi_multi_omics"></span></div><div class="kpi"><span class="kpi-value">38</span><span class="kpi-label" data-i18n="kpi_scanned"></span></div></div>
 <div class="page-content page-content-wide">
-  <p class="note">Large cohorts are now in the <strong>single Discovery table</strong> (filter: Cohorts).</p>
-  <p><a href="discovery.html#discovery" class="btn-primary">Open Discovery table</a></p>
-  <script>location.replace("discovery.html#discovery");</script>
+  <div class="note" data-i18n="cohorts_note"></div>
+
+  <section class="section">
+    <div class="section-head"><h2 data-i18n="sec_cohorts_table"></h2><span class="section-count">13</span></div>
+    <div class="toolbar">
+      <input type="search" id="q-cohort" data-i18n-placeholder="search_cohorts"/>
+      <button type="button" class="chip active" data-pfilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip" data-pfilter="yes" data-i18n="filter_patients_yes"></button>
+      <button type="button" class="chip" data-pfilter="maybe" data-i18n="filter_patients_maybe"></button>
+      <span class="count-badge" id="cohort-count"></span>
+    </div>
+    <div class="table-wrap table-cohort">
+      <table id="tbl-cohort" class="data-table">
+        <thead><tr>
+          <th data-i18n="th_pmid"></th>
+          <th data-i18n="th_title"></th>
+          <th data-i18n="th_description"></th>
+          <th data-i18n="th_patients"></th>
+          <th data-i18n="th_n"></th>
+          <th data-i18n="th_omics"></th>
+          <th data-i18n="th_tmt"></th>
+          <th data-i18n="th_multi"></th>
+          <th data-i18n="th_journal"></th>
+          <th data-i18n="th_score"></th>
+        </tr></thead>
+        <tbody><tr data-search='multiomicsxplorer, a tool to browse, access and analyse multi-omics data. omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. cohort: ~1000 patients/participants (from abstract). large-scale study. 2026 1000' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42034977/" target="_blank" rel="noopener" class="cell-mono">42034977</a></td><td class='col-title cell-clip'>MultiOmicsXplorer, a tool to browse, access and analyse multi-omics data.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026</td><td><span class="badge badge-ok">yes (~1000)</span></td><td class='cell-mono'><b>1000</b></td><td>proteomics, phospho, transcript, multi-omics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>93</td></tr>
+<tr data-search='phosphorylated filamin-a at serine 1459 from plasma-derived small extracellular vesicles as a promising biomarker for high-risk adenoma and colorectal cancer. omics: proteomics, phosphoproteomics. cohort: ~139 patients/participants (from abstract). 2026 139' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/41998177/" target="_blank" rel="noopener" class="cell-mono">41998177</a></td><td class='col-title cell-clip'>Phosphorylated filamin-A at serine 1459 from plasma-derived small extracellular vesicles as a promising biomarker for high-risk adenoma and colorectal cancer.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026</td><td><span class="badge badge-ok">yes (~139)</span></td><td class='cell-mono'><b>139</b></td><td>proteomics, phospho</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>65</td></tr>
+<tr data-search='proteogenomics of hypertrophic cardiomyopathy reveals subtype-specific therapy. omics: proteomics, multi-omics. cohort: ~132 patients/participants (from abstract). large-scale study. 2026 132' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42381624/" target="_blank" rel="noopener" class="cell-mono">42381624</a></td><td class='col-title cell-clip'>Proteogenomics of Hypertrophic Cardiomyopathy Reveals Subtype-Specific Therapy.</td><td class='analysis-cell cell-clip'>Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026</td><td><span class="badge badge-ok">yes (~132)</span></td><td class='cell-mono'><b>132</b></td><td>proteomics, multi-omics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>73</td></tr>
+<tr data-search='repurposing the liquid-based pap test for the detection of ovarian cancer protein biomarkers. omics: proteomics. cohort: ~90 patients/participants (from abstract). tmt/isobaric. 2026 90' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42310533/" target="_blank" rel="noopener" class="cell-mono">42310533</a></td><td class='col-title cell-clip'>Repurposing the liquid-based Pap test for the detection of ovarian cancer protein biomarkers.</td><td class='analysis-cell cell-clip'>Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026</td><td><span class="badge badge-ok">yes (~90)</span></td><td class='cell-mono'><b>90</b></td><td>proteomics</td><td><span class="badge badge-ok">TMT</span></td><td><span class="cell-empty">—</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>50</td></tr>
+<tr data-search='proteogenomic features define subtypes of mantle cell lymphoma. omics: proteomics, transcriptomics, genomics, multi-omics. cohort: ~27 patients/participants (from abstract). large-scale study. 2026 27' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/41785305/" target="_blank" rel="noopener" class="cell-mono">41785305</a></td><td class='col-title cell-clip'>Proteogenomic features define subtypes of mantle cell lymphoma.</td><td class='analysis-cell cell-clip'>Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026</td><td><span class="badge badge-ok">yes (~27)</span></td><td class='cell-mono'><b>27</b></td><td>proteomics, transcript, genomics, multi-omics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>53</td></tr>
+<tr data-search='phosphoproteomics distinguishes disease-specific mechanisms for human phospholamban cardiomyopathy reversible by rna therapy. omics: proteomics, phosphoproteomics. cohort: ~10 patients/participants (from abstract). 2026 10' data-patients='yes'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42204136/" target="_blank" rel="noopener" class="cell-mono">42204136</a></td><td class='col-title cell-clip'>Phosphoproteomics distinguishes disease-specific mechanisms for human phospholamban cardiomyopathy reversible by RNA therapy.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026</td><td><span class="badge badge-ok">yes (~10)</span></td><td class='cell-mono'><b>10</b></td><td>proteomics, phospho</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>40</td></tr>
+<tr data-search='harnessing proteogenomics to advance precision oncology: from melanoma and hepatocellular carcinoma perspective. omics: proteomics, phosphoproteomics, transcriptomics, genomics. patients mentioned; exact n not extracted. large-scale study. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/41964867/" target="_blank" rel="noopener" class="cell-mono">41964867</a></td><td class='col-title cell-clip'>Harnessing Proteogenomics to Advance Precision Oncology: From Melanoma and Hepatocellular Carcinoma Perspective.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, phospho, transcript, genomics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>33</td></tr>
+<tr data-search='integrating artificial intelligence and multi-omics data for precision oncology in endometrial cancer: a narrative review. omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. patients mentioned; exact n not extracted. large-scale study. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42366266/" target="_blank" rel="noopener" class="cell-mono">42366266</a></td><td class='col-title cell-clip'>Integrating artificial intelligence and multi-omics data for precision oncology in endometrial cancer: a narrative review.</td><td class='analysis-cell cell-clip'>Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. large-scale study. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, transcript, genomics, metabol, multi-omics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>33</td></tr>
+<tr data-search='a proteogenomic approach to discover novel lncrna-derived microproteins and their potential clinical utility in hepatocellular carcinoma. omics: proteomics, transcriptomics, genomics. patients mentioned; exact n not extracted. large-scale study. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42134687/" target="_blank" rel="noopener" class="cell-mono">42134687</a></td><td class='col-title cell-clip'>A Proteogenomic Approach to Discover Novel lncRNA-Derived Microproteins and Their Potential Clinical Utility in Hepatocellular Carcinoma.</td><td class='analysis-cell cell-clip'>Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, transcript, genomics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>33</td></tr>
+<tr data-search='paracrine signals from hiv-1-infected immune cells reprogram cervical cancer pathways. omics: proteomics, phosphoproteomics, transcriptomics. patients mentioned; exact n not extracted. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42305618/" target="_blank" rel="noopener" class="cell-mono">42305618</a></td><td class='col-title cell-clip'>Paracrine signals from HIV-1-infected immune cells reprogram cervical cancer pathways.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, phospho, transcript</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>25</td></tr>
+<tr data-search='the proteomics and phosphoproteomics landscape of melanoma under t cell attack. omics: proteomics, phosphoproteomics. patients mentioned; exact n not extracted. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42167233/" target="_blank" rel="noopener" class="cell-mono">42167233</a></td><td class='col-title cell-clip'>The proteomics and phosphoproteomics landscape of melanoma under T cell attack.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, phospho</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>25</td></tr>
+<tr data-search='conserved phosphoprotein networks identify actionable adhesion/wnt and metallothionein modules in cholangiocarcinoma. omics: proteomics, phosphoproteomics, genomics. patients mentioned; exact n not extracted. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/41718110/" target="_blank" rel="noopener" class="cell-mono">41718110</a></td><td class='col-title cell-clip'>Conserved Phosphoprotein Networks Identify Actionable Adhesion/Wnt and Metallothionein Modules in Cholangiocarcinoma.</td><td class='analysis-cell cell-clip'>Omics: proteomics, phosphoproteomics, genomics. Patients mentioned; exact N not extracted. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, phospho, genomics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>25</td></tr>
+<tr data-search='applications of artificial intelligence in systemic lupus erythematosus: integrating multi-omics data for precision medicine. omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. patients mentioned; exact n not extracted. 2026 —' data-patients='maybe'><td><a href="https://pubmed.ncbi.nlm.nih.gov/42183196/" target="_blank" rel="noopener" class="cell-mono">42183196</a></td><td class='col-title cell-clip'>Applications of artificial intelligence in systemic lupus erythematosus: integrating multi-omics data for precision medicine.</td><td class='analysis-cell cell-clip'>Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026</td><td><span class="badge badge-warn">maybe</span></td><td class='cell-mono'><b>—</b></td><td>proteomics, transcript, genomics, metabol, multi-omics</td><td><span class="cell-empty">—</span></td><td><span class="badge badge-ok">✓</span></td><td class='text-secondary cell-clip'>2026</td><td class='cell-mono'>25</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+  <p class="note-box"><a href="discovery.html">Discovery</a> — unified table with projects + papers + cohorts.</p>
 </div>
+
+<script>
+(function() {
+  const q = document.getElementById('q-cohort');
+  const rows = [...document.querySelectorAll('#tbl-cohort tbody tr')];
+  const count = document.getElementById('cohort-count');
+  let pFilter = 'all';
+  function apply() {
+    const term = (q?.value || '').toLowerCase().trim();
+    let visible = 0;
+    rows.forEach(r => {
+      const search = (r.dataset.search || '');
+      const pat = (r.dataset.patients || '');
+      const patOk = pFilter === 'all' || pat === pFilter;
+      const textOk = !term || search.includes(term);
+      const show = patOk && textOk;
+      r.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (count) count.textContent = visible + ' / 13';
+  }
+  q?.addEventListener('input', apply);
+  document.querySelectorAll('[data-pfilter]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-pfilter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      pFilter = btn.dataset.pfilter;
+      apply();
+    });
+  });
+  apply();
+})();
+</script>
 </main>
 <footer class="footer">
   <p data-i18n="footer_policy">Excel catalog is not published. Site shows new candidates, literature, and analysis only.</p>
