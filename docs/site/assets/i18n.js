@@ -49,6 +49,7 @@
     th_pride: { ru: "PRIDE", en: "PRIDE" },
     th_reader: { ru: "Движок", en: "Reader" },
     th_link: { ru: "Ссылка", en: "Link" },
+    th_links: { ru: "Ссылки", en: "Links" },
     th_link_open: { ru: "Открыть", en: "Open" },
     th_notes: { ru: "Примечания", en: "Notes" },
     th_description: { ru: "Описание", en: "Description" },
@@ -171,6 +172,8 @@
       search_abstracts: "Search title, analysis…",
       note_abstracts:
         "LLM reads abstracts by meaning (few-shot from TMT ATLAS). Accessions are not regex-extracted. PDC: TMT 10/11/12/16, CPTAC programs excluded.",
+      note_finding:
+        "Finding column: English keywords from the paper title, material type, and which file to download (protein table vs phospho layer).",
       no_projects: "No new projects",
       no_pubs: "No analyzed publications",
       no_literature: "No papers for manual review",

@@ -499,6 +499,29 @@ td b, .cell-title {
   color: var(--text-secondary);
 }
 
+.cell-links {
+  white-space: nowrap;
+}
+
+.cell-links a,
+a.cell-title,
+a.cell-mono {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cell-links a:hover,
+a.cell-title:hover,
+a.cell-mono:hover {
+  text-decoration: underline;
+}
+
+.link-repo,
+.link-pub {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+
 .cell-empty {
   color: var(--muted);
   font-style: normal;
