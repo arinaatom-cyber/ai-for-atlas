@@ -3963,7 +3963,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
@@ -4029,7 +4028,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
@@ -4096,7 +4094,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
@@ -4162,7 +4159,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
@@ -4228,7 +4224,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
@@ -4294,7 +4289,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
@@ -4424,7 +4418,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
@@ -4491,7 +4484,6 @@
         "material": "tumor tissue|plasma|blood|cancer cell line",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -4558,7 +4550,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
@@ -4625,7 +4616,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
@@ -4691,7 +4681,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -4757,7 +4746,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -4823,7 +4811,6 @@
         "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
@@ -4889,7 +4876,6 @@
         "material": "plasma/serum from patients, cancer cell lines",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
@@ -4956,7 +4942,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
@@ -5023,7 +5008,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
@@ -5089,7 +5073,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
@@ -5219,7 +5202,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },
@@ -16429,7 +16411,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
@@ -16474,7 +16455,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
@@ -16520,7 +16500,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
@@ -16565,7 +16544,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
@@ -16610,7 +16588,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
@@ -16655,7 +16632,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
@@ -16743,7 +16719,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
@@ -16789,7 +16764,6 @@
         "material": "tumor tissue|plasma|blood|cancer cell line",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -16835,7 +16809,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
@@ -16881,7 +16854,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
@@ -16926,7 +16898,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -16971,7 +16942,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
@@ -17016,7 +16986,6 @@
         "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
@@ -17061,7 +17030,6 @@
         "material": "plasma/serum from patients, cancer cell lines",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
@@ -17107,7 +17075,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
@@ -17153,7 +17120,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
@@ -17198,7 +17164,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
@@ -17286,7 +17251,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": true,
-        "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
         "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
         "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },
