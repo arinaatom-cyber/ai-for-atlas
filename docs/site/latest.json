@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T10:03:16.188670+00:00",
+  "generated_at": "2026-07-15T10:26:59.843392+00:00",
   "summary": {
     "catalog_rows": 139,
     "catalog_unique_ids": 122,
@@ -183,8 +183,10 @@
         "n_listed": 9,
         "sample_files": [
           "Protein.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Protein.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: clinical_human · Источник pride_search_v3, ID PXD077831"
     },
     {
       "accession": "PDC000649",
@@ -249,8 +251,10 @@
           "20221025_GC_Batch03_TMT11_phos_F03_02.raw",
           "20230503_GC_Batch10re_TMT11_phos_F02_01.raw",
           "20231227_GC_TMT11_Phos_B22_F01_01.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000649"
     },
     {
       "accession": "PDC000645",
@@ -315,8 +319,10 @@
           "20230822_GC_TMT11_Prot_B16_F10.raw",
           "20240301_GC_TMT11_Prot_B24_F01.raw",
           "20231222_GC_TMT11_B20re_prot_F23.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000645"
     },
     {
       "accession": "PDC000564",
@@ -395,8 +401,10 @@
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.phosphosite.tmt10.tsv",
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.sample.txt",
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000564"
     },
     {
       "accession": "PDC000220",
@@ -475,8 +483,10 @@
           "Academia_Sinica_LUAD100_Phosphoproteome.peptides.tsv",
           "Academia_Sinica_LUAD100_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "Academia_Sinica_LUAD100_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Academia_Sinica_LUAD100_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000220"
     },
     {
       "accession": "PDC000403",
@@ -555,8 +565,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000403"
     },
     {
       "accession": "PDC000399",
@@ -635,8 +647,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.sample.txt",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000399"
     },
     {
       "accession": "PDC000401",
@@ -715,8 +729,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.label.txt",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000401"
     },
     {
       "accession": "PDC000318",
@@ -795,8 +811,10 @@
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.summary.tsv",
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.peptides.tsv",
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000318"
     },
     {
       "accession": "PDC000319",
@@ -875,8 +893,10 @@
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.sample.txt",
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.phosphosite.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000319"
     },
     {
       "accession": "PDC000320",
@@ -955,8 +975,10 @@
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.qcmetrics.tsv",
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000320"
     },
     {
       "accession": "PDC000436",
@@ -1035,8 +1057,10 @@
           "APOLLO_LUAD_Phosphoproteome_FeNTA.sample.txt",
           "APOLLO_LUAD_Phosphoproteome_FeNTA.summary.tsv",
           "APOLLO_LUAD_Phosphoproteome_FeNTA.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: APOLLO_LUAD_Phosphoproteome_FeNTA.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000436"
     },
     {
       "accession": "PDC000435",
@@ -1115,8 +1139,10 @@
           "APOLLO_LUAD_Phosphoproteome_TiO2.phosphopeptide.tmt11.tsv",
           "APOLLO_LUAD_Phosphoproteome_TiO2.label.txt",
           "APOLLO_LUAD_Phosphoproteome_TiO2.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: APOLLO_LUAD_Phosphoproteome_TiO2.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000435"
     },
     {
       "accession": "PDC000478",
@@ -1195,8 +1221,10 @@
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000478"
     },
     {
       "accession": "PDC000430",
@@ -1263,8 +1291,10 @@
           "BA20161203_BI_FM_Medullo_KAc_Plex05_Fxn3.raw",
           "BA20161201_BI_FM_Medullo_KAc_Plex03_Fxn3.raw",
           "BA20161201_BI_FM_Medullo_KAc_Plex02_Fxn1.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000430"
     },
     {
       "accession": "PDC000431",
@@ -1331,8 +1361,10 @@
           "BA20161122_BI_FM_Medullo_pY_Plex04_Fxn1.raw",
           "BL20161004_BI_FM_Medullo_pY_Plex02_Fxn1.raw",
           "BL20161004_BI_FM_Medullo_pY_Plex03_Fxn1.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000431"
     },
     {
       "accession": "PDC000432",
@@ -1399,8 +1431,10 @@
           "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn03.raw",
           "BL20160819_FM_Medullo_Phosphoproteome_Plex01_Fxn03.raw",
           "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn11.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000432"
     },
     {
       "accession": "PDC000520",
@@ -1479,8 +1513,10 @@
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphosite.tmt10.tsv",
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.summary.tsv",
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000520"
     },
     {
       "accession": "PDC000521",
@@ -1559,8 +1595,10 @@
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.label.txt",
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphosite.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000521"
     },
     {
       "accession": "PDC000130",
@@ -1638,8 +1676,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000130"
     },
     {
       "accession": "PDC000129",
@@ -1716,8 +1756,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.summary.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000129"
     },
     {
       "accession": "PDC000471",
@@ -1782,8 +1824,10 @@
         "sample_files": [
           "ccRCC_TMT_intact glycopeptide_abundance_MD-MAD_50percentQuant_imputed.tsv",
           "ccRCC_TMT_intact glycopeptide_abundance_MD-MAD.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: ccRCC_TMT_intact glycopeptide_abundance_MD-MAD_50percentQuant_imputed.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000471"
     },
     {
       "accession": "PDC000128",
@@ -1861,8 +1905,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000128"
     },
     {
       "accession": "PDC000450",
@@ -1939,8 +1985,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000450"
     },
     {
       "accession": "PDC000451",
@@ -2017,8 +2065,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000451"
     },
     {
       "accession": "PDC000449",
@@ -2097,8 +2147,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000449"
     },
     {
       "accession": "PDC000447",
@@ -2176,8 +2228,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000447"
     },
     {
       "accession": "PDC000454",
@@ -2242,8 +2296,10 @@
           "11CPTAC_C_GBM_G_JHU_20220218_B3S1_f01.mzML.gz",
           "08CPTAC_C_GBM_G_JHU_20220216_B2S3_f01.mzML.gz",
           "07CPTAC_C_GBM_G_JHU_20220215_B2S2_f02.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000454"
     },
     {
       "accession": "PDC000448",
@@ -2322,8 +2378,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000448"
     },
     {
       "accession": "PDC000245",
@@ -2398,8 +2456,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Acetylome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000245"
     },
     {
       "accession": "PDC000246",
@@ -2474,8 +2534,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000246"
     },
     {
       "accession": "PDC000206",
@@ -2554,8 +2616,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S048_PNNL_Protocols_GBM_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000206"
     },
     {
       "accession": "PDC000203",
@@ -2633,8 +2697,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000203"
     },
     {
       "accession": "PDC000205",
@@ -2713,8 +2779,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S048_PNNL_Protocols_GBM_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000205"
     },
     {
       "accession": "PDC000222",
@@ -2792,8 +2860,10 @@
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.sample.txt",
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000222"
     },
     {
       "accession": "PDC000233",
@@ -2868,8 +2938,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.qcmetrics.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000233"
     },
     {
       "accession": "PDC000232",
@@ -2948,8 +3020,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.phosphosite.tmt11.tsv",
           "S058_Phosphoproteome_reporterIon.correction.txt",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000232"
     },
     {
       "accession": "PDC000237",
@@ -3024,8 +3098,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.sample.txt",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.summary.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000237"
     },
     {
       "accession": "PDC000491",
@@ -3102,8 +3178,10 @@
           "CPTAC3_LUAD_Confirmatory_Acetylome.peptides.tsv",
           "CPTAC3_LUAD_Confirmatory_Acetylome.label.txt",
           "CPTAC3_LUAD_Confirmatory_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000491"
     },
     {
       "accession": "PDC000490",
@@ -3182,8 +3260,10 @@
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000490"
     },
     {
       "accession": "PDC000492",
@@ -3260,8 +3340,10 @@
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.sample.txt",
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.peptides.tsv",
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Ubiquitylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000492"
     },
     {
       "accession": "PDC000224",
@@ -3336,8 +3418,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000224"
     },
     {
       "accession": "PDC000225",
@@ -3412,8 +3496,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000225"
     },
     {
       "accession": "PDC000155",
@@ -3491,8 +3577,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000155"
     },
     {
       "accession": "PDC000154",
@@ -3570,8 +3658,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S046_BI_CPTAC3_TMT10_Label_to_Sample_Mapping_File_LUAD_CompRef_proteome_plexes_01-04_20181221.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000154"
     },
     {
       "accession": "PDC000149",
@@ -3649,8 +3739,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.sample.txt",
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000149"
     },
     {
       "accession": "PDC000627",
@@ -3727,8 +3819,10 @@
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.qcmetrics.tsv",
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.sample.txt",
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Discovery_BI_Ubiquitylome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000627"
     },
     {
       "accession": "PDC000466",
@@ -3793,8 +3887,10 @@
           "07CPTAC_non-ccRCC_G_JHU_20211109_LUMOS_f07.mzML.gz",
           "01CPTAC_non-ccRCC_G_JHU_20210628_LUMOS_f06.raw",
           "01CPTAC_non-ccRCC_G_JHU_20210628_LUMOS_f08.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000466"
     },
     {
       "accession": "PDC000465",
@@ -3873,8 +3969,10 @@
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.label.txt",
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.phosphosite.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_non-ccRCC_JHU_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000465"
     },
     {
       "accession": "PDC000272",
@@ -3939,8 +4037,10 @@
           "03CPTAC_PDA_G_JHU_20200209_LUMOS_f04.raw",
           "18CPTAC_PDA_G_JHU_20200612_LUMOS_f08.raw",
           "25CPTAC_PDA_G_JHU_20200617_LUMOS_f12.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000272"
     },
     {
       "accession": "PDC000271",
@@ -4018,8 +4118,10 @@
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000271"
     },
     {
       "accession": "PDC000626",
@@ -4084,8 +4186,10 @@
           "OrbitrapLUMOS_20240104_03.raw",
           "OrbitrapLUMOS_20240123_05.raw",
           "OrbitrapLUMOS_20231214_06.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000626"
     },
     {
       "accession": "PDC000443",
@@ -4160,8 +4264,10 @@
           "CPTAC3_UCEC_Confirmatory_Acetylome.sample.txt",
           "CPTAC3_UCEC_Confirmatory_Acetylome.summary.tsv",
           "CPTAC3_UCEC_Confirmatory_Acetylome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000443"
     },
     {
       "accession": "PDC000444",
@@ -4236,8 +4342,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.summary.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000444"
     },
     {
       "accession": "PDC000442",
@@ -4316,8 +4424,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.summary.tsv",
           "PNNL Protocols_C_UCEC_Phosphoproteome.xlsx"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000442"
     },
     {
       "accession": "PDC000440",
@@ -4395,8 +4505,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.peptides.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000440"
     },
     {
       "accession": "PDC000445",
@@ -4461,8 +4573,10 @@
           "09CPTAC_C_UCEC_G_JHU_20220130_B3S1_f03.raw",
           "10CPTAC_C_UCEC_G_JHU_20211231_B3S2_f03_20220102032450.mzML.gz",
           "11CPTAC_C_UCEC_G_JHU_20220101_B3S3_f04.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000445"
     },
     {
       "accession": "PDC000441",
@@ -4541,8 +4655,10 @@
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.sample.txt",
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000441"
     },
     {
       "accession": "PDC000226",
@@ -4617,8 +4733,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000226"
     },
     {
       "accession": "PDC000227",
@@ -4693,8 +4811,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.peptides.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.sample.txt",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000227"
     },
     {
       "accession": "PDC000123",
@@ -4772,8 +4892,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000123"
     },
     {
       "accession": "PDC000124",
@@ -4850,8 +4972,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.summary.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000124"
     },
     {
       "accession": "PDC000126",
@@ -4930,8 +5054,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S043_PNNL_Protocols_UCEC_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000126"
     },
     {
       "accession": "PDC000199",
@@ -5023,8 +5149,10 @@
           "Zhou_Liver_Cancer_Phosphoproteome.summary.tsv",
           "Zhou_Liver_Cancer_Phosphoproteome.phosphosite.tmt11.tsv",
           "Zhou_Liver_Cancer_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Zhou_Liver_Cancer_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.333) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000199"
     },
     {
       "accession": "PDC000496",
@@ -5103,8 +5231,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.label.txt",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000496"
     },
     {
       "accession": "PDC000495",
@@ -5182,8 +5312,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000495"
     },
     {
       "accession": "PDC000499",
@@ -5248,8 +5380,10 @@
           "01CPTAC_AYA_G_JHU_20230303_B1S1_f11.raw",
           "02CPTAC_AYA_G_JHU_20230305_B1S2_f10.raw",
           "06CPTAC_AYA_G_JHU_20230317_B2S1_f11.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000499"
     },
     {
       "accession": "PDC000497",
@@ -5328,8 +5462,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000497"
     },
     {
       "accession": "PDC000498",
@@ -5407,8 +5543,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000498"
     },
     {
       "accession": "PDC000515",
@@ -5487,8 +5625,10 @@
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.sample.txt",
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.peptides.tsv",
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KNCC_Glioblastoma_Evolution_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000515"
     },
     {
       "accession": "PDC000343",
@@ -5567,8 +5707,10 @@
           "KU_CCA_Discovery_Phosphoproteome.phosphosite.tmt11.tsv",
           "KU_CCA_Discovery_Phosphoproteome.qcmetrics.tsv",
           "KU_CCA_Discovery_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KU_CCA_Discovery_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000343"
     },
     {
       "accession": "PDC000249",
@@ -5647,8 +5789,10 @@
           "KU_PDAC_Discovery_Study_Phosphoproteome.phosphosite.tmt10.tsv",
           "KU_PDAC_Discovery_Study_Phosphoproteome.label.txt",
           "KU_PDAC_Discovery_Study_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KU_PDAC_Discovery_Study_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000249"
     },
     {
       "accession": "PDC000326",
@@ -5726,8 +5870,10 @@
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000326"
     },
     {
       "accession": "PDC000328",
@@ -5805,8 +5951,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000328"
     },
     {
       "accession": "PDC000327",
@@ -5877,8 +6025,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000327"
     },
     {
       "accession": "PDC000330",
@@ -5956,8 +6106,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.summary.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000330"
     },
     {
       "accession": "PDC000329",
@@ -6028,8 +6180,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.sample.txt",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000329"
     },
     {
       "accession": "PDC000363",
@@ -6108,8 +6262,10 @@
           "iCC_NCC_Phosphoproteome.summary.tsv",
           "iCC_NCC_Phosphoproteome.sample.txt",
           "iCC_NCC_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: iCC_NCC_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000363"
     },
     {
       "accession": "PDC000297",
@@ -6187,8 +6343,10 @@
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.qcmetrics.tsv",
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.phosphosite.tmt10.tsv",
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: NCI7_Proteomic_Coverage_JHU_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000297"
     },
     {
       "accession": "PDC000296",
@@ -6266,8 +6424,10 @@
           "NCI7_Experimental_JHU_Proteome.tmt10.tsv",
           "NCI7_Experimental_JHU_Proteome.summary.tsv",
           "NCI7_Experimental_JHU_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: NCI7_Experimental_JHU_Proteome.peptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000296"
     },
     {
       "accession": "PDC000591",
@@ -6354,8 +6514,10 @@
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.qcmetrics.tsv",
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.summary.tsv",
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.2) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000591"
     },
     {
       "accession": "PDC000589",
@@ -6442,8 +6604,10 @@
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphosite.tmt16.tsv",
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.qcmetrics.tsv",
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphopeptide.tmt16.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.2) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000589"
     },
     {
       "accession": "PDC000176",
@@ -6537,8 +6701,10 @@
           "Gygi_TCMP_HMS_Phosphoproteome.peptides.tsv",
           "S047 Reporter QuantIsotopicPurityCorrectionParameterFile.txt",
           "Gygi_TCMP_HMS_Phosphoproteome.mzIdentML.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Gygi_TCMP_HMS_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Похоже на PDC000180 (score 0.188) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000176"
     },
     {
       "accession": "PDC000240",
@@ -6613,8 +6779,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.summary.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000240"
     },
     {
       "accession": "PDC000244",
@@ -6692,8 +6860,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.phosphosite.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000244"
     },
     {
       "accession": "PDC000242",
@@ -6770,8 +6940,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.qcmetrics.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.peptides.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000242"
     },
     {
       "accession": "PDC000239",
@@ -6846,8 +7018,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.summary.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000239"
     },
     {
       "accession": "PDC000121",
@@ -6925,8 +7099,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.peptides.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000121"
     },
     {
       "accession": "PDC000117",
@@ -7004,8 +7180,10 @@
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.peptides.tsv",
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: TMT10_Label_to_Sample_Mapping_File_COprospective_Phosphoproteome_PNNL_S037.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000117"
     },
     {
       "accession": "PDC000250",
@@ -7070,8 +7248,10 @@
           "CPTAC_Ovarian_Cancer_Confirmatory_Study_1Year_Followup_Clinical_Data_S038.xlsx",
           "CPTAC_S038_SOP-SPEG-Trypsin_digestion_serum_N-Glycopeptide_enrichment_CPTAC_Assays.docx",
           "CPTAC_S038_RA226166A_and_RC229872_mixed_TMT_correction_factors.tsv"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000250"
     },
     {
       "accession": "PDC000251",
@@ -7150,8 +7330,10 @@
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.sample.txt",
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.label.txt",
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000251"
     },
     {
       "accession": "PDC000119",
@@ -7231,8 +7413,10 @@
           "CPTAC_S038_TMT10_Label_to_Sample_Mapping_File_Proteome_JHU_r1.xlsx",
           "CPTAC_S038_TMT10_Label_to_Sample_Mapping_File_Proteome_PNNL_r1.xlsx",
           "CPTAC2_Ovarian_Prospective_Collection_PNNL_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Ovarian_Prospective_Collection_PNNL_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000119"
     },
     {
       "accession": "PDC000583",
@@ -7305,8 +7489,10 @@
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.phosphopeptide.tmt16.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000583"
     },
     {
       "accession": "PDC000359",
@@ -7385,8 +7571,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000359"
     },
     {
       "accession": "PDC000357",
@@ -7462,8 +7650,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000357"
     },
     {
       "accession": "PDC000361",
@@ -7542,8 +7732,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.label.txt",
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000361"
     },
     {
       "accession": "PDC000409",
@@ -7622,8 +7814,10 @@
           "CPTAC3_PTRC_TNBC_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_TNBC_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_TNBC_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_TNBC_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000409"
     },
     {
       "accession": "PDC000410",
@@ -7695,8 +7889,10 @@
           "CPTAC3_PTRC_TNBC_PDX_Proteome.sample.txt",
           "CPTAC3_PTRC_TNBC_PDX_Proteome.tmt11.tsv",
           "CPTAC3_PTRC_TNBC_PDX_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_TNBC_PDX_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000410"
     },
     {
       "accession": "PDC000580",
@@ -7775,8 +7971,10 @@
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000580"
     },
     {
       "accession": "PDC000312",
@@ -7853,8 +8051,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000312"
     },
     {
       "accession": "PDC000309",
@@ -7929,8 +8129,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000309"
     },
     {
       "accession": "PDC000313",
@@ -8007,8 +8209,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000313"
     },
     {
       "accession": "PDC000311",
@@ -8083,8 +8287,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000311"
     },
     {
       "accession": "PDC000314",
@@ -8161,8 +8367,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000314"
     },
     {
       "accession": "PDC000310",
@@ -8237,8 +8445,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000310"
     },
     {
       "accession": "PDC000607",
@@ -8303,8 +8513,10 @@
           "20220920_HFX_SYL_GBC_TMT16_Pho_Group17_F06.raw",
           "20221024_HFX_SYL_GBC_TMT16_Pho_Group30_F03.raw",
           "20221023_HFX_SYL_GBC_TMT16_Pho_Group32_F07.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000607"
     },
     {
       "accession": "PDC000606",
@@ -8369,8 +8581,10 @@
           "20220726_HF_SYL_GBC_TMT16_Pro_Group_25_F20.raw",
           "20220830_HF_SYL_GBC_TMT16_Pro_Group_03_F24.raw",
           "20220826_HF_SYL_GBC_TMT16_Pro_Group_28_F06.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000606"
     },
     {
       "accession": "PDC000696",
@@ -8435,8 +8649,10 @@
           "TNBC_NCC_OP_TMTpro16plex_Phospho_S04_F07.raw",
           "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F01.raw",
           "TNBC_NCC_TMTpro16plex_Phospho_S03_F01.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000696"
     },
     {
       "accession": "PDC000695",
@@ -8501,8 +8717,10 @@
           "TNBC_NCC-OP_TMTpro16plex_Global_S03_F24.raw",
           "TNBC_NCC-OP_TMTpro16plex_Global_S04_F23.raw",
           "TNBC_NCC_TMTpro16plex_Global_S04_F18.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000695"
     },
     {
       "accession": "MSV000102463",
@@ -8556,8 +8774,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: patient_fluid · Источник massive_api, ID MSV000102463"
     }
   ],
   "candidates": [
@@ -8628,8 +8848,10 @@
         "n_listed": 9,
         "sample_files": [
           "Protein.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Protein.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: clinical_human · Источник pride_search_v3, ID PXD077831"
     },
     {
       "accession": "PDC000649",
@@ -8694,8 +8916,10 @@
           "20221025_GC_Batch03_TMT11_phos_F03_02.raw",
           "20230503_GC_Batch10re_TMT11_phos_F02_01.raw",
           "20231227_GC_TMT11_Phos_B22_F01_01.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000649"
     },
     {
       "accession": "PDC000645",
@@ -8760,8 +8984,10 @@
           "20230822_GC_TMT11_Prot_B16_F10.raw",
           "20240301_GC_TMT11_Prot_B24_F01.raw",
           "20231222_GC_TMT11_B20re_prot_F23.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000645"
     },
     {
       "accession": "PDC000564",
@@ -8840,8 +9066,10 @@
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.phosphosite.tmt10.tsv",
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.sample.txt",
           "Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Academia_Sinica_LUAD_ICPC_B_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000564"
     },
     {
       "accession": "PDC000220",
@@ -8920,8 +9148,10 @@
           "Academia_Sinica_LUAD100_Phosphoproteome.peptides.tsv",
           "Academia_Sinica_LUAD100_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "Academia_Sinica_LUAD100_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Academia_Sinica_LUAD100_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000220"
     },
     {
       "accession": "PDC000403",
@@ -9000,8 +9230,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_Combination_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000403"
     },
     {
       "accession": "PDC000399",
@@ -9080,8 +9312,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.sample.txt",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_PrimaryCohort_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000399"
     },
     {
       "accession": "PDC000401",
@@ -9160,8 +9394,10 @@
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.label.txt",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_AML_DrugResponse_Sorafenib_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000401"
     },
     {
       "accession": "PDC000318",
@@ -9240,8 +9476,10 @@
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.summary.tsv",
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.peptides.tsv",
           "PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Gilteritinib_Resistance_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000318"
     },
     {
       "accession": "PDC000319",
@@ -9320,8 +9558,10 @@
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.sample.txt",
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.phosphosite.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Gilteritinib_TimeCourse_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000319"
     },
     {
       "accession": "PDC000320",
@@ -9400,8 +9640,10 @@
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.qcmetrics.tsv",
           "PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: PTRC_PNNL_Quizartinib_Resistance_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000320"
     },
     {
       "accession": "PDC000436",
@@ -9480,8 +9722,10 @@
           "APOLLO_LUAD_Phosphoproteome_FeNTA.sample.txt",
           "APOLLO_LUAD_Phosphoproteome_FeNTA.summary.tsv",
           "APOLLO_LUAD_Phosphoproteome_FeNTA.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: APOLLO_LUAD_Phosphoproteome_FeNTA.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000436"
     },
     {
       "accession": "PDC000435",
@@ -9560,8 +9804,10 @@
           "APOLLO_LUAD_Phosphoproteome_TiO2.phosphopeptide.tmt11.tsv",
           "APOLLO_LUAD_Phosphoproteome_TiO2.label.txt",
           "APOLLO_LUAD_Phosphoproteome_TiO2.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: APOLLO_LUAD_Phosphoproteome_TiO2.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000435"
     },
     {
       "accession": "PDC000478",
@@ -9640,8 +9886,10 @@
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_PNNL_BEAT_AML_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000478"
     },
     {
       "accession": "PDC000430",
@@ -9708,8 +9956,10 @@
           "BA20161203_BI_FM_Medullo_KAc_Plex05_Fxn3.raw",
           "BA20161201_BI_FM_Medullo_KAc_Plex03_Fxn3.raw",
           "BA20161201_BI_FM_Medullo_KAc_Plex02_Fxn1.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000430"
     },
     {
       "accession": "PDC000431",
@@ -9776,8 +10026,10 @@
           "BA20161122_BI_FM_Medullo_pY_Plex04_Fxn1.raw",
           "BL20161004_BI_FM_Medullo_pY_Plex02_Fxn1.raw",
           "BL20161004_BI_FM_Medullo_pY_Plex03_Fxn1.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000431"
     },
     {
       "accession": "PDC000432",
@@ -9844,8 +10096,10 @@
           "BL20160819_FM_Medullo_Phosphoproteome_Plex02_Fxn03.raw",
           "BL20160819_FM_Medullo_Phosphoproteome_Plex01_Fxn03.raw",
           "BL20160823_FM_Medullo_Phosphoproteome_Plex04_Fxn11.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000432"
     },
     {
       "accession": "PDC000520",
@@ -9924,8 +10178,10 @@
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphosite.tmt10.tsv",
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.summary.tsv",
           "CGU_OSCC_APOBEC3A_Global_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CGU_OSCC_APOBEC3A_Global_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000520"
     },
     {
       "accession": "PDC000521",
@@ -10004,8 +10260,10 @@
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.label.txt",
           "CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CGU_OSCC_APOBEC3A_Multiple_Phosphoproteome.phosphosite.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000521"
     },
     {
       "accession": "PDC000130",
@@ -10083,8 +10341,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000130"
     },
     {
       "accession": "PDC000129",
@@ -10161,8 +10421,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.summary.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_CompRef_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000129"
     },
     {
       "accession": "PDC000471",
@@ -10227,8 +10489,10 @@
         "sample_files": [
           "ccRCC_TMT_intact glycopeptide_abundance_MD-MAD_50percentQuant_imputed.tsv",
           "ccRCC_TMT_intact glycopeptide_abundance_MD-MAD.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: ccRCC_TMT_intact glycopeptide_abundance_MD-MAD_50percentQuant_imputed.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000471"
     },
     {
       "accession": "PDC000128",
@@ -10306,8 +10570,10 @@
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Clear_Cell_Renal_Cell_Carcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000128"
     },
     {
       "accession": "PDC000450",
@@ -10384,8 +10650,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_Acetylome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000450"
     },
     {
       "accession": "PDC000451",
@@ -10462,8 +10730,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000451"
     },
     {
       "accession": "PDC000449",
@@ -10542,8 +10812,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000449"
     },
     {
       "accession": "PDC000447",
@@ -10621,8 +10893,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_CompRef_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000447"
     },
     {
       "accession": "PDC000454",
@@ -10687,8 +10961,10 @@
           "11CPTAC_C_GBM_G_JHU_20220218_B3S1_f01.mzML.gz",
           "08CPTAC_C_GBM_G_JHU_20220216_B2S3_f01.mzML.gz",
           "07CPTAC_C_GBM_G_JHU_20220215_B2S2_f02.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000454"
     },
     {
       "accession": "PDC000448",
@@ -10767,8 +11043,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000448"
     },
     {
       "accession": "PDC000245",
@@ -10843,8 +11121,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.sample.txt",
           "CPTAC3_Glioblastoma_Multiforme_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_Acetylome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000245"
     },
     {
       "accession": "PDC000246",
@@ -10919,8 +11199,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.peptides.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_CompRef_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000246"
     },
     {
       "accession": "PDC000206",
@@ -10999,8 +11281,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S048_PNNL_Protocols_GBM_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000206"
     },
     {
       "accession": "PDC000203",
@@ -11078,8 +11362,10 @@
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Glioblastoma_Multiforme_CompRef_Proteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000203"
     },
     {
       "accession": "PDC000205",
@@ -11158,8 +11444,10 @@
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.summary.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_Glioblastoma_Multiforme_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S048_PNNL_Protocols_GBM_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000205"
     },
     {
       "accession": "PDC000222",
@@ -11237,8 +11525,10 @@
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.sample.txt",
           "CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Head_and_Neck_Carcinoma_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000222"
     },
     {
       "accession": "PDC000233",
@@ -11313,8 +11603,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.qcmetrics.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000233"
     },
     {
       "accession": "PDC000232",
@@ -11393,8 +11685,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.phosphosite.tmt11.tsv",
           "S058_Phosphoproteome_reporterIon.correction.txt",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000232"
     },
     {
       "accession": "PDC000237",
@@ -11469,8 +11763,10 @@
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.sample.txt",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.summary.tsv",
           "CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Squamous_Cell_Carcinoma_Ubiquitylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000237"
     },
     {
       "accession": "PDC000491",
@@ -11547,8 +11843,10 @@
           "CPTAC3_LUAD_Confirmatory_Acetylome.peptides.tsv",
           "CPTAC3_LUAD_Confirmatory_Acetylome.label.txt",
           "CPTAC3_LUAD_Confirmatory_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000491"
     },
     {
       "accession": "PDC000490",
@@ -11627,8 +11925,10 @@
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_LUAD_Confirmatory_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000490"
     },
     {
       "accession": "PDC000492",
@@ -11705,8 +12005,10 @@
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.sample.txt",
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.peptides.tsv",
           "CPTAC3_LUAD_Confirmatory_Ubiquitylome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Confirmatory_Ubiquitylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000492"
     },
     {
       "accession": "PDC000224",
@@ -11781,8 +12083,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000224"
     },
     {
       "accession": "PDC000225",
@@ -11857,8 +12161,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_CompRef_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000225"
     },
     {
       "accession": "PDC000155",
@@ -11936,8 +12242,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_CompRef_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000155"
     },
     {
       "accession": "PDC000154",
@@ -12015,8 +12323,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.peptides.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Lung_Adeno_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S046_BI_CPTAC3_TMT10_Label_to_Sample_Mapping_File_LUAD_CompRef_proteome_plexes_01-04_20181221.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000154"
     },
     {
       "accession": "PDC000149",
@@ -12094,8 +12404,10 @@
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.sample.txt",
           "CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Lung_Adeno_Carcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000149"
     },
     {
       "accession": "PDC000627",
@@ -12172,8 +12484,10 @@
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.qcmetrics.tsv",
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.sample.txt",
           "CPTAC3_LUAD_Discovery_BI_Ubiquitylome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_LUAD_Discovery_BI_Ubiquitylome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000627"
     },
     {
       "accession": "PDC000466",
@@ -12238,8 +12552,10 @@
           "07CPTAC_non-ccRCC_G_JHU_20211109_LUMOS_f07.mzML.gz",
           "01CPTAC_non-ccRCC_G_JHU_20210628_LUMOS_f06.raw",
           "01CPTAC_non-ccRCC_G_JHU_20210628_LUMOS_f08.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000466"
     },
     {
       "accession": "PDC000465",
@@ -12318,8 +12634,10 @@
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.label.txt",
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_non-ccRCC_JHU_Phosphoproteome.phosphosite.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_non-ccRCC_JHU_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000465"
     },
     {
       "accession": "PDC000272",
@@ -12384,8 +12702,10 @@
           "03CPTAC_PDA_G_JHU_20200209_LUMOS_f04.raw",
           "18CPTAC_PDA_G_JHU_20200612_LUMOS_f08.raw",
           "25CPTAC_PDA_G_JHU_20200617_LUMOS_f12.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000272"
     },
     {
       "accession": "PDC000271",
@@ -12463,8 +12783,10 @@
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.summary.tsv",
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Pancreatic_Ductal_Adenocarcinoma_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000271"
     },
     {
       "accession": "PDC000626",
@@ -12529,8 +12851,10 @@
           "OrbitrapLUMOS_20240104_03.raw",
           "OrbitrapLUMOS_20240123_05.raw",
           "OrbitrapLUMOS_20231214_06.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000626"
     },
     {
       "accession": "PDC000443",
@@ -12605,8 +12929,10 @@
           "CPTAC3_UCEC_Confirmatory_Acetylome.sample.txt",
           "CPTAC3_UCEC_Confirmatory_Acetylome.summary.tsv",
           "CPTAC3_UCEC_Confirmatory_Acetylome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000443"
     },
     {
       "accession": "PDC000444",
@@ -12681,8 +13007,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.summary.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.qcmetrics.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000444"
     },
     {
       "accession": "PDC000442",
@@ -12761,8 +13089,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.summary.tsv",
           "PNNL Protocols_C_UCEC_Phosphoproteome.xlsx"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000442"
     },
     {
       "accession": "PDC000440",
@@ -12840,8 +13170,10 @@
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.peptides.tsv",
           "CPTAC3_UCEC_Confirmatory_CompRef_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_CompRef_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000440"
     },
     {
       "accession": "PDC000445",
@@ -12906,8 +13238,10 @@
           "09CPTAC_C_UCEC_G_JHU_20220130_B3S1_f03.raw",
           "10CPTAC_C_UCEC_G_JHU_20211231_B3S2_f03_20220102032450.mzML.gz",
           "11CPTAC_C_UCEC_G_JHU_20220101_B3S3_f04.mzML.gz"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000445"
     },
     {
       "accession": "PDC000441",
@@ -12986,8 +13320,10 @@
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.sample.txt",
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_UCEC_Confirmatory_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_UCEC_Confirmatory_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000441"
     },
     {
       "accession": "PDC000226",
@@ -13062,8 +13398,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.peptides.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Acetylome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000226"
     },
     {
       "accession": "PDC000227",
@@ -13138,8 +13476,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.peptides.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.sample.txt",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000227"
     },
     {
       "accession": "PDC000123",
@@ -13217,8 +13557,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000123"
     },
     {
       "accession": "PDC000124",
@@ -13295,8 +13637,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.sample.txt",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.summary.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_CompRef_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000124"
     },
     {
       "accession": "PDC000126",
@@ -13375,8 +13719,10 @@
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Uterine_Corpus_Endometrial_Carcinoma_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: S043_PNNL_Protocols_UCEC_Phosphoproteome.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000126"
     },
     {
       "accession": "PDC000199",
@@ -13468,8 +13814,10 @@
           "Zhou_Liver_Cancer_Phosphoproteome.summary.tsv",
           "Zhou_Liver_Cancer_Phosphoproteome.phosphosite.tmt11.tsv",
           "Zhou_Liver_Cancer_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Zhou_Liver_Cancer_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.333) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000199"
     },
     {
       "accession": "PDC000496",
@@ -13548,8 +13896,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.label.txt",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.peptides.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.phosphopeptide.tmt11.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000496"
     },
     {
       "accession": "PDC000495",
@@ -13627,8 +13977,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000495"
     },
     {
       "accession": "PDC000499",
@@ -13693,8 +14045,10 @@
           "01CPTAC_AYA_G_JHU_20230303_B1S1_f11.raw",
           "02CPTAC_AYA_G_JHU_20230305_B1S2_f10.raw",
           "06CPTAC_AYA_G_JHU_20230317_B2S1_f11.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000499"
     },
     {
       "accession": "PDC000497",
@@ -13773,8 +14127,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.label.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000497"
     },
     {
       "accession": "PDC000498",
@@ -13852,8 +14208,10 @@
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
           "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000498"
     },
     {
       "accession": "PDC000515",
@@ -13932,8 +14290,10 @@
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.sample.txt",
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.peptides.tsv",
           "KNCC_Glioblastoma_Evolution_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KNCC_Glioblastoma_Evolution_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000515"
     },
     {
       "accession": "PDC000343",
@@ -14012,8 +14372,10 @@
           "KU_CCA_Discovery_Phosphoproteome.phosphosite.tmt11.tsv",
           "KU_CCA_Discovery_Phosphoproteome.qcmetrics.tsv",
           "KU_CCA_Discovery_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KU_CCA_Discovery_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000343"
     },
     {
       "accession": "PDC000249",
@@ -14092,8 +14454,10 @@
           "KU_PDAC_Discovery_Study_Phosphoproteome.phosphosite.tmt10.tsv",
           "KU_PDAC_Discovery_Study_Phosphoproteome.label.txt",
           "KU_PDAC_Discovery_Study_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: KU_PDAC_Discovery_Study_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000249"
     },
     {
       "accession": "PDC000326",
@@ -14171,8 +14535,10 @@
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_DP1_Phosphoproteome.phosphosite.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000326"
     },
     {
       "accession": "PDC000328",
@@ -14250,8 +14616,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000328"
     },
     {
       "accession": "PDC000327",
@@ -14322,8 +14690,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Bulk_Proteome.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000327"
     },
     {
       "accession": "PDC000330",
@@ -14401,8 +14771,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.peptides.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.summary.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Cores_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000330"
     },
     {
       "accession": "PDC000329",
@@ -14473,8 +14845,10 @@
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.qcmetrics.tsv",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.sample.txt",
           "CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Microscale_Proteogenomics_PDX_Cores_Proteome.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000329"
     },
     {
       "accession": "PDC000363",
@@ -14553,8 +14927,10 @@
           "iCC_NCC_Phosphoproteome.summary.tsv",
           "iCC_NCC_Phosphoproteome.sample.txt",
           "iCC_NCC_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: iCC_NCC_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000363"
     },
     {
       "accession": "PDC000297",
@@ -14632,8 +15008,10 @@
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.qcmetrics.tsv",
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.phosphosite.tmt10.tsv",
           "NCI7_Proteomic_Coverage_JHU_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: NCI7_Proteomic_Coverage_JHU_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000297"
     },
     {
       "accession": "PDC000296",
@@ -14711,8 +15089,10 @@
           "NCI7_Experimental_JHU_Proteome.tmt10.tsv",
           "NCI7_Experimental_JHU_Proteome.summary.tsv",
           "NCI7_Experimental_JHU_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: NCI7_Experimental_JHU_Proteome.peptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000296"
     },
     {
       "accession": "PDC000591",
@@ -14799,8 +15179,10 @@
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.qcmetrics.tsv",
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.summary.tsv",
           "SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: SIMM_NF-PNET_Discovery_PhaseI_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.2) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000591"
     },
     {
       "accession": "PDC000589",
@@ -14887,8 +15269,10 @@
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphosite.tmt16.tsv",
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.qcmetrics.tsv",
           "SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: SIMM_NF-PNET_Discovery_PhaseII_Phosphoproteome.phosphopeptide.tmt16.tsv"
+      },
+      "finding_note": "Похоже на PXD066224 (score 0.2) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000589"
     },
     {
       "accession": "PDC000176",
@@ -14982,8 +15366,10 @@
           "Gygi_TCMP_HMS_Phosphoproteome.peptides.tsv",
           "S047 Reporter QuantIsotopicPurityCorrectionParameterFile.txt",
           "Gygi_TCMP_HMS_Phosphoproteome.mzIdentML.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: Gygi_TCMP_HMS_Phosphoproteome.qcmetrics.tsv"
+      },
+      "finding_note": "Похоже на PDC000180 (score 0.188) · Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000176"
     },
     {
       "accession": "PDC000240",
@@ -15058,8 +15444,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.summary.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Acetylome.qcmetrics.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000240"
     },
     {
       "accession": "PDC000244",
@@ -15137,8 +15525,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Phosphoproteome.phosphosite.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000244"
     },
     {
       "accession": "PDC000242",
@@ -15215,8 +15605,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.qcmetrics.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.peptides.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_CompRef_Proteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000242"
     },
     {
       "accession": "PDC000239",
@@ -15291,8 +15683,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.sample.txt",
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.summary.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Acetylome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_Acetylome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000239"
     },
     {
       "accession": "PDC000121",
@@ -15370,8 +15764,10 @@
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.peptides.tsv",
           "CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Breast_Prospective_Collection_BI_Phosphoproteome.sample.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000121"
     },
     {
       "accession": "PDC000117",
@@ -15449,8 +15845,10 @@
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.peptides.tsv",
           "CPTAC2_Colon_Prospective_Collection_PNNL_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: TMT10_Label_to_Sample_Mapping_File_COprospective_Phosphoproteome_PNNL_S037.xlsx"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000117"
     },
     {
       "accession": "PDC000250",
@@ -15515,8 +15913,10 @@
           "CPTAC_Ovarian_Cancer_Confirmatory_Study_1Year_Followup_Clinical_Data_S038.xlsx",
           "CPTAC_S038_SOP-SPEG-Trypsin_digestion_serum_N-Glycopeptide_enrichment_CPTAC_Assays.docx",
           "CPTAC_S038_RA226166A_and_RC229872_mixed_TMT_correction_factors.tsv"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000250"
     },
     {
       "accession": "PDC000251",
@@ -15595,8 +15995,10 @@
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.sample.txt",
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.label.txt",
           "CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.peptides.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Ovarian_Prospective_Collection_JHU_SPEG_Glycoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000251"
     },
     {
       "accession": "PDC000119",
@@ -15676,8 +16078,10 @@
           "CPTAC_S038_TMT10_Label_to_Sample_Mapping_File_Proteome_JHU_r1.xlsx",
           "CPTAC_S038_TMT10_Label_to_Sample_Mapping_File_Proteome_PNNL_r1.xlsx",
           "CPTAC2_Ovarian_Prospective_Collection_PNNL_Phosphoproteome.phosphosite.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC2_Ovarian_Prospective_Collection_PNNL_Phosphoproteome.phosphopeptide.tmt10.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000119"
     },
     {
       "accession": "PDC000583",
@@ -15750,8 +16154,10 @@
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_BRCA_CALGB40601_Phosphoproteome.phosphopeptide.tmt16.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000583"
     },
     {
       "accession": "PDC000359",
@@ -15830,8 +16236,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.phosphosite.tmt11.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Discovery_Phosphoproteome.phosphopeptide.tmt11.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000359"
     },
     {
       "accession": "PDC000357",
@@ -15907,8 +16315,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.peptides.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.summary.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_FFPE_Validation_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000357"
     },
     {
       "accession": "PDC000361",
@@ -15987,8 +16397,10 @@
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.label.txt",
           "CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_FHCRC_HGSOC_Frozen_Validation_Phosphoproteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000361"
     },
     {
       "accession": "PDC000409",
@@ -16067,8 +16479,10 @@
           "CPTAC3_PTRC_TNBC_Phosphoproteome.summary.tsv",
           "CPTAC3_PTRC_TNBC_Phosphoproteome.phosphopeptide.tmt11.tsv",
           "CPTAC3_PTRC_TNBC_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_TNBC_Phosphoproteome.label.txt"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000409"
     },
     {
       "accession": "PDC000410",
@@ -16140,8 +16554,10 @@
           "CPTAC3_PTRC_TNBC_PDX_Proteome.sample.txt",
           "CPTAC3_PTRC_TNBC_PDX_Proteome.tmt11.tsv",
           "CPTAC3_PTRC_TNBC_PDX_Proteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_TNBC_PDX_Proteome.summary.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000410"
     },
     {
       "accession": "PDC000580",
@@ -16220,8 +16636,10 @@
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.qcmetrics.tsv",
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.phosphopeptide.tmt10.tsv",
           "CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.sample.txt"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_PTRC_Breast_Cancer_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000580"
     },
     {
       "accession": "PDC000312",
@@ -16298,8 +16716,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000312"
     },
     {
       "accession": "PDC000309",
@@ -16374,8 +16794,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000309"
     },
     {
       "accession": "PDC000313",
@@ -16452,8 +16874,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000313"
     },
     {
       "accession": "PDC000311",
@@ -16528,8 +16952,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000311"
     },
     {
       "accession": "PDC000314",
@@ -16606,8 +17032,10 @@
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.phosphosite.tmt10.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Phosphoproteome.qcmetrics.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Phosphoproteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000314"
     },
     {
       "accession": "PDC000310",
@@ -16682,8 +17110,10 @@
           "CPTAC3_Harmonization_PhaseII_Proteome.qcmetrics.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.summary.tsv",
           "CPTAC3_Harmonization_PhaseII_Proteome.tmt10.tsv"
-        ]
-      }
+        ],
+        "guidance": "Protein groups / quant table: CPTAC3_Harmonization_PhaseII_Proteome.peptides.tsv"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000310"
     },
     {
       "accession": "PDC000607",
@@ -16748,8 +17178,10 @@
           "20220920_HFX_SYL_GBC_TMT16_Pho_Group17_F06.raw",
           "20221024_HFX_SYL_GBC_TMT16_Pho_Group30_F03.raw",
           "20221023_HFX_SYL_GBC_TMT16_Pho_Group32_F07.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000607"
     },
     {
       "accession": "PDC000606",
@@ -16814,8 +17246,10 @@
           "20220726_HF_SYL_GBC_TMT16_Pro_Group_25_F20.raw",
           "20220830_HF_SYL_GBC_TMT16_Pro_Group_03_F24.raw",
           "20220826_HF_SYL_GBC_TMT16_Pro_Group_28_F06.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000606"
     },
     {
       "accession": "PDC000696",
@@ -16880,8 +17314,10 @@
           "TNBC_NCC_OP_TMTpro16plex_Phospho_S04_F07.raw",
           "TNBC_NCC_OP_TMTpro16plex_Phospho_S02_F01.raw",
           "TNBC_NCC_TMTpro16plex_Phospho_S03_F01.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000696"
     },
     {
       "accession": "PDC000695",
@@ -16946,8 +17382,10 @@
           "TNBC_NCC-OP_TMTpro16plex_Global_S03_F24.raw",
           "TNBC_NCC-OP_TMTpro16plex_Global_S04_F23.raw",
           "TNBC_NCC_TMTpro16plex_Global_S04_F18.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: pdc_clinical_tumor · Источник pdc_api, ID PDC000695"
     },
     {
       "accession": "MSV000102463",
@@ -17001,8 +17439,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Материал соответствует критериям атласа · Материал: patient_fluid · Источник massive_api, ID MSV000102463"
     }
   ],
   "manual_check": [
@@ -17059,8 +17499,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: yes · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:42310533"
     },
     {
       "pmid": "41771895",
@@ -17115,8 +17557,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: yes · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41771895"
     },
     {
       "pmid": "41622683",
@@ -17168,8 +17612,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41622683"
     },
     {
       "pmid": "41851243",
@@ -17223,8 +17669,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41851243"
     },
     {
       "pmid": "42051158",
@@ -17279,8 +17727,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: yes · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:42051158"
     },
     {
       "pmid": "41472394",
@@ -17332,8 +17782,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41472394"
     },
     {
       "pmid": "41567026",
@@ -17387,8 +17839,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41567026"
     },
     {
       "pmid": "41966223",
@@ -17443,8 +17897,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: yes · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41966223"
     },
     {
       "pmid": "41699065",
@@ -17498,8 +17954,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41699065"
     },
     {
       "pmid": "41301916",
@@ -17551,8 +18009,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41301916"
     },
     {
       "pmid": "13006395",
@@ -17606,8 +18066,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:13006395"
     },
     {
       "pmid": "41055288",
@@ -17659,8 +18121,10 @@
         "psm_files": [],
         "raw_count": 0,
         "n_listed": 0,
-        "sample_files": []
-      }
+        "sample_files": [],
+        "guidance": "В API нет файлов — проверьте Data availability / Supplementary статьи"
+      },
+      "finding_note": "Atlas fit: maybe · По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем · Источник literature_semantic_candidate, ID PMID:41055288"
     }
   ],
   "rejected_material": [
@@ -17732,8 +18196,10 @@
           "03_Organoids_A_f03.raw",
           "01_Organoids_A_f02.raw",
           "04_Organoids_A_f03.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Только spheroids/organoids/tumoroids/3D culture · Источник pdc_api, ID PDC000713"
     },
     {
       "accession": "PDC000712",
@@ -17803,8 +18269,10 @@
           "01_Organoids_P_f01.raw",
           "05_Organoids_P_f03.raw",
           "05_Organoids_P_f11.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Только spheroids/organoids/tumoroids/3D culture · Источник pdc_api, ID PDC000712"
     },
     {
       "accession": "PDC000711",
@@ -17874,8 +18342,10 @@
           "01_Organoids_W_f09.raw",
           "05_Organoids_W_f01.raw",
           "01_Organoids_W_f03.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Только spheroids/organoids/tumoroids/3D culture · Источник pdc_api, ID PDC000711"
     },
     {
       "accession": "PDC000714",
@@ -17945,8 +18415,10 @@
           "01_Organoids_U_f04.raw",
           "03_Organoids_U_f02.raw",
           "05_Organoids_U_f02.raw"
-        ]
-      }
+        ],
+        "guidance": "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+      },
+      "finding_note": "Только spheroids/organoids/tumoroids/3D culture · Источник pdc_api, ID PDC000714"
     }
   ],
   "publications_analyzed": [
@@ -17968,7 +18440,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "plasma"
+      "material": "plasma",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41771895",
@@ -17988,7 +18462,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41622683",
@@ -18005,7 +18481,9 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "TMT11",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41851243",
@@ -18024,7 +18502,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42051158",
@@ -18044,7 +18524,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42273731",
@@ -18061,7 +18543,9 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41862993",
@@ -18081,7 +18565,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "pdx"
+      "material": "pdx",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41472394",
@@ -18098,7 +18584,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41453614",
@@ -18115,7 +18603,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42155730",
@@ -18132,7 +18622,9 @@
       "summary_ru": "",
       "organism": "mixed",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41931001",
@@ -18151,7 +18643,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41742694",
@@ -18168,7 +18662,9 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42029488",
@@ -18185,7 +18681,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41567026",
@@ -18204,7 +18702,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41966223",
@@ -18224,7 +18724,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41870234",
@@ -18241,7 +18743,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42192865",
@@ -18258,7 +18762,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41740022",
@@ -18275,7 +18781,9 @@
       "summary_ru": "",
       "organism": "mouse",
       "tmt": "TMT10",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41699065",
@@ -18294,7 +18802,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "tumor tissue"
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "42294822",
@@ -18311,7 +18821,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41575784",
@@ -18328,7 +18840,9 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41301916",
@@ -18345,7 +18859,9 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "PMC13006395",
@@ -18364,7 +18880,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     },
     {
       "pmid": "41055288",
@@ -18381,7 +18899,9 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear"
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Открытый доступ неясен — проверьте Supplementary и репозиторий"
     }
   ],
   "literature_semantic": [
