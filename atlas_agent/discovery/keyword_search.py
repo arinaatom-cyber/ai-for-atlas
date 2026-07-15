@@ -119,6 +119,11 @@ def run_keyword_ai_search(
     repo_novel = annotate_candidates(repo_novel, df)
     pubs_novel = annotate_candidates(pubs_novel, df)
 
+    from atlas_agent.viz.portal_index import format_finding_note
+
+    for item in repo_novel + pubs_novel:
+        item["finding_note"] = format_finding_note(item, keywords=kw)
+
     filtered_repo, filter_stats = apply_filters(repo_novel, df, filt_cfg)
 
     return {

@@ -75,7 +75,17 @@ def _data_cell(it: dict) -> str:
         hint = f'<br/><span class="muted">{_esc(samples[0][:50])}</span>'
     if da.get("local_mirror"):
         hint += '<br/><span class="muted">local</span>'
+    guidance = _esc(da.get("guidance") or "")
+    if guidance:
+        hint += f'<br/><span class="muted">{guidance}</span>'
     return f'<span class="badge {cls}">{label}</span>{hint}'
+
+
+def _finding_cell(it: dict) -> str:
+    note = it.get("finding_note") or ""
+    if note:
+        return f'<span class="muted">{_esc(note[:320])}</span>'
+    return _ai_summary(it)
 
 
 def _project_rows(items: list[dict]) -> str:
@@ -90,6 +100,7 @@ def _project_rows(items: list[dict]) -> str:
         sim_id = _esc(str(sim.get("project_id") or ""))
         sim_score = sim.get("score", "")
         analysis = _ai_summary(it)
+        finding = _finding_cell(it)
         data = _data_cell(it)
         url = it.get("url") or ""
         raw_acc = (it.get("accession") or "").upper()
@@ -103,9 +114,9 @@ def _project_rows(items: list[dict]) -> str:
             f"<tr data-src='{src.lower()}' data-search='{acc.lower()} {title.lower()} {program.lower()}'>"
             f"<td class='cell-mono'><b>{acc}</b></td><td class='cell-title'>{title}</td><td>{src}</td>"
             f"<td>{plex}</td><td>{design}</td><td>{sim_id} ({sim_score})</td>"
-            f"<td class='analysis-cell'>{analysis}</td><td>{data}</td><td>{link}</td></tr>"
+            f"<td class='analysis-cell'>{analysis}</td><td class='analysis-cell'>{finding}</td><td>{data}</td><td>{link}</td></tr>"
         )
-    return "\n".join(rows) or '<tr><td colspan="9" data-i18n="no_projects"></td></tr>'
+    return "\n".join(rows) or '<tr><td colspan="10" data-i18n="no_projects"></td></tr>'
 
 
 def _publication_rows(pubs: list[dict]) -> str:
@@ -122,6 +133,7 @@ def _publication_rows(pubs: list[dict]) -> str:
         theme = _esc(p.get("similar_atlas_theme") or "")
         search = _esc(p.get("pride_search_terms") or "")
         summary = _esc(p.get("summary_ru") or p.get("summary_en") or "")
+        data_hint = _esc(p.get("data_hint") or "")
         ev = _esc("; ".join(p.get("semantic_evidence") or [])[:4])
         acc = p.get("accessions") or {}
         ids = ", ".join(x for k in ("PXD", "PDC", "MSV", "IPX") for x in (acc.get(k) or [])) or "—"
@@ -138,6 +150,7 @@ def _publication_rows(pubs: list[dict]) -> str:
             f"<td>{org}</td><td>{tmt}</td><td>{mat}</td>"
             f"<td>{ids}</td><td>{theme}</td><td>{search}</td>"
             f"<td class='analysis-cell'>{summary}<br/><span class='muted'>{ev}</span></td>"
+            f"<td class='muted'>{data_hint}</td>"
             f"<td class='muted'>{reader}</td></tr>"
         )
     return "\n".join(rows)
@@ -199,8 +212,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     fit_yes = sum(1 for p in pubs if p.get("atlas_fit") == "yes")
     fit_maybe = sum(1 for p in pubs if p.get("atlas_fit") == "maybe")
 
-    proj_rows = _project_rows(items) or '<tr><td colspan="9" data-i18n="no_projects"></td></tr>'
-    pub_rows = _publication_rows(pubs) or '<tr><td colspan="11" data-i18n="no_pubs"></td></tr>'
+    proj_rows = _project_rows(items) or '<tr><td colspan="10" data-i18n="no_projects"></td></tr>'
+    pub_rows = _publication_rows(pubs) or '<tr><td colspan="12" data-i18n="no_pubs"></td></tr>'
     lit_rows = _literature_rows(literature) or '<tr><td colspan="7" data-i18n="no_literature"></td></tr>'
 
     body = (
@@ -240,7 +253,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         <thead><tr>
           <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_source"></th>
           <th data-i18n="th_plex"></th><th data-i18n="th_design"></th><th data-i18n="th_similar"></th>
-          <th data-i18n="th_ai"></th><th data-i18n="th_data"></th><th data-i18n="th_link"></th>
+          <th data-i18n="th_ai"></th><th data-i18n="th_finding"></th><th data-i18n="th_data"></th><th data-i18n="th_link"></th>
         </tr></thead>
         <tbody>{proj_rows}</tbody>
       </table>
@@ -264,7 +277,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th data-i18n="th_pmid"></th><th data-i18n="th_title"></th><th data-i18n="th_fit"></th>
           <th data-i18n="th_organism"></th><th data-i18n="th_tmt"></th><th data-i18n="th_material"></th>
           <th data-i18n="th_ids"></th><th data-i18n="th_theme"></th><th data-i18n="th_pride"></th>
-          <th data-i18n="th_analysis"></th><th data-i18n="th_reader"></th>
+          <th data-i18n="th_analysis"></th><th data-i18n="th_supplementary"></th><th data-i18n="th_reader"></th>
         </tr></thead>
         <tbody>{pub_rows}</tbody>
       </table>

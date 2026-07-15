@@ -215,7 +215,53 @@ def check_item_data_availability(
         out["label"] = "local"
 
     out["sample_files"] = (classified.get("quant_files") or classified.get("psm_files") or names[:5])[:5]
+    out["guidance"] = data_guidance(out)
     return out
+
+
+def data_guidance(da: dict[str, Any]) -> str:
+    """Краткая подсказка: где protein groups / supplementary / raw."""
+    status = da.get("status") or "unknown"
+    quant = da.get("quant_files") or []
+    if status == "quant_table" and quant:
+        return f"Protein groups / quant table: {quant[0]}"
+    if status == "quant_table":
+        return "Количественная таблица в репозитории (protein-level)"
+    if status == "local_mirror":
+        loc = (da.get("local_files") or [""])[0]
+        return f"Локальная копия tmt-projects: {loc or 'matrix file'}"
+    if status == "processed_psm":
+        return "Только PSM/peptide — ищите protein groups в Supplementary или processed data"
+    if status == "raw_only":
+        return "Только raw MS — см. Methods; таблицы могут быть в Supplementary"
+    if status == "maybe_table":
+        return "Возможная таблица — проверьте файлы вручную / Supplementary"
+    if status == "no_files":
+        return "В API нет файлов — проверьте Data availability / Supplementary статьи"
+    return "Проверьте репозиторий и Supplementary"
+
+
+def literature_data_hint(pub: dict[str, Any]) -> str:
+    """Подсказка по доступности данных из абстракта / Europe PMC."""
+    text = " ".join(
+        str(pub.get(k) or "")
+        for k in ("data_availability", "abstract", "title")
+    ).lower()
+    if not text.strip():
+        return "Data availability не указан — см. Supplementary"
+    if "supplement" in text or "supplementary" in text or "table s" in text:
+        return "Данные в Supplementary (см. текст Data availability)"
+    if "pride" in text or "proteomexchange" in text or "pxd" in text:
+        return "Депонировано в PRIDE — номер в Data availability"
+    if "pdc" in text or "proteomic data commons" in text:
+        return "Депонировано в PDC"
+    if "massive" in text or "msv" in text:
+        return "Депонировано в MassIVE"
+    if "upon request" in text or "available on request" in text:
+        return "По запросу авторам — не открытый доступ"
+    if "github" in text:
+        return "Код/данные на GitHub (см. статью)"
+    return "Открытый доступ неясен — проверьте Supplementary и репозиторий"
 
 
 def annotate_data_availability(

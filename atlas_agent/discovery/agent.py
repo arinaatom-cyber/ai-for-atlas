@@ -238,7 +238,7 @@ def run_discovery_scan(
     qc_out = build_qc_outputs(buckets, known_acc)
     new_projects = qc_out["candidates"]
 
-    from atlas_agent.discovery.data_availability import annotate_data_availability, summarize_availability
+    from atlas_agent.discovery.data_availability import annotate_data_availability, literature_data_hint, summarize_availability
 
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir") or ""
     scan_cfg_da = scan_cfg.get("data_availability") or {}
@@ -253,6 +253,13 @@ def run_discovery_scan(
                     delay_s=float(scan_cfg_da.get("delay_s", 0.12)),
                 )
         new_projects = qc_out["candidates"]
+
+    from atlas_agent.viz.portal_index import format_finding_note
+
+    for bucket_key in ("candidates", "manual_check", "rejected_material"):
+        for item in qc_out.get(bucket_key) or []:
+            if not item.get("finding_note"):
+                item["finding_note"] = format_finding_note(item)
 
     data_avail_summary = summarize_availability(
         (qc_out.get("candidates") or [])
@@ -279,6 +286,8 @@ def run_discovery_scan(
                 "organism": ai.get("organism", ""),
                 "tmt": ai.get("tmt", ""),
                 "material": ai.get("material", ""),
+                "data_availability": (p.get("data_availability") or "")[:800],
+                "data_hint": literature_data_hint(p),
             }
         )
 
