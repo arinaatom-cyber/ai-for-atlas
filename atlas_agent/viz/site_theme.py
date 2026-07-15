@@ -1,11 +1,11 @@
-"""Shared HTML shell, nav, and asset deployment for bilingual Discovery site."""
+"""Shared HTML shell, nav, and asset deployment for English Discovery site."""
 from __future__ import annotations
 
 import html
 import shutil
 from pathlib import Path
 
-from atlas_agent.viz.i18n_defaults import ru as i18n_ru
+from atlas_agent.viz.i18n_defaults import en as i18n_default
 
 _ASSETS_DIR = Path(__file__).resolve().parent / "site_assets"
 
@@ -14,10 +14,6 @@ GITHUB_PROJECTS = "https://github.com/arinaatom-cyber/tmt-projects/tree/main/Pro
 LIVE_TMT = "https://arinaatom-cyber.github.io/TMT/discovery/discovery.html"
 LIVE_MAP = "https://arinaatom-cyber.github.io/TMT/"
 
-# deploy:
-#   docs_portal   — ai-for-atlas docs/index.html  (portal; pages under site/)
-#   docs_site     — ai-for-atlas docs/site/*.html (home → ../index.html)
-#   tmt_discovery — TMT repo discovery/*           (home → index.html portal; map at ../index.html)
 DEPLOY_DOCS_PORTAL = "docs_portal"
 DEPLOY_DOCS_SITE = "docs_site"
 DEPLOY_TMT = "tmt_discovery"
@@ -36,10 +32,7 @@ def write_site_assets(site_dir: Path) -> Path:
 
 
 def _lang_toggle() -> str:
-    return """<div class="lang-toggle" role="group" aria-label="Language">
-  <button type="button" data-lang="ru" class="active">RU</button>
-  <button type="button" data-lang="en">EN</button>
-</div>"""
+    return ""
 
 
 def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
@@ -49,7 +42,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
             "index.html",
             "site/atlas.html",
             "site/discovery.html",
-            "site/cohorts.html",
+            "site/discovery.html#cohorts",
             "site/qc.html",
             None,
         )
@@ -58,7 +51,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
             "index.html",
             "atlas.html",
             "discovery.html",
-            "cohorts.html",
+            "discovery.html#cohorts",
             "qc.html",
             "../index.html",
         )
@@ -66,7 +59,7 @@ def _nav_paths(deploy: str) -> tuple[str, str, str, str, str, str | None]:
         "../index.html",
         "atlas.html",
         "discovery.html",
-        "cohorts.html",
+        "discovery.html#cohorts",
         "qc.html",
         None,
     )
@@ -77,7 +70,7 @@ def assets_prefix_for(deploy: str) -> str:
 
 
 def _i18n_el(key: str, *, tag: str = "span", href: str = "", cls: str = "") -> str:
-    text = _esc(i18n_ru(key))
+    text = _esc(i18n_default(key))
     if tag == "a":
         return f'<a href="{_esc(href)}" class="{cls}" data-i18n="{key}">{text}</a>'
     extra = f' class="{cls}"' if cls else ""
@@ -91,7 +84,7 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str = "Atlas Discovery")
     return f"""<head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="description" content="{_esc(i18n_ru('portal_lead')[:160])}"/>
+  <meta name="description" content="{_esc(i18n_default('portal_lead')[:160])}"/>
   <title>{_esc(title)}</title>
   <link rel="stylesheet" href="{css}"/>
   <script src="{js}" defer></script>
@@ -132,11 +125,11 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
 def site_footer(*, deploy: str = DEPLOY_DOCS_SITE) -> str:
     live = LIVE_MAP if deploy == DEPLOY_TMT else LIVE_TMT
     return f"""<footer class="footer">
-  <p data-i18n="footer_policy">{_esc(i18n_ru("footer_policy"))}</p>
+  <p data-i18n="footer_policy">{_esc(i18n_default("footer_policy"))}</p>
   <p>
-    <a href="{GITHUB_TMT}" target="_blank" rel="noopener" data-i18n="footer_github">{_esc(i18n_ru("footer_github"))}</a> ·
-    <a href="{GITHUB_PROJECTS}" target="_blank" rel="noopener" data-i18n="footer_projects">{_esc(i18n_ru("footer_projects"))}</a> ·
-    <a href="{live}" target="_blank" rel="noopener" data-i18n="footer_live">{_esc(i18n_ru("footer_live"))}</a>
+    <a href="{GITHUB_TMT}" target="_blank" rel="noopener" data-i18n="footer_github">{_esc(i18n_default("footer_github"))}</a> ·
+    <a href="{GITHUB_PROJECTS}" target="_blank" rel="noopener" data-i18n="footer_projects">{_esc(i18n_default("footer_projects"))}</a> ·
+    <a href="{live}" target="_blank" rel="noopener" data-i18n="footer_live">{_esc(i18n_default("footer_live"))}</a>
   </p>
 </footer>"""
 
@@ -149,7 +142,7 @@ def page_wrap(
     deploy: str = DEPLOY_DOCS_SITE,
 ) -> str:
     return f"""<!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 {site_head(deploy=deploy, title=title)}
 <body>
 {site_header_bar(active=active, deploy=deploy)}

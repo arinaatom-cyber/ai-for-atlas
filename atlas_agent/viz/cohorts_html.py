@@ -40,6 +40,11 @@ def _omics_cell(item: dict) -> str:
     return ", ".join(_esc(labels.get(o, o)) for o in omics[:6])
 
 
+def build_cohort_table_rows(items: list[dict]) -> str:
+    """Public helper — cohort tbody rows for discovery.html and cohorts.html."""
+    return _cohort_rows(items)
+
+
 def _cohort_rows(items: list[dict]) -> str:
     rows = []
     for it in items:
@@ -115,7 +120,7 @@ def generate_cohorts_html(report: dict, out_path: str | Path, *, deploy: str = "
           <th data-i18n="th_journal"></th>
           <th data-i18n="th_score"></th>
         </tr></thead>
-        <tbody>{_cohort_rows(items)}</tbody>
+        <tbody>{build_cohort_table_rows(items)}</tbody>
       </table>
     </div>
   </section>

@@ -31,10 +31,10 @@
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.25);
   --font: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
-  --max-w: 1320px;
-  --text-base: 0.9375rem;
-  --text-sm: 0.8125rem;
-  --text-xs: 0.75rem;
+  --max-w: 1680px;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.8125rem;
   --leading: 1.6;
 }
 
@@ -271,7 +271,11 @@ code {
 .page-content {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 28px 56px;
+  padding: 0 28px 48px;
+}
+
+.page-content-wide {
+  max-width: min(1680px, 96vw);
 }
 
 .section { margin-top: 36px; }
@@ -493,11 +497,30 @@ td b, .cell-title {
   font-size: 0.9em;
 }
 
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+
+.data-table th {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.data-table td {
+  font-size: var(--text-base);
+  vertical-align: top;
+  padding: 14px 12px;
+}
+
 .analysis-cell {
-  max-width: 360px;
-  min-width: 280px;
-  line-height: 1.5;
+  min-width: 300px;
+  line-height: 1.55;
   color: var(--text-secondary);
+  font-size: var(--text-base);
 }
 
 .table-standard table.data-table {
@@ -505,16 +528,30 @@ td b, .cell-title {
   width: 100%;
 }
 
-.table-standard .col-id { width: 9%; }
-.table-standard .col-title { width: 18%; }
-.table-standard .col-src { width: 6%; }
-.table-standard .col-plex { width: 6%; }
-.table-standard .col-design { width: 8%; }
-.table-standard .col-sim { width: 9%; }
-.table-standard .col-analysis { width: 28%; }
+.table-standard .col-id { width: 10%; }
+.table-standard .col-title { width: 22%; }
+.table-standard .col-src { width: 8%; }
+.table-standard .col-design { width: 9%; }
+.table-standard .col-analysis { width: 32%; }
 .table-standard .col-data { width: 14%; }
-.table-standard .col-links { width: 7%; }
-.table-standard .col-fit { width: 8%; }
+.table-standard .col-links { width: 10%; }
+.table-standard .col-pmid { width: 8%; }
+.table-standard .col-weight { width: 9%; }
+
+.cell-src a {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.file-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--text-sm);
+}
+
+.link-epmc {
+  font-weight: 600;
+}
 
 .llm-block {
   display: block;
