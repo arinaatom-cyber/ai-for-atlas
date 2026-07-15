@@ -170,6 +170,34 @@ def _note_bullets(note: str) -> str:
     return f'<ul class="cell-bullets">{items}</ul>'
 
 
+def _dedupe_evidence(note: str, bullets: list[str]) -> list[str]:
+    """Skip bullets already present in finding_note or Design column."""
+    note_l = str(note or "").lower()
+    out: list[str] = []
+    for b in bullets:
+        bl = str(b or "").strip()
+        if not bl:
+            continue
+        low = bl.lower()
+        if low in note_l:
+            continue
+        if low.startswith("design:") and "design:" in note_l:
+            continue
+        if "mixed protein" in low and "mixed protein" in note_l:
+            continue
+        if low.startswith("tmt ") and "tmt" in note_l:
+            continue
+        out.append(bl)
+    return out
+
+
+def _badge_stack(*badges: str) -> str:
+    rows = [b for b in badges if b]
+    if not rows:
+        return ""
+    return f'<div class="badge-stack">{"".join(rows)}</div>'
+
+
 def _link_chip(href: str, label: str) -> str:
     if not href:
         return ""
@@ -182,31 +210,30 @@ def _links_stack(chips: list[str]) -> str:
     rows = [c for c in chips if c]
     if not rows:
         return (
-            '<div class="cell-stack">'
-            '<span class="cell-label">Links</span>'
+            '<div class="cell-stack cell-links">'
             '<span class="cell-empty">—</span>'
             "</div>"
         )
     body = "".join(f'<div class="link-row">{c}</div>' for c in rows)
-    return f'<div class="cell-stack"><span class="cell-label">Links</span><div class="link-stack">{body}</div></div>'
+    return f'<div class="cell-stack cell-links"><div class="link-stack">{body}</div></div>'
 
 
 def _project_links(acc: str, repo: str, pmid: str) -> str:
     src = source_label({"accession": acc}) if acc else ""
     chips: list[str] = []
     if repo:
-        chips.append(_link_chip(repo, f"{src} project"))
+        chips.append(_link_chip(repo, src or "Repo"))
     if pmid:
-        chips.append(_link_chip(pubmed_url(pmid), "PubMed abstract"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+        chips.append(_link_chip(pubmed_url(pmid), "PubMed"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "EPMC"))
     return _links_stack(chips)
 
 
 def _literature_links(acc: str, repo: str, pmid: str) -> str:
     chips: list[str] = []
     if pmid:
-        chips.append(_link_chip(pubmed_url(pmid), "PubMed abstract"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+        chips.append(_link_chip(pubmed_url(pmid), "PubMed"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "EPMC"))
     if repo and acc:
         chips.append(_link_chip(repo, f"{acc} project"))
     return _links_stack(chips)
@@ -300,20 +327,22 @@ def _data_cell(it: dict) -> str:
             "no_files": "badge-bad",
         }.get(status, "badge-muted")
         layer = str(da.get("omics_layer") or "")
-        body = (
-            f'<div class="cell-stack">'
-            f'<span class="cell-label">Data files</span>'
-            f'<span class="badge {cls}">{_esc(label)}</span>'
+        status_badge = f'<span class="badge {cls}">{_esc(label)}</span>'
+        mixed_badge = (
+            '<span class="badge badge-warn" title="Protein and phospho files — manual check">'
+            "mixed protein+phospho</span>"
+            if layer == "mixed"
+            else ""
         )
-        if layer == "mixed":
-            body += '<span class="badge badge-warn">mixed protein+phospho</span>'
         samples = da.get("proteome_files") or da.get("quant_files") or da.get("sample_files") or []
-        fname = _esc(samples[0][:72]) if samples else ""
+        fname = _esc(samples[0][:64]) if samples else ""
+        body = '<div class="cell-stack cell-data">'
+        body += _badge_stack(status_badge, mixed_badge)
         if fname:
-            body += f'<code class="file-name">{fname}</code>'
+            body += f'<code class="file-name" title="{fname}">{fname}</code>'
         guidance = str(da.get("guidance") or "").strip()
         if guidance and not fname:
-            body += f'<span class="muted file-hint">{_esc(guidance[:100])}</span>'
+            body += f'<span class="muted file-hint">{_esc(guidance[:90])}</span>'
         body += "</div>"
         return body
     hint = str(it.get("data_hint") or it.get("data_availability") or "").strip()
@@ -383,7 +412,7 @@ def _title_cell(title: str, pub_url: str, repo: str) -> str:
 
 
 def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
-    blocks: list[str] = ['<div class="cell-stack"><span class="cell-label">Analysis</span>']
+    blocks: list[str] = ['<div class="cell-stack cell-analysis">']
     note = it.get("finding_note") or format_finding_note(it)
     bullets = _note_bullets(note)
     if bullets:
@@ -398,11 +427,9 @@ def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
         summary = ai.get("summary_en") or ""
     if summary:
         blocks.append(f'<p class="cell-summary cell-clip">{_esc(summary[:280])}</p>')
-    ev = list(it.get("confidence_evidence") or [])
-    reasons = list(it.get("filter_reasons") or [])[:2]
-    inline = _evidence_inline(ev or reasons)
-    if inline:
-        blocks.append(f'<div class="cell-clip">{inline}</div>')
+    ev = _dedupe_evidence(note, list(it.get("confidence_evidence") or []))
+    if ev:
+        blocks.append(f'<div class="cell-clip">{_evidence_inline(ev[:3])}</div>')
     if len(blocks) == 1:
         blocks.append('<span class="cell-empty">—</span>')
     blocks.append("</div>")
@@ -410,7 +437,7 @@ def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
 
 
 def _analysis_literature(paper: dict | None, cohort: dict | None) -> str:
-    blocks: list[str] = ['<div class="cell-stack"><span class="cell-label">Analysis</span>']
+    blocks: list[str] = ['<div class="cell-stack cell-analysis">']
     if paper:
         note = paper.get("finding_note") or format_finding_note(paper) or ""
         bullets = _note_bullets(note)
