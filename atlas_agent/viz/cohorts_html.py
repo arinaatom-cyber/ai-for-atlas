@@ -45,7 +45,7 @@ def _cohort_rows(items: list[dict]) -> str:
     for it in items:
         pmid = it.get("pmid") or ""
         title = _esc((it.get("title") or "")[:160])
-        desc = _esc(it.get("description_ru") or "")
+        desc = _esc(it.get("description_en") or it.get("description_ru") or "")
         n = it.get("patient_n") or "—"
         score = it.get("cohort_score") or 0
         tmt = '<span class="badge badge-ok">TMT</span>' if it.get("tmt_detected") else '<span class="cell-empty" data-i18n="cell_empty"></span>'

@@ -95,6 +95,40 @@ def assess_patients(text: str, patient_n: int | None) -> str:
     return "no"
 
 
+def build_description_en(item: dict[str, Any]) -> str:
+    """Short English description for cohorts tab (no LLM)."""
+    parts: list[str] = []
+    omics = item.get("omics") or []
+    if omics:
+        labels = {
+            "proteomics": "proteomics",
+            "phosphoproteomics": "phosphoproteomics",
+            "transcriptomics": "transcriptomics",
+            "genomics": "genomics",
+            "metabolomics": "metabolomics",
+            "lipidomics": "lipidomics",
+            "glycoproteomics": "glycoproteomics",
+            "multi_omics": "multi-omics",
+        }
+        parts.append("Omics: " + ", ".join(labels.get(o, o) for o in omics[:5]))
+    n = item.get("patient_n")
+    if n:
+        parts.append(f"Cohort: ~{n} patients/participants (from abstract)")
+    elif item.get("has_patients") == "maybe":
+        parts.append("Patients mentioned; exact N not extracted")
+    elif item.get("has_patients") == "no":
+        parts.append("Patients not confirmed in abstract")
+    if item.get("tmt_detected"):
+        parts.append("TMT/isobaric")
+    if item.get("large_scale"):
+        parts.append("large-scale study")
+    journal = item.get("journal") or ""
+    year = item.get("year") or ""
+    if journal or year:
+        parts.append(f"{journal} {year}".strip())
+    return ". ".join(parts) if parts else "Clinical proteomics / multi-omics (Europe PMC)."
+
+
 def build_description_ru(item: dict[str, Any]) -> str:
     """Краткое описание для вкладки (без LLM)."""
     parts: list[str] = []
@@ -151,6 +185,7 @@ def mine_publication(pub: dict[str, Any]) -> dict[str, Any]:
             "cohort_score": 0,
         }
     )
+    out["description_en"] = build_description_en(out)
     out["description_ru"] = build_description_ru(out)
     out["cohort_score"] = _cohort_score(out)
     return out

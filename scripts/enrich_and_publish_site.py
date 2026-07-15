@@ -18,6 +18,7 @@ from atlas_agent.discovery.data_availability import (
 )
 from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.viz.publish_site import publish_discovery_site
+from atlas_agent.viz.site_sanitize import sanitize_report_for_site
 
 
 def enrich_report(report: dict, cfg: dict) -> dict:
@@ -77,6 +78,7 @@ def main() -> int:
     report = json.loads(latest.read_text(encoding="utf-8"))
     print("Обогащение finding_note + data availability…")
     report = enrich_report(report, cfg)
+    report = sanitize_report_for_site(report)
     latest.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     site = publish_discovery_site(report, ROOT)
     print(f"Сайт: {site}/discovery.html")

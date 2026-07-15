@@ -5,6 +5,7 @@ import json
 import shutil
 from pathlib import Path
 
+from atlas_agent.viz.site_sanitize import sanitize_report_for_site
 from atlas_agent.viz.atlas_html import generate_atlas_html
 from atlas_agent.viz.cohorts_html import generate_cohorts_html
 from atlas_agent.viz.discovery_html import generate_discovery_html
@@ -50,7 +51,7 @@ def _build_meta(report: dict, candidates: list, profile: dict) -> dict:
         "catalog_unique_ids": (report.get("summary") or {}).get("catalog_unique_ids"),
         "catalog_rows": profile.get("n_rows"),
         "policy": "New projects + abstract AI analysis. Catalog rows are never published.",
-        "languages": ["ru", "en"],
+        "languages": ["en"],
     }
 
 
@@ -93,6 +94,7 @@ def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:
 
 
 def publish_discovery_site(report: dict, root: Path, *, tmt_discovery_dir: Path | None = None) -> Path:
+    report = sanitize_report_for_site(dict(report))
     site = root / "docs" / "site"
     site.mkdir(parents=True, exist_ok=True)
     write_site_assets(site)

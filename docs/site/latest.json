@@ -137,8 +137,8 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -154,7 +154,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -212,9 +212,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -229,7 +229,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -285,9 +285,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -302,7 +302,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -358,14 +358,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -377,7 +377,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -435,14 +435,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -454,7 +454,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -512,14 +512,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -531,7 +531,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -589,9 +589,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -606,7 +606,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -682,9 +682,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -699,7 +699,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -755,9 +755,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -772,7 +772,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -867,10 +867,10 @@
       ],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Похож на ваш PDC000180 (score 0.188)",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Similar to catalog PDC000180 (score 0.188)",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -885,7 +885,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -965,9 +965,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -982,7 +982,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1038,9 +1038,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1055,7 +1055,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1111,9 +1111,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1128,7 +1128,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1186,9 +1186,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1203,7 +1203,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1254,13 +1254,13 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "MSV": [
@@ -1273,7 +1273,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1329,8 +1329,8 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1346,7 +1346,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1404,9 +1404,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1421,7 +1421,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1477,9 +1477,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1494,7 +1494,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1550,14 +1550,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -1569,7 +1569,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1627,14 +1627,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -1646,7 +1646,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1704,14 +1704,14 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "PDC": [
@@ -1723,7 +1723,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1781,9 +1781,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1798,7 +1798,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1874,9 +1874,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1891,7 +1891,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -1947,9 +1947,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -1964,7 +1964,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2059,10 +2059,10 @@
       ],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Похож на ваш PDC000180 (score 0.188)",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Similar to catalog PDC000180 (score 0.188)",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -2077,7 +2077,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2157,9 +2157,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -2174,7 +2174,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2230,9 +2230,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -2247,7 +2247,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2303,9 +2303,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -2320,7 +2320,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2378,9 +2378,9 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix",
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
@@ -2395,7 +2395,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2446,13 +2446,13 @@
       "similar_in_catalog": [],
       "has_close_match": false,
       "processing_tips": [
-        "Ваши plex: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)"
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
       "verdict": "recommended",
       "filter_reasons": [
-        "Дизайн образцов не ясен — проверить healthy/cancer"
+        "Sample design unclear — check healthy/cancer labels"
       ],
       "extracted_ids": {
         "MSV": [
@@ -2465,7 +2465,7 @@
       "catalog_matches": [],
       "qc_status": "candidate",
       "qc_reasons": [
-        "Материал соответствует критериям атласа"
+        "Material matches atlas criteria"
       ],
       "material_signals": {
         "included": [
@@ -2526,7 +2526,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2557,9 +2558,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
     },
     {
       "pmid": "41771895",
@@ -2588,7 +2592,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2619,9 +2624,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41771895/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
     },
     {
       "pmid": "41622683",
@@ -2651,7 +2659,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2682,9 +2691,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
     },
     {
       "pmid": "41851243",
@@ -2713,7 +2725,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2744,9 +2757,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
     },
     {
       "pmid": "42051158",
@@ -2775,7 +2791,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2806,9 +2823,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
     },
     {
       "pmid": "42273731",
@@ -2837,7 +2857,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2868,9 +2889,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42273731/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42273731/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
     },
     {
       "pmid": "41862993",
@@ -2932,7 +2956,9 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue|plasma|blood|cancer cell line · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41862993/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41862993/",
+      "qc_reasons": [],
+      "processing_tips": []
     },
     {
       "pmid": "41472394",
@@ -2961,7 +2987,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -2992,9 +3019,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
     },
     {
       "pmid": "41453614",
@@ -3024,7 +3054,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3055,9 +3086,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue|plasma|blood|cancer cell line · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41453614/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
     },
     {
       "pmid": "42155730",
@@ -3087,7 +3121,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3118,9 +3153,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42155730/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42155730/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
     },
     {
       "pmid": "41567026",
@@ -3150,7 +3188,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3181,9 +3220,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41567026/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41567026/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
     },
     {
       "pmid": "41966223",
@@ -3212,7 +3254,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3243,9 +3286,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
     },
     {
       "pmid": "41870234",
@@ -3274,7 +3320,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3305,9 +3352,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41870234/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41870234/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
     },
     {
       "pmid": "42192865",
@@ -3336,7 +3386,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3367,9 +3418,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42192865/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42192865/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
     },
     {
       "pmid": "41740022",
@@ -3398,7 +3452,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3429,9 +3484,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma/serum from patients, cancer cell lines · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41740022/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41740022/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
     },
     {
       "pmid": "41699065",
@@ -3461,7 +3519,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3492,9 +3551,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
     },
     {
       "pmid": "42294822",
@@ -3524,7 +3586,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3555,9 +3618,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42294822/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42294822/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
     },
     {
       "pmid": "41575784",
@@ -3586,7 +3652,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3617,9 +3684,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41575784/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41575784/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
     },
     {
       "pmid": "13006395",
@@ -3681,7 +3751,9 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/",
+      "qc_reasons": [],
+      "processing_tips": []
     },
     {
       "pmid": "41055288",
@@ -3710,7 +3782,8 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
@@ -3741,9 +3814,12 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: yes",
+      "finding_note": "No files in API — check Data availability / paper Supplementary · This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,  · Atlas fit: yes",
       "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
     }
   ],
   "rejected_material": [],
@@ -3766,7 +3842,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41771895",
@@ -3786,7 +3867,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41622683",
@@ -3807,7 +3893,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41851243",
@@ -3827,7 +3918,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "42051158",
@@ -3847,7 +3943,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
+      "finding_note": "Keywords from title: urine · Atlas fit: yes"
     },
     {
       "pmid": "42273731",
@@ -3867,7 +3968,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41862993",
@@ -3887,7 +3993,11 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "tumor tissue|plasma|blood|cancer cell line",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41472394",
@@ -3907,7 +4017,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41453614",
@@ -3928,7 +4043,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "tumor tissue|plasma|blood|cancer cell line",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "42155730",
@@ -3949,7 +4069,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41931001",
@@ -3969,7 +4094,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits in terms of material and organism.",
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41742694",
@@ -3987,7 +4117,11 @@
       "organism": "unclear",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: no"
     },
     {
       "pmid": "42029488",
@@ -4008,7 +4142,12 @@
       "organism": "human|unclear",
       "tmt": "unclear",
       "material": "tumor tissue|plasma|blood|cancer cell line|other",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits because it focuses on tumor/adjacent normal, plasma/plasma from patients, cancer cell lines.",
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41567026",
@@ -4029,7 +4168,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41966223",
@@ -4049,7 +4193,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "Keywords from title: tumor tissue · Atlas fit: yes"
     },
     {
       "pmid": "41870234",
@@ -4069,7 +4218,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "42192865",
@@ -4089,7 +4243,12 @@
       "organism": "human",
       "tmt": "TMT10|TMT11|TMTpro16",
       "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41740022",
@@ -4109,7 +4268,12 @@
       "organism": "human",
       "tmt": "ambiguous",
       "material": "plasma/serum from patients, cancer cell lines",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41699065",
@@ -4130,7 +4294,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "42294822",
@@ -4151,7 +4320,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41575784",
@@ -4171,7 +4345,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
+      "finding_note": "Atlas fit: yes"
     },
     {
       "pmid": "41301916",
@@ -4192,7 +4371,12 @@
       "organism": "human|unclear",
       "tmt": "unclear",
       "material": "tumor tissue|plasma|blood|cancer cell line|other",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal, plasma/plasma from patients, cancer cell lines.",
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "PMC13006395",
@@ -4212,7 +4396,11 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
     },
     {
       "pmid": "41055288",
@@ -4232,7 +4420,12 @@
       "organism": "human",
       "tmt": "unclear",
       "material": "unclear",
-      "data_hint": "Open access unclear — check Supplementary and repository"
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
+      "finding_note": "Atlas fit: yes"
     }
   ],
   "literature_semantic": [
@@ -4263,18 +4456,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
+      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research. · Atlas fit: yes"
     },
     {
       "pmid": "41771895",
@@ -4303,18 +4501,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
+      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags. · Atlas fit: yes"
     },
     {
       "pmid": "41622683",
@@ -4344,18 +4547,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
+      "finding_note": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples. · Atlas fit: yes"
     },
     {
       "pmid": "41851243",
@@ -4384,18 +4592,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
+      "finding_note": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme. · Atlas fit: yes"
     },
     {
       "pmid": "42051158",
@@ -4424,18 +4637,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
+      "finding_note": "Keywords from title: urine · This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome. · Atlas fit: yes"
     },
     {
       "pmid": "42273731",
@@ -4464,18 +4682,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits. · Atlas fit: yes"
     },
     {
       "pmid": "41862993",
@@ -4511,11 +4734,14 @@
       "summary_ru": "",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "LLM material: tumor tissue|plasma|blood|cancer cell line · Atlas fit: yes"
     },
     {
       "pmid": "41472394",
@@ -4544,18 +4770,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
+      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines. · Atlas fit: yes"
     },
     {
       "pmid": "41453614",
@@ -4585,18 +4816,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
     },
     {
       "pmid": "42155730",
@@ -4626,18 +4862,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
+      "finding_note": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes. · Atlas fit: yes"
     },
     {
       "pmid": "41567026",
@@ -4667,18 +4908,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas. · Atlas fit: yes"
     },
     {
       "pmid": "41966223",
@@ -4707,18 +4953,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "Keywords from title: tumor tissue · This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
     },
     {
       "pmid": "41870234",
@@ -4747,18 +4998,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas. · Atlas fit: yes"
     },
     {
       "pmid": "42192865",
@@ -4787,18 +5043,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": true,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
+      "finding_note": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote · Atlas fit: yes"
     },
     {
       "pmid": "41740022",
@@ -4827,18 +5088,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": true,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
+      "finding_note": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples. · Atlas fit: yes"
     },
     {
       "pmid": "41699065",
@@ -4868,18 +5134,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
+      "finding_note": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery. · Atlas fit: yes"
     },
     {
       "pmid": "42294822",
@@ -4909,18 +5180,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
+      "finding_note": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines. · Atlas fit: yes"
     },
     {
       "pmid": "41575784",
@@ -4949,18 +5225,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
+      "finding_note": "Human TMT/isobaric quantitative proteomics projects are included in the atlas. · Atlas fit: yes"
     },
     {
       "pmid": "13006395",
@@ -4996,11 +5277,14 @@
       "summary_ru": "",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
     },
     {
       "pmid": "41055288",
@@ -5029,18 +5313,23 @@
         "human_suitable": true,
         "material_suitable": true,
         "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
-        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf"
+        "reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
+        "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
       },
       "abstract_reader": "gpt4all:qwen2-1_5b-instruct-q4_0.gguf",
       "pride_search_terms": "",
       "summary_ru": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
       "verdict": "requires_manual_check",
       "filter_reasons": [
-        "По смыслу похоже на TMT ATLAS — проверить вручную (PRIDE/PDC), номер в абстракте не ищем"
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
       "tmt_detected": false,
-      "recommendation": "requires_manual_check"
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
+      "finding_note": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated,  · Atlas fit: yes"
     }
   ],
   "cohort_literature": [
@@ -5066,8 +5355,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика, транскриптомика, мульти-омика. Когорта: ~1000 пациентов/участников (из абстракта). крупномасштабное исследование. 2026",
-      "cohort_score": 93
+      "cohort_score": 93,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "41998177",
@@ -5089,8 +5378,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика. Когорта: ~139 пациентов/участников (из абстракта). 2026",
-      "cohort_score": 65
+      "cohort_score": 65,
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
     },
     {
       "pmid": "42381624",
@@ -5112,8 +5401,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, мульти-омика. Когорта: ~132 пациентов/участников (из абстракта). крупномасштабное исследование. 2026",
-      "cohort_score": 73
+      "cohort_score": 73,
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "42310533",
@@ -5134,8 +5423,8 @@
       "tmt_detected": true,
       "large_scale": false,
       "multi_omics": false,
-      "description_ru": "Омики: протеомика. Когорта: ~90 пациентов/участников (из абстракта). TMT/isobaric. 2026",
-      "cohort_score": 50
+      "cohort_score": 50,
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
     },
     {
       "pmid": "41785305",
@@ -5159,8 +5448,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, транскриптомика, геномика, мульти-омика. Когорта: ~27 пациентов/участников (из абстракта). крупномасштабное исследование. 2026",
-      "cohort_score": 53
+      "cohort_score": 53,
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "42204136",
@@ -5182,8 +5471,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика. Когорта: ~10 пациентов/участников (из абстракта). 2026",
-      "cohort_score": 40
+      "cohort_score": 40,
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026"
     },
     {
       "pmid": "41964867",
@@ -5207,8 +5496,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика, транскриптомика, геномика. Пациенты упомянуты, точное N не извлечено. крупномасштабное исследование. 2026",
-      "cohort_score": 33
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "42366266",
@@ -5233,8 +5522,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, транскриптомика, геномика, метаболомика, мульти-омика. Пациенты упомянуты, точное N не извлечено. крупномасштабное исследование. 2026",
-      "cohort_score": 33
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "42134687",
@@ -5257,8 +5546,8 @@
       "tmt_detected": false,
       "large_scale": true,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, транскриптомика, геномика. Пациенты упомянуты, точное N не извлечено. крупномасштабное исследование. 2026",
-      "cohort_score": 33
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "42305618",
@@ -5281,8 +5570,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика, транскриптомика. Пациенты упомянуты, точное N не извлечено. 2026",
-      "cohort_score": 25
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42167233",
@@ -5304,8 +5593,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика. Пациенты упомянуты, точное N не извлечено. 2026",
-      "cohort_score": 25
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "41718110",
@@ -5328,8 +5617,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, фосфопротеомика, геномика. Пациенты упомянуты, точное N не извлечено. 2026",
-      "cohort_score": 25
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics, genomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42183196",
@@ -5354,8 +5643,8 @@
       "tmt_detected": false,
       "large_scale": false,
       "multi_omics": true,
-      "description_ru": "Омики: протеомика, транскриптомика, геномика, метаболомика, мульти-омика. Пациенты упомянуты, точное N не извлечено. 2026",
-      "cohort_score": 25
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
     }
   ]
 }

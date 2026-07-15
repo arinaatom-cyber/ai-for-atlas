@@ -14,6 +14,7 @@ from atlas_agent.viz.site_components import (
     section_desc,
     section_head,
 )
+from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url
 from atlas_agent.viz.site_theme import page_wrap
 
 
@@ -42,7 +43,7 @@ def _fit_class(fit: str) -> str:
 def _ai_summary(item: dict) -> str:
     ai = item.get("abstract_ai") or {}
     parts = []
-    summary = ai.get("summary_ru") or item.get("summary_ru") or ai.get("summary_en") or ""
+    summary = ai.get("summary_en") or ai.get("summary_ru") or item.get("summary_en") or ""
     if summary:
         parts.append(_esc(summary))
     fit = ai.get("atlas_fit") or item.get("atlas_fit")
@@ -66,10 +67,17 @@ def _data_cell(it: dict) -> str:
         "local_mirror": "badge-ok",
         "maybe_table": "badge-warn",
         "processed_psm": "badge-warn",
+        "phospho_table": "badge-bad",
         "raw_only": "badge-bad",
         "no_files": "badge-bad",
     }.get(status, "badge-muted")
-    samples = da.get("quant_files") or da.get("sample_files") or []
+    samples = (
+        da.get("proteome_files")
+        or da.get("quant_files")
+        or da.get("phospho_files")
+        or da.get("sample_files")
+        or []
+    )
     hint = ""
     if samples:
         hint = f'<br/><span class="muted">{_esc(samples[0][:50])}</span>'
@@ -82,17 +90,35 @@ def _data_cell(it: dict) -> str:
 
 
 def _finding_cell(it: dict) -> str:
-    note = it.get("finding_note") or ""
+    note = it.get("finding_note") or format_finding_note(it)
     if note:
-        return f'<span class="muted">{_esc(note[:320])}</span>'
+        return f'<span class="muted">{_esc(note[:420])}</span>'
     return _ai_summary(it)
+
+
+def _links_cell(it: dict) -> str:
+    acc = (it.get("project_accession") or it.get("accession") or "").strip().upper()
+    repo = it.get("repository_url") or it.get("url") or repository_url(acc)
+    pub = it.get("pubmed_url") or pubmed_url(it.get("pmid"))
+    parts: list[str] = []
+    if repo:
+        parts.append(
+            f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="link-repo">Project</a>'
+        )
+    if pub:
+        parts.append(
+            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="link-pub">PubMed</a>'
+        )
+    return " · ".join(parts) if parts else '<span class="cell-empty">—</span>'
 
 
 def _project_rows(items: list[dict]) -> str:
     rows = []
     for it in items:
-        acc = _esc(it.get("project_accession") or it.get("accession") or "—")
-        title = _esc((it.get("title") or "")[:140])
+        raw_acc = (it.get("project_accession") or it.get("accession") or "").strip().upper()
+        acc_esc = _esc(raw_acc or "—")
+        title_raw = (it.get("title") or "")[:140]
+        title = _esc(title_raw)
         src = _esc(_source_label(it))
         plex = it.get("inferred_plex") or it.get("tmt_label") or ""
         design = _esc(str(it.get("sample_design") or ""))
@@ -102,19 +128,30 @@ def _project_rows(items: list[dict]) -> str:
         analysis = _ai_summary(it)
         finding = _finding_cell(it)
         data = _data_cell(it)
-        url = it.get("url") or ""
-        raw_acc = (it.get("accession") or "").upper()
-        if not url and raw_acc.startswith("PXD"):
-            url = f"https://www.ebi.ac.uk/pride/archive/projects/{raw_acc}"
-        elif not url and raw_acc.startswith("PDC"):
-            url = f"https://proteomic.datacommons.cancer.gov/pdc/study/{raw_acc}"
-        link = f'<a href="{_esc(url)}" target="_blank" rel="noopener" data-i18n="th_link_open"></a>' if url else '<span class="cell-empty" data-i18n="cell_empty"></span>'
+        links = _links_cell(it)
+        repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
+        pub = it.get("pubmed_url") or pubmed_url(it.get("pmid"))
+        if repo:
+            id_cell = f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-mono"><b>{acc_esc}</b></a>'
+        else:
+            id_cell = f'<span class="cell-mono"><b>{acc_esc}</b></span>'
+        if pub:
+            title_cell = (
+                f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
+            )
+        elif repo:
+            title_cell = (
+                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title}</a>'
+            )
+        else:
+            title_cell = f'<span class="cell-title">{title}</span>'
         program = _esc(str(it.get("program") or it.get("disease") or "")[:60])
         rows.append(
-            f"<tr data-src='{src.lower()}' data-search='{acc.lower()} {title.lower()} {program.lower()}'>"
-            f"<td class='cell-mono'><b>{acc}</b></td><td class='cell-title'>{title}</td><td>{src}</td>"
+            f"<tr data-src='{src.lower()}' data-search='{acc_esc.lower()} {title.lower()} {program.lower()}'>"
+            f"<td>{id_cell}</td><td>{title_cell}</td><td>{src}</td>"
             f"<td>{plex}</td><td>{design}</td><td>{sim_id} ({sim_score})</td>"
-            f"<td class='analysis-cell'>{analysis}</td><td class='analysis-cell'>{finding}</td><td>{data}</td><td>{link}</td></tr>"
+            f"<td class='analysis-cell'>{analysis}</td><td class='analysis-cell'>{finding}</td>"
+            f"<td>{data}</td><td class='cell-links'>{links}</td></tr>"
         )
     return "\n".join(rows) or '<tr><td colspan="10" data-i18n="no_projects"></td></tr>'
 
@@ -132,7 +169,7 @@ def _publication_rows(pubs: list[dict]) -> str:
         mat = _esc(p.get("material") or "")
         theme = _esc(p.get("similar_atlas_theme") or "")
         search = _esc(p.get("pride_search_terms") or "")
-        summary = _esc(p.get("summary_ru") or p.get("summary_en") or "")
+        summary = _esc(p.get("summary_en") or p.get("summary_ru") or "")
         data_hint = _esc(p.get("data_hint") or "")
         ev = _esc("; ".join(p.get("semantic_evidence") or [])[:4])
         acc = p.get("accessions") or {}
@@ -166,7 +203,7 @@ def _literature_rows(items: list[dict]) -> str:
         score = it.get("atlas_fit_score", "")
         search = _esc(it.get("pride_search_terms") or (it.get("abstract_ai") or {}).get("pride_search_terms", ""))
         summary = _ai_summary(it)
-        reasons = _esc("; ".join((it.get("filter_reasons") or [])[:2]))
+        note = _esc(it.get("finding_note") or format_finding_note(it) or "; ".join((it.get("filter_reasons") or [])[:2]))
         link = (
             f'<a href="https://pubmed.ncbi.nlm.nih.gov/{_esc(pmid)}/" target="_blank" rel="noopener">PubMed</a>'
             if pmid
@@ -176,7 +213,7 @@ def _literature_rows(items: list[dict]) -> str:
             f"<tr><td><b>{label}</b></td><td>{title}</td>"
             f"<td><span class='badge {_fit_class(fit)}'>{_esc(fit)} {score}</span></td>"
             f"<td>{search}</td><td class='analysis-cell'>{summary}</td>"
-            f"<td>{reasons}</td><td>{link}</td></tr>"
+            f"<td>{note}</td><td>{link}</td></tr>"
         )
     return "\n".join(rows)
 
@@ -253,7 +290,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         <thead><tr>
           <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_source"></th>
           <th data-i18n="th_plex"></th><th data-i18n="th_design"></th><th data-i18n="th_similar"></th>
-          <th data-i18n="th_ai"></th><th data-i18n="th_finding"></th><th data-i18n="th_data"></th><th data-i18n="th_link"></th>
+          <th data-i18n="th_ai"></th><th data-i18n="th_finding"></th><th data-i18n="th_data"></th><th data-i18n="th_links"></th>
         </tr></thead>
         <tbody>{proj_rows}</tbody>
       </table>

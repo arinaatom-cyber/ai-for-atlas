@@ -120,21 +120,21 @@ def _is_novel(item: dict, known: set[str]) -> bool:
 
 
 def _suggest_processing(item: dict, profile: dict) -> list[str]:
-    """Подсказки по обработке для новых находок."""
-    tips = []
+    """Processing hints for new hits (English, site-facing)."""
+    tips: list[str] = []
     src = item.get("source", "")
-    if "pdc" in src.lower() or item.get("consortium") == "PDC":
-        tips.append("PDC: сверить с CPTAC pipeline; проверить PSM vs protein matrix")
+    if "pdc" in str(src).lower() or item.get("consortium") == "PDC":
+        tips.append("PDC: compare with CPTAC pipeline; check PSM vs protein matrix")
     if item.get("consortium") == "CCLE":
-        tips.append("CCLE: часто cell-line TMT — учесть batch по плексам")
+        tips.append("CCLE: often cell-line TMT — watch batch by plex")
     if item.get("consortium") == "GTEx":
-        tips.append("GTEx: tissue reference — сопоставить с organ-level atlas")
+        tips.append("GTEx: tissue reference — map to organ-level atlas")
     sim = item.get("similar_in_catalog") or []
     if sim:
-        tips.append(f"Похож на ваш {sim[0]['project_id']} (score {sim[0]['score']})")
+        tips.append(f"Similar to catalog {sim[0]['project_id']} (score {sim[0]['score']})")
     if profile.get("tmt_plexes"):
-        tips.append(f"Ваши plex: {', '.join(profile['tmt_plexes'][:3])}")
-    tips.append("Добавить в CSV только после ручной проверки (projects.csv не меняется автоматически)")
+        tips.append(f"Atlas plexes: {', '.join(profile['tmt_plexes'][:3])}")
+    tips.append("Add to CSV only after manual review (projects.csv is never modified automatically)")
     return tips
 
 

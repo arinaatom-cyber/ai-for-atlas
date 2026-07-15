@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from atlas_agent.viz.i18n_defaults import ru as i18n_ru
+from atlas_agent.viz.i18n_defaults import en as i18n_default
 from atlas_agent.viz.site_components import esc, i18n_el, meta_pill_text, meta_time, page_hero
 from atlas_agent.viz.site_theme import (
     DEPLOY_DOCS_PORTAL,
@@ -33,9 +33,9 @@ def generate_portal_html(
     meta_html = (
         meta_time(gen)
         + meta_pill_text(str(n_cand), css="badge-ok")
-        + f' <span class="meta-pill badge badge-ok" data-i18n="meta_candidates">{esc(i18n_ru("meta_candidates"))}</span>'
+        + f' <span class="meta-pill badge badge-ok" data-i18n="meta_candidates">{esc(i18n_default("meta_candidates"))}</span>'
         + meta_pill_text(str(n_cat))
-        + f' <span class="meta-pill badge badge-muted" data-i18n="meta_atlas_ids">{esc(i18n_ru("meta_atlas_ids"))}</span>'
+        + f' <span class="meta-pill badge badge-muted" data-i18n="meta_atlas_ids">{esc(i18n_default("meta_atlas_ids"))}</span>'
     )
 
     map_href = "../index.html" if deploy == DEPLOY_TMT else LIVE_MAP
@@ -56,14 +56,14 @@ def generate_portal_html(
       {i18n_el(title_key, tag="h2")}
       {i18n_el(desc_key, tag="p")}
       <div class="btn-row">
-        <a class="{btn_cls}" href="{esc(href)}"{target} data-i18n="card_open">{esc(i18n_ru("card_open"))}</a>
+        <a class="{btn_cls}" href="{esc(href)}"{target} data-i18n="card_open">{esc(i18n_default("card_open"))}</a>
         {extra}
       </div>
     </div>"""
 
     json_extra = (
         f'<a class="btn" href="latest.json" '
-        f'title="JSON API for scripts" data-i18n="card_json">{esc(i18n_ru("card_json"))}</a>'
+        f'title="JSON API for scripts" data-i18n="card_json">{esc(i18n_default("card_json"))}</a>'
     )
 
     body = (
@@ -83,8 +83,8 @@ def generate_portal_html(
     </div>
   </div>
   <p class="note muted" style="margin-top:1rem">
-    <strong>Deploy:</strong> корень <code>TMT/index.html</code> — интерактивная карта органов
-    (<code>?organ=</code>); портал Discovery — только <code>discovery/</code>, не заменяет корень.
+    <strong>Deploy:</strong> repo root <code>TMT/index.html</code> is the interactive organ map
+    (<code>?organ=</code>); Discovery portal lives under <code>discovery/</code> only.
   </p>
 </div>"""
     )

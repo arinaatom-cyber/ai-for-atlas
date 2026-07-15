@@ -4,6 +4,8 @@ from __future__ import annotations
 import html
 from pathlib import Path
 
+from atlas_agent.viz.portal_index import format_finding_note
+from atlas_agent.viz.site_sanitize import translate_legacy_text
 from atlas_agent.viz.site_components import kpi_grid, meta_time, note_rules, page_hero, section_head
 from atlas_agent.viz.site_theme import page_wrap
 
@@ -11,8 +13,8 @@ from atlas_agent.viz.site_theme import page_wrap
 def _ai_cell(it: dict) -> str:
     ai = it.get("abstract_ai") or it
     parts = []
-    if ai.get("summary_ru") or ai.get("summary_en"):
-        parts.append(html.escape(str(ai.get("summary_ru") or ai.get("summary_en"))[:200]))
+    if ai.get("summary_en") or ai.get("summary_ru"):
+        parts.append(html.escape(str(ai.get("summary_en") or ai.get("summary_ru"))[:200]))
     fit = ai.get("atlas_fit") or it.get("atlas_fit")
     score = ai.get("atlas_fit_score") or it.get("atlas_fit_score")
     if fit:
@@ -29,7 +31,11 @@ def _rows(items: list[dict]) -> str:
     for it in items:
         acc = html.escape(it.get("project_accession") or it.get("accession") or "—")
         title = html.escape((it.get("title") or "")[:120])
-        reasons = html.escape("; ".join((it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]))
+        note = it.get("finding_note") or format_finding_note(it)
+        if not note:
+            raw = (it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]
+            note = "; ".join(translate_legacy_text(str(x)) for x in raw)
+        reasons = html.escape(note[:320])
         sig = it.get("material_signals") or {}
         inc = html.escape(", ".join(sig.get("included") or [])[:80]) or "—"
         exc = html.escape(", ".join(sig.get("excluded") or [])[:80]) or "—"
