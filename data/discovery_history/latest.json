@@ -386,7 +386,8 @@
       },
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -689,7 +690,8 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000176",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
-      "doi": ""
+      "doi": "",
+      "year": "2025"
     }
   ],
   "candidates": [
@@ -770,7 +772,8 @@
       },
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/"
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -1073,7 +1076,8 @@
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000176",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40891528/",
       "pmid": "40891528",
-      "doi": ""
+      "doi": "",
+      "year": "2025"
     }
   ],
   "recommended": [
@@ -4000,7 +4004,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research."
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/adjacent normal tissues and plasma/sera samples from patients for cancer research.",
+      "year": "2026"
     },
     {
       "pmid": "41771895",
@@ -4065,7 +4070,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41771895/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags."
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissue, plasma/serum from patients, and cancer cell lines using TMT/isobaric tags.",
+      "year": "2026"
     },
     {
       "pmid": "41622683",
@@ -4131,7 +4137,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples."
+      "summary_en": "This JSON schema describes human TMT/isobaric quantitative proteomics like the atlas. It includes tumor/tissue samples, adjacent normal tissues, and plasma/plasma-like samples.",
+      "year": "2026"
     },
     {
       "pmid": "41851243",
@@ -4196,7 +4203,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme."
+      "summary_en": "This paper describes isobaric quantitative proteomics in glaucomatous trabecular meshwork cells. It fits the human TMT/isobaric quantitative proteomics theme.",
+      "year": "2026"
     },
     {
       "pmid": "42051158",
@@ -4261,7 +4269,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome."
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics using urine-derived iPSC neurospheres for studying molecular variability in Dravet Syndrome.",
+      "year": "2026"
     },
     {
       "pmid": "42273731",
@@ -4326,7 +4335,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42273731/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits."
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics like the atlas. It fits.",
+      "year": "2026"
     },
     {
       "pmid": "41862993",
@@ -4390,7 +4400,8 @@
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41862993/",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "year": "2026"
     },
     {
       "pmid": "41472394",
@@ -4455,7 +4466,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines."
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics like the atlas. It focuses on tumor and adjacent normal tissues, plasma or serum samples from patients with cancer, as well as cancer cell lines.",
+      "year": "2026"
     },
     {
       "pmid": "41453614",
@@ -4521,7 +4533,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41453614/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "year": "2026"
     },
     {
       "pmid": "42155730",
@@ -4587,7 +4600,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42155730/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes."
+      "summary_en": "This paper describes human TMT/isobaric quantitative proteomics and suggests a novel mechanism of low-dose PERKi as a therapeutic approach to diabetes.",
+      "year": "2026"
     },
     {
       "pmid": "41567026",
@@ -4653,7 +4667,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41567026/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas."
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics studies that are suitable for the atlas.",
+      "year": "2026"
     },
     {
       "pmid": "41966223",
@@ -4718,7 +4733,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "year": "2026"
     },
     {
       "pmid": "41870234",
@@ -4783,7 +4799,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41870234/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas."
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas.",
+      "year": "2026"
     },
     {
       "pmid": "42192865",
@@ -4848,7 +4865,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42192865/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote"
+      "summary_en": "This paper describes a multi-omics integration approach in colorectal cancer, including proteomic profiling of tumor and adjacent tissues to identify molecular signatures for age-related changes. It also compares ovarian adnexal B-cell lymphoma with normal tissue using TMTpro/MS to reveal high prote",
+      "year": "2026"
     },
     {
       "pmid": "41740022",
@@ -4913,7 +4931,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41740022/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples."
+      "summary_en": "This abstract describes human TMT/isobaric quantitative proteomics with a focus on plasma and tumor tissue samples.",
+      "year": "2026"
     },
     {
       "pmid": "41699065",
@@ -4979,7 +4998,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery."
+      "summary_en": "This paper describes a quantitative proteomic study of mesothelioma patients undergoing surgery and identifies candidate biomarkers to predict the risk of developing venous thromboembolism post-surgery.",
+      "year": "2026"
     },
     {
       "pmid": "42294822",
@@ -5045,7 +5065,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42294822/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines."
+      "summary_en": "This description fits the human TMT/isobaric quantitative proteomics theme of atlas curated projects. It includes tumor/tissue and adjacent normal material, as well as plasma/plasma samples from patients for cancer cell lines.",
+      "year": "2026"
     },
     {
       "pmid": "41575784",
@@ -5110,7 +5131,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41575784/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas."
+      "summary_en": "Human TMT/isobaric quantitative proteomics projects are included in the atlas.",
+      "year": "2026"
     },
     {
       "pmid": "13006395",
@@ -5174,7 +5196,8 @@
       "repository_url": "",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "year": "1952"
     },
     {
       "pmid": "41055288",
@@ -5239,7 +5262,8 @@
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
       "qc_reasons": [],
       "processing_tips": [],
-      "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, "
+      "summary_en": "This paper describes a comparative proteomic profiling experiment using six human cell lines prepared in triplicate as TMTpro18-plex. The performance of two chromatographic columns (conventional flame-pulled Accucore packed-bed capillary column and microfabricated pillar array column) is evaluated, ",
+      "year": "2025"
     }
   ],
   "rejected_material": [],

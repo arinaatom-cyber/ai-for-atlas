@@ -22,6 +22,8 @@ def fetch_abstract(pmid: str) -> dict:
         "pmid": pmid,
         "title": h.get("title") or "",
         "abstract": h.get("abstractText") or "",
+        "year": str(h.get("pubYear") or h.get("firstPublicationDate") or "")[:4],
+        "journal": h.get("journalTitle") or "",
         "found": True,
     }
 

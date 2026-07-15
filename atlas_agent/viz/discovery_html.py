@@ -1,6 +1,7 @@
 """HTML Discovery: one unified table (projects + papers + cohorts)."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 from atlas_agent.viz.discovery_table_shared import (
@@ -21,10 +22,10 @@ from atlas_agent.viz.site_components import (
 from atlas_agent.viz.site_theme import page_wrap
 
 
-def _pub_index(pubs: list[dict]) -> dict[str, dict]:
+def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, dict]:
     out: dict[str, dict] = {}
-    for p in pubs:
-        pmid = str(p.get("pmid") or "").strip()
+    for p in (extra or []) + pubs:
+        pmid = re.sub(r"\D", "", str(p.get("pmid") or ""))
         if pmid:
             out[pmid] = p
     return out
@@ -39,7 +40,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     papers = _papers_without_accession(manual, literature)
     cohorts = report.get("cohort_literature") or []
     gen = report.get("generated_at") or ""
-    pubs_by_pmid = _pub_index(pubs)
+    pubs_by_pmid = _pub_index(
+        pubs,
+        (report.get("manual_check") or []) + (report.get("literature_semantic") or []),
+    )
 
     pride_n = sum(1 for x in items if source_label(x) == "PRIDE")
     pdc_n = sum(1 for x in items if source_label(x) == "PDC")
@@ -91,16 +95,22 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     </div>
     <div class="table-wrap table-standard table-unified">
       <table id="tbl-unified" class="data-table">
-        <thead><tr>
+        <thead>
+          <tr class="head-groups">
+            <th colspan="4" class="th-group" data-i18n="th_group_record"></th>
+            <th colspan="5" class="th-group col-split" data-i18n="th_group_context"></th>
+            <th colspan="3" class="th-group col-split" data-i18n="th_group_details"></th>
+          </tr>
+          <tr>
           <th data-i18n="th_id"></th>
           <th data-i18n="th_year"></th>
           <th data-i18n="th_title"></th>
-          <th data-i18n="th_source"></th>
+          <th data-i18n="th_source" class="col-split"></th>
           <th data-i18n="th_design"></th>
           <th data-i18n="th_omics"></th>
           <th data-i18n="th_patients"></th>
           <th data-i18n="th_n"></th>
-          <th data-i18n="th_weight"></th>
+          <th data-i18n="th_weight" class="col-split"></th>
           <th data-i18n="th_analysis"></th>
           <th data-i18n="th_data"></th>
           <th data-i18n="th_links"></th>

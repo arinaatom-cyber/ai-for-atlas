@@ -277,11 +277,128 @@ code {
 .table-unified {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
 }
 
 .table-unified table.data-table {
   table-layout: auto;
-  min-width: 1400px;
+  min-width: 1520px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-unified .data-table th,
+.table-unified .data-table td {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.table-unified .data-table th:last-child,
+.table-unified .data-table td:last-child {
+  border-right: none;
+}
+
+.table-unified .col-split {
+  border-right: 2px solid color-mix(in srgb, var(--accent) 35%, var(--border)) !important;
+}
+
+.table-unified tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--bg-elevated) 55%, transparent);
+}
+
+.table-unified tbody tr:hover td {
+  background: var(--card-hover);
+}
+
+.table-unified .th-group {
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-subtle));
+  padding: 8px 10px;
+}
+
+.table-unified .head-groups th {
+  position: static;
+}
+
+.cell-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cell-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cell-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.cell-bullets li {
+  margin: 0 0 6px;
+}
+
+.cell-bullets li:last-child {
+  margin-bottom: 0;
+}
+
+.cell-summary,
+.cell-cohort {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-size: var(--text-sm);
+}
+
+.file-name {
+  display: block;
+  margin-top: 2px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  word-break: break-all;
+}
+
+.link-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.link-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--bg-elevated));
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link-chip:hover {
+  background: color-mix(in srgb, var(--accent) 18%, var(--bg-elevated));
+  text-decoration: none;
 }
 
 .table-unified .col-id { min-width: 110px; }

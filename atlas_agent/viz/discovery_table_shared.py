@@ -107,6 +107,92 @@ def links_cell(*parts: str) -> str:
     return body or '<span class="cell-empty">—</span>'
 
 
+def _parse_year(value: object) -> str:
+    m = re.search(r"(19|20)\d{2}", str(value or ""))
+    return m.group(0) if m else ""
+
+
+def item_year(item: dict, pubs_by_pmid: dict[str, dict] | None = None) -> str:
+    """Year from PRIDE/PDC dates, paper metadata, or linked PMID."""
+    for key in ("publication_date", "submission_date", "pub_date", "published"):
+        y = _parse_year(item.get(key))
+        if y:
+            return y
+    y = _parse_year(item.get("year"))
+    if y:
+        return y
+    pmid = _norm_pmid(item)
+    if pmid and pubs_by_pmid:
+        pub = pubs_by_pmid.get(pmid) or {}
+        y = _parse_year(pub.get("year"))
+        if y:
+            return y
+    return "—"
+
+
+def _note_bullets(note: str) -> str:
+    parts = [p.strip() for p in str(note or "").split(" · ") if p.strip()]
+    if not parts:
+        return ""
+    items = "".join(f"<li>{_esc(p)}</li>" for p in parts[:8])
+    return f'<ul class="cell-bullets">{items}</ul>'
+
+
+def _link_chip(href: str, label: str) -> str:
+    if not href:
+        return ""
+    return (
+        f'<a href="{_esc(href)}" target="_blank" rel="noopener" class="link-chip">{_esc(label)}</a>'
+    )
+
+
+def _links_stack(chips: list[str]) -> str:
+    rows = [c for c in chips if c]
+    if not rows:
+        return (
+            '<div class="cell-stack">'
+            '<span class="cell-label">Links</span>'
+            '<span class="cell-empty">—</span>'
+            "</div>"
+        )
+    body = "".join(f'<div class="link-row">{c}</div>' for c in rows)
+    return f'<div class="cell-stack"><span class="cell-label">Links</span><div class="link-stack">{body}</div></div>'
+
+
+def _project_links(acc: str, repo: str, pmid: str) -> str:
+    src = source_label({"accession": acc}) if acc else ""
+    chips: list[str] = []
+    if repo:
+        chips.append(_link_chip(repo, f"{src} project"))
+    if pmid:
+        chips.append(_link_chip(pubmed_url(pmid), "PubMed abstract"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+    return _links_stack(chips)
+
+
+def _literature_links(acc: str, repo: str, pmid: str) -> str:
+    chips: list[str] = []
+    if pmid:
+        chips.append(_link_chip(pubmed_url(pmid), "PubMed abstract"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+    if repo and acc:
+        chips.append(_link_chip(repo, f"{acc} project"))
+    return _links_stack(chips)
+
+
+def _data_status_label(status: str, label: str) -> str:
+    friendly = {
+        "quant_table": "Protein table",
+        "local_mirror": "Local mirror",
+        "maybe_table": "Possible table",
+        "processed_psm": "PSM only",
+        "phospho_table": "Phospho only",
+        "raw_only": "RAW only",
+        "no_files": "No files",
+    }
+    return friendly.get(status, label or status or "Unknown")
+
+
 def _norm_pmid(item: dict) -> str:
     return re.sub(r"\D", "", str(item.get("pmid") or ""))
 
@@ -169,28 +255,46 @@ def _patient_cell(item: dict) -> str:
 
 def _data_cell(it: dict) -> str:
     da = it.get("data_availability") or {}
-    if not da:
-        note = str(it.get("data_availability") or "").strip()
-        if note:
-            return f'<span class="badge badge-warn">{_esc(note[:80])}</span>'
-        return '<span class="cell-empty">—</span>'
-    status = da.get("status") or "unknown"
-    label = _esc(da.get("label") or status)
-    cls = {
-        "quant_table": "badge-ok",
-        "local_mirror": "badge-ok",
-        "maybe_table": "badge-warn",
-        "processed_psm": "badge-warn",
-        "phospho_table": "badge-bad",
-        "raw_only": "badge-bad",
-        "no_files": "badge-bad",
-    }.get(status, "badge-muted")
-    samples = da.get("proteome_files") or da.get("quant_files") or da.get("sample_files") or []
-    fname = _esc(samples[0][:70]) if samples else ""
-    body = f'<span class="badge {cls}">{label}</span>'
-    if fname:
-        body += f'<br/><span class="muted file-hint">{fname}</span>'
-    return body
+    if isinstance(da, dict) and da:
+        status = da.get("status") or "unknown"
+        label = _data_status_label(status, str(da.get("label") or ""))
+        cls = {
+            "quant_table": "badge-ok",
+            "local_mirror": "badge-ok",
+            "maybe_table": "badge-warn",
+            "processed_psm": "badge-warn",
+            "phospho_table": "badge-bad",
+            "raw_only": "badge-bad",
+            "no_files": "badge-bad",
+        }.get(status, "badge-muted")
+        samples = da.get("proteome_files") or da.get("quant_files") or da.get("sample_files") or []
+        fname = _esc(samples[0][:72]) if samples else ""
+        body = (
+            f'<div class="cell-stack">'
+            f'<span class="cell-label">Data files</span>'
+            f'<span class="badge {cls}">{_esc(label)}</span>'
+        )
+        if fname:
+            body += f'<code class="file-name">{fname}</code>'
+        guidance = str(da.get("guidance") or "").strip()
+        if guidance and not fname:
+            body += f'<span class="muted file-hint">{_esc(guidance[:100])}</span>'
+        body += "</div>"
+        return body
+    hint = str(it.get("data_hint") or it.get("data_availability") or "").strip()
+    if hint:
+        return (
+            f'<div class="cell-stack">'
+            f'<span class="cell-label">Data files</span>'
+            f'<span class="badge badge-warn">{_esc(hint[:90])}</span>'
+            f"</div>"
+        )
+    return (
+        '<div class="cell-stack">'
+        '<span class="cell-label">Data files</span>'
+        '<span class="cell-empty">—</span>'
+        "</div>"
+    )
 
 
 def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
@@ -234,37 +338,46 @@ def _title_cell(title: str, pub_url: str, repo: str) -> str:
 
 
 def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
-    parts: list[str] = []
+    blocks: list[str] = ['<div class="cell-stack"><span class="cell-label">Analysis</span>']
     note = it.get("finding_note") or format_finding_note(it)
-    if note:
-        parts.append(f'<span class="muted">{_esc(note[:420])}</span>')
+    bullets = _note_bullets(note)
+    if bullets:
+        blocks.append(bullets)
     pmid = str(it.get("pmid") or "").strip()
     pub = pubs_by_pmid.get(pmid) if pmid else None
+    summary = ""
     if pub and pub.get("summary_en"):
-        parts.append(f'<span class="muted llm-block">{_esc(pub["summary_en"][:300])}</span>')
+        summary = pub["summary_en"]
     else:
         ai = it.get("abstract_ai") or {}
-        if ai.get("summary_en"):
-            parts.append(f'<span class="muted llm-block">{_esc(ai["summary_en"][:300])}</span>')
-    return "<br/>".join(parts) if parts else '<span class="cell-empty">—</span>'
+        summary = ai.get("summary_en") or ""
+    if summary:
+        blocks.append(f'<p class="cell-summary">{_esc(summary[:320])}</p>')
+    if len(blocks) == 1:
+        blocks.append('<span class="cell-empty">—</span>')
+    blocks.append("</div>")
+    return "".join(blocks)
 
 
 def _analysis_literature(paper: dict | None, cohort: dict | None) -> str:
-    parts: list[str] = []
+    blocks: list[str] = ['<div class="cell-stack"><span class="cell-label">Analysis</span>']
     if paper:
+        note = paper.get("finding_note") or format_finding_note(paper) or ""
+        bullets = _note_bullets(note)
+        if bullets:
+            blocks.append(bullets)
         ai = paper.get("abstract_ai") or {}
         summary = ai.get("summary_en") or paper.get("summary_en") or ""
-        if summary:
-            parts.append(_esc(summary[:300]))
-        note = paper.get("finding_note") or format_finding_note(paper) or ""
-        if note and note != summary:
-            parts.append(f'<span class="muted">{_esc(note[:280])}</span>')
+        if summary and summary not in note:
+            blocks.append(f'<p class="cell-summary">{_esc(summary[:300])}</p>')
     if cohort:
         desc = cohort.get("description_en") or cohort.get("description_ru") or ""
         if desc:
-            parts.append(f'<span class="muted">{_esc(desc[:280])}</span>')
-    body = "<br/>".join(parts)
-    return body or '<span class="cell-empty">—</span>'
+            blocks.append(f'<p class="cell-cohort">{_esc(desc[:280])}</p>')
+    if len(blocks) == 1:
+        blocks.append('<span class="cell-empty">—</span>')
+    blocks.append("</div>")
+    return "".join(blocks)
 
 
 def _papers_without_accession(manual: list[dict], literature: list[dict]) -> list[dict]:
@@ -346,25 +459,27 @@ def build_unified_discovery_rows(
         pmid = str(it.get("pmid") or "").strip()
         pub = it.get("pubmed_url") or pubmed_url(pmid)
         title = (it.get("title") or "").strip()
-        year = str(it.get("year") or "—")
+        year = item_year(it, pubs_by_pmid)
         design = _esc(str(it.get("sample_design") or "—").replace("_", "-"))
         src_key = source_label(it).lower()
-        search = f"{raw_acc} {title} {it.get('program') or ''}".lower()
+        search = f"{raw_acc} {title} {year} {it.get('program') or ''}".lower()
+
+        omics_cell = _omics_cell(it) if it.get("omics") else '<span class="cell-empty">—</span>'
 
         rows.append(
             f"<tr data-type='project' data-src='{src_key}' data-search='{_esc(search)}' data-patients=''>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid, fit_score=None)}</td>"
-            f"<td class='col-year cell-mono'>{_esc(year)}</td>"
+            f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo)}</td>"
-            f"<td class='col-src'>{_source_link_cell(it, acc=raw_acc)}</td>"
+            f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
             f"<td class='col-design'>{design}</td>"
-            f"<td class='col-omics'><span class='cell-empty'>—</span></td>"
+            f"<td class='col-omics'>{omics_cell}</td>"
             f"<td class='col-pat'><span class='cell-empty'>—</span></td>"
             f"<td class='col-n'><span class='cell-empty'>—</span></td>"
-            f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
+            f"<td class='col-weight col-split'><span class='cell-empty'>—</span></td>"
             f"<td class='col-analysis analysis-cell'>{_analysis_project(it, pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
-            f"<td class='col-links cell-links'>{links_cell(project_link(raw_acc, repo), pubmed_link(pmid), epmc_link(pmid))}</td>"
+            f"<td class='col-links'>{_project_links(raw_acc, repo, pmid)}</td>"
             f"</tr>"
         )
         total += 1
@@ -380,7 +495,9 @@ def build_unified_discovery_rows(
         acc = _first_accession(it)
         repo = repository_url(acc) if acc else ""
         title = (it.get("title") or "").strip()
-        year = str(it.get("year") or cohort and cohort.get("year") or "—")
+        year = item_year(it if paper else (cohort or it), pubs_by_pmid)
+        if year == "—" and cohort:
+            year = item_year(cohort, pubs_by_pmid)
         design = "—"
         if paper:
             mat = (paper.get("abstract_ai") or {}).get("material") or ""
@@ -400,17 +517,17 @@ def build_unified_discovery_rows(
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-search='{_esc(search)}' data-patients='{_esc(hp)}'>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid, fit_score=fit_score if not acc else None)}</td>"
-            f"<td class='col-year cell-mono'>{_esc(year)}</td>"
+            f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo)}</td>"
-            f"<td class='col-src'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
+            f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-design'>{design}</td>"
             f"<td class='col-omics'>{_omics_cell(it)}</td>"
             f"<td class='col-pat'>{_patient_cell(it)}</td>"
             f"<td class='col-n cell-mono'>{n_cell}</td>"
-            f"<td class='col-weight'>{unified_weight_cell(fit=fit, fit_score=fit_score, cohort_score=cohort_score)}</td>"
+            f"<td class='col-weight col-split'>{unified_weight_cell(fit=fit, fit_score=fit_score, cohort_score=cohort_score)}</td>"
             f"<td class='col-analysis analysis-cell'>{_analysis_literature(paper, cohort)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
-            f"<td class='col-links cell-links'>{links_cell(pubmed_link(pmid), epmc_link(pmid), project_link(acc, repo))}</td>"
+            f"<td class='col-links'>{_literature_links(acc, repo, pmid)}</td>"
             f"</tr>"
         )
         total += 1

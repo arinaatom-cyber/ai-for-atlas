@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -40,6 +41,21 @@ def enrich_report(report: dict, cfg: dict) -> dict:
             )
         for item in items:
             resolve_publication_links(item, fetch_pride_pmid=da_cfg.get("fetch_pride_pmid", True))
+            if not str(item.get("year") or "").strip():
+                for key in ("publication_date", "submission_date"):
+                    m = re.search(r"(19|20)\d{2}", str(item.get(key) or ""))
+                    if m:
+                        item["year"] = m.group(0)
+                        break
+            if not str(item.get("year") or "").strip() and item.get("pmid"):
+                try:
+                    from atlas_agent.sources.literature import fetch_abstract
+
+                    meta = fetch_abstract(str(item["pmid"]))
+                    if meta.get("year"):
+                        item["year"] = meta["year"]
+                except Exception:
+                    pass
             item["finding_note"] = format_finding_note(item)
             da = item.get("data_availability") or {}
             if da:
