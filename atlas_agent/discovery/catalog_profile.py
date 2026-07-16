@@ -25,10 +25,12 @@ def build_catalog_profile(df: pd.DataFrame) -> dict[str, Any]:
         if db:
             databases[db] += 1
         for col, bucket in (("Organ", organs), ("Disease", diseases)):
-            val = str(r.get(col, "") or "")
+            val = str(r.get(col, "") or "").strip()
+            if not val or val.lower() in ("nan", "none", "na", "n/a"):
+                continue
             for part in re.split(r"[;,/|]", val):
                 part = part.strip()
-                if len(part) > 2:
+                if len(part) > 2 and part.lower() not in ("nan", "none", "healthy"):
                     bucket[part.lower()] += 1
         tmt = str(r.get("TMT Label (Unified)", "") or "")
         if "tmt" in tmt.lower():
