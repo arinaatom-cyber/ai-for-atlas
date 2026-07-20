@@ -1,9 +1,9 @@
 {
   "pipeline": "Atlas Discovery Agent",
   "pipeline_version": "2026.07.15-nature",
-  "generated_at": "2026-07-15T10:17:27.694932+00:00",
-  "python": "3.12.10",
-  "platform": "Windows-11-10.0.26200-SP0",
+  "generated_at": "2026-07-20T08:49:46.466813+00:00",
+  "python": "3.12.13",
+  "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
   "catalog_policy": {
     "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
     "catalog_mirror": "data/projects.csv",
@@ -62,29 +62,34 @@
       "MSV"
     ],
     "reject_non_human": true,
-    "material_qc": true
+    "reject_phosphoproteomics": true,
+    "reject_peptide_only": true,
+    "material_qc": true,
+    "strict_sample_design": true
   },
   "funnel": {
     "raw_novel_repos": 88,
-    "candidates": 4,
-    "manual_check": 20,
+    "candidates": 3,
+    "manual_check": 12,
     "rejected_material": 0,
-    "filtered_out": 116,
+    "filtered_out": 168,
     "already_in_catalog": 11
   },
   "literature_screening": {
     "publications_scanned": 24,
-    "abstract_llm_read": 22,
-    "abstract_regex_only": 2,
-    "atlas_fit_yes": 19,
-    "atlas_fit_maybe": 3,
+    "abstract_llm_read": 0,
+    "abstract_regex_only": 24,
+    "atlas_fit_yes": 0,
+    "atlas_fit_maybe": 9,
     "literature_resolved": 0,
     "semantic_from_abstract": 0
   },
   "data_availability_gate": {
-    "quant_table": 26,
-    "raw_only": 10,
-    "no_files": 21
+    "quant_table": 3,
+    "omics_protein": 3,
+    "raw_only": 1,
+    "omics_unknown": 12,
+    "no_files": 11
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true
