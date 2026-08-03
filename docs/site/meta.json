@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-07-27T09:52:55.273871+00:00",
+  "generated_at": "2026-08-03T09:35:02.184875+00:00",
   "new_projects_count": 3,
-  "publications_analyzed": 23,
-  "literature_semantic": 9,
-  "cohort_literature_count": 11,
+  "publications_analyzed": 24,
+  "literature_semantic": 10,
+  "cohort_literature_count": 12,
   "abstract_llm_read": 0,
   "abstract_atlas_fit_yes": 0,
   "semantic_from_abstract": 0,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T09:52:55.273871+00:00",
+  "generated_at": "2026-08-03T09:35:02.184875+00:00",
   "policy": {
     "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
     "catalog_mirror": "data/projects.csv",
@@ -240,18 +240,18 @@
     "catalog_unique_ids": 122,
     "novel_pride": 60,
     "novel_pdc": 28,
-    "novel_publications": 23,
+    "novel_publications": 24,
     "novel_consortia": 62,
     "novel_total": 113,
     "new_projects": 3,
     "candidates": 3,
-    "manual_check": 11,
+    "manual_check": 12,
     "rejected_material": 0,
     "review_recommended": 3,
     "already_in_catalog": 11,
     "filtered_out": 168,
     "phospho_only_filtered": 0,
-    "requires_manual_check": 12,
+    "requires_manual_check": 13,
     "rejected": 0,
     "removed_from_workbook": 0,
     "human_filtered": 40,
@@ -264,27 +264,39 @@
       "iprox_json": 0,
       "literature_resolved": 0,
       "semantic_from_abstract": 0,
-      "literature_semantic_manual": 9,
-      "publications_scanned": 23,
+      "literature_semantic_manual": 10,
+      "publications_scanned": 24,
       "abstract_llm_read": 0,
-      "abstract_regex_only": 23,
+      "abstract_regex_only": 24,
       "abstract_atlas_fit_yes": 0,
-      "abstract_atlas_fit_maybe": 8
+      "abstract_atlas_fit_maybe": 9
     },
     "data_availability": {
       "quant_table": 3,
       "omics_protein": 3,
       "raw_only": 1,
-      "omics_unknown": 11,
-      "no_files": 10
+      "omics_unknown": 12,
+      "no_files": 11
     },
     "cohort_literature": {
       "queries": 5,
       "scanned": 37,
-      "kept": 11,
+      "kept": 12,
       "with_patient_n": 6,
-      "multi_omics": 10,
+      "multi_omics": 11,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "filters_applied": {
@@ -328,7 +340,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -399,7 +411,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -499,7 +514,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -599,7 +616,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -616,7 +635,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -687,7 +706,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -787,7 +809,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -887,7 +911,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "recommended": [
@@ -1250,8 +1276,30 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000430"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pmid": "36267416",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
+      "doi": "",
+      "year": "2022",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000430"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "MSV000102463",
@@ -1311,8 +1359,27 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "MSV": [
+            "MSV000102463"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "MSV": [
+          "MSV000102463"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "pmid": "42310533",
@@ -1373,7 +1440,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -1432,7 +1508,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -1493,7 +1577,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -1555,7 +1648,17 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -1614,7 +1717,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -1676,7 +1787,17 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -1737,7 +1858,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -1796,7 +1926,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "13006395",
@@ -1857,7 +1995,83 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/",
+      "year": "1952",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
+    },
+    {
+      "pmid": "41055288",
+      "doi": "10.1002/pmic.70052",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:41055288",
+      "accession": "PMID:41055288",
+      "data_availability": {
+        "accession": "PMID:41055288",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "rejected_material": [],
@@ -2304,6 +2518,57 @@
     }
   ],
   "filtered_out": [
+    {
+      "accession": "PXD081930",
+      "title": "Mechanistic basis for the spatiotemporal assembly of the Bloom Syndrome complex on ultrafine DNA bridges",
+      "description": "The BTRR (BLM/TOP3A/RMI1/RMI2) complex resolves DNA replication and recombination intermediates, as well as mitotic DNA intertwinements, yet how its diverse activities are regulated remains unclear. Here, we identify key determinants of stable assembly of the BTRR complex on ultrafine DNA bridges (UFBs). We reveal that the RMI1-RMI2 subcomplex acts as a molecular reader of hydrophobic-rich short linear motifs (SLiMs) embedded within PICH and FANCM, thereby providing a conserved mechanism for engaging distinct Superfamily2 DNA translocases during chromosome segregation and DNA repair. During UFB resolution, SLiM binding stabilises the PICH-BTRR complex assembly and supports essential interactions among BLM, PICH, and DNA. Persistent PICH-BTRR complex association post-mitosis would compromis",
+      "submission_date": "2026-07-30",
+      "publication_date": "2026-07-30",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Ascend"
+      ],
+      "quantification_methods": [],
+      "pmid": "",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD081930",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "TMT plex unknown (need [10, 11, 12, 16])"
+      ],
+      "extracted_ids": {
+        "PXD": [
+          "PXD081930"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "qc_status": "requires_manual_check",
+      "qc_reasons": [
+        "Human confirmed; tissue/fluid/cell-line type unclear"
+      ],
+      "material_signals": {
+        "included": [],
+        "excluded": []
+      },
+      "recommendation": "filtered_out",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "finding_note": "TMT human proteomics candidate — Mechanistic basis for the spatiotemporal assembly of the Bloom Syndrome complex "
+    },
     {
       "accession": "PXD081636",
       "title": "Retrograde signalling mediates cellular adaptation to mitochondrial DNA copy number alterations",
@@ -3699,6 +3964,59 @@
       "finding_note": "Keywords from title: proteome"
     },
     {
+      "accession": "PXD075484",
+      "title": "Surface and global proteome profiling of osteosarcoma patient derived xenografts",
+      "description": "This study analyzed 22 unique OS patient-derived xenografts (PDXs) using proteomics to identify surface proteins for potential immunotherapeutic targeting. Plasma membranes were enriched using density gradient ultracentrifugation and compared to a reference standard of 12 immortalized non-OS cell lines prepared in a similar manner. In parallel, global proteome analysis was carried out on all samples to place the identified surface proteins within the context of deregulated OS pathways. All models were analyzed by Tandem Mass Tags (TMT)-based mass spectrometry to quantify identified proteins.",
+      "submission_date": "2026-03-11",
+      "publication_date": "2026-07-28",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Eclipse"
+      ],
+      "quantification_methods": [],
+      "pmid": "",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD075484",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "TMT plex unknown (need [10, 11, 12, 16])"
+      ],
+      "extracted_ids": {
+        "PXD": [
+          "PXD075484"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "patient_fluid"
+        ],
+        "excluded": []
+      },
+      "recommendation": "filtered_out",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "finding_note": "Keywords from title: plasma, proteome · Material type: patient plasma/serum/blood/CSF"
+    },
+    {
       "accession": "PXD075094",
       "title": "TCF4 trinucleotide repeat expansion drives distinct proteomic signatures in Fuchs endothelial corneal dystrophy",
       "description": "The aims of this study were to use an isogenic cell model system to investigate the proteomic consequences of TCF4 trinucleotide repeat expansion in Fuchs endothelial corneal dystrophy (FECD) and to identify potential molecular pathways contributing to disease pathogenesis. We used our previously established immortalized FECD cells (iFECD) that harbor CTG repeat expansion in TCF4 and CRISPR/Cas9 genome editing to generate an isogenic counterpart (iFECD TCF4ΔCTG) in which the expansion was deleted. Comprehensive proteomic analysis was then performed using tandem mass tag (TMT)-labeled quantitative LC-MS/MS. The resulting data were subjected to differential expression analysis, functional enrichment analysis, and protein-protein interaction network construction to elucidate the molecular imp",
@@ -4884,115 +5202,6 @@
       "abstract_ai": {},
       "atlas_fit_score": null,
       "finding_note": "Design: cancer-only"
-    },
-    {
-      "accession": "PXD073249",
-      "title": "Systematic Quantification of Protein O-GlcNAcylation Reveals Common and Cell-Type-Specific Responses to N-Glycosylation Inhibition in Human Cells",
-      "description": "In this work, we systematically and site-specifically analyzed protein O-GlcNAcylation under the N-glycosylation inhibition through the integration of metabolic labeling, bio-orthogonal chemistry, and multiplexed proteomics. The experiments were performed in three types of human cells, i.e., HEK293T, HepG2, and Jurkat cells.",
-      "submission_date": "2026-01-19",
-      "publication_date": "2026-06-02",
-      "organisms": [
-        "Homo sapiens (human)"
-      ],
-      "instruments": [
-        "Orbitrap Eclipse"
-      ],
-      "quantification_methods": [
-        "TMT"
-      ],
-      "pmid": "",
-      "doi": "",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD073249",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "filtered_out",
-      "filter_reasons": [
-        "TMT plex unknown (need [10, 11, 12, 16])"
-      ],
-      "extracted_ids": {
-        "PXD": [
-          "PXD073249"
-        ]
-      },
-      "inferred_plex": null,
-      "sample_design": "unknown",
-      "catalog_matches": [],
-      "qc_status": "rejected",
-      "qc_reasons": [
-        "Human cells but not cancer cell line (MSC/fibroblast/iPSC etc.)"
-      ],
-      "material_signals": {
-        "included": [],
-        "excluded": [
-          "non_cancer_human_cell"
-        ]
-      },
-      "recommendation": "filtered_out",
-      "abstract_ai": {},
-      "atlas_fit_score": null,
-      "finding_note": "TMT human proteomics candidate — Systematic Quantification of Protein O-GlcNAcylation Reveals Common and Cell-Typ"
-    },
-    {
-      "accession": "PXD073007",
-      "title": "5′ UTR length regulates the production of alternative N-terminal protein isoforms in health and disease",
-      "description": "The 5′ untranslated region (5′ UTR) of an mRNA is classically viewed as a regulatory region that controls the amount of protein production, but not the resulting protein sequence. Here, we demonstrate that 5′ UTR length also plays a direct role in alternative N-terminal protein isoform production by controlling start codon selection. We find that very short 5′ UTRs enhance leaky scanning, thereby promoting the production of truncated alternative N-terminal protein isoforms. Changes in 5′ UTR length due to alternative transcription initiation can tune the relative abundance of alternative N-terminal isoforms from the same gene. In addition, we identify mutations in rare genetic diseases that alter 5′ UTR length, including a deletion in the VHL 5′ UTR in von Hippel–Lindau disease that shifts",
-      "submission_date": "2026-01-13",
-      "publication_date": "2026-03-13",
-      "organisms": [
-        "Homo sapiens (human)"
-      ],
-      "instruments": [
-        "Q Exactive HF"
-      ],
-      "quantification_methods": [
-        "Spectrum count/molecular weight",
-        "TMT"
-      ],
-      "pmid": "",
-      "doi": "10.6019/PXD073007",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD073007",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "filtered_out",
-      "filter_reasons": [
-        "TMT plex unknown (need [10, 11, 12, 16])"
-      ],
-      "extracted_ids": {
-        "PXD": [
-          "PXD073007"
-        ]
-      },
-      "inferred_plex": null,
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "requires_manual_check",
-      "qc_reasons": [
-        "Human confirmed; tissue/fluid/cell-line type unclear"
-      ],
-      "material_signals": {
-        "included": [],
-        "excluded": []
-      },
-      "recommendation": "filtered_out",
-      "abstract_ai": {},
-      "atlas_fit_score": null,
-      "finding_note": "Design: cancer-only"
     }
   ],
   "requires_manual_check_raw": [
@@ -5504,11 +5713,71 @@
       "qc_reasons": [],
       "processing_tips": [],
       "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+    },
+    {
+      "pmid": "41055288",
+      "doi": "10.1002/pmic.70052",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe"
     }
   ],
   "rejected_raw": [],
   "duplicate_similar": [],
   "novel_pride": [
+    {
+      "accession": "PXD081930",
+      "title": "Mechanistic basis for the spatiotemporal assembly of the Bloom Syndrome complex on ultrafine DNA bridges",
+      "description": "The BTRR (BLM/TOP3A/RMI1/RMI2) complex resolves DNA replication and recombination intermediates, as well as mitotic DNA intertwinements, yet how its diverse activities are regulated remains unclear. Here, we identify key determinants of stable assembly of the BTRR complex on ultrafine DNA bridges (UFBs). We reveal that the RMI1-RMI2 subcomplex acts as a molecular reader of hydrophobic-rich short linear motifs (SLiMs) embedded within PICH and FANCM, thereby providing a conserved mechanism for engaging distinct Superfamily2 DNA translocases during chromosome segregation and DNA repair. During UFB resolution, SLiM binding stabilises the PICH-BTRR complex assembly and supports essential interactions among BLM, PICH, and DNA. Persistent PICH-BTRR complex association post-mitosis would compromis",
+      "submission_date": "2026-07-30",
+      "publication_date": "2026-07-30",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Ascend"
+      ],
+      "quantification_methods": [],
+      "pmid": "",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD081930",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3"
+    },
     {
       "accession": "PXD081636",
       "title": "Retrograde signalling mediates cellular adaptation to mitochondrial DNA copy number alterations",
@@ -6074,6 +6343,26 @@
       "source": "pride_search_v3"
     },
     {
+      "accession": "PXD075484",
+      "title": "Surface and global proteome profiling of osteosarcoma patient derived xenografts",
+      "description": "This study analyzed 22 unique OS patient-derived xenografts (PDXs) using proteomics to identify surface proteins for potential immunotherapeutic targeting. Plasma membranes were enriched using density gradient ultracentrifugation and compared to a reference standard of 12 immortalized non-OS cell lines prepared in a similar manner. In parallel, global proteome analysis was carried out on all samples to place the identified surface proteins within the context of deregulated OS pathways. All models were analyzed by Tandem Mass Tags (TMT)-based mass spectrometry to quantify identified proteins.",
+      "submission_date": "2026-03-11",
+      "publication_date": "2026-07-28",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Eclipse"
+      ],
+      "quantification_methods": [],
+      "pmid": "",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD075484",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3"
+    },
+    {
       "accession": "PXD075094",
       "title": "TCF4 trinucleotide repeat expansion drives distinct proteomic signatures in Fuchs endothelial corneal dystrophy",
       "description": "The aims of this study were to use an isogenic cell model system to investigate the proteomic consequences of TCF4 trinucleotide repeat expansion in Fuchs endothelial corneal dystrophy (FECD) and to identify potential molecular pathways contributing to disease pathogenesis. We used our previously established immortalized FECD cells (iFECD) that harbor CTG repeat expansion in TCF4 and CRISPR/Cas9 genome editing to generate an isogenic counterpart (iFECD TCF4ΔCTG) in which the expansion was deleted. Comprehensive proteomic analysis was then performed using tandem mass tag (TMT)-labeled quantitative LC-MS/MS. The resulting data were subjected to differential expression analysis, functional enrichment analysis, and protein-protein interaction network construction to elucidate the molecular imp",
@@ -6091,49 +6380,6 @@
       "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD075094",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3"
-    },
-    {
-      "accession": "PXD075040",
-      "title": "Genetic and pharmacological inactivation of peptidoglycan remodeling increases antibiotic susceptibility of vancomycin-resistant Enterococcus faecium",
-      "description": "Vancomycin-resistant Enterococcus faecium (VREfm) is a leading cause of healthcare-associated infections globally and demands new approaches for treatment. Here we show that genetic and pharmacological inactivation of a highly conserved NlpC/P60 peptidoglycan hydrolase, secreted antigen A (SagA), enhanced vancomycin susceptibility of VREfm ex vivo and in vivo. Notably, genetic deletion of sagA impaired VREfm peptidoglycan remodeling, growth and increased the activity of vancomycin. We then identified first-in-class covalent NlpC/P60 peptidoglycan hydrolase inhibitors and demonstrated that pharmacological inactivation of SagA activity also impaired peptidoglycan remodeling and increased the efficacy of vancomycin in several VREfm clinical isolates. Our study reveals peptidoglycan hydrolases",
-      "submission_date": "2026-02-28",
-      "publication_date": "2026-04-13",
-      "organisms": [
-        "Enterococcus faecium erv165"
-      ],
-      "instruments": [
-        "Orbitrap Fusion"
-      ],
-      "quantification_methods": [],
-      "pmid": "",
-      "doi": "",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD075040",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3"
-    },
-    {
-      "accession": "PXD074619",
-      "title": "A Global Ligandability Map of Tryptoline Butynamide Stereoprobes Identifies Covalent Inhibitors of the Actin Maturation Protease ACTMAP",
-      "description": "Covalent chemistry coupled with activity-based protein profiling (ABPP) offers a versatile approach for small-molecule ligand discovery in native biological contexts. The covalent ligandability maps generated by ABPP that target cysteine have frequently leveraged the acrylamide as a reactive group due to its tempered electrophilicity and presence in many advanced tool compounds and therapeutics. More recently, alternative cysteine-directed re-active groups such as the butynamide have emerged as an additional source of covalent probes and drugs, but their global reactivity with the proteome remains largely unexplored. Here, we compare the ligandability maps of stereochemically defined acrylamide and bu-tynamide compounds (stereoprobes) built from a common tryptoline core and find that the b",
-      "submission_date": "2026-02-19",
-      "publication_date": "2026-05-20",
-      "organisms": [
-        "Homo sapiens (human)"
-      ],
-      "instruments": [
-        "Orbitrap Eclipse",
-        "Orbitrap Fusion"
-      ],
-      "quantification_methods": [
-        "TMT"
-      ],
-      "pmid": "",
-      "doi": "",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD074619",
       "tmt_detected": true,
       "human": true,
       "source": "pride_search_v3"
@@ -6220,6 +6466,32 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "doi": "10.1038/s41598-026-44561-x",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [
+        "human clinical proteomics"
+      ],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "42273731",
       "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
       "doi": "10.1161/atvbaha.126.323845",
@@ -6247,32 +6519,6 @@
         "exclusion_reason": "phospho-only emphasis"
       },
       "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "41851243",
-      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
-      "doi": "10.1038/s41598-026-44561-x",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [
-        "human clinical proteomics"
-      ],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42051158",
@@ -6737,6 +6983,30 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+    },
+    {
+      "pmid": "41055288",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "doi": "10.1002/pmic.70052",
+      "journal": "",
+      "year": "2025",
+      "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
     }
   ],
   "literature_semantic": [
@@ -6780,7 +7050,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -6820,7 +7096,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -6862,7 +7143,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -6905,7 +7192,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -6945,7 +7239,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -6988,7 +7287,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -7030,7 +7336,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -7070,7 +7382,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "13006395",
@@ -7112,7 +7429,58 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
+    },
+    {
+      "pmid": "41055288",
+      "doi": "10.1002/pmic.70052",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "abstract_snippet": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of qu",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "cohort_literature": [
@@ -7139,7 +7507,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 93,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈1000",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "41998177",
@@ -7162,7 +7536,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42381624",
@@ -7185,7 +7565,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 73,
-      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈132",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42310533",
@@ -7207,7 +7593,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "41785305",
@@ -7232,7 +7625,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42204136",
@@ -7255,7 +7653,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 40,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42134687",
@@ -7279,7 +7682,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1281063",
@@ -7302,7 +7710,40 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
+    },
+    {
+      "pmid": "PPR1289484",
+      "title": "A Multicenter Confirmatory Randomized-Controlled Study of rhNRGβ1 Protein Replacement Therapy in a Murine Model of NF2-related Schwannomatosis",
+      "abstract": "Background: Previous exploratory studies identified recombinant human Neuregulin-1 β (rhNRGβ1) as a promising therapeutic strategy for inhibiting the growth of Nf2-deficient schwannomas by promoting cellular differentiation. Because robust confirmation across independent laboratories is essential for advancing promising preclinical findings toward clinical translation, we conducted a multicenter, randomized, controlled confirmatory study under stringent preclinical standards. <h4>Methods:</h4> In a pre-registered trial (DOI: 10.17590/asr.0000304), 216 mice (Nf2-flox;P0-Cre;Nefh-Cre) were randomized at three independent research sites. Following a standardized sciatic nerve crush, mice received systemic rhNRGβ1 (10 μg/kg) or vehicle for 13 weeks. Rigorous quality measures included double-blinding, standardized surgery, centralized data management, and an automated Fiji macro for objective nerve thickness quantification (Primary Outcome). Secondary molecular outcomes included Western blot and in-depth, quantitative proteomics and phosphoproteomics. All methods were SOP-based for reproducible and comparable results across the three study centers Results: The primary confirmatory analysis revealed no reduction in nerve thickness in the rhNRGβ1 group (p  best case imputation = 0.076 and p  worst case imputation = 0.533). Secondary analyses via quantitative Western blotting and DIA proteomics demonstrated that core biochemical markers of Schwann cell differentiation (MBP, ERBB2) remained unchanged across all centers. Based on the absence of macroscopic or primary biochemical effects, further histological analysis was omitted to avoid scientific redundancy. High-depth profiling of a predefined 60-protein functional marker panel confirmed a remarkably stable tumor proteome across all replication sites and both sexes, with no evidence of coordinated changes in key downstream oncogenic signaling pathways (Hippo/YAP, mTORC1, and RTK-Ras-MAPK) or metabolic signaling cascades. These findings indicate an absence of measurable target engagement under our tested dosing regimen, potentially reflecting pharmacokinetic or tissue-delivery limitations rather than an invalidation of the underlying biological pathway. <h4>Conclusion:</h4> Despite high statistical power and rigorous methodology, this study could not confirm rhNRGβ1 as a robust therapeutic candidate for schwannoma growth arrest or shrinkage. These findings suggest that previously reported therapeutic effects were either highly context-dependent or could not be reproduced under adequately powered, rigorously controlled experimental conditions. As underpowered preclinical studies are more susceptible to random biological variation, our results highlight the importance of sufficient sample sizes alongside robust experimental design. Our study underscores the value of trial-like methodological standards in preclinical therapeutic evaluation to identify ineffective interventions (dead ends) early and strengthen translational decision-making. Although we could not confirm the previously reported efficacy of rhNRGβ1, the multicenter framework established here provides a methodological benchmark for robust preclinical testing in translational oncology, with the potential to improve reproducibility and the success of therapies progressing to early-phase clinical trials. From a translational perspective, these findings provide a robust foundation for optimizing future rhNRGβ1-based therapeutic approaches through improved dosing, delivery routes, and treatment schedules.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.64898/2026.07.31.741963",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -7326,7 +7767,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42167233",
@@ -7349,7 +7795,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42183196",
@@ -7375,7 +7826,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ],
   "novel_publications": [
@@ -7480,40 +7936,6 @@
       "abstract_reader": "regex"
     },
     {
-      "pmid": "42273731",
-      "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
-      "abstract": "Phosphoregulatory events underlie vascular responses to environmental and pathological stimuli, regulate hemostasis and thrombosis, and drive vascular remodeling in health and disease. Consequently, defining phosphorylation-dependent signaling networks in vascular physiology and pathology has enabled biomarker discovery and informed therapeutic interventions. Advances in mass spectrometry-based phosphoproteomics have enabled accurate and high-resolution mapping of dynamic phosphorylation events at the systems level, providing comprehensive mechanistic insights into vascular signaling and pathology. In this review, we contextualize phosphorylation in the vascular niche and summarize the current state of phosphoproteomics in vascular research, highlighting experimental design considerations, technological advances, quantification strategies, and data analysis approaches to uncover biological insights from large-scale phosphoproteomic data sets. Finally, we discuss recent discoveries in vascular signaling and disease, along with current challenges and emerging directions for applying phosphoproteomics to critical questions in vascular biology.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1161/atvbaha.126.323845",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "abstract_ai": {
-        "atlas_fit": "no",
-        "atlas_fit_score": 0.1,
-        "semantic_evidence": [
-          "фосфопротеомика — нужен protein-level proteome"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "unclear",
-        "tmt": "unclear",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex"
-    },
-    {
       "pmid": "41851243",
       "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
       "abstract": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and data were processed using the PAW/Comet pipeline and EdgeR with Benjami–Hochberg multiple correction testing. Isobaric multiplexed quantitative proteomics identified 206 proteins that were significantly (FDR < 0.1) upregulated in GTM cells, 42 proteins that were downregulated, with 5270 non-candidates. Significant regulated pathways included extracellular matrix (DCN, COL4A1, CHI3L1), Wnt signaling (FZD1, FZD7, GSK3B), cytoskeletal regulation (ROCK2, MSN, TPM2, VIM, NF2), protein degradation (USP9X, LAMP1, SYNV1, UBE2L3), and nuclear proteins (LMNA, DFFA, CHMP3, RAD21). Western immunoblotting studies confirmed the TMTpro data. Immunofluorescence showed that the SNX7-stained nucleoli of GTM cells were significantly (p < 0.05) larger, and the DIAPH2 immunostaining was more distended into the cytosol than in NTM cells. This study identified many significantly regulated proteins in cultured GTM cells, and the results revealed several new avenues for developing clinical therapies for glaucoma patients.",
@@ -7539,6 +7961,40 @@
         },
         "organism": "human",
         "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex"
+    },
+    {
+      "pmid": "42273731",
+      "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
+      "abstract": "Phosphoregulatory events underlie vascular responses to environmental and pathological stimuli, regulate hemostasis and thrombosis, and drive vascular remodeling in health and disease. Consequently, defining phosphorylation-dependent signaling networks in vascular physiology and pathology has enabled biomarker discovery and informed therapeutic interventions. Advances in mass spectrometry-based phosphoproteomics have enabled accurate and high-resolution mapping of dynamic phosphorylation events at the systems level, providing comprehensive mechanistic insights into vascular signaling and pathology. In this review, we contextualize phosphorylation in the vascular niche and summarize the current state of phosphoproteomics in vascular research, highlighting experimental design considerations, technological advances, quantification strategies, and data analysis approaches to uncover biological insights from large-scale phosphoproteomic data sets. Finally, we discuss recent discoveries in vascular signaling and disease, along with current challenges and emerging directions for applying phosphoproteomics to critical questions in vascular biology.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1161/atvbaha.126.323845",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "atlas_fit_score": 0.1,
+        "semantic_evidence": [
+          "фосфопротеомика — нужен protein-level proteome"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "unclear",
+        "tmt": "unclear",
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": false,
@@ -8139,6 +8595,38 @@
         "reader": "regex"
       },
       "abstract_reader": "regex"
+    },
+    {
+      "pmid": "41055288",
+      "title": "Comparative Proteomic Profiling of Human Cell Lines Using Capillary and Micro-Pillar Array Columns.",
+      "abstract": "Chromatographic column selection can impact proteomic profiling, yet comparative studies remain limited. Here, we evaluate the performance of a conventional flame-pulled Accucore packed-bed capillary column and a microfabricated pillar array column (µPAC) in a sample multiplexed global proteome profiling experiment using six human cell lines prepared in triplicate as a TMTpro18-plex. Overall, both chromatography columns exhibited comparable performance. Specifically, the number and overlap of quantified peptides, as well as proteins, was similar between columns. Principal component and hierarchical clustering analyses highlighted reproducible cell line-driven patterns, while correlation analyses showed high replicate consistency across column formats. Similarly, analytical parameters like XCorr scores, signal-to-noise ratio, and peak resolution showed consistency. These findings demonstrate the potential for using robust, standardized microfluidic columns, such as µPAC, in lieu of traditional pull-tipped capillary columns without sacrificing depth or quantitative accuracy. Key advantages of µPAC include its ease of use and durability in a uniform format, although this advantage does come at a higher cost. This comparative analysis offers valuable insights into column selection for TMT-based quantitative proteomics. SUMMARY: We compare a conventional flame-pulled Accucore resin-packed capillary column and a microfabricated pillar array column (µPAC)-in the context of a TMTpro18-plex experiment using six diverse human cell lines. We evaluate peptide and protein quantification, analytical performance, and reproducibility of both column formats. We demonstrate comparable performance between the two columns and highlight the potential of the robust and standardized µPAC as a viable alternative to traditional capillary columns. These findings offer insights for optimizing column selection in isobaric tag-based proteomic workflows, balancing depth, precision, ease of use, and cost. We provide researchers with evidence-based guidance to enhance experimental design and advance proteomic profiling.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2025",
+      "doi": "10.1002/pmic.70052",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "atlas_fit_score": 0.65,
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex"
     }
   ],
   "novel_consortia": [],
@@ -8155,10 +8643,118 @@
     "Новые PXD/PDC добавляются вручную или через run_revisor.py add --apply",
     "Запускайте scan еженедельно: python run_discovery.py scan"
   ],
-  "report_md": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260727_095255.md",
-  "report_json": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260727_095255.json",
+  "report_md": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260803_093502.md",
+  "report_json": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260803_093502.json",
   "report_html": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_index.html",
   "report_qc_html": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_qc_report.html",
   "report_site_dir": "/home/runner/work/ai-for-atlas/ai-for-atlas/docs/site",
-  "saved_at": "2026-07-27T09:52:55.336412+00:00"
+  "saved_at": "2026-08-03T09:35:02.234055+00:00",
+  "methods_manifest": {
+    "pipeline": "Atlas Discovery Agent",
+    "pipeline_version": "2026.07.15-nature",
+    "generated_at": "2026-08-03T09:35:02.184875+00:00",
+    "python": "3.12.13",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "catalog_policy": {
+      "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
+      "catalog_mirror": "data/projects.csv",
+      "catalog_mode": "read_only",
+      "delete_allowed": false,
+      "auto_update_allowed": false,
+      "agent_role": "discover_and_propose_only",
+      "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+    },
+    "inclusion_criteria": {
+      "organism": "Homo sapiens (reject mouse/rat/xenograft-only)",
+      "quantification": "TMT/isobaric ≥10-plex (reject TMT6)",
+      "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
+      "material": "Tumor / adjacent normal / plasma·serum / human cancer cell lines",
+      "literature": "Europe PMC semantic screening; repository IDs from data availability only"
+    },
+    "exclusion_criteria": [
+      "Non-human or xenograft-only",
+      "TMT6 or ≤6-plex",
+      "Phosphoproteomics-only emphasis",
+      "Peptide-level quantification only",
+      "Review / methods / software papers without cohort data",
+      "Phospho-only or RAW-only repository files"
+    ],
+    "search_config": {
+      "year_from": 2024,
+      "year_to": 2026,
+      "pride_max": 60,
+      "publications_max": 40,
+      "abstract_llm": true,
+      "abstract_llm_max": 25,
+      "abstract_resolve_accessions": true,
+      "abstract_semantic_resolve": false,
+      "strict_sample_design": true,
+      "search_mode": "professional"
+    },
+    "filters_applied": {
+      "human_only": true,
+      "allowed_tmt_plexes": [
+        10,
+        11,
+        12,
+        16
+      ],
+      "min_tmt_channels": 10,
+      "max_tmt_channels": 16,
+      "allow_healthy_only": true,
+      "allow_cancer_only": true,
+      "allow_case_control": true,
+      "allowed_databases": [
+        "PRIDE",
+        "PDC",
+        "iProX",
+        "MassIVE",
+        "IPX",
+        "MSV"
+      ],
+      "reject_non_human": true,
+      "reject_phosphoproteomics": true,
+      "reject_peptide_only": true,
+      "material_qc": true,
+      "strict_sample_design": true
+    },
+    "funnel": {
+      "raw_novel_repos": 88,
+      "candidates": 3,
+      "manual_check": 12,
+      "rejected_material": 0,
+      "filtered_out": 168,
+      "already_in_catalog": 11
+    },
+    "literature_screening": {
+      "publications_scanned": 24,
+      "abstract_llm_read": 0,
+      "abstract_regex_only": 24,
+      "atlas_fit_yes": 0,
+      "atlas_fit_maybe": 9,
+      "literature_resolved": 0,
+      "semantic_from_abstract": 0
+    },
+    "data_availability_gate": {
+      "quant_table": 3,
+      "omics_protein": 3,
+      "raw_only": 1,
+      "omics_unknown": 12,
+      "no_files": 11
+    },
+    "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
+    "catalog_read_only": true
+  },
+  "quality_metrics": {
+    "benchmark_literature": {
+      "accuracy": 0.75,
+      "n": 4,
+      "correct": 3
+    },
+    "benchmark_projects": {
+      "accuracy": 1.0,
+      "n": 3,
+      "correct": 3
+    }
+  }
 }
