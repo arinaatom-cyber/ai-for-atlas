@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03T09:44:26.106238+00:00",
+  "generated_at": "2026-08-10T07:21:44.385384+00:00",
   "policy": {
     "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
     "catalog_mirror": "data/projects.csv",
@@ -240,21 +240,21 @@
     "catalog_unique_ids": 122,
     "novel_pride": 60,
     "novel_pdc": 28,
-    "novel_publications": 24,
+    "novel_publications": 25,
     "novel_consortia": 62,
     "novel_total": 113,
     "new_projects": 3,
     "candidates": 3,
-    "manual_check": 12,
+    "manual_check": 13,
     "rejected_material": 0,
     "review_recommended": 3,
     "already_in_catalog": 11,
     "filtered_out": 168,
     "phospho_only_filtered": 0,
-    "requires_manual_check": 13,
+    "requires_manual_check": 14,
     "rejected": 0,
     "removed_from_workbook": 0,
-    "human_filtered": 40,
+    "human_filtered": 41,
     "duplicate_similar": 0,
     "articles_skipped": 5,
     "source_stats": {
@@ -264,27 +264,39 @@
       "iprox_json": 0,
       "literature_resolved": 0,
       "semantic_from_abstract": 0,
-      "literature_semantic_manual": 10,
-      "publications_scanned": 24,
+      "literature_semantic_manual": 11,
+      "publications_scanned": 25,
       "abstract_llm_read": 0,
-      "abstract_regex_only": 24,
+      "abstract_regex_only": 25,
       "abstract_atlas_fit_yes": 0,
-      "abstract_atlas_fit_maybe": 9
+      "abstract_atlas_fit_maybe": 10
     },
     "data_availability": {
       "quant_table": 3,
       "omics_protein": 3,
       "raw_only": 1,
-      "omics_unknown": 12,
-      "no_files": 11
+      "omics_unknown": 13,
+      "no_files": 12
     },
     "cohort_literature": {
       "queries": 5,
       "scanned": 37,
-      "kept": 12,
-      "with_patient_n": 6,
-      "multi_omics": 11,
+      "kept": 13,
+      "with_patient_n": 7,
+      "multi_omics": 12,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "filters_applied": {
@@ -328,7 +340,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -399,7 +411,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -499,7 +514,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -599,7 +616,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -616,7 +635,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -687,7 +706,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -787,7 +809,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -887,7 +911,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "recommended": [
@@ -1250,8 +1276,30 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000430"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pmid": "36267416",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
+      "doi": "",
+      "year": "2022",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000430"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "MSV000102463",
@@ -1311,8 +1359,27 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "MSV": [
+            "MSV000102463"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "MSV": [
+          "MSV000102463"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "pmid": "42310533",
@@ -1373,7 +1440,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -1432,7 +1508,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -1493,7 +1577,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -1555,7 +1648,17 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -1614,7 +1717,82 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "42552957",
+      "doi": "10.14814/phy2.71027",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42552957",
+      "accession": "PMID:42552957",
+      "data_availability": {
+        "accession": "PMID:42552957",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42552957/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -1676,7 +1854,17 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -1737,7 +1925,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -1796,7 +1993,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "13006395",
@@ -1857,7 +2062,16 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13006395/",
+      "year": "1952",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -1916,7 +2130,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "rejected_material": [],
@@ -2515,6 +2737,61 @@
       "abstract_ai": {},
       "atlas_fit_score": null,
       "finding_note": "Keywords from title: gastric, lung · Design: cancer-only"
+    },
+    {
+      "accession": "PXD080130",
+      "title": "PACS1 syndrome variant alters proteomic landscape of developing cortical organoids",
+      "description": "Several large-scale genetic studies investigating the cause of neurodevelopmental disorders (NDDs) have been conducted, leading to the identification of hundreds of risk genes. However, our understanding of the mechanisms by which the observed genetic variants act has lagged, limiting translation of genetic findings into clinical treatments. In recent years, patient-derived brain organoids have been increasingly used to model NDDs and identify pathogenic mechanisms. While most of these studies evaluate the mechanisms by which NDD risk genes and pathogenic variants affect the transcriptome, studies considering the proteome are limited. Here, we examine the effect of the pathogenic variant PACS1 p.R203W, causative of PACS1 Syndrome, on the proteomic landscape of brain organoids and compared ",
+      "submission_date": "2026-06-24",
+      "publication_date": "2026-08-07",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Fusion Lumos"
+      ],
+      "quantification_methods": [
+        "TMT"
+      ],
+      "pmid": "",
+      "doi": "10.6019/PXD080130",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD080130",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "filtered_out",
+      "filter_reasons": [
+        "TMT plex unknown (need [10, 11, 12, 16])"
+      ],
+      "extracted_ids": {
+        "PXD": [
+          "PXD080130"
+        ]
+      },
+      "inferred_plex": null,
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "qc_status": "rejected",
+      "qc_reasons": [
+        "Spheroids/organoids/tumoroids/3D culture only"
+      ],
+      "material_signals": {
+        "included": [],
+        "excluded": [
+          "3d_model"
+        ]
+      },
+      "recommendation": "filtered_out",
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "finding_note": "Keywords from title: proteome"
     },
     {
       "accession": "PXD079927",
@@ -4994,59 +5271,6 @@
       "abstract_ai": {},
       "atlas_fit_score": null,
       "finding_note": "Keywords from title: proteome"
-    },
-    {
-      "accession": "PXD073248",
-      "title": "Degradation of G-Quadruplex Binding Proteins in Chromatin Using G4-Ligand-Based PROTACs",
-      "description": "Targeted protein degradation can intervene with the function of disease-related proteins, but most current approaches rely on direct ligand engagement of a protein target, limiting their applicability to proteins that are difficult to bind selectively. We present a conceptually unique approach to degrade proteins associated with DNA G-quadruplex (G4) secondary structures in a chromatin context. G4s are non-canonical nucleic acid structures that form at regulatory regions of transcriptionally active genes in open chromatin, and are abundant in cancer states. While many proteins recognize or regulate G4 structures, selectively targeting G4-binding proteins in their native chromatin environment is challenging. Our bifunctional molecules are PROTACs that bind naturally occurring G4s, recruit E",
-      "submission_date": "2026-01-19",
-      "publication_date": "2026-01-27",
-      "organisms": [
-        "Homo sapiens (human)"
-      ],
-      "instruments": [
-        "Orbitrap Ascend"
-      ],
-      "quantification_methods": [
-        "TMT"
-      ],
-      "pmid": "",
-      "doi": "",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD073248",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3",
-      "similar_in_catalog": [],
-      "has_close_match": false,
-      "processing_tips": [
-        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
-        "Add to CSV only after manual review (projects.csv is never modified automatically)"
-      ],
-      "is_novel": true,
-      "verdict": "filtered_out",
-      "filter_reasons": [
-        "TMT plex unknown (need [10, 11, 12, 16])"
-      ],
-      "extracted_ids": {
-        "PXD": [
-          "PXD073248"
-        ]
-      },
-      "inferred_plex": null,
-      "sample_design": "cancer_only",
-      "catalog_matches": [],
-      "qc_status": "requires_manual_check",
-      "qc_reasons": [
-        "Human confirmed; tissue/fluid/cell-line type unclear"
-      ],
-      "material_signals": {
-        "included": [],
-        "excluded": []
-      },
-      "recommendation": "filtered_out",
-      "abstract_ai": {},
-      "atlas_fit_score": null,
-      "finding_note": "Design: cancer-only"
     }
   ],
   "requires_manual_check_raw": [
@@ -5393,6 +5617,46 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
+      "pmid": "42552957",
+      "doi": "10.14814/phy2.71027",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "41966223",
       "doi": "10.1021/acs.jproteome.5c01148",
       "title": "Proteomic Analysis of Paired FFPE Tissue and Extracellular Vesicles Reveals Proteins Associated with Recurrence in Stage II Colorectal Cancer.",
@@ -5659,6 +5923,28 @@
       "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD080883",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3"
+    },
+    {
+      "accession": "PXD080130",
+      "title": "PACS1 syndrome variant alters proteomic landscape of developing cortical organoids",
+      "description": "Several large-scale genetic studies investigating the cause of neurodevelopmental disorders (NDDs) have been conducted, leading to the identification of hundreds of risk genes. However, our understanding of the mechanisms by which the observed genetic variants act has lagged, limiting translation of genetic findings into clinical treatments. In recent years, patient-derived brain organoids have been increasingly used to model NDDs and identify pathogenic mechanisms. While most of these studies evaluate the mechanisms by which NDD risk genes and pathogenic variants affect the transcriptome, studies considering the proteome are limited. Here, we examine the effect of the pathogenic variant PACS1 p.R203W, causative of PACS1 Syndrome, on the proteomic landscape of brain organoids and compared ",
+      "submission_date": "2026-06-24",
+      "publication_date": "2026-08-07",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Orbitrap Fusion Lumos"
+      ],
+      "quantification_methods": [
+        "TMT"
+      ],
+      "pmid": "",
+      "doi": "10.6019/PXD080130",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD080130",
       "tmt_detected": true,
       "human": true,
       "source": "pride_search_v3"
@@ -6206,28 +6492,6 @@
       "tmt_detected": true,
       "human": true,
       "source": "pride_search_v3"
-    },
-    {
-      "accession": "PXD075094",
-      "title": "TCF4 trinucleotide repeat expansion drives distinct proteomic signatures in Fuchs endothelial corneal dystrophy",
-      "description": "The aims of this study were to use an isogenic cell model system to investigate the proteomic consequences of TCF4 trinucleotide repeat expansion in Fuchs endothelial corneal dystrophy (FECD) and to identify potential molecular pathways contributing to disease pathogenesis. We used our previously established immortalized FECD cells (iFECD) that harbor CTG repeat expansion in TCF4 and CRISPR/Cas9 genome editing to generate an isogenic counterpart (iFECD TCF4ΔCTG) in which the expansion was deleted. Comprehensive proteomic analysis was then performed using tandem mass tag (TMT)-labeled quantitative LC-MS/MS. The resulting data were subjected to differential expression analysis, functional enrichment analysis, and protein-protein interaction network construction to elucidate the molecular imp",
-      "submission_date": "2026-03-02",
-      "publication_date": "2026-06-08",
-      "organisms": [
-        "Homo sapiens (human)"
-      ],
-      "instruments": [
-        "Orbitrap Fusion Lumos"
-      ],
-      "quantification_methods": [
-        "TMT"
-      ],
-      "pmid": "",
-      "doi": "",
-      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD075094",
-      "tmt_detected": true,
-      "human": true,
-      "source": "pride_search_v3"
     }
   ],
   "publications_analyzed": [
@@ -6471,6 +6735,30 @@
       "finding_note": "Atlas fit: no"
     },
     {
+      "pmid": "42552957",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "doi": "10.14814/phy2.71027",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "41931001",
       "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
       "doi": "10.1167/iovs.67.4.9",
@@ -6545,30 +6833,6 @@
         "atlas_fit": "no",
         "exclusion_reason": "review / methods / software"
       },
-      "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "42029488",
-      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
-      "doi": "10.3390/proteomes14020016",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences ",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "unclear",
-      "material": "tumor tissue",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
       "finding_note": "Atlas fit: no"
     },
     {
@@ -6700,6 +6964,30 @@
         "atlas_fit": "no",
         "exclusion_reason": "review / methods / software"
       },
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42029488",
+      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
+      "doi": "10.3390/proteomes14020016",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences ",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "unclear",
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
       "finding_note": "Atlas fit: no"
     },
     {
@@ -6895,7 +7183,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -6935,7 +7229,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -6977,7 +7276,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -7020,7 +7325,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -7060,7 +7372,57 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "42552957",
+      "doi": "10.14814/phy2.71027",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -7103,7 +7465,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -7145,7 +7514,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -7185,7 +7560,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "13006395",
@@ -7227,7 +7607,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -7267,10 +7653,45 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "cohort_literature": [
+    {
+      "pmid": "42500892",
+      "title": "Integrated Serum Multiomics Reveal Subtype-Specific Immune Dysregulation and Sex-Dimorphic Pathophysiology in Moyamoya Disease.",
+      "abstract": "<h4>Background</h4>Moyamoya disease (MMD) is a rare cerebrovascular disorder with unknown pathogenesis, partly due to limited access to human cerebral vascular tissue and suitable animal models. Using a large biobank of frozen serum samples, this study aimed to explore molecular signatures of ischemic and hemorrhagic MMD.<h4>Methods</h4>Serum from 30 patients with MMD (18 ischemic, 12 hemorrhagic) and 30 matched healthy controls underwent proteomic and metabolomic profiling. Data were analyzed for differential expression, pathway enrichment, and protein-metabolite networks, with adjustment for age, sex, and body mass index.<h4>Results</h4>In a separate large Chinese cohort (n=6167), female patients had a higher proportion of hemorrhagic MMD (19.9% versus 16.9%) and a higher prevalence of anterior choroidal artery dilation (15.1% versus 13.2%) than male patients (both <i>P</i><0.05). At the molecular level, ischemic MMD showed complement C4-B deficiency and disrupted natural killer cell cytotoxicity; both subtypes shared immunoglobulin perturbations (eg, decreased heavy-chain variable regions). Sex-specific alterations included anti-folate-binding protein, serum amyloid A2, glycolithocholic acid, and estradiol. All omics data are publicly accessible.<h4>Conclusions</h4>Integrated serum multiomics defines distinct immune-related signatures for ischemic and hemorrhagic MMD and reveals sex-dimorphic molecular pathways. These findings, together with clinical sex differences in disease subtype and vascular anatomy, provide a framework for personalized, sex-aware management of MMD.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1161/jaha.126.050737",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 6167,
+      "omics": [
+        "proteomics",
+        "metabolomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 85,
+      "description_en": "Omics: proteomics, metabolomics, multi-omics. Cohort: ~6167 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈6167",
+        "No TMT confirmation"
+      ]
+    },
     {
       "pmid": "42034977",
       "title": "MultiOmicsXplorer, a tool to browse, access and analyse multi-omics data.",
@@ -7294,7 +7715,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 93,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈1000",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "41998177",
@@ -7317,7 +7744,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42381624",
@@ -7340,7 +7773,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 73,
-      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈132",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42310533",
@@ -7362,7 +7801,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "41785305",
@@ -7387,7 +7833,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42204136",
@@ -7410,7 +7861,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 40,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42134687",
@@ -7434,7 +7890,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1281063",
@@ -7457,12 +7918,17 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1289484",
       "title": "A Multicenter Confirmatory Randomized-Controlled Study of rhNRGβ1 Protein Replacement Therapy in a Murine Model of NF2-related Schwannomatosis",
-      "abstract": "Background: Previous exploratory studies identified recombinant human Neuregulin-1 β (rhNRGβ1) as a promising therapeutic strategy for inhibiting the growth of Nf2-deficient schwannomas by promoting cellular differentiation. Because robust confirmation across independent laboratories is essential for advancing promising preclinical findings toward clinical translation, we conducted a multicenter, randomized, controlled confirmatory study under stringent preclinical standards. <h4>Methods:</h4> In a pre-registered trial (DOI: 10.17590/asr.0000304), 216 mice (Nf2-flox;P0-Cre;Nefh-Cre) were randomized at three independent research sites. Following a standardized sciatic nerve crush, mice received systemic rhNRGβ1 (10 μg/kg) or vehicle for 13 weeks. Rigorous quality measures included double-blinding, standardized surgery, centralized data management, and an automated Fiji macro for objective nerve thickness quantification (Primary Outcome). Secondary molecular outcomes included Western blot and in-depth, quantitative proteomics and phosphoproteomics. All methods were SOP-based for reproducible and comparable results across the three study centers Results: The primary confirmatory analysis revealed no reduction in nerve thickness in the rhNRGβ1 group (p  best case imputation = 0.076 and p  worst case imputation = 0.533). Secondary analyses via quantitative Western blotting and DIA proteomics demonstrated that core biochemical markers of Schwann cell differentiation (MBP, ERBB2) remained unchanged across all centers. Based on the absence of macroscopic or primary biochemical effects, further histological analysis was omitted to avoid scientific redundancy. High-depth profiling of a predefined 60-protein functional marker panel confirmed a remarkably stable tumor proteome across all replication sites and both sexes, with no evidence of coordinated changes in key downstream oncogenic signaling pathways (Hippo/YAP, mTORC1, and RTK-Ras-MAPK) or metabolic signaling cascades. These findings indicate an absence of measurable target engagement under our tested dosing regimen, potentially reflecting pharmacokinetic or tissue-delivery limitations rather than an invalidation of the underlying biological pathway. <h4>Conclusion:</h4> Despite high statistical power and rigorous methodology, this study could not confirm rhNRGβ1 as a robust therapeutic candidate for schwannoma growth arrest or shrinkage. These findings suggest that previously reported therapeutic effects were either highly context-dependent or could not be reproduced under adequately powered, rigorously controlled experimental conditions. As underpowered preclinical studies are more susceptible to random biological variation, our results highlight the importance of sufficient sample sizes alongside robust experimental design. Our study underscores the value of trial-like methodological standards in preclinical therapeutic evaluation to identify ineffective interventions (dead ends) early and strengthen translational decision-making. Although we could not confirm the previously reported efficacy of rhNRGβ1, the multicenter framework established here provides a methodological benchmark for robust preclinical testing in translational oncology, with the potential to improve reproducibility and the success of therapies progressing to early-phase clinical trials. From a translational perspective, these findings provide a robust foundation for optimizing future rhNRGβ1-based therapeutic approaches through improved dosing, delivery routes, and treatment schedules.",
+      "abstract": "<h4>Background</h4>  Previous exploratory studies identified recombinant human Neuregulin-1 β (rhNRGβ1) as a promising therapeutic strategy for inhibiting the growth of Nf2-deficient schwannomas by promoting cellular differentiation. Because robust confirmation across independent laboratories is essential for advancing promising preclinical findings toward clinical translation, we conducted a multicenter, randomized, controlled confirmatory study under stringent preclinical standards. <h4>Methods</h4>  In a pre-registered trial (DOI: 10.17590/asr.0000304), 216 mice (Nf2-flox;P0-Cre;Nefh- Cre) were randomized at three independent research sites. Following a standardized sciatic nerve crush, mice received systemic rhNRGβ1 (10 µg/kg) or vehicle for 13 weeks. Rigorous quality measures included double-blinding, standardized surgery, centralized data management, and an automated Fiji macro for objective nerve thickness quantification (Primary Outcome). Secondary molecular outcomes included Western blot and in-depth, quantitative proteomics and phosphoproteomics. All methods were SOP-based for reproducible and comparable results across the three study centers <h4>Results</h4>  The primary confirmatory analysis revealed no reduction in nerve thickness in the rhNRGβ1 group (p  best case imputation = 0.076 and p  worst case imputation = 0.533). Secondary analyses via quantitative Western blotting and DIA proteomics demonstrated that core biochemical markers of Schwann cell differentiation (MBP, ERBB2) remained unchanged across all centers. Based on the absence of macroscopic or primary biochemical effects, further histological analysis was omitted to avoid scientific redundancy. High-depth profiling of a predefined 60-protein functional marker panel confirmed a remarkably stable tumor proteome across all replication sites and both sexes, with no evidence of coordinated changes in key downstream oncogenic signaling pathways (Hippo/YAP, mTORC1, and RTK-Ras-MAPK) or metabolic signaling cascades. These findings indicate an absence of measurable target engagement under our tested dosing regimen, potentially reflecting pharmacokinetic or tissue-delivery limitations rather than an invalidation of the underlying biological pathway.  <h4>Conclusion</h4>  Despite high statistical power and rigorous methodology, this study could not confirm rhNRGβ1 as a robust therapeutic candidate for schwannoma growth arrest or shrinkage. These findings suggest that previously reported therapeutic effects were either highly context- dependent or could not be reproduced under adequately powered, rigorously controlled experimental conditions. As underpowered preclinical studies are more susceptible to random biological variation, our results highlight the importance of sufficient sample sizes alongside robust experimental design. Our study underscores the value of trial-like methodological standards in preclinical therapeutic evaluation to identify ineffective interventions (dead ends) early and strengthen translational decision-making. Although we could not confirm the previously reported efficacy of rhNRGβ1, the multicenter framework established here provides a methodological benchmark for robust preclinical testing in translational oncology, with the potential to improve reproducibility and the success of therapies progressing to early-phase clinical trials. From a translational perspective, these findings provide a robust foundation for optimizing future rhNRGβ1-based therapeutic approaches through improved dosing, delivery routes, and treatment schedules.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
@@ -7480,7 +7946,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -7504,7 +7975,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42167233",
@@ -7527,7 +8003,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42183196",
@@ -7553,7 +8034,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ],
   "novel_publications": [
@@ -7860,6 +8346,38 @@
       "abstract_reader": "regex"
     },
     {
+      "pmid": "42552957",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "abstract": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). Each group consisted of three biological replicates (total N = 9). This study was an exploratory pilot study. Breast-milk samples were analyzed using tandem mass tag (TMT)-based proteomics to identify differentially expressed proteins across groups. Gene Ontology (GO), KEGG pathway enrichment, and protein-protein interaction (PPI) analyses were conducted to explore functional pathways. A total of 2563 proteins were identified; β-casein, α<sub>s1</sub>-casein, and κ-casein were significantly downregulated in infants with lower defecation frequency (Group C vs. Group A; fold change <0.6, p < 0.05). β-casein showed the most significant difference (p = 0.0003). Enrichment analysis revealed pathways related to glycolipid metabolism, fibroblast proliferation, and coagulation cascades, while PPI analysis identified fibrinogen-related proteins as key interaction nodes. These findings suggest that β-casein levels in breast milk are associated with infant stool frequency. This may help clarify the association between constipation, diarrhea, and breastfeeding in infants and young children and may provide a theoretical reference for the subsequent development of targeted breast milk fortifiers and improvements in the intestinal environment in infants.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.14814/phy2.71027",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "atlas_fit_score": 0.65,
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex"
+    },
+    {
       "pmid": "41931001",
       "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
       "abstract": "<h4>Purpose</h4>To evaluate whether extending the postmortem interval (PMI) from 12 to 18 hours affects transcript and protein abundances in the human retina.<h4>Methods</h4>Donor eyes were recovered from postmortem donors (n = 7 pairs) and stored at 2°C-8°C. Only donor eyes with ocular cooling within eight hours of death were examined. The OD retina was preserved at 12 hours and the OS retina at 18 hours postmortem. Retinas were flash frozen with liquid nitrogen. The macular region superior to the fovea was used for RNA sequencing (RNA-seq), whereas the inferior region was processed for tandem mass tag (TMT) quantitative proteomics. RNA library preparations were performed simultaneously, and the sequencing of all samples were conducted on the same chip. Proteins were isolated and labeled with 16-plex TMTPro isobaric tags, and all samples were analyzed in a 20-fraction TMT-mass spectrometry experiment. RNA-seq data were processed using DESeq2 (Bioconductor) and proteomic data were analyzed using the previously published PAW pipeline.<h4>Results</h4>RNA-seq identified 22,446 transcripts, with only five transcripts showing significant differential expression (adjusted P < 0.1 and a Log2FoldChange > 1) between 12 and 18 hours. No enriched pathways were associated with these changes. Proteomic analysis identified 6,109 proteins, with no significant differences in abundance (all adjusted P > 0.05). Retinal cell-type specific markers and markers relevant for disease research, such as age-related macular degeneration and glaucoma, remained stable across both time points.<h4>Conclusions</h4>Extending the PMI cutoff from 12 to 18 hours did not significantly impact transcriptomic or proteomic integrity in human donor retinas. This PMI extension greatly increases the availability of donor eyes for biomedical research.",
@@ -7952,38 +8470,6 @@
         "material": "unclear",
         "human_suitable": true,
         "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex"
-    },
-    {
-      "pmid": "42029488",
-      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
-      "abstract": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences in experimental design, acquisition strategies, quantification workflows and metadata quality still limit the reproducibility and cross-study comparability. In this review, proteomics data reuse is defined as the systematic reanalysis and integration of publicly available datasets to support precision oncology applications such as biomarker assessment and antibody-drug conjugate target prioritization. We discuss reuse as an end-to-end analytical process, focusing on data analysis workflows, harmonization strategies, and the impact of heterogeneous experimental and analytical choices on interoperability. The increased application of artificial intelligence in proteomics data integration and reuse is also addressed, highlighting its analytical potential while underscoring the risks of overinterpretation when biological context and data structure are not adequately considered. Using colorectal and prostate cancer as representative examples, we illustrate how proteomics data reuse can support biological discovery and translational research, while critically examining the factors that limit robustness and clinical relevance.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.3390/proteomes14020016",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "abstract_ai": {
-        "atlas_fit": "no",
-        "atlas_fit_score": 0.2,
-        "semantic_evidence": [],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "unclear",
-        "material": "tumor tissue",
-        "human_suitable": true,
-        "material_suitable": true,
         "summary_ru": "",
         "reader": "regex"
       },
@@ -8149,6 +8635,38 @@
         "material": "unclear",
         "human_suitable": false,
         "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex"
+    },
+    {
+      "pmid": "42029488",
+      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
+      "abstract": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences in experimental design, acquisition strategies, quantification workflows and metadata quality still limit the reproducibility and cross-study comparability. In this review, proteomics data reuse is defined as the systematic reanalysis and integration of publicly available datasets to support precision oncology applications such as biomarker assessment and antibody-drug conjugate target prioritization. We discuss reuse as an end-to-end analytical process, focusing on data analysis workflows, harmonization strategies, and the impact of heterogeneous experimental and analytical choices on interoperability. The increased application of artificial intelligence in proteomics data integration and reuse is also addressed, highlighting its analytical potential while underscoring the risks of overinterpretation when biological context and data structure are not adequately considered. Using colorectal and prostate cancer as representative examples, we illustrate how proteomics data reuse can support biological discovery and translational research, while critically examining the factors that limit robustness and clinical relevance.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.3390/proteomes14020016",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "atlas_fit_score": 0.2,
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "unclear",
+        "material": "tumor tissue",
+        "human_suitable": true,
+        "material_suitable": true,
         "summary_ru": "",
         "reader": "regex"
       },
@@ -8365,10 +8883,118 @@
     "Новые PXD/PDC добавляются вручную или через run_revisor.py add --apply",
     "Запускайте scan еженедельно: python run_discovery.py scan"
   ],
-  "report_md": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260803_094426.md",
-  "report_json": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260803_094426.json",
+  "report_md": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260810_072144.md",
+  "report_json": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_report_20260810_072144.json",
   "report_html": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_index.html",
   "report_qc_html": "/home/runner/work/ai-for-atlas/ai-for-atlas/reports/discovery_qc_report.html",
   "report_site_dir": "/home/runner/work/ai-for-atlas/ai-for-atlas/docs/site",
-  "saved_at": "2026-08-03T09:44:26.170359+00:00"
+  "saved_at": "2026-08-10T07:21:44.450961+00:00",
+  "methods_manifest": {
+    "pipeline": "Atlas Discovery Agent",
+    "pipeline_version": "2026.07.15-nature",
+    "generated_at": "2026-08-10T07:21:44.385384+00:00",
+    "python": "3.12.13",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "catalog_policy": {
+      "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
+      "catalog_mirror": "data/projects.csv",
+      "catalog_mode": "read_only",
+      "delete_allowed": false,
+      "auto_update_allowed": false,
+      "agent_role": "discover_and_propose_only",
+      "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
+    },
+    "inclusion_criteria": {
+      "organism": "Homo sapiens (reject mouse/rat/xenograft-only)",
+      "quantification": "TMT/isobaric ≥10-plex (reject TMT6)",
+      "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
+      "material": "Tumor / adjacent normal / plasma·serum / human cancer cell lines",
+      "literature": "Europe PMC semantic screening; repository IDs from data availability only"
+    },
+    "exclusion_criteria": [
+      "Non-human or xenograft-only",
+      "TMT6 or ≤6-plex",
+      "Phosphoproteomics-only emphasis",
+      "Peptide-level quantification only",
+      "Review / methods / software papers without cohort data",
+      "Phospho-only or RAW-only repository files"
+    ],
+    "search_config": {
+      "year_from": 2024,
+      "year_to": 2026,
+      "pride_max": 60,
+      "publications_max": 40,
+      "abstract_llm": true,
+      "abstract_llm_max": 25,
+      "abstract_resolve_accessions": true,
+      "abstract_semantic_resolve": false,
+      "strict_sample_design": true,
+      "search_mode": "professional"
+    },
+    "filters_applied": {
+      "human_only": true,
+      "allowed_tmt_plexes": [
+        10,
+        11,
+        12,
+        16
+      ],
+      "min_tmt_channels": 10,
+      "max_tmt_channels": 16,
+      "allow_healthy_only": true,
+      "allow_cancer_only": true,
+      "allow_case_control": true,
+      "allowed_databases": [
+        "PRIDE",
+        "PDC",
+        "iProX",
+        "MassIVE",
+        "IPX",
+        "MSV"
+      ],
+      "reject_non_human": true,
+      "reject_phosphoproteomics": true,
+      "reject_peptide_only": true,
+      "material_qc": true,
+      "strict_sample_design": true
+    },
+    "funnel": {
+      "raw_novel_repos": 88,
+      "candidates": 3,
+      "manual_check": 13,
+      "rejected_material": 0,
+      "filtered_out": 168,
+      "already_in_catalog": 11
+    },
+    "literature_screening": {
+      "publications_scanned": 25,
+      "abstract_llm_read": 0,
+      "abstract_regex_only": 25,
+      "atlas_fit_yes": 0,
+      "atlas_fit_maybe": 10,
+      "literature_resolved": 0,
+      "semantic_from_abstract": 0
+    },
+    "data_availability_gate": {
+      "quant_table": 3,
+      "omics_protein": 3,
+      "raw_only": 1,
+      "omics_unknown": 13,
+      "no_files": 12
+    },
+    "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
+    "catalog_read_only": true
+  },
+  "quality_metrics": {
+    "benchmark_literature": {
+      "accuracy": 0.75,
+      "n": 4,
+      "correct": 3
+    },
+    "benchmark_projects": {
+      "accuracy": 1.0,
+      "n": 3,
+      "correct": 3
+    }
+  }
 }
