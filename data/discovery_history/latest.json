@@ -439,7 +439,9 @@
       "requires_manual_review": false,
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "year": "2026",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000495",
@@ -562,7 +564,9 @@
       "ui_verdict": "Candidate",
       "requires_manual_review": false,
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000498",
@@ -685,7 +689,9 @@
       "ui_verdict": "Candidate",
       "requires_manual_review": false,
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     }
   ],
   "candidates": [
@@ -797,7 +803,9 @@
       "requires_manual_review": false,
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "year": "2026",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000495",
@@ -920,7 +928,9 @@
       "ui_verdict": "Candidate",
       "requires_manual_review": false,
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000498",
@@ -1043,7 +1053,9 @@
       "ui_verdict": "Candidate",
       "requires_manual_review": false,
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "pubmed_url": "",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     }
   ],
   "recommended": [
@@ -1411,7 +1423,7 @@
       "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.65,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -1516,7 +1528,7 @@
       "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.65,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -1621,7 +1633,7 @@
       "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.45,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -1729,7 +1741,7 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.45,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -2415,7 +2427,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Mechanistic basis for the spatiotemporal assembly of the Bloom Syndrome complex "
+      "finding_note": "TMT human proteomics candidate — Mechanistic basis for the spatiotemporal assembly of the Bloom Syndrome complex ",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD081636",
@@ -2464,7 +2478,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Retrograde signalling mediates cellular adaptation to mitochondrial DNA copy num"
+      "finding_note": "TMT human proteomics candidate — Retrograde signalling mediates cellular adaptation to mitochondrial DNA copy num",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD080883",
@@ -2513,7 +2529,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: gastric, lung · Design: cancer-only"
+      "finding_note": "Keywords from title: gastric, lung · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD080130",
@@ -2566,7 +2584,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079927",
@@ -2615,7 +2635,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Immune Complex-Induced Migration of Slan+ Non-Classical Monocytes"
+      "finding_note": "TMT human proteomics candidate — Immune Complex-Induced Migration of Slan+ Non-Classical Monocytes",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079670",
@@ -2680,7 +2702,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples · Similar to catalog PDC000316 (score 0.152)"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples · Similar to catalog PDC000316 (score 0.152)",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079334",
@@ -2731,7 +2755,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079333",
@@ -2782,7 +2808,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — DNAJB9 promotes epithelial-mesenchymal transition in the nasal epithelium of chr"
+      "finding_note": "TMT human proteomics candidate — DNAJB9 promotes epithelial-mesenchymal transition in the nasal epithelium of chr",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD079076",
@@ -2833,7 +2861,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: lung · Design: cancer-only"
+      "finding_note": "Keywords from title: lung · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD078921",
@@ -2882,7 +2912,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: cancer-only"
+      "finding_note": "Keywords from title: proteome · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD078618",
@@ -2935,7 +2967,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD078504",
@@ -2986,7 +3020,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human clinical samples"
+      "finding_note": "Material type: human clinical samples",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077673",
@@ -3035,7 +3071,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — PMS2 inhibitor NP1867 cysteinome adduction by cell-based proteomincs"
+      "finding_note": "TMT human proteomics candidate — PMS2 inhibitor NP1867 cysteinome adduction by cell-based proteomincs",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077507",
@@ -3084,7 +3122,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077448",
@@ -3137,7 +3177,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077254",
@@ -3188,7 +3230,13 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human clinical samples · Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      },
+      "atlas_fit": "no",
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077182",
@@ -3241,7 +3289,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — The raw data of competitive chemoproteomics for validating the interaction betwe"
+      "finding_note": "TMT human proteomics candidate — The raw data of competitive chemoproteomics for validating the interaction betwe",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077137",
@@ -3294,7 +3344,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — The raw data of chemoproteomics related to IDRB-Probe-2 for validating the effec"
+      "finding_note": "TMT human proteomics candidate — The raw data of chemoproteomics related to IDRB-Probe-2 for validating the effec",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077084",
@@ -3343,7 +3395,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077028",
@@ -3396,7 +3450,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD077016",
@@ -3449,7 +3505,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076790",
@@ -3498,7 +3556,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Loss of mitochondrial complex II causes severe respiratory chain dysfunction"
+      "finding_note": "TMT human proteomics candidate — Loss of mitochondrial complex II causes severe respiratory chain dysfunction",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076568",
@@ -3551,7 +3611,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076393",
@@ -3604,7 +3666,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line"
+      "finding_note": "Keywords from title: cancer cell line · Material type: human cancer cell line",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076311",
@@ -3657,7 +3721,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: plasma · Material type: patient plasma/serum/blood/CSF"
+      "finding_note": "Keywords from title: plasma · Material type: patient plasma/serum/blood/CSF",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076158",
@@ -3706,7 +3772,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD076071",
@@ -3755,7 +3823,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075707",
@@ -3806,7 +3876,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075484",
@@ -3857,7 +3929,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: plasma, proteome · Material type: patient plasma/serum/blood/CSF"
+      "finding_note": "Keywords from title: plasma, proteome · Material type: patient plasma/serum/blood/CSF",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075094",
@@ -3908,7 +3982,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD075040",
@@ -3957,7 +4033,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Genetic and pharmacological inactivation of peptidoglycan remodeling increases a"
+      "finding_note": "TMT human proteomics candidate — Genetic and pharmacological inactivation of peptidoglycan remodeling increases a",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074619",
@@ -4009,7 +4087,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074488",
@@ -4061,7 +4141,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074439",
@@ -4114,7 +4196,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human cancer cell line · Design: case-control"
+      "finding_note": "Material type: human cancer cell line · Design: case-control",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074343",
@@ -4165,7 +4249,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: tumor tissue · Material type: tumor tissue"
+      "finding_note": "Keywords from title: tumor tissue · Material type: tumor tissue",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074308",
@@ -4214,7 +4300,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: cancer-only"
+      "finding_note": "Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074236",
@@ -4267,7 +4355,9 @@
         ]
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: healthy-only"
+      "finding_note": "Keywords from title: proteome · Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074143",
@@ -4319,7 +4409,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: tumor tissue, plasma · Material type: tumor tissue, patient plasma/serum/blood/CSF · Design: cancer-only"
+      "finding_note": "Keywords from title: tumor tissue, plasma · Material type: tumor tissue, patient plasma/serum/blood/CSF · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074087",
@@ -4368,7 +4460,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Design: healthy-only"
+      "finding_note": "Keywords from title: proteome · Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD074014",
@@ -4421,7 +4515,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — HR3/RORα-mediated cholesterol sensing regulates TOR signaling"
+      "finding_note": "TMT human proteomics candidate — HR3/RORα-mediated cholesterol sensing regulates TOR signaling",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073843",
@@ -4473,7 +4569,13 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: plasma · Material type: human clinical samples · Design: healthy-only"
+      "finding_note": "Keywords from title: plasma · Material type: human clinical samples · Design: healthy-only · Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      },
+      "atlas_fit": "no",
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073763",
@@ -4526,7 +4628,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Material type: human cancer cell line · Design: cancer-only"
+      "finding_note": "Material type: human cancer cell line · Design: cancer-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073793",
@@ -4577,7 +4681,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome · Material type: human clinical samples"
+      "finding_note": "Keywords from title: proteome · Material type: human clinical samples",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073725",
@@ -4629,7 +4735,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Design: healthy-only"
+      "finding_note": "Design: healthy-only",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073606",
@@ -4678,7 +4786,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Harnessing FBXO31 with terminal amide-functionalized molecules for targeted prot"
+      "finding_note": "TMT human proteomics candidate — Harnessing FBXO31 with terminal amide-functionalized molecules for targeted prot",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073582",
@@ -4729,7 +4839,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Role of ADAR1 in human macrophages"
+      "finding_note": "TMT human proteomics candidate — Role of ADAR1 in human macrophages",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073468",
@@ -4783,7 +4895,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "TMT human proteomics candidate — Evaluation of deep and dynamic proteomic screening strategies at sub-50Hz scan r"
+      "finding_note": "TMT human proteomics candidate — Evaluation of deep and dynamic proteomic screening strategies at sub-50Hz scan r",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073405",
@@ -4834,7 +4948,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073342",
@@ -4885,7 +5001,13 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: vitreous, retinal"
+      "finding_note": "Keywords from title: vitreous, retinal · Atlas fit: no",
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "phospho-only emphasis"
+      },
+      "atlas_fit": "no",
+      "atlas_fit_score": null
     },
     {
       "accession": "PXD073367",
@@ -4941,7 +5063,9 @@
         "excluded": []
       },
       "recommendation": "filtered_out",
-      "finding_note": "Keywords from title: proteome"
+      "finding_note": "Keywords from title: proteome",
+      "abstract_ai": {},
+      "atlas_fit_score": null
     }
   ],
   "requires_manual_check_raw": [
@@ -6013,7 +6137,7 @@
       "abstract_snippet": "Polyprenal reductase is an enzyme encoded by the SRD5A3 gene, which is involved in the synthesis of dolichol from polyprenol. Dolichol serves as a carrier for glycan precursors or monosaccharides in N-linked glycosylation. Pathogenic variants in SRD5A3 can result in a congenital disorder of glycosylation (CDG), SRD5A3-CDG, which is inherited in an autosomal recessive manner. Most plasma proteins are glycosylated and changes in the glycosylation of several glycoproteins are associated with pathol",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "no",
-      "atlas_fit_score": 0.0,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "mass spectrometry",
@@ -6073,7 +6197,7 @@
       "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "human kidney tubular epithelial cells"
@@ -6132,7 +6256,7 @@
       "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "human TMT/isobaric quantitative proteomics",
         "patients, tumor tissue, adjacent normal"
@@ -6191,7 +6315,7 @@
       "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "TMT-based proteomics",
         "colorectal cancer (CRC)",
@@ -6251,7 +6375,7 @@
       "abstract_snippet": "The ubiquitin‒proteasome system (UPS), an intracellular protein degradation pathway, plays an important role in regulating tumorigenesis and development. Ubiquitination factor E4B (UBE4B/UFD2) has been shown to be associated with the development of several cancers. The aim of this study was to reveal the functional significance of UBE4B in gastric cancer (GC) development and its important mechanism. Bioinformatics analysis, immunohistochemistry (IHC), western blotting, and real-time PCR were per",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "no",
-      "atlas_fit_score": 0.15,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "gastric cancer",
         "promotes the proliferation, migration and invasion of GC cells",
@@ -6311,7 +6435,7 @@
       "abstract_snippet": "Ovarian development is a complex process, with early stages laying a crucial foundation for subsequent egg production. To better understand this developmental trajectory from early stages to the peak of egg production, this study employed transcriptomic and Tandem Mass Tag (TMT) proteomic analyses. These methods were used to compare gene and protein expression profiles in the ovaries of Taihe black-boned silky fowl (TBSF) at 20 weeks (20W) and 30 weeks (30W) of age, aiming to identify key regula",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "no",
-      "atlas_fit_score": 0.0,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "ovarian development",
         "Tandem Mass Tag (TMT) proteomic analyses"
@@ -6370,7 +6494,7 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "quantitative proteomics",
         "glaucoma trabecular meshwork cells",
@@ -6431,7 +6555,7 @@
       "abstract_snippet": "The gut bacterial microbiota is increasingly recognized as a key modulator of colorectal cancer (CRC) initiation, progression and response to therapy. However, the mechanisms by which bacteria influence the response to anticancer drugs remain poorly understood. Here, we investigate the effects of microbiota-driven signaling on the tumor suppressor p53 and its impact on chemotherapy. We uncover a mechanism by which lipopolysaccharide (LPS) from Klebsiella pneumoniae and other Enterobacteria impai",
       "abstract_reader": "ollama:qwen2.5:3b",
       "atlas_fit": "no",
-      "atlas_fit_score": 0.2,
+      "atlas_fit_score": null,
       "semantic_evidence": [
         "patients",
         "quantitative proteomics",
@@ -6491,7 +6615,7 @@
       "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.65,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -6574,7 +6698,7 @@
       "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.65,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -6657,7 +6781,7 @@
       "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.45,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -6743,7 +6867,7 @@
       "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
+      "atlas_fit_score": null,
       "literature_relevance": 0.45,
       "abstract_ai": {
         "atlas_fit": "maybe",
@@ -7071,7 +7195,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7112,7 +7236,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7154,7 +7278,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7195,7 +7319,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7236,7 +7360,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7278,7 +7402,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7319,7 +7443,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
@@ -7363,7 +7487,7 @@
       "confidence_tier": "C",
       "confidence_css": "tier-c",
       "confidence_evidence": [
-        "Cohort literature watch"
+        "Cohort literature — not a new repository ID"
       ],
       "evaluation": {
         "final_verdict": "Watch",
