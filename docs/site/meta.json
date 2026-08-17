@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-10T18:09:03.533400+00:00",
+  "generated_at": "2026-08-17T06:42:31.571901+00:00",
   "new_projects_count": 3,
-  "publications_analyzed": 8,
-  "literature_semantic": 4,
-  "cohort_literature_count": 13,
-  "abstract_llm_read": 8,
+  "publications_analyzed": 26,
+  "literature_semantic": 11,
+  "cohort_literature_count": 14,
+  "abstract_llm_read": 0,
   "abstract_atlas_fit_yes": 0,
   "semantic_from_abstract": 0,
-  "catalog_unique_ids": 123,
-  "catalog_rows": 123,
+  "catalog_unique_ids": 121,
+  "catalog_rows": 126,
   "policy": "New projects + abstract AI analysis. Catalog rows are never published.",
   "languages": [
     "en"
