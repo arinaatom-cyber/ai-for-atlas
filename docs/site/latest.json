@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T06:54:56.983876+00:00",
+  "generated_at": "2026-08-24T06:45:33.622719+00:00",
   "summary": {
     "catalog_rows": 126,
     "catalog_unique_ids": 121,
@@ -10,16 +10,16 @@
     "novel_total": 113,
     "new_projects": 3,
     "candidates": 3,
-    "manual_check": 13,
+    "manual_check": 14,
     "rejected_material": 0,
     "review_recommended": 3,
     "already_in_catalog": 11,
     "filtered_out": 168,
     "phospho_only_filtered": 0,
-    "requires_manual_check": 14,
+    "requires_manual_check": 15,
     "rejected": 0,
     "removed_from_workbook": 0,
-    "human_filtered": 41,
+    "human_filtered": 44,
     "duplicate_similar": 0,
     "articles_skipped": 5,
     "source_stats": {
@@ -29,19 +29,19 @@
       "iprox_json": 0,
       "literature_resolved": 0,
       "semantic_from_abstract": 0,
-      "literature_semantic_manual": 11,
+      "literature_semantic_manual": 12,
       "publications_scanned": 26,
       "abstract_llm_read": 0,
       "abstract_regex_only": 26,
       "abstract_atlas_fit_yes": 0,
-      "abstract_atlas_fit_maybe": 9
+      "abstract_atlas_fit_maybe": 11
     },
     "data_availability": {
       "quant_table": 3,
       "omics_protein": 3,
       "raw_only": 1,
-      "omics_unknown": 13,
-      "no_files": 12
+      "omics_unknown": 14,
+      "no_files": 13
     },
     "cohort_literature": {
       "queries": 5,
@@ -50,6 +50,18 @@
       "with_patient_n": 8,
       "multi_omics": 12,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "catalog_profile": {
@@ -134,7 +146,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -205,7 +217,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -305,7 +320,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -405,7 +422,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -422,7 +441,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -493,7 +512,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -593,7 +615,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -693,7 +717,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     }
   ],
   "manual_check": [
@@ -768,8 +794,30 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000430"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pmid": "36267416",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
+      "doi": "",
+      "year": "2022",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000430"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "MSV000102463",
@@ -829,8 +877,27 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "MSV": [
+            "MSV000102463"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "MSV": [
+          "MSV000102463"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "pmid": "42310533",
@@ -891,7 +958,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -950,7 +1026,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -1011,7 +1095,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -1073,7 +1166,17 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -1132,7 +1235,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41260499",
@@ -1193,7 +1304,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41260499/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42552957",
@@ -1252,7 +1372,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42552957/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -1314,7 +1442,87 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
+    },
+    {
+      "pmid": "41699065",
+      "doi": "10.1038/s41598-026-39805-9",
+      "title": "Candidate biomarkers to identify mesothelioma patients at risk of developing venous thromboembolism post-surgery.",
+      "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "unclear",
+        "material": "tumor tissue",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": false,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:41699065",
+      "accession": "PMID:41699065",
+      "data_availability": {
+        "accession": "PMID:41699065",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -1373,13 +1581,21 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
-      "pmid": "13006395",
-      "doi": "",
-      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics",
-      "abstract_snippet": "",
+      "pmid": "41850233",
+      "doi": "10.1016/j.xcrm.2026.102648",
+      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics.",
+      "abstract_snippet": "Tofersen, the first approved genetically targeted therapy for amyotrophic lateral sclerosis (ALS), demonstrates significant lowering of plasma neurofilament in adults carrying mutations in the superoxide dismutase 1 (SOD1) gene; however, additional biomarkers of treatment response in ALS are lacking. Here, we analyze longitudinally collected cerebrospinal fluid (CSF) samples from the phase 3 VALOR clinical trial to identify candidate tofersen treatment-response biomarkers in SOD1-ALS via quantit",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
       "atlas_fit_score": null,
@@ -1397,9 +1613,9 @@
         },
         "organism": "human",
         "tmt": "unclear",
-        "material": "unclear",
+        "material": "plasma",
         "human_suitable": true,
-        "material_suitable": false,
+        "material_suitable": true,
         "summary_ru": "",
         "reader": "regex"
       },
@@ -1413,10 +1629,10 @@
       "human": true,
       "tmt_detected": false,
       "recommendation": "requires_manual_check",
-      "project_accession": "PMID:13006395",
-      "accession": "PMID:13006395",
+      "project_accession": "PMID:41850233",
+      "accession": "PMID:41850233",
       "data_availability": {
-        "accession": "PMID:13006395",
+        "accession": "PMID:41850233",
         "source_checked": "none",
         "local_mirror": false,
         "local_path": null,
@@ -1432,9 +1648,18 @@
         "sample_files": [],
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
-      "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41850233/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -1493,7 +1718,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "rejected_material": [],
@@ -1660,6 +1893,30 @@
       "finding_note": "Keywords from title: urine · Atlas fit: maybe"
     },
     {
+      "pmid": "41472394",
+      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
+      "doi": "10.1002/pmic.70103",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "41862993",
       "title": "Proteomic landscape analysis of undifferentiated pleomorphic sarcoma.",
       "doi": "10.1186/s13073-026-01626-w",
@@ -1685,30 +1942,6 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "41472394",
-      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
-      "doi": "10.1002/pmic.70103",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41453614",
@@ -1764,6 +1997,30 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
+      "pmid": "42552957",
+      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
+      "doi": "10.14814/phy2.71027",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "41931001",
       "title": "Comparison of Transcript and Protein Abundance in Human Donor Retinas Support Extending Postmortem Interval From 12 to 18 Hours to Expand the Donor Pool for Biomedical Research.",
       "doi": "10.1167/iovs.67.4.9",
@@ -1788,30 +2045,6 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "42552957",
-      "title": "Beta-casein in human milk is associated with infant stool frequency: A pilot proteomics study.",
-      "doi": "10.14814/phy2.71027",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Breast milk proteins may regulate gut function and defecation frequency; however, their specific roles in these processes remain poorly understood. We hypothesized that variations in specific human milk proteins are associated with differences in stool frequency among exclusively breastfed infants. Infants were categorized into three groups based on defecation frequency: Group A (normal, 1-3 times per day), Group B (frequent, >3 times per day), and Group C (infrequent, ≤1 time every 3-4 days). E",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42155730",
@@ -2020,16 +2253,18 @@
       "finding_note": "Atlas fit: no"
     },
     {
-      "pmid": "42029488",
-      "title": "Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.",
-      "doi": "10.3390/proteomes14020016",
+      "pmid": "41699065",
+      "title": "Candidate biomarkers to identify mesothelioma patients at risk of developing venous thromboembolism post-surgery.",
+      "doi": "10.1038/s41598-026-39805-9",
       "journal": "",
       "year": "2026",
-      "abstract_snippet": "Proteomics represents a fundamental layer for understanding the molecular complexity of solid tumors by quantifying protein abundance and capturing proteoforms and post-translational modifications undetected in genomics or transcriptomics analyses. As mass spectrometry-based technologies and public proteomics repositories have expanded, opportunities for large-scale data reuse have grown accordingly. Nevertheless, data availability has not been translated into straightforward reuse: differences ",
+      "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
       "abstract_reader": "regex",
-      "atlas_fit": "no",
+      "atlas_fit": "maybe",
       "atlas_fit_score": null,
-      "semantic_evidence": [],
+      "semantic_evidence": [
+        "human clinical proteomics"
+      ],
       "similar_atlas_theme": "",
       "summary_ru": "",
       "organism": "human",
@@ -2041,7 +2276,7 @@
       "filter_reasons": [],
       "processing_tips": [],
       "abstract_ai": {},
-      "finding_note": "Atlas fit: no"
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42294822",
@@ -2119,12 +2354,12 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
-      "pmid": "PMC13006395",
-      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics",
-      "doi": "",
+      "pmid": "41850233",
+      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics.",
+      "doi": "10.1016/j.xcrm.2026.102648",
       "journal": "",
       "year": "2026",
-      "abstract_snippet": "",
+      "abstract_snippet": "Tofersen, the first approved genetically targeted therapy for amyotrophic lateral sclerosis (ALS), demonstrates significant lowering of plasma neurofilament in adults carrying mutations in the superoxide dismutase 1 (SOD1) gene; however, additional biomarkers of treatment response in ALS are lacking. Here, we analyze longitudinally collected cerebrospinal fluid (CSF) samples from the phase 3 VALOR clinical trial to identify candidate tofersen treatment-response biomarkers in SOD1-ALS via quantit",
       "abstract_reader": "regex",
       "atlas_fit": "maybe",
       "atlas_fit_score": null,
@@ -2135,7 +2370,7 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "unclear",
-      "material": "unclear",
+      "material": "plasma",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
       "qc_reasons": [],
@@ -2210,7 +2445,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -2250,7 +2491,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -2292,7 +2538,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -2335,7 +2587,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -2375,7 +2634,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41260499",
@@ -2417,7 +2681,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42552957",
@@ -2457,7 +2727,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -2500,7 +2775,62 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
+    },
+    {
+      "pmid": "41699065",
+      "doi": "10.1038/s41598-026-39805-9",
+      "title": "Candidate biomarkers to identify mesothelioma patients at risk of developing venous thromboembolism post-surgery.",
+      "abstract_snippet": "Pleural Mesothelioma (PM) is an aggressive cancer that attacks thousands of people every year. One of the common treatments is surgery to remove the tumor. Unfortunately, around 11% of patients die from blood clots post-surgery. Current predictive factors such as C-reactive protein, D-Dimer, and abnormal platelet count lack specificity. To date, no blood-based protein biomarkers have been identified to reliably predict PM patients at risk of developing Venous Thromboembolism (VTE) post-surgery. ",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "unclear",
+        "material": "tumor tissue",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": false,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -2540,13 +2870,18 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
-      "pmid": "13006395",
-      "doi": "",
-      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics",
-      "abstract_snippet": "",
+      "pmid": "41850233",
+      "doi": "10.1016/j.xcrm.2026.102648",
+      "title": "Identification of tofersen PD-response biomarkers in VALOR clinical trial CSF via multiplexed quantitative proteomics.",
+      "abstract_snippet": "Tofersen, the first approved genetically targeted therapy for amyotrophic lateral sclerosis (ALS), demonstrates significant lowering of plasma neurofilament in adults carrying mutations in the superoxide dismutase 1 (SOD1) gene; however, additional biomarkers of treatment response in ALS are lacking. Here, we analyze longitudinally collected cerebrospinal fluid (CSF) samples from the phase 3 VALOR clinical trial to identify candidate tofersen treatment-response biomarkers in SOD1-ALS via quantit",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
       "atlas_fit_score": null,
@@ -2564,9 +2899,9 @@
         },
         "organism": "human",
         "tmt": "unclear",
-        "material": "unclear",
+        "material": "plasma",
         "human_suitable": true,
-        "material_suitable": false,
+        "material_suitable": true,
         "summary_ru": "",
         "reader": "regex"
       },
@@ -2582,7 +2917,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -2622,7 +2963,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "cohort_literature": [
@@ -2648,7 +2994,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 85,
-      "description_en": "Omics: proteomics, metabolomics, multi-omics. Cohort: ~6167 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, metabolomics, multi-omics. Cohort: ~6167 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈6167",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "PPR1277412",
@@ -2670,7 +3022,13 @@
       "large_scale": true,
       "multi_omics": false,
       "cohort_score": 83,
-      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈535",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "41998177",
@@ -2693,7 +3051,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42381624",
@@ -2716,7 +3080,13 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 73,
-      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈132",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42310533",
@@ -2738,7 +3108,45 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
+    },
+    {
+      "pmid": "42617593",
+      "title": "Multiomics profiling of plasma reveals lipid-immune dysregulation and exosome remodeling in mpox and mpox-HIV co-infection.",
+      "abstract": "<h4>Background</h4>Monkeypox virus (MPXV) infects diverse human cell types, and human immunodeficiency virus (HIV) co-infection is common. The immunometabolic consequences of MPXV infection, and how it may be altered by HIV, remain poorly defined.<h4>Methods</h4>We performed quantitative plasma lipidomics and precise metabolomics in a discovery cohort (n = 81) comprising MPXV-monoinfected (MPLWOH), MPXV-HIV-coinfected (MPLWH), and HIV-monoinfected (PLWH) patients and healthy controls, integrating exosome proteomics, cytokine profiling, and transcriptomics of exosome-treated HepG2 and A549 cells for functional interpretation. An independent validation cohort (n = 65) was used to assess cross-cohort reproducibility.<h4>Findings</h4>MPXV infection induced broad lipid remodeling, with elevations in phosphatidylserine (PS) and phosphatidylethanolamine (PE) and reductions in phosphatidylcholine (PC), lysophospholipids, cholesteryl ester (CE), and exosomal lecithin-cholesterol acyltransferase (LCAT) and lipoprotein lipase (LPL). These lipid alterations were correlated with tissue injury markers and inflammatory cytokines. The MPLWH group exhibited more severe metabolic disruption, including marked sulfatide (SL) depletion, lower cholesterol and high-density lipoprotein cholesterol (HDL-c), and extensive rewiring of lipid-cytokine associations. SL depletion in MPLWH correlated with abundances of COPI-mediated retrograde trafficking proteins in exosomes. Transcriptomic profiling of exosome-treated cells provided functional validation: MPLWOH exosomes induced lipid metabolism and repair-associated epithelial programs, while MPLWH exosomes drove phospholipid remodeling and acute inflammatory and mucosal barrier-stress responses.<h4>Conclusions</h4>MPXV infection reprograms host lipid metabolism and exosome composition, with HIV co-infection amplifying inflammatory, metabolic, and trafficking disruptions. These convergent multi-omics signatures link systemic lipid dysregulation to exosome-mediated immunomodulation and identify potential targets for host-directed interventions.<h4>Funding</h4>This study was funded by the Major Project of Guangzhou National Laboratory.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1016/j.medj.2026.101264",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 81,
+      "omics": [
+        "proteomics",
+        "transcriptomics",
+        "metabolomics",
+        "lipidomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 55,
+      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42266181",
@@ -2762,7 +3170,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 63,
-      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "41785305",
@@ -2787,30 +3200,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
-    },
-    {
-      "pmid": "42204136",
-      "title": "Phosphoproteomics distinguishes disease-specific mechanisms for human phospholamban cardiomyopathy reversible by RNA therapy.",
-      "abstract": "Phospholamban (PLN) p.Arg14del (R14<sup>Δ/+</sup>, also known as R14del) is a pathogenic variant that causes inherited cardiomyopathy. RNA therapy improves cardiac function and survival in murine PLN R14<sup>Δ/+</sup>. However, the molecular disease mechanisms and potential therapeutic effects of RNA therapy in the human setting remain poorly defined. Proteomic and phosphoproteomic profiling was performed on cardiac tissue from R14<sup>Δ/+</sup> patients (N = 6) and compared to other causes of dilated cardiomyopathy (DCM; N = 10). Findings were validated in CRISPR-Cas9-engineered R14<sup>Δ/+</sup> induced pluripotent stem cell-derived cardiomyocytes (iPSC-CMs) and isogenic controls. To assess reversibility, PLN-targeted RNA therapy using antisense oligonucleotides was applied to iPSC-CMs. Proteomics revealed enrichment of fibrotic pathways, while phosphoproteomics highlighted altered actomyosin structural organization uniquely distinguishing R14<sup>Δ/+</sup> from other DCM. This phosphoproteomic profile was recapitulated in R14<sup>Δ/+</sup> iPSC-CMs. RNA therapy concentration-dependently reduced PLN expression and modified the disease-specific phosphorylation profile. Twenty-eight phosphorylation sites were consistently altered across patient tissue and iPSC-CMs; twenty-two were reversed by RNA therapy and were enriched for cadherin- and actin-binding functions, implicating cytoskeletal remodeling. PLN/LC3 protein aggregates, a hallmark of PLN cardiomyopathy, were reduced after RNA therapy. Functionally, R14<sup>Δ/+</sup> cardiomyocytes exhibited accelerated calcium handling and contractile kinetics, which increased further upon RNA therapy. Human PLN R14<sup>Δ/+</sup> cardiomyopathy is characterized by a distinct phosphoproteomic signature involving cytoskeletal and contractile machinery. PLN-targeted RNA therapy reduced PLN expression, partially normalized these alterations, diminished protein aggregation, and enhanced calcium handling and contractile performance. These findings clarify the molecular mechanisms underlying R14<sup>Δ/+</sup> pathogenesis and support RNA therapy as a promising therapeutic strategy for PLN cardiomyopathy.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1038/s41392-026-02791-5",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": 10,
-      "omics": [
-        "proteomics",
-        "phosphoproteomics"
-      ],
-      "has_patients": "yes",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 40,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42134687",
@@ -2834,7 +3229,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1281063",
@@ -2857,7 +3257,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1289484",
@@ -2880,7 +3285,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -2904,7 +3314,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42167233",
@@ -2927,7 +3342,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42183196",
@@ -2953,7 +3373,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ]
 }
