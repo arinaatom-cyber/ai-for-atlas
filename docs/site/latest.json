@@ -1,55 +1,67 @@
 {
-  "generated_at": "2026-08-24T06:57:47.257756+00:00",
+  "generated_at": "2026-08-31T12:27:24.285695+00:00",
   "summary": {
     "catalog_rows": 126,
     "catalog_unique_ids": 121,
     "novel_pride": 60,
-    "novel_pdc": 28,
+    "novel_pdc": 35,
     "novel_publications": 26,
-    "novel_consortia": 62,
-    "novel_total": 113,
-    "new_projects": 3,
-    "candidates": 3,
-    "manual_check": 14,
+    "novel_consortia": 63,
+    "novel_total": 120,
+    "new_projects": 4,
+    "candidates": 4,
+    "manual_check": 16,
     "rejected_material": 0,
-    "review_recommended": 3,
-    "already_in_catalog": 11,
-    "filtered_out": 168,
+    "review_recommended": 4,
+    "already_in_catalog": 10,
+    "filtered_out": 174,
     "phospho_only_filtered": 0,
-    "requires_manual_check": 15,
+    "requires_manual_check": 17,
     "rejected": 0,
     "removed_from_workbook": 0,
     "human_filtered": 44,
     "duplicate_similar": 0,
-    "articles_skipped": 5,
+    "articles_skipped": 6,
     "source_stats": {
       "pride_v3_search": 60,
-      "pdc_uiStudySummary": 28,
+      "pdc_uiStudySummary": 35,
       "massive_json": 25,
       "iprox_json": 0,
       "literature_resolved": 0,
       "semantic_from_abstract": 0,
-      "literature_semantic_manual": 12,
+      "literature_semantic_manual": 13,
       "publications_scanned": 26,
       "abstract_llm_read": 0,
       "abstract_regex_only": 26,
       "abstract_atlas_fit_yes": 0,
-      "abstract_atlas_fit_maybe": 11
+      "abstract_atlas_fit_maybe": 12
     },
     "data_availability": {
-      "quant_table": 3,
-      "omics_protein": 3,
-      "raw_only": 1,
-      "omics_unknown": 14,
-      "no_files": 13
+      "quant_table": 4,
+      "omics_protein": 4,
+      "raw_only": 2,
+      "omics_unknown": 16,
+      "no_files": 14
     },
     "cohort_literature": {
       "queries": 5,
       "scanned": 38,
-      "kept": 14,
-      "with_patient_n": 8,
-      "multi_omics": 12,
+      "kept": 13,
+      "with_patient_n": 6,
+      "multi_omics": 11,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "catalog_profile": {
@@ -134,7 +146,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -190,7 +202,7 @@
           "Peptide.txt"
         ],
         "raw_count": 4,
-        "n_listed": 9,
+        "n_listed": 8,
         "sample_files": [
           "Protein.txt"
         ],
@@ -205,7 +217,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -305,7 +320,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -405,7 +422,111 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
+    },
+    {
+      "accession": "PDC000606",
+      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
+      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
+      "program": "International Cancer Proteogenome Consortium",
+      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
+      "experiment_type": "TMT16",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Gallbladder",
+      "inferred_plex": 16,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000606"
+        ]
+      },
+      "tmt_label": "TMT 16-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000606",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000606",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv",
+          "SIMM_GBC_Proteome.qcmetrics.tsv"
+        ],
+        "proteome_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv",
+          "SIMM_GBC_Proteome.qcmetrics.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "20220806_HF_SYL_GBC_TMT16_Pro_Group_22_F14.mzid.gz",
+          "20220817_HF_SYL_GBC_TMT16_Pro_Group_21_F11.mzid.gz",
+          "20220625_HF_SYL_GBC_TMT16_Pro_Group_11_F02.mzid.gz",
+          "20220710_HF_SYL_GBC_TMT16_Pro_Group_17_F18.mzid.gz",
+          "20220701_HF_SYL_GBC_TMT16_Pro_Group_01_F11.mzid.gz"
+        ],
+        "raw_count": 768,
+        "n_listed": 3079,
+        "sample_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv"
+        ],
+        "guidance": "Protein-level table: SIMM_GBC_Proteome.peptides.tsv"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 16",
+        "design: cancer_only"
+      ],
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -422,7 +543,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -478,7 +599,7 @@
           "Peptide.txt"
         ],
         "raw_count": 4,
-        "n_listed": 9,
+        "n_listed": 8,
         "sample_files": [
           "Protein.txt"
         ],
@@ -493,7 +614,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -593,7 +717,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -693,10 +819,207 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
+    },
+    {
+      "accession": "PDC000606",
+      "title": "Integrative proteogenomic analysis provides molecular insights and clinical significance in gallbladder cancer — International Cancer Proteogenome Consortium",
+      "description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
+      "program": "International Cancer Proteogenome Consortium",
+      "disease": "Epithelial Neoplasms, NOS;Not Applicable;Other",
+      "experiment_type": "TMT16",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Gallbladder",
+      "inferred_plex": 16,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000606"
+        ]
+      },
+      "tmt_label": "TMT 16-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000606",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000606",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv",
+          "SIMM_GBC_Proteome.qcmetrics.tsv"
+        ],
+        "proteome_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv",
+          "SIMM_GBC_Proteome.qcmetrics.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "20220806_HF_SYL_GBC_TMT16_Pro_Group_22_F14.mzid.gz",
+          "20220817_HF_SYL_GBC_TMT16_Pro_Group_21_F11.mzid.gz",
+          "20220625_HF_SYL_GBC_TMT16_Pro_Group_11_F02.mzid.gz",
+          "20220710_HF_SYL_GBC_TMT16_Pro_Group_17_F18.mzid.gz",
+          "20220701_HF_SYL_GBC_TMT16_Pro_Group_01_F11.mzid.gz"
+        ],
+        "raw_count": 768,
+        "n_listed": 3079,
+        "sample_files": [
+          "SIMM_GBC_Proteome.peptides.tsv",
+          "SIMM_GBC_Proteome.tmt16.tsv",
+          "SIMM_GBC_Proteome.sample.txt",
+          "SIMM_GBC_Proteome.label.txt",
+          "SIMM_GBC_Proteome.summary.tsv"
+        ],
+        "guidance": "Protein-level table: SIMM_GBC_Proteome.peptides.tsv"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 16",
+        "design: cancer_only"
+      ],
+      "abstract_ai": {},
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": ""
     }
   ],
   "manual_check": [
+    {
+      "accession": "PDC000757",
+      "title": "APOLLO-BRCA-1 — Applied Proteogenomics OrganizationaL Learning and Outcomes (APOLLO)",
+      "description": "Ductal and Lobular Neoplasms;Not Reported · Proteome",
+      "program": "Applied Proteogenomics OrganizationaL Learning and Outcomes (APOLLO)",
+      "disease": "Ductal and Lobular Neoplasms;Not Reported",
+      "experiment_type": "TMT11",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Breast;Not Reported",
+      "inferred_plex": 11,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000757",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Sample design unclear — check healthy/cancer labels"
+      ],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000757"
+        ]
+      },
+      "tmt_label": "TMT 11-plex",
+      "sample_design": "unknown",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "requires_manual_check",
+      "project_accession": "PDC000757",
+      "data_availability": {
+        "accession": "PDC000757",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "raw_only",
+        "label": "raw only",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 324,
+        "n_listed": 324,
+        "sample_files": [
+          "AP4C_v2_QEHFX3_AP4C-APT_8_02-2.raw",
+          "AP4C_v2_QEHFX2_AP4C-APT_7_17.raw",
+          "AP4C_v2_QEHFX3_AP4C-APT_8_32-2.raw",
+          "AP4C_v2_QEHFX3_AP4C-APT_9_26.raw",
+          "AP4C_v2_QEHFX3_AP4C-APT_2_33.raw"
+        ],
+        "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Download: AP4C_v2_QEHFX3_AP4C-APT_8_02-2.raw (quant table)",
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000757"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000757",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000757"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
+    },
     {
       "accession": "PDC000430",
       "title": "Broad — Broad Institute",
@@ -768,8 +1091,30 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000430"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pmid": "36267416",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
+      "doi": "",
+      "year": "2022",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000430"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "MSV000102463",
@@ -829,8 +1174,27 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "MSV": [
+            "MSV000102463"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "MSV": [
+          "MSV000102463"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "pmid": "42310533",
@@ -891,7 +1255,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -950,7 +1323,82 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "42643821",
+      "doi": "10.1039/d6ra03582e",
+      "title": "Quantitative proteomic analysis of the anti-ferroptosis effect of a proprietary hydroxy-α-sanshool extract in human keratinocytes using a tandem mass tag labeling approach.",
+      "abstract_snippet": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42643821",
+      "accession": "PMID:42643821",
+      "data_availability": {
+        "accession": "PMID:42643821",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42643821/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -1011,7 +1459,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -1073,7 +1530,17 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -1132,7 +1599,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41260499",
@@ -1193,7 +1668,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41260499/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42552957",
@@ -1252,7 +1736,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42552957/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -1314,7 +1806,17 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -1375,7 +1877,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41699065/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -1434,7 +1945,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41850233",
@@ -1495,7 +2014,16 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41850233/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -1554,7 +2082,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41055288/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "rejected_material": [],
@@ -1629,6 +2165,30 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "TMT11",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "42643821",
+      "title": "Quantitative proteomic analysis of the anti-ferroptosis effect of a proprietary hydroxy-α-sanshool extract in human keratinocytes using a tandem mass tag labeling approach.",
+      "doi": "10.1039/d6ra03582e",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
       "material": "unclear",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
@@ -1721,30 +2281,6 @@
       "finding_note": "Keywords from title: urine · Atlas fit: maybe"
     },
     {
-      "pmid": "41472394",
-      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
-      "doi": "10.1002/pmic.70103",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
       "pmid": "41862993",
       "title": "Proteomic landscape analysis of undifferentiated pleomorphic sarcoma.",
       "doi": "10.1186/s13073-026-01626-w",
@@ -1770,6 +2306,30 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "41472394",
+      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
+      "doi": "10.1002/pmic.70103",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41453614",
@@ -1865,30 +2425,6 @@
       "summary_ru": "",
       "organism": "human",
       "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "42155730",
-      "title": "Proteomic Analysis on Human Islets Suggests Nucleocytoplasmic Transport as a Mechanism of PERK Attenuation Effects in Diabetes.",
-      "doi": "10.1016/j.mcpro.2026.101588",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Partial downregulation of pancreatic endoplasmic reticulum kinase (PERK) activity recovered insulin content in human islets exposed to glucolipotoxicity (GLT), resulting in improved insulin secretion and glucose-lowering effects in a mouse model of type 2 diabetes. We conducted this study to elucidate the beta-cell-enhancing mechanisms of PERK attenuation. Pancreatic islets isolated from non-diabetic living donors were divided into three groups: control, GLT mimicking diabetes conditions, and GL",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "mixed",
-      "tmt": "unclear",
       "material": "unclear",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
@@ -2273,7 +2809,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41622683",
@@ -2313,7 +2855,57 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "42643821",
+      "doi": "10.1039/d6ra03582e",
+      "title": "Quantitative proteomic analysis of the anti-ferroptosis effect of a proprietary hydroxy-α-sanshool extract in human keratinocytes using a tandem mass tag labeling approach.",
+      "abstract_snippet": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41851243",
@@ -2355,7 +2947,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42051158",
@@ -2398,7 +2996,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41472394",
@@ -2438,7 +3043,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41260499",
@@ -2480,7 +3090,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42552957",
@@ -2520,7 +3136,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41966223",
@@ -2563,7 +3184,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41699065",
@@ -2605,7 +3233,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -2645,7 +3279,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "41850233",
@@ -2687,7 +3326,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41055288",
@@ -2727,34 +3372,15 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "cohort_literature": [
-    {
-      "pmid": "42500892",
-      "title": "Integrated Serum Multiomics Reveal Subtype-Specific Immune Dysregulation and Sex-Dimorphic Pathophysiology in Moyamoya Disease.",
-      "abstract": "<h4>Background</h4>Moyamoya disease (MMD) is a rare cerebrovascular disorder with unknown pathogenesis, partly due to limited access to human cerebral vascular tissue and suitable animal models. Using a large biobank of frozen serum samples, this study aimed to explore molecular signatures of ischemic and hemorrhagic MMD.<h4>Methods</h4>Serum from 30 patients with MMD (18 ischemic, 12 hemorrhagic) and 30 matched healthy controls underwent proteomic and metabolomic profiling. Data were analyzed for differential expression, pathway enrichment, and protein-metabolite networks, with adjustment for age, sex, and body mass index.<h4>Results</h4>In a separate large Chinese cohort (n=6167), female patients had a higher proportion of hemorrhagic MMD (19.9% versus 16.9%) and a higher prevalence of anterior choroidal artery dilation (15.1% versus 13.2%) than male patients (both <i>P</i><0.05). At the molecular level, ischemic MMD showed complement C4-B deficiency and disrupted natural killer cell cytotoxicity; both subtypes shared immunoglobulin perturbations (eg, decreased heavy-chain variable regions). Sex-specific alterations included anti-folate-binding protein, serum amyloid A2, glycolithocholic acid, and estradiol. All omics data are publicly accessible.<h4>Conclusions</h4>Integrated serum multiomics defines distinct immune-related signatures for ischemic and hemorrhagic MMD and reveals sex-dimorphic molecular pathways. These findings, together with clinical sex differences in disease subtype and vascular anatomy, provide a framework for personalized, sex-aware management of MMD.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1161/jaha.126.050737",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": 6167,
-      "omics": [
-        "proteomics",
-        "metabolomics",
-        "multi_omics"
-      ],
-      "has_patients": "yes",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 85,
-      "description_en": "Omics: proteomics, metabolomics, multi-omics. Cohort: ~6167 patients/participants (from abstract). 2026"
-    },
     {
       "pmid": "PPR1277412",
       "title": "Proteogenomic origins of disease in British South Asians",
@@ -2775,7 +3401,13 @@
       "large_scale": true,
       "multi_omics": false,
       "cohort_score": 83,
-      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈535",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "41998177",
@@ -2798,30 +3430,13 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
-    },
-    {
-      "pmid": "42381624",
-      "title": "Proteogenomics of Hypertrophic Cardiomyopathy Reveals Subtype-Specific Therapy.",
-      "abstract": "<h4>Background</h4>Hypertrophic cardiomyopathy (HCM) is a heterogeneous disease with diverse prognosis. The underlying mechanisms remain unknown, resulting in limited risk stratification and therapeutic strategies. This study aimed to elucidate molecular subtypes of HCM through integrated proteogenomic analysis and explore subtype-specific therapeutic strategies.<h4>Methods</h4>We conducted an integrated proteogenomic analysis of 132 patients with HCM using myocardial samples, incorporating whole-exome sequencing, RNA sequencing, and proteomics. Unsupervised clustering was used to identify HCM subtypes, which were validated in heart tissues and human induced pluripotent stem cell-derived cardiomyocytes from 2 independent HCM subsets. Subtype-specific signatures and pathways were explored, and their causal link with HCM pathogenesis was established by genetic evidence. A subtype-specific drug was screened using in silico drug prediction, followed by in vitro and in vivo therapeutic effect assessments.<h4>Results</h4>Integrated multi-omics analysis identified 2 proteome-based molecular subtypes, severe and mild. We identified 550 subtype-signature proteins, and enrichment analysis based on which revealed that the reduction in fatty acid metabolism and oxidative phosphorylation pathways in HCM versus healthy controls was predominantly driven by the severe subtype, with more severe clinical characteristics and poorer prognosis compared with the mild subtype. Validation in independent cohorts confirmed the robustness of the proteomic subtypes and their association with clinical severity. Additionally, key proteins in fatty acid oxidation and oxidative phosphorylation exhibited consistent expression differences among healthy controls and 2 HCM subtypes. Furthermore, genetic evidence established a causal link between reduced fatty acid oxidation and HCM pathogenesis. Baicalin, identified as a fatty acid oxidation facilitator, improved metabolic and hypertrophic phenotypes in severe subtype human induced pluripotent stem cell-derived cardiomyocytes and Myh6<sup>R404Q/+</sup> mice.<h4>Conclusions</h4>Our analysis demonstrates the metabolic heterogeneity of HCM and enables the development of risk stratification and subtype-specific therapeutic strategies.<h4>Registration</h4>URL: https://www.clinicaltrials.gov; Unique identifier: NCT03076580.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1161/circresaha.126.328300",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": 132,
-      "omics": [
-        "proteomics",
-        "multi_omics"
-      ],
-      "has_patients": "yes",
-      "tmt_detected": false,
-      "large_scale": true,
-      "multi_omics": true,
-      "cohort_score": 73,
-      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "42310533",
@@ -2843,7 +3458,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "42617593",
@@ -2869,7 +3491,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 55,
-      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42266181",
@@ -2893,7 +3520,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 63,
-      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "41785305",
@@ -2918,7 +3550,41 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
+    },
+    {
+      "pmid": "PPR1307828",
+      "title": "Recurrent non-canonical proteoforms in acute myeloid leukemia identified by integrative proteogenomics",
+      "abstract": "Reference proteomes incompletely represent proteins translated in cancer, leaving tumor-specific proteoforms outside the search space of conventional mass spectrometry (MS). Such \"dark proteome\" products may arise from genomic variation, aberrant transcription or splicing, and non-canonical translation, including microproteins encoded by small open reading frames (ORFs). To define this landscape in acute myeloid leukemia (AML), we developed a cohort-informed proteogenomic strategy using paired RNA-sequencing and MS analysis of 123 human patient AML specimens and 13 healthy CD34+ controls. ProteomeGenerator2 was used for de novo transcriptome assembly and ORF prediction, and candidate cancer-specific unannotated sequences were prioritized by unique high-quality mass spectral support, absence from CD34+ controls, recurrence across individual AML patients, and lack of close homology to annotated proteins. We identified 5,849 Swiss-Prot-unannotated proteoforms, including 1,987 without homology to annotated human proteins. Thirty-nine candidates, most encoding microproteins, were recurrently detected in more than 10% of patients, and 14 were independently validated by deep, fractionated, multi-protease data-independent acquisition (DIA) proteomics of human AML cell lines. Structural modeling predicted several functional classes, including intrinsically disordered, alpha-helical microproteins, and membrane- or secretory-pathway-associated proteoforms. These findings define a recurrent AML dark proteome and establish a framework for the discovery of tumor-specific non-canonical proteins for mechanistic and therapeutic studies.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.64898/2026.08.27.747547",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "transcriptomics",
+        "genomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42134687",
@@ -2942,7 +3608,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1281063",
@@ -2965,7 +3636,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1289484",
@@ -2988,7 +3664,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -3012,7 +3693,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42167233",
@@ -3035,7 +3721,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42183196",
@@ -3061,7 +3752,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ]
 }
