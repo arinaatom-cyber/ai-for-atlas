@@ -1,7 +1,7 @@
 {
   "pipeline": "Atlas Discovery Agent",
   "pipeline_version": "2026.07.15-nature",
-  "generated_at": "2026-08-31T12:27:24.285695+00:00",
+  "generated_at": "2026-09-07T11:22:21.569612+00:00",
   "python": "3.12.14",
   "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
   "catalog_policy": {
@@ -76,11 +76,11 @@
     "already_in_catalog": 10
   },
   "literature_screening": {
-    "publications_scanned": 26,
+    "publications_scanned": 25,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 26,
+    "abstract_regex_only": 25,
     "atlas_fit_yes": 0,
-    "atlas_fit_maybe": 12,
+    "atlas_fit_maybe": 13,
     "literature_resolved": 0,
     "semantic_from_abstract": 0
   },
