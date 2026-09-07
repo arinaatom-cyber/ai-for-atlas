@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T11:22:21.569612+00:00",
+  "generated_at": "2026-09-07T11:42:30.867142+00:00",
   "summary": {
     "catalog_rows": 126,
     "catalog_unique_ids": 121,
@@ -50,18 +50,6 @@
       "with_patient_n": 8,
       "multi_omics": 15,
       "min_patients_threshold": 50
-    },
-    "quality_metrics": {
-      "benchmark_literature": {
-        "accuracy": 0.75,
-        "n": 4,
-        "correct": 3
-      },
-      "benchmark_projects": {
-        "accuracy": 1.0,
-        "n": 3,
-        "correct": 3
-      }
     }
   },
   "catalog_profile": {
@@ -146,7 +134,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "42432032",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -217,10 +205,7 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000495",
@@ -320,9 +305,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000498",
@@ -422,9 +405,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000606",
@@ -524,9 +505,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     }
   ],
   "candidates": [
@@ -543,7 +522,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "42432032",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -614,10 +593,7 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
-      "year": "2026"
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000495",
@@ -717,9 +693,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000498",
@@ -819,9 +793,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000606",
@@ -921,9 +893,7 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "pubmed_url": ""
+      "atlas_fit_score": null
     }
   ],
   "manual_check": [
@@ -998,27 +968,8 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Download: AP4C_v2_QEHFX3_AP4C-APT_8_02-2.raw (quant table)",
-      "abstract_ai": {
-        "accessions": {
-          "PDC": [
-            "PDC000757"
-          ]
-        }
-      },
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000757",
-      "pubmed_url": "",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Literature surveillance"
-      ],
-      "accessions_resolved": {
-        "PDC": [
-          "PDC000757"
-        ]
-      },
-      "resolution_source": "europe_pmc_data_availability"
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "PDC000430",
@@ -1091,30 +1042,8 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {
-        "accessions": {
-          "PDC": [
-            "PDC000430"
-          ]
-        }
-      },
-      "atlas_fit_score": null,
-      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
-      "pmid": "36267416",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
-      "doi": "",
-      "year": "2022",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Literature surveillance"
-      ],
-      "accessions_resolved": {
-        "PDC": [
-          "PDC000430"
-        ]
-      },
-      "resolution_source": "europe_pmc_data_availability"
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "accession": "MSV000102463",
@@ -1174,27 +1103,8 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {
-        "accessions": {
-          "MSV": [
-            "MSV000102463"
-          ]
-        }
-      },
-      "atlas_fit_score": null,
-      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
-      "pubmed_url": "",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Literature surveillance"
-      ],
-      "accessions_resolved": {
-        "MSV": [
-          "MSV000102463"
-        ]
-      },
-      "resolution_source": "europe_pmc_data_availability"
+      "abstract_ai": {},
+      "atlas_fit_score": null
     },
     {
       "pmid": "42499581",
@@ -1256,17 +1166,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42499581/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42439869",
@@ -1327,16 +1227,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42439869/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42310533",
@@ -1397,16 +1288,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "41622683",
@@ -1465,15 +1347,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42056117",
@@ -1535,17 +1409,7 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42056117/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42643821",
@@ -1604,15 +1468,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42643821/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "41851243",
@@ -1673,16 +1529,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42051158",
@@ -1744,17 +1591,7 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "41472394",
@@ -1813,15 +1650,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41472394/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "41966223",
@@ -1883,17 +1712,7 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42204619",
@@ -1954,16 +1773,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42204619/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "41301916",
@@ -2022,15 +1832,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
-      "year": "2025",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "processing_tips": []
     },
     {
       "pmid": "42702608",
@@ -2089,15 +1891,7 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": [],
-      "repository_url": "",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42702608/",
-      "year": "2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "processing_tips": []
     }
   ],
   "rejected_material": [],
@@ -2797,14 +2591,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42439869",
@@ -2846,13 +2633,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42310533",
@@ -2894,13 +2675,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "finding_note": "LLM material: plasma · Atlas fit: maybe"
     },
     {
       "pmid": "41622683",
@@ -2940,12 +2715,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42056117",
@@ -2988,14 +2758,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
     },
     {
       "pmid": "42643821",
@@ -3035,12 +2798,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41851243",
@@ -3082,13 +2840,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42051158",
@@ -3131,14 +2883,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
     },
     {
       "pmid": "41472394",
@@ -3178,12 +2923,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41966223",
@@ -3226,14 +2966,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
-      ]
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
     },
     {
       "pmid": "42204619",
@@ -3275,13 +3008,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "41301916",
@@ -3321,12 +3048,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42702608",
@@ -3366,12 +3088,7 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch"
-      ]
+      "finding_note": "Atlas fit: maybe"
     }
   ],
   "cohort_literature": [
@@ -3396,13 +3113,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 85,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~900 patients/participants (from abstract). 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Large cohort N≈900",
-        "No TMT confirmation"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~900 patients/participants (from abstract). 2026"
     },
     {
       "pmid": "PPR1277412",
@@ -3424,13 +3135,7 @@
       "large_scale": true,
       "multi_omics": false,
       "cohort_score": 83,
-      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Large cohort N≈535",
-        "No TMT confirmation"
-      ]
+      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "42056117",
@@ -3452,14 +3157,7 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 60,
-      "description_en": "Omics: proteomics. Cohort: ~178 patients/participants (from abstract). TMT/isobaric. 2026",
-      "confidence_tier": "B",
-      "confidence_css": "tier-b",
-      "confidence_evidence": [
-        "N≈178",
-        "TMT mention",
-        "Cohort watch — not a new repo ID"
-      ]
+      "description_en": "Omics: proteomics. Cohort: ~178 patients/participants (from abstract). TMT/isobaric. 2026"
     },
     {
       "pmid": "41998177",
@@ -3482,13 +3180,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Large cohort N≈139",
-        "No TMT confirmation"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
     },
     {
       "pmid": "42310533",
@@ -3510,14 +3202,7 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
-      "confidence_tier": "B",
-      "confidence_css": "tier-b",
-      "confidence_evidence": [
-        "N≈90",
-        "TMT mention",
-        "Cohort watch — not a new repo ID"
-      ]
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
     },
     {
       "pmid": "42617593",
@@ -3543,12 +3228,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 55,
-      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026"
     },
     {
       "pmid": "42266181",
@@ -3572,12 +3252,7 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 63,
-      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "41785305",
@@ -3602,12 +3277,7 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
     },
     {
       "pmid": "42134687",
@@ -3631,12 +3301,7 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "PPR1307828",
@@ -3660,12 +3325,7 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "PPR1281063",
@@ -3688,12 +3348,7 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
     },
     {
       "pmid": "PPR1289484",
@@ -3716,12 +3371,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42305618",
@@ -3745,12 +3395,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42167233",
@@ -3773,12 +3418,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42450251",
@@ -3804,12 +3444,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42538555",
@@ -3834,12 +3469,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, transcriptomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42362189",
@@ -3862,12 +3492,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
     },
     {
       "pmid": "42483205",
@@ -3890,12 +3515,7 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, metabolomics. Patients mentioned; exact N not extracted. 2026",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "Cohort literature — not a new repository ID"
-      ]
+      "description_en": "Omics: proteomics, metabolomics. Patients mentioned; exact N not extracted. 2026"
     }
   ]
 }
