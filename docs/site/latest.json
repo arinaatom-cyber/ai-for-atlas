@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-07T11:42:30.867142+00:00",
+  "generated_at": "2026-09-14T11:32:43.173940+00:00",
   "summary": {
     "catalog_rows": 126,
     "catalog_unique_ids": 121,
     "novel_pride": 60,
     "novel_pdc": 35,
-    "novel_publications": 25,
+    "novel_publications": 28,
     "novel_consortia": 63,
     "novel_total": 120,
     "new_projects": 4,
@@ -19,7 +19,7 @@
     "requires_manual_check": 17,
     "rejected": 0,
     "removed_from_workbook": 0,
-    "human_filtered": 41,
+    "human_filtered": 43,
     "duplicate_similar": 0,
     "articles_skipped": 6,
     "source_stats": {
@@ -30,11 +30,11 @@
       "literature_resolved": 0,
       "semantic_from_abstract": 0,
       "literature_semantic_manual": 13,
-      "publications_scanned": 25,
+      "publications_scanned": 28,
       "abstract_llm_read": 0,
-      "abstract_regex_only": 25,
+      "abstract_regex_only": 28,
       "abstract_atlas_fit_yes": 0,
-      "abstract_atlas_fit_maybe": 13
+      "abstract_atlas_fit_maybe": 12
     },
     "data_availability": {
       "quant_table": 4,
@@ -45,11 +45,23 @@
     },
     "cohort_literature": {
       "queries": 5,
-      "scanned": 39,
+      "scanned": 38,
       "kept": 18,
       "with_patient_n": 8,
-      "multi_omics": 15,
+      "multi_omics": 12,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "catalog_profile": {
@@ -134,7 +146,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -205,7 +217,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -305,7 +320,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -405,7 +422,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000606",
@@ -505,7 +524,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": ""
     }
   ],
   "candidates": [
@@ -522,7 +543,7 @@
         "Q Exactive Plus"
       ],
       "quantification_methods": [],
-      "pmid": "",
+      "pmid": "42432032",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
       "tmt_detected": true,
@@ -593,7 +614,10 @@
         "design: healthy_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
     },
     {
       "accession": "PDC000495",
@@ -693,7 +717,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000498",
@@ -793,7 +819,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
     },
     {
       "accession": "PDC000606",
@@ -893,7 +921,9 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": ""
     }
   ],
   "manual_check": [
@@ -968,8 +998,27 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Download: AP4C_v2_QEHFX3_AP4C-APT_8_02-2.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000757"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000757",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000757"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "PDC000430",
@@ -1042,8 +1091,30 @@
         "guidance": "Raw MS only — check Methods; tables may be in Supplementary"
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "PDC": [
+            "PDC000430"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pmid": "36267416",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/36267416/",
+      "doi": "",
+      "year": "2022",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "PDC": [
+          "PDC000430"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
     },
     {
       "accession": "MSV000102463",
@@ -1103,8 +1174,237 @@
         "guidance": "No files in API — check Data availability / paper Supplementary"
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
-      "abstract_ai": {},
-      "atlas_fit_score": null
+      "abstract_ai": {
+        "accessions": {
+          "MSV": [
+            "MSV000102463"
+          ]
+        }
+      },
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Literature surveillance"
+      ],
+      "accessions_resolved": {
+        "MSV": [
+          "MSV000102463"
+        ]
+      },
+      "resolution_source": "europe_pmc_data_availability"
+    },
+    {
+      "pmid": "42573022",
+      "doi": "10.1002/jbt.71049",
+      "title": "Proteomic Biomarker Discovery in Breast Cancer: Advances, Challenges, and Translational Prospects.",
+      "abstract_snippet": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and c",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "unclear",
+        "material": "plasma",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": false,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42573022",
+      "accession": "PMID:42573022",
+      "data_availability": {
+        "accession": "PMID:42573022",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42573022/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
+    },
+    {
+      "pmid": "42439869",
+      "doi": "10.1039/d6an00304d",
+      "title": "Navigating the glycomics landscape with CE-MS: advances in sample preparation and analytical strategies.",
+      "abstract_snippet": "Glycosylation is one of the most structurally diverse and biologically consequential co- and post-translational modifications, yet its analytical characterisation remains challenging due to extensive isomerism, microheterogeneity, branching structure and the presence of labile residues. Among the available analytical platforms, capillary electrophoresis (CE), particularly when coupled to mass spectrometry (CE-MS), offers exceptional separation efficiency at nanolitre sample loadings and can reso",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42439869",
+      "accession": "PMID:42439869",
+      "data_availability": {
+        "accession": "PMID:42439869",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42439869/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
+    },
+    {
+      "pmid": "42310533",
+      "doi": "10.1186/s12014-026-09610-7",
+      "title": "Repurposing the liquid-based Pap test for the detection of ovarian cancer protein biomarkers.",
+      "abstract_snippet": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers ",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "plasma",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42310533",
+      "accession": "PMID:42310533",
+      "data_availability": {
+        "accession": "PMID:42310533",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42499581",
@@ -1166,129 +1466,17 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
-    },
-    {
-      "pmid": "42439869",
-      "doi": "10.1039/d6an00304d",
-      "title": "Navigating the glycomics landscape with CE-MS: advances in sample preparation and analytical strategies.",
-      "abstract_snippet": "Glycosylation is one of the most structurally diverse and biologically consequential co- and post-translational modifications, yet its analytical characterisation remains challenging due to extensive isomerism, microheterogeneity, branching structure and the presence of labile residues. Among the available analytical platforms, capillary electrophoresis (CE), particularly when coupled to mass spectrometry (CE-MS), offers exceptional separation efficiency at nanolitre sample loadings and can reso",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [
-          "human clinical proteomics"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "project_accession": "PMID:42439869",
-      "accession": "PMID:42439869",
-      "data_availability": {
-        "accession": "PMID:42439869",
-        "source_checked": "none",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
-      "qc_reasons": [],
-      "processing_tips": []
-    },
-    {
-      "pmid": "42310533",
-      "doi": "10.1186/s12014-026-09610-7",
-      "title": "Repurposing the liquid-based Pap test for the detection of ovarian cancer protein biomarkers.",
-      "abstract_snippet": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers ",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [
-          "human clinical proteomics"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "plasma",
-        "human_suitable": true,
-        "material_suitable": true,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "project_accession": "PMID:42310533",
-      "accession": "PMID:42310533",
-      "data_availability": {
-        "accession": "PMID:42310533",
-        "source_checked": "none",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
-      "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42499581/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41622683",
@@ -1347,7 +1535,85 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "41851243",
+      "doi": "10.1038/s41598-026-44561-x",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:41851243",
+      "accession": "PMID:41851243",
+      "data_availability": {
+        "accession": "PMID:41851243",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42056117",
@@ -1409,7 +1675,17 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42056117/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "42643821",
@@ -1468,68 +1744,15 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
-    },
-    {
-      "pmid": "41851243",
-      "doi": "10.1038/s41598-026-44561-x",
-      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
-      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [
-          "human clinical proteomics"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "project_accession": "PMID:41851243",
-      "accession": "PMID:41851243",
-      "data_availability": {
-        "accession": "PMID:41851243",
-        "source_checked": "none",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
-      "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42643821/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "42051158",
@@ -1591,66 +1814,17 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
-    },
-    {
-      "pmid": "41472394",
-      "doi": "10.1002/pmic.70103",
-      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
-      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "project_accession": "PMID:41472394",
-      "accession": "PMID:41472394",
-      "data_availability": {
-        "accession": "PMID:41472394",
-        "source_checked": "none",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
-      "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41966223",
@@ -1712,7 +1886,84 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
+    },
+    {
+      "pmid": "42702608",
+      "doi": "10.1038/s41467-026-76537-w",
+      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis.",
+      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "unclear",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:42702608",
+      "accession": "PMID:42702608",
+      "data_availability": {
+        "accession": "PMID:42702608",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42702608/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "42204619",
@@ -1773,7 +2024,16 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42204619/",
+      "year": "2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -1832,89 +2092,37 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
-    },
-    {
-      "pmid": "42702608",
-      "doi": "10.1038/s41467-026-76537-w",
-      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis. ",
-      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "unclear",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "project_accession": "PMID:42702608",
-      "accession": "PMID:42702608",
-      "data_availability": {
-        "accession": "PMID:42702608",
-        "source_checked": "none",
-        "local_mirror": false,
-        "local_path": null,
-        "status": "no_files",
-        "label": "no data",
-        "omics_layer": "unknown",
-        "quant_files": [],
-        "proteome_files": [],
-        "phospho_files": [],
-        "psm_files": [],
-        "raw_count": 0,
-        "n_listed": 0,
-        "sample_files": [],
-        "guidance": "No files in API — check Data availability / paper Supplementary"
-      },
-      "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
-      "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "year": "2025",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "rejected_material": [],
   "publications_analyzed": [
     {
-      "pmid": "42499581",
-      "title": "Proteomic alterations in patient bone-derived stromal cells and their secretomes in osteogenesis imperfecta.",
-      "doi": "10.1016/j.ymgmr.2026.101341",
+      "pmid": "42573022",
+      "title": "Proteomic Biomarker Discovery in Breast Cancer: Advances, Challenges, and Translational Prospects.",
+      "doi": "10.1002/jbt.71049",
       "journal": "",
       "year": "2026",
-      "abstract_snippet": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al",
+      "abstract_snippet": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and c",
       "abstract_reader": "regex",
       "atlas_fit": "maybe",
       "atlas_fit_score": null,
       "semantic_evidence": [
-        "human clinical proteomics",
-        "TMT + patient samples (regex — conservative maybe)"
+        "human clinical proteomics"
       ],
       "similar_atlas_theme": "",
       "summary_ru": "",
       "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
+      "tmt": "unclear",
+      "material": "plasma",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
       "qc_reasons": [],
@@ -1922,6 +2130,30 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "42583318",
+      "title": "The value of serum biomarkers in the management of interstitial lung disease in patients with connective tissue disease: a protocol for an observational study.",
+      "doi": "10.21037/jtd-2026-1073",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "<h4>Background</h4>Three key points in managing interstitial lung disease (ILD) in patients with connective tissue disease (CTD) are: First, identifying risk markers or factors for ILD in CTD patients without ILD. Second, diagnosing ILD in CTD patients poses uncertainty about the diagnosis of ILD. Third, predicting treatment response and outcomes of CTD patients with ILD. The current management approaches largely depend on lung biopsy or high-resolution computed tomography (HRCT), both of which ",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "unclear",
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Keywords from title: plasma, lung · Atlas fit: no"
     },
     {
       "pmid": "42439869",
@@ -2005,6 +2237,33 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
+      "pmid": "42499581",
+      "title": "Proteomic alterations in patient bone-derived stromal cells and their secretomes in osteogenesis imperfecta.",
+      "doi": "10.1016/j.ymgmr.2026.101341",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
       "pmid": "41622683",
       "title": "UltraPlex-TMT: Expanding Isobaric Hyperplexing via Orthogonal Protease Cleavage.",
       "doi": "10.1021/acs.jproteome.5c01084",
@@ -2019,6 +2278,32 @@
       "summary_ru": "",
       "organism": "unclear",
       "tmt": "TMT11",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "doi": "10.1038/s41598-026-44561-x",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [
+        "human clinical proteomics"
+      ],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
       "material": "unclear",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
@@ -2056,56 +2341,6 @@
       "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
     },
     {
-      "pmid": "42643821",
-      "title": "Quantitative proteomic analysis of the anti-ferroptosis effect of a proprietary hydroxy-α-sanshool extract in human keratinocytes using a tandem mass tag labeling approach.",
-      "doi": "10.1039/d6ra03582e",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
-      "pmid": "41851243",
-      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
-      "doi": "10.1038/s41598-026-44561-x",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [
-        "human clinical proteomics"
-      ],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
       "pmid": "42273731",
       "title": "Phosphoproteomics in Vascular Biology and Disease: Illuminating Signaling in the Vessel.",
       "doi": "10.1161/atvbaha.126.323845",
@@ -2133,6 +2368,30 @@
         "exclusion_reason": "phospho-only emphasis"
       },
       "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42643821",
+      "title": "Quantitative proteomic analysis of the anti-ferroptosis effect of a proprietary hydroxy-α-sanshool extract in human keratinocytes using a tandem mass tag labeling approach.",
+      "doi": "10.1039/d6ra03582e",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42051158",
@@ -2189,57 +2448,6 @@
       "finding_note": "Atlas fit: no"
     },
     {
-      "pmid": "41472394",
-      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
-      "doi": "10.1002/pmic.70103",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
-      "abstract_reader": "regex",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "ambiguous",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
-      "pmid": "42339612",
-      "title": "MS-Based Crevicular Fluid Proteomics for the Study of Periodontal and Peri-Implant Conditions: A Systematic Review.",
-      "doi": "10.1021/acs.jproteome.5c01217",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "This systematic review aimed to evaluate the current literature on mass spectrometry (MS)-based proteomic analysis of the crevicular fluid in different periodontal and peri-implant conditions, and to summarize methodological differences among studies. A search of electronic databases was conducted and clinical studies using MS-based proteomics in gingival (GCF) and/or peri-implant crevicular fluid (PICF) were considered for inclusion. The findings were synthesized and methodological variations d",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "unclear",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {
-        "atlas_fit": "no",
-        "exclusion_reason": "review / methods / software"
-      },
-      "finding_note": "Atlas fit: no"
-    },
-    {
       "pmid": "41567026",
       "title": "Clinical Applications of Phosphoproteomics: Illuminating Cancer Signaling and Enabling Rational Therapeutic Strategies.",
       "doi": "10.1111/cas.70323",
@@ -2266,6 +2474,86 @@
         "atlas_fit": "no",
         "exclusion_reason": "phospho-only emphasis"
       },
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42237373",
+      "title": "Proteomics in bone malignancies: from bulk profiling to single-cell and ultra-low-input technologies.",
+      "doi": "10.1186/s12967-026-08363-z",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "<h4>Background</h4>Bone malignancies, particularly high-grade primary bone sarcomas, remain clinically challenging due to early dissemination, marked heterogeneity, and limited progress in systemic therapies for metastatic or relapsed disease. While genomics and transcriptomics have clarified structural complexity and transcriptional programs, they provide only an indirect view of the functional machinery that ultimately drives invasion, immune escape, and therapy resistance. Proteomics and phos",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [
+        "фосфопротеомика — нужен protein-level proteome"
+      ],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "ambiguous",
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      },
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42614513",
+      "title": "Editorial: Multiomics advances: bridging gaps in understanding intricate biological systems.",
+      "doi": "10.3389/fpls.2026.1941133",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "unclear",
+      "tmt": "unclear",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      },
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42646630",
+      "title": "The PD Effluentome-A Multi-Omics Atlas Defining the Composition, Transport Dynamics, and Molecular Origin of Peritoneal Dialysis Effluent.",
+      "doi": "10.3390/medsci14040496",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "<b>Background</b>: Peritoneal dialysis (PD) effluent of kidney failure patients represents an accessible liquid biopsy of the peritoneal cavity, yet the mechanisms determining its molecular composition remain poorly understood. We applied an integrative multi-omics approach to characterize the composition, transport dynamics, and molecular origin of the PD effluentome. <b>Methods</b>: Cell-free effluent, effluent cells, and plasma were collected from stable PD patients during standardized perito",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "unclear",
+      "material": "tumor tissue",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
       "finding_note": "Atlas fit: no"
     },
     {
@@ -2320,90 +2608,12 @@
       "finding_note": "Atlas fit: no"
     },
     {
-      "pmid": "41742694",
-      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
-      "doi": "10.1002/pmic.70114",
+      "pmid": "42460659",
+      "title": "Proteomic investigation of signaling dynamics: from static maps to network rewiring.",
+      "doi": "10.1042/bsr20250116",
       "journal": "",
       "year": "2026",
-      "abstract_snippet": "",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "unclear",
-      "tmt": "unclear",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {
-        "atlas_fit": "no",
-        "exclusion_reason": "review / methods / software"
-      },
-      "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "42192865",
-      "title": "Multi Omics Integration in Colorectal Cancer: From Molecular Insights to Precision Oncology.",
-      "doi": "10.3390/cancers18101504",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Colorectal cancer (CRC) is a biologically heterogeneous disease in which single-omics analyses incompletely capture the cross-layer mechanisms underlying tumor progression, immune evasion, and therapeutic resistance. This review critically examines how the integration of genomics, transcriptomics, proteomics, metabolomics, and microbiome profiling is redefining CRC biology and precision oncology. Landmark integrative efforts, including TCGA analyses of 276 colorectal cancer samples, CPTAC proteo",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "human",
-      "tmt": "unclear",
-      "material": "tumor tissue",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "41740022",
-      "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
-      "doi": "10.1021/acs.analchem.5c07275",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Single-cell proteomics (SCP) platforms are widely sought-after biomedical tools to complement existing omics technologies. Here, we present MiProChip, a microfluidic platform that integrates cell capture, lysis, protein digestion, tandem mass tag (TMT) labeling, on-chip pooling, and desalting a streamlined workflow for multiplexed SCP profiling. We optimized a chip-compatible TMT multiplexing protocol with a carrier-boosting strategy, enabling high-throughput operation and deep proteome coverage",
-      "abstract_reader": "regex",
-      "atlas_fit": "no",
-      "atlas_fit_score": null,
-      "semantic_evidence": [],
-      "similar_atlas_theme": "",
-      "summary_ru": "",
-      "organism": "mouse",
-      "tmt": "TMT10",
-      "material": "unclear",
-      "data_availability": "",
-      "data_hint": "Open access unclear — check Supplementary and repository",
-      "qc_reasons": [],
-      "filter_reasons": [],
-      "processing_tips": [],
-      "abstract_ai": {
-        "atlas_fit": "no",
-        "exclusion_reason": "review / methods / software"
-      },
-      "finding_note": "Atlas fit: no"
-    },
-    {
-      "pmid": "42361801",
-      "title": "Multi-omics profiling unveils biological and clinical insights into pulmonary sarcomatoid carcinoma.",
-      "doi": "10.1016/j.xcrm.2026.102887",
-      "journal": "",
-      "year": "2026",
-      "abstract_snippet": "Pulmonary sarcomatoid carcinoma (PSC) is a rare yet highly invasive type of lung cancer that remains poorly characterized. Here, we conduct multi-omics analyses of PSC by integrating whole-exome sequencing, transcriptomic, proteomic, and phosphoproteomic data from 86 PSC patients, alongside single-cell RNA sequencing (scRNA-seq) data from 3 patients receiving neoadjuvant chemoimmunotherapy. We find an elevated ferroptosis suppression signature in PSC tumors and demonstrate their vulnerability to",
+      "abstract_snippet": "Cellular processes are controlled by interconnected networks of protein-protein interactions that can be dynamically regulated by post-translational modifications such as phosphorylation. Dysregulation of signaling pathways can drive cellular transformation and contribute to cancer treatment resistance. Mass spectrometry (MS)-based approaches have emerged as key technologies to study both protein function and their dynamic regulation at a network level. Modern proteomics allows investigators to ",
       "abstract_reader": "regex",
       "atlas_fit": "no",
       "atlas_fit_score": null,
@@ -2422,6 +2632,54 @@
       "processing_tips": [],
       "abstract_ai": {},
       "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42592136",
+      "title": "Multi-omics landscapes across the gastritis-to-carcinoma sequence: Stage-specific molecular evolution and microenvironmental remodeling.",
+      "doi": "10.1016/j.isci.2026.116913",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "The progression from chronic gastritis to gastric cancer is a complex and multistep process. Early detection of this transition is critical for improving patient survival; however, the underlying molecular mechanisms remain incompletely understood. Recent advances in multi-omics technologies have provided powerful tools for high-resolution characterization of disease-associated molecular alterations. In this review, we summarize studies investigating the gastritis-to-carcinoma sequence using gen",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "human",
+      "tmt": "unclear",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "42702608",
+      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis.",
+      "doi": "10.1038/s41467-026-76537-w",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
+      "abstract_reader": "regex",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "unclear",
+      "tmt": "ambiguous",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "finding_note": "Atlas fit: maybe"
     },
     {
       "pmid": "42294822",
@@ -2525,44 +2783,73 @@
       "finding_note": "Atlas fit: maybe"
     },
     {
-      "pmid": "42702608",
-      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis. ",
-      "doi": "10.1038/s41467-026-76537-w",
+      "pmid": "41740022",
+      "title": "MiProChip: A Scalable Microfluidic Platform for Multiplexed Single-Cell Proteomics via Isobaric Labeling.",
+      "doi": "10.1021/acs.analchem.5c07275",
       "journal": "",
       "year": "2026",
-      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
+      "abstract_snippet": "Single-cell proteomics (SCP) platforms are widely sought-after biomedical tools to complement existing omics technologies. Here, we present MiProChip, a microfluidic platform that integrates cell capture, lysis, protein digestion, tandem mass tag (TMT) labeling, on-chip pooling, and desalting a streamlined workflow for multiplexed SCP profiling. We optimized a chip-compatible TMT multiplexing protocol with a carrier-boosting strategy, enabling high-throughput operation and deep proteome coverage",
       "abstract_reader": "regex",
-      "atlas_fit": "maybe",
+      "atlas_fit": "no",
       "atlas_fit_score": null,
       "semantic_evidence": [],
       "similar_atlas_theme": "",
       "summary_ru": "",
-      "organism": "unclear",
-      "tmt": "ambiguous",
+      "organism": "mouse",
+      "tmt": "TMT10",
       "material": "unclear",
       "data_availability": "",
       "data_hint": "Open access unclear — check Supplementary and repository",
       "qc_reasons": [],
       "filter_reasons": [],
       "processing_tips": [],
-      "abstract_ai": {},
-      "finding_note": "Atlas fit: maybe"
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      },
+      "finding_note": "Atlas fit: no"
+    },
+    {
+      "pmid": "41742694",
+      "title": "Multi-Omics and Extracellular Vesicles: Editorial on the Research Topic.",
+      "doi": "10.1002/pmic.70114",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "",
+      "abstract_reader": "regex",
+      "atlas_fit": "no",
+      "atlas_fit_score": null,
+      "semantic_evidence": [],
+      "similar_atlas_theme": "",
+      "summary_ru": "",
+      "organism": "unclear",
+      "tmt": "unclear",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {
+        "atlas_fit": "no",
+        "exclusion_reason": "review / methods / software"
+      },
+      "finding_note": "Atlas fit: no"
     }
   ],
   "literature_semantic": [
     {
-      "pmid": "42499581",
-      "doi": "10.1016/j.ymgmr.2026.101341",
-      "title": "Proteomic alterations in patient bone-derived stromal cells and their secretomes in osteogenesis imperfecta.",
-      "abstract_snippet": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al",
+      "pmid": "42573022",
+      "doi": "10.1002/jbt.71049",
+      "title": "Proteomic Biomarker Discovery in Breast Cancer: Advances, Challenges, and Translational Prospects.",
+      "abstract_snippet": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and c",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
       "atlas_fit_score": null,
       "abstract_ai": {
         "atlas_fit": "maybe",
         "semantic_evidence": [
-          "human clinical proteomics",
-          "TMT + patient samples (regex — conservative maybe)"
+          "human clinical proteomics"
         ],
         "similar_atlas_theme": "",
         "accessions": {
@@ -2572,10 +2859,10 @@
           "IPX": []
         },
         "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
+        "tmt": "unclear",
+        "material": "plasma",
         "human_suitable": true,
-        "material_suitable": false,
+        "material_suitable": true,
         "summary_ru": "",
         "reader": "regex"
       },
@@ -2587,11 +2874,17 @@
         "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
       ],
       "human": true,
-      "tmt_detected": true,
+      "tmt_detected": false,
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42439869",
@@ -2633,7 +2926,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42310533",
@@ -2675,7 +2974,63 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "LLM material: plasma · Atlas fit: maybe"
+      "finding_note": "LLM material: plasma · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
+    },
+    {
+      "pmid": "42499581",
+      "doi": "10.1016/j.ymgmr.2026.101341",
+      "title": "Proteomic alterations in patient bone-derived stromal cells and their secretomes in osteogenesis imperfecta.",
+      "abstract_snippet": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics",
+          "TMT + patient samples (regex — conservative maybe)"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41622683",
@@ -2715,7 +3070,60 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
+    },
+    {
+      "pmid": "41851243",
+      "doi": "10.1038/s41598-026-44561-x",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human clinical proteomics"
+        ],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "42056117",
@@ -2758,7 +3166,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: CSF · Atlas fit: maybe"
+      "finding_note": "Keywords from title: CSF · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "42643821",
@@ -2798,49 +3213,12 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
-      "pmid": "41851243",
-      "doi": "10.1038/s41598-026-44561-x",
-      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
-      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [
-          "human clinical proteomics"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "qc_reasons": [],
-      "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "42051158",
@@ -2883,47 +3261,14 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: urine · Atlas fit: maybe"
-    },
-    {
-      "pmid": "41472394",
-      "doi": "10.1002/pmic.70103",
-      "title": "Proteomics in Practice: A Case Study Highlighting Tandem Mass Tag-Based MS for Quantitative Profiling of Extracellular Vesicles and Application to Irradiated Fibroblasts.",
-      "abstract_snippet": "Extracellular vesicles (EVs) are critical mediators of intercellular communication, and valuable sources of biomarkers for diagnostic and therapeutic applications. However, the complexity and heterogeneity of EVs present significant challenges for their proteomic characterization. Major challenges of EV samples include low yield, technical variability, and the need for sensitive and high throughput quantification approaches. In this study, we implement a tandem mass tag (TMT)-based MS workflow f",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "qc_reasons": [],
-      "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Keywords from title: urine · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
     },
     {
       "pmid": "41966223",
@@ -2966,7 +3311,59 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe"
+      "finding_note": "Keywords from title: tumor tissue · LLM material: tumor tissue · Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics",
+        "TMT + patient samples (regex — conservative maybe)"
+      ]
+    },
+    {
+      "pmid": "42702608",
+      "doi": "10.1038/s41467-026-76537-w",
+      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis.",
+      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": null,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [],
+        "similar_atlas_theme": "",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "unclear",
+        "tmt": "ambiguous",
+        "material": "unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_ru": "",
+        "reader": "regex"
+      },
+      "abstract_reader": "regex",
+      "pride_search_terms": "",
+      "summary_ru": "",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     },
     {
       "pmid": "42204619",
@@ -3008,7 +3405,13 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human clinical proteomics"
+      ]
     },
     {
       "pmid": "41301916",
@@ -3048,50 +3451,43 @@
       "recommendation": "requires_manual_check",
       "qc_reasons": [],
       "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
-    },
-    {
-      "pmid": "42702608",
-      "doi": "10.1038/s41467-026-76537-w",
-      "title": "Quantitative RNA modification mapping by mass spectrometry with isobaric tags and nucleobase fragment analysis. ",
-      "abstract_snippet": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": null,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "unclear",
-        "tmt": "ambiguous",
-        "material": "unclear",
-        "human_suitable": true,
-        "material_suitable": false,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "requires_manual_check",
-      "qc_reasons": [],
-      "processing_tips": [],
-      "finding_note": "Atlas fit: maybe"
+      "finding_note": "Atlas fit: maybe",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ]
     }
   ],
   "cohort_literature": [
+    {
+      "pmid": "42717724",
+      "title": "Large-Scale Plasma Proteomics Reveals Preclinical Biomarkers of Incident Severe Liver Disease.",
+      "abstract": "The absence of robust biomarkers for early detection of severe liver disease (SLD) highlights the critical need for high-throughput proteomics-driven discovery. In this prospective cohort study, we aimed to identify plasma protein signatures associated with incident SLD and assess their clinical utility. Using the large-scale Olink Explore 1536 platform, we quantified 1461 plasma proteins in 46951 participants from the UK Biobank community-based cohort without baseline liver disease. Over a median follow-up of 14.1 years, we identified 490 proteins significantly associated with incident SLD risk. Growth differentiation factor 15 (GDF15) emerged as the strongest predictor, achieving a C-index of 0.80 and outperforming conventional clinical indices (LiverRisk score: 0.75; FIB-4: 0.68; APRI: 0.68). Temporal trajectories revealed that GDF15 levels began increasing up to 10 years before diagnosis, with progressive elevation as the diagnosis timepoint approached. Mendelian randomization analysis supported genetic associations linking higher protein levels of GDF15, FABP1, SPON2, CHI3L1, and PIGR with SLD risk. Our large-scale proteome-wide study not only reveals significant proteomic changes preceding SLD diagnosis but also establishes GDF15 as both a promising preclinical biomarker, opening new avenues for early intervention in at-risk individuals.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1002/prca.70055",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 46951,
+      "omics": [
+        "proteomics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": false,
+      "cohort_score": 83,
+      "description_en": "Omics: proteomics. Cohort: ~46951 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈46951",
+        "No TMT confirmation"
+      ]
+    },
     {
       "pmid": "42511887",
       "title": "Integrative Proteomics and Phosphoproteomics Profiling of Chronic Enteropathy Associated with &lt;i&gt;SLCO2A1&lt;/i&gt; Gene Reveals Mucosal Barrier Impairment and Focal Adhesion Pathway Alterations.",
@@ -3113,7 +3509,41 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 85,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~900 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~900 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈900",
+        "No TMT confirmation"
+      ]
+    },
+    {
+      "pmid": "42726788",
+      "title": "Protein mediators of chronic kidney disease in Type 2 diabetes: A mendelian randomization study.",
+      "abstract": "<h4>Background</h4>Chronic kidney disease (CKD) occurs in 20-50% of the people living with Type 2 diabetes (T2D) and is the leading cause of kidney failure worldwide. The cause of CKD is not fully understood, and few interventions prevent CKD in individuals living with diabetes. Here, we use large-scale proteomics data to identify circulating proteins that mediate the relationship between T2D and kidney disorders.<h4>Methods and findings</h4>First, we used two-sample mendelian randomization (MR) and identified 71 circulating proteins whose levels were altered by genetic predisposition to T2D based on circulating proteomic GWAS from deCODE with 35,559 individuals and T2D GWAS with 80,154 cases. Then, we used cis-genetic variants to proxy the causal effect of some of these T2D-influenced circulating proteins and found that, collectively, five proteins (INHBC, GNPTG, LPO, AGRN, and CTSD) affected three kidney traits (blood urea nitrogen [BUN], estimated glomerular filtration rate [eGFR] and CKD risk) based on GWAS with up to 1,004,040 participants. Notably, we found that higher levels of circulating INHBC protein were estimated to lead to a lower eGFR and higher BUN based on MR analyses. We then replicated this MR analysis with proteomic GWAS from four additional cohorts, namely, UKB-PPP, Fenland, ARIC, and EPIC-Norfolk. We observed a consistent direction of effect across all four proteomic GWAS datasets, supporting the robustness of our results against platform and cohort variation. In observational analyses, increased circulating INHBC levels were associated with increased hazard for kidney disease diagnosis in 37,854 UK Biobank participants. We estimated that circulating INHBC levels mediate 1.3% (95% confidence interval [0.85%, 1.9%]) of the association between T2D and kidney disease diagnosis. There are important limitations in this study. Firstly, although we observed limited evidence for violations to the MR assumptions, some are untestable. Secondly, our study was not based on individuals with diabetic kidney diseases, but rather independent population-based studies assessing diabetes and kidney function separately. Therefore, additional functional analyses in disease specific cohort are needed.<h4>Conclusions</h4>Collectively, these findings suggest that T2D influences the risk of CKD, in part, through increased circulating INHBC levels.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1371/journal.pmed.1004802",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 559,
+      "omics": [
+        "proteomics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": false,
+      "cohort_score": 83,
+      "description_en": "Omics: proteomics. Cohort: ~559 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈559",
+        "No TMT confirmation"
+      ]
     },
     {
       "pmid": "PPR1277412",
@@ -3135,20 +3565,26 @@
       "large_scale": true,
       "multi_omics": false,
       "cohort_score": 83,
-      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~535 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈535",
+        "No TMT confirmation"
+      ]
     },
     {
-      "pmid": "42056117",
-      "title": "Longitudinal Proteomics Analysis of Cerebrospinal Fluid in Survivors of Childhood Acute Lymphoblastic Leukemia.",
-      "abstract": "Mass spectrometry-based proteomic profiling of cerebrospinal fluid (CSF) in large patient cohorts, particularly among childhood cancer survivors, remains scarce, limiting opportunities for benchmarking, method development, and validation. Here, we present a longitudinal CSF proteomics dataset from survivors of childhood acute lymphoblastic leukemia (ALL). Samples were collected from 178 patients enrolled in the TOTXVI therapeutic protocol at two timepoints: diagnosis (pre-treatment) and during the consolidation phase of chemotherapy (totaling 356 samples). CSF proteomes were profiled using tandem-mass-tag (TMT) labeling coupled with extensive fractionation and high-resolution liquid chromatography-tandem mass spectrometry (LC/LC-MS/MS). The dataset includes quantitative profiles for more than 3,000 confidently identified unique proteins. This dataset enables the investigation of chemotherapy-induced alterations in the CSF proteome and provides a valuable resource for studying the molecular mechanisms of neurotoxicity, identifying biomarkers of adverse late effects, and guiding the development of neuroprotective strategies in childhood cancer survivors.",
+      "pmid": "42703036",
+      "title": "Proteomic profiling of cephalic vein reveals potential biomarkers for arteriovenous fistula neointimal hyperplasia in ESRD patients.",
+      "abstract": "Arteriovenous fistula (AVF) is the preferred vascular access for patients with end-stage renal disease; however, its failure is primarily due to neointimal hyperplasia. Five patients who underwent initial AVF surgery served as the control group, and another five patients with failed AVF surgery served as the experimental group. Herein, we employed mass spectrometry (MS)-based quantitative proteomics coupled with tandem mass tag labeling to screen differentially expressed proteins (DEPs) in the anastomotic cephalic vein, followed by bioinformatics analyses and verification experiments. A total of 121 DEPs were identified in the failed AVF group. GO analysis was primarily enriched in protein binding, nucleic acid binding, enzyme binding, mRNA binding, cadherin binding, catalytic activity, and cell adhesion molecule binding. KEGG pathways were mainly enriched in cell aggregation and adhesion, actin cytoskeleton, extracellular matrix-receptor interaction, PI3K-Akt signaling pathway, complement and coagulation cascades, and cholesterol metabolism. Protein-protein interaction network consisted of 86 (71.07%) DEPs, including complement VII (C7), factor IX (F9), SERPINC1, microfibril-associated glycoprotein 4 (MFAP4), complement C1s subcomponent, complement C1q subcomponent subunit A, complement C1q subcomponent subunit B, tissue factor, and von Willebrand factor, which interacting with numerous other proteins. In the expanded validation for different patients, C7, F9, SERPINC1, and MFAP4, were verified by immunohistochemical staining and Western blotting, which were consistent with the proteomics results. Collectively, this study identifies a series of potential diagnostic biomarkers, and explores the underlying mechanisms associated with AVF dysfunction.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
-      "doi": "10.1038/s41597-026-07326-9",
+      "doi": "10.1080/0886022x.2026.2716956",
       "pxd_mentioned": [],
       "accessions_mentioned": [],
       "source": "europe_pmc",
-      "patient_n": 178,
+      "patient_n": 121,
       "omics": [
         "proteomics"
       ],
@@ -3157,30 +3593,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 60,
-      "description_en": "Omics: proteomics. Cohort: ~178 patients/participants (from abstract). TMT/isobaric. 2026"
-    },
-    {
-      "pmid": "41998177",
-      "title": "Phosphorylated filamin-A at serine 1459 from plasma-derived small extracellular vesicles as a promising biomarker for high-risk adenoma and colorectal cancer.",
-      "abstract": "Colorectal cancer (CRC) is the third most diagnosed cancer and the second leading cause of cancer-related death worldwide. Early detection can reduce CRC mortality by more than 90%. Circulating small extracellular vesicles (sEVs) are emerging as promising biomarkers for CRC, but their role in detecting precancerous lesions remains unclear. Herein, parallel proteomic and phosphoproteomic analyses of plasma-derived sEVs were performed in healthy subjects with negative colonoscopy, patients with high-risk adenoma (HRA) and patients with CRC. A total of 139 phosphorylation sites on 52 proteins were identified, among which 16 phosphorylation sites on 12 sEV proteins showed significant changes (≥ 2-fold) with 90% confidence in site localization. Web-based validation demonstrated that the phosphorylation level of sEV-derived filamin-A at serine 1459 (pFLNA<sup>Ser1459</sup>) correlated with the Clinical Proteomic Tumor Analysis Consortium colon cancer dataset. Immunoblot analysis confirmed that sEV-derived pFLNA<sup>Ser1459</sup> was significantly reduced in CRC patients compared with healthy subjects, whereas the highest levels were observed in HRA patients. Notably, sEV-derived pFLNA<sup>Ser1459</sup>, alone or in combination with FLNA, CD9, and TSG101, showed superior diagnostic performance in distinguishing HRA patients from CRC patients and healthy subjects. These findings suggest that plasma sEV-derived pFLNA<sup>Ser1459</sup> is a promising biomarker for colorectal neoplasm detection.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1038/s41598-026-48722-w",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": 139,
-      "omics": [
-        "proteomics",
-        "phosphoproteomics"
-      ],
-      "has_patients": "yes",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 65,
-      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics. Cohort: ~121 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈121",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "42310533",
@@ -3202,7 +3622,14 @@
       "large_scale": false,
       "multi_omics": false,
       "cohort_score": 50,
-      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ]
     },
     {
       "pmid": "42617593",
@@ -3228,56 +3655,67 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 55,
-      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026"
+      "description_en": "Omics: proteomics, transcriptomics, metabolomics, lipidomics, multi-omics. Cohort: ~81 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
-      "pmid": "42266181",
-      "title": "Integrative Proteogenomic Characterization of Left-Sided and Right-Sided Colorectal Cancer.",
-      "abstract": "Distinguishing characteristics have been found in the left-sided and right-sided colorectal cancer (CRC), which have different embryonic origins, molecular and clinical features. These result in differences in the efficacy of targeted therapy and immunotherapy. Multi-omics characterization, predicated upon tumor laterality, may facilitate a more precise and personalized approach to the treatment of patients with CRC. Encompassing whole-exome, proteomics, and phosphoproteomics sequencing, we conducted a comprehensive investigation of tumor and matched normal adjacent tissues from a total of 80 pairs of patients with CRC. Results revealed that the pathogenesis of left-sided CRC was predominantly associated with chromosomal instability, while right-sided CRC was primarily linked to microsatellite instability. Regarding the tumor microenvironment, left-sided CRC exhibited predominant microvascular endothelial cell proliferation, while right-sided CRC displayed enhanced MHC Class II-associated antigen presentation mediated by M1 macrophages. Additionally, the proportion of deficient mismatch repair that developed into microsatellite instability-high was observed to be lower in the left-sided CRC compared to the right-sided, indicating divergent DNA damage repair systems between laterality subtypes that contribute to differential immunotherapy efficacy. This integrated proteogenomic study provides a comprehensive and nuanced understanding of the molecular heterogeneity between left- and right-sided CRC, offering opportunities for optimizing these patients' treatment outcomes through tailored therapeutic strategies.",
+      "pmid": "42592821",
+      "title": "Identification of Pre-Diagnostic Protein Biomarkers for Liver Cirrhosis Based on Prospective Analysis of a Large-Scale Plasma Proteomics in the UK Biobank.",
+      "abstract": "<h4>Purpose</h4>Liver fibrosis and cirrhosis represent critical stages in the progression of chronic liver disease, yet their key molecular features remain incompletely understood.<h4>Experimental design</h4>We performed large-scale Olink-based proteomic profiling in over 40,000 participants from the UK Biobank with a median follow-up of 15.6 years to elucidate disease pathophysiology and identify pre-diagnostic biomarkers. Cross-sectional analysis included 66 prevalent cirrhosis cases, and prospective analysis identified 224 incident cirrhosis cases. Machine learning and Mendelian randomization (MR) were applied. An independent cohort was used for validation.<h4>Results</h4>Distinct dysregulated proteins were observed in compensated cirrhosis (CC) and decompensated cirrhosis (DC). In the prospective analysis, 696 proteins were associated with disease onset. A proteomic panel based on these markers achieved an AUC of 0.832 for predicting incident cirrhosis, outperforming established fibrosis scores including FIB-4, APRI, and NFS, and demonstrated robust performance across CC and DC populations. The protein panel showed predictive value (AUC = 0.743) for disease progression in an independent cohort. MR identified 66 proteins with putative causal roles, including 11 potential therapeutic targets.<h4>Conclusions and clinical relevance</h4>These findings provide novel molecular insights into cirrhosis development and support integrated proteomic biomarkers as a discovery and prioritization framework for early risk stratification.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
-      "doi": "10.1002/mco2.70806",
+      "doi": "10.1002/prca.70050",
       "pxd_mentioned": [],
       "accessions_mentioned": [],
       "source": "europe_pmc",
-      "patient_n": 80,
+      "patient_n": 66,
       "omics": [
-        "proteomics",
-        "phosphoproteomics",
-        "multi_omics"
+        "proteomics"
       ],
       "has_patients": "yes",
       "tmt_detected": false,
       "large_scale": true,
-      "multi_omics": true,
-      "cohort_score": 63,
-      "description_en": "Omics: proteomics, phosphoproteomics, multi-omics. Cohort: ~80 patients/participants (from abstract). large-scale study. 2026"
-    },
-    {
-      "pmid": "41785305",
-      "title": "Proteogenomic features define subtypes of mantle cell lymphoma.",
-      "abstract": "<h4>Abstract</h4>Mantle cell lymphoma (MCL) is a biologically heterogeneous B-cell malignancy. Although genomics and transcriptomics have delineated parts of the MCL disease spectrum, proteomics remains largely unexplored. Here, we conducted a comprehensive proteogenomic analysis integrating genomics, transcriptomics, and proteomics on peripheral blood samples from 27 patients with MCL and 4 healthy donors to investigate the translational and posttranslational dimensions of MCL. Our study identified 1296 downregulated and 468 upregulated proteins in MCL cells. The splicing pathways were significantly upregulated at both the mRNA and protein levels, suggesting a critical role for aberrant RNA splicing in MCL pathogenesis. Integration of proteomic data with genetic aberrations revealed immunoglobulin heavy chain variable mutational status and CCND1 mutation are associated with distinctive transcriptomic and proteomic profiles, which correspond to significant differences in clinical outcomes. A multiomics molecular stratification model incorporating proteomic data showed superior predictive power for patient survival compared with single-omics models (concordance index, 0.83 vs 0.74). This study provides, to our knowledge, the first comprehensive proteogenomic profile of MCL, offering novel insights into its molecular mechanisms and clinical behavior. The identification of molecular subtypes and prognostic protein signatures underscores the potential of proteomics to guide precision medicine strategies for MCL.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1182/bloodadvances.2025018701",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": 27,
-      "omics": [
-        "proteomics",
-        "transcriptomics",
-        "genomics",
-        "multi_omics"
-      ],
-      "has_patients": "yes",
-      "tmt_detected": false,
-      "large_scale": true,
-      "multi_omics": true,
+      "multi_omics": false,
       "cohort_score": 53,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026"
+      "description_en": "Omics: proteomics. Cohort: ~66 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
+    },
+    {
+      "pmid": "42649884",
+      "title": "A Multi-Layered Proteogenomic Framework for the Prioritization of Cell Surface Therapeutic Targets: Proof-of-Concept for Metastatic Colorectal Cancer.",
+      "abstract": "<h4>Background</h4>Identification of tumor-specific cell surface targets is a critical step in the development of precision oncology therapeutics, including radioligand- and antibody-based approaches. However, existing strategies often rely on single-layer analyses and lack systematic integration of proteomic, genomic, and clinical metadata.<h4>Methods</h4>We developed a multi-layered proteogenomic filtering framework integrating quantitative proteomics from colorectal cancer (CRC) cohorts with curated metadata on protein localization, normal tissue expression, and druggability. Eleven complementary filtering strategies were applied, followed by manual curation for extracellular accessibility and composite scoring based on protein rank, localization, and clinical relevance.<h4>Results</h4>Application of the pipeline to metastatic CRC (mCRC) identified multiple high-confidence candidate targets, including GPRC5A, SLC2A1, CD47, DPEP1 and IFITM1. The average pairwise overlap between filtering strategies was low (0.11), indicating limited redundancy and complementary target identification across approaches. Importantly, candidates detected by multiple strategies were significantly enriched for established biomarkers (FAP, CEACAM5, ITGAV, ITGB4), which were exclusively found among multi-strategy candidates (10.3% vs. 0%; Fisher's exact test, <i>p</i> = 0.0064), supporting overlap-based prioritization as a marker of biological and translational relevance. Composite scoring further prioritized GPRC5A as a leading candidate. Additional validation layers supported tumor-enriched expression, plasma membrane localization, and relevance across multiple cancer indications.<h4>Conclusions</h4>This study presents a scalable framework for prioritization of cell surface therapeutic targets, using mCRC as proof-of-concept indication. By integrating multiple data layers and incorporating translational criteria early in the discovery process, this approach may facilitate more efficient identification of targets for downstream development, including antibody- and radioligand-based therapies.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.3390/cancers18162570",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "genomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42134687",
@@ -3301,7 +3739,12 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1307828",
@@ -3325,30 +3768,71 @@
       "large_scale": true,
       "multi_omics": true,
       "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
-      "pmid": "PPR1281063",
-      "title": "Primary Hyperparathyroidism Reveals Limited Adipose Remodeling in Human",
-      "abstract": "<h4>ABSTRACT</h4>  <h4>Background</h4>  Preclinical models implicate the parathyroid hormone/parathyroid-hormone-related protein (PTH/PTHrP)-PTH1 receptor (PTH1R) axis in adipocyte lipolysis, adipose browning, and energy wasting. Whether this catabolic program is reproduced in vivo in humans remains unresolved. Primary hyperparathyroidism (PHPT), a condition of chronic endogenous PTH excess, provides a clinically relevant model to test the translational relevance of this pathway. <h4>Methods</h4>  We combined population-scale analyses with a prospective human intervention study. PTH/PTH1R associations with body composition were evaluated in the UK Biobank and compared with PTH dynamics in cancer-associated cachexia using TRACERx proteomic data. In parallel, patients with PHPT were assessed before and after parathyroidectomy and compared with matched surgical controls. Biochemical parameters, circulating adipocytokines, DXA- and BIA-derived body composition, histology, UCP1 immunohistochemistry, and supraclavicular adipose tissue transcriptomic and proteomic profiles were integrated, with external validation in an independent supraclavicular adipose dataset. <h4>Results</h4>  In the UK Biobank, apparent positive associations between circulating PTH/PTH1R signals and fat or lean mass were markedly attenuated after matching for age, sex, and BMI, arguing against a disease-specific adiposity effect of PHPT. In TRACERx, circulating PTH did not increase across BMI-adjusted weight-loss grades. In the prospective cohort, parathyroidectomy normalized PTH, calcium, and phosphate but did not induce coherent changes in glucose metabolism, lipid profile, inflammatory markers, body weight, fat mass, lean mass, or thermogenic adipose signatures. Supraclavicular adipose histology, UCP1 staining, RNA-seq, proteomics, pathway analysis, and external dataset reanalysis converged on the absence of browning or thermogenic activation. By contrast, PHPT was associated with a selective adipose-related secretory phenotype: adiponectin, adipsin, and retinol-binding protein 4 were reversible after surgery, whereas lipocalin- 2 and thrombospondin-1 remained elevated. <h4>Conclusions</h4>  Chronic endogenous PTH excess is not sufficient to induce a detectable thermogenic or energy- dissipating adipose program in humans under basal clinical conditions. These findings challenge direct extrapolation from rodent PTH/PTHrP models and reposition the human PTH-adipose axis as a selective secretory and remodeling pathway rather than a dominant driver of adipose browning or wasting. <h4>Highlights</h4>  PHPT provides an in vivo human model of chronic endogenous PTH excess. PTH/PTH1R associations with body composition are lost after stringent confounder control. Parathyroidectomy normalizes mineral metabolism without inducing adipose browning or wasting. Supraclavicular adipose histology, UCP1 staining, transcriptomics, and proteomics show no thermogenic activation. PHPT unmasks a selective adipose-related secretory signature with reversible and persistent components.",
+      "pmid": "42237373",
+      "title": "Proteomics in bone malignancies: from bulk profiling to single-cell and ultra-low-input technologies.",
+      "abstract": "<h4>Background</h4>Bone malignancies, particularly high-grade primary bone sarcomas, remain clinically challenging due to early dissemination, marked heterogeneity, and limited progress in systemic therapies for metastatic or relapsed disease. While genomics and transcriptomics have clarified structural complexity and transcriptional programs, they provide only an indirect view of the functional machinery that ultimately drives invasion, immune escape, and therapy resistance. Proteomics and phosphoproteomics offer a complementary and often non-redundant layer by reporting protein abundance, pathway activity states, and actionable targets at the execution level. However, the strength of proteomics evidence is currently uneven across bone malignancy entities, with osteosarcoma providing the most mature cohort-scale multi-omics context, while emerging cohort-scale proteomics is increasingly available for selected entities such as Ewing sarcoma.<h4>Main body</h4>In this Review, we synthesize recent advances in mass spectrometry-based proteomics for bone malignancies, using osteosarcoma as the primary exemplar where cohort-scale proteomics / phosphoproteomics-integrated studies are most mature, while selectively incorporating evidence from other bone tumors and skeletal metastasis contexts. To address evidence heterogeneity explicitly, we highlight where conclusions are supported by cohort-scale tumor proteomics/proteogenomics versus where evidence remains exploratory, model-driven, or cross-entity extrapolations). We summarize key results from bulk tissue proteomics, circulating proteomics, extracellular vesicle (EV) and secretome profiling, and highlight how these data have revealed recurrent biological axes including extracellular matrix remodeling and cell-matrix signaling, metabolic rewiring and stress-response programs, and immune/stromal contexture. We further discuss how multi-omics integration refines molecular subtyping, links bulk signatures to functional dependencies, and supports biomarker prioritization with translational intent (e.g., secretome-informed circulating candidates). We additionally provide a practical comparison of proteomics workflows (label-free DDA/DIA, isobaric labeling, phosphoproteomics, top-down, and low-input/single-cell methods) and summarize key barriers to clinical implementation (pre-analytics, standardization, QC governance, and assay/regulatory considerations).<h4>Conclusions</h4>Finally, we outline emerging single-cell and ultra-low-input proteomics technologies and propose a staged roadmap for their implementation in bone tumor research, emphasizing feasibility atlases, integrated multi-omics cohorts, and translation into targeted assays and clinically deployable risk models. Collectively, available evidence suggests that proteomics may become an increasingly important pillar for precision medicine in bone malignancies by bridging molecular alterations to actionable functional states and cellular mechanisms. Real-world translation will require fit-for-purpose study designs, harmonized SOPs and multicenter benchmarking, and disciplined down-selection of discovery signatures into validated targeted assays that demonstrably add value beyond existing clinical predictors.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
-      "doi": "10.64898/2026.07.05.736588",
+      "doi": "10.1186/s12967-026-08363-z",
       "pxd_mentioned": [],
       "accessions_mentioned": [],
       "source": "europe_pmc",
       "patient_n": null,
       "omics": [
         "proteomics",
-        "transcriptomics"
+        "phosphoproteomics",
+        "transcriptomics",
+        "genomics",
+        "multi_omics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": true,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 30,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, genomics, multi-omics. Patients mentioned; exact N not extracted. TMT/isobaric. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort + TMT mention"
+      ]
+    },
+    {
+      "pmid": "42460659",
+      "title": "Proteomic investigation of signaling dynamics: from static maps to network rewiring.",
+      "abstract": "Cellular processes are controlled by interconnected networks of protein-protein interactions that can be dynamically regulated by post-translational modifications such as phosphorylation. Dysregulation of signaling pathways can drive cellular transformation and contribute to cancer treatment resistance. Mass spectrometry (MS)-based approaches have emerged as key technologies to study both protein function and their dynamic regulation at a network level. Modern proteomics allows investigators to study how signaling networks are rewired in response to genetic lesions, external cues, and targeted therapies, enabling the comparison of baseline (steady-state) networks to perturbed states. Here, we briefly describe key advancements in proteomics to study signaling dynamics, including affinity-purification combined with MS, proximity proteomics (e.g., BioID, APEX), and phosphoproteomics. We highlight how proteomics has led to the identification of comprehensive protein-protein interaction networks, to the delineation of protein subcellular localization maps and to discoveries regarding their dynamics and rewiring in disease. Finally, we comment on the future directions of proteomics to study signaling dynamics, enabled by next-generation MS instruments and AI-driven data analysis, and discuss how these developments are paving the way for clinical translation by bringing quantitative network biology into patient-relevant contexts.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1042/bsr20250116",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
       ],
       "has_patients": "maybe",
       "tmt_detected": false,
-      "large_scale": true,
+      "large_scale": false,
       "multi_omics": true,
-      "cohort_score": 33,
-      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026"
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "PPR1289484",
@@ -3371,7 +3855,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
       "pmid": "42305618",
@@ -3395,39 +3884,21 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
-      "pmid": "42167233",
-      "title": "The proteomics and phosphoproteomics landscape of melanoma under T cell attack.",
-      "abstract": "Understanding how tumor cells interact with tumor-infiltrating lymphocytes (TILs) is crucial for improving immunotherapy, yet protein-level changes remain largely unexplored. To address this, we profile the early responses of patient-derived melanoma cells co-cultured with matched autologous TILs. To distinguish tumor from TIL proteomes without physical sorting, we apply stable isotope labeling by amino acids in cell culture (SILAC) coupled with Orbitrap Astral data-independent acquisition (DIA) mass spectrometry (MS). This approach enables cell type-specific profiling of protein phosphorylation and degradation, alongside bulk analysis of the early newly synthesized proteome during active immune attack. Our analyses resolve interferon-γ-dependent changes in melanoma cells, identify the cytotoxic and regulatory T cell molecule (CRTAM) as a selective marker of reactive TILs, and reveal rapid tumor-intrinsic activation of DNA damage response-associated kinases, exposing potential therapeutic vulnerabilities. Overall, this framework provides a powerful resource for dissecting tumor-immune interactions to guide biomarker discovery and advance immunotherapy.",
+      "pmid": "42656953",
+      "title": "Multi-omics-driven precision medicine.",
+      "abstract": "Precision medicine is increasingly constrained not by a lack of molecular data but by the absence of frameworks that can translate multidimensional biological information into actionable clinical decisions. Multi-omics-driven precision medicine (MODPM) addresses this lack by integrating genomics, epigenomics, transcriptomics, proteomics, metabolomics, microbiome, and clinical context into a multiscale framework that links molecular mechanisms, tissue organization, and patient trajectories. In this review, we propose a conceptual framework for MODPM and examine how advances in multi-omics technologies, artificial intelligence (AI), and foundation models are reshaping disease modeling, drug development, and precision intervention. We summarize the biological contributions of major omics layers and discuss how AI supports cross-modal representation learning, contextual modeling, and perturbation-aware prediction. We highlight drug development as a key translational application of MODPM and further discuss its clinical relevance across three major disease contexts: cancer, autoimmune diseases, and metabolic disorders, including cardiometabolic and renal-metabolic diseases. These examples illustrate how MODPM can support target discovery, disease endotyping, treatment response prediction, and clinical monitoring by analyzing shared mechanisms such as immune dysregulation, metabolic remodeling, chronic inflammation, tissue microenvironmental changes, and gene-environment interactions. Across these settings, MODPM enables finer molecular stratification, the identification of pathway-dominant disease states, improved response prediction, and dynamic treatment monitoring. We also discuss key barriers to implementation, including data heterogeneity, limited cohort diversity, polygenic complexity, workflow constraints, cost, and ethical issues related to privacy, consent, and data ownership. Overall, the value of MODPM lies not in stacking additional data layers but in building a multiscale, continuously learnable framework to link biological heterogeneity to clinically interpretable and actionable decisions.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
-      "doi": "10.1016/j.xcrm.2026.102829",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": null,
-      "omics": [
-        "proteomics",
-        "phosphoproteomics"
-      ],
-      "has_patients": "maybe",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
-    },
-    {
-      "pmid": "42450251",
-      "title": "Multi-Omics Integration in Stroke: Neuroinflammatory Endotypes, Immune Cell Crosstalk, and Precision Biomarker Discovery.",
-      "abstract": "Stroke remains one of the leading causes of death and disability worldwide, yet its clinical management is constrained by substantial biological heterogeneity that single-biomarker and single-omics approaches fail to resolve. The integration of multiple molecular data layers, such as genomics, epigenomics, transcriptomics, proteomics, metabolomics, and immunomics, offers a transformative framework for investigating the underlying neuroinflammatory mechanisms of different stroke subtypes and endotypes. In this review, we synthesize the current multi-omics evidence in stroke by examining how genetic variants propagate through regulatory and immune pathways and generate measurable molecular signatures and clinically relevant biomarkers. We investigate the roles of microglia, infiltrating monocyte-derived macrophages, astrocytes, neutrophils, T cells, and endothelial cells as interacting nodes in the neuroimmune network after stroke, and analyze how spatially resolved single-cell transcriptomics illuminate state-specific programs previously undetectable in bulk tissue analyses. We discuss how proteomics and metabolomics translate these cellular programs into actionable circulating biomarkers and examine emerging evidence on blood-brain barrier disruption and neurovascular unit remodeling as multi-omics-defined targets. We then explore AI and machine learning frameworks enabling the integration of heterogeneous, high-dimensional datasets for endotype classification, patient stratification, and therapeutic response prediction. Finally, we address translational barriers, including analytical standardization, multi-ancestry generalizability, and regulatory readiness, and propose a roadmap for precision stroke medicine based on systems immunology. The core conceptual point of this review is the shift from describing omics findings in stroke cases to redefining biologically meaningful neuroinflammatory endotypes and using multi-omics to enable precision cerebrovascular medicine.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.3390/ijms27135984",
+      "doi": "10.1002/imt2.70165",
       "pxd_mentioned": [],
       "accessions_mentioned": [],
       "source": "europe_pmc",
@@ -3444,16 +3915,49 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     },
     {
-      "pmid": "42538555",
-      "title": "A multicenter prospective observational multi-omics study protocol to identify biomarkers for severe dengue: COMBAT study clinical protocol.",
-      "abstract": "<h4>Background</h4>Dengue virus (DENV) infection poses a major global public health burden, particularly in endemic regions where repeated exposure increases the risk of severe disease. Despite revisions to the World Health Organization (WHO) dengue classification, early prediction of progression to severe dengue remains challenging due to overlapping clinical and laboratory features. Current management strategies rely primarily on supportive care and reactive monitoring, underscoring the need for predictive biomarkers that enable early risk stratification and timely intervention.<h4>Methods</h4>COMBAT is a prospective, multicenter, observational longitudinal study conducted in dengue-endemic regions of Guatemala and India. Patients will be classified according to WHO 2009 criteria into dengue without warning signs, dengue with warning signs, and severe dengue, alongside age- and sex-matched healthy controls. A single blood sample will be collected from non-hospitalized patients while two blood samples per participant will be collected during hospitalization and one at discharge. Multi-omics analyses, including transcriptomics, proteomics, glycomics and metabolomics, will be performed in a discovery cohort and validated in an independent cohort. Integrated systems biology approaches will be used to identify host immune and metabolic pathways associated with dengue severity in a mechanism-based prognostic biomarker discovery.<h4>Discussion</h4>This study aims to generate comprehensive systems-level insights into host-virus interactions driving dengue severity and to identify biomarkers predictive of disease progression. The findings may inform improved patient triage, early intervention strategies, and the identification of novel therapeutic targets.<h4>Trial registration</h4>ClinicalTrials.gov ID NCT06751836 Registration Date: December 13, 2024, CTRI/2022/10/046293 (MAHE) Registration Date: October 10, 2022.",
+      "pmid": "42573022",
+      "title": "Proteomic Biomarker Discovery in Breast Cancer: Advances, Challenges, and Translational Prospects.",
+      "abstract": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and clinically accessible biofluids, including serum, plasma, saliva, nipple aspirate fluid, urine, and extracellular vesicle-enriched fractions, to identify protein signatures with potential diagnostic and therapeutic relevance. Contemporary platforms, including LC-MS/MS, data-independent acquisition mass spectrometry, multiplexed quantitative proteomics, targeted proteomics using multiple reaction monitoring and parallel reaction monitoring, spatial proteomics, and affinity-based high-throughput assays such as Olink and SomaScan, have expanded the analytical depth and clinical scalability of breast cancer biomarker research. However, many candidate biomarkers remain confined to discovery or early verification stages because of limited analytical sensitivity, insufficient specificity, inter-platform variability, small and heterogeneous cohorts, incomplete external validation, and uncertainty regarding clinical utility beyond established pathological markers. This review critically evaluates current proteomic technologies and proteomics-derived biomarker candidates in breast cancer, distinguishes discovery-level findings from clinically validated evidence, and discusses the major methodological, regulatory, and implementation barriers that continue to limit translation into routine oncology practice. Greater emphasis on standardized workflows, targeted verification, multi-center validation, and clinically actionable biomarker panels will be essential for integrating proteomics into precision breast cancer care.",
       "data_availability": "",
       "journal": "",
       "year": "2026",
-      "doi": "10.1186/s12879-026-14111-x",
+      "doi": "10.1002/jbt.71049",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "genomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, genomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
+    },
+    {
+      "pmid": "42699062",
+      "title": "Genomic and integrative based progression biomarker discovery in adult sepsis: toward clinical stratification and precision medicine.",
+      "abstract": "Sepsis is a life-threatening syndrome characterized by a heterogeneous host response to infection that remains a major cause of mortality worldwide. Current clinical scoring systems capture organ dysfunction but fail to reflect the underlying biological diversity, limiting their utility for patient stratification and targeted therapy. This review provides a comprehensive overview of molecular biomarker approaches used to predict sepsis course and prognosis in adult patients, covering genetic, transcriptomic, proteomic, and integrative strategies up to May 2026. Here, we summarize findings from genetic association studies, along with analyses based on polygenic risk scores to aggregate genetic effects, Mendelian randomization, and rare-variant sequencing approaches. We also review transcriptomic and proteomic strategies for endotyping, and diagnostic and prognostic discrimination. Lastly, we discuss how multi-omics integration is emerging as a promising framework to assist in distinguishing causal therapeutic targets from non-causal biomarkers. We also address the challenges that still constrain clinical translation towards precision medicine.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1016/j.aicoj.2026.100133",
       "pxd_mentioned": [],
       "accessions_mentioned": [],
       "source": "europe_pmc",
@@ -3461,7 +3965,7 @@
       "omics": [
         "proteomics",
         "transcriptomics",
-        "metabolomics",
+        "genomics",
         "multi_omics"
       ],
       "has_patients": "maybe",
@@ -3469,53 +3973,12 @@
       "large_scale": false,
       "multi_omics": true,
       "cohort_score": 25,
-      "description_en": "Omics: proteomics, transcriptomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026"
-    },
-    {
-      "pmid": "42362189",
-      "title": "Proteome Profiling Reveals NQO2 Activity Contributing to Proteasome Inhibitor Resistance in Multiple Myeloma Cell Lines.",
-      "abstract": "Proteasome inhibitors (PIs) are frontline therapies for multiple myeloma (MM). Although MM patients initially respond to PIs, resistance frequently emerges. While all PIs nominally target the same proteasomal catalytic subunit (PSMB5), the extent to which resistance mechanisms are the same or different among different PIs or between patients is poorly understood. To address this, we performed proteome and phosphoproteome profiling of 12 MM cell line models, comprising four parental lines (AMO-1, ARH77, L363, and RPMI8226) paired with lines that acquired resistance to bortezomib (BTZ) or carfilzomib (CFZ). Over 7000 proteins and up to 10,000 phosphopeptides were identified per cell line, enabling a comprehensive comparative analysis of shared and cell line-specific resistance signatures at the protein level. Data analysis revealed surprisingly few changes in the phosphoproteome but substantial reprogramming of the proteome in most models. Beyond known adaptations such as the overexpression of the PI target PSMB5 and the drug efflux transporter ABCB1, we identified the oxidoreductases NQO1 and NQO2 as significantly upregulated proteins under chronic proteotoxic stress across several models. Pharmacological follow up in PI resistant AMO-1 cells showed that NQO2 inhibition by imatinib fully restored CFZ sensitivity, validating NQO2 as a contributor to resistance formation in this model system.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1016/j.mcpro.2026.101615",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": null,
-      "omics": [
-        "proteomics",
-        "phosphoproteomics"
-      ],
-      "has_patients": "maybe",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 25,
-      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026"
-    },
-    {
-      "pmid": "42483205",
-      "title": "The proteomic and metabolomic signature of inherited chromosomally integrated HHV-6 and its role in all-cause dementia and mortality risk: The UK Biobank study.",
-      "abstract": "<h4>Objective</h4>To examine associations of inherited chromosomally integrated human herpesvirus 6 (iciHHV-6) with incident dementia and mortality, characterize proteomic and metabolomic correlates of carrier status, and evaluate whether these biomarkers relate to dementia and mortality risk.<h4>Methods</h4>We analyzed UK Biobank participants ≥50 years of age with plasma metabolomics (<i>N</i> = 138,676) and proteomics (<i>N</i> ≤ 15,416) data and ≈15 years of follow-up. Cox proportional hazards models adjusted for key confounding factors evaluated associations of iciHHV-6 with dementia and mortality. Multivariable linear models assessed iciHHV-6 associations with metabolomic and proteomic profiles. Mediation and interaction were evaluated using structural equation models and Cox models with biomarker interactions. Least absolute shrinkage and selection operator regression identified independent proteomic and metabolomic predictors using imputed biomarker data.<h4>Results</h4>iciHHV-6 was associated with higher dementia risk (hazard ratio [HR] = 1.32), particularly among women (HR = 1.66) and individuals with elevated Alzheimer's disease polygenic risk (HR = 1.49). Branched-chain amino acids (leucine and isoleucine) were elevated among carriers without mediating dementia risk. Proteomic analyses identified 126 nominally associated iciHHV-6-related proteins, many of which (Neurofilament Light Chain (NEFL), Glial Fibrillary Acidic Protein (GFAP), Yes-Associated Protein 1 (YAP1), Sialic Acid-binding Immunoglobulin-like Lectin 5 (SIGLEC5), Interleukin 19 (IL19), A Disintegrin And Metalloproteinase with Thrombospondin Motifs 16 (ADAMTS16), Sphingomyelin Phosphodiesterase 1 (SMPD1)) were also associated with dementia and/or mortality. Exploratory pathway analyses suggested enrichment of proteins related to immune regulation and post-translational modification. Predictive models identified NEFL, GFAP, Vascular Endothelial Growth Factor A (VEGF), Brevican (BCAN), remnant cholesterol, and polyunsaturated fatty acids as dementia predictors (area under the curve [AUC] = 0.83), whereas NEFL, Growth Differentiation Factor 15 (GDF15) Latent Transforming Growth Factor Beta Binding Protein 2 (LTBP2), Ectodysplasin A2 Receptor (EDA2R) and Advanced Glycosylation End-product Specific Receptor (AGER) predicted mortality (AUC = 0.70).<h4>Discussion</h4>iciHHV-6 was associated with increased dementia risk, particularly among women and genetically susceptible individuals, with neuroimmune and metabolic biomarker profiles potentially relevant to brain aging and mortality risk.",
-      "data_availability": "",
-      "journal": "",
-      "year": "2026",
-      "doi": "10.1002/trc2.70286",
-      "pxd_mentioned": [],
-      "accessions_mentioned": [],
-      "source": "europe_pmc",
-      "patient_n": null,
-      "omics": [
-        "proteomics",
-        "metabolomics"
-      ],
-      "has_patients": "maybe",
-      "tmt_detected": false,
-      "large_scale": false,
-      "multi_omics": true,
-      "cohort_score": 25,
-      "description_en": "Omics: proteomics, metabolomics. Patients mentioned; exact N not extracted. 2026"
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature — not a new repository ID"
+      ]
     }
   ]
 }
