@@ -153,7 +153,7 @@ def project_to_record(p: dict, *, source: str = "pride_api") -> dict[str, Any]:
     return {
         "accession": acc,
         "title": (p.get("title") or "")[:500],
-        "description": desc[:800],
+        "description": desc[:2500],
         "submission_date": _project_date(p),
         "publication_date": (p.get("publicationDate") or "")[:10],
         "organisms": _organism_names(p) or p.get("organisms") or [],

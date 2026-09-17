@@ -17,6 +17,7 @@ from atlas_agent.discovery.filters import (
     PROTEIN_LEVEL_OMICS,
 )
 from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
+from atlas_agent.discovery.catalog_profile import format_atlas_context_for_llm
 from atlas_agent.llm_client import _run_llm, resolve_engine
 
 ABSTRACT_SYSTEM = """You are a curator assistant for a human TMT proteomics atlas.

@@ -116,3 +116,23 @@ def test_unclear_human_rejected():
     ))
     assert r["qc_status"] == "rejected"
     assert any("Material not specified" in x for x in r["qc_reasons"])
+
+
+def test_pubmed_abstract_supplies_missing_pride_material():
+    r = assess_sample_material(_item(
+        title="Human TMT proteomics cohort",
+        description="Quantitative proteomics of patients",
+        abstract="Global proteome of tumor tissue from cancer patients using TMT 10-plex.",
+    ))
+    assert r["qc_status"] == "candidate"
+    assert "human_tumor_tissue" in r["material_signals"]["included"]
+
+
+def test_ai_material_label_counts_when_pride_card_is_empty():
+    r = assess_sample_material(_item(
+        title="Human TMT proteomics",
+        description="Patients cohort quantitative proteomics",
+        abstract_ai={"material": "cancer cell line", "material_suitable": True},
+    ))
+    assert r["qc_status"] == "candidate"
+    assert "human_cancer_cell_line" in r["material_signals"]["included"]

@@ -31,6 +31,15 @@ def finalize_discovery_report(report: dict[str, Any], cfg: dict[str, Any]) -> di
             resolve_publication_links(item, fetch_pride_pmid=da_cfg.get("fetch_pride_pmid", True))
             item["finding_note"] = format_finding_note(item)
 
+    from atlas_agent.discovery.repository_text import enrich_items_for_display
+
+    enrich_items_for_display(
+        report.get("candidates") or report.get("new_projects") or [],
+        cfg=cfg,
+        fetch_pubmed=True,
+    )
+    enrich_items_for_display(report.get("repository_manual") or [], cfg=cfg, fetch_pubmed=True)
+
     evaluate_discovery_report_from_config(report, cfg)
     report["methods_manifest"] = build_methods_manifest(report, cfg)
     return report

@@ -18,7 +18,7 @@ from atlas_agent.discovery.policy import assert_catalog_read_only, policy_summar
 from atlas_agent.discovery.sources.consortia import scan_all_consortia
 from atlas_agent.discovery.sources.pro_search import discover_projects_professional
 from atlas_agent.revisor.literature_watch import build_known_sets, filter_novel_items
-from atlas_agent.discovery.filters import apply_filters, default_filter_config
+from atlas_agent.discovery.filters import apply_filters, default_filter_config, build_catalog_index
 from atlas_agent.discovery.qc_outputs import build_qc_outputs
 from atlas_agent.viz.discovery_qc_html import generate_qc_html, qc_markdown_summary
 from atlas_agent.revisor.similarity import annotate_candidates
@@ -231,7 +231,27 @@ def run_discovery_scan(
         item["processing_tips"] = _suggest_processing(item, profile)
         item["is_novel"] = _is_novel(item, known)
 
+    from atlas_agent.discovery.repository_text import (
+        attach_local_excerpt,
+        enrich_items_for_display,
+        rescue_unspecified_material,
+    )
+
+    for item in all_raw:
+        attach_local_excerpt(item)
+
     buckets = apply_filters(all_raw, df, cfg=filter_cfg)
+    catalog_index = build_catalog_index(df)
+    from atlas_agent.llm_client import is_ollama_available
+
+    use_qwen = is_ollama_available()
+    material_rescue = rescue_unspecified_material(
+        buckets,
+        catalog_index,
+        cfg={**filter_cfg, "llm": (cfg or {}).get("llm") or {}},
+        fetch_pubmed=True,
+        use_llm=use_qwen,
+    )
 
     removed_moved = _apply_removed_from_workbook(buckets, cfg, root=root)
 
@@ -259,6 +279,12 @@ def run_discovery_scan(
         if str(x).strip()
     }
     qc_out = build_qc_outputs(buckets, known_acc)
+    enrich_items_for_display(
+        qc_out.get("candidates") or [], cfg=cfg, fetch_pubmed=True, use_llm=use_qwen
+    )
+    enrich_items_for_display(
+        qc_out.get("repository_manual") or [], cfg=cfg, fetch_pubmed=True, use_llm=use_qwen
+    )
     new_projects = qc_out["candidates"]
 
     from atlas_agent.discovery.data_availability import (
@@ -370,6 +396,7 @@ def run_discovery_scan(
             ),
             "requires_manual_check": len(buckets.get("requires_manual_check", [])),
             "rejected": len(buckets.get("rejected", [])),
+            "material_rescue": material_rescue,
             "removed_from_workbook": removed_moved,
             "human_filtered": sum(
                 1 for x in buckets.get("filtered_out", [])

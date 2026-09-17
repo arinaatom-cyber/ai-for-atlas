@@ -571,12 +571,30 @@ def _abstract_cell(item: dict) -> str:
         or item.get("abstract")
         or (item.get("abstract_ai") or {}).get("summary_en")
         or (item.get("abstract_ai") or {}).get("summary_ru")
+        or item.get("description")
+        or item.get("sample_processing_protocol")
+        or item.get("disease")
         or ""
     )
     snip = sentence_cap(re.sub(r"\s+", " ", str(snip).strip()))
-    if not snip:
+    fit = str(
+        item.get("atlas_fit") or (item.get("abstract_ai") or {}).get("atlas_fit") or ""
+    ).strip().lower()
+    parts: list[str] = []
+    if snip:
+        parts.append(f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>')
+    if fit in ("yes", "maybe", "no"):
+        parts.append(
+            f'<span class="badge fit-{_esc(fit)}" data-i18n="fit_llm_{_esc(fit)}"></span>'
+        )
+    src = str(item.get("excerpt_source") or "").strip().lower()
+    if src in ("pubmed", "pride", "pdc"):
+        parts.append(
+            f'<span class="muted excerpt-src" data-i18n="excerpt_src_{_esc(src)}"></span>'
+        )
+    if not parts:
         return '<span class="cell-empty">—</span>'
-    return f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>'
+    return f'<div class="cell-stack cell-abstract-block">{"".join(parts)}</div>'
 
 
 def _similar_hit_label(hit: dict) -> str:

@@ -115,6 +115,9 @@ def material_blob_from_item(item: dict[str, Any]) -> str:
         "primary_site", "sample_processing_protocol", "data_processing_protocol",
     ):
         parts.append(str(item.get(k) or ""))
+    ai = item.get("abstract_ai") or {}
+    for k in ("material", "summary_en", "summary_ru", "similar_atlas_theme"):
+        parts.append(str(ai.get(k) or ""))
     return " ".join(parts)
 
 
@@ -135,10 +138,36 @@ def _pdc_clinical_tumor_default(item: dict[str, Any], blob: str) -> bool:
     return True
 
 
+_AI_MATERIAL_INCLUDE = {
+    "tumor tissue": "human_tumor_tissue",
+    "adjacent normal": "normal_adjacent",
+    "human tissue": "human_tissue",
+    "cancer cell line": "human_cancer_cell_line",
+}
+_AI_MATERIAL_EXCLUDE = {"plasma", "serum", "blood", "organoid", "pdx"}
+
+
+def _ai_material_signals(item: dict[str, Any]) -> tuple[list[str], list[str]]:
+    ai = item.get("abstract_ai") or {}
+    mat = str(ai.get("material") or "").strip().lower()
+    if not mat or mat in ("unclear", "other", "unknown"):
+        return [], []
+    if mat in _AI_MATERIAL_EXCLUDE or ai.get("material_suitable") is False:
+        return [], [f"ai_material:{mat}"]
+    mapped = _AI_MATERIAL_INCLUDE.get(mat)
+    if mapped:
+        return [mapped], []
+    return [], []
+
+
 def _has_include_signal(blob: str, item: dict[str, Any]) -> tuple[bool, list[str]]:
     hits = _real_include_signals(blob)
     if hits:
         return True, hits
+
+    ai_inc, _ai_exc = _ai_material_signals(item)
+    if ai_inc:
+        return True, ai_inc
 
     if _pdc_clinical_tumor_default(item, blob):
         return True, ["pdc_clinical_tumor"]

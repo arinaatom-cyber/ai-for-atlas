@@ -98,8 +98,8 @@ agent:
 # Без API-ключей: prefer_cloud=false + ollama pull qwen2.5:3b
 llm:
   enabled: true
-  provider: "auto"          # auto | zai | qwen | claude | ollama | gpt4all
-  prefer_cloud: true        # cloud при наличии ключа; пилот 2026-08-10 — ollama:qwen2.5:3b
+  provider: "ollama"        # auto | zai | qwen | claude | ollama | gpt4all
+  prefer_cloud: false       # локальный Qwen; облако не тратим
   model: "qwen2.5:3b"       # Ollama; cloud: glm-4-flash / qwen-plus / claude-sonnet-4-6
   base_url: "http://127.0.0.1:11434/v1"
   gpt4all_model: "qwen2-1_5b-instruct-q4_0.gguf"

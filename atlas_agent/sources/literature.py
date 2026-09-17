@@ -11,21 +11,46 @@ def fetch_abstract(pmid: str) -> dict:
     pmid = re.sub(r"\D", "", str(pmid or ""))
     if not pmid:
         return {"pmid": "", "title": "", "abstract": "", "found": False}
-    params = {"query": f"EXT_ID:{pmid}", "format": "json", "pageSize": 1}
+    params = {
+        "query": f"EXT_ID:{pmid}",
+        "format": "json",
+        "pageSize": 1,
+        "resultType": "core",
+    }
     r = requests.get(EUROPE_PMC, params=params, timeout=25)
     r.raise_for_status()
     hits = (r.json().get("resultList") or {}).get("result") or []
     if not hits:
         return {"pmid": pmid, "title": "", "abstract": "", "found": False}
     h = hits[0]
+    abstract = str(h.get("abstractText") or "").strip()
+    if not abstract:
+        abstract = _ncbi_abstract(pmid)
     return {
         "pmid": pmid,
         "title": h.get("title") or "",
-        "abstract": h.get("abstractText") or "",
+        "abstract": abstract,
         "year": str(h.get("pubYear") or h.get("firstPublicationDate") or "")[:4],
         "journal": h.get("journalTitle") or "",
         "found": True,
     }
+
+
+def _ncbi_abstract(pmid: str) -> str:
+    """Fallback when Europe PMC lite/core has a title but no abstractText."""
+    try:
+        r = requests.get(
+            "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+            params={"db": "pubmed", "id": pmid, "retmode": "xml", "rettype": "abstract"},
+            timeout=25,
+        )
+        if r.status_code != 200:
+            return ""
+        chunks = re.findall(r"<AbstractText\b[^>]*>(.*?)</AbstractText>", r.text, flags=re.I | re.S)
+        text = " ".join(re.sub(r"<[^>]+>", " ", c) for c in chunks)
+        return re.sub(r"\s+", " ", text).strip()
+    except requests.RequestException:
+        return ""
 
 
 def text_mentions_normalization(text: str, strategy: str) -> dict:
