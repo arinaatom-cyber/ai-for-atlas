@@ -21,7 +21,7 @@ from atlas_agent.viz.site_components import (
     section_head,
 )
 from atlas_agent.viz.i18n_defaults import BRAND_NAME
-from atlas_agent.viz.site_theme import page_wrap
+from atlas_agent.viz.site_theme import DEPLOY_DOCS_PORTAL, DEPLOY_TMT, page_wrap
 
 
 def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, dict]:
@@ -106,7 +106,12 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 
     unified_rows, total_rows = build_unified_discovery_rows(items, papers, cohorts, pubs_by_pmid)
 
-    qc_link = '<p class="note-box"><a href="qc.html">QC report</a> — manual review &amp; rejected (separate page).</p>'
+    methods_html = _methods_panel(report)
+    methods_collapsed = f"""
+<details class="methods-collapse">
+  <summary data-i18n="sec_methods"></summary>
+  {methods_html}
+</details>"""
 
     body = (
         page_hero(
@@ -133,12 +138,11 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
     {note_i18n("note_kpi_new_projects")}
-    {note_i18n("note_unified_table")}
-    {_methods_panel(report)}
+    {methods_collapsed}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
-      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
+      <button type="button" class="chip" data-tfilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip active" data-tfilter="project" data-i18n="filter_projects"></button>
       <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers"></button>
       <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts"></button>
       <button type="button" class="chip" data-sfilter="all" data-i18n="filter_all_src"></button>
@@ -155,7 +159,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <tr class="head-groups">
             <th colspan="4" class="th-group" data-i18n="th_group_record"></th>
             <th colspan="5" class="th-group col-split" data-i18n="th_group_context"></th>
-            <th colspan="6" class="th-group col-split" data-i18n="th_group_details"></th>
+            <th colspan="7" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
           <th class="col-type" data-i18n="th_type"></th>
@@ -169,6 +173,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th data-i18n="th_n"></th>
           <th data-i18n="th_verdict" class="col-split"></th>
           <th data-i18n="th_confidence"></th>
+          <th data-i18n="th_similar"></th>
           <th data-i18n="th_fit"></th>
           <th data-i18n="th_analysis"></th>
           <th data-i18n="th_data"></th>
@@ -179,7 +184,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     </div>
   </section>
 
-  {qc_link}
 </div>
 
 <script>
@@ -188,7 +192,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'all';
+  let tFilter = 'project';
   let sFilter = 'all';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
@@ -231,5 +235,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 
     out = Path(out_path or "reports/discovery_index.html")
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(page_wrap(active="discovery", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
+    nav_active = "home" if deploy in (DEPLOY_DOCS_PORTAL, DEPLOY_TMT) else "discovery"
+    out.write_text(page_wrap(active=nav_active, body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
     return out

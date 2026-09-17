@@ -30,7 +30,7 @@ _SHARED: dict[str, str] = {
 }
 
 _EN: dict[str, str] = {
-    "brand_sub": "AI search · Organ map · Discovery · QC",
+    "brand_sub": "New TMT projects · atlas similarity",
     "nav_home": "Home",
     "nav_map": "Organ map",
     "footer_policy": (
@@ -79,9 +79,9 @@ _EN: dict[str, str] = {
     "map_organs_title": "Quick organ links",
     "card_update_title": "Update data",
     "card_update_desc": "Run: python run_discovery.py scan · publish · export for GitHub Pages",
-    "disc_title": "Discovery — full analysis",
+    "disc_title": "New projects",
     "disc_lead": (
-        "New human TMT projects · semantic abstract screening · material QC · data availability"
+        "Candidates not in catalog: ID, PMID, description, PRIDE/PDC/MassIVE/iProX links, atlas similarity"
     ),
     "disc_catalog_hidden": "catalog hidden",
     "disc_catalog_n": "projects in atlas",

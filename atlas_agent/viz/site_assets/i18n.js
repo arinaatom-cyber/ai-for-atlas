@@ -89,12 +89,12 @@
 
   const PAGE = {
     ru: {
-      brand_sub: "ИИ поиск · Карта · Discovery · QC",
+      brand_sub: "Новые TMT проекты · похожесть на атлас",
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
-      disc_title: "Discovery — полный анализ",
+      disc_title: "Новые проекты",
       disc_lead:
-        "Новые human TMT проекты · семантический разбор абстрактов · QC материала · доступность данных",
+        "Кандидаты вне каталога: ID, PMID, описание, ссылки на PRIDE/PDC/MassIVE/iProX, оценка похожести на атлас",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
       kpi_new: "новых проектов",
@@ -216,12 +216,12 @@
       no_cohorts: "Когортные статьи не найдены — запустите scan",
     },
     en: {
-      brand_sub: "AI search · Organ map · Discovery · QC",
+      brand_sub: "New TMT projects · atlas similarity",
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
-      disc_title: "Discovery — full analysis",
+      disc_title: "New projects",
       disc_lead:
-        "New human TMT projects · semantic abstract screening · material QC · data availability",
+        "Candidates not in catalog: ID, PMID, description, PRIDE/PDC/MassIVE/iProX links, atlas similarity",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
       kpi_new: "new projects",

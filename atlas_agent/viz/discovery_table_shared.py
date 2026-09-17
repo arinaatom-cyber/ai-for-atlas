@@ -370,6 +370,27 @@ def _patient_cell(item: dict) -> str:
     return '<span class="cell-empty">—</span>'
 
 
+def _similar_cell(item: dict) -> str:
+    """Top catalog matches with similarity score 0–1."""
+    sim = item.get("similar_in_catalog") or []
+    if not sim:
+        return '<span class="cell-empty">—</span>'
+    chips: list[str] = []
+    for hit in sim[:2]:
+        pid = str(hit.get("project_id") or "").strip()
+        if not pid:
+            continue
+        score = hit.get("score")
+        try:
+            score_s = f"{float(score):.0%}" if score is not None else ""
+        except (TypeError, ValueError):
+            score_s = str(score or "").strip()
+        label = f"{pid} · {score_s}" if score_s else pid
+        repo = repository_url(pid)
+        chips.append(_link_chip(repo, label) if repo else f'<span class="badge badge-muted">{_esc(label)}</span>')
+    return _links_stack(chips) if chips else '<span class="cell-empty">—</span>'
+
+
 def _data_cell(it: dict) -> str:
     da = it.get("data_availability") or {}
     if isinstance(da, dict) and da:
@@ -596,6 +617,7 @@ def build_unified_discovery_rows(
             f"<td class='col-n'><span class='cell-empty'>—</span></td>"
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
+            f"<td class='col-similar'>{_similar_cell(it)}</td>"
             f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=ItemKind.PROJECT, pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
@@ -661,6 +683,7 @@ def build_unified_discovery_rows(
             f"<td class='col-n cell-mono'>{n_cell}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
+            f"<td class='col-similar'>{_similar_cell(it)}</td>"
             f"<td class='col-weight'>{unified_weight_cell(evaluation=evaluation, fit=fit, cohort_score=cohort_score)}</td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=lit_kind, has_accession=bool(acc), pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
@@ -669,5 +692,5 @@ def build_unified_discovery_rows(
         )
         total += 1
 
-    body = "\n".join(rows) or '<tr><td colspan="15" data-i18n="no_rows"></td></tr>'
+    body = "\n".join(rows) or '<tr><td colspan="16" data-i18n="no_rows"></td></tr>'
     return body, total

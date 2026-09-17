@@ -8,6 +8,7 @@ from atlas_agent.viz.discovery_table_shared import (
     _id_cell,
     _project_links,
     _render_analysis_cell,
+    _similar_cell,
     _title_cell,
     source_label,
 )
@@ -97,6 +98,15 @@ def test_project_links_massive_and_pmid():
     assert "PMID 38765432" in html
     assert "accession=MSV000080000" in html
     assert "Europe PMC" in html
+
+
+def test_similar_cell_shows_catalog_match():
+    html = _similar_cell(
+        {"similar_in_catalog": [{"project_id": "PXD012173", "score": 0.82}]}
+    )
+    assert "PXD012173" in html
+    assert "82%" in html
+    assert "pride" in html.lower()
 
 
 def test_qc_rows_include_pmid_description_repo():

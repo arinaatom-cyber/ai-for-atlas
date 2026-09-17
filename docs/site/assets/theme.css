@@ -110,11 +110,40 @@ code {
   margin-right: auto;
 }
 
+.brand-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-link:hover .brand-title {
+  color: var(--accent);
+}
+
 .brand-title {
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.02em;
+}
+
+.methods-collapse {
+  margin: 0.75rem 0 1rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+.methods-collapse summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.col-similar .link-chip,
+.col-similar .badge {
+  font-size: 0.78rem;
 }
 
 .brand-title::before {

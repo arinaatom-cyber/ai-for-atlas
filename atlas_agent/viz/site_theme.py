@@ -35,31 +35,34 @@ def _lang_toggle() -> str:
     return ""
 
 
-def _nav_paths(deploy: str) -> tuple[str, str, str, str, str | None]:
-    """home, atlas, discovery, qc, optional map_href."""
+def _nav_paths(deploy: str) -> dict[str, str]:
+    """Relative hrefs for top navigation."""
     if deploy == DEPLOY_DOCS_PORTAL:
-        return (
-            "index.html",
-            "site/atlas.html",
-            "site/discovery.html",
-            "site/qc.html",
-            None,
-        )
+        return {
+            "home": "index.html",
+            "ai": "site/ai_search.html",
+            "map": "site/map.html",
+            "atlas": "site/atlas.html",
+            "discovery": "site/discovery.html",
+            "qc": "site/qc.html",
+        }
     if deploy == DEPLOY_TMT:
-        return (
-            "index.html",
-            "atlas.html",
-            "discovery.html",
-            "qc.html",
-            "../index.html",
-        )
-    return (
-        "../index.html",
-        "atlas.html",
-        "discovery.html",
-        "qc.html",
-        None,
-    )
+        return {
+            "home": "index.html",
+            "ai": "ai_search.html",
+            "map": "../index.html",
+            "atlas": "atlas.html",
+            "discovery": "discovery.html",
+            "qc": "qc.html",
+        }
+    return {
+        "home": "../index.html",
+        "ai": "ai_search.html",
+        "map": "map.html",
+        "atlas": "atlas.html",
+        "discovery": "discovery.html",
+        "qc": "qc.html",
+    }
 
 
 def assets_prefix_for(deploy: str) -> str:
@@ -90,30 +93,21 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str | None = None) -> st
 
 
 def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
-    home, atlas, disc, qc, map_href = _nav_paths(deploy)
+    paths = _nav_paths(deploy)
 
     def nav(href: str, key: str, page: str) -> str:
         cls = "active" if active == page else ""
         return _i18n_el(key, tag="a", href=href, cls=cls)
 
-    map_link = (
-        f'\n      {_i18n_el("nav_map", tag="a", href=map_href, cls="nav-map")}'
-        if map_href
-        else ""
-    )
-
+    home_href = paths.get("discovery") or paths.get("home") or "index.html"
     return f"""<header class="site-header">
   <div class="site-header-inner">
     <div class="brand">
-      {_i18n_el("brand_title", tag="span", cls="brand-title")}
-      {_i18n_el("brand_sub", tag="span", cls="brand-sub")}
+      <a href="{_esc(home_href)}" class="brand-link">
+        {_i18n_el("brand_title", tag="span", cls="brand-title")}
+        {_i18n_el("brand_sub", tag="span", cls="brand-sub")}
+      </a>
     </div>
-    <nav class="site-nav">
-      {nav(home, "nav_home", "home")}
-      {nav(atlas, "nav_atlas", "atlas")}
-      {nav(disc, "nav_discovery", "discovery")}
-      {nav(qc, "nav_qc", "qc")}{map_link}
-    </nav>
     {_lang_toggle()}
   </div>
 </header>"""
