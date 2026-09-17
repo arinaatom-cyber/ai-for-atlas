@@ -9,6 +9,7 @@ from atlas_agent.viz.i18n_defaults import BRAND_NAME, en as i18n_default
 
 _ASSETS_DIR = Path(__file__).resolve().parent / "site_assets"
 
+GITHUB_CODE = "https://github.com/arinaatom-cyber/ai-for-atlas"
 GITHUB_TMT = "https://github.com/arinaatom-cyber/TMT"
 GITHUB_PROJECTS = "https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects"
 LIVE_TMT = "https://arinaatom-cyber.github.io/TMT/discovery/discovery.html"
@@ -33,6 +34,11 @@ def write_site_assets(site_dir: Path) -> Path:
 
 def _header_controls() -> str:
     return """<div class="header-controls">
+      <div class="theme-toggle" aria-label="Theme">
+        <button type="button" data-theme="light" title="Light">☀</button>
+        <button type="button" data-theme="dark" title="Dark">☾</button>
+        <button type="button" data-theme="auto" class="active" title="System">◐</button>
+      </div>
       <div class="lang-toggle" aria-label="Language">
         <button type="button" data-lang="ru" class="active">RU</button>
         <button type="button" data-lang="en">EN</button>
@@ -81,7 +87,7 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str | None = None) -> st
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{_esc(i18n_default('portal_lead')[:160])}"/>
   <title>{_esc(page_title)}</title>
-  <script>(function(){{try{{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}}catch(e){{}}}})();</script>
+  <script>(function(){{try{{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;var t=localStorage.getItem('atlas_site_theme')||'auto';if(t!=='auto')document.documentElement.dataset.theme=t;}}catch(e){{}}}})();</script>
   <link rel="stylesheet" href="{css}"/>
   <script src="{js}" defer></script>
   <script src="{ui}" defer></script>
@@ -123,7 +129,11 @@ def site_footer(*, deploy: str = DEPLOY_DOCS_SITE) -> str:
     live = LIVE_MAP if deploy == DEPLOY_TMT else LIVE_TMT
     return f"""<footer class="footer">
   <p data-i18n="footer_policy">{_esc(i18n_default("footer_policy"))}</p>
+  <p class="footer-opensource">
+    <a href="{GITHUB_CODE}" target="_blank" rel="noopener" data-i18n="footer_opensource">{_esc(i18n_default("footer_opensource"))}</a>
+  </p>
   <p>
+    <a href="{GITHUB_CODE}" target="_blank" rel="noopener" data-i18n="footer_code">{_esc(i18n_default("footer_code"))}</a> ·
     <a href="{GITHUB_TMT}" target="_blank" rel="noopener" data-i18n="footer_github">{_esc(i18n_default("footer_github"))}</a> ·
     <a href="{GITHUB_PROJECTS}" target="_blank" rel="noopener" data-i18n="footer_projects">{_esc(i18n_default("footer_projects"))}</a> ·
     <a href="{live}" target="_blank" rel="noopener" data-i18n="footer_live">{_esc(i18n_default("footer_live"))}</a>

@@ -16,6 +16,9 @@ from atlas_agent.viz.site_components import (
     meta_time,
     note_discovery_scope,
     page_hero,
+    pipeline_steps_panel,
+    scan_funnel_raw_stats,
+    scan_funnel_viz,
     section_desc,
     section_head,
 )
@@ -34,6 +37,31 @@ def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, d
 
 def _methods_stat(key: str, value: object) -> str:
     return f'<li><span data-i18n="{key}"></span> <b>{html.escape(str(value))}</b></li>'
+
+
+def _methods_unlimited(key: str) -> str:
+    return f'<li><span data-i18n="{key}"></span> <b data-i18n="cfg_unlimited"></b></li>'
+
+
+def _search_config_rows(cfg: dict) -> str:
+    rows = [_methods_stat("cfg_years", f"{cfg.get('year_from', '?')}–{cfg.get('year_to', '?')}")]
+    if cfg.get("repo_unlimited"):
+        rows.append(_methods_unlimited("cfg_repo_search"))
+    else:
+        for key, label in (
+            ("pride_max", "cfg_pride_max"),
+            ("massive_max", "cfg_massive_max"),
+            ("iprox_max", "cfg_iprox_max"),
+        ):
+            cap = cfg.get(key)
+            if cap:
+                rows.append(_methods_stat(label, cap))
+    pub = cfg.get("publications_max")
+    if pub:
+        rows.append(_methods_stat("cfg_pubs_max", pub))
+    else:
+        rows.append(_methods_unlimited("cfg_pubs_max"))
+    return "".join(rows)
 
 
 def _methods_panel(report: dict) -> str:
@@ -62,45 +90,14 @@ def _methods_panel(report: dict) -> str:
     <span class="meta-pill"><span data-i18n="meta_scan_date"></span> <b>{html.escape(str(m.get("generated_at") or report.get("generated_at") or "—")[:19].replace("T", " "))}</b></span>
   </div>
   {ai_agents_panel(m)}
+  {pipeline_steps_panel(m)}
+  {scan_funnel_viz(funnel=funnel, lit=lit, gate=gate, raw_repos=int(raw_repos or 0))}
+  {scan_funnel_raw_stats(funnel=funnel, lit=lit, gate=gate, raw_repos=int(raw_repos or 0), st=st)}
   <div class="methods-grid">
-    <div class="methods-card">
-      <h3 data-i18n="methods_funnel"></h3>
-      <ul class="methods-stats">
-        {_methods_stat("funnel_raw_repos", raw_repos)}
-        {_methods_stat("funnel_in_catalog", funnel.get("already_in_catalog", 0))}
-        {_methods_stat("funnel_filtered", funnel.get("filtered_out", s.get("filtered_out", 0)))}
-        {_methods_stat("funnel_candidates", funnel.get("candidates", s.get("candidates", 0)))}
-        {_methods_stat("funnel_manual", funnel.get("manual_check", 0))}
-        {_methods_stat("funnel_rejected", funnel.get("rejected_material", 0))}
-      </ul>
-    </div>
-    <div class="methods-card">
-      <h3 data-i18n="methods_literature"></h3>
-      <ul class="methods-stats">
-        {_methods_stat("lit_scanned", lit.get("publications_scanned", 0))}
-        {_methods_stat("lit_llm_read", lit.get("abstract_llm_read", st.get("abstract_llm_read", 0)))}
-        {_methods_stat("lit_regex_only", lit.get("abstract_regex_only", 0))}
-        {_methods_stat("lit_fit_yes", lit.get("atlas_fit_yes", 0))}
-        {_methods_stat("lit_fit_maybe", lit.get("atlas_fit_maybe", 0))}
-        {_methods_stat("lit_resolved", lit.get("literature_resolved", st.get("literature_resolved", 0)))}
-      </ul>
-    </div>
-    <div class="methods-card">
-      <h3 data-i18n="methods_data_gate"></h3>
-      <ul class="methods-stats">
-        {_methods_stat("gate_quant_table", gate.get("quant_table", 0))}
-        {_methods_stat("gate_omics_protein", gate.get("omics_protein", 0))}
-        {_methods_stat("gate_raw_only", gate.get("raw_only", 0))}
-        {_methods_stat("gate_no_files", gate.get("no_files", 0))}
-        {_methods_stat("gate_unknown", gate.get("omics_unknown", 0))}
-      </ul>
-    </div>
     <div class="methods-card">
       <h3 data-i18n="methods_search_cfg"></h3>
       <ul class="methods-stats">
-        {_methods_stat("cfg_years", f"{cfg.get('year_from', '?')}–{cfg.get('year_to', '?')}")}
-        {_methods_stat("cfg_pride_max", cfg.get("pride_max", "—"))}
-        {_methods_stat("cfg_pubs_max", cfg.get("publications_max", "—"))}
+        {_search_config_rows(cfg)}
         <li><span data-i18n="cfg_llm"></span> <b data-i18n="{llm_key}"></b></li>
         {_methods_stat("cfg_mode", cfg.get("search_mode", "—"))}
         {_methods_stat("cfg_tmt_plex", plex or "—")}
@@ -224,8 +221,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
       <span class="toolbar-label" data-i18n="toolbar_type"></span>
-      <button type="button" class="chip" data-tfilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip active" data-tfilter="project" data-i18n="filter_projects"></button>
+      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
+      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
       <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers"></button>
       <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts"></button>
       <span class="toolbar-divider" aria-hidden="true"></span>
@@ -243,15 +240,18 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       <table id="tbl-unified" class="data-table">
         <thead>
           <tr class="head-groups">
-            <th colspan="4" class="th-group" data-i18n="th_group_record"></th>
+            <th colspan="6" class="th-group" data-i18n="th_group_record"></th>
             <th colspan="5" class="th-group col-split" data-i18n="th_group_context"></th>
-            <th colspan="7" class="th-group col-split" data-i18n="th_group_details"></th>
+            <th colspan="8" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
+          <th class="col-num" data-i18n="th_num"></th>
           <th class="col-type" data-i18n="th_type"></th>
           <th class="col-id"><span class="th-main" data-i18n="th_project_id"></span><span class="th-hint" data-i18n="th_project_id_hint"></span></th>
           <th class="col-year" data-i18n="th_year"></th>
           <th class="col-title" data-i18n="th_title"></th>
+          <th class="col-disease" data-i18n="th_disease"></th>
+          <th class="col-organ" data-i18n="th_organ"></th>
           <th class="col-src col-split" data-i18n="th_source"></th>
           <th class="col-design" data-i18n="th_design"></th>
           <th class="col-omics" data-i18n="th_omics"></th>
@@ -260,6 +260,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-verdict col-split" data-i18n="th_verdict"></th>
           <th class="col-confidence" data-i18n="th_confidence"></th>
           <th class="col-similar" data-i18n="th_similar"></th>
+          <th class="col-abstract" data-i18n="th_abstract"></th>
           <th class="col-weight" data-i18n="th_fit"></th>
           <th class="col-analysis" data-i18n="th_analysis"></th>
           <th class="col-data" data-i18n="th_data"></th>
@@ -286,7 +287,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'project';
+  let tFilter = 'all';
   let sFilter = 'all';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
@@ -333,6 +334,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   else if (hash === 'papers') setTypeFilter('paper');
   else if (hash === 'projects') setTypeFilter('project');
   else apply();
+  rows.forEach((r, i) => {{
+    const num = r.querySelector('.col-num b');
+    if (num) num.textContent = String(i + 1);
+  }});
   document.addEventListener('atlas:lang', apply);
 }})();
 </script>

@@ -13,6 +13,7 @@ from atlas_agent.sources.dataset_resolve import (
 from atlas_agent.sources.iprox import search_iprox_tmt
 from atlas_agent.sources.massive import search_massive_tmt
 from atlas_agent.sources.pdc import search_pdc_tmt_studies
+from atlas_agent.discovery.search_limits import optional_cap
 from atlas_agent.sources.pride import search_pride_json
 
 
@@ -28,10 +29,12 @@ def search_publications_professional(
     lit_cfg = disc.get("literature") or {}
     min_rel = float(lit_cfg.get("min_relevance") or 0.25)
 
+    lit_cap = optional_cap(disc.get("publications_max"))
+    lit_page = page_size if lit_cap is None else max(page_size, lit_cap)
     pubs_raw, search_stats = search_atlas_literature(
         year_from=year_from,
         year_to=year_to,
-        page_size=max(page_size, int(disc.get("publications_max") or page_size)),
+        page_size=lit_page,
         min_relevance=min_rel,
     )
 
@@ -46,10 +49,10 @@ def discover_projects_professional(
     *,
     year_from: int = 2024,
     year_to: int = 2026,
-    pride_max: int = 50,
-    pub_max: int = 30,
-    massive_max: int = 25,
-    iprox_max: int = 25,
+    pride_max: int | None = None,
+    pub_max: int | None = 40,
+    massive_max: int | None = None,
+    iprox_max: int | None = None,
     pride_keywords: list[str] | None = None,
     profile_keywords: list[str] | None = None,
     known_accessions: set[str] | None = None,
@@ -68,13 +71,15 @@ def discover_projects_professional(
     known = {a.upper() for a in (known_accessions or set())}
     disc = (cfg or {}).get("discovery") or {}
 
+    pride_cap = optional_cap(pride_max) if pride_max is not None else optional_cap(disc.get("pride_max"))
     pride_raw = search_pride_json(
         keywords=pride_keywords,
         profile_keywords=profile_keywords,
         year_from=year_from,
         year_to=year_to,
-        page_size=pride_max,
-        max_pages=8,
+        page_size=100,
+        max_results=pride_cap,
+        max_pages=20,
         exclude_accessions=known,
     )
 
@@ -89,22 +94,26 @@ def discover_projects_professional(
         exclude_programs=pdc_cfg.get("exclude_programs") or [],
     )
 
+    massive_cap = optional_cap(massive_max) if massive_max is not None else optional_cap(disc.get("massive_max"))
+    iprox_cap = optional_cap(iprox_max) if iprox_max is not None else optional_cap(disc.get("iprox_max"))
+    pub_cap = optional_cap(pub_max) if pub_max is not None else optional_cap(disc.get("publications_max"))
+
     massive_raw = search_massive_tmt(
         pride_keywords,
-        max_results=massive_max,
+        max_results=massive_cap,
         exclude_accessions=known,
     )
 
     iprox_raw = search_iprox_tmt(
         pride_keywords,
-        max_results=iprox_max,
+        max_results=iprox_cap,
         exclude_accessions=known,
     )
 
     pubs_raw, abstract_ai_stats = search_publications_professional(
         year_from=year_from,
         year_to=year_to,
-        page_size=pub_max,
+        page_size=pub_cap or 200,
         cfg=cfg,
         atlas_context=atlas_context,
     )
@@ -113,7 +122,7 @@ def discover_projects_professional(
     literature_candidates: list[dict] = []
     if disc.get("abstract_resolve_accessions", False):
         pride_from_pubs = publications_to_projects(
-            pubs_raw, known_accessions=known, max_resolve=pub_max
+            pubs_raw, known_accessions=known, max_resolve=pub_cap or 40
         )
     if disc.get("abstract_semantic_resolve", False):
         semantic_from_pubs = resolve_semantic_publications(

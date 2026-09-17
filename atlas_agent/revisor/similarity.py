@@ -63,6 +63,8 @@ def find_similar(
         " ".join(
             [
                 candidate.get("title", ""),
+                str(candidate.get("disease") or ""),
+                str(candidate.get("primary_site") or candidate.get("organ") or ""),
                 " ".join(str(x) for x in (candidate.get("organisms") or [])),
                 candidate.get("abstract_snippet", "") or candidate.get("abstract", ""),
             ]
@@ -93,12 +95,15 @@ def annotate_candidates(
     *,
     threshold: float = 0.18,
 ) -> list[dict]:
-    """Похожесть к каталогу: Jaccard по словам (не ИИ). Индекс каталога строится один раз."""
     catalog_index = catalog_token_index(df)
     out = []
     for c in candidates:
         c = dict(c)
         sim = find_similar(c, df, threshold=threshold, index=catalog_index)
+        if not sim:
+            best = find_similar(c, df, threshold=0.0, top_k=1, index=catalog_index)
+            if best and float(best[0].get("score") or 0) > 0:
+                sim = best
         c["similar_in_catalog"] = sim
         c["has_close_match"] = bool(sim and sim[0]["score"] >= 0.35)
         out.append(c)

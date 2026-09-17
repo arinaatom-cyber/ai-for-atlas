@@ -174,13 +174,15 @@ def run_discovery_scan(
     if scan_cfg.get("strict_sample_design") is not None:
         filter_cfg["strict_sample_design"] = scan_cfg.get("strict_sample_design")
 
+    from atlas_agent.discovery.search_limits import optional_cap
+
     pro = discover_projects_professional(
         year_from=year,
         year_to=int(scan_cfg.get("year_to") or 2026),
-        pride_max=int(scan_cfg.get("pride_max") or 50),
-        pub_max=int(scan_cfg.get("publications_max") or 30),
-        massive_max=int(scan_cfg.get("massive_max") or 25),
-        iprox_max=int(scan_cfg.get("iprox_max") or 25),
+        pride_max=optional_cap(scan_cfg.get("pride_max")),
+        pub_max=optional_cap(scan_cfg.get("publications_max")),
+        massive_max=optional_cap(scan_cfg.get("massive_max")),
+        iprox_max=optional_cap(scan_cfg.get("iprox_max")),
         pride_keywords=scan_cfg.get("pride_keywords") or ["TMT", "tandem mass tag", "isobaric"],
         profile_keywords=profile.get("search_keywords"),
         known_accessions=known,

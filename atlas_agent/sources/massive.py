@@ -12,7 +12,7 @@ MASSIVE_API = "https://massive.ucsd.edu/ProteoSAFe/datasets_json.jsp"
 def search_massive_tmt(
     keywords: list[str] | None = None,
     *,
-    max_results: int = 30,
+    max_results: int | None = None,
     exclude_accessions: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     kws = keywords or ["TMT", "tandem mass tag"]
@@ -54,6 +54,6 @@ def search_massive_tmt(
                 "tmt_detected": True,
                 "human": None,
             })
-            if len(out) >= max_results:
+            if max_results is not None and len(out) >= max_results:
                 return out
     return out

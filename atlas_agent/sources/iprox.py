@@ -12,7 +12,7 @@ IPROX_SEARCH = "https://www.iprox.cn/proteomics/search"
 def search_iprox_tmt(
     keywords: list[str] | None = None,
     *,
-    max_results: int = 30,
+    max_results: int | None = None,
     exclude_accessions: set[str] | None = None,
 ) -> list[dict[str, Any]]:
     kws = keywords or ["TMT", "tandem mass tag"]
@@ -25,7 +25,7 @@ def search_iprox_tmt(
             try:
                 r = requests.get(
                     IPROX_SEARCH,
-                    params={"q": kw, "pageSize": max_results},
+                    params={"q": kw, "pageSize": max_results if max_results is not None else 200},
                     headers={"Accept": "application/json"},
                     timeout=45,
                 )
@@ -59,6 +59,6 @@ def search_iprox_tmt(
                 "tmt_detected": True,
                 "human": None,
             })
-            if len(out) >= max_results:
+            if max_results is not None and len(out) >= max_results:
                 return out
     return out

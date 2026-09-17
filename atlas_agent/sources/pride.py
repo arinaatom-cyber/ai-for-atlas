@@ -166,6 +166,7 @@ def search_pride_json(
     year_from: int = 2026,
     year_to: int = 2026,
     page_size: int = 100,
+    max_results: int | None = None,
     max_pages: int = 15,
     exclude_accessions: set[str] | None = None,
     profile_keywords: list[str] | None = None,
@@ -220,7 +221,7 @@ def search_pride_json(
                 if not _is_human(detail):
                     continue
                 filtered.append(project_to_record(detail, source="pride_search_v3"))
-                if len(filtered) >= page_size:
+                if max_results is not None and len(filtered) >= max_results:
                     return filtered
             if len(batch) < params["pageSize"]:
                 break

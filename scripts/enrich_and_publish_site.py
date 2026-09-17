@@ -115,10 +115,18 @@ def enrich_report(report: dict, cfg: dict) -> dict:
 
 
 def enrich_nature_quality(report: dict, cfg: dict) -> dict:
-    """Confidence tiers, Europe PMC accession resolution, methods manifest."""
     from atlas_agent.discovery.benchmark import evaluate_literature_benchmark, evaluate_project_benchmark
+    from atlas_agent.revisor.similarity import annotate_candidates
+    from atlas_agent.sources.projects_table import load_projects_table
 
     evaluate_discovery_report_from_config(report, cfg)
+
+    csv_path = (cfg.get("paths") or {}).get("projects_csv") or str(ROOT / "data" / "projects.csv")
+    df = load_projects_table(csv_path)
+    for key in ("candidates", "new_projects"):
+        items = report.get(key) or []
+        if items:
+            report[key] = annotate_candidates([dict(x) for x in items], df, threshold=0.15)
 
     for bucket in ("manual_check", "literature_semantic"):
         for item in report.get(bucket) or []:

@@ -5,6 +5,8 @@ from datetime import datetime, timezone
 from typing import Any
 
 from atlas_agent.discovery.ai_agents import agents_for_site
+from atlas_agent.discovery.pipeline_methods import pipeline_for_manifest
+from atlas_agent.discovery.search_limits import optional_cap
 
 
 def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -15,9 +17,10 @@ def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = 
     filters = report.get("filters_applied") or disc.get("filters") or {}
 
     return {
-        "pipeline": "Atlas Discovery Agent",
+        "pipeline_name": "Atlas Discovery Agent",
         "generated_at": report.get("generated_at") or datetime.now(timezone.utc).isoformat(),
         "ai_agents": agents_for_site(cfg),
+        "pipeline": pipeline_for_manifest(),
         "catalog_policy": report.get("policy") or {},
         "inclusion_criteria": {
             "organism": "Homo sapiens only (reject mouse/rat/chicken and mixed)",
@@ -38,8 +41,13 @@ def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = 
         "search_config": {
             "year_from": disc.get("year_from"),
             "year_to": disc.get("year_to"),
-            "pride_max": disc.get("pride_max"),
-            "publications_max": disc.get("publications_max"),
+            "pride_max": optional_cap(disc.get("pride_max")),
+            "massive_max": optional_cap(disc.get("massive_max")),
+            "iprox_max": optional_cap(disc.get("iprox_max")),
+            "publications_max": optional_cap(disc.get("publications_max")),
+            "repo_unlimited": not any(
+                optional_cap(disc.get(k)) for k in ("pride_max", "massive_max", "iprox_max")
+            ),
             "abstract_llm": disc.get("abstract_llm", True),
             "abstract_llm_max": disc.get("abstract_llm_max", 25),
             "abstract_resolve_accessions": disc.get("abstract_resolve_accessions", False),

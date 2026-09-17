@@ -53,6 +53,18 @@
       "with_patient_n": 4,
       "multi_omics": 8,
       "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 1.0,
+        "n": 4,
+        "correct": 4
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
     }
   },
   "catalog_profile": {
@@ -137,7 +149,38 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD031107",
+          "score": 0.194,
+          "title": "Proteogenomic analysis of acute myeloid leukemia associates relapsed disease with reprogrammed energy metabolism both in",
+          "row_index": 98
+        },
+        {
+          "project_id": "PXD031107",
+          "score": 0.194,
+          "title": "Proteogenomic analysis of acute myeloid leukemia associates relapsed disease with reprogrammed energy metabolism both in",
+          "row_index": 99
+        },
+        {
+          "project_id": "PXD008378",
+          "score": 0.176,
+          "title": "Pilot Study on Mass Spectrometry Based Analysis of the Proteome of CD34+CD123+ Progenitor Cells for the Identification o",
+          "row_index": 53
+        },
+        {
+          "project_id": "PXD029216",
+          "score": 0.176,
+          "title": "Proteogenomic characterization of highly enriched viable leukemic blasts in acute myeloid leukemia: A SWOG report",
+          "row_index": 91
+        },
+        {
+          "project_id": "PXD029216",
+          "score": 0.171,
+          "title": "Proteogenomic characterization of highly enriched viable leukemic blasts in acute myeloid leukemia: A SWOG report",
+          "row_index": 90
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -215,7 +258,7 @@
         ],
         "guidance": "Protein-level table: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt (protein-level table) · Similar to catalog PXD031107 (score 0.194)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -266,7 +309,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000655",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -344,7 +394,7 @@
         ],
         "guidance": "Protein-level table: KFBC_ATRT_Proteome.sample.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_ATRT_Proteome.sample.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_ATRT_Proteome.sample.txt (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000655",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -395,7 +445,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000674",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -473,7 +530,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Cranio_Proteome.qcmetrics.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Cranio_Proteome.qcmetrics.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Cranio_Proteome.qcmetrics.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000674",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -524,7 +581,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000646",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -602,7 +666,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Ependy_Proteome.summary.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Ependy_Proteome.summary.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Ependy_Proteome.summary.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000646",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -653,7 +717,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000700",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.105,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -731,7 +802,7 @@
         ],
         "guidance": "Protein-level table: KFBC_GCC_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_GCC_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_GCC_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.105)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000700",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -782,7 +853,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000687",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.105,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -860,7 +938,7 @@
         ],
         "guidance": "Protein-level table: KFBC_HGG_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_HGG_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_HGG_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.105)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000687",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -911,7 +989,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000663",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -989,7 +1074,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Medullo_Proteome.peptides.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Medullo_Proteome.peptides.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Medullo_Proteome.peptides.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000663",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1040,7 +1125,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000682",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.079,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1118,7 +1210,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Sarcoma_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Sarcoma_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Sarcoma_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.079)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000682",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1169,7 +1261,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000640",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD020586",
+          "score": 0.121,
+          "title": "Quantitative single-cell proteomics as a tool to characterize cellular hierarchies",
+          "row_index": 75
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1247,7 +1346,7 @@
         ],
         "guidance": "Protein-level table: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv (protein-level table) · Similar to catalog PXD020586 (score 0.121)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000640",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1298,7 +1397,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD028285",
+          "score": 0.118,
+          "title": "ATM inhibition enhances the efficacy of radiation across distinct molecular subgroups of pediatric high-grade glioma",
+          "row_index": 88
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1372,7 +1478,7 @@
         ],
         "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table) · Similar to catalog PXD028285 (score 0.118)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1423,7 +1529,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.125,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1497,7 +1610,7 @@
         ],
         "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table) · Similar to catalog PDC000180 (score 0.125)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1548,7 +1661,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000221",
+          "score": 0.102,
+          "title": "Proteogenomic insights into the biology and treatment of HPV-negative head and neck squamous cell carcinoma",
+          "row_index": 15
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1622,7 +1742,7 @@
         ],
         "guidance": "Protein-level table: SIMM_GBC_Proteome.peptides.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table) · Similar to catalog PDC000221 (score 0.102)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1675,7 +1795,38 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD031107",
+          "score": 0.194,
+          "title": "Proteogenomic analysis of acute myeloid leukemia associates relapsed disease with reprogrammed energy metabolism both in",
+          "row_index": 98
+        },
+        {
+          "project_id": "PXD031107",
+          "score": 0.194,
+          "title": "Proteogenomic analysis of acute myeloid leukemia associates relapsed disease with reprogrammed energy metabolism both in",
+          "row_index": 99
+        },
+        {
+          "project_id": "PXD008378",
+          "score": 0.176,
+          "title": "Pilot Study on Mass Spectrometry Based Analysis of the Proteome of CD34+CD123+ Progenitor Cells for the Identification o",
+          "row_index": 53
+        },
+        {
+          "project_id": "PXD029216",
+          "score": 0.176,
+          "title": "Proteogenomic characterization of highly enriched viable leukemic blasts in acute myeloid leukemia: A SWOG report",
+          "row_index": 91
+        },
+        {
+          "project_id": "PXD029216",
+          "score": 0.171,
+          "title": "Proteogenomic characterization of highly enriched viable leukemic blasts in acute myeloid leukemia: A SWOG report",
+          "row_index": 90
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1753,7 +1904,7 @@
         ],
         "guidance": "Protein-level table: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt (protein-level table) · Similar to catalog PXD031107 (score 0.194)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1804,7 +1955,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000655",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -1882,7 +2040,7 @@
         ],
         "guidance": "Protein-level table: KFBC_ATRT_Proteome.sample.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_ATRT_Proteome.sample.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_ATRT_Proteome.sample.txt (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000655",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -1933,7 +2091,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000674",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2011,7 +2176,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Cranio_Proteome.qcmetrics.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Cranio_Proteome.qcmetrics.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Cranio_Proteome.qcmetrics.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000674",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2062,7 +2227,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000646",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2140,7 +2312,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Ependy_Proteome.summary.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Ependy_Proteome.summary.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Ependy_Proteome.summary.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000646",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2191,7 +2363,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000700",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.105,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2269,7 +2448,7 @@
         ],
         "guidance": "Protein-level table: KFBC_GCC_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_GCC_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_GCC_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.105)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000700",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2320,7 +2499,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000687",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.105,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2398,7 +2584,7 @@
         ],
         "guidance": "Protein-level table: KFBC_HGG_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_HGG_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_HGG_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.105)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000687",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2449,7 +2635,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000663",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.108,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2527,7 +2720,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Medullo_Proteome.peptides.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Medullo_Proteome.peptides.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Medullo_Proteome.peptides.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.108)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000663",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2578,7 +2771,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000682",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.079,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2656,7 +2856,7 @@
         ],
         "guidance": "Protein-level table: KFBC_Sarcoma_Proteome.tmt18.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Sarcoma_Proteome.tmt18.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: KFBC_Sarcoma_Proteome.tmt18.tsv (protein-level table) · Similar to catalog PDC000180 (score 0.079)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000682",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2707,7 +2907,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000640",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD020586",
+          "score": 0.121,
+          "title": "Quantitative single-cell proteomics as a tool to characterize cellular hierarchies",
+          "row_index": 75
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2785,7 +2992,7 @@
         ],
         "guidance": "Protein-level table: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC4_Kids_First_T-ALL_PNNL_Proteome.summary.tsv (protein-level table) · Similar to catalog PXD020586 (score 0.121)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000640",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2836,7 +3043,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PXD028285",
+          "score": 0.118,
+          "title": "ATM inhibition enhances the efficacy of radiation across distinct molecular subgroups of pediatric high-grade glioma",
+          "row_index": 88
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -2910,7 +3124,7 @@
         ],
         "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table) · Similar to catalog PXD028285 (score 0.118)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -2961,7 +3175,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000180",
+          "score": 0.125,
+          "title": "Integrated Proteogenomic Characterization across Major Histological Types of Pediatric Brain Cancer",
+          "row_index": 11
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -3035,7 +3256,7 @@
         ],
         "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table) · Similar to catalog PDC000180 (score 0.125)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -3086,7 +3307,14 @@
       "source": "pdc_api",
       "consortium": "PDC",
       "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
-      "similar_in_catalog": [],
+      "similar_in_catalog": [
+        {
+          "project_id": "PDC000221",
+          "score": 0.102,
+          "title": "Proteogenomic insights into the biology and treatment of HPV-negative head and neck squamous cell carcinoma",
+          "row_index": 15
+        }
+      ],
       "has_close_match": false,
       "processing_tips": [
         "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
@@ -3160,7 +3388,7 @@
         ],
         "guidance": "Protein-level table: SIMM_GBC_Proteome.peptides.tsv"
       },
-      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table)",
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: SIMM_GBC_Proteome.peptides.tsv (protein-level table) · Similar to catalog PDC000221 (score 0.102)",
       "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
       "pubmed_url": "",
       "europe_pmc_url": "",
@@ -3288,7 +3516,7 @@
           },
           {
             "source": "llm_medium",
-            "score": 0.6,
+            "score": null,
             "is_actionable": true,
             "reason": null,
             "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
@@ -3307,7 +3535,8 @@
       "ui_verdict": "Watch",
       "requires_manual_review": true,
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "year": "2024"
     },
     {
       "pmid": "42002547",
@@ -3401,7 +3630,7 @@
           },
           {
             "source": "llm_medium",
-            "score": 0.55,
+            "score": null,
             "is_actionable": true,
             "reason": null,
             "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
@@ -3420,7 +3649,8 @@
       "ui_verdict": "Watch",
       "requires_manual_review": true,
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "year": "2026"
     }
   ],
   "rejected_material": [],
@@ -3870,7 +4100,7 @@
           },
           {
             "source": "llm_medium",
-            "score": 0.6,
+            "score": null,
             "is_actionable": true,
             "reason": null,
             "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
@@ -3959,7 +4189,7 @@
           },
           {
             "source": "llm_medium",
-            "score": 0.55,
+            "score": null,
             "is_actionable": true,
             "reason": null,
             "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"

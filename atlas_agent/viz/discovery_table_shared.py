@@ -424,8 +424,45 @@ def _patient_cell(item: dict) -> str:
     return '<span class="cell-empty" data-i18n="cell_empty"></span>'
 
 
+def _num_cell(n: int) -> str:
+    return f'<td class="col-num cell-mono"><b>{n}</b></td>'
+
+
+def _disease_cell(item: dict) -> str:
+    d = str(item.get("disease") or "").strip()
+    if not d:
+        d = str((item.get("abstract_ai") or {}).get("disease") or "").strip()
+    if not d:
+        return '<span class="cell-empty">—</span>'
+    parts = [_esc(x.strip()) for x in re.split(r"[;/|]", d) if x.strip()]
+    return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
+
+
+def _organ_cell(item: dict) -> str:
+    o = str(item.get("primary_site") or item.get("organ") or item.get("tissue") or "").strip()
+    if not o:
+        o = str((item.get("abstract_ai") or {}).get("organ") or "").strip()
+    if not o:
+        return '<span class="cell-empty">—</span>'
+    parts = [_esc(x.strip()) for x in re.split(r"[;/|]", o) if x.strip()]
+    return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
+
+
+def _abstract_cell(item: dict) -> str:
+    snip = (
+        item.get("abstract_snippet")
+        or item.get("abstract")
+        or (item.get("abstract_ai") or {}).get("summary_en")
+        or (item.get("abstract_ai") or {}).get("summary_ru")
+        or ""
+    )
+    snip = re.sub(r"\s+", " ", str(snip).strip())
+    if not snip:
+        return '<span class="cell-empty">—</span>'
+    return f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>'
+
+
 def _similar_cell(item: dict) -> str:
-    """Top catalog matches with similarity score 0–1."""
     sim = item.get("similar_in_catalog") or []
     if not sim:
         return '<span class="cell-empty">—</span>'
@@ -638,8 +675,10 @@ def build_unified_discovery_rows(
     """One tbody for GitHub Discovery: projects + literature + cohorts."""
     rows: list[str] = []
     total = 0
+    row_num = 0
 
     for it in projects:
+        row_num += 1
         resolve_publication_links(it, fetch_pride_pmid=False)
         raw_acc = _first_accession(it)
         repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
@@ -662,10 +701,13 @@ def build_unified_discovery_rows(
 
         rows.append(
             f"<tr data-type='project' data-src='{src_key}' data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
+            f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge('project')}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td class='col-disease'>{_disease_cell(it)}</td>"
+            f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
             f"<td class='col-design'>{design}</td>"
             f"<td class='col-omics'>{omics_cell}</td>"
@@ -674,6 +716,7 @@ def build_unified_discovery_rows(
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
+            f"<td class='col-abstract'>{_abstract_cell(it)}</td>"
             f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=ItemKind.PROJECT, pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
@@ -684,6 +727,7 @@ def build_unified_discovery_rows(
 
     lit_rows = _merge_literature(papers, cohorts)
     for entry in lit_rows:
+        row_num += 1
         it = entry["item"]
         resolve_publication_links(it, fetch_pride_pmid=False)
         paper = entry.get("paper")
@@ -728,10 +772,13 @@ def build_unified_discovery_rows(
 
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
+            f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge(kind)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td class='col-disease'>{_disease_cell(it)}</td>"
+            f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-design'>{design}</td>"
             f"<td class='col-omics'>{_omics_cell(it)}</td>"
@@ -740,6 +787,7 @@ def build_unified_discovery_rows(
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
+            f"<td class='col-abstract'>{_abstract_cell(paper or it)}</td>"
             f"<td class='col-weight'>{unified_weight_cell(evaluation=evaluation, fit=fit, cohort_score=cohort_score)}</td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=lit_kind, has_accession=bool(acc), pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
@@ -748,5 +796,5 @@ def build_unified_discovery_rows(
         )
         total += 1
 
-    body = "\n".join(rows) or '<tr><td colspan="16" data-i18n="no_rows"></td></tr>'
+    body = "\n".join(rows) or '<tr><td colspan="20" data-i18n="no_rows"></td></tr>'
     return body, total
