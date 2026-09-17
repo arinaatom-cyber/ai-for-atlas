@@ -52,9 +52,9 @@
   --font: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, monospace;
   --max-w: 1320px;
-  --text-base: 17px;
-  --text-sm: 15px;
-  --text-xs: 13px;
+  --text-base: 18px;
+  --text-sm: 16px;
+  --text-xs: 14px;
   --leading: 1.47;
   --blur: saturate(180%) blur(20px);
 }
@@ -414,6 +414,47 @@ code {
   cursor: pointer;
   font-weight: 600;
   color: var(--muted);
+}
+
+.table-unified .similar-fold {
+  margin: 0;
+}
+
+.table-unified .similar-fold > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--text-sm);
+  color: var(--link);
+  font-weight: 500;
+}
+
+.table-unified .similar-fold > summary::-webkit-details-marker {
+  display: none;
+}
+
+.table-unified .similar-fold > summary::before {
+  content: "▸ ";
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.table-unified .similar-fold[open] > summary::before {
+  content: "▾ ";
+}
+
+.table-unified .similar-more {
+  margin-left: 6px;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.table-unified .similar-fold-body {
+  margin-top: 6px;
+}
+
+.table-unified tbody tr.row-pride-manual td {
+  background: color-mix(in srgb, var(--accent-soft) 55%, var(--card));
 }
 
 .col-similar .link-chip,
@@ -1489,6 +1530,18 @@ td b, .cell-title {
   font-size: var(--text-xs);
   color: var(--muted);
   line-height: 1.4;
+}
+
+.table-unified .col-title .title-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: var(--text-xs);
+}
+
+.table-unified .col-title .title-link-item a {
+  font-weight: 500;
 }
 
 .table-unified .col-verdict,

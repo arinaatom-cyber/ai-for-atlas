@@ -60,15 +60,17 @@ def sentence_cap(text: str) -> str:
     s = str(text or "").strip()
     if not s:
         return s
-    i = 0
-    while i < len(s) and s[i].isspace():
-        i += 1
-    if i >= len(s):
-        return s
-    ch = s[i]
-    if ch.isalpha():
-        return s[:i] + ch.upper() + s[i + 1 :]
+    for i, ch in enumerate(s):
+        if ch.isalpha():
+            if ch.islower():
+                return s[:i] + ch.upper() + s[i + 1 :]
+            return s
     return s
+
+
+def format_title(text: str) -> str:
+    """Table title — capitalize first letter (keep original casing elsewhere, e.g. TMT)."""
+    return sentence_cap(str(text or "").strip())
 
 
 def _title_preserve(text: str) -> str:

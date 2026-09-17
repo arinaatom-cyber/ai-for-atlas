@@ -41,7 +41,10 @@
     filter_patients_maybe: { ru: "пациенты: возможно", en: "patients: maybe" },
     th_id: { ru: "ID", en: "ID" },
     th_project_id: { ru: "ID проекта", en: "Project ID" },
-    th_project_id_hint: { ru: "PXD · PDC · MSV · IPX", en: "PXD · PDC · MSV · IPX" },
+    th_project_id_hint: {
+      ru: "PRIDE/PDC/MSV/IPX или Europe PMC",
+      en: "PRIDE/PDC/MSV/IPX or Europe PMC",
+    },
     th_type: { ru: "Тип", en: "Type" },
     th_confidence: { ru: "Уверенность", en: "Confidence" },
     th_confidence_hint: { ru: "A–D", en: "A–D" },
@@ -139,6 +142,9 @@
     },
     count_rows: { ru: "{n} / {total} строк", en: "{n} / {total} rows" },
     toolbar_type: { ru: "Тип", en: "Type" },
+    toolbar_view: { ru: "Просмотр", en: "View" },
+    filter_view_simple: { ru: "Главное", en: "Main" },
+    filter_view_all: { ru: "Все строки", en: "All rows" },
     toolbar_source: { ru: "Источник", en: "Source" },
     legacy_rescan: { ru: "Устаревший формат — перезапустите scan", en: "Legacy format — re-scan required" },
     link_open_repo: { ru: "Репозиторий", en: "Repository" },
@@ -160,7 +166,8 @@
         "Еженедельный ИИ-скрининг PRIDE, PDC и Europe PMC. В таблице — только находки вне каталога атласа.",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
-      kpi_new: "Кандидатов (Candidate)",
+      kpi_new: "Кандидатов PDC (tier A)",
+      kpi_pride_manual: "PRIDE на проверке",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
       kpi_manual: "Ручная проверка",
@@ -177,23 +184,23 @@
       kpi_papers_no_id: "Статей без ID",
       kpi_with_table: "с protein table",
       note_projects_unified:
-        "ID и Source → репозиторий · Title → PubMed · Analysis · Data. Plex/Similar убраны. QC: qc.html.",
+        "ID → репозиторий (синяя ссылка). Название → клик на PRIDE/PDC или PubMed; под описанием — PMID и Europe PMC. PRIDE на ручной проверке — в таблице, но не в KPI.",
       sec_unified_discovery: "Реестр находок Discovery",
       sec_unified_discovery_desc:
-        "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и крупные patient cohorts. В каждой строке — метаданные, tier, ссылки на PRIDE/PDC и PubMed.",
+        "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.",
       sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
       note_scope_lead:
-        "Область данных и KPI различаются: счётчик в заголовке — весь реестр; KPI «новые проекты» — только репозиторные ID вне каталога.",
+        "По умолчанию «Главное»: 12 PDC tier A + PRIDE без явного TMT plex (ручная проверка). «Все» — полный реестр.",
       note_scope_row_types:
         "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
       note_scope_kpi:
-        "KPI «кандидаты» = репозиторные строки с вердиктом Candidate (исключённые и Review не считаются). «Отклонено» — technical filter + material reject.",
+        "KPI: PDC Candidate tier A · PRIDE на проверке (TMT есть, plex не в метаданных). «Отклонено» — technical filter + material reject.",
       note_scope_filter:
         "Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.",
       note_scope_stat_new: "новых проектов (KPI)",
       note_scope_stat_total: "записей в таблице",
       note_kpi_new_projects:
-        "KPI «кандидаты» — PXD/PDC/MSV/IPX с вердиктом Candidate. В таблице также PRIDE/PDC на ручной проверке; фильтр «проекты» — все репозиторные строки.",
+        "KPI — PDC Candidate tier A. В таблице также PRIDE на ручной проверке и статьи без accession; фильтр «проекты» — все репозиторные строки.",
       sec_methods: "Методы и воронка",
       sec_methods_desc:
         "Пайплайн для Materials & Methods: агенты, скрипты, критерии включения. Цифры воронки — снимок последнего скана (см. дату выше).",
@@ -369,10 +376,10 @@
       guide_columns_title: "Колонки",
       table_scroll_hint: "Таблица широкая — прокрутите вправо, чтобы увидеть все колонки. Вкладка «Проекты» — данные; «Справка» — расшифровка колонок.",
       col_help_type: "Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.",
-      col_help_id: "Accession (клик → репозиторий) и PMID (клик → PubMed). Если ID нет — «No PXD/PDC/MSV/IPX».",
+      col_help_id:
+        "Репозиторий: accession + синяя ссылка PRIDE/PDC/MassIVE/iProX. Статья без ID: Europe PMC + «Нет PXD/PDC/MSV/IPX». PMID — также в «Название».",
       col_help_year: "Год публикации или submission из PRIDE/PDC или PubMed.",
-      col_help_title: "Заголовок статьи/проекта и короткое описание (abstract / project description).",
-      col_help_source: "PRIDE, PDC, MassIVE, iProX или Europe PMC.",
+      col_help_title: "Заголовок (клик → PRIDE/PDC или PubMed), описание и строка PMID / Europe PMC.",
       col_help_design: "Дизайн и TMT plex. Если PRIDE не указал plex — жёлтый бейдж «TMT plex не прописан — нужна проверка».",
       col_help_omics: "Тип омики: proteomics, phospho, multi-omics (для когорт).",
       col_help_patients: "Есть ли пациенты в тексте: да / возможно / нет.",
@@ -380,11 +387,11 @@
       col_help_verdict: "Candidate — в атлас; Watch — наблюдение; Exclude — не подходит.",
       col_help_confidence: "Уверенность A–D: A = protein table + дизайн OK; B = файлы есть; C = watch; D = exclude.",
       col_help_similar:
-        "Похожесть на ближайший проект каталога: accession · процент (0–100%). Сравнение по метаданным/тексту (cosine). Не дубликат — только подсказка.",
+        "Схожесть с каталогом (Jaccard). Строка сворачивается — клик разворачивает все совпадения PXD/PDC · %.",
       col_help_fit: "LLM-оценка atlas fit (да/возможно/нет) или cohort score 0–100 для литературы.",
       col_help_analysis: "ИИ-резюме абстракта + цепочка evidence (фильтры, LLM, similarity).",
       col_help_data: "Наличие protein-level таблицы в репозитории или локальном mirror.",
-      col_help_links: "Прямые ссылки: репозиторий, PMID, Europe PMC.",
+      col_help_links: "Устарело — ссылки перенесены в колонку «Название».",
       guide_filters_title: "Фильтры над таблицей",
       guide_filters_type: "Тип строки: все / проекты / статьи / когорты.",
       guide_filters_source: "Источник: PRIDE, PDC, MassIVE, iProX, Europe PMC.",
@@ -416,7 +423,8 @@
         "Weekly AI scan of PRIDE, PDC, and Europe PMC. Table lists findings not yet in the atlas catalog.",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
-      kpi_new: "candidates",
+      kpi_new: "PDC candidates (tier A)",
+      kpi_pride_manual: "PRIDE manual review",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
       kpi_manual: "manual review",
@@ -435,23 +443,23 @@
       kpi_papers_no_id: "papers w/o ID",
       kpi_with_table: "with protein table",
       note_projects_unified:
-        "ID and Source → repository · Title → PubMed · Analysis (finding + LLM) · Data files. Plex/Similar removed. QC: qc.html.",
+        "ID → repository (blue link). Title → PRIDE/PDC or PubMed; PMID and Europe PMC under the description. PRIDE manual-review rows are in the table but not in the KPI.",
       sec_unified_discovery: "Discovery findings registry",
       sec_unified_discovery_desc:
-        "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, publications without a repository ID, and large patient cohorts. Each row includes metadata, confidence tier, and PRIDE/PDC/PubMed links.",
+        "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, papers without a repository ID, and oncology cohort literature.",
       sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
       note_scope_lead:
-        "Data scope and KPIs differ: the header count is the full registry; the «new projects» KPI counts repository IDs absent from the catalog only.",
+        "Default «Main» view: 12 PDC tier A + PRIDE without explicit TMT plex (manual review). «All rows» = full registry.",
       note_scope_row_types:
         "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
       note_scope_kpi:
-        "«Candidates» KPI = repository rows with Candidate verdict (Exclude/Review excluded). «Rejected» = technical filter + material reject.",
+        "KPI: PDC Candidate tier A · PRIDE manual review (TMT confirmed, plex missing in metadata). «Rejected» = technical + material filter.",
       note_scope_filter:
         "Filter «projects» for repository IDs only; «papers» and «cohorts» show Europe PMC records without PXD/PDC.",
       note_scope_stat_new: "new projects (KPI)",
       note_scope_stat_total: "rows in table",
       note_kpi_new_projects:
-        "KPI «candidates» = PXD/PDC/MSV/IPX with Candidate verdict. Table also lists PRIDE/PDC manual-review rows; filter «projects» for all repository rows.",
+        "KPI = PDC Candidate tier A. Table also lists PRIDE manual review and papers without accession; filter «projects» for all repository rows.",
       note_unified_table:
         "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",
@@ -628,10 +636,10 @@
       guide_columns_title: "Columns",
       table_scroll_hint: "Wide table — scroll right for all columns. Projects tab = data; Guide tab = column legend.",
       col_help_type: "Project = repository accession; Paper = literature without ID; Cohort = large cohort from Europe PMC.",
-      col_help_id: "Accession (→ repository) and PMID (→ PubMed). If missing: «No PXD/PDC/MSV/IPX».",
+      col_help_id:
+        "Repository: accession + blue PRIDE/PDC/MassIVE/iProX link. Paper without ID: Europe PMC + «No PXD/PDC/MSV/IPX». PMID also in Title.",
       col_help_year: "Publication or submission year from PRIDE/PDC or PubMed.",
-      col_help_title: "Title plus short description (abstract / project description).",
-      col_help_source: "PRIDE, PDC, MassIVE, iProX, or Europe PMC.",
+      col_help_title: "Title (click → PRIDE/PDC or PubMed), description, and PMID / Europe PMC links.",
       col_help_design: "Design and TMT plex. If PRIDE omits plex — yellow badge «TMT plex not specified — needs review».",
       col_help_omics: "Omics type: proteomics, phospho, multi-omics (cohorts).",
       col_help_patients: "Patients mentioned in text: yes / maybe / no.",
@@ -639,11 +647,11 @@
       col_help_verdict: "Candidate = atlas fit; Watch = surveillance; Exclude = not suitable.",
       col_help_confidence: "Confidence A–D: A = protein table + design OK; B = quant files; C = watch; D = exclude.",
       col_help_similar:
-        "Similarity to nearest catalog project: accession · percent (0–100%). Metadata/text cosine — hint only, not duplicate detection.",
+        "Catalog similarity (Jaccard). Collapsed row — click to expand all PXD/PDC · % matches.",
       col_help_fit: "LLM atlas fit (yes/maybe/no) or cohort score 0–100 for literature.",
       col_help_analysis: "AI abstract summary + evidence chain (filters, LLM, similarity).",
       col_help_data: "Protein-level table in repository or local mirror.",
-      col_help_links: "Direct links: repository, PMID, Europe PMC.",
+      col_help_links: "Deprecated — links moved to the Title column.",
       guide_filters_title: "Toolbar filters",
       guide_filters_type: "Row type: all / projects / papers / cohorts.",
       guide_filters_source: "Source: PRIDE, PDC, MassIVE, iProX, Europe PMC.",

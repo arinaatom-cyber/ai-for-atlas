@@ -1,0 +1,12 @@
+,Peptide Sequence,test1,test2,test3,test4,test5,test6,Sample coverage,Number of samples for analysis,Number of samples_x with hits,OY1_AV,101 nM,OY_HPL151,AV
+Donor ID,,,,,,,,,,,925,929,37,
+ID duble,,,,,,,,,,,1,101,151,
+Пол,,,,,,,,,,,муж,муж,жен,
+Возраст,,,,,,,,,,,35,26,24,
+group,,,,,,,,,,,25-44 года,25-44 года,18-24 г,
+sample delivery batch,,,,,,,,,,,batch1,batch2,batch3,
+trypsinolysis  batch,,,,,,,,,,,batch1,batch6,batch9,
+Trypsin Promega/Molecta,,,,,,,,,,,Promega,Promega,Molecta,
+STD Mix,,,,,,,,,,,2024_STD_ Mix,30012025_STD_ Mix,14082025_STD_ Mix,
+2,DSTYSLSSTLTLSK,DSTYSLSSTLTLSK,P01834,IGKC_HUMAN,49 core,master,49 core protein,all,3,3,100,200,300,
+3,GPSVFPLAPSSK,GPSVFPLAPSSK,P01857,IGHG1_HUMAN,49 core,master,49 core protein,all,3,3,10,20,

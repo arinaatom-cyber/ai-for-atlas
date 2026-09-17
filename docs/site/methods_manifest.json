@@ -1,6 +1,6 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-09-17T10:28:51.983045+00:00",
+  "generated_at": "2026-09-17T11:42:09.731383+00:00",
   "ai_agents": {
     "pipeline_agents": [
       {
@@ -281,27 +281,29 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 117,
-    "candidates": 12,
-    "manual_check": 2,
-    "rejected_material": 0,
-    "filtered_out": 187,
-    "already_in_catalog": 10
+    "raw_novel_repos": 838,
+    "candidates": 56,
+    "manual_check": 19,
+    "rejected_material": 72,
+    "filtered_out": 833,
+    "already_in_catalog": 13
   },
   "literature_screening": {
-    "publications_scanned": 6,
-    "abstract_llm_read": 6,
-    "abstract_regex_only": 0,
+    "publications_scanned": 31,
+    "abstract_llm_read": 25,
+    "abstract_regex_only": 6,
     "atlas_fit_yes": 0,
-    "atlas_fit_maybe": 2,
+    "atlas_fit_maybe": 17,
     "literature_resolved": 0,
     "semantic_from_abstract": 0
   },
   "data_availability_gate": {
-    "quant_table": 12,
-    "omics_protein": 12,
-    "no_files": 2,
-    "omics_unknown": 2
+    "maybe_table": 1,
+    "omics_unknown": 57,
+    "quant_table": 42,
+    "processed_psm": 13,
+    "omics_protein": 18,
+    "no_files": 19
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true

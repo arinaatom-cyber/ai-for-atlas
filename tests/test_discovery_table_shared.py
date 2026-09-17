@@ -9,7 +9,6 @@ from atlas_agent.viz.discovery_table_shared import (
     _project_links,
     _render_analysis_cell,
     _similar_cell,
-    _source_link_cell,
     _title_cell,
     source_label,
 )
@@ -91,19 +90,22 @@ def test_id_cell_pdc_blue_repo_link_once():
     assert "pdc/study/PDC000604" in html
 
 
-def test_title_cell_repo_over_pubmed_for_project():
+def test_title_cell_repo_link_and_inline_pmid():
     html = _title_cell(
         "Human TMT colon proteome",
         "https://pubmed.ncbi.nlm.nih.gov/38765432/",
         "https://www.ebi.ac.uk/pride/archive/projects/PXD012345",
         description="Paired tumor and adjacent colon tissue.",
         acc="PXD012345",
+        pmid="38765432",
     )
     assert "cell-desc" in html
-    assert "Paired tumor and adjacent colon tissue." in html
     assert "Human TMT colon proteome" in html
     assert "pride/archive/projects/PXD012345" in html
-    assert "pubmed.ncbi.nlm.nih.gov" not in html
+    assert 'class="cell-title"' in html
+    assert "title-links" in html
+    assert "PMID 38765432" in html
+    assert 'data-i18n="link_epmc"' in html
 
 
 def test_title_cell_pubmed_link_for_paper():
@@ -111,28 +113,37 @@ def test_title_cell_pubmed_link_for_paper():
         "Human TMT colon proteome",
         "https://pubmed.ncbi.nlm.nih.gov/38765432/",
         "",
-        description="Paired tumor and adjacent colon tissue.",
+        pmid="38765432",
     )
     assert "pubmed.ncbi.nlm.nih.gov/38765432" in html
-
-
-def test_title_cell_repo_link_for_project():
-    html = _title_cell(
-        "CPTAC pediatric AML",
-        "",
-        "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
-        acc="PDC000604",
-    )
-    assert "CPTAC pediatric AML" in html
-    assert "pdc/study/PDC000604" in html
     assert 'class="cell-title"' in html
-    assert "PMID" not in html
 
 
-def test_source_link_cell_skips_repo_duplicate():
-    html = _source_link_cell({"accession": "PDC000604"}, acc="PDC000604")
-    assert "PDC" not in html
-    assert "cell-empty" in html
+def test_title_cell_skips_invalid_pmid_zero():
+    html = _title_cell(
+        "BioId experiment",
+        "",
+        "https://www.ebi.ac.uk/pride/archive/projects/PXD079670",
+        acc="PXD079670",
+        pmid="0",
+    )
+    assert "title-links" not in html
+    assert "PMID 0" not in html
+
+
+def test_i18n_nested_keys_load_for_badges():
+    from atlas_agent.viz.i18n_loader import load_i18n_dicts, ru
+
+    load_i18n_dicts.cache_clear()
+    assert "TMT plex" in ru("tmt_plex_unspecified")
+    assert ru("tmt_plex_unspecified") != "tmt_plex_unspecified"
+
+
+def test_id_cell_epmc_for_paper_without_accession():
+    html = _id_cell(acc="", repo="", pmid="40493991")
+    assert 'data-i18n="link_epmc"' in html
+    assert 'data-i18n="no_accession"' in html
+    assert "40493991" in html
 
 
 def test_project_links_skips_repo_when_in_id_column():

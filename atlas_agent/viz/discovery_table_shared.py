@@ -16,7 +16,7 @@ from atlas_agent.discovery.fit_rules import (
     project_verdict,
 )
 from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
-from atlas_agent.viz.display_format import format_design_label, format_metadata_part, sentence_cap
+from atlas_agent.viz.display_format import format_design_label, format_metadata_part, format_title, sentence_cap
 from atlas_agent.viz.portal_index import (
     article_description,
     europe_pmc_url,
@@ -255,7 +255,7 @@ def _item_summaries(item: dict, pubs_by_pmid: dict[str, dict]) -> tuple[str, str
         or item.get("description_ru")
         or ""
     )
-    return en, ru
+    return sanitize_summary(en.strip()), sanitize_summary(ru.strip())
 
 
 def _item_summary(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
@@ -361,8 +361,15 @@ def _data_status_key(status: str) -> str:
     }.get(status, "")
 
 
+def _valid_pmid(pmid: str) -> str:
+    digits = re.sub(r"\D", "", str(pmid or ""))
+    if len(digits) < 7:
+        return ""
+    return digits
+
+
 def _norm_pmid(item: dict) -> str:
-    return re.sub(r"\D", "", str(item.get("pmid") or ""))
+    return _valid_pmid(str(item.get("pmid") or ""))
 
 
 def _first_accession(item: dict) -> str:
@@ -490,26 +497,52 @@ def _abstract_cell(item: dict) -> str:
     return f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>'
 
 
+def _similar_hit_label(hit: dict) -> str:
+    pid = str(hit.get("project_id") or "").strip().upper()
+    score = hit.get("score")
+    try:
+        score_s = f"{float(score):.0%}" if score is not None else ""
+    except (TypeError, ValueError):
+        score_s = str(score or "").strip()
+    return f"{pid} · {score_s}" if score_s else pid
+
+
 def _similar_cell(item: dict) -> str:
     sim = item.get("similar_in_catalog") or []
     if not sim:
         return '<span class="cell-empty">—</span>'
     chips: list[str] = []
+    labels: list[str] = []
     seen: set[str] = set()
     for hit in sim[:3]:
         pid = str(hit.get("project_id") or "").strip().upper()
         if not pid or pid in seen:
             continue
         seen.add(pid)
-        score = hit.get("score")
-        try:
-            score_s = f"{float(score):.0%}" if score is not None else ""
-        except (TypeError, ValueError):
-            score_s = str(score or "").strip()
-        label = f"{pid} · {score_s}" if score_s else pid
+        label = _similar_hit_label(hit)
+        labels.append(label)
         repo = repository_url(pid)
         chips.append(_link_chip(repo, label) if repo else f'<span class="badge badge-muted">{_esc(label)}</span>')
-    return _links_stack(chips) if chips else '<span class="cell-empty">—</span>'
+    if not chips:
+        return '<span class="cell-empty">—</span>'
+    body = _links_stack(chips)
+    if len(chips) == 1:
+        return (
+            f'<details class="cell-fold similar-fold">'
+            f"<summary>{_esc(labels[0])}</summary>"
+            f'<div class="similar-fold-body">{body}</div></details>'
+        )
+    more = len(chips) - 1
+    summary = (
+        f'<span class="similar-summary-label">{_esc(labels[0])}</span>'
+        f'<span class="similar-more">+{more}</span>'
+    )
+    return (
+        f'<details class="cell-fold similar-fold">'
+        f"<summary>{summary}</summary>"
+        f'<div class="similar-fold-body">{body}</div>'
+        f"</details>"
+    )
 
 
 def _data_cell(it: dict) -> str:
@@ -563,22 +596,6 @@ def _data_cell(it: dict) -> str:
     )
 
 
-def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
-    acc = acc or _first_accession(it)
-    if acc and _is_repo_accession(acc):
-        return '<span class="cell-empty">—</span>'
-    label = source_label(it) if acc else "Europe PMC"
-    if acc:
-        repo = it.get("repository_url") or it.get("url") or repository_url(acc)
-        if repo:
-            return (
-                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-src">'
-                f"<b>{_esc(label)}</b></a>"
-            )
-        return f'<span class="cell-src"><b>{_esc(label)}</b></span>'
-    return epmc_link(pmid) if pmid else '<span class="cell-empty">—</span>'
-
-
 def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
     if acc:
         kind = source_label({"accession": acc})
@@ -596,10 +613,25 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
         )
         return f'<div class="cell-stack id-cell">{body}</div>'
     no_acc = '<span class="id-no-acc" data-i18n="no_accession"></span>'
+    if pmid:
+        src = epmc_link(pmid)
+        return f'<div class="cell-stack id-cell">{src}{no_acc}</div>'
     return (
         f'<div class="cell-stack id-cell">'
         f'<span class="cell-label" data-i18n="badge_paper"></span>{no_acc}</div>'
     )
+
+
+def _title_inline_links(pmid: str) -> str:
+    pmid = _valid_pmid(pmid)
+    if not pmid:
+        return ""
+    chips = [
+        pubmed_link(pmid, label=f"PMID {pmid}"),
+        epmc_link(pmid),
+    ]
+    body = "".join(f'<span class="title-link-item">{c}</span>' for c in chips if c)
+    return f'<div class="title-links">{body}</div>' if body else ""
 
 
 def _title_cell(
@@ -609,8 +641,9 @@ def _title_cell(
     *,
     description: str = "",
     acc: str = "",
+    pmid: str = "",
 ) -> str:
-    title_esc = _esc(sentence_cap(title[:180] or "—"))
+    title_esc = _esc(format_title(title[:180] or "—"))
     href = ""
     if repo and acc and _is_repo_accession(acc):
         href = repo
@@ -623,7 +656,10 @@ def _title_cell(
     bits = [head]
     desc = (description or "").strip()
     if desc:
-        bits.append(f'<p class="cell-desc">{_esc(sentence_cap(desc[:320]))}</p>')
+        bits.append(f'<p class="cell-desc">{_esc(format_title(desc[:320]))}</p>')
+    inline = _title_inline_links(pmid)
+    if inline:
+        bits.append(inline)
     return f'<div class="cell-stack cell-title-block">{"".join(bits)}</div>'
 
 
@@ -721,17 +757,25 @@ def build_unified_discovery_rows(
         tier = it.get("confidence_tier") or evaluation.confidence
         conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
+        bucket = str(it.get("_discovery_bucket") or "candidate")
+        simple = "1" if bucket == "repository_manual" or (
+            raw_acc.startswith("PDC")
+            and vlabel == "Candidate"
+            and str(tier) == "A"
+        ) else "0"
+        row_cls = ' class="row-pride-manual"' if bucket == "repository_manual" else ""
         rows.append(
-            f"<tr data-type='project' data-src='{src_key}' data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
+            f"<tr{row_cls} data-type='project' data-src='{src_key}' "
+            f"data-bucket='{bucket}' data-simple='{simple}' "
+            f"data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge('project')}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc, pmid=pmid)}</td>"
             f"<td class='col-disease'>{_disease_cell(it)}</td>"
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
-            f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
-            f"<td class='col-design'>{design_cell}</td>"
+            f"<td class='col-design col-split'>{design_cell}</td>"
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
@@ -739,7 +783,6 @@ def build_unified_discovery_rows(
             f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=ItemKind.PROJECT, pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
-            f"<td class='col-links'>{_project_links(raw_acc, repo, pmid)}</td>"
             f"</tr>"
         )
         total += 1
@@ -788,16 +831,16 @@ def build_unified_discovery_rows(
         conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         rows.append(
-            f"<tr data-type='{kind}' data-src='epmc' data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
+            f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
+            f"data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge(kind)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-disease'>{_disease_cell(it)}</td>"
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
-            f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
-            f"<td class='col-design'>{design}</td>"
+            f"<td class='col-design col-split'>{design}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
@@ -805,10 +848,9 @@ def build_unified_discovery_rows(
             f"<td class='col-weight'>{unified_weight_cell(evaluation=evaluation, fit=fit, cohort_score=cohort_score)}</td>"
             f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=lit_kind, has_accession=bool(acc), pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
-            f"<td class='col-links'>{_literature_links(acc, repo, pmid)}</td>"
             f"</tr>"
         )
         total += 1
 
-    body = "\n".join(rows) or '<tr><td colspan="17" data-i18n="no_rows"></td></tr>'
+    body = "\n".join(rows) or '<tr><td colspan="15" data-i18n="no_rows"></td></tr>'
     return body, total

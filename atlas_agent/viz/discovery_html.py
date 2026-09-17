@@ -135,7 +135,6 @@ def _guide_panel() -> str:
         ("th_project_id", "col_help_id"),
         ("th_year", "col_help_year"),
         ("th_title", "col_help_title"),
-        ("th_source", "col_help_source"),
         ("th_design", "col_help_design"),
         ("th_verdict", "col_help_verdict"),
         ("th_confidence", "col_help_confidence"),
@@ -143,7 +142,6 @@ def _guide_panel() -> str:
         ("th_fit", "col_help_fit"),
         ("th_analysis", "col_help_analysis"),
         ("th_data", "col_help_data"),
-        ("th_links", "col_help_links"),
     ]
     rows = "".join(
         f'<div class="guide-row"><div class="guide-row-title" data-i18n="{k}"></div>'
@@ -186,26 +184,77 @@ def _project_accession_key(item: dict) -> str:
 
 def _merge_discovery_projects(report: dict) -> list[dict]:
     """Candidates plus PRIDE/PDC rows that need manual review (not already listed)."""
-    items = list(report.get("candidates") or report.get("new_projects") or [])
-    seen = {_project_accession_key(it) for it in items if _project_accession_key(it)}
+    items: list[dict] = []
+    seen: set[str] = set()
+    for it in report.get("candidates") or report.get("new_projects") or []:
+        key = _project_accession_key(it)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        row = dict(it)
+        row["_discovery_bucket"] = "candidate"
+        items.append(row)
     for it in report.get("repository_manual") or []:
         key = _project_accession_key(it)
-        if key and key not in seen:
-            items.append(it)
-            seen.add(key)
-    return items
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        row = dict(it)
+        row["_discovery_bucket"] = "repository_manual"
+        items.append(row)
+    return _sort_discovery_projects(items)
 
 
-def _count_candidate_verdict(projects: list[dict]) -> int:
+def _sort_discovery_projects(items: list[dict]) -> list[dict]:
+    """PDC tier A first, then PRIDE manual review, then other candidates."""
     from atlas_agent.discovery.fit_rules import project_verdict
 
-    return sum(1 for it in projects if project_verdict(it)[0] == "Candidate")
+    def sort_key(it: dict) -> tuple[int, str]:
+        acc = _project_accession_key(it)
+        bucket = str(it.get("_discovery_bucket") or "")
+        verdict = project_verdict(it)[0]
+        tier = str(
+            it.get("confidence_tier")
+            or (it.get("evaluation") or {}).get("confidence_tier")
+            or ""
+        )
+        if acc.startswith("PDC") and verdict == "Candidate" and tier == "A":
+            return (0, acc)
+        if bucket == "repository_manual":
+            pride_first = 0 if acc.startswith("PXD") else 1
+            return (1, pride_first, acc)
+        return (2, 0, acc)
+
+    return sorted(items, key=sort_key)
+
+
+def _count_primary_candidates(projects: list[dict]) -> int:
+    """KPI: PDC repository rows with Candidate verdict and confidence tier A."""
+    from atlas_agent.discovery.fit_rules import project_verdict
+
+    n = 0
+    for it in projects:
+        acc = str(it.get("accession") or it.get("project_accession") or "").upper()
+        if not acc.startswith("PDC"):
+            continue
+        if project_verdict(it)[0] != "Candidate":
+            continue
+        tier = str(
+            it.get("confidence_tier")
+            or (it.get("evaluation") or {}).get("confidence_tier")
+            or ""
+        )
+        if tier == "A":
+            n += 1
+    return n
 
 
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
+    candidates_only = list(report.get("candidates") or report.get("new_projects") or [])
     items = _merge_discovery_projects(report)
-    candidate_kpi = _count_candidate_verdict(items)
+    candidate_kpi = _count_primary_candidates(candidates_only)
+    pride_manual_kpi = len(report.get("repository_manual") or [])
     rejected_kpi = int(s.get("filtered_out") or 0) + int(s.get("rejected_material") or 0)
     pubs = report.get("publications_analyzed") or []
     manual = report.get("manual_check") or []
@@ -229,9 +278,9 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         + kpi_grid(
             [
                 (str(candidate_kpi), "kpi_new"),
+                (str(pride_manual_kpi), "kpi_pride_manual"),
                 (str(rejected_kpi), "kpi_rejected"),
                 (str(len(papers)), "kpi_papers_no_id"),
-                (str(len(cohorts)), "kpi_cohorts"),
             ]
         )
         + f"""
@@ -242,6 +291,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     {note_discovery_scope(new_projects=candidate_kpi, total_rows=total_rows)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
+      <span class="toolbar-label" data-i18n="toolbar_view"></span>
+      <button type="button" class="chip active" data-vfilter="simple" data-i18n="filter_view_simple"></button>
+      <button type="button" class="chip" data-vfilter="all" data-i18n="filter_view_all"></button>
+      <span class="toolbar-divider" aria-hidden="true"></span>
       <span class="toolbar-label" data-i18n="toolbar_type"></span>
       <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
       <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
@@ -263,8 +316,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         <thead>
           <tr class="head-groups">
             <th colspan="6" class="th-group" data-i18n="th_group_record"></th>
-            <th colspan="3" class="th-group col-split" data-i18n="th_group_context"></th>
-            <th colspan="8" class="th-group col-split" data-i18n="th_group_details"></th>
+            <th colspan="2" class="th-group col-split" data-i18n="th_group_context"></th>
+            <th colspan="7" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
           <th class="col-num" data-i18n="th_num"></th>
@@ -274,8 +327,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-title" data-i18n="th_title"></th>
           <th class="col-disease" data-i18n="th_disease"></th>
           <th class="col-organ" data-i18n="th_organ"></th>
-          <th class="col-src col-split" data-i18n="th_source"></th>
-          <th class="col-design" data-i18n="th_design"></th>
+          <th class="col-design col-split" data-i18n="th_design"></th>
           <th class="col-verdict col-split" data-i18n="th_verdict"></th>
           <th class="col-confidence" data-i18n="th_confidence"></th>
           <th class="col-similar" data-i18n="th_similar"></th>
@@ -283,7 +335,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-weight" data-i18n="th_fit"></th>
           <th class="col-analysis" data-i18n="th_analysis"></th>
           <th class="col-data" data-i18n="th_data"></th>
-          <th class="col-links" data-i18n="th_links"></th>
         </tr></thead>
         <tbody>{unified_rows}</tbody>
       </table>
@@ -308,6 +359,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const count = document.getElementById('count');
   let tFilter = 'all';
   let sFilter = 'all';
+  let vFilter = 'simple';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
     let visible = 0;
@@ -315,10 +367,12 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       const typ = (r.dataset.type || '');
       const src = (r.dataset.src || '');
       const search = (r.dataset.search || '');
+      const simple = (r.dataset.simple || '0') === '1';
       const typeOk = tFilter === 'all' || typ === tFilter;
       const srcOk = sFilter === 'all' || src === sFilter;
+      const viewOk = vFilter === 'all' || simple;
       const textOk = !term || search.includes(term);
-      const show = typeOk && srcOk && textOk;
+      const show = typeOk && srcOk && viewOk && textOk;
       r.style.display = show ? '' : 'none';
       if (show) visible++;
     }});
@@ -345,6 +399,15 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         b.classList.toggle('active', b === btn);
       }});
       sFilter = btn.dataset.sfilter;
+      apply();
+    }});
+  }});
+  document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {{
+        b.classList.toggle('active', b === btn);
+      }});
+      vFilter = btn.dataset.vfilter;
       apply();
     }});
   }});

@@ -1,12 +1,13 @@
-# Только локальные файлы (без Google Sheets)
+# Каталог: локальный Excel/CSV и/или Google Sheet (лист TMT ATLAS)
 
 sheet:
-  # Основной каталог — лист TMT ATLAS (123 проекта), read-only для агентов
+  source: auto
+  google_sheet_id: "1M6hc3vmk1bNchMvEwXsIyyO5iq3mAzP877HTXzhzg38"
+  projects_sheet: "TMT ATLAS"              # карта атласа (123 проекта)
+  general_sheet_name: "General single and bulk v2"  # весь пул / ProteomicsExplorer
   projects_file: "./project of Proteomics.xlsx"
-  projects_csv: "./data/projects.csv"   # CI fallback when xlsx is absent
-  projects_sheet: "TMT ATLAS"
+  projects_csv: "./data/projects.csv"
   proteomics_workbook: "./project of Proteomics.xlsx"
-  # legacy (не использовать): ./data/projects.csv
 
 paths:
   tmt_projects_dir: "../tmt-projects/Projects"
@@ -16,7 +17,7 @@ paths:
 github:
   atlas_repo: "https://github.com/arinaatom-cyber/TMT"
   data_repo: "https://github.com/arinaatom-cyber/tmt-projects"
-  streamlit_app: "https://human-cancser-tmt-proteome-atlas.streamlit.app/#human-proteome-atlas"
+  streamlit_app: "https://human-cancser-tmt-proteome-atlas.streamlit.app/"
   raw_branch: "main"
   # Пути к папкам проектов внутри репозиториев
   atlas_projects_path: "projects"
@@ -39,10 +40,12 @@ discovery:
   schedule: "weekly"          # run_discovery.py scan раз в неделю
   year_from: 2024
   year_to: 2026
-  pride_max: 60
-  massive_max: 25
-  iprox_max: 25
-  publications_max: 40
+  pride_max: 0          # 0 = без лимита (PRIDE, MassIVE, iProX)
+  massive_max: 0
+  iprox_max: 0
+  publications_max: 0   # 0 = без лимита Europe PMC; LLM всё равно abstract_llm_max
+  literature:
+    min_relevance: 0.40          # prefilter score before LLM (0..1)
   abstract_llm: true          # ИИ читает абстракты по смыслу (без PXD/PDC в тексте)
   abstract_llm_max: 25
   abstract_resolve_accessions: true    # Europe PMC data availability → PXD/PDC (not LLM hallucination)
@@ -50,12 +53,14 @@ discovery:
   strict_sample_design: true           # unknown healthy/cancer design → manual check, not auto-candidate
   abstract_semantic_max: 12
   pdc:
-    min_plex_channels: 10       # только TMT >6 каналов (10/11/12/16)
-    reject_plexes: [6, 7, 8, 9, 18]
-    allowed_plexes: [10, 11, 12, 16]
+    min_plex_channels: 7        # строго >6 каналов (TMT6 нет; 7–18 включая TMT18)
+    reject_plexes: [2, 6]
+    allowed_plexes: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     exclude_programs:           # уже в CPTAC-листе / не для нового атласа
       - "Clinical Proteomic Tumor Analysis"
       - "CPTAC-Human Cancer Models"
+      - "Broad Institute"
+      - "CCLE"
   pride_keywords: ["TMT", "tandem mass tag", "isobaric", "TMTpro", "TMT10", "TMT11"]
   search_mode: "professional"   # PRIDE v3 search + PDC uiStudySummary + PMID→accession resolve
   consortia: ["PDC", "CCLE", "GTEx", "CPTAC"]
@@ -74,9 +79,10 @@ discovery:
     min_score: 25
   filters:
     human_only: true
-    allowed_tmt_plexes: [10, 11, 12, 16]   # >6ch: TMT10/11/12/16, TMTpro16
-    min_tmt_channels: 10
-    max_tmt_channels: 16
+    allowed_tmt_plexes: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]  # >6ch; TMT6 нет
+    reject_tmt_plexes: [2, 6]
+    min_tmt_channels: 7
+    max_tmt_channels: 18
     allow_healthy_only: true
     allow_cancer_only: true
     allow_case_control: true     # smokers vs healthy OK
@@ -88,13 +94,13 @@ agent:
   language: "ru"
   mode: "ai"
 
-# ИИ: Z.AI (GLM) → Qwen → Claude → Ollama → GPT4All → regex
-# Ключи в .env (см. .env.example): ZAI_API_KEY, DASHSCOPE_API_KEY, ANTHROPIC_API_KEY
+# ИИ: Z.AI (GLM) → Qwen cloud → Claude → Ollama (qwen2.5:3b) → GPT4All → regex
+# Без API-ключей: prefer_cloud=false + ollama pull qwen2.5:3b
 llm:
   enabled: true
   provider: "auto"          # auto | zai | qwen | claude | ollama | gpt4all
-  prefer_cloud: true        # при auto — сначала облако с API-ключом
-  model: "glm-4-flash"      # Z.AI; qwen-plus; claude-sonnet-4-6; qwen2.5:3b
-  base_url: "https://api.z.ai/api/paas/v4"
+  prefer_cloud: true        # cloud при наличии ключа; пилот 2026-08-10 — ollama:qwen2.5:3b
+  model: "qwen2.5:3b"       # Ollama; cloud: glm-4-flash / qwen-plus / claude-sonnet-4-6
+  base_url: "http://127.0.0.1:11434/v1"
   gpt4all_model: "qwen2-1_5b-instruct-q4_0.gguf"
   max_tokens: 2048

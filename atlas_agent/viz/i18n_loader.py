@@ -50,9 +50,11 @@ def load_i18n_dicts() -> tuple[dict[str, str], dict[str, str]]:
 
     for m in re.finditer(
 
-        r"(\w+):\s*\{\s*ru:\s*\"((?:[^\"\\]|\\.)*)\"\s*,\s*en:\s*\"((?:[^\"\\]|\\.)*)\"\s*\}",
+        r"(\w+):\s*\{\s*ru:\s*\"((?:[^\"\\]|\\.)*)\"\s*,\s*en:\s*\"((?:[^\"\\]|\\.)*)\"\s*,?\s*\}",
 
         js,
+
+        re.S,
 
     ):
 
@@ -258,19 +260,21 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
 
         key = m.group(1)
 
-        rest = m.group(2)
+        ws = m.group(2) or ""
 
-        if key not in d or "title=" in rest:
+        if key not in d:
 
             return m.group(0)
 
-        return f'data-i18n-title="{key}" title="{html.escape(d[key], quote=True)}"{rest}'
+        return (
+            f'data-i18n-title="{key}" title="{html.escape(d[key], quote=True)}"{ws}>'
+        )
 
 
 
     text = re.sub(
 
-        r'data-i18n-title="([^"]+)"([^>]*)>',
+        r'data-i18n-title="([^"]+)"(?!\s+title=)(\s*)>',
 
         fill_title,
 
