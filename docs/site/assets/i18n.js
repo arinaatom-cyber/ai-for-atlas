@@ -77,6 +77,12 @@
     th_year: { ru: "Год", en: "Year" },
     th_journal: { ru: "Журнал", en: "Journal" },
     th_score: { ru: "Оценка", en: "Score" },
+    th_verdict: { ru: "Вердикт", en: "Verdict" },
+    theme_light: { ru: "Светлая", en: "Light" },
+    theme_dark: { ru: "Тёмная", en: "Dark" },
+    tab_projects: { ru: "Проекты", en: "Projects" },
+    tab_guide: { ru: "Справка", en: "Guide" },
+    tab_technical: { ru: "Модели и поиск", en: "Models & search" },
     cell_empty: { ru: "—", en: "—" },
     pat_yes: { ru: "да", en: "yes" },
     pat_maybe: { ru: "возможно", en: "maybe" },
@@ -214,6 +220,46 @@
       search_cohorts: "Поиск по названию, описанию…",
       sec_cohorts_table: "Список статей",
       no_cohorts: "Когортные статьи не найдены — запустите scan",
+      guide_title: "Как читать таблицу",
+      guide_lead:
+        "Один экран — новые TMT-проекты вне каталога. По умолчанию показаны только строки типа «Project» (PXD/PDC/MSV/IPX).",
+      guide_columns_title: "Колонки",
+      col_help_type: "Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.",
+      col_help_id: "Accession (клик → репозиторий) и PMID (клик → PubMed). Если ID нет — «No PXD/PDC/MSV/IPX».",
+      col_help_year: "Год публикации или submission из PRIDE/PDC или PubMed.",
+      col_help_title: "Заголовок статьи/проекта и короткое описание (abstract / project description).",
+      col_help_source: "PRIDE, PDC, MassIVE, iProX или Europe PMC.",
+      col_help_design: "Дизайн образцов: tumor/adjacent, cell line, материал из LLM-разбора абстракта.",
+      col_help_omics: "Тип омики: proteomics, phospho, multi-omics (для когорт).",
+      col_help_patients: "Есть ли пациенты в тексте: yes / maybe / no.",
+      col_help_n: "Число пациентов/образцов из абстракта (авто, проверяйте вручную).",
+      col_help_verdict: "Candidate — в атлас; Watch — наблюдение; Exclude — не подходит.",
+      col_help_confidence: "Уверенность A–D: A = protein table + дизайн OK; B = файлы есть; C = watch; D = exclude.",
+      col_help_similar:
+        "Похожесть на ближайший проект каталога: accession · процент (0–100%). Сравнение по метаданным/тексту (cosine). Не дубликат — только подсказка.",
+      col_help_fit: "LLM-оценка atlas fit (yes/maybe/no) или cohort score 0–100 для литературы.",
+      col_help_analysis: "ИИ-резюме абстракта + цепочка evidence (фильтры, LLM, similarity).",
+      col_help_data: "Наличие protein-level таблицы в репозитории или локальном mirror.",
+      col_help_links: "Прямые ссылки: репозиторий, PMID, Europe PMC.",
+      guide_filters_title: "Фильтры над таблицей",
+      guide_filters_type: "Тип строки: все / проекты / статьи / когорты.",
+      guide_filters_source: "Источник: PRIDE, PDC, MassIVE, iProX, Europe PMC.",
+      guide_filters_search: "Поиск по ID, названию, PMID, описанию и тексту анализа.",
+      guide_similarity_title: "Похожесть на атлас",
+      guide_similarity_desc:
+        "Для каждого кандидата считается similarity score к проектам из projects.csv (title, tissue, disease, TMT). 80%+ — очень близко; 40–60% — та же тема; <30% — новая ниша. Клик по PXD в колонке Similar — карточка в PRIDE.",
+      tech_title: "Как искали: пайплайн и модели",
+      tech_lead: "Техническая часть последнего Discovery scan — для Methods / supplementary.",
+      tech_step1: "1. PRIDE API + PDC UI — keyword TMT, human, годы из config.",
+      tech_step2: "2. MassIVE / iProX — те же ключевые слова профиля атласа.",
+      tech_step3: "3. Фильтры: Homo sapiens; TMT >6 plex; tissue/cell line; без plasma-only.",
+      tech_step4: "4. QC материала + проверка data availability (protein table).",
+      tech_step5: "5. Europe PMC — литература; LLM читает abstract (если включено).",
+      tech_step6: "6. Similarity index vs catalog; tier A–D; публикация на сайт (каталог не меняется).",
+      tech_llm_title: "LLM / модели",
+      tech_llm_desc:
+        "Скрининг абстрактов: локальный Ollama (Qwen) или облачный API из config.yaml. Verdict и tier — rule-based + LLM labels, не калиброванная вероятность.",
+      tech_manifest_title: "Manifest скана (JSON)",
     },
     en: {
       brand_sub: "New TMT projects · atlas similarity",
@@ -344,6 +390,46 @@
       search_cohorts: "Search title, description…",
       sec_cohorts_table: "Paper list",
       no_cohorts: "No cohort papers — run scan",
+      guide_title: "How to read the table",
+      guide_lead:
+        "One screen for new TMT projects not in the catalog. Default view: Project rows only (PXD/PDC/MSV/IPX).",
+      guide_columns_title: "Columns",
+      col_help_type: "Project = repository accession; Paper = literature without ID; Cohort = large cohort from Europe PMC.",
+      col_help_id: "Accession (→ repository) and PMID (→ PubMed). If missing: «No PXD/PDC/MSV/IPX».",
+      col_help_year: "Publication or submission year from PRIDE/PDC or PubMed.",
+      col_help_title: "Title plus short description (abstract / project description).",
+      col_help_source: "PRIDE, PDC, MassIVE, iProX, or Europe PMC.",
+      col_help_design: "Sample design: tumor/adjacent, cell line, material from LLM abstract read.",
+      col_help_omics: "Omics type: proteomics, phospho, multi-omics (cohorts).",
+      col_help_patients: "Patients mentioned in text: yes / maybe / no.",
+      col_help_n: "Patient/sample N from abstract (auto-extracted — verify manually).",
+      col_help_verdict: "Candidate = atlas fit; Watch = surveillance; Exclude = not suitable.",
+      col_help_confidence: "Confidence A–D: A = protein table + design OK; B = quant files; C = watch; D = exclude.",
+      col_help_similar:
+        "Similarity to nearest catalog project: accession · percent (0–100%). Metadata/text cosine — hint only, not duplicate detection.",
+      col_help_fit: "LLM atlas fit (yes/maybe/no) or cohort score 0–100 for literature.",
+      col_help_analysis: "AI abstract summary + evidence chain (filters, LLM, similarity).",
+      col_help_data: "Protein-level table in repository or local mirror.",
+      col_help_links: "Direct links: repository, PMID, Europe PMC.",
+      guide_filters_title: "Toolbar filters",
+      guide_filters_type: "Row type: all / projects / papers / cohorts.",
+      guide_filters_source: "Source: PRIDE, PDC, MassIVE, iProX, Europe PMC.",
+      guide_filters_search: "Search ID, title, PMID, description, analysis text.",
+      guide_similarity_title: "Atlas similarity",
+      guide_similarity_desc:
+        "Each candidate is scored against projects.csv (title, tissue, disease, TMT). 80%+ very close; 40–60% same theme; <30% new niche. Click catalog PXD in Similar column for PRIDE.",
+      tech_title: "Search pipeline & models",
+      tech_lead: "Technical details of the last Discovery scan — for Methods / supplementary.",
+      tech_step1: "1. PRIDE API + PDC UI — TMT keywords, human, year range from config.",
+      tech_step2: "2. MassIVE / iProX — same atlas profile keywords.",
+      tech_step3: "3. Filters: Homo sapiens; TMT >6 plex; tissue/cell line; no plasma-only.",
+      tech_step4: "4. Material QC + data availability (protein table).",
+      tech_step5: "5. Europe PMC literature; LLM abstract read when enabled.",
+      tech_step6: "6. Catalog similarity index; tier A–D; publish to site (catalog unchanged).",
+      tech_llm_title: "LLM / models",
+      tech_llm_desc:
+        "Abstract screening: local Ollama (Qwen) or cloud API from config.yaml. Verdict and tier are rule-based + LLM labels, not calibrated probability.",
+      tech_manifest_title: "Scan manifest (JSON)",
     },
   };
 
@@ -360,7 +446,7 @@
   const T = { ru: buildDict("ru"), en: buildDict("en") };
 
   function getLang() {
-    return "en";
+    return localStorage.getItem(STORAGE_KEY) || "ru";
   }
 
   function setLang(lang) {

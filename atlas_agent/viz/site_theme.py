@@ -26,13 +26,22 @@ def _esc(s: object) -> str:
 def write_site_assets(site_dir: Path) -> Path:
     assets = site_dir / "assets"
     assets.mkdir(parents=True, exist_ok=True)
-    for name in ("theme.css", "i18n.js"):
+    for name in ("theme.css", "i18n.js", "site_ui.js"):
         shutil.copy2(_ASSETS_DIR / name, assets / name)
     return assets
 
 
-def _lang_toggle() -> str:
-    return ""
+def _header_controls() -> str:
+    return """<div class="header-controls">
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <div class="theme-toggle" aria-label="Theme">
+        <button type="button" data-theme="light" class="active" data-i18n="theme_light" title="Light">☀</button>
+        <button type="button" data-theme="dark" data-i18n="theme_dark" title="Dark">☾</button>
+      </div>
+    </div>"""
 
 
 def _nav_paths(deploy: str) -> dict[str, str]:
@@ -82,13 +91,16 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str | None = None) -> st
     prefix = assets_prefix_for(deploy)
     css = f"{prefix}/theme.css"
     js = f"{prefix}/i18n.js"
+    ui = f"{prefix}/site_ui.js"
     return f"""<head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{_esc(i18n_default('portal_lead')[:160])}"/>
   <title>{_esc(page_title)}</title>
+  <script>(function(){{try{{var t=localStorage.getItem('atlas_site_theme')||'light';document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}}catch(e){{}}}})();</script>
   <link rel="stylesheet" href="{css}"/>
   <script src="{js}" defer></script>
+  <script src="{ui}" defer></script>
 </head>"""
 
 
@@ -108,7 +120,7 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
         {_i18n_el("brand_sub", tag="span", cls="brand-sub")}
       </a>
     </div>
-    {_lang_toggle()}
+    {_header_controls()}
   </div>
 </header>"""
 
@@ -133,7 +145,7 @@ def page_wrap(
     deploy: str = DEPLOY_DOCS_SITE,
 ) -> str:
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 {site_head(deploy=deploy, title=title)}
 <body>
 {site_header_bar(active=active, deploy=deploy)}

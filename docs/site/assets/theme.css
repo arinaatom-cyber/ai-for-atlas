@@ -1,5 +1,5 @@
 /* Human Cancser Assosiated TMT Proteome Atlas — Discovery UI */
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&subset=latin,cyrillic,cyrillic-ext");
 
 :root {
   --bg: #080c12;
@@ -36,6 +36,33 @@
   --text-sm: 0.875rem;
   --text-xs: 0.8125rem;
   --leading: 1.6;
+}
+
+[data-theme="light"] {
+  --bg: #f4f6f9;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #eef1f6;
+  --card: #ffffff;
+  --card-hover: #f0f4fa;
+  --border: #d5dde8;
+  --border-light: #c2cedd;
+  --text: #152033;
+  --text-secondary: #3d4d63;
+  --muted: #5c6b80;
+  --accent: #1565c0;
+  --accent-soft: rgba(21, 101, 192, 0.1);
+  --accent-dim: #e3eef9;
+  --ok: #0d7a4f;
+  --ok-soft: rgba(13, 122, 79, 0.1);
+  --ok-dim: #e6f4ed;
+  --warn: #b45309;
+  --warn-soft: rgba(180, 83, 9, 0.1);
+  --warn-dim: #fef3e2;
+  --bad: #c62828;
+  --bad-soft: rgba(198, 40, 40, 0.1);
+  --bad-dim: #fdeaea;
+  --shadow: 0 8px 28px rgba(21, 32, 51, 0.08);
+  --shadow-sm: 0 2px 10px rgba(21, 32, 51, 0.06);
 }
 
 * { box-sizing: border-box; }
@@ -86,11 +113,152 @@ code {
 /* Header */
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(15, 20, 28, 0.92);
+  background: color-mix(in srgb, var(--bg-elevated) 92%, transparent);
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.theme-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.theme-toggle button {
+  background: var(--card);
+  border: none;
+  color: var(--muted);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  font-family: var(--font);
+}
+
+.theme-toggle button.active {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.theme-toggle button:hover:not(.active) {
+  background: var(--card-hover);
+  color: var(--text);
+}
+
+.page-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-tab {
+  font-family: var(--font);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.page-tab:hover {
+  background: var(--card-hover);
+  color: var(--text);
+}
+
+.page-tab.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.guide-section {
+  max-width: 960px;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 1rem 0 1.5rem;
+}
+
+.guide-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+}
+
+.guide-card h4 {
+  margin: 0 0 0.35rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.guide-card p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.guide-block {
+  margin: 1.25rem 0;
+  padding: 1rem 1.1rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.guide-block h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.guide-block ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+}
+
+.tech-pre {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  color: var(--text-secondary);
+  max-height: 320px;
 }
 
 .site-header-inner {
@@ -231,6 +399,13 @@ code {
   padding: 36px 28px 20px;
 }
 
+.section-subtitle {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
 .page-hero h1 {
   margin: 0 0 10px;
   font-size: 1.875rem;
@@ -238,6 +413,7 @@ code {
   letter-spacing: -0.03em;
   color: var(--text);
   line-height: 1.2;
+  font-family: var(--font);
 }
 
 .page-hero .lead {

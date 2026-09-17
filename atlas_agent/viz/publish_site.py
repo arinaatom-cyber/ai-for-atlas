@@ -29,6 +29,9 @@ def _site_report(report: dict) -> tuple[dict, list]:
         "publications_analyzed": report.get("publications_analyzed") or [],
         "literature_semantic": report.get("literature_semantic") or [],
         "cohort_literature": report.get("cohort_literature") or [],
+        "methods_manifest": report.get("methods_manifest") or {},
+        "quality_metrics": report.get("quality_metrics") or (report.get("summary") or {}).get("quality_metrics") or {},
+        "filters_applied": report.get("filters_applied") or {},
     }
     return site_report, candidates
 

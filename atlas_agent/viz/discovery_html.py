@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 from pathlib import Path
 
@@ -83,6 +84,80 @@ def _methods_panel(report: dict) -> str:
 </section>"""
 
 
+def _guide_panel() -> str:
+    cols = [
+        ("th_type", "col_help_type"),
+        ("th_project_id", "col_help_id"),
+        ("th_year", "col_help_year"),
+        ("th_title", "col_help_title"),
+        ("th_source", "col_help_source"),
+        ("th_design", "col_help_design"),
+        ("th_omics", "col_help_omics"),
+        ("th_patients", "col_help_patients"),
+        ("th_n", "col_help_n"),
+        ("th_verdict", "col_help_verdict"),
+        ("th_confidence", "col_help_confidence"),
+        ("th_similar", "col_help_similar"),
+        ("th_fit", "col_help_fit"),
+        ("th_analysis", "col_help_analysis"),
+        ("th_data", "col_help_data"),
+        ("th_links", "col_help_links"),
+    ]
+    cards = "".join(
+        f'<article class="guide-card"><h4 data-i18n="{k}"></h4><p data-i18n="{d}"></p></article>'
+        for k, d in cols
+    )
+    return f"""
+<section class="section guide-section">
+  <h2 class="section-title" data-i18n="guide_title"></h2>
+  <p class="section-desc" data-i18n="guide_lead"></p>
+  <h3 class="section-subtitle" data-i18n="guide_columns_title"></h3>
+  <div class="guide-grid">{cards}</div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_filters_title"></h3>
+    <ul>
+      <li data-i18n="guide_filters_type"></li>
+      <li data-i18n="guide_filters_source"></li>
+      <li data-i18n="guide_filters_search"></li>
+    </ul>
+  </div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_similarity_title"></h3>
+    <p data-i18n="guide_similarity_desc"></p>
+  </div>
+</section>"""
+
+
+def _technical_panel(report: dict) -> str:
+    manifest = report.get("methods_manifest") or {}
+    manifest_json = html.escape(json.dumps(manifest, ensure_ascii=False, indent=2)[:12000])
+    return f"""
+<section class="section">
+  <h2 class="section-title" data-i18n="tech_title"></h2>
+  <p class="section-desc" data-i18n="tech_lead"></p>
+  <div class="guide-block">
+    <h3 data-i18n="sec_methods"></h3>
+    <ul>
+      <li data-i18n="tech_step1"></li>
+      <li data-i18n="tech_step2"></li>
+      <li data-i18n="tech_step3"></li>
+      <li data-i18n="tech_step4"></li>
+      <li data-i18n="tech_step5"></li>
+      <li data-i18n="tech_step6"></li>
+    </ul>
+  </div>
+  {_methods_panel(report)}
+  <div class="guide-block">
+    <h3 data-i18n="tech_llm_title"></h3>
+    <p data-i18n="tech_llm_desc"></p>
+  </div>
+  <details class="methods-collapse">
+    <summary data-i18n="tech_manifest_title"></summary>
+    <pre class="tech-pre">{manifest_json or "—"}</pre>
+  </details>
+</section>"""
+
+
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
     items = report.get("candidates") or report.get("new_projects") or []
@@ -106,13 +181,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 
     unified_rows, total_rows = build_unified_discovery_rows(items, papers, cohorts, pubs_by_pmid)
 
-    methods_html = _methods_panel(report)
-    methods_collapsed = f"""
-<details class="methods-collapse">
-  <summary data-i18n="sec_methods"></summary>
-  {methods_html}
-</details>"""
-
     body = (
         page_hero(
             "disc_title",
@@ -134,11 +202,17 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         )
         + f"""
 <div class="page-content page-content-wide">
+  <nav class="page-tabs" aria-label="Sections">
+    <button type="button" class="page-tab active" data-tab="projects" data-i18n="tab_projects"></button>
+    <button type="button" class="page-tab" data-tab="guide" data-i18n="tab_guide"></button>
+    <button type="button" class="page-tab" data-tab="technical" data-i18n="tab_technical"></button>
+  </nav>
+
+  <div id="panel-projects" class="tab-panel active">
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
     {note_i18n("note_kpi_new_projects")}
-    {methods_collapsed}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
       <button type="button" class="chip" data-tfilter="all" data-i18n="filter_all"></button>
@@ -183,6 +257,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       </table>
     </div>
   </section>
+  </div>
+
+  <div id="panel-guide" class="tab-panel">{_guide_panel()}</div>
+  <div id="panel-technical" class="tab-panel">{_technical_panel(report)}</div>
 
 </div>
 
