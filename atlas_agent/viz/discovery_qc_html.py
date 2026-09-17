@@ -5,6 +5,7 @@ import html
 import re
 from pathlib import Path
 
+from atlas_agent.discovery.fit_rules import project_verdict
 from atlas_agent.viz.discovery_table_shared import _first_accession, _id_cell, _title_cell
 from atlas_agent.viz.portal_index import article_description, format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.viz.site_sanitize import translate_legacy_text
@@ -74,6 +75,17 @@ def _rows(items: list[dict]) -> str:
     return "\n".join(out) or '<tr><td colspan="8" data-i18n="no_rows"></td></tr>'
 
 
+def _split_candidates(items: list[dict]) -> tuple[list[dict], list[dict]]:
+    passed: list[dict] = []
+    excluded: list[dict] = []
+    for it in items:
+        if project_verdict(it)[0] == "Candidate":
+            passed.append(it)
+        else:
+            excluded.append(it)
+    return passed, excluded
+
+
 def _table_head(notes: bool = False) -> str:
     reason_key = "th_notes" if notes else "th_reason"
     return f"""<thead><tr>
@@ -91,10 +103,12 @@ def _table_head(notes: bool = False) -> str:
 def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
     cand = report.get("candidates") or report.get("new_projects") or []
-    manual = report.get("manual_check") or []
+    passed, excluded = _split_candidates(cand)
+    lit_manual = report.get("manual_check") or []
+    repo_manual = report.get("repository_manual") or []
+    manual = list(repo_manual) + list(lit_manual)
     rejected = report.get("rejected_material") or []
     technical = report.get("filtered_out") or []
-    pubs = report.get("publications_analyzed") or []
     stats = s.get("source_stats") or {}
     gen = report.get("generated_at") or ""
 
@@ -103,12 +117,12 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
         page_hero("qc_title", "qc_lead", meta)
         + kpi_grid(
             [
-                (str(len(cand)), "qc_candidate"),
+                (str(len(passed)), "qc_candidate"),
                 (str(len(manual)), "qc_manual"),
+                (str(len(excluded)), "qc_exclude"),
                 (str(len(rejected)), "qc_rejected"),
                 (str(len(technical)), "qc_filtered"),
                 (str(stats.get("abstract_llm_read", 0)), "kpi_abstracts_ai"),
-                (str(len(pubs)), "qc_pubs"),
             ]
         )
         + f"""
@@ -116,16 +130,26 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
   {note_rules("qc_rules_title", "qc_rules")}
 
   <section class="section">
-    {section_head("qc_candidate", len(cand))}
+    {section_head("qc_candidate", len(passed))}
+    <p class="section-desc" data-i18n="qc_candidate_desc"></p>
     <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head(notes=True)}<tbody>{_rows(cand)}</tbody></table>
+      <table class="data-table">{_table_head(notes=True)}<tbody>{_rows(passed)}</tbody></table>
     </div>
   </section>
 
   <section class="section">
     {section_head("qc_manual", len(manual))}
+    <p class="section-desc" data-i18n="qc_manual_desc"></p>
     <div class="table-wrap table-unified table-qc">
       <table class="data-table">{_table_head()}<tbody>{_rows(manual)}</tbody></table>
+    </div>
+  </section>
+
+  <section class="section">
+    {section_head("qc_exclude", len(excluded))}
+    <p class="section-desc" data-i18n="qc_exclude_desc"></p>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table">{_table_head()}<tbody>{_rows(excluded)}</tbody></table>
     </div>
   </section>
 
@@ -155,13 +179,14 @@ def qc_markdown_summary(report: dict) -> str:
     lines = [
         "## QC материала образцов",
         "",
-        f"- **Candidate:** {s.get('candidates', 0)}",
-        f"- **Requires manual check:** {s.get('manual_check', 0)}",
+        f"- **Candidate (passed):** {s.get('candidates', 0)}",
+        f"- **Requires manual check:** {s.get('manual_check', 0)} + repository_manual",
         f"- **Rejected (material):** {s.get('rejected_material', 0)}",
         f"- **Filtered (technical):** {s.get('filtered_out', 0)}",
         "",
-        "Правила: Homo sapiens; ткани (tumor/adjacent/human tissue) или human cancer cell lines; "
-        "исключить plasma/serum-only, spheroids/organoids-only, PDX-only, xenograft-only, animal tissue.",
+        "Правила: Homo sapiens; ткань (tumor/adjacent) или cancer cell line должна быть прописана "
+        "в метаданных или статье; иначе reject. Исключить plasma/serum-only, spheroids/organoids-only, "
+        "PDX-only, xenograft-only, animal tissue.",
         "",
     ]
     for label, key in (

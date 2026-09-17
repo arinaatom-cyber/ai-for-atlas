@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from atlas_agent.discovery.evaluation.schemas import ItemKind
-from atlas_agent.viz.discovery_qc_html import _rows
+from atlas_agent.viz.discovery_qc_html import _rows, _split_candidates
 from atlas_agent.viz.discovery_table_shared import (
     _coerce_evaluation,
     _enrich_literature_accession,
@@ -210,3 +210,23 @@ def test_qc_rows_include_pmid_description_repo():
     assert "Paired tumor and adjacent colon tissue." in html
     assert "pride/archive/projects/PXD012345" in html
     assert "Human TMT colon proteome" in html
+
+
+def test_qc_splits_passed_from_exclude():
+    passed, excluded = _split_candidates(
+        [
+            {
+                "accession": "PDC000604",
+                "title": "AML proteome",
+                "evaluation": {"final_verdict": "Candidate", "confidence": "A"},
+                "data_availability": {"status": "quant_table"},
+            },
+            {
+                "accession": "PXD000001",
+                "title": "Interactome",
+                "evaluation": {"final_verdict": "Exclude", "confidence": "D"},
+            },
+        ]
+    )
+    assert [x["accession"] for x in passed] == ["PDC000604"]
+    assert [x["accession"] for x in excluded] == ["PXD000001"]
