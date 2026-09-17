@@ -169,7 +169,7 @@
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
       kpi_new: "Подошло (Candidate)",
-      kpi_pride_manual: "PRIDE на проверке",
+      kpi_pride_manual: "Смесь ткань+3D",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
       kpi_manual: "Ручная проверка",
@@ -186,23 +186,23 @@
       kpi_papers_no_id: "Статей без ID",
       kpi_with_table: "с protein table",
       note_projects_unified:
-        "ID → репозиторий (синяя ссылка). Название → клик на PRIDE/PDC или PubMed; под описанием — PMID и Europe PMC. PRIDE на ручной проверке — в таблице, но не в KPI.",
+        "ID → репозиторий (синяя ссылка). Название → клик на PRIDE/PDC или PubMed; под описанием — PMID и Europe PMC. В «Подошло» только Candidate. Неясный plex/дизайн не выдаём как проекты.",
       sec_unified_discovery: "Реестр находок Discovery",
       sec_unified_discovery_desc:
         "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.",
       sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
       note_scope_lead:
-        "По умолчанию «Подошло»: только проекты с вердиктом Candidate. «Весь поиск» — полный список (ручная проверка, исключённые, статьи).",
+        "По умолчанию «Подошло»: только проекты, которые прошли ИИ-фильтры (Candidate). Если plex, дизайн или материал не прошли — это не список проектов, а «Отфильтровано».",
       note_scope_row_types:
         "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
       note_scope_kpi:
-        "KPI: сколько проектов прошло фильтры (Candidate). «PRIDE на проверке» — plex/дизайн неясны. «Отклонено» в KPI, не в главном списке.",
+        "KPI: сколько проектов прошло фильтры (Candidate). Неясный TMT plex или дизайн = не прошло, не в выдаче. «Смесь ткань+3D» — единственная ручная корзина.",
       note_scope_filter:
         "Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.",
       note_scope_stat_new: "новых проектов (KPI)",
       note_scope_stat_total: "записей в таблице",
       note_kpi_new_projects:
-        "KPI и вкладка «Подошло» — только Candidate. Исключённые и ручная проверка — во «Весь поиск».",
+        "KPI и вкладка «Подошло» — только Candidate. Не прошедшие фильтры — в «Отфильтровано», не в выдаче проектов.",
       sec_methods: "Методы и воронка",
       sec_methods_desc:
         "Пайплайн для Materials & Methods: агенты, скрипты, критерии включения. Цифры воронки — снимок последнего скана (см. дату выше).",
@@ -297,14 +297,14 @@
       no_pubs: "Нет проанализированных статей",
       no_literature: "Нет статей для ручной проверки",
       qc_title: "QC отчёт Discovery",
-      qc_lead: "Первый список — только то, что прошло QC (Candidate). Дальше: ручная проверка, Exclude, материал, техфильтр.",
+      qc_lead: "Первый список — только то, что прошло QC (Candidate). Это и есть выдача проектов. Остальное — не прошло: смесь ткань+3D, Exclude, материал, техфильтр.",
       qc_rules_title: "Правила материала",
       qc_rules:
         "Homo sapiens. Ткань (tumor / adjacent / human tissue) или раковая клеточная линия должна быть прописана в метаданных или статье — иначе reject. Не берём plasma/serum/urine-only, organoids-only, PDX-only, животные. Смешанное tissue+organoid → ручная проверка.",
       qc_candidate: "Подошло (QC)",
       qc_candidate_desc: "Вердикт Candidate — материал и фильтры пройдены. Это же главный список на Discovery.",
       qc_manual: "Ручная проверка",
-      qc_manual_desc: "PRIDE без plex/неясный дизайн + статьи без PXD. Не входят в «Подошло».",
+      qc_manual_desc: "Только смешанный материал (ткань + organoid/3D). Неясный plex или дизайн — не прошло, в «Отфильтровано», не в выдаче проектов.",
       qc_exclude: "Исключено (вердикт)",
       qc_exclude_desc: "Дошли до кандидатов, но QC/данные дали Exclude — не в главном списке.",
       qc_rejected: "Отклонено (материал)",
@@ -432,7 +432,7 @@
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
       kpi_new: "Passed (Candidate)",
-      kpi_pride_manual: "PRIDE manual review",
+      kpi_pride_manual: "Mixed tissue+3D",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
       kpi_manual: "manual review",
@@ -451,23 +451,23 @@
       kpi_papers_no_id: "papers w/o ID",
       kpi_with_table: "with protein table",
       note_projects_unified:
-        "ID → repository (blue link). Title → PRIDE/PDC or PubMed; PMID and Europe PMC under the description. PRIDE manual-review rows are in the table but not in the KPI.",
+        "ID → repository (blue link). Title → PRIDE/PDC or PubMed; PMID and Europe PMC under the description. «Passed» is Candidate only. Unclear plex/design is not handed over as projects.",
       sec_unified_discovery: "Discovery findings registry",
       sec_unified_discovery_desc:
         "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, papers without a repository ID, and oncology cohort literature.",
       sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
       note_scope_lead:
-        "Default «Passed»: Candidate projects only. «All search» is the full list (manual review, excluded, papers).",
+        "Default «Passed»: only projects that passed AI filters (Candidate). Failed plex, design, or material is Filtered, not a project list.",
       note_scope_row_types:
         "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
       note_scope_kpi:
-        "KPI: how many projects passed filters (Candidate). «PRIDE manual review» = unclear plex/design. Rejected items are in the KPI, not the main list.",
+        "KPI: how many projects passed filters (Candidate). Unclear TMT plex or design = not passed, not in the list. Mixed tissue+3D is the only manual bucket.",
       note_scope_filter:
         "Filter «projects» for repository IDs only; «papers» and «cohorts» show Europe PMC records without PXD/PDC.",
       note_scope_stat_new: "new projects (KPI)",
       note_scope_stat_total: "rows in table",
       note_kpi_new_projects:
-        "KPI and «Passed» tab = Candidate only. Excluded and manual-review rows live under «All search».",
+        "KPI and «Passed» = Candidate only. Failed filters go to Filtered, not the project list.",
       note_unified_table:
         "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",
@@ -563,14 +563,14 @@
       no_pubs: "No analyzed publications",
       no_literature: "No papers for manual review",
       qc_title: "Discovery QC report",
-      qc_lead: "First table = QC pass (Candidate). Then: manual review, Exclude, material reject, technical filter.",
+      qc_lead: "First table = QC pass (Candidate) — that is the project list. Everything else failed: mixed tissue+3D, Exclude, material, technical filter.",
       qc_rules_title: "Material rules",
       qc_rules:
         "Homo sapiens. Tissue (tumor / adjacent / human tissue) or a cancer cell line must be stated in metadata or the paper — otherwise reject. No plasma/serum/urine-only, organoids-only, PDX-only, animal tissue. Mixed tissue+organoid → manual review.",
       qc_candidate: "Passed (QC)",
       qc_candidate_desc: "Candidate verdict — material and filters passed. Same rows as Discovery «Passed».",
       qc_manual: "Manual review",
-      qc_manual_desc: "PRIDE with missing plex/unclear design plus papers without PXD. Not in «Passed».",
+      qc_manual_desc: "Only mixed material (tissue + organoid/3D). Missing plex or design = not passed, in Filtered, not in the project list.",
       qc_exclude: "Excluded (verdict)",
       qc_exclude_desc: "Reached the candidate bucket but QC/data said Exclude — not in the main list.",
       qc_rejected: "Rejected (material)",

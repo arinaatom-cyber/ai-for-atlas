@@ -363,16 +363,13 @@ def classify_candidate(
         tmt6 = re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob, re.I)
         if is_pride and item.get("tmt_detected") and not tmt6:
             reasons.append("tmt_plex_unspecified")
-            verdict = "requires_manual_check"
+            verdict = "filtered_out"
         elif plex is not None:
             reasons.append(f"TMT plex {plex} rejected (need >6 channels, min {min_ch})")
             verdict = "filtered_out"
         else:
             reasons.append(f"TMT plex unknown (need >6 channels, min {min_ch})")
-            if is_pride and item.get("tmt_detected") and not tmt6:
-                verdict = "requires_manual_check"
-            else:
-                verdict = "filtered_out"
+            verdict = "filtered_out"
 
     omics_reasons = assess_proteome_layer(item, blob, cfg=cfg)
     if omics_reasons and verdict == "recommended":
@@ -398,7 +395,7 @@ def classify_candidate(
     if design == "unknown" and verdict == "recommended":
         reasons.append("Sample design unclear — check healthy/cancer labels")
         if cfg.get("strict_sample_design", True):
-            verdict = "requires_manual_check"
+            verdict = "filtered_out"
     elif design not in allowed_designs and design != "unknown" and verdict == "recommended":
         verdict = "filtered_out"
         reasons.append(f"Design not allowed: {design}")

@@ -233,9 +233,6 @@ def run_discovery_scan(
 
     buckets = apply_filters(all_raw, df, cfg=filter_cfg)
 
-    if literature_semantic:
-        buckets.setdefault("requires_manual_check", []).extend(literature_semantic)
-
     removed_moved = _apply_removed_from_workbook(buckets, cfg, root=root)
 
     pride_novel = [p for p in pride_raw if _is_novel(p, known)]

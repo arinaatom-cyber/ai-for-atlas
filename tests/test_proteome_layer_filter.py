@@ -64,7 +64,7 @@ def test_combined_proteome_phospho_rejected():
     assert reasons
 
 
-def test_tmt_plex_unspecified_goes_manual_not_filtered():
+def test_tmt_plex_unspecified_is_not_passed():
     item = {
         "title": "Human cancer TMT proteomics",
         "accession": "PXD099999",
@@ -74,7 +74,7 @@ def test_tmt_plex_unspecified_goes_manual_not_filtered():
         "description": "Quantitative proteomics of tumor tissue from patients",
     }
     out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
-    assert out["verdict"] == "requires_manual_check"
+    assert out["verdict"] == "filtered_out"
     assert "tmt_plex_unspecified" in out["filter_reasons"]
 
 

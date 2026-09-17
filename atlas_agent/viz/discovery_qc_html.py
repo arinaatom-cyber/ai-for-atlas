@@ -104,9 +104,15 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
     s = report.get("summary") or {}
     cand = report.get("candidates") or report.get("new_projects") or []
     passed, excluded = _split_candidates(cand)
-    lit_manual = report.get("manual_check") or []
-    repo_manual = report.get("repository_manual") or []
-    manual = list(repo_manual) + list(lit_manual)
+    manual = [
+        it
+        for it in (report.get("repository_manual") or [])
+        if (it.get("qc_status") == "requires_manual_check")
+        or any(
+            "Mixed" in str(x) or "3D" in str(x) or "organoid" in str(x).lower()
+            for x in (it.get("qc_reasons") or it.get("filter_reasons") or [])
+        )
+    ]
     rejected = report.get("rejected_material") or []
     technical = report.get("filtered_out") or []
     stats = s.get("source_stats") or {}

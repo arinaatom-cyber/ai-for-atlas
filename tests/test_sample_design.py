@@ -26,6 +26,39 @@ def test_healthy_only_when_no_cancer_terms():
     assert _infer_sample_design(blob) == "healthy_only"
 
 
+def test_unknown_sample_design_is_filtered_not_manual():
+    item = {
+        "title": "Human TMT 10-plex proteomics of tissue samples",
+        "accession": "PXD088881",
+        "source": "pride_api",
+        "human": True,
+        "tmt_detected": True,
+        "inferred_plex": 10,
+        "description": "Quantitative TMT 10-plex proteomics of human tissue from donors",
+    }
+    out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
+    assert out["verdict"] == "filtered_out"
+    assert any("Sample design unclear" in r for r in out["filter_reasons"])
+
+
+def test_mixed_tissue_organoid_stays_manual_when_filters_pass():
+    item = {
+        "title": "Human cancer TMT 10-plex of tumor tissue and organoids",
+        "accession": "PXD088882",
+        "source": "pride_api",
+        "human": True,
+        "tmt_detected": True,
+        "inferred_plex": 10,
+        "description": (
+            "Quantitative TMT 10-plex proteomics of tumor tissue from cancer patients "
+            "and matched organoids. Case-control comparison with healthy controls."
+        ),
+    }
+    out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
+    assert out["verdict"] == "requires_manual_check"
+    assert any("Mixed" in r or "organoid" in r.lower() for r in out["filter_reasons"])
+
+
 def test_co_ip_interactome_filtered():
     item = {
         "title": "Co-immunoprecipitation enrichment mass spectrometry of EGFR interactome",
@@ -34,6 +67,7 @@ def test_co_ip_interactome_filtered():
         "human": True,
         "tmt_detected": True,
         "inferred_plex": 10,
+        "description": "IP-MS of EGFR interactome from tumor tissue of cancer patients, TMT 10-plex",
     }
     out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
     assert out["verdict"] == "filtered_out"
