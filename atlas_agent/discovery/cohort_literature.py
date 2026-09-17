@@ -35,11 +35,11 @@ OMICS_PATTERNS: dict[str, re.Pattern[str]] = {
 
 PATIENT_YES = re.compile(
     r"\b(patient|patients|clinical cohort|multicenter|multi-center|participants?|subjects?|"
-    r"biopsy|tumor tissue|plasma|serum|cohort)\b",
+    r"biopsy|tumor tissue|tissue|cell\s+line|cohort)\b",
     re.I,
 )
 PATIENT_NO = re.compile(
-    r"\b(mouse|mice|murine|rat\b|cell[- ]line[- ]only|in vitro only|review|editorial|"
+    r"\b(mouse|mice|murine|rat\b|review|editorial|"
     r"protocol paper|perspective)\b",
     re.I,
 )

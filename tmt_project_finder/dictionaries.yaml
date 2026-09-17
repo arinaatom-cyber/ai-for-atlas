@@ -1,0 +1,95 @@
+allowed_organism:
+  - Homo sapiens
+  - human
+
+rejected_organism:
+  - mouse
+  - Mus musculus
+  - rat
+  - Rattus norvegicus
+  - zebrafish
+  - Danio rerio
+  - yeast
+  - bacteria
+  - non-human
+  - murine
+  - chicken
+  - zebrafish
+
+allowed_tmt:
+  - TMT7
+  - TMT8
+  - TMT9
+  - TMT10
+  - TMT11
+  - TMT12
+  - TMT16
+  - TMT18
+  - TMTpro16
+  - TMTpro18
+
+ambiguous_tmt:
+  - TMT
+  - tandem mass tag
+  - tandem mass tags
+
+rejected_tmt:
+  - TMT2
+  - TMT6
+  - iTRAQ
+  - label-free
+  - LFQ
+  - SILAC
+  - DIA
+
+allowed_material:
+  - tissue
+  - tumor tissue
+  - tumour tissue
+  - normal adjacent tissue
+  - human tissue
+  - human cancer cell line
+  - cancer cell line
+  - cell line
+
+rejected_material:
+  - organoid
+  - organoids
+  - spheroid
+  - spheroids
+  - tumoroid
+  - tumoroids
+  - 3D culture
+  - PDX
+  - xenograft
+  - animal tissue
+  - mouse-derived cell line
+  - non-human cell line
+  - plasma
+  - serum
+  - urine
+  - saliva
+
+cancer_terms:
+  - cancer
+  - tumor
+  - tumour
+  - carcinoma
+  - adenocarcinoma
+  - leukemia
+  - lymphoma
+  - glioma
+  - melanoma
+  - sarcoma
+
+healthy_terms:
+  - healthy
+  - normal
+  - control
+  - healthy donor
+
+mixed_terms:
+  - matched normal
+  - paired tumor normal
+  - adjacent normal tissue
+  - NAT

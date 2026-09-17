@@ -3,7 +3,7 @@
   const STORAGE_KEY = "atlas_site_lang";
 
   const SHARED = {
-    brand_title: "Human Cancser Assosiated TMT Proteome Atlas",
+    brand_title: "Human Cancer-Associated TMT Proteome Atlas",
     nav_home: { ru: "Главная", en: "Home" },
     nav_ai: { ru: "ИИ поиск", en: "AI search" },
     nav_map: { ru: "Карта органов", en: "Organ map" },
@@ -20,7 +20,7 @@
     footer_live: { ru: "Live (GitHub Pages)", en: "Live (GitHub Pages)" },
     filter_all: { ru: "Все", en: "All" },
     filter_yes: { ru: "да", en: "yes" },
-    filter_maybe: { ru: "maybe", en: "maybe" },
+    filter_maybe: { ru: "возможно", en: "maybe" },
     filter_no: { ru: "нет", en: "no" },
     filter_pride: { ru: "PRIDE", en: "PRIDE" },
       filter_pdc: { ru: "PDC", en: "PDC" },
@@ -78,15 +78,56 @@
     th_journal: { ru: "Журнал", en: "Journal" },
     th_score: { ru: "Оценка", en: "Score" },
     th_verdict: { ru: "Вердикт", en: "Verdict" },
-    theme_light: { ru: "Светлая", en: "Light" },
-    theme_dark: { ru: "Тёмная", en: "Dark" },
     tab_projects: { ru: "Проекты", en: "Projects" },
     tab_guide: { ru: "Справка", en: "Guide" },
-    tab_technical: { ru: "Модели и поиск", en: "Models & search" },
+    tab_technical: { ru: "Методы", en: "Methods" },
     cell_empty: { ru: "—", en: "—" },
     pat_yes: { ru: "да", en: "yes" },
     pat_maybe: { ru: "возможно", en: "maybe" },
-    pat_no: { ru: "нет / неясно", en: "no / unclear" },
+    pat_no: { ru: "нет", en: "no" },
+    badge_project: { ru: "Проект", en: "Project" },
+    badge_paper: { ru: "Статья", en: "Paper" },
+    badge_cohort: { ru: "Когорта", en: "Cohort" },
+    verdict_candidate: { ru: "Кандидат", en: "Candidate" },
+    verdict_watch: { ru: "Наблюдение", en: "Watch" },
+    verdict_exclude: { ru: "Исключить", en: "Exclude" },
+    verdict_review: { ru: "Проверка", en: "Review" },
+    no_accession: { ru: "Нет PXD/PDC/MSV/IPX", en: "No PXD/PDC/MSV/IPX" },
+    link_epmc: { ru: "Europe PMC", en: "Europe PMC" },
+    fit_llm_yes: { ru: "ИИ: да", en: "LLM yes" },
+    fit_llm_maybe: { ru: "ИИ: возможно", en: "LLM maybe" },
+    fit_llm_no: { ru: "ИИ: нет", en: "LLM no" },
+    fit_llm_hint: {
+      ru: "LLM-скрининг абстракта (обучен на исключениях каталога)",
+      en: "LLM abstract screening (trained on catalog exclusions)",
+    },
+    badge_cohort_score: { ru: "когорта {n}", en: "cohort {n}" },
+    badge_cohort_hint: { ru: "Релевантность когорты 0–100", en: "Cohort relevance 0–100" },
+    data_quant_table: { ru: "Таблица белков", en: "Protein table" },
+    data_local_mirror: { ru: "Локальное зеркало", en: "Local mirror" },
+    data_maybe_table: { ru: "Возможная таблица", en: "Possible table" },
+    data_psm_only: { ru: "Только PSM", en: "PSM only" },
+    data_phospho_only: { ru: "Только phospho", en: "Phospho only" },
+    data_raw_only: { ru: "Только RAW", en: "RAW only" },
+    data_no_files: { ru: "Нет файлов", en: "No files" },
+    data_mixed_protein_phospho: { ru: "protein+phospho", en: "mixed protein+phospho" },
+    omics_proteomics: { ru: "протеомика", en: "proteomics" },
+    omics_phospho: { ru: "фосфопротеомика", en: "phosphoproteomics" },
+    omics_transcriptomics: { ru: "транскриптомика", en: "transcriptomics" },
+    omics_genomics: { ru: "геномика", en: "genomics" },
+    omics_metabolomics: { ru: "метаболомика", en: "metabolomics" },
+    omics_lipidomics: { ru: "липидомика", en: "lipidomics" },
+    omics_glycoproteomics: { ru: "гликопротеомика", en: "glycoproteomics" },
+    omics_multi: { ru: "мульти-омика", en: "multi-omics" },
+    data_mixed_hint: {
+      ru: "Protein и phospho — ручная проверка",
+      en: "Protein and phospho files — manual check",
+    },
+    count_rows: { ru: "{n} / {total} строк", en: "{n} / {total} rows" },
+    toolbar_type: { ru: "Тип", en: "Type" },
+    toolbar_source: { ru: "Источник", en: "Source" },
+    legacy_rescan: { ru: "Устаревший формат — перезапустите scan", en: "Legacy format — re-scan required" },
+    link_open_repo: { ru: "Репозиторий", en: "Repository" },
     card_open: { ru: "Открыть", en: "Open" },
     card_json: { ru: "latest.json (API)", en: "latest.json (API)" },
     kpi_abstracts_ai: { ru: "абстрактов ИИ", en: "LLM abstracts" },
@@ -96,11 +137,13 @@
   const PAGE = {
     ru: {
       brand_sub: "Новые TMT проекты · похожесть на атлас",
+      brand_link_ai: "Atlas AI",
+      brand_link_technical: "Методы · версии скриптов",
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
       disc_title: "Новые проекты",
       disc_lead:
-        "Кандидаты вне каталога: ID, PMID, описание, ссылки на PRIDE/PDC/MassIVE/iProX, оценка похожести на атлас",
+        "Скрининг human TMT-протеомики вне каталога TMT ATLAS: репозиторные accession, публикации без ID, когорты из Europe PMC. Tier A–D, protein-table gate, similarity к projects.csv.",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
       kpi_new: "новых проектов",
@@ -108,7 +151,7 @@
       kpi_pdc: "PDC",
       kpi_manual: "ручная проверка",
       kpi_rejected: "отклонено",
-      kpi_yes_maybe: "да / maybe",
+      kpi_yes_maybe: "да / возможно",
       sec_projects: "Новые проекты",
       sec_projects_desc: "Только PXD / PDC / MSV / IPX, которых нет в TMT ATLAS",
       sec_abstracts: "ИИ-анализ абстрактов",
@@ -121,18 +164,79 @@
       kpi_with_table: "с protein table",
       note_projects_unified:
         "ID и Source → репозиторий · Title → PubMed · Analysis · Data. Plex/Similar убраны. QC: qc.html.",
-      sec_unified_discovery: "Все находки — одна таблица",
+      sec_unified_discovery: "Реестр находок Discovery",
       sec_unified_discovery_desc:
-        "Новые PXD/PDC, статьи без accession и крупные когорты в одном списке.",
+        "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и крупные patient cohorts. В каждой строке — метаданные, tier, ссылки на PRIDE/PDC и PubMed.",
+      sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
+      note_scope_lead:
+        "Область данных и KPI различаются: счётчик в заголовке — весь реестр; KPI «новые проекты» — только репозиторные ID вне каталога.",
+      note_scope_row_types:
+        "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
+      note_scope_kpi:
+        "KPI «новые проекты» = accession, отсутствующие в projects.csv (read-only). Не совпадает с числом строк таблицы.",
+      note_scope_filter:
+        "Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.",
+      note_scope_stat_new: "новых проектов (KPI)",
+      note_scope_stat_total: "записей в таблице",
       note_kpi_new_projects:
-        "KPI «новые проекты» = только PXD/PDC вне атласа (сейчас 4). В таблице ниже — все строки: проекты + статьи + когорты. Фильтр «проекты» для PXD/PDC.",
+        "KPI «новые проекты» — только PXD/PDC/MSV/IPX вне каталога. В таблице — все типы строк; фильтр «проекты» оставляет репозитории.",
       sec_methods: "Методы и воронка",
-      sec_methods_desc: "Воспроизводимый скрининг: API → QC → protein table gate → tier A–D. Каталог read-only.",
-      methods_funnel: "Воронка скана",
+      sec_methods_desc:
+        "Воспроизводимый скрининг для supplementary: API → QC материала → protein table gate → tier A–D. Каталог read-only.",
+      methods_funnel: "Воронка репозиториев",
+      methods_literature: "Литература (Europe PMC)",
+      methods_data_gate: "Data availability gate",
+      methods_search_cfg: "Параметры поиска",
       methods_confidence: "Калибровка (benchmark)",
-      methods_tier_legend: "A = protein table + design OK · B = quant files / mixed · C = watch · D = exclude",
-      methods_inclusion: "Включение",
-      methods_exclusion: "Исключение",
+      methods_tier_legend: "A = protein table + design OK · B = quant files · C = watch · D = exclude",
+      methods_confidence_note:
+        "Tier A–D — rule-based, не калиброванная вероятность LLM. Benchmark — ручная разметка на hold-out.",
+      methods_inclusion: "Критерии включения",
+      methods_exclusion: "Критерии исключения",
+      meta_pipeline: "Пайплайн",
+      meta_version: "Версия",
+      meta_python: "Python",
+      meta_scan_date: "Дата скана",
+      funnel_raw_repos: "Новые записи PRIDE+PDC",
+      funnel_in_catalog: "Уже в каталоге",
+      funnel_filtered: "Отфильтровано (техн.)",
+      funnel_candidates: "Кандидаты",
+      funnel_manual: "Ручная проверка",
+      funnel_rejected: "Отклонено (материал)",
+      lit_scanned: "Статей просмотрено",
+      lit_llm_read: "Абстрактов прочитано LLM",
+      lit_regex_only: "Только regex",
+      lit_fit_yes: "Atlas fit: да",
+      lit_fit_maybe: "Atlas fit: возможно",
+      lit_resolved: "ID из Data availability",
+      gate_quant_table: "Protein table",
+      gate_omics_protein: "Global proteome",
+      gate_raw_only: "Только RAW",
+      gate_no_files: "Нет файлов в API",
+      gate_unknown: "Omics unknown",
+      cfg_years: "Годы",
+      cfg_pride_max: "Лимит PRIDE",
+      cfg_pubs_max: "Лимит публикаций",
+      cfg_llm: "LLM abstract read",
+      cfg_llm_on: "вкл",
+      cfg_llm_off: "выкл",
+      cfg_mode: "Режим поиска",
+      cfg_tmt_plex: "TMT plex",
+      cfg_databases: "Базы",
+      bench_literature: "Benchmark литература",
+      bench_projects: "Benchmark проекты",
+      inc_organism: "Homo sapiens (отклонять mouse/rat/chicken и mixed)",
+      inc_quant: "TMT/isobaric >6-plex (TMT6 и ≤6-plex — нет; TMT18 — да)",
+      inc_omics: "Global protein-level proteome (не phospho-only, не peptide-only)",
+      inc_material: "Ткань (tumor/adjacent/normal) или линии рака; не plasma/serum/urine-only",
+      inc_literature: "Europe PMC + ID только из Data availability",
+      exc_1: "Non-human, mixed, xenograft-only",
+      exc_2: "TMT6 или ≤6-plex",
+      exc_3: "Plasma / serum / urine / blood-only",
+      exc_4: "Phosphoproteomics-only",
+      exc_5: "Peptide-level quantification only",
+      exc_6: "Review / methods / software без когорты",
+      exc_7: "Phospho-only или RAW-only в репозитории",
       note_unified_table:
         "ИИ-поиск на профиле TMT ATLAS + жёсткие исключения. Confidence A–D — rule-based. Verdict: Candidate / Watch / Exclude.",
       search_unified: "Поиск по ID, названию, анализу…",
@@ -157,7 +261,7 @@
       qc_filtered: "Отфильтровано (техн.)",
       qc_pubs: "статей проанализировано",
       atlas_title: "Профиль атласа",
-      atlas_lead: "Сводка Human Cancser Assosiated TMT Proteome Atlas — только метаданные, без выгрузки каталога",
+      atlas_lead: "Сводка Human Cancer-Associated TMT Proteome Atlas — только метаданные, без выгрузки каталога",
       atlas_datasets: "датасетов",
       atlas_publications: "уникальных ID",
       atlas_repos: "Репозитории",
@@ -167,7 +271,7 @@
       atlas_keywords: "Ключевые слова поиска",
       atlas_link: "Реестр на GitHub",
       atlas_discovery: "Анализ новых наборов",
-      portal_title: "Human Cancser Assosiated TMT Proteome Atlas",
+      portal_title: "Human Cancer-Associated TMT Proteome Atlas",
       portal_lead:
         "Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе",
       card_discovery_title: "Полный анализ Discovery",
@@ -208,6 +312,8 @@
       map_organs_title: "Быстрые ссылки на органы",
       card_update_title: "Обновление данных",
       card_update_desc: "Локально: python run_discovery.py scan · publish · export для GitHub Pages",
+      portal_deploy_note:
+        "Карта органов: TMT/index.html (?organ=). Discovery-портал — в docs/ и docs/site/.",
       cohorts_title: "Крупные когорты — протеомика и мульти-омика",
       cohorts_lead: "Europe PMC + text mining: пациенты, N, омики, TMT",
       cohorts_method: "text mining · Europe PMC",
@@ -224,6 +330,7 @@
       guide_lead:
         "Один экран — новые TMT-проекты вне каталога. По умолчанию показаны только строки типа «Project» (PXD/PDC/MSV/IPX).",
       guide_columns_title: "Колонки",
+      table_scroll_hint: "Таблица широкая — прокрутите вправо, чтобы увидеть все колонки. Вкладка «Проекты» — данные; «Справка» — расшифровка колонок.",
       col_help_type: "Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.",
       col_help_id: "Accession (клик → репозиторий) и PMID (клик → PubMed). Если ID нет — «No PXD/PDC/MSV/IPX».",
       col_help_year: "Год публикации или submission из PRIDE/PDC или PubMed.",
@@ -231,13 +338,13 @@
       col_help_source: "PRIDE, PDC, MassIVE, iProX или Europe PMC.",
       col_help_design: "Дизайн образцов: tumor/adjacent, cell line, материал из LLM-разбора абстракта.",
       col_help_omics: "Тип омики: proteomics, phospho, multi-omics (для когорт).",
-      col_help_patients: "Есть ли пациенты в тексте: yes / maybe / no.",
+      col_help_patients: "Есть ли пациенты в тексте: да / возможно / нет.",
       col_help_n: "Число пациентов/образцов из абстракта (авто, проверяйте вручную).",
       col_help_verdict: "Candidate — в атлас; Watch — наблюдение; Exclude — не подходит.",
       col_help_confidence: "Уверенность A–D: A = protein table + дизайн OK; B = файлы есть; C = watch; D = exclude.",
       col_help_similar:
         "Похожесть на ближайший проект каталога: accession · процент (0–100%). Сравнение по метаданным/тексту (cosine). Не дубликат — только подсказка.",
-      col_help_fit: "LLM-оценка atlas fit (yes/maybe/no) или cohort score 0–100 для литературы.",
+      col_help_fit: "LLM-оценка atlas fit (да/возможно/нет) или cohort score 0–100 для литературы.",
       col_help_analysis: "ИИ-резюме абстракта + цепочка evidence (фильтры, LLM, similarity).",
       col_help_data: "Наличие protein-level таблицы в репозитории или локальном mirror.",
       col_help_links: "Прямые ссылки: репозиторий, PMID, Europe PMC.",
@@ -248,26 +355,28 @@
       guide_similarity_title: "Похожесть на атлас",
       guide_similarity_desc:
         "Для каждого кандидата считается similarity score к проектам из projects.csv (title, tissue, disease, TMT). 80%+ — очень близко; 40–60% — та же тема; <30% — новая ниша. Клик по PXD в колонке Similar — карточка в PRIDE.",
-      tech_title: "Как искали: пайплайн и модели",
-      tech_lead: "Техническая часть последнего Discovery scan — для Methods / supplementary.",
-      tech_step1: "1. PRIDE API + PDC UI — keyword TMT, human, годы из config.",
-      tech_step2: "2. MassIVE / iProX — те же ключевые слова профиля атласа.",
-      tech_step3: "3. Фильтры: Homo sapiens; TMT >6 plex; tissue/cell line; без plasma-only.",
-      tech_step4: "4. QC материала + проверка data availability (protein table).",
-      tech_step5: "5. Europe PMC — литература; LLM читает abstract (если включено).",
-      tech_step6: "6. Similarity index vs catalog; tier A–D; публикация на сайт (каталог не меняется).",
-      tech_llm_title: "LLM / модели",
+      tech_title: "Пайплайн Discovery Agent",
+      tech_lead: "Пошаговое описание последнего скана — готово для Methods / Supplementary.",
+      tech_step1: "1. PRIDE Archive API v3 + PDC UI — keyword TMT, Homo sapiens, годы из config.yaml.",
+      tech_step2: "2. MassIVE и iProX — те же ключевые слова профиля TMT ATLAS.",
+      tech_step3: "3. Hard filters: organism, TMT >6 plex, tissue/cell line, reject plasma-only.",
+      tech_step4: "4. Material QC + data availability gate (protein-level table в репозитории).",
+      tech_step5: "5. Europe PMC — cohort literature; LLM abstract read (Ollama/API, если включено).",
+      tech_step6: "6. Similarity vs projects.csv; confidence tier A–D; publish на сайт (каталог не меняется).",
+      tech_llm_title: "LLM и модели",
       tech_llm_desc:
-        "Скрининг абстрактов: локальный Ollama (Qwen) или облачный API из config.yaml. Verdict и tier — rule-based + LLM labels, не калиброванная вероятность.",
-      tech_manifest_title: "Manifest скана (JSON)",
+        "Abstract screening: локальный Ollama (Qwen) или облачный API (config.yaml). Verdict и tier — rule-based + LLM labels; не calibrated probability.",
+      tech_manifest_title: "Полный manifest скана (JSON)",
     },
     en: {
       brand_sub: "New TMT projects · atlas similarity",
+      brand_link_ai: "Atlas AI",
+      brand_link_technical: "Methods · script versions",
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
       disc_title: "New projects",
       disc_lead:
-        "Candidates not in catalog: ID, PMID, description, PRIDE/PDC/MassIVE/iProX links, atlas similarity",
+        "Screening of human TMT proteomics outside the TMT ATLAS catalog: repository accessions, papers without IDs, and Europe PMC cohorts. Tier A–D, protein-table gate, similarity to projects.csv.",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
       kpi_new: "new projects",
@@ -290,20 +399,81 @@
       kpi_with_table: "with protein table",
       note_projects_unified:
         "ID and Source → repository · Title → PubMed · Analysis (finding + LLM) · Data files. Plex/Similar removed. QC: qc.html.",
-      sec_unified_discovery: "All findings — one table",
+      sec_unified_discovery: "Discovery findings registry",
       sec_unified_discovery_desc:
-        "New PXD/PDC, papers without accession, and large cohorts in a single list.",
+        "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, publications without a repository ID, and large patient cohorts. Each row includes metadata, confidence tier, and PRIDE/PDC/PubMed links.",
+      sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
+      note_scope_lead:
+        "Data scope and KPIs differ: the header count is the full registry; the «new projects» KPI counts repository IDs absent from the catalog only.",
+      note_scope_row_types:
+        "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
+      note_scope_kpi:
+        "«New projects» KPI = accessions not in projects.csv (read-only). This does not equal total table rows.",
+      note_scope_filter:
+        "Filter «projects» for repository IDs only; «papers» and «cohorts» show Europe PMC records without PXD/PDC.",
+      note_scope_stat_new: "new projects (KPI)",
+      note_scope_stat_total: "rows in table",
       note_kpi_new_projects:
-        "KPI «new projects» = PXD/PDC not yet in atlas (currently 4). Table below shows all rows. Use filter «projects» for repo IDs only.",
+        "KPI «new projects» = repository accessions not in catalog. Table lists all row types; filter «projects» for PXD/PDC/MSV/IPX only.",
       note_unified_table:
         "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",
-      sec_methods_desc: "Reproducible screening: API → QC → protein table gate → tier A–D. Catalog is read-only.",
-      methods_funnel: "Scan funnel",
+      sec_methods_desc:
+        "Reproducible screening for supplementary: API → material QC → protein table gate → tier A–D. Catalog is read-only.",
+      methods_funnel: "Repository funnel",
+      methods_literature: "Literature (Europe PMC)",
+      methods_data_gate: "Data availability gate",
+      methods_search_cfg: "Search parameters",
       methods_confidence: "Calibration (benchmark)",
-      methods_tier_legend: "A = protein table + design OK · B = quant files / mixed · C = watch · D = exclude",
-      methods_inclusion: "Inclusion",
-      methods_exclusion: "Exclusion",
+      methods_tier_legend: "A = protein table + design OK · B = quant files · C = watch · D = exclude",
+      methods_confidence_note:
+        "Tiers A–D are rule-based, not calibrated LLM probability. Benchmark = manual labels on hold-out.",
+      methods_inclusion: "Inclusion criteria",
+      methods_exclusion: "Exclusion criteria",
+      meta_pipeline: "Pipeline",
+      meta_version: "Version",
+      meta_python: "Python",
+      meta_scan_date: "Scan date",
+      funnel_raw_repos: "Novel PRIDE+PDC hits",
+      funnel_in_catalog: "Already in catalog",
+      funnel_filtered: "Technically filtered",
+      funnel_candidates: "Candidates",
+      funnel_manual: "Manual check",
+      funnel_rejected: "Rejected (material)",
+      lit_scanned: "Publications scanned",
+      lit_llm_read: "Abstracts LLM-read",
+      lit_regex_only: "Regex only",
+      lit_fit_yes: "Atlas fit: yes",
+      lit_fit_maybe: "Atlas fit: maybe",
+      lit_resolved: "IDs from data availability",
+      gate_quant_table: "Protein table",
+      gate_omics_protein: "Global proteome",
+      gate_raw_only: "RAW only",
+      gate_no_files: "No files in API",
+      gate_unknown: "Omics unknown",
+      cfg_years: "Years",
+      cfg_pride_max: "PRIDE limit",
+      cfg_pubs_max: "Publication limit",
+      cfg_llm: "LLM abstract read",
+      cfg_llm_on: "on",
+      cfg_llm_off: "off",
+      cfg_mode: "Search mode",
+      cfg_tmt_plex: "TMT plex",
+      cfg_databases: "Databases",
+      bench_literature: "Literature benchmark",
+      bench_projects: "Project benchmark",
+      inc_organism: "Homo sapiens only (reject mouse/rat/chicken and mixed)",
+      inc_quant: "TMT/isobaric >6-plex (reject TMT6 / ≤6-plex; TMT18 allowed)",
+      inc_omics: "Global protein-level proteome (reject phospho-only, peptide-only)",
+      inc_material: "Human tissue or cancer cell lines (reject plasma/serum/urine-only)",
+      inc_literature: "Europe PMC semantic screening; repo IDs from data availability only",
+      exc_1: "Non-human, mixed, or xenograft-only",
+      exc_2: "TMT6 or ≤6-plex",
+      exc_3: "Plasma / serum / urine / blood-only (need tissue or cell line)",
+      exc_4: "Phosphoproteomics-only emphasis",
+      exc_5: "Peptide-level quantification only",
+      exc_6: "Review / methods / software papers without cohort data",
+      exc_7: "Phospho-only or RAW-only repository files",
       qc_filtered: "Filtered (technical)",
       search_unified: "Search ID, title, analysis…",
       filter_projects: "projects",
@@ -327,7 +497,7 @@
       qc_filtered: "Filtered (technical)",
       qc_pubs: "publications analyzed",
       atlas_title: "Atlas profile",
-      atlas_lead: "Human Cancser Assosiated TMT Proteome Atlas summary — metadata only, catalog not exported",
+      atlas_lead: "Human Cancer-Associated TMT Proteome Atlas summary — metadata only, catalog not exported",
       atlas_datasets: "datasets",
       atlas_publications: "unique IDs",
       atlas_repos: "Repositories",
@@ -337,7 +507,7 @@
       atlas_keywords: "Discovery search keywords",
       atlas_link: "Registry on GitHub",
       atlas_discovery: "Analyze new datasets",
-      portal_title: "Human Cancser Assosiated TMT Proteome Atlas",
+      portal_title: "Human Cancer-Associated TMT Proteome Atlas",
       portal_lead:
         "Monitor human TMT in PRIDE, PDC, MassIVE, iProX · LLM abstracts · large literature cohorts",
       card_discovery_title: "Full Discovery analysis",
@@ -378,6 +548,8 @@
       map_organs_title: "Quick organ links",
       card_update_title: "Update data",
       card_update_desc: "Run: python run_discovery.py scan · publish · export for GitHub Pages",
+      portal_deploy_note:
+        "Organ map: TMT/index.html (?organ=). Discovery portal lives in docs/ and docs/site/.",
       cohorts_title: "Large cohorts — proteomics & multi-omics",
       cohorts_lead: "Europe PMC + text mining: patients, N, omics, TMT",
       cohorts_method: "text mining · Europe PMC",
@@ -394,6 +566,7 @@
       guide_lead:
         "One screen for new TMT projects not in the catalog. Default view: Project rows only (PXD/PDC/MSV/IPX).",
       guide_columns_title: "Columns",
+      table_scroll_hint: "Wide table — scroll right for all columns. Projects tab = data; Guide tab = column legend.",
       col_help_type: "Project = repository accession; Paper = literature without ID; Cohort = large cohort from Europe PMC.",
       col_help_id: "Accession (→ repository) and PMID (→ PubMed). If missing: «No PXD/PDC/MSV/IPX».",
       col_help_year: "Publication or submission year from PRIDE/PDC or PubMed.",
@@ -418,18 +591,18 @@
       guide_similarity_title: "Atlas similarity",
       guide_similarity_desc:
         "Each candidate is scored against projects.csv (title, tissue, disease, TMT). 80%+ very close; 40–60% same theme; <30% new niche. Click catalog PXD in Similar column for PRIDE.",
-      tech_title: "Search pipeline & models",
-      tech_lead: "Technical details of the last Discovery scan — for Methods / supplementary.",
-      tech_step1: "1. PRIDE API + PDC UI — TMT keywords, human, year range from config.",
-      tech_step2: "2. MassIVE / iProX — same atlas profile keywords.",
-      tech_step3: "3. Filters: Homo sapiens; TMT >6 plex; tissue/cell line; no plasma-only.",
-      tech_step4: "4. Material QC + data availability (protein table).",
-      tech_step5: "5. Europe PMC literature; LLM abstract read when enabled.",
-      tech_step6: "6. Catalog similarity index; tier A–D; publish to site (catalog unchanged).",
-      tech_llm_title: "LLM / models",
+      tech_title: "Discovery Agent pipeline",
+      tech_lead: "Step-by-step description of the last scan — ready for Methods / Supplementary.",
+      tech_step1: "1. PRIDE Archive API v3 + PDC UI — TMT keywords, Homo sapiens, years from config.yaml.",
+      tech_step2: "2. MassIVE and iProX — same TMT ATLAS profile keywords.",
+      tech_step3: "3. Hard filters: organism, TMT >6 plex, tissue/cell line, reject plasma-only.",
+      tech_step4: "4. Material QC + data availability gate (protein-level table in repository).",
+      tech_step5: "5. Europe PMC cohort literature; LLM abstract read (Ollama/API when enabled).",
+      tech_step6: "6. Similarity vs projects.csv; confidence tier A–D; publish to site (catalog unchanged).",
+      tech_llm_title: "LLM & models",
       tech_llm_desc:
-        "Abstract screening: local Ollama (Qwen) or cloud API from config.yaml. Verdict and tier are rule-based + LLM labels, not calibrated probability.",
-      tech_manifest_title: "Scan manifest (JSON)",
+        "Abstract screening: local Ollama (Qwen) or cloud API (config.yaml). Verdict and tier are rule-based + LLM labels; not calibrated probability.",
+      tech_manifest_title: "Full scan manifest (JSON)",
     },
   };
 
@@ -458,27 +631,76 @@
     });
   }
 
+  const TAXON_RE = /\b(Homo sapiens|Mus musculus|Rattus norvegicus|Gallus gallus)\b/g;
+
+  function taxonizeEl(el) {
+    if (!el || el.querySelector(".taxon-name")) return;
+    const text = el.textContent || "";
+    if (!TAXON_RE.test(text)) return;
+    TAXON_RE.lastIndex = 0;
+    el.innerHTML = text.replace(
+      TAXON_RE,
+      '<span class="taxon-name">$1</span>'
+    );
+  }
+
   function apply(lang) {
     const dict = T[lang] || T.en;
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
-      if (dict[key] !== undefined) {
-        if (el.tagName === "INPUT" && el.placeholder !== undefined) {
-          el.placeholder = dict[key];
-        } else {
-          el.textContent = dict[key];
-        }
+      if (dict[key] === undefined) return;
+      let text = dict[key];
+      const suffix = el.getAttribute("data-i18n-suffix");
+      if (suffix) {
+        text = String(text).replace("{n}", suffix).replace("{score}", suffix);
       }
+      if (el.tagName === "INPUT") {
+        el.placeholder = text;
+      } else {
+        el.textContent = text;
+        taxonizeEl(el);
+      }
+    });
+    document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+      const key = el.getAttribute("data-i18n-title");
+      if (dict[key] !== undefined) el.title = dict[key];
     });
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       const key = el.getAttribute("data-i18n-placeholder");
       if (dict[key] !== undefined) el.placeholder = dict[key];
     });
+    document.querySelectorAll(".lang-block").forEach((el) => {
+      if (el.classList.contains("lang-en") && el.classList.contains("lang-ru")) {
+        el.style.display = "";
+        return;
+      }
+      if (lang === "ru") {
+        el.style.display = el.classList.contains("lang-ru") ? "" : "none";
+      } else {
+        el.style.display = el.classList.contains("lang-en") ? "" : "none";
+      }
+    });
+    if (lang === "ru") {
+      document.querySelectorAll(".cell-stack.cell-analysis, .cell-title-block").forEach((wrap) => {
+        const ruBlocks = wrap.querySelectorAll(".lang-block.lang-ru");
+        if (!ruBlocks.length) return;
+        wrap.querySelectorAll(".lang-block.lang-en:not(.lang-ru)").forEach((el) => {
+          el.style.display = "none";
+        });
+      });
+    }
+    document.querySelectorAll(".cell-desc, .cell-summary, .note, .guide-row-desc").forEach(taxonizeEl);
+    document.dispatchEvent(new CustomEvent("atlas:lang", { detail: { lang } }));
   }
+
+  (function boot() {
+    const lang = getLang();
+    document.documentElement.lang = lang;
+    apply(lang);
+  })();
 
   document.addEventListener("DOMContentLoaded", () => {
     const lang = getLang();
-    document.documentElement.lang = lang;
     apply(lang);
     document.querySelectorAll(".lang-toggle button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === lang);

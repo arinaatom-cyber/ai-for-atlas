@@ -66,31 +66,35 @@ def _is_tmt_project(p: dict) -> bool:
 
 
 def _is_human(p: dict) -> bool:
+    """Только Homo sapiens. Mixed / mouse / rat — нет."""
     title_desc = f"{p.get('title', '')} {p.get('projectDescription', '')}".lower()
+    if re.search(
+        r"\b(mouse|mice|murine|rat\b|porcine|chicken|gallus|zebrafish|"
+        r"chlamydomonas|yeast|arabidopsis|salmonella)\b",
+        title_desc,
+    ):
+        return False
     exclusive_non_human = (
-        "chlamydomonas", "porcine", "pig skin", "mouse only", "mice only",
-        "murine", "rat liver", "salmonella", "escherichia coli", "bacterial",
-        "maize", "arabidopsis", "yeast", "unicellular protist",
+        "chlamydomonas", "porcine", "pig skin", "escherichia coli", "bacterial",
+        "maize", "unicellular protist",
     )
-    if re.search(r"\b(mouse|mice|murine|rat\b|porcine)\b", title_desc):
-        if not re.search(r"\b(patient|patients|clinical|donor|cohort|subjects)\b", title_desc):
-            return False
     if any(x in title_desc for x in exclusive_non_human):
         if "human" not in title_desc and "homo" not in title_desc:
             return False
     orgs = p.get("organisms") or []
     org_text = " ".join(_organism_names(p) or [str(o) for o in orgs]).lower()
     if org_text:
-        if "homo" in org_text or "human" in org_text:
-            return True
-        non_human = ("mouse", "mus musculus", "rat", "bacteria", "salmonella", "escherichia", "maize", "plant", "porcine")
+        non_human = (
+            "mouse", "mus musculus", "rat", "bacteria", "salmonella", "escherichia",
+            "maize", "plant", "porcine", "chicken", "zebrafish", "yeast",
+        )
         if any(n in org_text for n in non_human):
             return False
-    if "human" in title_desc or "patient" in title_desc or "clinical" in title_desc:
+        if "homo" in org_text or "human" in org_text:
+            return True
+    if "human" in title_desc or "homo sapiens" in title_desc or re.search(r"\bpatients?\b", title_desc):
         return True
-    if any(x in title_desc for x in ("mouse", "mice", "murine", "rat ", "porcine", "chlamydomonas")):
-        return False
-    return not orgs
+    return False
 
 
 def _organism_names(p: dict) -> list[str]:

@@ -20,7 +20,8 @@ from atlas_agent.discovery.data_availability import (
 )
 from atlas_agent.viz.portal_index import format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.discovery.methods_manifest import build_methods_manifest
-from atlas_agent.discovery.confidence import attach_confidence
+from atlas_agent.discovery.evaluation.report import evaluate_discovery_report_from_config
+from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
 from atlas_agent.sources.dataset_resolve import resolve_accessions_from_publication
 from atlas_agent.viz.publish_site import publish_discovery_site
 from atlas_agent.viz.site_sanitize import sanitize_report_for_site
@@ -99,6 +100,16 @@ def enrich_report(report: dict, cfg: dict) -> dict:
     pubs = report.get("publications_analyzed") or []
     for p in pubs:
         p["data_hint"] = literature_data_hint(p)
+        for key in ("summary_ru", "summary_en"):
+            clean = sanitize_summary(p.get(key))
+            if clean:
+                p[key] = clean
+            elif p.get(key):
+                p[key] = ""
+        if not p.get("summary_en") and not p.get("summary_ru"):
+            title = str(p.get("title") or "").strip()
+            if title:
+                p["summary_en"] = title[:160]
 
     return report
 
@@ -107,17 +118,7 @@ def enrich_nature_quality(report: dict, cfg: dict) -> dict:
     """Confidence tiers, Europe PMC accession resolution, methods manifest."""
     from atlas_agent.discovery.benchmark import evaluate_literature_benchmark, evaluate_project_benchmark
 
-    for key, kind in (
-        ("candidates", "project"),
-        ("new_projects", "project"),
-        ("manual_check", "paper"),
-        ("literature_semantic", "paper"),
-        ("cohort_literature", "cohort"),
-    ):
-        for item in report.get(key) or []:
-            acc = str(item.get("project_accession") or item.get("accession") or "")
-            has_acc = acc.upper().startswith(("PXD", "PDC", "MSV", "IPX"))
-            attach_confidence(item, kind=kind, has_accession=has_acc)
+    evaluate_discovery_report_from_config(report, cfg)
 
     for bucket in ("manual_check", "literature_semantic"):
         for item in report.get(bucket) or []:

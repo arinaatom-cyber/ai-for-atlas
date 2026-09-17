@@ -16,13 +16,23 @@ from atlas_agent.viz.site_theme import page_wrap
 def _ai_cell(it: dict) -> str:
     ai = it.get("abstract_ai") or it
     parts = []
-    if ai.get("summary_en") or ai.get("summary_ru"):
-        parts.append(html.escape(str(ai.get("summary_en") or ai.get("summary_ru"))[:200]))
+    en = str(ai.get("summary_en") or "").strip()
+    ru = str(ai.get("summary_ru") or "").strip()
+    if en:
+        parts.append(f'<span class="lang-block lang-en">{html.escape(en[:200])}</span>')
+    if ru and ru != en:
+        parts.append(f'<span class="lang-block lang-ru">{html.escape(ru[:200])}</span>')
+    elif ru and not en:
+        parts.append(f'<span class="lang-block lang-en lang-ru">{html.escape(ru[:200])}</span>')
     fit = ai.get("atlas_fit") or it.get("atlas_fit")
     score = ai.get("atlas_fit_score") or it.get("atlas_fit_score")
-    if fit:
-        cls = {"yes": "fit-yes", "maybe": "fit-maybe", "no": "fit-no"}.get(str(fit).lower(), "fit-unk")
-        parts.append(f'<span class="badge {cls}">{html.escape(str(fit))} {score or ""}</span>')
+    fit_s = str(fit or "").lower()
+    if fit_s in ("yes", "maybe", "no"):
+        parts.append(
+            f'<span class="badge fit-{fit_s}" data-i18n="fit_llm_{fit_s}"></span>'
+        )
+    elif fit:
+        parts.append(f'<span class="badge fit-unk">{html.escape(str(fit))} {score or ""}</span>')
     ev = ai.get("semantic_evidence") or it.get("semantic_evidence") or []
     if ev:
         parts.append(f'<span class="muted">{html.escape("; ".join(ev[:3]))}</span>')

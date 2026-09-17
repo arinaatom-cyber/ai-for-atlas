@@ -1,9 +1,9 @@
 {
   "pipeline": "Atlas Discovery Agent",
   "pipeline_version": "2026.07.15-nature",
-  "generated_at": "2026-09-14T11:32:43.173940+00:00",
-  "python": "3.12.14",
-  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "generated_at": "2026-09-14T11:56:53.040581+00:00",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
   "catalog_policy": {
     "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
     "catalog_mirror": "data/projects.csv",
@@ -14,15 +14,16 @@
     "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
   },
   "inclusion_criteria": {
-    "organism": "Homo sapiens (reject mouse/rat/xenograft-only)",
-    "quantification": "TMT/isobaric ≥10-plex (reject TMT6)",
+    "organism": "Homo sapiens only (reject mouse/rat/chicken and mixed)",
+    "quantification": "TMT/isobaric >6-plex (reject TMT6 / ≤6-plex; TMT18 allowed)",
     "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
-    "material": "Tumor / adjacent normal / plasma·serum / human cancer cell lines",
+    "material": "Human tissue (tumor / adjacent / normal) or human cancer cell lines (reject plasma/serum/urine-only)",
     "literature": "Europe PMC semantic screening; repository IDs from data availability only"
   },
   "exclusion_criteria": [
-    "Non-human or xenograft-only",
+    "Non-human, mixed, or xenograft-only",
     "TMT6 or ≤6-plex",
+    "Plasma / serum / urine / blood-only (need tissue or cell line)",
     "Phosphoproteomics-only emphasis",
     "Peptide-level quantification only",
     "Review / methods / software papers without cohort data",
@@ -69,10 +70,10 @@
   },
   "funnel": {
     "raw_novel_repos": 95,
-    "candidates": 4,
+    "candidates": 1,
     "manual_check": 16,
     "rejected_material": 0,
-    "filtered_out": 174,
+    "filtered_out": 56,
     "already_in_catalog": 10
   },
   "literature_screening": {

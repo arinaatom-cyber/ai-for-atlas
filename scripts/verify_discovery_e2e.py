@@ -10,7 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 SITE = ROOT / "docs" / "site"
-REQUIRED_PAGES = ("discovery.html", "qc.html", "atlas.html", "cohorts.html")
+REQUIRED_PAGES = ("discovery.html", "qc.html", "atlas.html", "ai_search.html", "map.html")
+REDIRECT_PAGES = ("cohorts.html",)  # legacy URL → discovery.html
 REQUIRED_ASSETS = ("assets/theme.css", "assets/i18n.js")
 REQUIRED_JSON = ("latest.json", "meta.json", "atlas_profile.json")
 
@@ -72,6 +73,14 @@ def check_site_files() -> None:
             if needle not in text:
                 fail(f"{name} missing {needle}")
         ok(f"{name} ({p.stat().st_size // 1024} KB)")
+    for name in REDIRECT_PAGES:
+        p = SITE / name
+        if not p.is_file():
+            fail(f"missing {name}")
+        text = p.read_text(encoding="utf-8")
+        if "discovery.html" not in text:
+            fail(f"{name} should redirect to discovery.html")
+        ok(f"{name} (redirect -> discovery.html)")
     for rel in REQUIRED_ASSETS:
         p = SITE / rel
         if not p.is_file():
@@ -90,7 +99,7 @@ def check_portal() -> None:
     if not p.is_file():
         fail("missing docs/index.html")
     t = p.read_text(encoding="utf-8")
-    for href in ("site/discovery.html", "site/cohorts.html", "site/qc.html"):
+    for href in ("site/discovery.html", "site/qc.html", "site/ai_search.html"):
         if href not in t:
             fail(f"portal missing link {href}")
     ok("docs/index.html portal links")
@@ -109,6 +118,19 @@ def check_candidates_have_fields(data: dict) -> None:
     ok(f"candidates with data_availability: {with_da}/{len(cands)}")
 
 
+def check_ai_evaluation(data: dict) -> None:
+    buckets = ("candidates", "manual_check", "literature_semantic", "cohort_literature")
+    total = missing = 0
+    for key in buckets:
+        for item in data.get(key) or []:
+            total += 1
+            if not item.get("evaluation"):
+                missing += 1
+    if missing:
+        fail(f"{missing}/{total} findings without AI evaluation — run scripts/enrich_and_publish_site.py")
+    ok(f"{total} findings have AI evaluation")
+
+
 def main() -> int:
     print("=== E2E Discovery verification ===\n")
     print("1. Catalog")
@@ -121,6 +143,8 @@ def main() -> int:
     check_site_files()
     print("\n5. Portal")
     check_portal()
+    print("\n6. AI evaluation")
+    check_ai_evaluation(data)
     print("\n=== All checks passed ===")
     print(f"Open: file://{SITE / 'discovery.html'}")
     print("Live: https://arinaatom-cyber.github.io/TMT/discovery/discovery.html")

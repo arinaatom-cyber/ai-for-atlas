@@ -46,11 +46,20 @@ def build_qc_outputs(
         verdict="recommended",
         qc_status="candidate",
     )
-    manual = _with_accession(buckets.get("requires_manual_check", []), known_accessions)
+    manual_raw = buckets.get("requires_manual_check", [])
+    literature_manual = [
+        x for x in manual_raw if x.get("source") == "literature_semantic_candidate"
+    ]
+    repository_manual = [
+        x for x in manual_raw if x.get("source") != "literature_semantic_candidate"
+    ]
+    manual = _with_accession(literature_manual, known_accessions)
+    repo_manual = _with_accession(repository_manual, known_accessions)
     rejected = _with_accession(buckets.get("rejected", []), known_accessions)
     return {
         "candidates": candidates,
         "new_projects": candidates,
         "manual_check": manual,
+        "repository_manual": repo_manual,
         "rejected_material": rejected,
     }

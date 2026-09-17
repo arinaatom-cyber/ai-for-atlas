@@ -140,7 +140,7 @@ def cmd_llm(args: argparse.Namespace) -> int:
 
     provider = llm.get("provider", "auto")
     prefer_cloud = bool(llm.get("prefer_cloud", True))
-    engine = resolve_engine(provider, llm.get("base_url"), prefer_cloud=prefer_cloud)
+    engine = resolve_engine(provider, llm.get("base_url"), prefer_cloud=prefer_cloud, model=llm.get("model"))
     print("LLM config:")
     print(f"  provider (config): {provider}")
     print(f"  prefer_cloud:      {prefer_cloud}")
@@ -149,7 +149,7 @@ def cmd_llm(args: argparse.Namespace) -> int:
     print(f"  enabled:           {llm.get('enabled', True)}")
     print()
     print("Providers:")
-    for row in list_llm_engines(prefer_cloud=prefer_cloud):
+    for row in list_llm_engines(prefer_cloud=prefer_cloud, model=llm.get("model")):
         mark = " <-- active" if row["active"] else ""
         key = f" [{row['key_env']}]" if row["key_env"] != "—" else ""
         ok = "yes" if row["available"] else "no"
@@ -159,6 +159,11 @@ def cmd_llm(args: argparse.Namespace) -> int:
         print("Подсказка: prefer_cloud=true, но облачный ключ не найден.")
         print("  Добавьте в .env: ZAI_API_KEY=... (https://z.ai -> API Keys)")
         print("  или DASHSCOPE_API_KEY / ANTHROPIC_API_KEY")
+        print()
+    if not prefer_cloud and engine == "gpt4all":
+        print("Подсказка: Ollama без модели — скачайте Qwen:")
+        print("  ollama pull qwen2.5:3b")
+        print("  или: powershell -File scripts/setup_local_ai.ps1")
         print()
     test_result = None
     if getattr(args, "test", False):

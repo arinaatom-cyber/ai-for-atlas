@@ -6,7 +6,13 @@ import shutil
 from pathlib import Path
 
 from atlas_agent.viz.site_sanitize import sanitize_report_for_site
+from atlas_agent.viz.ai_search_html import generate_ai_search_html
+from atlas_agent.viz.atlas_html import generate_atlas_html
 from atlas_agent.viz.discovery_html import generate_discovery_html
+from atlas_agent.viz.discovery_qc_html import generate_qc_html
+from atlas_agent.viz.map_html import generate_map_html
+from atlas_agent.viz.portal_html import generate_portal_html
+from atlas_agent.viz.i18n_loader import hydrate_site_html
 from atlas_agent.viz.site_theme import (
     DEPLOY_DOCS_PORTAL,
     DEPLOY_DOCS_SITE,
@@ -108,13 +114,13 @@ def _write_html_redirect(path: Path, target: str) -> None:
 
 
 def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:
-    """Legacy paths redirect to the single projects page."""
-    _write_html_redirect(site / "discovery.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
-    _write_html_redirect(site / "cohorts.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
-    _write_html_redirect(site / "qc.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
-    _write_html_redirect(site / "atlas.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
-    _write_html_redirect(site / "ai_search.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
-    _write_html_redirect(site / "map.html", "../index.html" if deploy == DEPLOY_DOCS_SITE else "index.html")
+    """Discovery sub-pages under docs/site/ (or TMT discovery/)."""
+    generate_discovery_html(site_report, site / "discovery.html", deploy=deploy)
+    generate_qc_html(site_report, site / "qc.html", deploy=deploy)
+    generate_atlas_html(site_report, site / "atlas.html", deploy=deploy)
+    generate_ai_search_html(site_report, site / "ai_search.html", deploy=deploy)
+    generate_map_html(site_report, site / "map.html", deploy=deploy)
+    _write_html_redirect(site / "cohorts.html", "discovery.html#cohorts")
 
 
 def publish_discovery_site(report: dict, root: Path, *, tmt_discovery_dir: Path | None = None) -> Path:
@@ -129,7 +135,8 @@ def publish_discovery_site(report: dict, root: Path, *, tmt_discovery_dir: Path 
 
     _render_site_pages(site, site_report, deploy=DEPLOY_DOCS_SITE)
     _write_json_bundle(site, report, site_report, meta, profile, candidates)
-    generate_discovery_html(site_report, root / "docs" / "index.html", deploy=DEPLOY_DOCS_PORTAL)
+    generate_portal_html(root / "docs" / "index.html", meta=meta, deploy=DEPLOY_DOCS_PORTAL)
+    hydrate_site_html(root / "docs")
 
     if tmt_discovery_dir is not None:
         publish_tmt_discovery_site(report, tmt_discovery_dir)
@@ -152,4 +159,5 @@ def publish_tmt_discovery_site(report: dict, discovery_dir: Path) -> Path:
     _render_site_pages(discovery_dir, site_report, deploy=DEPLOY_TMT)
     _write_json_bundle(discovery_dir, report, site_report, meta, profile, candidates)
     generate_discovery_html(site_report, discovery_dir / "index.html", deploy=DEPLOY_TMT)
+    hydrate_site_html(discovery_dir)
     return discovery_dir

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python 'c:\\Users\\Arina1996\\Desktop\\AI for atlas\\.codex\\hooks\\discovery-session.py'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

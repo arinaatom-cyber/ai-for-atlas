@@ -25,7 +25,7 @@ def test_render_analysis_legacy_when_evidence_chain_missing():
         "title": "Legacy paper",
     }
     html = _render_analysis_cell(item, kind=ItemKind.LITERATURE, pubs_by_pmid={})
-    assert "Legacy format — re-scan required" in html
+    assert 'data-i18n="legacy_rescan"' in html
     assert "cell-analysis" in html
 
 
@@ -97,7 +97,7 @@ def test_project_links_massive_and_pmid():
     assert "MassIVE" in html
     assert "PMID 38765432" in html
     assert "accession=MSV000080000" in html
-    assert "Europe PMC" in html
+    assert 'data-i18n="link_epmc"' in html
 
 
 def test_similar_cell_shows_catalog_match():

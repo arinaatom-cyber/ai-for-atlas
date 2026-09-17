@@ -9,9 +9,9 @@ import requests
 
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
 TMT_TYPE_RE = re.compile(r"tmtpro\s*(\d{1,2})|tmt\s*[- ]?(\d{1,2})\b", re.I)
-ATLAS_PLEXES = {10, 11, 12, 16}
-REJECT_PLEXES = {6, 7, 8, 9, 18}  # TMT6 и прочие <10ch / TMT18 — не атлас
-MIN_ATLAS_CHANNELS = 10
+ATLAS_PLEXES = set(range(7, 19))  # всё >6 и ≤18
+REJECT_PLEXES = {2, 6}  # 6-plex и ниже — не атлас
+MIN_ATLAS_CHANNELS = 7
 
 
 def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
@@ -96,13 +96,13 @@ def search_pdc_tmt_studies(
     allowed_plexes: set[int] | None = None,
     reject_plexes: set[int] | None = None,
     min_channels: int = MIN_ATLAS_CHANNELS,
-    max_channels: int = 16,
+    max_channels: int = 18,
     programs: list[str] | None = None,
     exclude_programs: list[str] | None = None,
 ) -> list[dict[str, Any]]:
     """
-    TMT-исследования PDC: только >6 каналов (10/11/12/16), без TMT6/TMT18.
-    Исключает ID из TMT ATLAS + CPTAC + exclude_programs (напр. CPTAC program).
+    TMT-исследования PDC: каналов строго больше 6 (7–18, включая TMT18 / TMTpro18).
+    TMT6 и ниже отклоняются. Исключает ID из TMT ATLAS + CPTAC + exclude_programs.
     """
     known = {a.upper() for a in (known_accessions or set())}
     program_filter = {p.lower() for p in (programs or [])}

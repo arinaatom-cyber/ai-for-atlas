@@ -1,0 +1,24 @@
+{
+  "n_clinical_genes": 18,
+  "clinical_total_mentions": 953,
+  "all_total_mentions": 6380,
+  "clinical_share_pct": 14.94,
+  "clinical_in_top100": 18,
+  "clinical_in_top20": 6,
+  "top_clinical_gene": "ERBB2",
+  "dominant_subtype_CIN_pct": 57.7,
+  "top_GO_BP": [
+    "A process which begins when a cell receives an interna…",
+    "Any biological process that results in permanent cessa…",
+    "Any process that activates, maintains or increases the…",
+    "A change in morphology and behavior of a lymphocyte re…",
+    "Any process that modulates the frequency, rate or exte…"
+  ],
+  "top_KEGG": [
+    "Endometrial cancer",
+    "Central carbon metabolism in cancer",
+    "Pathways in cancer",
+    "Colorectal cancer",
+    "Gastric cancer"
+  ]
+}

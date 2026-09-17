@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="0;url=../index.html"/>
-  <title>Redirect</title>
-  <script>location.replace("../index.html");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>Human Cancer-Associated TMT Proteome Atlas</title>
+  <script>(function(){try{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}catch(e){}})();</script>
+  <link rel="stylesheet" href="assets/theme.css"/>
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/site_ui.js" defer></script>
 </head>
-<body><p><a href="../index.html">Open projects table</a></p></body>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
+      </a>
+      <div class="brand-actions">
+        <a href="ai_search.html" class="brand-action brand-action-primary" data-i18n="brand_link_ai">Atlas AI</a>
+        <a href="discovery.html#technical" class="brand-action brand-action-secondary" data-i18n="brand_link_technical">Методы · версии скриптов</a>
+      </div>
+    </div>
+    <nav class="site-nav" aria-label="Main"><a href="../index.html" class="" data-i18n="nav_home">Home</a><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="" data-i18n="nav_qc">QC</a><a href="atlas.html" class="active" data-i18n="nav_atlas">Atlas</a><a href="ai_search.html" class="" data-i18n="nav_ai">AI search</a><a href="map.html" class="" data-i18n="nav_map">Organ map</a></nav>
+    <div class="header-controls">
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="atlas_title">Профиль атласа</h1>
+  <p class="lead" data-i18n="atlas_lead">Сводка Human Cancer-Associated TMT Proteome Atlas — только метаданные, без выгрузки каталога</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-14 11:56:53 UTC</span><span class="meta-pill badge badge-ok" data-i18n="badge_readonly">read-only</span></div>
+</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">126</span><span class="kpi-label" data-i18n="atlas_datasets">датасетов</span></div><div class="kpi"><span class="kpi-value">121</span><span class="kpi-label" data-i18n="atlas_publications">уникальных ID</span></div><div class="kpi"><span class="kpi-value">5</span><span class="kpi-label" data-i18n="atlas_tmt">TMT-плексы</span></div></div>
+<div class="page-content">
+  <div class="profile-grid">
+    <div class="card">
+      <h2 data-i18n="atlas_repos">Репозитории</h2>
+      <div class="bar-row"><span class="bar-label" title="PRIDE">PRIDE</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">76</span></div>
+<div class="bar-row"><span class="bar-label" title="PDC">PDC</span><div class="bar-track"><div class="bar-fill" style="width:59%"></div></div><span class="bar-val">45</span></div>
+<div class="bar-row"><span class="bar-label" title="iProX">iProX</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-val">2</span></div>
+<div class="bar-row"><span class="bar-label" title="CLLE">CLLE</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-val">1</span></div>
+<div class="bar-row"><span class="bar-label" title="GTEx">GTEx</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-val">1</span></div>
+<div class="bar-row"><span class="bar-label" title="MassIVE">MassIVE</span><div class="bar-track"><div class="bar-fill" style="width:1%"></div></div><span class="bar-val">1</span></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="atlas_organs">Топ органов / тканей</h2>
+      <div class="tag-list"><span class="tag">brain</span><span class="tag">lung</span><span class="tag">ovary</span><span class="tag">breast</span><span class="tag">blood</span><span class="tag">hematopoietic system</span><span class="tag">pancreas</span><span class="tag">bone marrow</span><span class="tag">kidney</span><span class="tag">liver</span><span class="tag">uterus</span><span class="tag">colon</span></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="atlas_diseases">Топ нозологий</h2>
+      <div class="tag-list"><span class="tag">acute myeloid leukemia (aml)</span><span class="tag">acute myeloid leukemia</span><span class="tag">cancer</span><span class="tag">breast cancer</span><span class="tag">glioblastoma</span><span class="tag">pancreatic ductal adenocarcinoma</span><span class="tag">colorectal cancer</span><span class="tag">aml</span><span class="tag">leukemia</span><span class="tag">medulloblastoma</span><span class="tag">lung adenocarcinoma</span><span class="tag">multiple myeloma</span></div>
+    </div>
+    <div class="card">
+      <h2 data-i18n="atlas_tmt">TMT-плексы</h2>
+      <div class="tag-list"><span class="tag">TMT 10-plex</span><span class="tag">TMT 11-plex</span><span class="tag">TMTpro 16-plex</span><span class="tag">TMT-10-plex</span><span class="tag">TMT 16-plex</span></div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2 data-i18n="atlas_keywords">Ключевые слова поиска</h2></div>
+    <div class="note">TMT, tandem mass tag, human proteomics, isobaric, brain, lung, ovary, breast, blood, acute myeloid leukemia (aml), acute myeloid leukemia, cancer, breast cancer, glioblastoma, PDC, CPTAC, CCLE, GTEx, proteogenomics</div>
+  </section>
+
+  <section class="section">
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="atlas_link">Реестр на GitHub</a>
+      <a class="btn" href="discovery.html" data-i18n="atlas_discovery">Анализ новых наборов</a>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
+</body>
 </html>

@@ -26,6 +26,9 @@ data/project-cache/
 *.log
 agent-tools/
 
+# Nested clone (keep source, not .git pack)
+_tmt_projects_streamlit/.git/
+
 # IDE
 .idea/
 .vscode/

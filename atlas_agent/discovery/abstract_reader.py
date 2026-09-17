@@ -9,8 +9,14 @@ import re
 from collections import Counter
 from typing import Any
 
-from atlas_agent.discovery.filters import PHOSPHOPROTEOMICS, PEPTIDE_ONLY_OMICS, PROTEIN_LEVEL_OMICS
-from atlas_agent.discovery.fit_rules import sanitize_summary
+from atlas_agent.discovery.filters import (
+    OFF_ATLAS_DISEASE,
+    ONCOLOGY_HINT,
+    PEPTIDE_ONLY_OMICS,
+    PHOSPHOPROTEOMICS,
+    PROTEIN_LEVEL_OMICS,
+)
+from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
 from atlas_agent.llm_client import _run_llm, resolve_engine
 
 ABSTRACT_SYSTEM = """You are a curator assistant for a human TMT proteomics atlas.
@@ -32,21 +38,24 @@ Data availability (if any):
 
 Task:
 1) Does this describe human TMT/isobaric quantitative proteomics like the atlas
-   (patients, tumor tissue, adjacent normal, plasma, cancer cell lines)?
+   (tissues: tumor / adjacent normal / human tissue; or human cancer cell lines)?
 2) Do NOT search for or return PXD, PDC, MSV, IPX — repository IDs are usually absent.
-3) Reject TMT6 or <=6-plex; atlas uses TMT10/11/12/16 only.
+3) Reject TMT6 or ≤6-plex; atlas accepts TMT/TMTpro with >6 channels (7–18, including TMT18).
 4) Reject phosphoproteomics / phosphorylation profiling — atlas needs global protein-level proteome only.
 5) Reject peptide-only quantification — need protein groups / proteome, not peptides.
+6) Reject non-cancer disease cohorts (glaucoma, retinal detachment, cardiomyopathy, congenital metabolic, hydrocephalus) unless the study is a human cancer proteome.
+7) Reject mouse/rat/chicken and mixed human+animal studies. Recombinant human protein in an animal model is not human.
+8) Reject plasma/serum/urine/blood-only studies — atlas needs tissue or cell line.
 
-JSON schema:
+Return a JSON object (no markdown) with fields:
 {{
   "atlas_fit": "yes|maybe|no",
   "atlas_fit_score": 0.0,
   "semantic_evidence": ["short phrases from abstract"],
   "similar_atlas_theme": "e.g. colorectal tumor adjacent normal",
   "organism": "human|mouse|mixed|unclear",
-  "tmt": "TMT10|TMT11|TMT16|TMTpro16|ambiguous|none|unclear|TMT6",
-  "material": "tumor tissue|adjacent normal|plasma|serum|blood|cancer cell line|organoid|pdx|other|unclear",
+  "tmt": "TMT10|TMT11|TMT12|TMT16|TMTpro16|TMTpro18|TMT7|TMT8|TMT9|ambiguous|none|unclear|TMT6",
+  "material": "tumor tissue|adjacent normal|human tissue|cancer cell line|plasma|serum|blood|organoid|pdx|other|unclear",
   "human_suitable": true,
   "material_suitable": true,
   "summary_ru": "one sentence in Russian: why fits or not"
@@ -75,36 +84,55 @@ def _default_atlas_context() -> str:
 
 
 def _tmt6_or_low_plex(blob_l: str, tmt: str) -> bool:
-    if re.search(r"\btmt\s*[- ]?6\b|\btmt6\b|6\s*[- ]?plex", blob_l, re.I):
+    """True только для 6-plex и ниже — не для 16-plex."""
+    label = str(tmt).upper()
+    if label in ("TMT6", "TMT2", "TMT3", "TMT4", "TMT5", "6", "2"):
         return True
-    return str(tmt).upper() in ("TMT6", "6")
+    m_pro = re.search(r"tmtpro\s*[- ]?(\d{1,2})", blob_l, re.I)
+    m_tmt = re.search(r"tmt\s*[- ]?(\d{1,2})\b", blob_l, re.I)
+    n = None
+    if m_pro:
+        n = int(m_pro.group(1))
+    elif m_tmt:
+        n = int(m_tmt.group(1))
+    if n is not None:
+        return n <= 6
+    return bool(re.search(r"\btmt6\b|\btmt2\b|\b(?:2|6)-plex\b", blob_l, re.I))
 
 
 def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]:
     blob = f"{title} {abstract} {extra}"
     blob_l = blob.lower()
     organism = "unclear"
-    if re.search(r"\b(human|homo sapiens|patient|clinical|donor|cohort)\b", blob_l):
-        organism = "human" if not re.search(r"\b(mouse|mice|murine|rat)\b", blob_l) else "mixed"
-    elif re.search(r"\b(mouse|mice|murine)\b", blob_l):
-        organism = "mouse"
+    if re.search(r"\b(mouse|mice|murine|rat\b|chicken|gallus|zebrafish)\b", blob_l):
+        if re.search(r"\b(human|homo sapiens|patients?)\b", blob_l):
+            organism = "mixed"
+        else:
+            organism = "mouse"
+    elif re.search(r"\b(human|homo sapiens|patients?)\b", blob_l) or re.search(
+        r"\b((human|cancer|tumou?r)\s+cell\s+line|mcf[- ]?7|a549|hct116|hela)\b", blob_l
+    ):
+        organism = "human"
     tmt = "unclear"
     if re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob_l, re.I):
         tmt = "TMT6"
-    elif re.search(r"tmt\s*[- ]?(10|11|16)|tmtpro\s*16", blob_l, re.I):
-        m = re.search(r"tmtpro\s*16|tmt\s*[- ]?16", blob_l, re.I)
-        tmt = "TMTpro16" if m and "pro" in m.group(0).lower() else (
-            "TMT11" if "11" in blob_l else "TMT10" if "10" in blob_l else "TMT16"
-        )
-    elif re.search(r"\b(tmt|tandem mass tag|isobaric)\b", blob_l):
-        tmt = "ambiguous"
+    else:
+        m_pro = re.search(r"tmtpro\s*[- ]?(\d{1,2})", blob_l, re.I)
+        m_tmt = re.search(r"tmt\s*[- ]?(\d{1,2})", blob_l, re.I)
+        if m_pro:
+            tmt = f"TMTpro{m_pro.group(1)}"
+        elif m_tmt:
+            tmt = f"TMT{m_tmt.group(1)}"
+        elif re.search(r"\b(tmt|tandem mass tag|isobaric)\b", blob_l):
+            tmt = "ambiguous"
     material = "unclear"
     for label, pat in [
         ("organoid", r"\borganoid"),
         ("pdx", r"\b(pdx|xenograft)\b"),
         ("tumor tissue", r"\b(tumor tissue|ffpe|biopsy|tumou?r)\b"),
-        ("plasma", r"\b(plasma|serum|blood)\b"),
-        ("cancer cell line", r"\b(cancer cell line|mcf[- ]?7|a549)\b"),
+        ("cancer cell line", r"\b((cancer|human|tumou?r)\s+cell\s+line|mcf[- ]?7|a549|hct116|hela)\b"),
+        ("human tissue", r"\b(human tissue|normal tissue|healthy tissue|tissue sample)\b"),
+        ("plasma", r"\b(plasma|serum|urine|whole blood)\b"),
     ]:
         if re.search(pat, blob_l, re.I):
             material = label
@@ -116,7 +144,11 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
     if _tmt6_or_low_plex(blob_l, tmt):
         atlas_fit = "no"
         score = 0.1
-        evidence.append("TMT6 / <=6-plex — не атлас")
+        evidence.append("TMT6 / ≤6-plex — не атлас (нужно >6 каналов)")
+    elif OFF_ATLAS_DISEASE.search(blob) and not ONCOLOGY_HINT.search(blob):
+        atlas_fit = "no"
+        score = 0.1
+        evidence.append("неонкологическая когорта — не атлас")
     elif PHOSPHOPROTEOMICS.search(blob):
         atlas_fit = "no"
         score = 0.1
@@ -125,23 +157,23 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         atlas_fit = "no"
         score = 0.1
         evidence.append("peptide-level — нужны белки (protein groups)")
-    elif organism in ("human", "unclear") and re.search(
-        r"\b(proteom|mass spectrom|tmt|isobaric|quantitative)\b", blob_l
+    elif organism == "human" and re.search(
+        r"\b(proteom\w*|mass\s+spectrom\w*|tmt\w*|isobaric|quantitative)\b", blob_l
     ):
-        if re.search(r"\b(patient|clinical|donor|cohort)\b", blob_l):
+        if re.search(r"\b(patients?|clinical|donor|cohort)\b", blob_l):
             evidence.append("human clinical proteomics")
             score = 0.55
             atlas_fit = "maybe"
-        if tmt not in ("none", "unclear", "TMT6") and material not in ("organoid", "pdx"):
+        if tmt not in ("none", "unclear", "TMT6") and material not in ("organoid", "pdx", "plasma"):
             score = max(score, 0.65)
             atlas_fit = "maybe"
         if re.search(r"\b(tmt|isobaric)\b", blob_l) and re.search(
-            r"\b(patient|tumor|plasma|ffpe)\b", blob_l
+            r"\b(patients?|tumor|ffpe|tissue|cell\s+line)\b", blob_l
         ) and PROTEIN_LEVEL_OMICS.search(blob_l):
             score = 0.6
             atlas_fit = "maybe"
             evidence.append("TMT + patient samples (regex — conservative maybe)")
-    if organism == "mouse" or material in ("organoid", "pdx"):
+    if organism in ("mouse", "mixed") or material in ("organoid", "pdx", "plasma"):
         atlas_fit = "no"
         score = 0.15
 
@@ -154,17 +186,128 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         "organism": organism,
         "tmt": tmt,
         "material": material,
-        "human_suitable": organism in ("human", "unclear"),
-        "material_suitable": material not in ("organoid", "pdx", "unclear"),
+        "human_suitable": organism == "human",
+        "material_suitable": material not in ("organoid", "pdx", "plasma", "serum", "blood", "unclear"),
         "summary_ru": "",
         "reader": "regex",
     }
+
+
+def _is_garbage_llm(parsed: dict[str, Any]) -> bool:
+    """Reject local-model echo of prompt / schema boilerplate."""
+    for key in ("summary_ru", "summary_en"):
+        text = str(parsed.get(key) or "")
+        if sanitize_summary(text):
+            continue
+        if text.strip():
+            return True
+    evidence = parsed.get("semantic_evidence") or []
+    if not evidence and str(parsed.get("atlas_fit") or "").lower() == "yes":
+        return True
+    theme = str(parsed.get("similar_atlas_theme") or "").lower()
+    if "json schema" in theme or "valid json" in theme:
+        return True
+    return False
+
+
+def _fit_rank(fit: str) -> int:
+    return {"no": 0, "maybe": 1, "yes": 2}.get(str(fit or "").lower(), 0)
+
+
+def _min_fit(a: str, b: str) -> str:
+    order = ("no", "maybe", "yes")
+    ia, ib = _fit_rank(a), _fit_rank(b)
+    return order[min(ia, ib)]
+
+
+def _regex_summary_ru(regex: dict[str, Any], title: str) -> str:
+    fit = regex.get("atlas_fit") or "no"
+    evidence = regex.get("semantic_evidence") or []
+    tmt = regex.get("tmt") or "?"
+    material = regex.get("material") or "?"
+    if fit == "no":
+        if evidence:
+            return f"Не подходит: {evidence[0]}."
+        return "Не подходит по regex-правилам атласа."
+    if fit == "maybe":
+        ev = evidence[0] if evidence else "TMT + клинический контекст"
+        return f"Возможно подходит ({ev}); TMT={tmt}, материал={material}."
+    ev = evidence[0] if evidence else title[:80]
+    return f"Похоже на атлас: {ev}; TMT={tmt}, материал={material}."
+
+
+def _consensus_with_regex(
+    regex: dict[str, Any],
+    llm: dict[str, Any],
+    *,
+    engine: str,
+) -> dict[str, Any]:
+    """Conservative merge — regex anchors low-trust LLM."""
+    from atlas_agent.discovery.evaluation.llm_evaluator import LLMEvaluatorRegistry
+    from atlas_agent.discovery.evaluation.schemas import ModelTrustLevel
+
+    trust = LLMEvaluatorRegistry().trust_for_engine(engine)
+    merged = dict(llm)
+    r_fit = str(regex.get("atlas_fit") or "no").lower()
+    l_fit = str(llm.get("atlas_fit") or "no").lower()
+
+    if trust in (ModelTrustLevel.LOW, ModelTrustLevel.RULES):
+        # GPT4All / rules: LLM cannot override regex rejection
+        merged["atlas_fit"] = _min_fit(l_fit, r_fit) if trust == ModelTrustLevel.LOW else r_fit
+        if trust == ModelTrustLevel.LOW and merged["atlas_fit"] == "yes" and r_fit != "yes":
+            merged["atlas_fit"] = "maybe" if r_fit == "maybe" else "no"
+        try:
+            r_score = float(regex.get("atlas_fit_score") or 0)
+            l_score = float(llm.get("atlas_fit_score") or 0)
+        except (TypeError, ValueError):
+            r_score, l_score = 0.0, 0.0
+        merged["atlas_fit_score"] = min(r_score or 0.55, l_score or 0.55) if merged["atlas_fit"] != "no" else min(r_score, l_score, 0.35)
+    elif trust == ModelTrustLevel.MEDIUM:
+        merged["atlas_fit"] = _min_fit(l_fit, r_fit)
+        if merged["atlas_fit"] == "yes" and r_fit == "no":
+            merged["atlas_fit"] = "maybe"
+        try:
+            r_score = float(regex.get("atlas_fit_score") or 0)
+            l_score = float(llm.get("atlas_fit_score") or 0)
+        except (TypeError, ValueError):
+            r_score, l_score = 0.0, 0.0
+        merged["atlas_fit_score"] = max(r_score, l_score * 0.85) if merged["atlas_fit"] != "no" else min(r_score, l_score, 0.4)
+    else:
+        merged["atlas_fit"] = _min_fit(l_fit, r_fit)
+        try:
+            merged["atlas_fit_score"] = min(
+                float(llm.get("atlas_fit_score") or 0.7),
+                max(float(regex.get("atlas_fit_score") or 0.0), 0.0) + 0.15,
+            )
+        except (TypeError, ValueError):
+            merged["atlas_fit_score"] = regex.get("atlas_fit_score")
+
+    if _is_garbage_llm(merged):
+        merged["atlas_fit"] = regex.get("atlas_fit", "no")
+        merged["atlas_fit_score"] = regex.get("atlas_fit_score")
+        merged["semantic_evidence"] = regex.get("semantic_evidence") or []
+        merged["summary_ru"] = _regex_summary_ru(regex, "")
+        merged["summary_en"] = merged["summary_ru"]
+        merged["reader"] = f"{engine}_regex_fallback"
+    elif not sanitize_summary(merged.get("summary_ru")):
+        merged["summary_ru"] = _regex_summary_ru(regex, "")
+        merged["summary_en"] = merged["summary_ru"]
+
+    merged["model_trust"] = trust.value
+    merged["regex_fit"] = r_fit
+    return merged
 
 
 def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
     fit = str(parsed.get("atlas_fit") or "no").lower()
     tmt = str(parsed.get("tmt") or "unclear")
     if _tmt6_or_low_plex("", tmt):
+        fit = "no"
+    organism = str(parsed.get("organism") or "unclear")
+    if organism.lower() in ("mouse", "mixed", "rat"):
+        fit = "no"
+    material = str(parsed.get("material") or "unclear")
+    if material.lower() in ("plasma", "serum", "blood"):
         fit = "no"
     blob = f"{parsed.get('title', '')} {parsed.get('summary_ru', '')}"
     if PHOSPHOPROTEOMICS.search(blob):
@@ -180,6 +323,7 @@ def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
 
     summary_ru = sanitize_summary(parsed.get("summary_ru"))
     summary_en = sanitize_summary(parsed.get("summary_en")) or summary_ru
+    material_ok = material.lower() not in ("organoid", "pdx", "plasma", "serum", "blood", "unclear")
 
     return {
         "atlas_fit": fit,
@@ -187,11 +331,11 @@ def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
         "semantic_evidence": list(parsed.get("semantic_evidence") or [])[:8],
         "similar_atlas_theme": str(parsed.get("similar_atlas_theme") or "")[:120],
         "accessions": dict(_EMPTY_ACCESSIONS),
-        "organism": str(parsed.get("organism") or "unclear"),
+        "organism": organism,
         "tmt": tmt,
-        "material": str(parsed.get("material") or "unclear"),
-        "human_suitable": bool(parsed.get("human_suitable", True)),
-        "material_suitable": bool(parsed.get("material_suitable", True)),
+        "material": material,
+        "human_suitable": organism.lower() == "human" and bool(parsed.get("human_suitable", True)),
+        "material_suitable": bool(parsed.get("material_suitable", True)) and material_ok,
         "summary_ru": summary_ru,
         "summary_en": summary_en,
     }
@@ -222,7 +366,15 @@ def read_abstract_with_llm(
 
     provider = llm_cfg.get("provider", "auto")
     prefer_cloud = bool(llm_cfg.get("prefer_cloud", True))
-    if resolve_engine(provider, llm_cfg.get("base_url"), prefer_cloud=prefer_cloud) == "local_rules":
+    from atlas_agent.llm_client import DEFAULT_OLLAMA_MODEL
+
+    ollama_model = llm_cfg.get("model") or DEFAULT_OLLAMA_MODEL
+    if resolve_engine(
+        provider,
+        llm_cfg.get("base_url"),
+        prefer_cloud=prefer_cloud,
+        model=ollama_model,
+    ) == "local_rules":
         ai = _regex_extract(
             str(pub.get("title") or ""),
             str(pub.get("abstract") or ""),
@@ -236,8 +388,23 @@ def read_abstract_with_llm(
     title = str(pub.get("title") or "")[:500]
     abstract = str(pub.get("abstract") or "")[:3500]
     data_avail = str(pub.get("data_availability") or "")[:1500]
+    regex_base = _regex_extract(title, abstract, data_avail)
+
+    from atlas_agent.discovery.evaluation.heuristics import has_hard_exclusion, scan_literature_text
+
+    if has_hard_exclusion(scan_literature_text(title, abstract)):
+        regex_base["atlas_fit"] = "no"
+        regex_base["reader"] = "exclusion_engine"
+        out = dict(pub)
+        out["abstract_ai"] = regex_base
+        out["abstract_reader"] = "exclusion_engine"
+        out["atlas_fit"] = "no"
+        from atlas_agent.discovery.fit_rules import apply_literature_exclusions
+
+        return apply_literature_exclusions(out)
+
     if not abstract.strip():
-        ai = _regex_extract(title, "", data_avail)
+        ai = regex_base
         out = dict(pub)
         out["abstract_ai"] = ai
         out["abstract_reader"] = "regex_no_abstract"
@@ -269,13 +436,14 @@ def read_abstract_with_llm(
         except json.JSONDecodeError:
             parsed = {}
         if "atlas_fit" not in parsed and "organism" not in parsed:
-            parsed = _regex_extract(title, abstract, data_avail)
+            parsed = dict(regex_base)
             parsed["reader"] = f"{engine}_parse_fail"
         else:
             parsed = _normalize_ai_parsed(parsed)
-            parsed["reader"] = engine
+            parsed = _consensus_with_regex(regex_base, parsed, engine=engine)
+            parsed["reader"] = parsed.get("reader") or engine
     except Exception as exc:
-        parsed = _regex_extract(title, abstract, data_avail)
+        parsed = dict(regex_base)
         parsed["reader"] = f"regex_error:{exc.__class__.__name__}"
 
     out = dict(pub)

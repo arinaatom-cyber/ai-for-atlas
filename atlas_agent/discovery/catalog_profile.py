@@ -161,17 +161,17 @@ def format_atlas_context_for_llm(
     """Компактный блок для промпта LLM (обучение на вашем каталоге)."""
     lines = [
         f"REFERENCE ATLAS: {n_atlas} human TMT proteomics projects already curated.",
-        "Typical fit: tumor/adjacent tissue, plasma/serum from patients, cancer cell lines.",
-        "TMT 10/11/16-plex; paired case-control; clinical cohorts.",
+        "Typical fit: tumor/adjacent/human tissue or human cancer cell lines.",
+        "TMT >6 channels (7–18, including TMT18); paired case-control; clinical cohorts.",
         f"Top organs: {', '.join(k for k, _ in organs.most_common(6))}.",
         f"Top diseases: {', '.join(k for k, _ in diseases.most_common(6))}.",
         f"TMT in atlas: {', '.join(k for k, _ in tmt_labels.most_common(4))}.",
         "",
         "IMPORTANT: abstracts often have NO PXD/PDC/MSV numbers.",
-        "Judge by meaning: proteomics + patients + TMT/isobaric + human tissue/plasma.",
+        "Judge by meaning: proteomics + TMT/isobaric + human tissue or cancer cell line.",
         "Phrases like 'quantitative proteomics', 'mass spectrometry', 'patient cohort' may still fit.",
         "",
-        "REJECT (not atlas): organoids-only, PDX-only, mouse/rat only, label-free only, reviews.",
+        "REJECT (not atlas): organoids-only, PDX-only, plasma/serum-only, mouse/rat/mixed, label-free only, reviews.",
     ]
     if reject_hints:
         lines.append("Previously rejected themes (avoid): " + "; ".join(reject_hints[:3]))

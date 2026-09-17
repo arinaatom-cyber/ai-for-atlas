@@ -1,0 +1,150 @@
+СТАТУС ЗАГРУЗКИ СТАТЕЙ TMT
+========================================
+Скачано полных PDF: 13 из 38
+Папка с PDF: C:\Users\Arina1996\Desktop\статья тмт атлас\TMT_38_articles_downloader\TMT_articles\PDF
+
+УСПЕШНО СКАЧАНО:
+  [8] A Review on Quantitative Multiplexed Proteomics.
+  [16] Proteogenomic characterization of human colon and rectal cancer.
+  [18] Proteogenomic Landscape of Breast Cancer Tumorigenesis and Targeted Therapy.
+  [19] Integrated Proteogenomic Characterization of Clear Cell Renal Cell Carcinoma.
+  [20] Proteogenomic Analysis of Human Colon Cancer Reveals New Therapeutic Opportunities.
+  [21] Proteogenomic Characterization of Endometrial Carcinoma.
+  [22] Proteogenomic Characterization Reveals Therapeutic Vulnerabilities in Lung Adenocarcinoma.
+  [27] Proteogenomic data and resources for pan-cancer analysis.
+  [29] Cell-of-Origin Patterns Dominate the Molecular Classification of 10,000 Tumors from 33 Typ
+  [31] The GTEx Consortium atlas of genetic regulatory effects across human tissues.
+  [36] An integrated landscape of protein expression in human cancer.
+  [37] Integrated meta-analysis of colorectal cancer public proteomic datasets for biomarker disc
+  [38] Integrated View of Baseline Protein Expression in Human Tissues Using Public Data Independ
+
+НЕ СКАЧАНО АВТОМАТИЧЕСКИ:
+
+  [1] 10.1021/acs.jproteome.2c00838
+       An Introduction to Mass Spectrometry-Based Proteomics.
+       DOI: https://doi.org/10.1021/acs.jproteome.2c00838
+
+  [2] 10.1021/ac0262560
+       Tandem mass tags: a novel quantification strategy for comparative analysis of complex protein mixtur
+       DOI: https://doi.org/10.1021/ac0262560
+
+  [3] 10.1021/ac702422x
+       Relative quantification of proteins in human cerebrospinal fluids by MS/MS using 6-plex isobaric tag
+       DOI: https://doi.org/10.1021/ac702422x
+
+  [4] 10.1021/ac301572t
+       Increasing the multiplexing capacity of TMTs using reporter ion isotopologues with isobaric masses.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC3715028/
+       DOI: https://doi.org/10.1021/ac301572t
+
+  [5] 10.1021/ac500140s
+       Ion coalescence of neutron encoded TMT 10-plex reporter ions.
+       DOI: https://doi.org/10.1021/ac500140s
+
+  [6] 10.1038/s41592-020-0781-4
+       TMTpro reagents: a set of isobaric labeling mass tags enables simultaneous proteome-wide measurement
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC7302421/
+       DOI: https://doi.org/10.1038/s41592-020-0781-4
+
+  [7] 10.1021/acs.jproteome.1c00168
+       TMTpro-18plex: The Expanded and Complete Set of TMTpro Reagents for Sample Multiplexing.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8210943/
+       DOI: https://doi.org/10.1021/acs.jproteome.1c00168
+
+  [9] 10.1038/s41596-018-0006-9
+       Reproducible workflow for multiplexed deep-scale proteome and phosphoproteome analysis of tumor tiss
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC6211289/
+       DOI: https://doi.org/10.1038/s41596-018-0006-9
+
+  [10] 10.1093/nar/gkac1040
+       The ProteomeXchange consortium at 10 years: 2023 update.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9825490/
+       DOI: https://doi.org/10.1093/nar/gkac1040
+
+  [11] 10.1093/nar/gkae1011
+       The PRIDE database at 20 years: 2025 update.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC11701690/
+       DOI: https://doi.org/10.1093/nar/gkae1011
+
+  [12] 10.1038/s41592-020-0955-0
+       MassIVE.quant: a community resource of quantitative mass spectrometry-based proteomics datasets.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC7541731/
+       DOI: https://doi.org/10.1038/s41592-020-0955-0
+
+  [13] 10.1093/nar/gkab1081
+       iProX in 2021: connecting proteomics data sharing with big data.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8728291/
+       DOI: https://doi.org/10.1093/nar/gkab1081
+
+  [14] 10.1158/2767-9764.CRC-24-0243
+       NCI’s Proteomic Data Commons: A Cloud-Based Proteomics Repository Empowering Comprehensive Cancer An
+       DOI: https://doi.org/10.1158/2767-9764.CRC-24-0243
+
+  [15] 10.1158/2159-8290.CD-13-0219
+       Connecting genomic alterations to cancer biology with proteomics: the NCI Clinical Proteomic Tumor A
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC3800055/
+       DOI: https://doi.org/10.1158/2159-8290.CD-13-0219
+
+  [17] 10.1038/nature18003
+       Proteogenomics connects somatic mutations to signalling in breast cancer.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC5102256/
+       DOI: https://doi.org/10.1038/nature18003
+
+  [23] 10.1016/j.cell.2021.07.016
+       A proteogenomic portrait of lung squamous cell carcinoma.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8475722/
+       DOI: https://doi.org/10.1016/j.cell.2021.07.016
+
+  [24] 10.1016/j.ccell.2020.12.007
+       Proteogenomic insights into the biology and treatment of HPV-negative head and neck squamous cell ca
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC7946781/
+       DOI: https://doi.org/10.1016/j.ccell.2020.12.007
+
+  [25] 10.1016/j.ccell.2021.01.006
+       Proteogenomic and metabolomic characterization of human glioblastoma.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8044053/
+       DOI: https://doi.org/10.1016/j.ccell.2021.01.006
+
+  [26] 10.1016/j.cell.2021.08.023
+       Proteogenomic characterization of pancreatic ductal adenocarcinoma.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC8654574/
+       DOI: https://doi.org/10.1016/j.cell.2021.08.023
+
+  [28] 10.1021/pr501254j
+       The CPTAC Data Portal: A Resource for Cancer Proteomics Research.
+       DOI: https://doi.org/10.1021/pr501254j
+
+  [30] 10.1016/j.cell.2020.08.036
+       A Quantitative Proteome Map of the Human Body.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC7575058/
+       DOI: https://doi.org/10.1016/j.cell.2020.08.036
+
+  [32] 10.1016/j.cell.2019.12.023
+       Quantitative Proteomics of the Cancer Cell Line Encyclopedia.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC7339254/
+       DOI: https://doi.org/10.1016/j.cell.2019.12.023
+
+  [33] 10.1038/s41586-019-1186-3
+       Next-generation characterization of the Cancer Cell Line Encyclopedia.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC6697103/
+       DOI: https://doi.org/10.1038/s41586-019-1186-3
+
+  [34] 10.1002/mas.21860
+       Tissue proteomics repositories for data reanalysis.
+       DOI: https://doi.org/10.1002/mas.21860
+
+  [35] 10.3390/proteomes14020016
+       Beyond Reanalysis: Critical Issues in Data Reuse for Solid Tumor Proteomics.
+       PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC13108149/
+       DOI: https://doi.org/10.3390/proteomes14020016
+
+КАК ДОСКАЧАТЬ ОСТАЛЬНЫЕ БЫСТРО:
+1. Откройте all_38_articles_links.html в браузере (двойной клик).
+2. Подключите VPN/прокси университета или библиотеки.
+3. Для статей с PMCID откройте PMC-ссылку и нажмите Download PDF.
+4. Для Cell/Nature/ACS — откройте DOI через подписку института.
+5. Сохраняйте файлы в TMT_articles/PDF с номером в начале имени, например:
+   18_2020_Proteogenomic Landscape of Breast Cancer....pdf
+
+Повторный автозапуск всех этапов:
+   RUN_ALL_DOWNLOADS.bat

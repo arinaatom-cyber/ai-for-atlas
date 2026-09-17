@@ -69,11 +69,11 @@ streamlit run discovery_app.py    # desktop web UI → http://localhost:8501
 
 A candidate is reported only if it is:
 
-1. **Human**;
-2. **TMT / TMTpro** with **>6 channels** (10/11/12/16‑plex; 6/7/8/9/18 rejected);
+1. **Human (Homo sapiens only)** — mixed / mouse / rat rejected;
+2. **TMT / TMTpro** with **>6 channels** (7–18, including TMT18 / TMTpro18; TMT6 and below rejected);
 3. deposited in **PRIDE / PDC / iProX / MassIVE** with a stable accession;
 4. **not already** in `data/projects.csv`;
-5. passing **material QC** (sample type/tissue sanity).
+5. passing **material QC** (human **tissue** or **cancer cell line**; plasma/serum-only rejected);
 
 The pipeline:
 

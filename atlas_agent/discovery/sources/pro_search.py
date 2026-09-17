@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 from atlas_agent.discovery.abstract_reader import enrich_publications_with_ai
-from atlas_agent.revisor.literature_watch import search_new_publications
+from atlas_agent.discovery.literature_search import search_atlas_literature
 from atlas_agent.sources.dataset_resolve import (
     literature_semantic_candidates,
     publications_to_projects,
@@ -16,16 +16,6 @@ from atlas_agent.sources.pdc import search_pdc_tmt_studies
 from atlas_agent.sources.pride import search_pride_json
 
 
-def _professional_pub_queries(year_from: int, year_to: int) -> list[str]:
-    """Статьи по смыслу (TMT + пациенты) — без PXD/PDC в запросе."""
-    base = f"PUB_YEAR:[{year_from} TO {year_to}]"
-    return [
-        f"(TMT OR isobaric OR tandem mass tag) AND proteomics AND (patient OR clinical OR cohort) AND HUMAN AND {base}",
-        f"(TMT OR isobaric) AND (tumor OR cancer OR plasma OR biopsy) AND proteomics AND HUMAN AND {base}",
-        f"(TMT OR isobaric) AND quantitative proteomics AND HUMAN AND {base}",
-    ]
-
-
 def search_publications_professional(
     *,
     year_from: int,
@@ -34,22 +24,21 @@ def search_publications_professional(
     cfg: dict | None = None,
     atlas_context: dict[str, Any] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    seen_pmids: set[str] = set()
-    out: list[dict[str, Any]] = []
-    per_query = max(10, page_size // len(_professional_pub_queries(year_from, year_to)))
-    for q in _professional_pub_queries(year_from, year_to):
-        batch = search_new_publications(query=q, year_from=year_from, year_to=year_to, page_size=per_query)
-        for p in batch:
-            pmid = str(p.get("pmid") or "")
-            if pmid and pmid in seen_pmids:
-                continue
-            if pmid:
-                seen_pmids.add(pmid)
-            out.append(p)
-    trimmed = out[:page_size]
-    enriched, ai_stats = enrich_publications_with_ai(
-        trimmed, cfg=cfg, atlas_context=atlas_context
+    disc = (cfg or {}).get("discovery") or {}
+    lit_cfg = disc.get("literature") or {}
+    min_rel = float(lit_cfg.get("min_relevance") or 0.25)
+
+    pubs_raw, search_stats = search_atlas_literature(
+        year_from=year_from,
+        year_to=year_to,
+        page_size=max(page_size, int(disc.get("publications_max") or page_size)),
+        min_relevance=min_rel,
     )
+
+    enriched, ai_stats = enrich_publications_with_ai(
+        pubs_raw, cfg=cfg, atlas_context=atlas_context
+    )
+    ai_stats = {**ai_stats, "literature_search": search_stats}
     return enriched, ai_stats
 
 
@@ -65,7 +54,7 @@ def discover_projects_professional(
     profile_keywords: list[str] | None = None,
     known_accessions: set[str] | None = None,
     min_tmt_channels: int = 7,
-    max_tmt_channels: int = 16,
+    max_tmt_channels: int = 18,
     cfg: dict | None = None,
     atlas_context: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -95,8 +84,8 @@ def discover_projects_professional(
     pdc_raw = search_pdc_tmt_studies(
         known_accessions=known,
         allowed_plexes=set(pdc_cfg.get("allowed_plexes") or ATLAS_TMT_PLEXES),
-        reject_plexes=set(pdc_cfg.get("reject_plexes") or [6, 7, 8, 9, 18]),
-        min_channels=int(pdc_cfg.get("min_plex_channels") or 10),
+        reject_plexes=set(pdc_cfg.get("reject_plexes") or [2, 6]),
+        min_channels=int(pdc_cfg.get("min_plex_channels") or 7),
         exclude_programs=pdc_cfg.get("exclude_programs") or [],
     )
 
@@ -167,5 +156,8 @@ def discover_projects_professional(
             "abstract_regex_only": abstract_ai_stats.get("regex_only", 0),
             "abstract_atlas_fit_yes": abstract_ai_stats.get("atlas_fit_yes", 0),
             "abstract_atlas_fit_maybe": abstract_ai_stats.get("atlas_fit_maybe", 0),
+            "literature_raw_hits": (abstract_ai_stats.get("literature_search") or {}).get("raw_hits", 0),
+            "literature_prefilter_kept": (abstract_ai_stats.get("literature_search") or {}).get("prefilter_kept", 0),
+            "literature_with_repo_id": (abstract_ai_stats.get("literature_search") or {}).get("with_repository_id", 0),
         },
     }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{background:#080c12;color:#eef2f8;font-family:"IBM Plex Sans",system-ui,sans-serif}
+    .wrap{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:4px 0}
+    .anatomy-svg{width:100%;height:auto;max-width:100%;display:block;filter:drop-shadow(0 4px 18px rgba(0,0,0,.35))}
+    .anatomy-part{stroke:rgba(255,255,255,.55);stroke-width:.9;stroke-linejoin:round}
+    .organ-g,.lbl-g{cursor:pointer}
+    .organ-g:hover .anatomy-part,.organ-g.hi .anatomy-part{stroke:#fff;filter:brightness(1.15)}
+    .organ-g:hover .skeleton-part,.organ-g.hi .skeleton-part{stroke:#fff;stroke-width:2}
+    .lbl-g:hover .lbl-lead,.lbl-g.hi .lbl-lead{stroke:#9cb8d9;opacity:1}
+    .lbl-g:hover .lbl-name,.lbl-g.hi .lbl-name{fill:#9cb8d9}
+    .lbl-lead{fill:none;stroke:#94a3b8;stroke-width:.5;opacity:.35}
+    .lbl-name{font-size:10px;font-weight:700;fill:#e8ecf4;font-family:Inter,sans-serif}
+    .caption{text-align:center;font-size:11px;color:#64748b;margin-top:8px}
+    .err{color:#f87171;padding:12px;font-size:12px}
+  </style>
+</head>
+<body>
+  <div id="wrap" class="wrap"></div>
+  <p class="caption" id="cap">Click an organ or label to filter projects</p>
+  <script>
+    (function () {
+      var Streamlit = {
+        RENDER_EVENT: "streamlit:render",
+        events: new EventTarget(),
+        lastFrameHeight: 0,
+        setComponentReady: function () {
+          window.addEventListener("message", function (event) {
+            var data = event.data || {};
+            if (data.type !== Streamlit.RENDER_EVENT) return;
+            Streamlit.events.dispatchEvent(new CustomEvent(Streamlit.RENDER_EVENT, {
+              detail: {
+                args: data.args || {},
+                disabled: !!data.disabled,
+                theme: data.theme
+              }
+            }));
+          });
+          window.parent.postMessage({
+            isStreamlitMessage: true,
+            type: "streamlit:componentReady",
+            apiVersion: 1
+          }, "*");
+        },
+        setFrameHeight: function (height) {
+          height = height || document.body.scrollHeight;
+          if (height === Streamlit.lastFrameHeight) return;
+          Streamlit.lastFrameHeight = height;
+          window.parent.postMessage({
+            isStreamlitMessage: true,
+            type: "streamlit:setFrameHeight",
+            height: height
+          }, "*");
+        },
+        setComponentValue: function (value) {
+          window.parent.postMessage({
+            isStreamlitMessage: true,
+            type: "streamlit:setComponentValue",
+            value: value,
+            dataType: "json"
+          }, "*");
+        }
+      };
+
+      function decodeSvg(b64) {
+        if (!b64) return "";
+        try {
+          return decodeURIComponent(escape(atob(b64)));
+        } catch (e) {
+          console.error("SVG decode failed", e);
+          return "";
+        }
+      }
+
+      function highlightSelected(selected) {
+        document.querySelectorAll(".organ-g[data-o], .lbl-g[data-cb]").forEach(function (el) {
+          var o = el.getAttribute("data-o") || el.getAttribute("data-cb");
+          el.classList.toggle("hi", !!selected && o === selected);
+        });
+      }
+
+      function bindClicks(selected) {
+        var wrap = document.getElementById("wrap");
+        if (!wrap) return;
+        wrap.dataset.selectedOrgan = selected || "";
+        highlightSelected(selected);
+        if (wrap._mapBound) return;
+        wrap._mapBound = true;
+        wrap.addEventListener("click", function (e) {
+          var g = e.target.closest(".organ-g[data-o], .lbl-g[data-cb]");
+          if (!g) return;
+          e.preventDefault();
+          e.stopPropagation();
+          var o = g.getAttribute("data-o") || g.getAttribute("data-cb");
+          if (!o) return;
+          var sel = wrap.dataset.selectedOrgan || "";
+          Streamlit.setComponentValue(sel === o ? "" : o);
+        });
+      }
+
+      function onRender(event) {
+        var args = event.detail.args;
+        var wrap = document.getElementById("wrap");
+        var cap = document.getElementById("cap");
+        var svg = decodeSvg(args.svg_b64);
+        if (!svg) {
+          wrap.innerHTML = '<p class="err">Body map failed to load.</p>';
+        } else {
+          wrap.innerHTML = svg;
+          bindClicks(args.selected || "");
+        }
+        if (args.dual) {
+          cap.textContent = "Female (left) · Male (right) · click organ or label";
+        }
+        Streamlit.setFrameHeight(Math.max(args.height || 780, document.body.scrollHeight + 8));
+      }
+
+      Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender);
+      Streamlit.setComponentReady();
+    })();
+  </script>
+</body>
+</html>

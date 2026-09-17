@@ -34,7 +34,7 @@
 | # | Критерий | Статус | Комментарий |
 |---|----------|--------|-------------|
 | 3.1 | Multi-stage pipeline описан в Methods | ⬜ | `docs/DISCOVERY_PIPELINE_RU.md` — черновик |
-| 3.2 | Критерии включения (human, TMT≥10ch, plex) | ✅ | `filters.py`, `policy.py` |
+| 3.2 | Критерии включения (human, TMT >6ch, plex 7–18) | ✅ | `filters.py`, `policy.py` |
 | 3.3 | Источники API с датами сканов | ⬜ | Последний scan: 2026-06-18 |
 | 3.4 | ИИ: модель, промпт, fallback (regex) | ⬜ | Z.AI ключ не в .env |
 | 3.5 | Оценка false positive / manual check | ⬜ | QC tab + rejected counts |

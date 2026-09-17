@@ -3,7 +3,7 @@
 
 Правила (из вашего каталога + запрос):
 - Human only (без mouse/rat)
-- TMT >6 каналов, обычно до 16-plex (как в атласе)
+- TMT >6 каналов (7–18, включая TMTpro18; TMT6 и ниже — нет)
 - Protein-level proteome (не phosphoproteomics, не peptide-only)
 - Healthy-only / cancer-only / case-control (с healthy) — OK
 - PMID, PXD, PDC, MSV, IPX, iProX — извлечение из текста
@@ -16,7 +16,11 @@ from typing import Any
 
 import pandas as pd
 
-from atlas_agent.discovery.sample_material_qc import assess_sample_material, material_blob_from_item
+from atlas_agent.discovery.sample_material_qc import (
+    HUMAN_CANCER_CELL_LINE,
+    assess_sample_material,
+    material_blob_from_item,
+)
 from atlas_agent.sources.projects_table import primary_project_id
 
 # ID в тексте
@@ -30,14 +34,15 @@ ID_PATTERNS = {
 }
 
 NON_HUMAN = re.compile(
-    r"\b(mouse|mice|murine|mus\s+musculus|rat\b|rodent|porcine|pig\b|chlamydomonas|"
-    r"xenograft\s+in\s+mouse|mc38|b16|hela\s+mouse|nude\s+mice|salmonella|"
-    r"escherichia|bacterial|maize|arabidopsis|yeast|protist)\b",
+    r"\b(mouse|mice|murine|mus\s+musculus|rat\b|rattus|rodent|porcine|pig\b|"
+    r"chlamydomonas|xenograft\s+in\s+mouse|mc38|b16|hela\s+mouse|nude\s+mice|"
+    r"salmonella|escherichia|bacterial|maize|arabidopsis|yeast|protist|"
+    r"chicken|gallus|zebrafish|danio|xenopus|canine|bovine|macaque)\b",
     re.I,
 )
 LABEL_FREE_ONLY = re.compile(r"\blabel[- ]?free\b", re.I)
 HUMAN = re.compile(
-    r"\b(human|homo\s+sapiens|patient|clinical|donor|pbmc|plasma\s+from\s+patients)\b",
+    r"\b(human|homo\s+sapiens|patients?|clinical|donor)\b",
     re.I,
 )
 HEALTHY = re.compile(
@@ -49,16 +54,36 @@ REVIEW_ONLY = re.compile(
     r"\b(review|editorial|protocol|methods? paper|perspective|commentary|tutorial)\b",
     re.I,
 )
+CONSORTIA_REFERENCE = re.compile(
+    r"\b(broad institute|\bccle\b|genotype-tissue expression|\bgtex\b reference|"
+    r"cell line encyclopedia|reference proteome atlas)\b",
+    re.I,
+)
 CANCER = re.compile(
     r"\b(cancer|carcinoma|tumor|tumour|malignant|adenocarcinoma|hcc|melanoma|"
-    r"smoker|smoking|disease|metastasis|glioblastoma)\b",
+    r"smoker|smoking|disease|metastasis|glioblastoma|glioma|leukemia|lymphoma)\b",
+    re.I,
+)
+OFF_ATLAS_DISEASE = re.compile(
+    r"\b(rhegmatogenous|vitreoretinopath\w*|vitreous proteome|glaucoma\w*|"
+    r"trabecular meshwork|hydrocephalus|hypertrophic cardiomyopathy|"
+    r"phospholamban|srd5a3|hypoglycosylation|systemic lupus|"
+    r"kidney injury|cardiac biomarker|heart failure)\b",
+    re.I,
+)
+ONCOLOGY_HINT = re.compile(
+    r"\b(cancer|carcinoma|tumor|tumour|glioma|melanoma|leukemia|lymphoma|"
+    r"adenocarcinoma|sarcoma|myeloma)\b",
     re.I,
 )
 TMT_PLEX = re.compile(
     r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})\s*[- ]?plex|tmt(\d{1,2})\b|(\d{1,2})\s*plex",
     re.I,
 )
-ATLAS_TMT_PLEXES = (10, 11, 12, 16)
+ATLAS_TMT_PLEXES = tuple(range(7, 19))  # всё >6 и ≤18 (TMT7…TMT18 / TMTpro)
+REJECT_TMT_PLEXES = (2, 6)
+MIN_TMT_CHANNELS = 7
+MAX_TMT_CHANNELS = 18
 
 PHOSPHOPROTEOMICS = re.compile(
     r"\b(phosphoproteom\w*|phospho[- ]?proteom\w*|phosphorylome|phosphosite\w*|"
@@ -85,9 +110,10 @@ PEPTIDE_ONLY_OMICS = re.compile(
 def default_filter_config() -> dict[str, Any]:
     return {
         "human_only": True,
-        "allowed_tmt_plexes": list(ATLAS_TMT_PLEXES),  # >6ch: 10, 11, 12, 16, TMTpro16
-        "min_tmt_channels": 10,
-        "max_tmt_channels": 16,
+        "allowed_tmt_plexes": list(ATLAS_TMT_PLEXES),  # >6ch: 7–18, включая TMTpro16/18
+        "reject_tmt_plexes": list(REJECT_TMT_PLEXES),
+        "min_tmt_channels": MIN_TMT_CHANNELS,
+        "max_tmt_channels": MAX_TMT_CHANNELS,
         "allow_healthy_only": True,
         "allow_cancer_only": True,
         "allow_case_control": True,    # smokers vs healthy OK
@@ -161,19 +187,43 @@ def _infer_plex(blob: str) -> int | None:
 
 
 def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bool:
-    """TMT >6 каналов: только 10, 11, 12, 16 (TMTpro16 → 16)."""
-    allowed = cfg.get("allowed_tmt_plexes") or list(ATLAS_TMT_PLEXES)
-    if plex is not None:
-        return int(plex) in allowed
-    if re.search(r"tmtpro\s*[- ]?16|tmt\s*[- ]?16", blob, re.I):
-        return 16 in allowed
-    return False
+    """TMT >6 каналов (не 6 и не меньше): 7–18, включая TMTpro16/18."""
+    min_ch = int(cfg.get("min_tmt_channels") or MIN_TMT_CHANNELS)
+    max_ch = int(cfg.get("max_tmt_channels") or MAX_TMT_CHANNELS)
+    reject = {int(x) for x in (cfg.get("reject_tmt_plexes") or REJECT_TMT_PLEXES)}
+    n = int(plex) if plex is not None else None
+    if n is None:
+        m = re.search(r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})", blob, re.I)
+        if m:
+            n = int(next(g for g in m.groups() if g))
+    if n is None:
+        return False
+    if n in reject or n < min_ch or n > max_ch:
+        return False
+    allowed = cfg.get("allowed_tmt_plexes")
+    if allowed:
+        return n in {int(x) for x in allowed}
+    return True
 
 
 def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
-    """Строго: только подтверждённый human (Homo sapiens / patient / clinical)."""
+    """Только Homo sapiens. Mixed / mouse / rat / yeast — нет."""
     if item.get("human") is False:
         return False
+
+    if NON_HUMAN.search(blob):
+        return False
+
+    org_parts = []
+    for o in item.get("organisms") or []:
+        org_parts.append(str(o.get("name", o) if isinstance(o, dict) else o))
+    org_text = " ".join(org_parts).lower()
+    if org_text:
+        if NON_HUMAN.search(org_text):
+            return False
+        if "homo" in org_text or "human" in org_text:
+            return True
+
     if item.get("human") is True:
         return True
 
@@ -181,26 +231,16 @@ def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
     if src in ("pdc_api", "pdc") or item.get("consortium") == "PDC":
         return True
 
-    org_parts = []
-    for o in item.get("organisms") or []:
-        org_parts.append(str(o.get("name", o) if isinstance(o, dict) else o))
-    org_text = " ".join(org_parts).lower()
-    if "homo" in org_text or "human" in org_text:
+    if HUMAN_CANCER_CELL_LINE.search(blob):
         return True
 
-    if re.search(r"\b(mouse|mice|murine|rat\b|porcine|chlamydomonas)\b", blob, re.I):
-        if not re.search(r"\b(patient|patients|clinical|donor|cohort|subjects|volunteer)\b", blob, re.I):
-            return False
-
-    if NON_HUMAN.search(blob) and not HUMAN.search(blob):
-        return False
-
-    return bool(HUMAN.search(blob)) or bool(
-        re.search(r"\b(patient|patients|clinical|donor|cohort)\b", blob, re.I)
-    )
+    return bool(HUMAN.search(blob))
 
 
 def _infer_sample_design(blob: str) -> str:
+    blob_l = blob.lower()
+    if re.search(r"\bcase\s*[-–—]?\s*control\b|\bmatched\s+controls?\b|\bvs\.?\s+controls?\b", blob_l):
+        return "case_control"
     has_h = bool(HEALTHY.search(blob))
     has_c = bool(CANCER.search(blob))
     if has_h and has_c:
@@ -265,6 +305,19 @@ def classify_candidate(
         verdict = "filtered_out"
         reasons.append("Not human (mouse/rat/rodent/bacteria)")
 
+    if verdict == "recommended" and CONSORTIA_REFERENCE.search(blob):
+        verdict = "filtered_out"
+        reasons.append("Reference/consortia dataset (Broad/CCLE/GTEx) — not patient atlas cohort")
+
+    program = str(item.get("program") or item.get("title") or "")
+    if verdict == "recommended" and re.search(r"\bbroad institute\b|\bccle\b", program, re.I):
+        verdict = "filtered_out"
+        reasons.append("Reference/consortia dataset (Broad/CCLE) — not a new atlas cohort")
+
+    if verdict == "recommended" and OFF_ATLAS_DISEASE.search(blob) and not ONCOLOGY_HINT.search(blob):
+        verdict = "filtered_out"
+        reasons.append("Off-atlas disease (not a cancer-associated TMT cohort)")
+
     plex = item.get("inferred_plex") or _infer_plex(blob)
     if item.get("experiment_type"):
         exp_plex = _infer_plex(str(item.get("experiment_type")))
@@ -285,12 +338,12 @@ def classify_candidate(
     ):
         verdict = "filtered_out"
         reasons.append("Label-free, not TMT")
-    allowed_plex = cfg.get("allowed_tmt_plexes") or list(ATLAS_TMT_PLEXES)
+    min_ch = int(cfg.get("min_tmt_channels") or MIN_TMT_CHANNELS)
     if verdict == "recommended" and not plex_allowed(plex, cfg, blob=blob):
         if plex is not None:
-            reasons.append(f"TMT plex {plex} not in atlas (allowed: {allowed_plex})")
+            reasons.append(f"TMT plex {plex} rejected (need >6 channels, min {min_ch})")
         else:
-            reasons.append(f"TMT plex unknown (need {allowed_plex})")
+            reasons.append(f"TMT plex unknown (need >6 channels, min {min_ch})")
         verdict = "filtered_out"
 
     omics_reasons = assess_proteome_layer(item, blob, cfg=cfg)

@@ -37,10 +37,6 @@ def _header_controls() -> str:
         <button type="button" data-lang="ru" class="active">RU</button>
         <button type="button" data-lang="en">EN</button>
       </div>
-      <div class="theme-toggle" aria-label="Theme">
-        <button type="button" data-theme="light" class="active" data-i18n="theme_light" title="Light">☀</button>
-        <button type="button" data-theme="dark" data-i18n="theme_dark" title="Dark">☾</button>
-      </div>
     </div>"""
 
 
@@ -97,7 +93,7 @@ def site_head(*, deploy: str = DEPLOY_DOCS_SITE, title: str | None = None) -> st
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="description" content="{_esc(i18n_default('portal_lead')[:160])}"/>
   <title>{_esc(page_title)}</title>
-  <script>(function(){{try{{var t=localStorage.getItem('atlas_site_theme')||'light';document.documentElement.setAttribute('data-theme',t);var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}}catch(e){{}}}})();</script>
+  <script>(function(){{try{{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}}catch(e){{}}}})();</script>
   <link rel="stylesheet" href="{css}"/>
   <script src="{js}" defer></script>
   <script src="{ui}" defer></script>
@@ -111,15 +107,36 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
         cls = "active" if active == page else ""
         return _i18n_el(key, tag="a", href=href, cls=cls)
 
-    home_href = paths.get("discovery") or paths.get("home") or "index.html"
+    home_href = paths.get("home") or "index.html"
+
+    nav_html = "".join(
+        nav(paths[page], key, page)
+        for page, key in (
+            ("home", "nav_home"),
+            ("discovery", "nav_discovery"),
+            ("qc", "nav_qc"),
+            ("atlas", "nav_atlas"),
+            ("ai", "nav_ai"),
+            ("map", "nav_map"),
+        )
+        if paths.get(page)
+    )
+
+    ai_href = paths.get("ai") or "ai_search.html"
+    tech_href = f"{paths.get('discovery') or 'discovery.html'}#technical"
+
     return f"""<header class="site-header">
   <div class="site-header-inner">
     <div class="brand">
       <a href="{_esc(home_href)}" class="brand-link">
         {_i18n_el("brand_title", tag="span", cls="brand-title")}
-        {_i18n_el("brand_sub", tag="span", cls="brand-sub")}
       </a>
+      <div class="brand-actions">
+        {_i18n_el("brand_link_ai", tag="a", href=ai_href, cls="brand-action brand-action-primary")}
+        {_i18n_el("brand_link_technical", tag="a", href=tech_href, cls="brand-action brand-action-secondary")}
+      </div>
     </div>
+    <nav class="site-nav" aria-label="Main">{nav_html}</nav>
     {_header_controls()}
   </div>
 </header>"""

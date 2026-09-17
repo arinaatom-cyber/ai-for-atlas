@@ -68,7 +68,7 @@ flowchart TD
 | Источник | Модуль | Отсечка до фильтров |
 |----------|--------|---------------------|
 | **PRIDE** | `sources/pride.py` | human + TMT, год, не в `known` |
-| **PDC** | `sources/pdc.py` | TMT **10/11/12/16** only, не TMT6/TMT18, не CPTAC program, не в `known` |
+| **PDC** | `sources/pdc.py` | TMT **>6 каналов** (7–18, включая TMT18); не TMT6 и ниже; не CPTAC program; не в `known` |
 | **MassIVE** | `sources/massive.py` | TMT keywords, не в `known` |
 | **iProX** | `sources/iprox.py` | TMT keywords |
 | **Europe PMC** | `literature_watch.py` + `abstract_reader.py` | TMT + patient + proteomics; **без** поиска PXD в тексте |
@@ -76,7 +76,7 @@ flowchart TD
 ### Шаг 2 — ИИ и абстракты (`abstract_reader.py`)
 
 - Берёт **8 примеров** из вашего TMT ATLAS (`catalog_profile.build_atlas_semantic_context`).
-- Читает title + abstract **по смыслу**: пациенты, TMT, tumor/plasma.
+- Читает title + abstract **по смыслу**: пациенты, TMT, ткань или клеточная линия.
 - **Не ищет** PXD/PDC/PRIDE в абстракте (`abstract_resolve_accessions: false`).
 - Выход: `atlas_fit`, `atlas_fit_score`, `organism`, `tmt`, `material`, `summary_ru`.
 - Статьи yes/maybe без проекта → **manual check** (ручной поиск датасета).
@@ -88,7 +88,7 @@ flowchart TD
 | verdict | Условие (код) |
 |---------|----------------|
 | `already_in_catalog` | PXD/PDC/PMID уже в TMT ATLAS / CPTAC |
-| `filtered_out` | не human, не TMT 10–16, label-free, **phosphoproteomics** (`analytical_fraction` / title), обзор без ID |
+| `filtered_out` | не human, TMT ≤6, label-free, **phosphoproteomics** (`analytical_fraction` / title), обзор без ID |
 | `duplicate_similar` | очень похож на проект в каталоге (Jaccard по словам, **не ИИ**) |
 
 **Похожесть vs ИИ:** `similarity.py` считает пересечение токенов заголовка/органа/ткани (Jaccard, пороги 0.18 / 0.35). Это дешёвая эвристика для дедупликации. Смысловой разбор абстрактов — отдельно в `abstract_reader.py` (LLM или regex).
@@ -102,7 +102,7 @@ flowchart TD
 
 | qc_status | Смысл |
 |-----------|--------|
-| **candidate** | tumor/adjacent/plasma/cancer cell line — OK для атласа |
+| **candidate** | ткань (tumor/adjacent/human tissue) или cancer cell line — OK; плазма/сыворотка — нет |
 | **requires_manual_check** | смешанный дизайн, неясно |
 | **rejected** | organoid-only, PDX-only, не-human |
 
@@ -203,7 +203,7 @@ llm:
 
 1. Получает контекст ваших 123 проектов (few-shot).
 2. Оценивает: подходит ли статья под human TMT atlas.
-3. Отклоняет TMT6 / organoid-only / mouse.
+3. Отклоняет TMT6 и ≤6-plex / organoid-only / mouse; TMT7–TMT18 (включая TMT18) допускаются.
 4. Пишет краткий `summary_ru`.
 
 ИИ **не** добавляет проекты в каталог и **не** ищет PXD автоматически.
@@ -225,7 +225,7 @@ llm:
 | `atlas_agent/sources/proteomics_workbook.py` | Read-only: лист removed-for-general из `project of Proteomics.xlsx` |
 | `scripts/enrich_and_publish_site.py` | Обогащение `latest.json` + publish (без полного scan) |
 | `scripts/dump_scan_results.py` | Tier-дамп кандидатов для ручного разбора |
-| `atlas_agent/sources/pdc.py` | PDC TMT10+ фильтр |
+| `atlas_agent/sources/pdc.py` | PDC TMT >6 каналов (7–18, включая TMT18) |
 | `atlas_agent/llm_client.py` | Выбор Qwen / Claude / GPT4All |
 | `atlas_agent/discovery/keyword_search.py` | Поиск по ключевым словам (Streamlit) |
 | `atlas_agent/viz/portal_index.py` | Органы → GitHub / PRIDE / PubMed |

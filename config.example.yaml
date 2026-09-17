@@ -1,8 +1,11 @@
 # Скопируйте в config.yaml и поправьте пути.
 
 sheet:
-  projects_file: "./project of Proteomics.xlsx"
+  source: auto
+  google_sheet_id: "1M6hc3vmk1bNchMvEwXsIyyO5iq3mAzP877HTXzhzg38"
   projects_sheet: "TMT ATLAS"
+  general_sheet_name: "General single and bulk v2"
+  projects_csv: "./data/projects.csv"
   proteomics_workbook: "./project of Proteomics.xlsx"
 
 paths:

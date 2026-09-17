@@ -1,13 +1,57 @@
-# Локальный Qwen без API-ключей (GPT4All + опционально Ollama)
-Write-Host "=== Atlas: локальный ИИ ===" -ForegroundColor Cyan
+# Локальный Qwen без API-ключей: Ollama (лучше) + GPT4All (fallback)
+$ErrorActionPreference = "Continue"
+$Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+Set-Location $Root
 
-pip install -r "$PSScriptRoot\..\requirements.txt"
+Write-Host "=== Atlas: локальный Qwen ===" -ForegroundColor Cyan
 
-Write-Host "`n1) GPT4All — Qwen2-1.5B (скачается при первом run_agent.py, ~1 GB)" -ForegroundColor Yellow
-python -c "from gpt4all import GPT4All; print('Модели Qwen:', [m['filename'] for m in GPT4All.list_models() if 'qwen' in m.get('filename','').lower()][:5])"
+pip install -q -r "$Root\requirements.txt"
 
-Write-Host "`n2) Ollama (опционально, быстрее на GPU):" -ForegroundColor Yellow
-Write-Host "   winget install Ollama.Ollama"
-Write-Host "   ollama pull qwen2.5:3b"
+function Find-Ollama {
+    $candidates = @(
+        "$env:LOCALAPPDATA\Programs\Ollama\ollama.exe",
+        "$env:ProgramFiles\Ollama\ollama.exe"
+    )
+    foreach ($p in $candidates) {
+        if (Test-Path $p) { return $p }
+    }
+    return $null
+}
 
-Write-Host "`nЗапуск: python run_agent.py" -ForegroundColor Green
+$ollama = Find-Ollama
+if (-not $ollama) {
+    Write-Host "`n[1/3] Ollama не найден — установка..." -ForegroundColor Yellow
+    $installer = "$env:TEMP\OllamaSetup.exe"
+    if (-not (Test-Path $installer)) {
+        Write-Host "  Скачивание OllamaSetup.exe (~700 MB, подождите)..."
+        Invoke-WebRequest -Uri "https://github.com/ollama/ollama/releases/download/v0.32.6/OllamaSetup.exe" `
+            -OutFile $installer -UseBasicParsing
+    }
+    Start-Process -FilePath $installer -ArgumentList "/S" -Wait
+    Start-Sleep -Seconds 8
+    $ollama = Find-Ollama
+}
+
+if ($ollama) {
+    Write-Host "`n[2/3] Ollama: $ollama" -ForegroundColor Green
+    $env:Path = "$(Split-Path $ollama -Parent);$env:Path"
+    Write-Host "  Загрузка qwen2.5:3b (~2 GB)..."
+    & $ollama pull qwen2.5:3b
+    Write-Host "  Проверка..."
+    & $ollama list
+} else {
+    Write-Host "`n[!] Ollama не установился — используйте GPT4All (ниже)" -ForegroundColor Red
+}
+
+Write-Host "`n[3/3] GPT4All fallback (Qwen2-1.5B, уже в кэше или скачается при первом scan)" -ForegroundColor Yellow
+python -c @"
+from atlas_agent.local_gpt4all import is_gpt4all_available, DEFAULT_GPT4ALL_MODEL, model_is_cached
+print('GPT4All:', 'OK' if is_gpt4all_available() else 'нет')
+print('Model:', DEFAULT_GPT4ALL_MODEL, 'cached=' + str(model_is_cached(DEFAULT_GPT4ALL_MODEL)))
+"@
+
+Write-Host "`nПроверка активного движка:" -ForegroundColor Cyan
+python run_discovery.py llm --test
+
+Write-Host "`nГотово. Discovery scan:" -ForegroundColor Green
+Write-Host "  python run_discovery.py scan"

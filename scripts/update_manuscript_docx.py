@@ -1,241 +1,108 @@
 #!/usr/bin/env python3
-"""Дополнение рукописи .docx новыми разделами (вариант 2: atlas + living resource)."""
+"""Патч рукописи: §2.7, §2.8 (Discovery + LLM), §3.9, удаление multiomics-мусора."""
 from __future__ import annotations
 
-from copy import deepcopy
+import argparse
+import sys
 from pathlib import Path
 
 from docx import Document
-from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
 from docx.text.paragraph import Paragraph
 
-
-DOCX = Path(
-    r"Глобальная карта TMT-протеомики человека на основе баз данных Pride CPTAC MASSIVE iProX.docx"
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_DOCX = Path(
+    r"C:\Users\Arina1996\Desktop\статья тмт атлас\Human Cancser Assosiated TMT Proteome Atlas.docx"
 )
-ROOT = DOCX.parent
-
-
-def insert_paragraph_after(paragraph: Paragraph, text: str, style: str | None = None) -> Paragraph:
-    new_p = deepcopy(paragraph._element)
-    paragraph._element.addnext(new_p)
-    new_para = Paragraph(new_p, paragraph._parent)
-    new_para.clear()
-    run = new_para.add_run(text)
-    if style:
-        try:
-            new_para.style = style
-        except KeyError:
-            pass
-    return new_para
-
-
-def insert_block_after(paragraph: Paragraph, lines: list[str], heading_style: str | None = None) -> Paragraph:
-    last = paragraph
-    for i, line in enumerate(lines):
-        if not line:
-            last = insert_paragraph_after(last, "")
-            continue
-        st = heading_style if i == 0 and line.startswith(("2.", "3.", "4.", "Рис.")) and len(line) < 120 else None
-        last = insert_paragraph_after(last, line, st)
-    return last
-
-
-def find_para(doc: Document, substring: str, start: int = 0) -> Paragraph:
-    for i, p in enumerate(doc.paragraphs):
-        if i >= start and substring in p.text:
-            return p
-    raise ValueError(f"Paragraph not found: {substring!r}")
-
-
-def replace_para_text(p: Paragraph, old: str, new: str) -> None:
-    if old in p.text:
-        p.text = p.text.replace(old, new)
-
 
 SECTION_27 = [
     "2.7. Трёхуровневая архитектура интеграции: Presence, Abundance, Effect",
     "",
     "Прямое объединение абсолютных или относительных TMT-интенсивностей из независимых исследований методологически некорректно: количественные шкалы, схемы нормализации, состав референсного канала, глубина протеома и экспериментальный дизайн различаются между датасетами и репозиториями. Для систематического повторного использования атласа без ложной сопоставимости была реализована трёхуровневая схема аналитической интеграции.",
     "",
-    "Presence layer (слой присутствия). На этом уровне для каждого датасета формируется бинарная или полуколичественная матрица «белок × набор данных», отражающая факт детекции белка при заданном пороге FDR. Слой не предполагает сравнения абсолютных уровней экспрессии между когортами и допускает включение гетерогенных дизайнов: paired tumor–normal, unpaired case–control, case-only, normal-only, клеточные линии и reference-channel эксперименты. Presence layer используется для оценки покрытия протеома, пересечения белковых наборов между нозологиями, построения белковых сетей и мета-анализа частоты детекции (protein recurrence) без привлечения несопоставимых интенсивностей.",
+    "Presence layer (слой присутствия). На этом уровне для каждого датасета формируется бинарная или полуколичественная матрица «белок × набор данных», отражающая факт детекции белка при заданном пороге FDR. Слой не предполагает сравнения абсолютных уровней экспрессии между когортами и допускает включение гетерогенных дизайнов: paired tumor–normal, unpaired case–control, case-only, normal-only, клеточные линии и reference-channel эксперименты.",
     "",
-    "Abundance layer (слой относительной обилия). Интеграция на уровне относительных количественных значений допускается только при выполнении предварительно зафиксированных критериев совместимости: (i) согласованный тип биоматериала (ткань, клеточная линия, кровь); (ii) единая или сопоставимая схема TMT-плекса (TMT10, TMT11, TMTpro16); (iii) документированная стратегия нормализации (median normalization, reference channel / pooled internal standard); (iv) отсутствие смешения принципиально различных молекулярных слоёв (протеом / фосфопротеом) в одной аналитической матрице. Abundance layer применяется преимущественно внутри кластеров однородных датасетов (например, CPTAC-когорты одной нозологии, GTEx как референс нормальных тканей, CCLE как референс клеточных линий) и для калибровки межорганных или межлинейных профилей, а не для прямого слияния всех записей реестра в единую матрицу.",
+    "Abundance layer (слой относительной обилия). Интеграция на уровне относительных количественных значений допускается только при согласованном типе биоматериала, единой или сопоставимой схеме TMT-плекса (TMT10, TMT11, TMT12, TMT16, TMTpro16, TMTpro18), документированной нормализации и отсутствии смешения протеомного и фосфопротеомного слоёв в одной матрице.",
     "",
-    "Effect layer (слой эффектов). Количественные контрасты (log2 fold-change, различия между tumor и NAT, case vs control, ответ на терапию) рассчитываются внутри каждого датасета с учётом его экспериментального дизайна и статистической структуры (paired / unpaired, число биологических реплик, batch внутри плекса). Межкогортное сопоставление эффектов выполняется через ранговые мета-аналитические процедуры, согласование направлений изменения и пересечение значимых белков, но не через прямое усреднение исходных reporter-ion intensities между независимыми исследованиями. Effect layer является основным уровнем для биологической интерпретации (дифференциальная экспрессия, pathway enrichment) и для последующей интеграции с транскриптомными и клиническими данными в рамках платформы multiomics-platform.",
+    "Effect layer (слой эффектов). Количественные контрасты рассчитываются внутри каждого датасета с учётом его экспериментального дизайна; межкогортное сопоставление выполняется через ранговые мета-аналитические процедуры, а не через прямое усреднение reporter-ion intensities между независимыми исследованиями.",
     "",
-    "Каждому проекту в реестре присваивается допустимый набор аналитических слоёв на основании стандартизированных метаданных (тип материала, дизайн, TMT-plex, наличие контролей, доступность количественных файлов). Поле PMID_group используется для сохранения независимых когорт одной публикации как отдельных аналитических единиц на всех трёх уровнях.",
+    "Каждому проекту присваивается допустимый набор аналитических слоёв по метаданным (материал, дизайн, TMT-plex, контроли, quant files). Поле PMID_group сохраняет независимые когорты одной публикации как отдельные аналитические единицы.",
 ]
 
-SECTION_38 = [
-    "3.8. Трёхуровневая архитектура интеграции в составе атласа",
+METHODS_HEADINGS = (
+    ("Общая стратегия", "2.1. Источники данных и общая стратегия курирования"),
+    ("Критерии включения", "2.1.1. Критерии включения"),
+    ("Критерии исключения", "2.1.2. Критерии исключения"),
+    ("Конвейер автоматизированной фильтрации PRIDE", "2.2. Конвейер автоматизированной фильтрации PRIDE"),
+    ("Конвейер фильтрации MassIVE", "2.3. Конвейер фильтрации MassIVE"),
+    ("Обработка iProX и PDC/CPTAC", "2.4. Обработка iProX и PDC/CPTAC"),
+    ("Сопоставление PXD, PMID и DOI", "2.5. Сопоставление PXD, PMID и DOI"),
+    (
+        "Стандартизация метаданных, файловая структура и аннотация",
+        "2.6. Стандартизация метаданных, файловая структура и аннотация",
+    ),
+)
+
+TEXT_FIXES = (
+    ("????и TMT", "истории развития реагентов TMT"),
+    ("исходя из ????", "исходя из истории развития реагентов"),
+    ("а для PRIDE э совпадение", "а для PRIDE — при совпадении"),
+    (
+        "(TMT10, TMT11, TMTpro16, TMTpro18)",
+        "(TMT10, TMT11, TMT12, TMT16, TMTpro16, TMTpro18)",
+    ),
+    (
+        "TMT10, TMT11, TMTpro16), документированной",
+        "TMT10, TMT11, TMT12, TMT16, TMTpro16, TMTpro18), документированной",
+    ),
+)
+
+SECTION_28 = [
+    "2.8. Автоматизированный мониторинг протеомных репозиториев и литературы для расширения атласа",
     "",
-    "Трёхуровневая схема была применена ко всем включённым датасетам (Рис. 4). На Presence layer доступны все записи реестра, для которых задокументирована детекция белков при FDR ≤ 1% (применялось в ~95% датасетов). Этот слой обеспечивает кросс-репозиторное сопоставление белкового покрытия по нозологиям и типам материала без предположения о сопоставимости количественных шкал.",
+    "Для систематического пополнения Human Cancser Assosiated TMT Proteome Atlas развёрнут конвейер автоматизированного обнаружения (discovery pipeline) в режиме read-only относительно эталонного каталога (`project of Proteomics.xlsx`, лист «TMT ATLAS»; `data/projects.csv` — программное зеркало/fallback; n = 123 accession). Каталог используется только для дедупликации и семантического контекста; конвейер не изменяет мастер-таблицу — окончательное включение выполняется экспертом.",
     "",
-    "Abundance layer был ограничен кластерами однородных наборов. Референсными якорями служили: GTEx-Proteome (PXD016999) — 32 нормальные ткани, TMT10-MS³ — для межорганной калибровки нормального протеома; CCLE/DepMap (MSV000085836) — 375 клеточных линий — для фармакопротеомных и кросс-линейных сравнений; когорты CPTAC/PDC внутри одной нозологии — для внутрикогортного анализа относительной обилия при согласованном плексе и дизайне. Академические PRIDE-наборы интегрировались на уровне Abundance преимущественно внутри парных tumor–NAT или case–control дизайнов одной публикации, но не с произвольными внешними когортами.",
+    "2.8.1. Архитектура и источники данных",
     "",
-    "Effect layer реализовывался для датасетов с документированными контрастами: paired tumor–NAT (большинство CPTAC-когорт), case–control, pharmacoproteomic и резистентностные дизайны (например, многослойные записи с PMID_group > 1). Межкогортные сопоставления эффектов выполнялись на уровне согласованности направления изменения и пересечения значимых белков, а не слияния сырых интенсивностей.",
+    "Единый прогон опрашивает PRIDE Archive (REST API v3), NCI Proteomic Data Commons (GraphQL, uiStudySummary), MassIVE, iProX и Europe PMC (2024–2026). Идентификаторы нормализуются (PXD, PDC, MSV, IPX) и сверяются с каталогом. Код: репозиторий github.com/arinaatom-cyber/ai-for-atlas, скрипт run_discovery.py.",
     "",
-    "Поле PMID_group критично для Effect layer: публикации с несколькими датасетами (n = 13 публикаций, суммарно 35 записей) сохраняются как независимые аналитические единицы — этнические подкогорты LUAD (PMID 40749670), иерархия клеточных популяций при ОМЛ (PMID 39691254), протеомные и фосфопротеомные слои — что предотвращает ложное усреднение биологически различных экспериментальных слоёв.",
+    "2.8.2. Критерии отбора наборов данных",
+    "",
+    "Иерархия фильтров: (i) accession уже в каталоге → «already in catalog»; (ii) Homo sapiens; (iii) TMT/isobaric ≥10-plex (TMT10, TMT11, TMT12, TMT16, TMTpro16, TMTpro18; отклонение TMT6–TMT9); (iv) exclusion engine (mouse/xenograft-only, phospho-only, peptide-only, method papers); (v) программное исключение CPTAC/Broad/CCLE; (vi) sample design QC (case–control, paired, cancer-only или manual). Ранжирование репозиторных tier A–D выполняется по наличию protein-level quant table и дизайну — без LLM.",
+    "",
+    "2.8.3. Семантический анализ публикаций с использованием языковой модели",
+    "",
+    "Языковая модель в конвейере Discovery используется только для семантической оценки публикаций, предварительно найденных программными средствами. Поиск проектов в PRIDE, PDC, MassIVE и iProX, сопоставление с уже включёнными accession, применение формальных критериев отбора и оценка репозиторных записей выполняются отдельными детерминированными модулями. Языковая модель не изменяет основной каталог и не используется для генерации или извлечения идентификаторов PXD, PDC, MSV или IPX.",
+    "",
+    "Основной каталог (`project of Proteomics.xlsx`, лист «TMT ATLAS»; `data/projects.csv` используется как программное зеркало/fallback) загружается в режиме read-only. Перед анализом литературы из него автоматически формируется catalog_profile, характеризующий уже курированный массив данных. Профиль содержит наиболее представленные органы, нозологии и TMT-схемы, а также примеры экспериментальных дизайнов, включая парные tumor/adjacent-normal исследования, клинические когорты и панели опухолевых клеточных линий. Таким образом, новая публикация оценивается относительно фактической структуры Human Cancer-Associated TMT Proteome Atlas, а не только по наличию отдельных ключевых слов.",
+    "",
+    "Литературный поиск выполняется через Europe PMC для публикаций начиная с 2023 года. После предварительной программной фильтрации в модуль семантического анализа передаются не более 25 публикаций за один запуск (abstract_llm_max = 25). Для каждой записи языковой модели предоставляются название статьи, абстракт и доступный текст Data Availability. В текущей реализации длина передаваемого названия ограничена 500 символами, абстракта — 3500 символами, а Data Availability — 1500 символами. Полные тексты публикаций моделью автоматически не анализируются.",
+    "",
+    "LLM-backend реализован как заменяемый компонент. При режиме provider = auto программное обеспечение может использовать Z.AI, Qwen Cloud, Claude, локальный Ollama или GPT4All в зависимости от доступности соответствующего backend; при отсутствии доступной языковой модели используется rule-based fallback. В пилотном прогоне, результаты которого представлены ниже, фактически использовалась локальная модель Qwen2.5-3B (qwen2.5:3b) через Ollama, что было непосредственно зарегистрировано в отчёте Discovery как abstract_reader = ollama:qwen2.5:3b. Для OpenAI-compatible интерфейса использовалась температура 0,3. Хотя глобальное значение max_tokens в конфигурации составляет 2048, для анализа абстрактов оно программно ограничивается максимум 900 генерируемыми токенами.",
+    "",
+    "Системная инструкция определяет модель как вспомогательный инструмент куратора TMT-протеомного атласа и требует формировать ответ только на основании предоставленного текста. Модели явно запрещено искать или возвращать repository accession. Ответ запрашивается в структурированном JSON-формате и включает поля atlas_fit (yes, maybe или no), atlas_fit_score, semantic_evidence, similar_atlas_theme, organism, tmt, material, human_suitable, material_suitable и summary_ru. В инструкции также задаётся консервативная интерпретация публикаций и указано исключать исследования с TMT6/≤6-plex, phosphoproteomics-only и peptide-only quantification.",
+    "",
+    "Полученный от модели ответ программно разбирается как JSON. Если модель недоступна, абстракт отсутствует или ответ не удаётся интерпретировать как структурированный результат, используется детерминированный модуль _regex_extract. Он оценивает признаки организма, TMT-мультиплекса, типа биоматериала и уровня протеомного анализа. После успешного LLM-разбора дополнительно применяется rule-based post-processing (apply_literature_exclusions). Этот этап независимо от семантической оценки модели исключает явно non-human/xenograft-only публикации, обзоры, методические и программные работы без клинической когорты, а также phosphoproteomics-only исследования. Таким образом, генеративная модель используется как семантический фильтр, тогда как критические критерии исключения дополнительно контролируются детерминированным кодом.",
+    "",
+    "Идентификаторы репозиториев не принимаются из ответа LLM: поля accessions в результате семантического анализа принудительно остаются пустыми. Отдельный модуль Discovery настроен на разрешение repository accession из Data Availability (abstract_resolve_accessions = true), после чего найденные идентификаторы могут быть сопоставлены с существующим каталогом. Публикации с потенциальным соответствием атласу, для которых подходящий repository accession не подтверждён, сохраняются как записи для экспертной проверки, а не как автоматически включённые проекты.",
+    "",
+    "Языковая модель не используется для присвоения confidence tiers A–D репозиторным проектам. Эти категории формируются rule-based компонентами на основании доступности количественных protein-level таблиц, типа molecular layer, экспериментального дизайна и других формализованных признаков. Окончательное включение нового проекта в каталог требует ручной проверки или явной операции run_revisor.py add --apply; автоматическое изменение мастер-каталога в Discovery запрещено.",
+    "",
+    "2.8.4. Классификация исходов и отчётность",
+    "",
+    "Итоговые корзины: candidates (новые tier A/B); manual_check (литература); repository_manual (неясный sample design); rejected_material; filtered_out; already_in_catalog. Формировались QC-отчёт и веб-сводка (GitHub Pages: arinaatom-cyber.github.io/TMT/discovery/; Streamlit: human-cancser-tmt-proteome-atlas.streamlit.app). Запуск — еженедельно (run_discovery.py scan).",
 ]
 
 SECTION_39 = [
-    "3.9. Пилотный прогон конвейера Discovery",
+    "3.9. Пилотный прогон семантического литературного скрининга",
     "",
-    "Для оценки применимости автоматизированного мониторинга выполнен полный прогон конвейера Discovery (10 июня 2026 г.; Рис. 5; веб-интерфейс: https://arinaatom-cyber.github.io/TMT/discovery/discovery.html). Эталонный каталог на момент прогона содержал 123 уникальных accession.",
+    "При пилотном запуске Discovery 10 августа 2026 года исходный каталог содержал 123 уникальных accession. После предварительного этапа отбора в литературный слой поступили восемь публикаций Europe PMC; все восемь абстрактов были обработаны языковой моделью Qwen2.5-3B через локальный Ollama backend. Четыре публикации получили итоговую метку atlas_fit = maybe, тогда как записей с atlas_fit = yes выявлено не было. Для четырёх потенциально релевантных публикаций была назначена ручная проверка. Автоматического добавления литературных находок в основной каталог не выполнялось. В данном запуске модуль разрешения accession из литературных записей не установил ни одного нового repository identifier (literature_resolved = 0).",
     "",
-    "Репозиторный слой. Параллельный опрос выявил 60 записей PRIDE Archive (API v3), 98 — Proteomic Data Commons (GraphQL), 25 — MassIVE и 29 публикаций в Europe PMC. После нормализации идентификаторов, дедупликации и иерархии фильтров (плексность TMT, программное исключение CPTAC, классификация биоматериала) сформированы итоговые корзины: кандидаты — 95; уже в каталоге — 11; отфильтровано — 134; ручная проверка — 4; отклонено по материалу — 4.",
-    "",
-    "Структура потока кандидатов. Из 95 кандидатов 94 имели префикс PDC и 1 — PRIDE, что отражает высокую плотность TMT-исследований в PDC и необходимость программного отсечения централизованно курируемых CPTAC-когорт, уже представленных в атласе. PRIDE и MassIVE в данном прогоне вносили меньший, но биологически разнообразный вклад академических наборов.",
-    "",
-    "Литературный слой. Семантический анализ 21 абстракта с участием локальной языковой модели (из 29 отобранных публикаций) выявил 2 записи с явным соответствием профилю атласа (atlas_fit = yes), 22 — пограничные (maybe) и 5 — неподходящие (no). Автоматическое извлечение accession из текста и привязка PMID → PXD/PDC не выполнялись; все литературные находки направлены на экспертную верификацию.",
-    "",
-    "Вывод. Пилотный прогон демонстрирует масштабируемость обзора репозиториев и литературы при сохранении read-only режима каталога и принципа разделения автоматического отбора и кураторского решения о включении в атлас.",
-]
-
-DISCUSSION = [
-    "ОБСУЖДЕНИЕ",
-    "",
-    "4.1. Кросс-репозиторный реестр как инфраструктура онкопротеомики",
-    "",
-    "Human Cancser Assosiated TMT Proteome Atlas восполняет пробел между консорциумными ресурсами (CPTAC, GTEx, CCLE) и фрагментированным массивом независимых академических TMT-исследований в PRIDE, MassIVE и iProX. Реестр функционирует не как единая количественная матрица, а как стандартизированный индекс с экспертно верифицированными метаданными, пригодный для реляционного поиска, отбора когорт и планирования downstream-анализа.",
-    "",
-    "4.2. Некорректность наивного объединения TMT-интенсивностей",
-    "",
-    "TMT-мультиплексирование снижает техническую вариабельность внутри плекса, но не устраняет межисследовательские различия в глубине протеома, составе референсного канала, схеме нормализации и биологическом дизайне. Трёхуровневая архитектура (§2.7) формализует допустимые режимы интеграции и предотвращает методологически необоснованное приравнивание абсолютных интенсивностей — одну из основных причин ложных выводов при мета-анализе публичных протеомных данных.",
-    "",
-    "4.3. GTEx-Proteome и CCLE как референсные слои",
-    "",
-    "GTEx и CCLE включены в атлас не как онкологические когорты, а как якоря Abundance layer: нормальный тканеспецифичный протеом и протеом клеточных линий соответственно. Их роль — калибровка и контекстуализация онкологических профилей, а не прямое смешение с tumor tissue в единой матрице.",
-    "",
-    "4.4. Мета-анализ и мультиомная интеграция",
-    "",
-    "Presence layer поддерживает оценку рекурренции белков и сетевой анализ на масштабе всего атласа; Effect layer — ранговый мета-анализ внутри однородных кластеров нозологий. Связка PMID–DOI–accession и поле PMID_group обеспечивают трассируемость до первичных публикаций и независимых экспериментальных слоёв. Платформа multiomics-platform предназначена для согласованной интеграции протеомных контрастов с транскриптомными и клиническими данными при сохранении разделения аналитических слоёв.",
-    "",
-    "4.5. Ограничения",
-    "",
-    "Ограничения текущей версии включают: (i) зависимость PRIDE-компоненты от ручной верификации ~300 кандидатов; (ii) неполноту структурированных полей TMT-plex в метаданных репозиториев (>94% случаев требуют чтения Methods); (iii) смещение в сторону онкологических когорт CPTAC; (iv) неоднородную доступность обработанных количественных файлов; (v) ограниченное представление редких нозологий вне iProX и академических PRIDE-наборов.",
-    "",
-    "4.6. От статического реестра к сопровождаемому ресурсу",
-    "",
-    "Конвейер Discovery переводит атлас из разовой кураторской сборки в режим сопровождения: еженедельный опрос репозиториев и литературы, автоматическая дедупликация относительно каталога, прозрачная QC-классификация и публичный интерфейс новых кандидатов. Принципиально сохраняется разделение ролей: алгоритм сужает пространство поиска и ранжирует гипотезы; окончательное включение в атлас остаётся за экспертом — по той же логике, что при ручной верификации 314 PRIDE-кандидатов. Такой дизайн согласуется с FAIR-принципами: каталог версионируется, discovery-отчёты датируются, код воспроизводим.",
-    "",
-    "ЗАКЛЮЧЕНИЕ",
-    "",
-    "Сформирован кросс-репозиторный реестр Human-TMT-протеомных исследований, объединяющий консорциумные когорты CPTAC/PDC, академические наборы PRIDE, MassIVE и iProX и референсные ресурсы GTEx и CCLE. Для каждого проекта стандартизированы метаданные экспериментального дизайна, биоматериала и количественных файлов. Предложена трёхуровневая архитектура интеграции (Presence, Abundance, Effect), позволяющая систематически использовать публичные TMT-данные без методологически некорректного объединения несопоставимых шкал. Развёрнут конвейер Discovery для сопровождения и расширения атласа. Ресурс создаёт воспроизводимую основу для мета-анализа онкопротеомики человека и мультиомной интеграции.",
-    "",
-    "ПОДПИСИ К РИСУНКАМ",
-    "",
-    "Рис. 4. Трёхуровневая архитектура интеграции Human Cancser Assosiated TMT Proteome Atlas. Схема трёх аналитических слоёв: Presence (детекция белка, все дизайны), Abundance (относительная обилие, только в однородных кластерах при согласованном TMT-плексе и нормализации), Effect (контрасты внутри датасета и ранговый мета-анализ между когортами). Примеры: GTEx-Proteome (PXD016999) и CCLE (MSV000085836) как референсные якоря Abundance layer; CPTAC BRCA (PDC000120) — paired tumor/NAT на Effect layer; академический PRIDE-набор — Presence + Effect внутри публикации. Записи с PMID_group > 1 сохраняются как независимые аналитические единицы на всех слоях.",
-    "",
-    "Рис. 5. Конвейер автоматизированного мониторинга (Discovery) для расширения атласа. Параллельный опрос PRIDE, PDC, MassIVE, iProX и Europe PMC → иерархия фильтров (дедупликация с каталогом, TMT ≥ 10 каналов, исключение программ CPTAC, классификация материала) → семантический анализ абстрактов (atlas_fit) → пять исходных корзин (кандидаты, ручная проверка, отклонение по материалу, отфильтровано, уже в каталоге). Каталог Excel (лист «TMT ATLAS») используется только для чтения. Результаты публикуются в QC-отчёте и на GitHub Pages (раздел discovery) без раскрытия полного каталога.",
-    "",
-    "Рис. 6. Многодатасетные публикации и поле PMID_group. Одна публикация (PMID) может порождать несколько независимых датасетов (разные этнические когорты, клеточные фракции, молекулярные слои). Поле PMID_group фиксирует число связанных записей и предотвращает ложное объединение биологически различных экспериментов при интеграции. Примеры: LUAD мультиэтнический (PMID 40749670, 4 PDC-записи); иерархия популяций при ОМЛ (PMID 39691254, 4 PXD-записи).",
+    "Встроенный контрольный набор использовался только как программная проверка корректности детерминированных правил Discovery и не рассматривался как независимая валидация языковой модели. Для четырёх тестовых литературных случаев rule-based screening правильно классифицировал три случая (3/4; 75%), тогда как для трёх тестовых репозиторных записей rule-based tier classification совпала с заранее заданными категориями во всех трёх случаях (3/3). Из-за малого размера контрольного набора эти показатели не интерпретировались как оценки чувствительности, специфичности или обобщающей способности LLM.",
 ]
 
 
-def update_toc(doc: Document) -> None:
-    mapping = {
-        "2.7. Доступность данных и кода": "2.7. Трёхуровневая архитектура интеграции: Presence, Abundance, Effect",
-    }
-    for p in doc.paragraphs[:40]:
-        for old, new in mapping.items():
-            if p.text.strip() == old:
-                p.text = new
-
-    # вставить 2.8, 2.9, 3.9, 4.6 в оглавление
-    anchors = [
-        (
-            "2.7. Трёхуровневая архитектура интеграции: Presence, Abundance, Effect",
-            [
-                "2.8. Конвейер Discovery для расширения атласа",
-                "2.9. Доступность данных и кода",
-            ],
-        ),
-        (
-            "3.8. Трёхуровневая архитектура интеграции: Presence, Abundance, Effect",
-            ["3.9. Пилотный прогон конвейера Discovery"],
-        ),
-        (
-            "4.5. Ограничения текущей версии реестра",
-            ["4.6. От статического реестра к сопровождаемому ресурсу"],
-        ),
-    ]
-    for anchor, lines in anchors:
-        for p in doc.paragraphs[:40]:
-            if p.text.strip() == anchor:
-                last = p
-                for line in lines:
-                    # не дублировать
-                    if any(x.text.strip() == line for x in doc.paragraphs[:45]):
-                        break
-                    last = insert_paragraph_after(last, line)
-                break
-
-
-def main() -> None:
-    path = ROOT / DOCX.name
-    if not path.is_file():
-        raise SystemExit(f"File not found: {path}")
-
-    doc = Document(str(path))
-
-    # --- оглавление ---
-    update_toc(doc)
-
-    # --- Methods: 2.7 перед 2.8 ---
-    anchor_28 = find_para(doc, "2.8. Автоматизированный мониторинг")
-    if not any("2.7. Трёхуровневая архитектура интеграции" in p.text for p in doc.paragraphs):
-        # вставляем блок перед 2.8 (в обратном порядке)
-        prev = anchor_28
-        for line in reversed(SECTION_27):
-            prev = insert_paragraph_after(anchor_28._element.getprevious() and anchor_28 or anchor_28, "")
-        # проще: вставить после 2.6 блока
-        anchor_26 = find_para(doc, "Отдельно фиксировались проекты, связанные одной публикацией")
-        insert_block_after(anchor_26, SECTION_27)
-
-    # --- Methods: 2.9 вместо «Доступность» ---
-    for p in doc.paragraphs:
-        if p.text.strip() == "Доступность данных и кода" and "2.9" not in p.text:
-            # только в Methods (после 2.8.4)
-            idx = doc.paragraphs.index(p)
-            if idx > 100:
-                p.text = "2.9. Доступность данных и кода"
-                break
-
-    # убрать служебную фразу
-    for p in doc.paragraphs:
-        if "Первичный текст и структура раздела основаны" in p.text:
-            p.text = (
-                "Конвейер Discovery реализован в репозитории arinaatom-cyber/TMT "
-                "(каталог run_discovery.py, конфигурация config.yaml). "
-                "Веб-интерфейс пилотного прогона: "
-                "https://arinaatom-cyber.github.io/TMT/discovery/discovery.html."
-            )
-
-    # --- Results: 3.8 и 3.9 ---
-    if not any(p.text.startswith("3.8. Трёхуровневая архитектура интеграции в составе") for p in doc.paragraphs):
-        anchor = find_para(doc, "Тринадцать публикаций представлены двумя и более датасетами")
-        insert_block_after(anchor, SECTION_38 + [""] + SECTION_39)
-
-    # --- Обсуждение, Заключение, подписи ---
-    if not any(p.text.strip() == "ОБСУЖДЕНИЕ" and doc.paragraphs.index(p) > 80 for p in doc.paragraphs):
-        anchor = find_para(doc, "БЛАГОДАРНОСТИ")
-        # вставить перед благодарностями — идём в обратном порядке через prev sibling
-        block_para = anchor
-        for line in reversed(DISCUSSION):
-            new_p = OxmlElement_fix_insert_before(anchor, line)
-            block_para = new_p
-
-    out = path  # перезапись
-    doc.save(str(out))
-    print(f"Updated: {out}")
-
-
-def OxmlElement_fix_insert_before(anchor: Paragraph, text: str) -> Paragraph:
-    """Вставить абзац непосредственно перед anchor."""
-    from docx.oxml import OxmlElement
-
+def insert_before(anchor: Paragraph, text: str) -> Paragraph:
     new_p = OxmlElement("w:p")
     anchor._element.addprevious(new_p)
     new_para = Paragraph(new_p, anchor._parent)
@@ -244,59 +111,245 @@ def OxmlElement_fix_insert_before(anchor: Paragraph, text: str) -> Paragraph:
     return new_para
 
 
-# fix main to use insert_before properly
-def main_fixed() -> None:
-    path = ROOT / DOCX.name
+def insert_after(anchor: Paragraph, text: str) -> Paragraph:
+    new_p = OxmlElement("w:p")
+    anchor._element.addnext(new_p)
+    new_para = Paragraph(new_p, anchor._parent)
+    if text:
+        new_para.add_run(text)
+    return new_para
+
+
+def insert_block_before(anchor: Paragraph, lines: list[str]) -> None:
+    for line in lines:
+        insert_before(anchor, line)
+
+
+def remove_paragraph(p: Paragraph) -> None:
+    p._element.getparent().remove(p._element)
+
+
+def find_para(doc: Document, substring: str, start: int = 0) -> Paragraph | None:
+    for i, p in enumerate(doc.paragraphs):
+        if i >= start and substring in p.text:
+            return p
+    return None
+
+
+SECTION_28_MARKERS = (
+    "2.8. Автоматизированный мониторинг",
+    "2.8.1. Архитектура и источники",
+    "2.8.2. Критерии отбора",
+    "2.8.3. Семантический анализ публикаций",
+    "2.8.4. Классификация исходов",
+    "Итоговые корзины: candidates",
+    "discovery pipeline) в режиме read-only",
+)
+
+
+def _section_28_start(text: str) -> bool:
+    t = text.strip()
+    return t.startswith("2.8.") or t.startswith("2.8 ")
+
+
+def _section_28_marker(text: str) -> bool:
+    return _section_28_start(text) or any(m in text for m in SECTION_28_MARKERS)
+
+
+def _section_39_marker(text: str) -> bool:
+    t = text.strip()
+    return (
+        t.startswith("3.9.")
+        or "При пилотном запуске Discovery 10 августа 2026" in t
+        or "Полный прогон выполнен 10 августа 2026" in t
+        or t.startswith("Репозиторный слой. PRIDE")
+        or t.startswith("Литературный слой. Europe PMC")
+        or t.startswith("Benchmark exclusion")
+        or t.startswith("Встроенный контрольный набор")
+    )
+
+
+def remove_section_27(doc: Document) -> None:
+    start = end = None
+    for i, p in enumerate(doc.paragraphs):
+        if p.text.strip().startswith("2.7. Трёхуровневая архитектура"):
+            start = i
+        if start is not None and i > start:
+            t = p.text.strip()
+            if (
+                t.startswith("2.8.")
+                or t.startswith("Стандартизация метаданных")
+                or t.startswith("2.6. Стандартизация")
+            ):
+                end = i
+                break
+    if start is not None and end is not None and start < end:
+        for p in list(doc.paragraphs[start:end]):
+            remove_paragraph(p)
+
+
+def replace_section_27(doc: Document) -> None:
+    """§2.7 после §2.6 (стандартизация), перед §2.8."""
+    remove_section_27(doc)
+    anchor = find_para(doc, "2.8. Автоматизированный мониторинг")
+    if anchor is None:
+        anchor = find_para(doc, "2.8. Автоматизированный")
+    if anchor is None:
+        raise SystemExit("Не найден якорь для §2.7")
+    insert_block_before(anchor, SECTION_27)
+
+
+def renumber_methods_headings(doc: Document) -> None:
+    for p in doc.paragraphs:
+        t = p.text.strip()
+        for old, new in METHODS_HEADINGS:
+            if t == old or t == new:
+                p.text = new
+                break
+
+
+def apply_text_fixes(doc: Document) -> None:
+    for p in doc.paragraphs:
+        text = p.text
+        new = text
+        for old, repl in TEXT_FIXES:
+            new = new.replace(old, repl)
+        if new != text:
+            p.text = new
+
+
+def remove_section_28(doc: Document) -> None:
+    start = end = None
+    for i, p in enumerate(doc.paragraphs):
+        if start is None and _section_28_marker(p.text):
+            start = i
+        if start is not None and (
+            "Программное обеспечение и статистическая" in p.text
+            or p.text.strip().startswith("2.9.")
+        ):
+            end = i
+            break
+    if start is not None and end is not None and start < end:
+        for p in list(doc.paragraphs[start:end]):
+            remove_paragraph(p)
+
+
+def remove_section_39(doc: Document) -> None:
+    start = end = None
+    for i, p in enumerate(doc.paragraphs):
+        if _section_39_marker(p.text):
+            start = i if start is None else min(start, i)
+        if start is not None and p.text.strip() == "DISCUSSION":
+            end = i
+            break
+    if start is not None and end is not None and start < end:
+        for p in list(doc.paragraphs[start:end]):
+            remove_paragraph(p)
+
+
+def replace_section_28(doc: Document) -> None:
+    remove_section_28(doc)
+    anchor = find_para(doc, "Программное обеспечение и статистическая обработка")
+    if anchor is None:
+        anchor = find_para(doc, "2.9. Доступность данных")
+    if anchor is None:
+        raise SystemExit("Не найден якорь для §2.8")
+    insert_block_before(anchor, SECTION_28)
+
+
+def replace_section_39(doc: Document, section_39: list[str]) -> None:
+    remove_section_39(doc)
+    anchor = find_para(doc, "DISCUSSION")
+    if anchor is None:
+        raise SystemExit("Не найден якорь DISCUSSION для §3.9")
+    insert_block_before(anchor, section_39)
+
+
+def _is_junk_multiomics(text: str) -> bool:
+    t = text.strip()
+    if not t:
+        return False
+    markers = (
+        "pip install git+https://github.com/arinaatom-cyber/multiomics-platform",
+        "from proteomics_explorer import ProteomicsExplorer",
+        "2.8.9.3",
+        "explorer = ProteomicsExplorer",
+        "explorer.df.to_csv",
+        "explorer.df.to_excel",
+        "print(projects)",
+        "projects = explorer.list_projects",
+        "print(result)",
+        "result = explorer.search",
+        "print(\"Установка успешна!\")",
+        "Установка из репозитория:",
+        "Проверка установки:",
+        "Инициализация и просмотр проектов:",
+        "Поиск объектов:",
+        "Сохранение результатов:",
+    )
+    return any(m in t for m in markers)
+
+
+def patch_docx(path: Path) -> None:
     doc = Document(str(path))
 
-    update_toc(doc)
+    # 1) Удалить multiomics-мусор
+    for p in list(doc.paragraphs):
+        if _is_junk_multiomics(p.text):
+            remove_paragraph(p)
 
-    if not any("2.7. Трёхуровневая архитектура интеграции: Presence" in p.text for p in doc.paragraphs):
-        anchor_26 = find_para(doc, "Отдельно фиксировались проекты, связанные одной публикацией")
-        insert_block_after(anchor_26, SECTION_27)
+    # 2) Нумерация §2.1–§2.6 и типографика
+    renumber_methods_headings(doc)
+    apply_text_fixes(doc)
 
-    for i, p in enumerate(doc.paragraphs):
-        t = p.text.strip()
-        if t == "Доступность данных и кода" and i > 100:
-            p.text = "2.9. Доступность данных и кода"
-        if "Первичный текст и структура раздела основаны" in p.text:
-            p.text = (
-                "Конвейер Discovery реализован в репозитории arinaatom-cyber/TMT "
-                "(скрипт run_discovery.py, конфигурация config.yaml). "
-                "Веб-интерфейс пилотного прогона: "
-                "https://arinaatom-cyber.github.io/TMT/discovery/discovery.html."
-            )
+    # 3) §2.7 — после §2.6, перед §2.8
+    replace_section_27(doc)
 
-    if not any(p.text.startswith("3.8. Трёхуровневая архитектура интеграции в составе") for p in doc.paragraphs):
-        anchor = find_para(
-            doc,
-            "Тринадцать публикаций представлены двумя и более датасетами",
-            start=60,
-        )
-        insert_block_after(anchor, [""] + SECTION_38 + [""] + SECTION_39)
-
-    has_discussion_body = any(
-        "4.1. Кросс-репозиторный реестр как инфраструктура" in p.text for p in doc.paragraphs
+    # 4) §2.8 — пересобрать
+    disc_idx = next(
+        (i for i, p in enumerate(doc.paragraphs) if "Конвейер мониторинга новых депонирований" in p.text),
+        None,
     )
-    if not has_discussion_body:
-        anchor = find_para(doc, "БЛАГОДАРНОСТИ")
-        for line in reversed(DISCUSSION):
-            OxmlElement_fix_insert_before(anchor, line)
+    if disc_idx is not None:
+        remove_paragraph(doc.paragraphs[disc_idx])
+        if disc_idx < len(doc.paragraphs) and "read-only конвейер мониторинга" in doc.paragraphs[disc_idx].text:
+            remove_paragraph(doc.paragraphs[disc_idx])
+    replace_section_28(doc)
 
-    # дополнение аннотации про Discovery
+    # 5) §2.9 заголовок
     for p in doc.paragraphs:
-        if p.text.startswith("Полученный ресурс формирует стандартизированную основу"):
-            if "Discovery" not in p.text:
-                p.text = p.text.rstrip() + (
-                    " Для сопровождения атласа развёрнут конвейер автоматизированного "
-                    "мониторинга репозиториев и литературы (Discovery) в режиме read-only "
-                    "относительно эталонного каталога."
-                )
+        if p.text.strip() in (
+            "Доступность данных, кода и веб-интерфейса",
+            "2.9. Доступность данных, кода и веб-интерфейса",
+        ):
+            p.text = "2.9. Доступность данных, кода и веб-интерфейса"
             break
 
+    # 6) §3.9 в Results (перед DISCUSSION)
+    replace_section_39(doc, SECTION_39)
+
+    # 7) Streamlit URL
+    for p in doc.paragraphs:
+        if "tmt-projects-j6vqdccqua9qym6apskrkw.streamlit.app" in p.text:
+            p.text = p.text.replace(
+                "https://tmt-projects-j6vqdccqua9qym6apskrkw.streamlit.app/",
+                "https://human-cancser-tmt-proteome-atlas.streamlit.app/",
+            )
+
     doc.save(str(path))
-    print(f"Saved: {path}")
+    print(f"Patched: {path}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Patch manuscript docx with Discovery sections")
+    parser.add_argument("--docx", type=Path, default=DEFAULT_DOCX, help="Path to .docx")
+    args = parser.parse_args()
+    if not args.docx.is_file():
+        print(f"File not found: {args.docx}", file=sys.stderr)
+        return 1
+    patch_docx(args.docx)
+    return 0
 
 
 if __name__ == "__main__":
-    main_fixed()
+    raise SystemExit(main())

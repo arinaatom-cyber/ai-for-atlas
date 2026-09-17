@@ -1,0 +1,19 @@
+Gene,Clinical_Relevance,Functional_Category,Total_Mentions,Bibliometric_Rank,Global_Rank_all_genes,In_Top20,In_Top100,In_Full_Dataset,Is_Stress_Family,CIN,MSI,EBV,Intestinal,Diffuse
+MLH1,DNA Repair (MSI),DNA Repair,23,39,42,False,True,True,False,5,8,1,4,2
+MSH6,DNA Repair (MSI),DNA Repair,18,56,55,False,True,True,False,4,7,1,1,2
+PMS2,DNA Repair (MSI),DNA Repair,13,86,84,False,True,True,False,3,4,1,1,1
+MSH2,DNA Repair (MSI),DNA Repair,12,88,88,False,True,True,False,2,4,1,2,1
+CD274,Immunotherapy,Immune Checkpoints,199,4,4,True,True,True,False,101,31,13,7,3
+CTLA4,Immunotherapy,Immune Checkpoints,13,83,82,False,True,True,False,6,1,0,3,0
+TP53,Prognostic Markers,Cell Cycle,51,16,16,True,True,True,False,22,5,3,5,6
+KRAS,Prognostic Markers,RAS/RAF/MEK/ERK,36,20,20,True,True,True,False,18,4,3,6,1
+CDH1,Prognostic Markers,EMT,23,41,39,False,True,True,False,8,1,0,3,8
+MUC5AC,Prognostic Markers,Mucins/Gastric Markers,14,77,73,False,True,True,False,7,1,0,3,1
+PIK3CA,Signaling Pathways,PI3K/AKT/mTOR,28,28,31,False,True,True,False,14,4,4,3,0
+PTEN,Signaling Pathways,PI3K/AKT/mTOR,24,36,38,False,True,True,False,13,2,2,2,0
+AKT1,Signaling Pathways,PI3K/AKT/mTOR,17,57,57,False,True,True,False,7,1,1,2,0
+MYC,Signaling Pathways,Transcription Factors,11,97,101,False,True,True,False,8,1,0,1,1
+ERBB2,Targeted Therapy,Receptor Tyrosine Kinases,290,2,2,True,True,True,False,226,11,6,24,13
+MET,Targeted Therapy,Receptor Tyrosine Kinases,100,6,6,True,True,True,False,58,6,2,3,4
+EGFR,Targeted Therapy,Receptor Tyrosine Kinases,45,17,18,True,True,True,False,33,4,2,1,0
+KIT,Targeted Therapy,Receptor Tyrosine Kinases,36,21,21,False,True,True,False,15,2,0,14,1

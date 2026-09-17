@@ -38,8 +38,11 @@ def generate_portal_html(
         + f' <span class="meta-pill badge badge-muted" data-i18n="meta_atlas_ids">{esc(i18n_default("meta_atlas_ids"))}</span>'
     )
 
-    map_href = "../index.html" if deploy == DEPLOY_TMT else LIVE_MAP
-    map_target = "" if deploy == DEPLOY_TMT else ' target="_blank" rel="noopener"'
+    map_href = "site/map.html" if deploy == DEPLOY_DOCS_PORTAL else (
+        "../index.html" if deploy == DEPLOY_TMT else "map.html"
+    )
+    map_target = ' target="_blank" rel="noopener"' if deploy == DEPLOY_TMT else ""
+    ai_href = "site/ai_search.html" if deploy == DEPLOY_DOCS_PORTAL else "ai_search.html"
 
     def card(
         title_key: str,
@@ -61,8 +64,9 @@ def generate_portal_html(
       </div>
     </div>"""
 
+    json_href = "site/latest.json" if deploy == DEPLOY_DOCS_PORTAL else "latest.json"
     json_extra = (
-        f'<a class="btn" href="latest.json" '
+        f'<a class="btn" href="{esc(json_href)}" '
         f'title="JSON API for scripts" data-i18n="card_json">{esc(i18n_default("card_json"))}</a>'
     )
 
@@ -71,8 +75,10 @@ def generate_portal_html(
         + f"""
 <div class="page-content">
   <div class="card-grid">
+    {card("card_ai_title", "card_ai_desc", ai_href)}
     {card("card_map_title", "card_map_desc", map_href, target=map_target)}
     {card("card_discovery_title", "card_discovery_desc", _page_href(deploy, "discovery"))}
+    {card("card_cohorts_title", "card_cohorts_desc", _page_href(deploy, "discovery") + "#cohorts")}
     {card("card_atlas_title", "card_atlas_desc", _page_href(deploy, "atlas"))}
     {card("card_qc_title", "card_qc_desc", _page_href(deploy, "qc"), primary=False, extra=json_extra)}
     <div class="card">
@@ -81,10 +87,7 @@ def generate_portal_html(
       <p class="muted"><code>python run_discovery.py scan</code></p>
     </div>
   </div>
-  <p class="note muted" style="margin-top:1rem">
-    <strong>Deploy:</strong> repo root <code>TMT/index.html</code> is the interactive organ map
-    (<code>?organ=</code>); Discovery portal lives under <code>discovery/</code> only.
-  </p>
+  <p class="note muted" style="margin-top:1rem" data-i18n="portal_deploy_note"></p>
 </div>"""
     )
 

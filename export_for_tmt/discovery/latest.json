@@ -1,0 +1,2659 @@
+{
+  "generated_at": "2026-08-10T18:09:03.533400+00:00",
+  "summary": {
+    "catalog_rows": 123,
+    "catalog_unique_ids": 123,
+    "novel_pride": 60,
+    "novel_pdc": 25,
+    "novel_publications": 8,
+    "novel_consortia": 62,
+    "novel_total": 110,
+    "new_projects": 3,
+    "candidates": 3,
+    "manual_check": 4,
+    "repository_manual": 2,
+    "rejected_material": 0,
+    "review_recommended": 3,
+    "already_in_catalog": 11,
+    "filtered_out": 166,
+    "phospho_only_filtered": 0,
+    "requires_manual_check": 6,
+    "rejected": 0,
+    "removed_from_workbook": 0,
+    "human_filtered": 41,
+    "duplicate_similar": 0,
+    "articles_skipped": 5,
+    "source_stats": {
+      "pride_v3_search": 60,
+      "pdc_uiStudySummary": 25,
+      "massive_json": 25,
+      "iprox_json": 0,
+      "literature_resolved": 0,
+      "semantic_from_abstract": 0,
+      "literature_semantic_manual": 4,
+      "publications_scanned": 8,
+      "abstract_llm_read": 8,
+      "abstract_regex_only": 0,
+      "abstract_atlas_fit_yes": 0,
+      "abstract_atlas_fit_maybe": 4,
+      "literature_raw_hits": 34,
+      "literature_prefilter_kept": 8,
+      "literature_with_repo_id": 0
+    },
+    "data_availability": {
+      "quant_table": 3,
+      "omics_protein": 3,
+      "no_files": 4,
+      "omics_unknown": 4
+    },
+    "cohort_literature": {
+      "queries": 5,
+      "scanned": 37,
+      "kept": 13,
+      "with_patient_n": 7,
+      "multi_omics": 12,
+      "min_patients_threshold": 50
+    },
+    "quality_metrics": {
+      "benchmark_literature": {
+        "accuracy": 0.75,
+        "n": 4,
+        "correct": 3
+      },
+      "benchmark_projects": {
+        "accuracy": 1.0,
+        "n": 3,
+        "correct": 3
+      }
+    }
+  },
+  "catalog_profile": {
+    "n_rows": 123,
+    "n_unique_ids": 123,
+    "databases": {
+      "PRIDE": 75,
+      "PDC": 43,
+      "IProX": 2,
+      "CLLE": 1,
+      "MassIVE": 1,
+      "GTEx": 1
+    },
+    "top_organs": [
+      "brain",
+      "lung",
+      "hematopoietic system",
+      "ovary",
+      "blood",
+      "breast",
+      "pancreas",
+      "kidney",
+      "liver",
+      "uterus",
+      "colon",
+      "bone marrow"
+    ],
+    "top_diseases": [
+      "acute myeloid leukemia (aml)",
+      "glioblastoma",
+      "lung adenocarcinoma",
+      "breast cancer",
+      "colorectal cancer",
+      "pancreatic ductal adenocarcinoma",
+      "ovarian cancer",
+      "breast invasive carcinoma",
+      "high-grade serous ovarian carcinoma",
+      "leukemia",
+      "multiple myeloma",
+      "cancer"
+    ],
+    "tmt_plexes": [
+      "TMT 10-plex",
+      "TMT 11-plex",
+      "TMTpro 16-plex"
+    ],
+    "search_keywords": [
+      "TMT",
+      "tandem mass tag",
+      "human proteomics",
+      "isobaric",
+      "brain",
+      "lung",
+      "hematopoietic system",
+      "ovary",
+      "blood",
+      "acute myeloid leukemia (aml)",
+      "glioblastoma",
+      "lung adenocarcinoma",
+      "breast cancer",
+      "colorectal cancer",
+      "PDC",
+      "CPTAC",
+      "CCLE",
+      "GTEx",
+      "proteogenomics"
+    ]
+  },
+  "new_projects": [
+    {
+      "accession": "PXD077831",
+      "title": "The baseline vitreous proteome in rhegmatogenous retinal detachment: a case–control study of proliferative vitreoretinopathy",
+      "description": "Quantitative proteomic analysis of undiluted human vitreous biopsies collected at the time of primary surgical repair of rhegmatogenous retinal detachment (RRD), comparing patients who later developed proliferative vitreoretinopathy (PVR; n=8) with matched RRD controls who did not (n=8). Vitreous samples were processed by S-Trap digestion, labeled with TMT 10-plex reagents, and analyzed by LC–MS/MS on a Thermo Q Exactive instrument (two TMT 10-plex sets, two LC-MS/MS injection replicates per set; four .raw files total). Identification and quantitation were performed using Mascot followed by the proteoQ R pipeline. The dataset comprises 879 quantified proteins after stringent contaminant filtering. The deposition is intended as a methodologically transparent reference dataset of the baselin",
+      "submission_date": "2026-04-30",
+      "publication_date": "2026-05-05",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Q Exactive Plus"
+      ],
+      "quantification_methods": [],
+      "pmid": "42432032",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PXD": [
+          "PXD077831"
+        ]
+      },
+      "inferred_plex": 10,
+      "tmt_label": "TMT 10-plex",
+      "sample_design": "case_control",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "clinical_human"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PXD077831",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PXD077831",
+        "source_checked": "PRIDE",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "Protein.txt"
+        ],
+        "proteome_files": [
+          "Protein.txt"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "Peptide.txt"
+        ],
+        "raw_count": 4,
+        "n_listed": 9,
+        "sample_files": [
+          "Protein.txt"
+        ],
+        "guidance": "Protein-level table: Protein.txt"
+      },
+      "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: case-control · Download: Protein.txt (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 10",
+        "design: case_control"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0312,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.031)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 10",
+          "design: case_control"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
+    },
+    {
+      "accession": "PDC000495",
+      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
+      "description": "Other · Proteome",
+      "program": "Pediatric Brain Tumor Atlas - CBTN",
+      "disease": "Other",
+      "experiment_type": "TMT11",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Not Reported",
+      "inferred_plex": 11,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000495"
+        ]
+      },
+      "tmt_label": "TMT 11-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000495",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000495",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.qcmetrics.tsv"
+        ],
+        "proteome_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.qcmetrics.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f05.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f21.mzid.gz",
+          "01CPTAC_CompRef_AYA_W_PNNL_20191126_B1S6_f23.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f16.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f12.mzid.gz"
+        ],
+        "raw_count": 48,
+        "n_listed": 202,
+        "sample_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt"
+        ],
+        "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.125,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.125)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
+    },
+    {
+      "accession": "PDC000498",
+      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
+      "description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Proteome",
+      "program": "Pediatric Brain Tumor Atlas - CBTN",
+      "disease": "Gliomas;Other;Pediatric/AYA Brain Tumors",
+      "experiment_type": "TMT11",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Brain;Not Reported",
+      "inferred_plex": 11,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000498"
+        ]
+      },
+      "tmt_label": "TMT 11-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000498",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000498",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.peptides.tsv"
+        ],
+        "proteome_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.peptides.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "02CPTAC_AYA_W_PNNL_20191126_B1S2_f14.mzid.gz",
+          "01CPTAC_AYA_W_PNNL_20191126_B1S1_f14.mzid.gz",
+          "10CPTAC_AYA_W_PNNL_20200204_B2S5_f05.mzid.gz",
+          "05CPTAC_AYA_W_PNNL_20191126_B1S5_f21.mzid.gz",
+          "04CPTAC_AYA_W_PNNL_20191126_B1S4_f08.mzid.gz"
+        ],
+        "raw_count": 240,
+        "n_listed": 970,
+        "sample_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt"
+        ],
+        "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.125,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.125)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
+    }
+  ],
+  "candidates": [
+    {
+      "accession": "PXD077831",
+      "title": "The baseline vitreous proteome in rhegmatogenous retinal detachment: a case–control study of proliferative vitreoretinopathy",
+      "description": "Quantitative proteomic analysis of undiluted human vitreous biopsies collected at the time of primary surgical repair of rhegmatogenous retinal detachment (RRD), comparing patients who later developed proliferative vitreoretinopathy (PVR; n=8) with matched RRD controls who did not (n=8). Vitreous samples were processed by S-Trap digestion, labeled with TMT 10-plex reagents, and analyzed by LC–MS/MS on a Thermo Q Exactive instrument (two TMT 10-plex sets, two LC-MS/MS injection replicates per set; four .raw files total). Identification and quantitation were performed using Mascot followed by the proteoQ R pipeline. The dataset comprises 879 quantified proteins after stringent contaminant filtering. The deposition is intended as a methodologically transparent reference dataset of the baselin",
+      "submission_date": "2026-04-30",
+      "publication_date": "2026-05-05",
+      "organisms": [
+        "Homo sapiens (human)"
+      ],
+      "instruments": [
+        "Q Exactive Plus"
+      ],
+      "quantification_methods": [],
+      "pmid": "42432032",
+      "doi": "",
+      "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "tmt_detected": true,
+      "human": true,
+      "source": "pride_search_v3",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PXD": [
+          "PXD077831"
+        ]
+      },
+      "inferred_plex": 10,
+      "tmt_label": "TMT 10-plex",
+      "sample_design": "case_control",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "clinical_human"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PXD077831",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PXD077831",
+        "source_checked": "PRIDE",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "Protein.txt"
+        ],
+        "proteome_files": [
+          "Protein.txt"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "Peptide.txt"
+        ],
+        "raw_count": 4,
+        "n_listed": 9,
+        "sample_files": [
+          "Protein.txt"
+        ],
+        "guidance": "Protein-level table: Protein.txt"
+      },
+      "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: case-control · Download: Protein.txt (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 10",
+        "design: case_control"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0312,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.031)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 10",
+          "design: case_control"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42432032/",
+      "year": "2026"
+    },
+    {
+      "accession": "PDC000495",
+      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
+      "description": "Other · Proteome",
+      "program": "Pediatric Brain Tumor Atlas - CBTN",
+      "disease": "Other",
+      "experiment_type": "TMT11",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Not Reported",
+      "inferred_plex": 11,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000495"
+        ]
+      },
+      "tmt_label": "TMT 11-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000495",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000495",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.qcmetrics.tsv"
+        ],
+        "proteome_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.qcmetrics.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f05.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f21.mzid.gz",
+          "01CPTAC_CompRef_AYA_W_PNNL_20191126_B1S6_f23.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f16.mzid.gz",
+          "02CPTAC_CompRef_AYA_W_PNNL_20200204_B2S6_f12.mzid.gz"
+        ],
+        "raw_count": 48,
+        "n_listed": 202,
+        "sample_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.peptides.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.sample.txt"
+        ],
+        "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_CompRef_Proteome.tmt11.tsv (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.125,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.125)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": ""
+    },
+    {
+      "accession": "PDC000498",
+      "title": "Proteogenomics Analysis of Glioma across Pediatric Adolescent and Young Adult age groups — Pediatric Brain Tumor Atlas - CBTN",
+      "description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Proteome",
+      "program": "Pediatric Brain Tumor Atlas - CBTN",
+      "disease": "Gliomas;Other;Pediatric/AYA Brain Tumors",
+      "experiment_type": "TMT11",
+      "analytical_fraction": "Proteome",
+      "primary_site": "Brain;Not Reported",
+      "inferred_plex": 11,
+      "tmt_detected": true,
+      "human": true,
+      "source": "pdc_api",
+      "consortium": "PDC",
+      "url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "similar_in_catalog": [],
+      "has_close_match": false,
+      "processing_tips": [
+        "PDC: compare with CPTAC pipeline; check PSM vs protein matrix",
+        "Atlas plexes: TMT 10-plex, TMT 11-plex, TMTpro 16-plex",
+        "Add to CSV only after manual review (projects.csv is never modified automatically)"
+      ],
+      "is_novel": true,
+      "verdict": "recommended",
+      "filter_reasons": [],
+      "extracted_ids": {
+        "PDC": [
+          "PDC000498"
+        ]
+      },
+      "tmt_label": "TMT 11-plex",
+      "sample_design": "cancer_only",
+      "catalog_matches": [],
+      "qc_status": "candidate",
+      "qc_reasons": [
+        "Material matches atlas criteria"
+      ],
+      "material_signals": {
+        "included": [
+          "pdc_clinical_tumor"
+        ],
+        "excluded": []
+      },
+      "recommendation": "review_for_catalog",
+      "project_accession": "PDC000498",
+      "is_new_project": true,
+      "data_availability": {
+        "accession": "PDC000498",
+        "source_checked": "PDC",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "quant_table",
+        "label": "table",
+        "omics_layer": "protein",
+        "quant_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.peptides.tsv"
+        ],
+        "proteome_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.peptides.tsv"
+        ],
+        "phospho_files": [],
+        "psm_files": [
+          "02CPTAC_AYA_W_PNNL_20191126_B1S2_f14.mzid.gz",
+          "01CPTAC_AYA_W_PNNL_20191126_B1S1_f14.mzid.gz",
+          "10CPTAC_AYA_W_PNNL_20200204_B2S5_f05.mzid.gz",
+          "05CPTAC_AYA_W_PNNL_20191126_B1S5_f21.mzid.gz",
+          "04CPTAC_AYA_W_PNNL_20191126_B1S4_f08.mzid.gz"
+        ],
+        "raw_count": 240,
+        "n_listed": 970,
+        "sample_files": [
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.summary.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.tmt11.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.qcmetrics.tsv",
+          "CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.sample.txt"
+        ],
+        "guidance": "Protein-level table: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt"
+      },
+      "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Design: cancer-only · Download: CPTAC3_PNNL_HOPE_AYA_GBM_Proteome.label.txt (protein-level table)",
+      "confidence_tier": "A",
+      "confidence_css": "tier-a",
+      "confidence_evidence": [
+        "Protein quant table confirmed",
+        "TMT 11",
+        "design: cancer_only"
+      ],
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.125,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "below threshold 0.35: nearest PXD028285 (0.125)"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": ""
+    }
+  ],
+  "manual_check": [
+    {
+      "pmid": "41812996",
+      "doi": "10.1016/j.bbamcr.2026.120134",
+      "title": "Endoplasmic reticulum stress-mediated epithelial-mesenchymal transition contributes to cardiac biomarker-induced kidney injury.",
+      "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.65,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "quantitative proteomics",
+          "human kidney tubular epithelial cells"
+        ],
+        "similar_atlas_theme": "kidney tumor adjacent normal | kidney plasma",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16|ambiguous",
+        "material": "plasma",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:41812996",
+      "accession": "PMID:41812996",
+      "data_availability": {
+        "accession": "PMID:41812996",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью. · Atlas fit: maybe",
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41812996/",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "quantitative proteomics",
+        "human kidney tubular epithelial cells"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "quantitative proteomics",
+          "human kidney tubular epithelial cells"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "year": "2026"
+    },
+    {
+      "pmid": "39869438",
+      "doi": "10.1021/acs.jproteome.4c00726",
+      "title": "The Ubiquitin Ligase CHIP Accelerates Papillary Thyroid Carcinoma Metastasis via the Transgelin-Matrix Metalloproteinase-9 Axis.",
+      "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.65,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human TMT/isobaric quantitative proteomics",
+          "patients, tumor tissue, adjacent normal"
+        ],
+        "similar_atlas_theme": "papillary thyroid carcinoma adjacent normal",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16",
+        "material": "tumor tissue|adjacent normal",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_en": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:39869438",
+      "accession": "PMID:39869438",
+      "data_availability": {
+        "accession": "PMID:39869438",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли. · Atlas fit: maybe",
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/39869438/",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human TMT/isobaric quantitative proteomics",
+        "patients, tumor tissue, adjacent normal"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "human TMT/isobaric quantitative proteomics",
+          "patients, tumor tissue, adjacent normal"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "year": "2025"
+    },
+    {
+      "pmid": "40889039",
+      "doi": "10.1007/s12672-025-03486-z",
+      "title": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer.",
+      "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.45,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "TMT-based proteomics",
+          "colorectal cancer (CRC)",
+          "UA inhibition of RPLP1"
+        ],
+        "similar_atlas_theme": "proteomics in colorectal tumor and adjacent normal tissues",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT10|TMT11|TMT16",
+        "material": "tumor tissue|adjacent normal",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:40889039",
+      "accession": "PMID:40889039",
+      "data_availability": {
+        "accession": "PMID:40889039",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов. · Atlas fit: maybe",
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40889039/",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "TMT-based proteomics",
+        "colorectal cancer (CRC)",
+        "UA inhibition of RPLP1"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "TMT-based proteomics",
+          "colorectal cancer (CRC)",
+          "UA inhibition of RPLP1"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "year": "2025"
+    },
+    {
+      "pmid": "41851243",
+      "doi": "10.1038/s41598-026-44561-x",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.45,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "quantitative proteomics",
+          "glaucoma trabecular meshwork cells",
+          "isobaric tandem mass tags (TMTpro)",
+          "differentially regulated proteins"
+        ],
+        "similar_atlas_theme": "Glaucomatous Trabecular Meshwork Cells",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16|ambiguous",
+        "material": "plasma|serum|blood|cancer cell line|unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "project_accession": "PMID:41851243",
+      "accession": "PMID:41851243",
+      "data_availability": {
+        "accession": "PMID:41851243",
+        "source_checked": "none",
+        "local_mirror": false,
+        "local_path": null,
+        "status": "no_files",
+        "label": "no data",
+        "omics_layer": "unknown",
+        "quant_files": [],
+        "proteome_files": [],
+        "phospho_files": [],
+        "psm_files": [],
+        "raw_count": 0,
+        "n_listed": 0,
+        "sample_files": [],
+        "guidance": "No files in API — check Data availability / paper Supplementary"
+      },
+      "finding_note": "No files in API — check Data availability / paper Supplementary · Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа. · Atlas fit: maybe",
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "quantitative proteomics",
+        "glaucoma trabecular meshwork cells",
+        "isobaric tandem mass tags (TMTpro)"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "quantitative proteomics",
+          "glaucoma trabecular meshwork cells",
+          "isobaric tandem mass tags (TMTpro)"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "year": "2026"
+    }
+  ],
+  "rejected_material": [],
+  "publications_analyzed": [
+    {
+      "pmid": "41732066",
+      "title": "Extensive Hypoglycosylation of Serum N-Glycoproteins in SRD5A3 Deficiency.",
+      "doi": "10.1002/jimd.70163",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Polyprenal reductase is an enzyme encoded by the SRD5A3 gene, which is involved in the synthesis of dolichol from polyprenol. Dolichol serves as a carrier for glycan precursors or monosaccharides in N-linked glycosylation. Pathogenic variants in SRD5A3 can result in a congenital disorder of glycosylation (CDG), SRD5A3-CDG, which is inherited in an autosomal recessive manner. Most plasma proteins are glycosylated and changes in the glycosylation of several glycoproteins are associated with pathol",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "no",
+      "atlas_fit_score": 0.0,
+      "semantic_evidence": [
+        "quantitative proteomics",
+        "mass spectrometry",
+        "patient cohort"
+      ],
+      "similar_atlas_theme": "unclear",
+      "summary_ru": "Анализ сыворотки в данном исследовании не соответствует тематике атласа, так как он описывает изменения гликозилирования белков в плазме крови у пациентов с дефицитом SRD5A3.",
+      "organism": "human",
+      "tmt": "none",
+      "material": "unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=no; regex=?"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "LLM / rules rejection"
+        ],
+        "display_fit_label": "LLM no"
+      },
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "LLM / rules rejection"
+      ],
+      "requires_manual_review": false,
+      "finding_note": "Keywords from title: plasma · Atlas fit: no"
+    },
+    {
+      "pmid": "41812996",
+      "title": "Endoplasmic reticulum stress-mediated epithelial-mesenchymal transition contributes to cardiac biomarker-induced kidney injury.",
+      "doi": "10.1016/j.bbamcr.2026.120134",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "semantic_evidence": [
+        "quantitative proteomics",
+        "human kidney tubular epithelial cells"
+      ],
+      "similar_atlas_theme": "kidney tumor adjacent normal | kidney plasma",
+      "summary_ru": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью.",
+      "organism": "human",
+      "tmt": "TMT16|ambiguous",
+      "material": "plasma",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=?"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ],
+      "requires_manual_review": true,
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "39869438",
+      "title": "The Ubiquitin Ligase CHIP Accelerates Papillary Thyroid Carcinoma Metastasis via the Transgelin-Matrix Metalloproteinase-9 Axis.",
+      "doi": "10.1021/acs.jproteome.4c00726",
+      "journal": "",
+      "year": "2025",
+      "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "semantic_evidence": [
+        "human TMT/isobaric quantitative proteomics",
+        "patients, tumor tissue, adjacent normal"
+      ],
+      "similar_atlas_theme": "papillary thyroid carcinoma adjacent normal",
+      "summary_ru": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли.",
+      "organism": "human",
+      "tmt": "TMT16",
+      "material": "tumor tissue|adjacent normal",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=?"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ],
+      "requires_manual_review": true,
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "40889039",
+      "title": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer.",
+      "doi": "10.1007/s12672-025-03486-z",
+      "journal": "",
+      "year": "2025",
+      "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "semantic_evidence": [
+        "TMT-based proteomics",
+        "colorectal cancer (CRC)",
+        "UA inhibition of RPLP1"
+      ],
+      "similar_atlas_theme": "proteomics in colorectal tumor and adjacent normal tissues",
+      "summary_ru": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов.",
+      "organism": "human",
+      "tmt": "TMT10|TMT11|TMT16",
+      "material": "tumor tissue|adjacent normal",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=?"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ],
+      "requires_manual_review": true,
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "40701960",
+      "title": "UBE4B promotes gastric cancer proliferation and metastasis by mediating FAT4 ubiquitination and degradation.",
+      "doi": "10.1038/s41419-025-07794-8",
+      "journal": "",
+      "year": "2025",
+      "abstract_snippet": "The ubiquitin‒proteasome system (UPS), an intracellular protein degradation pathway, plays an important role in regulating tumorigenesis and development. Ubiquitination factor E4B (UBE4B/UFD2) has been shown to be associated with the development of several cancers. The aim of this study was to reveal the functional significance of UBE4B in gastric cancer (GC) development and its important mechanism. Bioinformatics analysis, immunohistochemistry (IHC), western blotting, and real-time PCR were per",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "no",
+      "atlas_fit_score": 0.15,
+      "semantic_evidence": [
+        "gastric cancer",
+        "promotes the proliferation, migration and invasion of GC cells",
+        "quantitative Tandem Mass Tag (TMT) analysis"
+      ],
+      "similar_atlas_theme": "Gastric Cancer adjacent normal tissue|Gastric Cancer plasma",
+      "summary_ru": "Этот абстракт соответствует атласу по поводу гастроэктимальной раковой опухоли и ее окружающих тканей, использующем протокомбинированный массспектрометри TMT-16-plex.",
+      "organism": "human",
+      "tmt": "TMT16",
+      "material": "tumor tissue|plasma",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=no; regex=?"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "LLM / rules rejection"
+        ],
+        "display_fit_label": "LLM no"
+      },
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "LLM / rules rejection"
+      ],
+      "requires_manual_review": false,
+      "finding_note": "Keywords from title: gastric · Atlas fit: no"
+    },
+    {
+      "pmid": "40466268",
+      "title": "Transcriptome and proteome profile analysis of the regulation of chicken ovarian development.",
+      "doi": "10.1016/j.psj.2025.105384",
+      "journal": "",
+      "year": "2025",
+      "abstract_snippet": "Ovarian development is a complex process, with early stages laying a crucial foundation for subsequent egg production. To better understand this developmental trajectory from early stages to the peak of egg production, this study employed transcriptomic and Tandem Mass Tag (TMT) proteomic analyses. These methods were used to compare gene and protein expression profiles in the ovaries of Taihe black-boned silky fowl (TBSF) at 20 weeks (20W) and 30 weeks (30W) of age, aiming to identify key regula",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "no",
+      "atlas_fit_score": 0.0,
+      "semantic_evidence": [
+        "ovarian development",
+        "Tandem Mass Tag (TMT) proteomic analyses"
+      ],
+      "similar_atlas_theme": "unclear",
+      "summary_ru": "Анализ транскриптомии и протеомии не соответствует тематике атласа, так как исследования ординально отличаются от изучаемых в нем заболеваний и материала.",
+      "organism": "human|mixed",
+      "tmt": "none",
+      "material": "other",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=no; regex=?"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "LLM / rules rejection"
+        ],
+        "display_fit_label": "LLM no"
+      },
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "LLM / rules rejection"
+      ],
+      "requires_manual_review": false,
+      "finding_note": "Keywords from title: proteome · Atlas fit: no"
+    },
+    {
+      "pmid": "41851243",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "doi": "10.1038/s41598-026-44561-x",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "semantic_evidence": [
+        "quantitative proteomics",
+        "glaucoma trabecular meshwork cells",
+        "isobaric tandem mass tags (TMTpro)",
+        "differentially regulated proteins"
+      ],
+      "similar_atlas_theme": "Glaucomatous Trabecular Meshwork Cells",
+      "summary_ru": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа.",
+      "organism": "human",
+      "tmt": "TMT16|ambiguous",
+      "material": "plasma|serum|blood|cancer cell line|unclear",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=?"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch"
+      ],
+      "requires_manual_review": true,
+      "finding_note": "Atlas fit: maybe"
+    },
+    {
+      "pmid": "42002547",
+      "title": "Klebsiella pneumoniae LPS drives stromal-mediated repression of p53 and colorectal cancer chemoresistance.",
+      "doi": "10.1038/s41419-026-08756-4",
+      "journal": "",
+      "year": "2026",
+      "abstract_snippet": "The gut bacterial microbiota is increasingly recognized as a key modulator of colorectal cancer (CRC) initiation, progression and response to therapy. However, the mechanisms by which bacteria influence the response to anticancer drugs remain poorly understood. Here, we investigate the effects of microbiota-driven signaling on the tumor suppressor p53 and its impact on chemotherapy. We uncover a mechanism by which lipopolysaccharide (LPS) from Klebsiella pneumoniae and other Enterobacteria impai",
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "atlas_fit": "no",
+      "atlas_fit_score": 0.2,
+      "semantic_evidence": [
+        "patients",
+        "quantitative proteomics",
+        "colorectal cancer"
+      ],
+      "similar_atlas_theme": "TMT10-plex colorectal tumor adjacent normal",
+      "summary_ru": "Этот пейс не полностью соответствует атласу, так как он описывает влияние бактерий на рак толстой кишки, но не содержит информации об анализе протеомики.",
+      "organism": "human",
+      "tmt": "TMT10",
+      "material": "tumor tissue|adjacent normal",
+      "data_availability": "",
+      "data_hint": "Open access unclear — check Supplementary and repository",
+      "qc_reasons": [],
+      "filter_reasons": [],
+      "processing_tips": [],
+      "abstract_ai": {},
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=no; regex=?"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "LLM / rules rejection"
+        ],
+        "display_fit_label": "LLM no"
+      },
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
+      "confidence_evidence": [
+        "LLM / rules rejection"
+      ],
+      "requires_manual_review": false,
+      "finding_note": "Atlas fit: no"
+    }
+  ],
+  "literature_semantic": [
+    {
+      "pmid": "41812996",
+      "doi": "10.1016/j.bbamcr.2026.120134",
+      "title": "Endoplasmic reticulum stress-mediated epithelial-mesenchymal transition contributes to cardiac biomarker-induced kidney injury.",
+      "abstract_snippet": "Renal dysfunction is a frequent comorbidity in heart failure (HF) patients, independently linked to poor prognosis. However, the intricate pathogenesis of the complex interaction between the heart and kidney remains unclear. This study analyzed clinical data from patients with HF and kidney disease. We focused on serum levels of creatine kinase (CK) and lactate dehydrogenase (LDH), which are classic cardiac biomarkers. Results showed that their levels were positively correlated with the severity",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.65,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "quantitative proteomics",
+          "human kidney tubular epithelial cells"
+        ],
+        "similar_atlas_theme": "kidney tumor adjacent normal | kidney plasma",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16|ambiguous",
+        "material": "plasma",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "quantitative proteomics",
+        "human kidney tubular epithelial cells"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "quantitative proteomics",
+          "human kidney tubular epithelial cells"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Анализ показал, что сердечные биомаркеры могут играть ключевую роль в развитии почечно-респираторного синдрома у пациентов с сердечной недостаточностью. · Atlas fit: maybe"
+    },
+    {
+      "pmid": "39869438",
+      "doi": "10.1021/acs.jproteome.4c00726",
+      "title": "The Ubiquitin Ligase CHIP Accelerates Papillary Thyroid Carcinoma Metastasis via the Transgelin-Matrix Metalloproteinase-9 Axis.",
+      "abstract_snippet": "The carboxyl-terminus of Hsp70-interacting protein (CHIP) plays crucial roles in tumorigenesis and immunity, with previous studies suggesting a double-edged sword in thyroid cancer. However, its precise functions and underlying molecular mechanisms in thyroid cancer remained unclear. Here, we demonstrate through immunohistochemistry (IHC) that CHIP expression progressively increases from normal thyroid tissue to primary papillary thyroid carcinoma (PTC) and lymph node metastases, with CHIP level",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.65,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "human TMT/isobaric quantitative proteomics",
+          "patients, tumor tissue, adjacent normal"
+        ],
+        "similar_atlas_theme": "papillary thyroid carcinoma adjacent normal",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16",
+        "material": "tumor tissue|adjacent normal",
+        "human_suitable": true,
+        "material_suitable": true,
+        "summary_en": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "human TMT/isobaric quantitative proteomics",
+        "patients, tumor tissue, adjacent normal"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "human TMT/isobaric quantitative proteomics",
+          "patients, tumor tissue, adjacent normal"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Этот абстракт не полностью соответствует тематике атласа, так как он описывает ткань нормальной и раковой ткани в папиллярной гипофизарной карциноме, но не содержит информации об анализе плазмы или клеточных линий опухоли. · Atlas fit: maybe"
+    },
+    {
+      "pmid": "40889039",
+      "doi": "10.1007/s12672-025-03486-z",
+      "title": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer.",
+      "abstract_snippet": "<h4>Purpose</h4>Ursolic Acid (UA), a triterpenoid extracted from Hedyotis Diffusa Willd. (HDW), is known for its anti-inflammatory, antioxidant, and antitumor effects. Nevertheless, the mechanisms underlying UA's anti-colorectal cancer (CRC) effects remain insufficiently understood. This study aimed to identify the key target proteins of UA and investigate their functions in CRC development.<h4>Methods</h4>The cytotoxicity of three active components of HDW (UA, oleanolic acid (OA), and quercetin",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.45,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "TMT-based proteomics",
+          "colorectal cancer (CRC)",
+          "UA inhibition of RPLP1"
+        ],
+        "similar_atlas_theme": "proteomics in colorectal tumor and adjacent normal tissues",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT10|TMT11|TMT16",
+        "material": "tumor tissue|adjacent normal",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "TMT-based proteomics",
+        "colorectal cancer (CRC)",
+        "UA inhibition of RPLP1"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "TMT-based proteomics",
+          "colorectal cancer (CRC)",
+          "UA inhibition of RPLP1"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Плотность тканей и нормальных соседних образцов используется в атласе, что позволяет сравнить колоректальный рак с окружающими тканями, но данный пакет не содержит данных о плазме или биопрепаратах из пациентов. · Atlas fit: maybe"
+    },
+    {
+      "pmid": "41851243",
+      "doi": "10.1038/s41598-026-44561-x",
+      "title": "Isobaric quantitative proteomics reveals altered extracellular matrix, cytoskeletal, and degradation pathways in glaucomatous trabecular meshwork cells.",
+      "abstract_snippet": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "source": "literature_semantic_candidate",
+      "atlas_fit": "maybe",
+      "atlas_fit_score": 0.65,
+      "literature_relevance": 0.45,
+      "abstract_ai": {
+        "atlas_fit": "maybe",
+        "semantic_evidence": [
+          "quantitative proteomics",
+          "glaucoma trabecular meshwork cells",
+          "isobaric tandem mass tags (TMTpro)",
+          "differentially regulated proteins"
+        ],
+        "similar_atlas_theme": "Glaucomatous Trabecular Meshwork Cells",
+        "accessions": {
+          "PXD": [],
+          "PDC": [],
+          "MSV": [],
+          "IPX": []
+        },
+        "organism": "human",
+        "tmt": "TMT16|ambiguous",
+        "material": "plasma|serum|blood|cancer cell line|unclear",
+        "human_suitable": true,
+        "material_suitable": false,
+        "summary_en": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа.",
+        "model_trust": "medium",
+        "regex_fit": "maybe",
+        "reader": "ollama:qwen2.5:3b"
+      },
+      "abstract_reader": "ollama:qwen2.5:3b",
+      "pride_search_terms": "",
+      "summary_ru": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа.",
+      "verdict": "requires_manual_check",
+      "filter_reasons": [
+        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+      ],
+      "human": true,
+      "tmt_detected": true,
+      "recommendation": "requires_manual_check",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "LLM maybe — literature watch",
+        "quantitative proteomics",
+        "glaucoma trabecular meshwork cells",
+        "isobaric tandem mass tags (TMTpro)"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          },
+          {
+            "source": "llm_medium",
+            "score": null,
+            "is_actionable": true,
+            "reason": null,
+            "detail": "reader=ollama:qwen2.5:3b; fit=maybe; regex=maybe"
+          }
+        ],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "LLM maybe — literature watch",
+          "quantitative proteomics",
+          "glaucoma trabecular meshwork cells",
+          "isobaric tandem mass tags (TMTpro)"
+        ],
+        "display_fit_label": "LLM maybe"
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true,
+      "qc_reasons": [],
+      "processing_tips": [],
+      "finding_note": "Этот пейс не полностью соответствует атласу, так как он описывает культурные гематоэнцефалические клетки Глаукомы, что не включено в базовые материалы атласа. · Atlas fit: maybe"
+    }
+  ],
+  "cohort_literature": [
+    {
+      "pmid": "42500892",
+      "title": "Integrated Serum Multiomics Reveal Subtype-Specific Immune Dysregulation and Sex-Dimorphic Pathophysiology in Moyamoya Disease.",
+      "abstract": "<h4>Background</h4>Moyamoya disease (MMD) is a rare cerebrovascular disorder with unknown pathogenesis, partly due to limited access to human cerebral vascular tissue and suitable animal models. Using a large biobank of frozen serum samples, this study aimed to explore molecular signatures of ischemic and hemorrhagic MMD.<h4>Methods</h4>Serum from 30 patients with MMD (18 ischemic, 12 hemorrhagic) and 30 matched healthy controls underwent proteomic and metabolomic profiling. Data were analyzed for differential expression, pathway enrichment, and protein-metabolite networks, with adjustment for age, sex, and body mass index.<h4>Results</h4>In a separate large Chinese cohort (n=6167), female patients had a higher proportion of hemorrhagic MMD (19.9% versus 16.9%) and a higher prevalence of anterior choroidal artery dilation (15.1% versus 13.2%) than male patients (both <i>P</i><0.05). At the molecular level, ischemic MMD showed complement C4-B deficiency and disrupted natural killer cell cytotoxicity; both subtypes shared immunoglobulin perturbations (eg, decreased heavy-chain variable regions). Sex-specific alterations included anti-folate-binding protein, serum amyloid A2, glycolithocholic acid, and estradiol. All omics data are publicly accessible.<h4>Conclusions</h4>Integrated serum multiomics defines distinct immune-related signatures for ischemic and hemorrhagic MMD and reveals sex-dimorphic molecular pathways. These findings, together with clinical sex differences in disease subtype and vascular anatomy, provide a framework for personalized, sex-aware management of MMD.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1161/jaha.126.050737",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 6167,
+      "omics": [
+        "proteomics",
+        "metabolomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 85,
+      "description_en": "Omics: proteomics, metabolomics, multi-omics. Cohort: ~6167 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈6167",
+        "No TMT confirmation"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Large cohort N≈6167",
+          "No TMT confirmation"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42034977",
+      "title": "MultiOmicsXplorer, a tool to browse, access and analyse multi-omics data.",
+      "abstract": "BACKGROUND: Personalized and precision medicine aim to identify predictive biomarkers from patient-specific proteogenomic profiles and to uncover tailored therapeutic strategies by targeting deregulated proteins driving disease phenotypes. METHODS: To address these challenges, we developed MultiOmicsXplorer, a freely available and interactive R-based Shiny application designed to facilitate the exploration and analysis of multi-omics cancer datasets with a user-friendly interface. At its core, MultiOmicsXplorer builds on our recently developed SignalingProfiler pipeline to extract protein activities from proteogenomic data, thereby reducing data complexity and dimensionality while enabling mechanistic hypothesis generation. RESULTS: The application integrates two core functionalities. The first, OncoXplorer, enables the systematic inference and comparison of protein activities from 1492 samples corresponding to approximately 1000 patients across ten cancer types, leveraging harmonized datasets from the CPTAC portal to provide a functional and mechanistic interpretation of multi-layered data. Importantly, beyond activity estimation, it allows for comparative analysis of transcriptomic, proteomic, and phosphoproteomic data. The second module, Extract Protein Activity from Your Data, enables users to infer the activity of kinases, phosphatases, and transcription factors from custom multi-modal datasets. CONCLUSIONS: Overall, MultiOmicsXplorer facilitates the exploration and interpretation of CPTAC multi-omics cancer datasets, supporting comparative analyses and protein activity inference within a unified and user-friendly environment.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1186/s12859-026-06460-w",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 1000,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics",
+        "transcriptomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 93,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics, multi-omics. Cohort: ~1000 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈1000",
+        "No TMT confirmation"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Large cohort N≈1000",
+          "No TMT confirmation"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "41998177",
+      "title": "Phosphorylated filamin-A at serine 1459 from plasma-derived small extracellular vesicles as a promising biomarker for high-risk adenoma and colorectal cancer.",
+      "abstract": "Colorectal cancer (CRC) is the third most diagnosed cancer and the second leading cause of cancer-related death worldwide. Early detection can reduce CRC mortality by more than 90%. Circulating small extracellular vesicles (sEVs) are emerging as promising biomarkers for CRC, but their role in detecting precancerous lesions remains unclear. Herein, parallel proteomic and phosphoproteomic analyses of plasma-derived sEVs were performed in healthy subjects with negative colonoscopy, patients with high-risk adenoma (HRA) and patients with CRC. A total of 139 phosphorylation sites on 52 proteins were identified, among which 16 phosphorylation sites on 12 sEV proteins showed significant changes (≥ 2-fold) with 90% confidence in site localization. Web-based validation demonstrated that the phosphorylation level of sEV-derived filamin-A at serine 1459 (pFLNA<sup>Ser1459</sup>) correlated with the Clinical Proteomic Tumor Analysis Consortium colon cancer dataset. Immunoblot analysis confirmed that sEV-derived pFLNA<sup>Ser1459</sup> was significantly reduced in CRC patients compared with healthy subjects, whereas the highest levels were observed in HRA patients. Notably, sEV-derived pFLNA<sup>Ser1459</sup>, alone or in combination with FLNA, CD9, and TSG101, showed superior diagnostic performance in distinguishing HRA patients from CRC patients and healthy subjects. These findings suggest that plasma sEV-derived pFLNA<sup>Ser1459</sup> is a promising biomarker for colorectal neoplasm detection.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1038/s41598-026-48722-w",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 139,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 65,
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~139 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈139",
+        "No TMT confirmation"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Large cohort N≈139",
+          "No TMT confirmation"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42381624",
+      "title": "Proteogenomics of Hypertrophic Cardiomyopathy Reveals Subtype-Specific Therapy.",
+      "abstract": "<h4>Background</h4>Hypertrophic cardiomyopathy (HCM) is a heterogeneous disease with diverse prognosis. The underlying mechanisms remain unknown, resulting in limited risk stratification and therapeutic strategies. This study aimed to elucidate molecular subtypes of HCM through integrated proteogenomic analysis and explore subtype-specific therapeutic strategies.<h4>Methods</h4>We conducted an integrated proteogenomic analysis of 132 patients with HCM using myocardial samples, incorporating whole-exome sequencing, RNA sequencing, and proteomics. Unsupervised clustering was used to identify HCM subtypes, which were validated in heart tissues and human induced pluripotent stem cell-derived cardiomyocytes from 2 independent HCM subsets. Subtype-specific signatures and pathways were explored, and their causal link with HCM pathogenesis was established by genetic evidence. A subtype-specific drug was screened using in silico drug prediction, followed by in vitro and in vivo therapeutic effect assessments.<h4>Results</h4>Integrated multi-omics analysis identified 2 proteome-based molecular subtypes, severe and mild. We identified 550 subtype-signature proteins, and enrichment analysis based on which revealed that the reduction in fatty acid metabolism and oxidative phosphorylation pathways in HCM versus healthy controls was predominantly driven by the severe subtype, with more severe clinical characteristics and poorer prognosis compared with the mild subtype. Validation in independent cohorts confirmed the robustness of the proteomic subtypes and their association with clinical severity. Additionally, key proteins in fatty acid oxidation and oxidative phosphorylation exhibited consistent expression differences among healthy controls and 2 HCM subtypes. Furthermore, genetic evidence established a causal link between reduced fatty acid oxidation and HCM pathogenesis. Baicalin, identified as a fatty acid oxidation facilitator, improved metabolic and hypertrophic phenotypes in severe subtype human induced pluripotent stem cell-derived cardiomyocytes and Myh6<sup>R404Q/+</sup> mice.<h4>Conclusions</h4>Our analysis demonstrates the metabolic heterogeneity of HCM and enables the development of risk stratification and subtype-specific therapeutic strategies.<h4>Registration</h4>URL: https://www.clinicaltrials.gov; Unique identifier: NCT03076580.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1161/circresaha.126.328300",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 132,
+      "omics": [
+        "proteomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 73,
+      "description_en": "Omics: proteomics, multi-omics. Cohort: ~132 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Large cohort N≈132",
+        "No TMT confirmation"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Large cohort N≈132",
+          "No TMT confirmation"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42310533",
+      "title": "Repurposing the liquid-based Pap test for the detection of ovarian cancer protein biomarkers.",
+      "abstract": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers may also be present; yet Pap samples have not been rigorously examined for diagnostic proteins. Assessment of cervical effluent, as can be collected in a Pap test, has the potential to differentiate ovarian cancer cases from healthy controls, and thereby demonstrate that intra-abdominal pathology may be detected using this commonly acquired specimen. We hypothesize that proteins shed by ovarian cancer cells can be detected in the SurePath™ liquid-based Pap test fixative using mass spectrometry (MS)-based proteomics, making it possible to distinguish women with ovarian cancer from healthy women.<h4>Methods</h4>Candidate ovarian cancer biomarkers were successfully identified in liquid-based Pap test samples from 20 cases of high grade serous ovarian cancer, 10 benign ovarian conditions, and 10 healthy control samples, by performing Tandem Mass Tag™ isobaric labeling, 2D liquid chromatography-MS/MS, and bioinformatics integration. Selected reaction monitoring (SRM) MS-based targeted proteomics was then performed using a panel of candidate biomarkers to quantify their abundance in an expanded patient cohort of 90 liquid-based Pap tests.<h4>Results</h4>A multi-protein classifier was developed using the SRM-MS data comprised of 6 proteins and achieving an AUC of 0.880 (95% CI: 0.738-0.989); sensitivity at 90% specificity was 0.800.<h4>Conclusion</h4>This pilot study provides evidence that the cervical effluent collected in SurePath™ fixative from Pap tests has the potential to be used as a biospecimen for the detection of ovarian cancer proteins. Our long-term goal is to develop a noninvasive screening test that can be incorporated into a routine Pap test or a self-administered home test, so that women can be screened simultaneously for cervical and ovarian cancer.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1186/s12014-026-09610-7",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 90,
+      "omics": [
+        "proteomics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": true,
+      "large_scale": false,
+      "multi_omics": false,
+      "cohort_score": 50,
+      "description_en": "Omics: proteomics. Cohort: ~90 patients/participants (from abstract). TMT/isobaric. 2026",
+      "confidence_tier": "B",
+      "confidence_css": "tier-b",
+      "confidence_evidence": [
+        "N≈90",
+        "TMT mention",
+        "Cohort watch — not a new repo ID"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "B",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-b",
+        "confidence_bullets": [
+          "N≈90",
+          "TMT mention",
+          "Cohort watch — not a new repo ID"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "41785305",
+      "title": "Proteogenomic features define subtypes of mantle cell lymphoma.",
+      "abstract": "<h4>Abstract</h4>Mantle cell lymphoma (MCL) is a biologically heterogeneous B-cell malignancy. Although genomics and transcriptomics have delineated parts of the MCL disease spectrum, proteomics remains largely unexplored. Here, we conducted a comprehensive proteogenomic analysis integrating genomics, transcriptomics, and proteomics on peripheral blood samples from 27 patients with MCL and 4 healthy donors to investigate the translational and posttranslational dimensions of MCL. Our study identified 1296 downregulated and 468 upregulated proteins in MCL cells. The splicing pathways were significantly upregulated at both the mRNA and protein levels, suggesting a critical role for aberrant RNA splicing in MCL pathogenesis. Integration of proteomic data with genetic aberrations revealed immunoglobulin heavy chain variable mutational status and CCND1 mutation are associated with distinctive transcriptomic and proteomic profiles, which correspond to significant differences in clinical outcomes. A multiomics molecular stratification model incorporating proteomic data showed superior predictive power for patient survival compared with single-omics models (concordance index, 0.83 vs 0.74). This study provides, to our knowledge, the first comprehensive proteogenomic profile of MCL, offering novel insights into its molecular mechanisms and clinical behavior. The identification of molecular subtypes and prognostic protein signatures underscores the potential of proteomics to guide precision medicine strategies for MCL.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1182/bloodadvances.2025018701",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 27,
+      "omics": [
+        "proteomics",
+        "transcriptomics",
+        "genomics",
+        "multi_omics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 53,
+      "description_en": "Omics: proteomics, transcriptomics, genomics, multi-omics. Cohort: ~27 patients/participants (from abstract). large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42204136",
+      "title": "Phosphoproteomics distinguishes disease-specific mechanisms for human phospholamban cardiomyopathy reversible by RNA therapy.",
+      "abstract": "Phospholamban (PLN) p.Arg14del (R14<sup>Δ/+</sup>, also known as R14del) is a pathogenic variant that causes inherited cardiomyopathy. RNA therapy improves cardiac function and survival in murine PLN R14<sup>Δ/+</sup>. However, the molecular disease mechanisms and potential therapeutic effects of RNA therapy in the human setting remain poorly defined. Proteomic and phosphoproteomic profiling was performed on cardiac tissue from R14<sup>Δ/+</sup> patients (N = 6) and compared to other causes of dilated cardiomyopathy (DCM; N = 10). Findings were validated in CRISPR-Cas9-engineered R14<sup>Δ/+</sup> induced pluripotent stem cell-derived cardiomyocytes (iPSC-CMs) and isogenic controls. To assess reversibility, PLN-targeted RNA therapy using antisense oligonucleotides was applied to iPSC-CMs. Proteomics revealed enrichment of fibrotic pathways, while phosphoproteomics highlighted altered actomyosin structural organization uniquely distinguishing R14<sup>Δ/+</sup> from other DCM. This phosphoproteomic profile was recapitulated in R14<sup>Δ/+</sup> iPSC-CMs. RNA therapy concentration-dependently reduced PLN expression and modified the disease-specific phosphorylation profile. Twenty-eight phosphorylation sites were consistently altered across patient tissue and iPSC-CMs; twenty-two were reversed by RNA therapy and were enriched for cadherin- and actin-binding functions, implicating cytoskeletal remodeling. PLN/LC3 protein aggregates, a hallmark of PLN cardiomyopathy, were reduced after RNA therapy. Functionally, R14<sup>Δ/+</sup> cardiomyocytes exhibited accelerated calcium handling and contractile kinetics, which increased further upon RNA therapy. Human PLN R14<sup>Δ/+</sup> cardiomyopathy is characterized by a distinct phosphoproteomic signature involving cytoskeletal and contractile machinery. PLN-targeted RNA therapy reduced PLN expression, partially normalized these alterations, diminished protein aggregation, and enhanced calcium handling and contractile performance. These findings clarify the molecular mechanisms underlying R14<sup>Δ/+</sup> pathogenesis and support RNA therapy as a promising therapeutic strategy for PLN cardiomyopathy.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1038/s41392-026-02791-5",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": 10,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
+      ],
+      "has_patients": "yes",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 40,
+      "description_en": "Omics: proteomics, phosphoproteomics. Cohort: ~10 patients/participants (from abstract). 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42134687",
+      "title": "A Proteogenomic Approach to Discover Novel lncRNA-Derived Microproteins and Their Potential Clinical Utility in Hepatocellular Carcinoma.",
+      "abstract": "Microproteins (i.e., peptides) are increasingly recognized for their functions in versatile biological contexts, but their clinical relevance and utility remain largely unexplored. Proteogenomic approaches can accelerate microprotein discovery in clinical samples by integrating proteomic data with genomics and transcriptomics evidence. However, long noncoding RNA (lncRNA)-derived microproteins (lncPeps) remain largely unidentified, resulting in unmatchable MS/MS spectra. To solve this problem, we have used high-quality Ribo-seq translatomic datasets to generate an extensive database of human liver lncRNA-derived open reading frames (lncORFs), which we subsequently applied to proteomics data of tumor-adjacent normal tissue pairs from hepatocellular carcinoma (HCC) patients. Using the new database, we discovered 104 novel lncPeps, including 46 lncPeps differentially expressed between tumor and nontumor tissues, and 13 lncPeps with significant correlation with prognosis. Remarkably, combining the expression of lncPeps with canonical proteins in a LASSO regression model improved predictive performance for recurrence, increasing the AUC by 0.005 to 0.085 across three recurrence time points. These findings suggest that the discovery of lncPeps contributes to our understanding of the molecular heterogeneity and progression of HCC and broadens the range of potential biomarker candidates and treatment targets for the disease.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1016/j.mcpro.2026.101584",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "transcriptomics",
+        "genomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, transcriptomics, genomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "PPR1281063",
+      "title": "Primary Hyperparathyroidism Reveals Limited Adipose Remodeling in Human",
+      "abstract": "<h4>ABSTRACT</h4>  <h4>Background</h4>  Preclinical models implicate the parathyroid hormone/parathyroid-hormone-related protein (PTH/PTHrP)-PTH1 receptor (PTH1R) axis in adipocyte lipolysis, adipose browning, and energy wasting. Whether this catabolic program is reproduced in vivo in humans remains unresolved. Primary hyperparathyroidism (PHPT), a condition of chronic endogenous PTH excess, provides a clinically relevant model to test the translational relevance of this pathway. <h4>Methods</h4>  We combined population-scale analyses with a prospective human intervention study. PTH/PTH1R associations with body composition were evaluated in the UK Biobank and compared with PTH dynamics in cancer-associated cachexia using TRACERx proteomic data. In parallel, patients with PHPT were assessed before and after parathyroidectomy and compared with matched surgical controls. Biochemical parameters, circulating adipocytokines, DXA- and BIA-derived body composition, histology, UCP1 immunohistochemistry, and supraclavicular adipose tissue transcriptomic and proteomic profiles were integrated, with external validation in an independent supraclavicular adipose dataset. <h4>Results</h4>  In the UK Biobank, apparent positive associations between circulating PTH/PTH1R signals and fat or lean mass were markedly attenuated after matching for age, sex, and BMI, arguing against a disease-specific adiposity effect of PHPT. In TRACERx, circulating PTH did not increase across BMI-adjusted weight-loss grades. In the prospective cohort, parathyroidectomy normalized PTH, calcium, and phosphate but did not induce coherent changes in glucose metabolism, lipid profile, inflammatory markers, body weight, fat mass, lean mass, or thermogenic adipose signatures. Supraclavicular adipose histology, UCP1 staining, RNA-seq, proteomics, pathway analysis, and external dataset reanalysis converged on the absence of browning or thermogenic activation. By contrast, PHPT was associated with a selective adipose-related secretory phenotype: adiponectin, adipsin, and retinol-binding protein 4 were reversible after surgery, whereas lipocalin- 2 and thrombospondin-1 remained elevated. <h4>Conclusions</h4>  Chronic endogenous PTH excess is not sufficient to induce a detectable thermogenic or energy- dissipating adipose program in humans under basal clinical conditions. These findings challenge direct extrapolation from rodent PTH/PTHrP models and reposition the human PTH-adipose axis as a selective secretory and remodeling pathway rather than a dominant driver of adipose browning or wasting. <h4>Highlights</h4>  PHPT provides an in vivo human model of chronic endogenous PTH excess. PTH/PTH1R associations with body composition are lost after stringent confounder control. Parathyroidectomy normalizes mineral metabolism without inducing adipose browning or wasting. Supraclavicular adipose histology, UCP1 staining, transcriptomics, and proteomics show no thermogenic activation. PHPT unmasks a selective adipose-related secretory signature with reversible and persistent components.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.64898/2026.07.05.736588",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "transcriptomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": true,
+      "multi_omics": true,
+      "cohort_score": 33,
+      "description_en": "Omics: proteomics, transcriptomics. Patients mentioned; exact N not extracted. large-scale study. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "PPR1289484",
+      "title": "A Multicenter Confirmatory Randomized-Controlled Study of rhNRGβ1 Protein Replacement Therapy in a Murine Model of NF2-related Schwannomatosis",
+      "abstract": "<h4>Background</h4>  Previous exploratory studies identified recombinant human Neuregulin-1 β (rhNRGβ1) as a promising therapeutic strategy for inhibiting the growth of Nf2-deficient schwannomas by promoting cellular differentiation. Because robust confirmation across independent laboratories is essential for advancing promising preclinical findings toward clinical translation, we conducted a multicenter, randomized, controlled confirmatory study under stringent preclinical standards. <h4>Methods</h4>  In a pre-registered trial (DOI: 10.17590/asr.0000304), 216 mice (Nf2-flox;P0-Cre;Nefh- Cre) were randomized at three independent research sites. Following a standardized sciatic nerve crush, mice received systemic rhNRGβ1 (10 µg/kg) or vehicle for 13 weeks. Rigorous quality measures included double-blinding, standardized surgery, centralized data management, and an automated Fiji macro for objective nerve thickness quantification (Primary Outcome). Secondary molecular outcomes included Western blot and in-depth, quantitative proteomics and phosphoproteomics. All methods were SOP-based for reproducible and comparable results across the three study centers <h4>Results</h4>  The primary confirmatory analysis revealed no reduction in nerve thickness in the rhNRGβ1 group (p  best case imputation = 0.076 and p  worst case imputation = 0.533). Secondary analyses via quantitative Western blotting and DIA proteomics demonstrated that core biochemical markers of Schwann cell differentiation (MBP, ERBB2) remained unchanged across all centers. Based on the absence of macroscopic or primary biochemical effects, further histological analysis was omitted to avoid scientific redundancy. High-depth profiling of a predefined 60-protein functional marker panel confirmed a remarkably stable tumor proteome across all replication sites and both sexes, with no evidence of coordinated changes in key downstream oncogenic signaling pathways (Hippo/YAP, mTORC1, and RTK-Ras-MAPK) or metabolic signaling cascades. These findings indicate an absence of measurable target engagement under our tested dosing regimen, potentially reflecting pharmacokinetic or tissue-delivery limitations rather than an invalidation of the underlying biological pathway.  <h4>Conclusion</h4>  Despite high statistical power and rigorous methodology, this study could not confirm rhNRGβ1 as a robust therapeutic candidate for schwannoma growth arrest or shrinkage. These findings suggest that previously reported therapeutic effects were either highly context- dependent or could not be reproduced under adequately powered, rigorously controlled experimental conditions. As underpowered preclinical studies are more susceptible to random biological variation, our results highlight the importance of sufficient sample sizes alongside robust experimental design. Our study underscores the value of trial-like methodological standards in preclinical therapeutic evaluation to identify ineffective interventions (dead ends) early and strengthen translational decision-making. Although we could not confirm the previously reported efficacy of rhNRGβ1, the multicenter framework established here provides a methodological benchmark for robust preclinical testing in translational oncology, with the potential to improve reproducibility and the success of therapies progressing to early-phase clinical trials. From a translational perspective, these findings provide a robust foundation for optimizing future rhNRGβ1-based therapeutic approaches through improved dosing, delivery routes, and treatment schedules.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.64898/2026.07.31.741963",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42305618",
+      "title": "Paracrine signals from HIV-1-infected immune cells reprogram cervical cancer pathways.",
+      "abstract": "Persistent infection with high-risk human papillomavirus (HR-HPV) is the primary cause of cervical cancer. Co-infection with HIV-1 increases the risk of cervical cancer progression 6-fold, despite adherence to antiretroviral therapy (ART). While chronic HIV-1 infection is known to cause inflammation, the paracrine effects of HIV-1-infected immune cells on cervical signaling remain unclear. We performed transcriptomics on cervical swabs from Kenyan women stratified by HIV-1 and cancer status, which revealed HIV-1 infection drove cancer-like gene expression in non-cancerous cervical cells. In parallel, global abundance proteomics and phosphoproteomics of cervical cancer cells exposed to HIV-1-infected human primary CD4<sup>+</sup> T cell secretomes revealed altered MAPK, PI3K-AKT, cell cycle, and beta-catenin pathways. Concordantly, IRS1 was upregulated in both patient cervical samples and cultured cells. Our findings suggest HIV-1 dysregulates cervical cell signaling via paracrine mechanisms to phenocopy <i>PIK3CA</i>-activating mutations through IRS1-PI3K-AKT pathway activation. Our findings highlight IRS1 and the PI3K pathway as a potential therapeutic target for cervical cancer in women living with HIV-1.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1016/j.isci.2026.116083",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics",
+        "transcriptomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics, transcriptomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42167233",
+      "title": "The proteomics and phosphoproteomics landscape of melanoma under T cell attack.",
+      "abstract": "Understanding how tumor cells interact with tumor-infiltrating lymphocytes (TILs) is crucial for improving immunotherapy, yet protein-level changes remain largely unexplored. To address this, we profile the early responses of patient-derived melanoma cells co-cultured with matched autologous TILs. To distinguish tumor from TIL proteomes without physical sorting, we apply stable isotope labeling by amino acids in cell culture (SILAC) coupled with Orbitrap Astral data-independent acquisition (DIA) mass spectrometry (MS). This approach enables cell type-specific profiling of protein phosphorylation and degradation, alongside bulk analysis of the early newly synthesized proteome during active immune attack. Our analyses resolve interferon-γ-dependent changes in melanoma cells, identify the cytotoxic and regulatory T cell molecule (CRTAM) as a selective marker of reactive TILs, and reveal rapid tumor-intrinsic activation of DNA damage response-associated kinases, exposing potential therapeutic vulnerabilities. Overall, this framework provides a powerful resource for dissecting tumor-immune interactions to guide biomarker discovery and advance immunotherapy.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.1016/j.xcrm.2026.102829",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "phosphoproteomics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, phosphoproteomics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    },
+    {
+      "pmid": "42183196",
+      "title": "Applications of artificial intelligence in systemic lupus erythematosus: integrating multi-omics data for precision medicine.",
+      "abstract": "Systemic lupus erythematosus (SLE) is a clinically and biologically heterogeneous autoimmune disease in which patients with similar or disparate clinical phenotypes can exhibit distinct molecular drivers. This heterogeneity limits the utility of traditional, largely linear, analytic approaches and contributes to variations in diagnosis, prognosis, and therapeutic outcome. Artificial intelligence (AI), including machine learning (ML) and deep learning (DL), offers a complementary framework for extracting nonlinear patterns from complex biomedical datasets and for translating high dimensional molecular measurements into actionable clinical signatures. Here, we review how supervised and unsupervised ML methods are being applied to SLE, with a focus on multi-omics integration across genomics, transcriptomics, proteomics, and metabolomics. In this review, we specifically focus on how these approaches can define molecular endotypes, explaining heterogeneity in disease course and therapeutic response. We summarize evidence that AI-driven endotyping can reproducibly separate patients into molecularly defined subgroups dominated by distinct immune signatures and facilitate biomarker discovery and improved risk modelling. We highlight the limitations of conventional clinical phenotyping and the need for AI-driven biologically grounded patient stratification. Importantly, we frame these advances within a systems biology perspective, in which AI-driven integration of multi-omics and clinical data enables a unified approach to disease diagnosis, molecular stratification, prognosis, and therapeutic response prediction in SLE. Despite these advances, most AI-derived predictors remain research-grade, and require prospective multi-center validation and explicit demonstration of clinical utility before routine deployment. If key barriers to clinical translation can be overcome, AI-based methods hold promise for achieving truly personalized approaches in the management of SLE.",
+      "data_availability": "",
+      "journal": "",
+      "year": "2026",
+      "doi": "10.3389/fimmu.2026.1804598",
+      "pxd_mentioned": [],
+      "accessions_mentioned": [],
+      "source": "europe_pmc",
+      "patient_n": null,
+      "omics": [
+        "proteomics",
+        "transcriptomics",
+        "genomics",
+        "metabolomics",
+        "multi_omics"
+      ],
+      "has_patients": "maybe",
+      "tmt_detected": false,
+      "large_scale": false,
+      "multi_omics": true,
+      "cohort_score": 25,
+      "description_en": "Omics: proteomics, transcriptomics, genomics, metabolomics, multi-omics. Patients mentioned; exact N not extracted. 2026",
+      "confidence_tier": "C",
+      "confidence_css": "tier-c",
+      "confidence_evidence": [
+        "Cohort literature watch"
+      ],
+      "evaluation": {
+        "final_verdict": "Watch",
+        "confidence": "C",
+        "evidence_chain": [],
+        "requires_manual_review": true,
+        "confidence_css": "tier-c",
+        "confidence_bullets": [
+          "Cohort literature watch"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Watch",
+      "requires_manual_review": true
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 """Индекс каталога TMT ATLAS: органы, ссылки на GitHub, репозитории, краткие описания."""
 from __future__ import annotations
 
+import html
 import re
 from typing import Any
 
@@ -225,6 +226,12 @@ def _resolve_pmid_from_literature(item: dict) -> str:
     return ""
 
 
+def _plain_description(text: str) -> str:
+    s = html.unescape(str(text or ""))
+    s = re.sub(r"<[^>]+>", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
 def article_description(item: dict) -> str:
     """Short article / project description for tables and JSON."""
     for key in (
@@ -238,12 +245,12 @@ def article_description(item: dict) -> str:
     ):
         val = str(item.get(key) or "").strip()
         if val and val.lower() not in ("nan", "none", "—"):
-            return val
+            return _plain_description(val)
     ai = item.get("abstract_ai") or {}
     for key in ("summary_en", "summary_ru"):
         val = str(ai.get(key) or item.get(key) or "").strip()
         if val:
-            return val
+            return _plain_description(val)
     return ""
 
 

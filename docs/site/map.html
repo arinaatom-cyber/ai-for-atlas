@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="0;url=../index.html"/>
-  <title>Redirect</title>
-  <script>location.replace("../index.html");</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>Human Cancer-Associated TMT Proteome Atlas — Organ map</title>
+  <script>(function(){try{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;}catch(e){}})();</script>
+  <link rel="stylesheet" href="assets/theme.css"/>
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/site_ui.js" defer></script>
 </head>
-<body><p><a href="../index.html">Open projects table</a></p></body>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <a href="../index.html" class="brand-link">
+        <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
+      </a>
+      <div class="brand-actions">
+        <a href="ai_search.html" class="brand-action brand-action-primary" data-i18n="brand_link_ai">Atlas AI</a>
+        <a href="discovery.html#technical" class="brand-action brand-action-secondary" data-i18n="brand_link_technical">Методы · версии скриптов</a>
+      </div>
+    </div>
+    <nav class="site-nav" aria-label="Main"><a href="../index.html" class="" data-i18n="nav_home">Home</a><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="" data-i18n="nav_qc">QC</a><a href="atlas.html" class="" data-i18n="nav_atlas">Atlas</a><a href="ai_search.html" class="" data-i18n="nav_ai">AI search</a><a href="map.html" class="active" data-i18n="nav_map">Organ map</a></nav>
+    <div class="header-controls">
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="map_title">Карта органов человека</h1>
+  <p class="lead" data-i18n="map_lead">Интерактивный TMT-каталог по органам — клик по регионам, фильтр проектов, ссылки PRIDE/PDC</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-14 11:56:53 UTC</span><span class="meta-pill badge badge-muted">121 atlas IDs</span></div>
+</div>
+<div class="page-content">
+  <div class="how-to-panel">
+    <h3 data-i18n="map_how_title">Как пользоваться</h3>
+    <ol class="how-to-steps">
+      <li data-i18n="map_step1">Кликните орган на силуэте или выберите быструю ссылку ниже</li>
+      <li data-i18n="map_step2">Просмотрите проекты ткани — откройте репозиторий или PubMed в боковой панели</li>
+      <li data-i18n="map_step3">Диплинки: добавьте ?organ=gastric (или другой ключ) к URL карты</li>
+    </ol>
+  </div>
+  <div class="embed-shell">
+    <iframe
+      class="embed-frame"
+      src="https://arinaatom-cyber.github.io/TMT/"
+      title="Human TMT organ map"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allow="fullscreen"
+    ></iframe>
+    <div class="embed-toolbar">
+      <a class="btn btn-primary" href="https://arinaatom-cyber.github.io/TMT/" target="_blank" rel="noopener" data-i18n="map_open_full">Открыть карту на весь экран</a>
+      <span class="muted embed-hint" data-i18n="map_embed_hint">Встроено с GitHub Pages TMT — прокручивайте внутри фрейма</span>
+    </div>
+  </div>
+  <div class="section-block">
+    <h3 data-i18n="map_organs_title">Быстрые ссылки на органы</h3>
+    <div class="organ-chip-grid"><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=brain" target="_blank" rel="noopener">brain</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=lung" target="_blank" rel="noopener">lung</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=ovary" target="_blank" rel="noopener">ovary</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=breast" target="_blank" rel="noopener">breast</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=blood" target="_blank" rel="noopener">blood</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=hematopoietic_system" target="_blank" rel="noopener">hematopoietic system</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=pancreas" target="_blank" rel="noopener">pancreas</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=bone_marrow" target="_blank" rel="noopener">bone marrow</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=kidney" target="_blank" rel="noopener">kidney</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=liver" target="_blank" rel="noopener">liver</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=uterus" target="_blank" rel="noopener">uterus</a><a class="organ-chip" href="https://arinaatom-cyber.github.io/TMT/?organ=colon" target="_blank" rel="noopener">colon</a></div>
+  </div>
+</div>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
+</body>
 </html>

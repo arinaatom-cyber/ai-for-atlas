@@ -5,6 +5,7 @@ import html
 import re
 
 from atlas_agent.discovery.evaluation import AnalysisFormatter, display_fit_label
+from atlas_agent.viz.i18n_defaults import en as i18n_default
 from atlas_agent.discovery.evaluation.context import EvaluationContext
 from atlas_agent.discovery.evaluation.schemas import ItemKind, ProjectEvaluation
 from atlas_agent.discovery.evaluation.stale import should_recompute_evaluation
@@ -99,15 +100,34 @@ def _confidence_cell(tier: str, css: str, bullets: list[str]) -> str:
     return body
 
 
+def _i18n_badge(key: str, css: str, *, title: str = "", title_key: str = "") -> str:
+    t_attr = ""
+    if title_key:
+        t_attr = f' data-i18n-title="{_esc(title_key)}"'
+    elif title:
+        t_attr = f' title="{_esc(title)}"'
+    text = _esc(i18n_default(key))
+    return f'<span class="badge {css}" data-i18n="{_esc(key)}"{t_attr}>{text}</span>'
+
+
 def _verdict_badge(label: str, css: str, title: str = "") -> str:
+    key_map = {
+        "Candidate": "verdict_candidate",
+        "Watch": "verdict_watch",
+        "Exclude": "verdict_exclude",
+        "Review": "verdict_review",
+    }
+    i18n_key = key_map.get(label)
+    if i18n_key:
+        return _i18n_badge(i18n_key, css, title=title)
     t = f' title="{_esc(title)}"' if title else ""
     return f'<span class="badge {css}"{t}>{_esc(label)}</span>'
 
 
 def _type_badge(kind: str) -> str:
-    labels = {"project": "Project", "paper": "Paper", "cohort": "Cohort"}
+    keys = {"project": "badge_project", "paper": "badge_paper", "cohort": "badge_cohort"}
     css = {"project": "badge-ok", "paper": "badge-muted", "cohort": "badge-warn"}.get(kind, "badge-muted")
-    return _verdict_badge(labels.get(kind, kind), css)
+    return _i18n_badge(keys.get(kind, "badge_paper"), css)
 
 
 def unified_weight_cell(
@@ -123,13 +143,25 @@ def unified_weight_cell(
     if not label and fit_s in ("yes", "maybe", "no"):
         label = display_fit_label({"atlas_fit": fit_s}, evaluation)
     if label:
-        parts.append(
-            f'<span class="badge {fit_class(fit_s)}" title="LLM atlas screening (trained on catalog exclusions)">'
-            f"{_esc(label)}</span>"
-        )
+        fit_key = f"fit_llm_{fit_s}" if fit_s in ("yes", "maybe", "no") else ""
+        if fit_key:
+            fit_text = _esc(i18n_default(fit_key))
+            hint = _esc(i18n_default("fit_llm_hint"))
+            parts.append(
+                f'<span class="badge {fit_class(fit_s)}" data-i18n="{fit_key}" '
+                f'data-i18n-title="fit_llm_hint" title="{hint}">{fit_text}</span>'
+            )
+        else:
+            parts.append(f'<span class="badge {fit_class(fit_s)}">{_esc(label)}</span>')
     if cohort_score not in (None, ""):
+        score_text = _esc(
+            i18n_default("badge_cohort_score").replace("{n}", str(cohort_score)).replace("{score}", str(cohort_score))
+        )
+        hint = _esc(i18n_default("badge_cohort_hint"))
         parts.append(
-            f'<span class="badge badge-muted" title="Cohort relevance 0–100">cohort {_esc(cohort_score)}</span>'
+            f'<span class="badge badge-muted" data-i18n="badge_cohort_score" '
+            f'data-i18n-title="badge_cohort_hint" title="{hint}" '
+            f'data-i18n-suffix="{_esc(cohort_score)}">{score_text}</span>'
         )
     if not parts:
         return '<span class="cell-empty">—</span>'
@@ -154,7 +186,7 @@ def epmc_link(pmid: str) -> str:
         return ""
     return (
         f'<a href="{_esc(europe_pmc_url(pmid))}" target="_blank" rel="noopener" '
-        f'class="link-epmc cell-src"><b>Europe PMC</b></a>'
+        f'class="link-epmc cell-src"><b data-i18n="link_epmc"></b></a>'
     )
 
 
@@ -192,20 +224,33 @@ def item_year(item: dict, pubs_by_pmid: dict[str, dict] | None = None) -> str:
     return "—"
 
 
-def _item_summary(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
+def _item_summaries(item: dict, pubs_by_pmid: dict[str, dict]) -> tuple[str, str]:
     pmid = str(item.get("pmid") or "").strip()
     pub = pubs_by_pmid.get(pmid) if pmid else None
-    if pub and pub.get("summary_en"):
-        return str(pub["summary_en"])
     ai = item.get("abstract_ai") or {}
-    return str(
-        ai.get("summary_en")
+    en = str(
+        (pub or {}).get("summary_en")
+        or ai.get("summary_en")
         or item.get("summary_en")
+        or item.get("description_en")
         or item.get("article_description")
         or item.get("description")
         or item.get("abstract_snippet")
         or ""
     )
+    ru = str(
+        (pub or {}).get("summary_ru")
+        or ai.get("summary_ru")
+        or item.get("summary_ru")
+        or item.get("description_ru")
+        or ""
+    )
+    return en, ru
+
+
+def _item_summary(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
+    en, ru = _item_summaries(item, pubs_by_pmid)
+    return en or ru
 
 
 def _coerce_evaluation(
@@ -244,7 +289,8 @@ def _render_analysis_cell(
     if evaluation is None:
         inner = _FORMATTER.legacy_html()
     else:
-        inner = _FORMATTER.to_html(evaluation, summary=_item_summary(item, pubs_by_pmid))
+        en, ru = _item_summaries(item, pubs_by_pmid)
+        inner = _FORMATTER.to_html(evaluation, summary=en, summary_ru=ru)
     return f'<div class="cell-stack cell-analysis">{inner}</div>'
 
 
@@ -255,12 +301,11 @@ def _badge_stack(*badges: str) -> str:
     return f'<div class="badge-stack">{"".join(rows)}</div>'
 
 
-def _link_chip(href: str, label: str) -> str:
+def _link_chip(href: str, label: str, *, i18n_key: str = "") -> str:
     if not href:
         return ""
-    return (
-        f'<a href="{_esc(href)}" target="_blank" rel="noopener" class="link-chip">{_esc(label)}</a>'
-    )
+    inner = f'<span data-i18n="{_esc(i18n_key)}"></span>' if i18n_key else _esc(label)
+    return f'<a href="{_esc(href)}" target="_blank" rel="noopener" class="link-chip">{inner}</a>'
 
 
 def _links_stack(chips: list[str]) -> str:
@@ -279,10 +324,13 @@ def _project_links(acc: str, repo: str, pmid: str) -> str:
     src = source_label({"accession": acc}) if acc else ""
     chips: list[str] = []
     if repo:
-        chips.append(_link_chip(repo, src or "Repo"))
+        if src:
+            chips.append(_link_chip(repo, src))
+        else:
+            chips.append(_link_chip(repo, "", i18n_key="link_open_repo"))
     if pmid:
         chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "", i18n_key="link_epmc"))
     return _links_stack(chips)
 
 
@@ -290,24 +338,23 @@ def _literature_links(acc: str, repo: str, pmid: str) -> str:
     chips: list[str] = []
     if pmid:
         chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "", i18n_key="link_epmc"))
     if repo and acc:
         src = source_label({"accession": acc})
         chips.append(_link_chip(repo, f"{src} {acc}".strip()))
     return _links_stack(chips)
 
 
-def _data_status_label(status: str, label: str) -> str:
-    friendly = {
-        "quant_table": "Protein table",
-        "local_mirror": "Local mirror",
-        "maybe_table": "Possible table",
-        "processed_psm": "PSM only",
-        "phospho_table": "Phospho only",
-        "raw_only": "RAW only",
-        "no_files": "No files",
-    }
-    return friendly.get(status, label or status or "Unknown")
+def _data_status_key(status: str) -> str:
+    return {
+        "quant_table": "data_quant_table",
+        "local_mirror": "data_local_mirror",
+        "maybe_table": "data_maybe_table",
+        "processed_psm": "data_psm_only",
+        "phospho_table": "data_phospho_only",
+        "raw_only": "data_raw_only",
+        "no_files": "data_no_files",
+    }.get(status, "")
 
 
 def _norm_pmid(item: dict) -> str:
@@ -345,29 +392,36 @@ def _fit_score_fmt(score: object) -> str:
 def _omics_cell(item: dict) -> str:
     omics = item.get("omics") or []
     if not omics:
-        return '<span class="cell-empty">—</span>'
-    labels = {
-        "proteomics": "proteomics",
-        "phosphoproteomics": "phosphoproteomics",
-        "transcriptomics": "transcriptomics",
-        "genomics": "genomics",
-        "metabolomics": "metabolomics",
-        "lipidomics": "lipidomics",
-        "glycoproteomics": "glycoproteomics",
-        "multi_omics": "multi-omics",
+        return '<span class="cell-empty" data-i18n="cell_empty"></span>'
+    keys = {
+        "proteomics": "omics_proteomics",
+        "phosphoproteomics": "omics_phospho",
+        "transcriptomics": "omics_transcriptomics",
+        "genomics": "omics_genomics",
+        "metabolomics": "omics_metabolomics",
+        "lipidomics": "omics_lipidomics",
+        "glycoproteomics": "omics_glycoproteomics",
+        "multi_omics": "omics_multi",
     }
-    return ", ".join(_esc(labels.get(o, o)) for o in omics[:6])
+    parts: list[str] = []
+    for o in omics[:6]:
+        key = keys.get(o)
+        if key:
+            parts.append(f'<span data-i18n="{key}"></span>')
+        else:
+            parts.append(_esc(str(o)))
+    return ", ".join(parts)
 
 
 def _patient_cell(item: dict) -> str:
     hp = item.get("has_patients") or ""
     if hp == "yes":
-        return '<span class="badge badge-ok">yes</span>'
+        return _i18n_badge("pat_yes", "badge-ok")
     if hp == "maybe":
-        return '<span class="badge badge-warn">maybe</span>'
+        return _i18n_badge("pat_maybe", "badge-warn")
     if hp == "no":
-        return '<span class="badge badge-bad">no</span>'
-    return '<span class="cell-empty">—</span>'
+        return _i18n_badge("pat_no", "badge-bad")
+    return '<span class="cell-empty" data-i18n="cell_empty"></span>'
 
 
 def _similar_cell(item: dict) -> str:
@@ -395,7 +449,7 @@ def _data_cell(it: dict) -> str:
     da = it.get("data_availability") or {}
     if isinstance(da, dict) and da:
         status = da.get("status") or "unknown"
-        label = _data_status_label(status, str(da.get("label") or ""))
+        status_key = _data_status_key(status)
         cls = {
             "quant_table": "badge-ok",
             "local_mirror": "badge-ok",
@@ -406,10 +460,12 @@ def _data_cell(it: dict) -> str:
             "no_files": "badge-bad",
         }.get(status, "badge-muted")
         layer = str(da.get("omics_layer") or "")
-        status_badge = f'<span class="badge {cls}">{_esc(label)}</span>'
+        if status_key:
+            status_badge = _i18n_badge(status_key, cls)
+        else:
+            status_badge = f'<span class="badge {cls}">{_esc(str(da.get("label") or status))}</span>'
         mixed_badge = (
-            '<span class="badge badge-warn" title="Protein and phospho files — manual check">'
-            "mixed protein+phospho</span>"
+            _i18n_badge("data_mixed_protein_phospho", "badge-warn", title_key="data_mixed_hint")
             if layer == "mixed"
             else ""
         )
@@ -428,14 +484,14 @@ def _data_cell(it: dict) -> str:
     if hint:
         return (
             f'<div class="cell-stack">'
-            f'<span class="cell-label">Data files</span>'
+            f'<span class="cell-label" data-i18n="th_data"></span>'
             f'<span class="badge badge-warn">{_esc(hint[:90])}</span>'
             f"</div>"
         )
     return (
         '<div class="cell-stack">'
-        '<span class="cell-label">Data files</span>'
-        '<span class="cell-empty">—</span>'
+        '<span class="cell-label" data-i18n="th_data"></span>'
+        '<span class="cell-empty" data-i18n="cell_empty"></span>'
         "</div>"
     )
 
@@ -473,15 +529,15 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
             f'<span class="cell-label">{_esc(kind)}</span>{body}{extra}</div>'
         )
     pub = pubmed_url(pmid) if pmid else ""
-    no_acc = '<span class="id-no-acc">No PXD/PDC/MSV/IPX</span>'
+    no_acc = '<span class="id-no-acc" data-i18n="no_accession"></span>'
     if pub:
         no_acc = (
-            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc">No PXD/PDC/MSV/IPX</a>'
+            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc" data-i18n="no_accession"></a>'
         )
     extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
     return (
         f'<div class="cell-stack id-cell">'
-        f'<span class="cell-label">Paper</span>{no_acc}{extra}</div>'
+        f'<span class="cell-label" data-i18n="badge_paper"></span>{no_acc}{extra}</div>'
     )
 
 

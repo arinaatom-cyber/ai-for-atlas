@@ -41,7 +41,7 @@ def build_literature_query(keywords: list[str], year_from: int, year_to: int) ->
     if theme:
         theme_part = " OR ".join(f'"{k}"' for k in theme)
     else:
-        theme_part = "patient OR cancer OR tumor OR plasma OR biopsy"
+        theme_part = "patient OR cancer OR tumor OR tissue OR \"cell line\" OR biopsy"
     return (
         f"({core}) AND ({theme_part}) AND proteomics AND HUMAN "
         f"AND PUB_YEAR:[{year_from} TO {year_to}]"

@@ -185,7 +185,7 @@ def run_discovery_scan(
         profile_keywords=profile.get("search_keywords"),
         known_accessions=known,
         min_tmt_channels=int(filter_cfg.get("min_tmt_channels") or 7),
-        max_tmt_channels=int(filter_cfg.get("max_tmt_channels") or 16),
+        max_tmt_channels=int(filter_cfg.get("max_tmt_channels") or 18),
         cfg=cfg,
         atlas_context=atlas_context,
     )
@@ -353,6 +353,7 @@ def run_discovery_scan(
             "new_projects": len(new_projects),
             "candidates": len(new_projects),
             "manual_check": len(qc_out["manual_check"]),
+            "repository_manual": len(qc_out.get("repository_manual") or []),
             "rejected_material": len(qc_out["rejected_material"]),
             "review_recommended": len(new_projects),
             "already_in_catalog": len(buckets.get("already_in_catalog", [])),
@@ -379,6 +380,7 @@ def run_discovery_scan(
         "candidates": new_projects,
         "recommended": new_projects,
         "manual_check": qc_out["manual_check"],
+        "repository_manual": qc_out.get("repository_manual") or [],
         "rejected_material": qc_out["rejected_material"],
         "already_in_catalog": buckets.get("already_in_catalog", [])[:20],
         "filtered_out": buckets.get("filtered_out", [])[:50],
@@ -415,8 +417,10 @@ def run_discovery_scan(
     qc_html = generate_qc_html(report, reports_dir / "discovery_qc_report.html")
     report["report_qc_html"] = str(qc_html)
 
+    from atlas_agent.discovery.report_finalize import finalize_discovery_report
     from atlas_agent.viz.publish_site import publish_discovery_site
 
+    report = finalize_discovery_report(report, cfg)
     site_dir = publish_discovery_site(report, root)
     report["report_site_dir"] = str(site_dir)
 

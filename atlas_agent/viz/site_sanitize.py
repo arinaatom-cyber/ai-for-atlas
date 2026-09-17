@@ -56,6 +56,14 @@ def _translate_list(values: list[Any] | None) -> list[str]:
     return out
 
 
+_REPO_PREFIXES = ("PXD", "PDC", "MSV", "IPX")
+
+
+def _is_repository_project(item: dict[str, Any]) -> bool:
+    acc = str(item.get("accession") or item.get("project_accession") or "").strip().upper()
+    return any(acc.startswith(p) for p in _REPO_PREFIXES)
+
+
 def sanitize_discovery_item(item: dict[str, Any]) -> None:
     """In-place English cleanup for one discovery item."""
     from atlas_agent.discovery.fit_rules import apply_literature_exclusions, sanitize_summary
@@ -68,12 +76,15 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
     if isinstance(ai, dict):
         if ai.get("summary_en"):
             ai["summary_en"] = sanitize_summary(ai["summary_en"])
-            ai.pop("summary_ru", None)
-        elif ai.get("summary_ru"):
+        if ai.get("summary_ru"):
+            ai["summary_ru"] = sanitize_summary(ai["summary_ru"])
+        elif ai.get("summary_en") and not ai.get("summary_ru"):
+            pass
+        elif ai.get("summary_ru") and not ai.get("summary_en"):
             ai["summary_en"] = sanitize_summary(ai["summary_ru"])
-            if not ai["summary_en"]:
-                ai.pop("summary_ru", None)
-    apply_literature_exclusions(item)
+    # Do not re-score PXD/PDC/MSV/IPX rows as literature — wipes project tier A.
+    if not _is_repository_project(item):
+        apply_literature_exclusions(item)
     ai = item.get("abstract_ai")
     if isinstance(ai, dict):
         ai.pop("atlas_fit_score", None)
@@ -103,7 +114,8 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
 
     for item in report.get("cohort_literature") or []:
         item["description_en"] = build_description_en(item)
-        item.pop("description_ru", None)
+        if not item.get("description_ru"):
+            item["description_ru"] = item["description_en"]
 
     for pub in report.get("publications_analyzed") or []:
         sanitize_discovery_item(pub)

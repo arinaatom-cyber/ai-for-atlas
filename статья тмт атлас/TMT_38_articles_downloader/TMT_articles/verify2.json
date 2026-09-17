@@ -1,0 +1,459 @@
+[
+  {
+    "article": 8,
+    "pattern": "pool",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "reference channel",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "reference sample",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "bridge",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "normalization",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "not universal",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "labeling",
+    "count": 10,
+    "examples": [
+      "hen cover multiplexed proteomics techniques, which involve the use of isobaric labeling. At the end of this review, we will discuss how merging multiplexed proteomics with other quantification strategies m",
+      "abel-free quantification. 1.4. MS1-Based Quantification with Heavy Isotope Labeling In contrast to label-free quantification, multiple methods label peptides with heavy, non-radioactive, isotopes. Pept"
+    ]
+  },
+  {
+    "article": 8,
+    "pattern": "mixing",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 8,
+    "pattern": "multiplex",
+    "count": 55,
+    "examples": [
+      "A Review on Quantitative Multiplexed Proteomics Nishant Pappireddi,1,2 Lance Martin,1,2 and Martin Wühr1,2,* 1 Department of Molecular Biology, 2 The ",
+      "proteins across multiple samples. In this review, we refer to these methods as multiplexed proteomics. We discuss the principles, advantages, and drawbacks of various multiplexed proteomics techniques, and "
+    ]
+  },
+  {
+    "article": 31,
+    "pattern": "49 tissues",
+    "count": 3,
+    "examples": [
+      "latory variants affecting gene expression and splicing in cis and trans across 49 tissues, and describe patterns and mechanisms of tissue- and cell type specificity of genetic regulatory effects. Through inte",
+      "The analyses were performed for all pairwise combinations of 87 phenotypes and 49 tissues, and are summarized using an approach that accounts for similarity between tissues and variable standard errors of th"
+    ]
+  },
+  {
+    "article": 31,
+    "pattern": "54 tissues",
+    "count": 2,
+    "examples": [
+      " present analyses of the v8 data, examining 17,382 RNA-sequencing samples from 54 tissues of 948 post-mortem donors. We comprehensively characterize genetic associations for gene expression and splicing in ci",
+      ".3% European American, 12.3% African American, and 1.4% Asian American. Of the 54 tissues, 49 had samples from at least 70 individuals and were used for analyses of quantitative trait loci (QTL) (15,201 sampl"
+    ]
+  },
+  {
+    "article": 31,
+    "pattern": "49 human",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 31,
+    "pattern": "54 human",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 31,
+    "pattern": "948 donors",
+    "count": 1,
+    "examples": [
+      "e complex trait associations. QTL discovery The GTEx v8 data set consists of 948 donors and 17,382 samples from 52 tissues and two cell lines, with 838 donors and 15,253 samples having both RNA sequence (RN"
+    ]
+  },
+  {
+    "article": 31,
+    "pattern": "948 post",
+    "count": 1,
+    "examples": [
+      "ses of the v8 data, examining 17,382 RNA-sequencing samples from 54 tissues of 948 post-mortem donors. We comprehensively characterize genetic associations for gene expression and splicing in cis and trans,"
+    ]
+  },
+  {
+    "article": "22_",
+    "pattern": "110",
+    "count": 23,
+    "examples": [
+      "c opportunities, we per- formed comprehensive proteogenomic characterization of 110 tumors and 101 matched normal adjacent tis- sues (NATs) incorporating genomics, epigenomics, deep-scale proteomics, pho",
+      "ics, Siteman Cancer Center, Washington University in St. Louis, St. Louis, MO 63110, USA 4Department of Pathology, University of Michigan, Ann Arbor, MI, 48109, USA 5Department of Translational Molecular"
+    ]
+  },
+  {
+    "article": "22_",
+    "pattern": "101",
+    "count": 26,
+    "examples": [
+      " July 9, 2020 ª 2021 The Authors. Published by Elsevier Inc. https://doi.org/10.1016/j.cell.2020.06.013 ll Resource Proteogenomic Characterization Reveals Therapeutic Vulnerabilities in Lung Adenocarcino",
+      ", we per- formed comprehensive proteogenomic characterization of 110 tumors and 101 matched normal adjacent tis- sues (NATs) incorporating genomics, epigenomics, deep-scale proteomics, phosphoproteomics,"
+    ]
+  },
+  {
+    "article": "22_",
+    "pattern": "adjacent normal",
+    "count": 1,
+    "examples": [
+      "ACCESS Resource Figure S7. Proteogenomic Differences between Tumors and Matched Adjacent Normal, Related to Figure 7 (A) PCA plots showing RNA, protein, phosphosite and acetylsite abundance in 110 tumor samples (tri"
+    ]
+  },
+  {
+    "article": "22_",
+    "pattern": "NAT",
+    "count": 369,
+    "examples": [
+      "nomic characterization of 110 tumors and 101 matched normal adjacent tis- sues (NATs) incorporating genomics, epigenomics, deep-scale proteomics, phosphoproteomics, and acetyl- proteomics. Multi-omics cl",
+      "river mutations, country, and gender. Proteomic and phosphoproteomic data illuminated biology downstream of copy number aberra- tions, somatic mutations, and fusions and identiﬁed therapeutic vulnerabili"
+    ]
+  },
+  {
+    "article": "27_",
+    "pattern": "1,000",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": "27_",
+    "pattern": "1000",
+    "count": 4,
+    "examples": [
+      "generated harmonized genomic, transcriptomic, proteomic, and clinical data for >1000 tumors in 10 cohorts to create a cohesive and powerful dataset for scientific discovery. We outline efforts by the CP",
+      "nases, Replication Stress in Observed Chromosomal Instability. Cell Rep Med 1, 100004. 10.1016/j.xcrm.2020.100004. [PubMed: 32529193] 19. Cao L, Huang C, Cui Zhou D, Hu Y, Lih TM, Savage SR, Krug K, Cla"
+    ]
+  },
+  {
+    "article": "27_",
+    "pattern": "ten cohort",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": "27_",
+    "pattern": "10 cohort",
+    "count": 1,
+    "examples": [
+      "ized genomic, transcriptomic, proteomic, and clinical data for >1000 tumors in 10 cohorts to create a cohesive and powerful dataset for scientific discovery. We outline efforts by the CPTAC pan-cancer workin"
+    ]
+  },
+  {
+    "article": "36_",
+    "pattern": "7,171",
+    "count": 1,
+    "examples": [
+      " and primary tumour proteomes. We selected, manually curated and re-annotated 7,171 MS runs coming from 11 large-scale quantitative cancer related proteomics studies (Online- only Table 1) (Fig. 1a). We "
+    ]
+  },
+  {
+    "article": "36_",
+    "pattern": "7171",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": "36_",
+    "pattern": "11 large",
+    "count": 1,
+    "examples": [
+      "mes. We selected, manually curated and re-annotated 7,171 MS runs coming from 11 large-scale quantitative cancer related proteomics studies (Online- only Table 1) (Fig. 1a). We restricted the studies to tho"
+    ]
+  },
+  {
+    "article": "37_",
+    "pattern": "2,458",
+    "count": 2,
+    "examples": [
+      " a high-performance computing Linux cluster. In total, the datasets con- tained 2,458 MS runs, covering 440 samples from 299 individuals. The number of protein groups, peptides, and unique peptides identif",
+      " E-PROT-110 54 Yes (3) 3 Total secreted 7 datasets 441 166 87 TOTAL 12 datasets 2,458 MS runs 440 samples 299 patients *Dataset identifiers starting with ‘PXD’ come from the PRIDE database, dataset JPST000"
+    ]
+  },
+  {
+    "article": "37_",
+    "pattern": "2458",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": "37_",
+    "pattern": "440 sample",
+    "count": 2,
+    "examples": [
+      "try-based pub- lic proteomics datasets. In total, the combined dataset included 440 samples from 299 dif- ferent patients, encompassing both solid and liquid biopsies. Consequently, we defined a proteomics land",
+      "uting Linux cluster. In total, the datasets con- tained 2,458 MS runs, covering 440 samples from 299 individuals. The number of protein groups, peptides, and unique peptides identified in the two batches of sam"
+    ]
+  },
+  {
+    "article": "37_",
+    "pattern": "299",
+    "count": 5,
+    "examples": [
+      "c proteomics datasets. In total, the combined dataset included 440 samples from 299 dif- ferent patients, encompassing both solid and liquid biopsies. Consequently, we defined a proteomics landscape suit",
+      "er. In total, the datasets con- tained 2,458 MS runs, covering 440 samples from 299 individuals. The number of protein groups, peptides, and unique peptides identified in the two batches of samples are s"
+    ]
+  },
+  {
+    "article": "38_",
+    "pattern": "178",
+    "count": 4,
+    "examples": [
+      "tegration of 15 public label-free DIA human baseline tissue data sets including 178 healthy/normal control samples. The objective of this study is 2-fold: on one hand, we aim to facilitate access to prot",
+      "F 6600 No 54 18 1,174,230 18,406 1413 Total 15 data sets 12 tissues 356 MS runs 178 Samples aHealthy/normal control samples only. bPostprocessed results from control samples, wherein each peptide has at "
+    ]
+  },
+  {
+    "article": "38_",
+    "pattern": "15 public",
+    "count": 2,
+    "examples": [
+      "llent opportunity for large-scale data reanalysis and reuse. We have reanalyzed 15 public label-free DIA data sets across various healthy human tissues to provide a state-of-the-art view of the human proteome ",
+      "an-human” spectral library.17 Here, we report the reanalysis and integration of 15 public label-free DIA human baseline tissue data sets including 178 healthy/normal control samples. The objective of this stud"
+    ]
+  },
+  {
+    "article": "38_",
+    "pattern": "12 tissue",
+    "count": 2,
+    "examples": [
+      "keletal muscle TripleTOF 6600 No 54 18 1,174,230 18,406 1413 Total 15 data sets 12 tissues 356 MS runs 178 Samples aHealthy/normal control samples only. bPostprocessed results from control samples, wherein eac",
+      "a total of 9,299 canonical proteins, of which 521 proteins were observed in all 12 tissues, and 2,679 were only found in one tissue (Table S1). We identified the largest number of proteins in the liver (6,401 "
+    ]
+  },
+  {
+    "article": "16_",
+    "pattern": "TCGA",
+    "count": 51,
+    "examples": [
+      "d H.R. coordinated acquisition, distribution and quality control evaluation of TCGA tumor samples. B.Z., J.W., R.J.C.S., R.J.C. and D.C.L. interpreted data in context of colon cancer biology. B.Z., R.J.",
+      ". and D.C.L. wrote the manuscript. All of the primary mass spectrometry data on TCGA tumor samples are deposited at the CPTAC Data Coordinating Center as raw and mzML files for public access (https://cpt"
+    ]
+  },
+  {
+    "article": "16_",
+    "pattern": "colorectal",
+    "count": 5,
+    "examples": [
+      "ed proteogenomic characterization of human cancer with an analysis of the TCGA colorectal cancer (CRC) specimens6. The TCGA study affirmed well-established genomic features of CRC and described three transcr",
+      "tography-tandem mass spectrometry. Xenograft QC samples were run after every 5 colorectal tumor samples. Raw data were processed for peptide identification by database and spectral library searching and ident"
+    ]
+  },
+  {
+    "article": "16_",
+    "pattern": "rectal",
+    "count": 9,
+    "examples": [
+      "Proteogenomic characterization of human colon and rectal cancer Bing Zhang1,2, Jing Wang1, Xiaojing Wang1, Jing Zhu1, Qi Liu1, Zhiao Shi3,4, Matthew C. Chambers1, Lisa J. Zim",
+      "of Medicine, Nashville, TN 37232 USA Summary We analyzed proteomes of colon and rectal tumors previously characterized by the Cancer Genome Atlas (TCGA) and performed integrated proteogenomic analyses. Som"
+    ]
+  },
+  {
+    "article": "16_",
+    "pattern": "colon and rectal",
+    "count": 4,
+    "examples": [
+      "Proteogenomic characterization of human colon and rectal cancer Bing Zhang1,2, Jing Wang1, Xiaojing Wang1, Jing Zhu1, Qi Liu1, Zhiao Shi3,4, Matthew C. Chambers1, Lisa J. Zim",
+      "ty School of Medicine, Nashville, TN 37232 USA Summary We analyzed proteomes of colon and rectal tumors previously characterized by the Cancer Genome Atlas (TCGA) and performed integrated proteogenomic analyses. Som"
+    ]
+  },
+  {
+    "article": 2,
+    "doi": "10.1021/ac0262560",
+    "pattern": "two",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 2,
+    "doi": "10.1021/ac0262560",
+    "pattern": "pair",
+    "count": 1,
+    "examples": [
+      "ultaneous determination of both the identity and relative abundances of peptide pairs using a collision induced dissociation (CID)-based analysis method. Relative abundance measurements made in the MS/MS "
+    ]
+  },
+  {
+    "article": 2,
+    "doi": "10.1021/ac0262560",
+    "pattern": "dual",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 2,
+    "doi": "10.1021/ac0262560",
+    "pattern": "comparative",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 2,
+    "doi": "10.1021/ac0262560",
+    "pattern": "reporter",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 9,
+    "doi": "10.1038/s41596-018-0006-9",
+    "pattern": "MS3",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 9,
+    "doi": "10.1038/s41596-018-0006-9",
+    "pattern": "multi-notch",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 9,
+    "doi": "10.1038/s41596-018-0006-9",
+    "pattern": "SPS",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 9,
+    "doi": "10.1038/s41596-018-0006-9",
+    "pattern": "TMT-10",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 9,
+    "doi": "10.1038/s41596-018-0006-9",
+    "pattern": "TMT10",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 30,
+    "doi": "10.1016/j.cell.2020.08.036",
+    "pattern": "201",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 30,
+    "doi": "10.1016/j.cell.2020.08.036",
+    "pattern": "32",
+    "count": 1,
+    "examples": [
+      "levels. We quantified the relative protein levels from over 12,000 genes across 32 normal human tissues. Tissue-specific or tissue-enriched proteins were identified and compared to transcriptome data. M"
+    ]
+  },
+  {
+    "article": 30,
+    "doi": "10.1016/j.cell.2020.08.036",
+    "pattern": "14 donor",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 30,
+    "doi": "10.1016/j.cell.2020.08.036",
+    "pattern": "TMT10",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 30,
+    "doi": "10.1016/j.cell.2020.08.036",
+    "pattern": "MS3",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 32,
+    "doi": "10.1016/j.cell.2019.12.023",
+    "pattern": "375",
+    "count": 1,
+    "examples": [
+      "ugh quantitative profiling of thousands of proteins by mass spectrometry across 375 cell lines from diverse lineages to reveal information undiscovered by DNA and RNA methods. We observe unexpected corre"
+    ]
+  },
+  {
+    "article": 32,
+    "doi": "10.1016/j.cell.2019.12.023",
+    "pattern": "TMT",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 32,
+    "doi": "10.1016/j.cell.2019.12.023",
+    "pattern": "multiplex",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 32,
+    "doi": "10.1016/j.cell.2019.12.023",
+    "pattern": "16",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 11,
+    "doi": "10.1093/nar/gkae1011",
+    "pattern": "42000",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 11,
+    "doi": "10.1093/nar/gkae1011",
+    "pattern": "42,000",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 11,
+    "doi": "10.1093/nar/gkae1011",
+    "pattern": "500",
+    "count": 0,
+    "examples": []
+  },
+  {
+    "article": 11,
+    "doi": "10.1093/nar/gkae1011",
+    "pattern": "534",
+    "count": 1,
+    "examples": [
+      "o PRIDE Archive (the archival component of PRIDE) has reached on average around 534 datasets per month. This has been possible thanks to continuous improvements in infrastructure such as a new file trans"
+    ]
+  }
+]

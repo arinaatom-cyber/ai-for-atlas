@@ -36,12 +36,37 @@ class AnalysisFormatter:
         logger.debug("Formatted %s actionable evidence lines", len(lines))
         return lines
 
-    def to_html(self, evaluation: ProjectEvaluation, *, summary: str = "") -> str:
-        blocks: list[str] = []
-        if summary.strip():
-            blocks.append(
-                f'<p class="cell-summary cell-clip">{self._esc(summary.strip()[: self._max_summary])}</p>'
+    def _summary_blocks(self, summary: str, summary_ru: str = "") -> str:
+        en = summary.strip()[: self._max_summary]
+        ru = summary_ru.strip()[: self._max_summary]
+        if not en and not ru:
+            return ""
+        parts: list[str] = []
+        if en:
+            parts.append(
+                f'<p class="cell-summary cell-clip lang-block lang-en">{self._esc(en)}</p>'
             )
+        if ru and ru != en:
+            parts.append(
+                f'<p class="cell-summary cell-clip lang-block lang-ru">{self._esc(ru)}</p>'
+            )
+        elif ru and not en:
+            parts.append(
+                f'<p class="cell-summary cell-clip lang-block lang-en lang-ru">{self._esc(ru)}</p>'
+            )
+        return "".join(parts)
+
+    def to_html(
+        self,
+        evaluation: ProjectEvaluation,
+        *,
+        summary: str = "",
+        summary_ru: str = "",
+    ) -> str:
+        blocks: list[str] = []
+        summary_html = self._summary_blocks(summary, summary_ru)
+        if summary_html:
+            blocks.append(summary_html)
         actionable = evaluation.actionable_evidence()
         if actionable:
             items = "".join(f"<li>{self.format_evidence_line(e)}</li>" for e in actionable)
@@ -57,7 +82,7 @@ class AnalysisFormatter:
     @staticmethod
     def legacy_html() -> str:
         """Safe placeholder when stored evaluation cannot be parsed."""
-        return '<span class="badge badge-muted">Legacy format — re-scan required</span>'
+        return '<span class="badge badge-muted" data-i18n="legacy_rescan"></span>'
 
     def to_markdown(self, evaluation: ProjectEvaluation, *, summary: str = "") -> str:
         lines: list[str] = []

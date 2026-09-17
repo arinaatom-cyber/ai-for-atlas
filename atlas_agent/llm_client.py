@@ -27,14 +27,47 @@ def _load_system_prompt() -> str:
     return (PROMPTS_DIR / "system.txt").read_text(encoding="utf-8")
 
 
-def is_ollama_available(base_url: str | None = None) -> bool:
+def _ollama_root(base_url: str | None = None) -> str:
     base = (base_url or os.environ.get("OLLAMA_BASE_URL") or DEFAULT_OLLAMA_BASE).rstrip("/")
-    root = base.replace("/v1", "")
+    return base.replace("/v1", "")
+
+
+def ollama_model_names(base_url: str | None = None) -> list[str]:
     try:
-        r = requests.get(f"{root}/api/tags", timeout=3)
+        r = requests.get(f"{_ollama_root(base_url)}/api/tags", timeout=5)
+        if r.status_code != 200:
+            return []
+        models = (r.json().get("models") or [])
+        return [str(m.get("name") or "") for m in models if m.get("name")]
+    except requests.RequestException:
+        return []
+
+
+def ollama_has_model(model: str, base_url: str | None = None) -> bool:
+    want = (model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL).strip()
+    if not want:
+        return bool(ollama_model_names(base_url))
+    base = want.split(":")[0]
+    for name in ollama_model_names(base_url):
+        if name == want or name.startswith(f"{base}:"):
+            return True
+    return False
+
+
+def is_ollama_server_up(base_url: str | None = None) -> bool:
+    try:
+        r = requests.get(f"{_ollama_root(base_url)}/api/tags", timeout=3)
         return r.status_code == 200
     except requests.RequestException:
         return False
+
+
+def is_ollama_available(base_url: str | None = None, model: str | None = None) -> bool:
+    """Ollama запущен и (опционально) нужная модель уже скачана."""
+    if not is_ollama_server_up(base_url):
+        return False
+    m = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
+    return ollama_has_model(m, base_url)
 
 
 def is_gpt4all_available() -> bool:
@@ -68,7 +101,12 @@ def is_claude_available() -> bool:
     return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
 
 
-def _engine_available(engine: str, base_url: str | None = None) -> bool:
+def _engine_available(
+    engine: str,
+    base_url: str | None = None,
+    *,
+    model: str | None = None,
+) -> bool:
     if engine == "zai":
         return is_zai_available()
     if engine == "qwen":
@@ -76,7 +114,7 @@ def _engine_available(engine: str, base_url: str | None = None) -> bool:
     if engine == "claude":
         return is_claude_available()
     if engine == "ollama":
-        return is_ollama_available(base_url)
+        return is_ollama_available(base_url, model=model)
     if engine == "gpt4all":
         return is_gpt4all_available()
     return False
@@ -108,13 +146,15 @@ def resolve_engine(
     base_url: str | None = None,
     *,
     prefer_cloud: bool = True,
+    model: str | None = None,
 ) -> str:
     """Какой движок реально будет использован."""
     p = (provider or "auto").lower()
+    ollama_model = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
     if p != "auto":
         if p == "zai" and is_zai_available():
             return "zai"
-        if p == "ollama" and is_ollama_available(base_url):
+        if p == "ollama" and is_ollama_available(base_url, model=ollama_model):
             return "ollama"
         if p == "gpt4all" and is_gpt4all_available():
             return "gpt4all"
@@ -131,28 +171,35 @@ def resolve_engine(
     if not prefer_cloud:
         order.extend(AUTO_CLOUD_ORDER)
     for engine in order:
-        if _engine_available(engine, base_url):
+        kw = {"model": ollama_model} if engine == "ollama" else {}
+        if _engine_available(engine, base_url, **kw):
             return "zai" if engine == "zai" else ("qwen_cloud" if engine == "qwen" else engine)
     return "local_rules"
 
 
-def list_llm_engines(*, prefer_cloud: bool = True) -> list[dict[str, Any]]:
+def list_llm_engines(*, prefer_cloud: bool = True, model: str | None = None) -> list[dict[str, Any]]:
     """Статус всех провайдеров (для `run_discovery.py llm`)."""
+    ollama_model = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
+    ollama_up = is_ollama_server_up()
+    ollama_ready = is_ollama_available(model=ollama_model)
     rows = [
         ("zai", "Z.AI (GLM)", is_zai_available(), DEFAULT_ZAI_MODEL, "ZAI_API_KEY"),
         ("qwen_cloud", "Qwen (DashScope)", is_qwen_cloud_available(), DEFAULT_QWEN_MODEL, "DASHSCOPE_API_KEY"),
         ("claude", "Claude", is_claude_available(), DEFAULT_CLAUDE_MODEL, "ANTHROPIC_API_KEY"),
-        ("ollama", "Ollama (local)", is_ollama_available(), DEFAULT_OLLAMA_MODEL, "—"),
+        ("ollama", "Ollama (local)", ollama_ready, ollama_model, "—"),
         ("gpt4all", "GPT4All (local)", is_gpt4all_available(), DEFAULT_GPT4ALL_MODEL, "—"),
     ]
-    active = resolve_engine("auto", prefer_cloud=prefer_cloud)
+    active = resolve_engine("auto", prefer_cloud=prefer_cloud, model=ollama_model)
     out: list[dict[str, Any]] = []
-    for eng, label, ok, model, key in rows:
+    for eng, label, ok, default_model, key in rows:
+        note = ""
+        if eng == "ollama" and ollama_up and not ollama_ready:
+            note = f" (server up, pull: ollama pull {ollama_model})"
         out.append({
             "engine": eng,
-            "label": label,
+            "label": label + note,
             "available": ok,
-            "default_model": model,
+            "default_model": default_model,
             "key_env": key,
             "active": eng == active,
         })
@@ -291,7 +338,7 @@ def _run_llm(
 ) -> tuple[str, str, dict]:
     """Returns (raw_text, engine_name, usage_dict)."""
     p = (provider or "auto").lower()
-    engine = resolve_engine(p, base_url, prefer_cloud=prefer_cloud)
+    engine = resolve_engine(p, base_url, prefer_cloud=prefer_cloud, model=model)
 
     if engine == "zai":
         url = (base_url or os.environ.get("ZAI_BASE_URL") or DEFAULT_ZAI_BASE).rstrip("/") + "/"
@@ -317,7 +364,7 @@ def _run_llm(
             max_tokens=max_tokens,
             system=system,
         )
-        return raw, "ollama", usage
+        return raw, f"ollama:{m}", usage
 
     if engine == "gpt4all":
         mf = gpt4all_model or model or DEFAULT_GPT4ALL_MODEL
@@ -350,7 +397,7 @@ def ping_llm(
     prefer_cloud: bool = True,
 ) -> dict[str, Any]:
     """Короткий запрос к активному движку (для `run_discovery.py llm --test`)."""
-    engine = resolve_engine(provider, base_url, prefer_cloud=prefer_cloud)
+    engine = resolve_engine(provider, base_url, prefer_cloud=prefer_cloud, model=model)
     if engine == "local_rules":
         return {"ok": False, "engine": engine, "error": "no_llm_engine"}
     try:
@@ -389,7 +436,7 @@ def analyze_report(
     if not use_ai:
         return {"available": False, "error": "ИИ отключён"}
 
-    engine = resolve_engine(provider, base_url, prefer_cloud=prefer_cloud)
+    engine = resolve_engine(provider, base_url, prefer_cloud=prefer_cloud, model=model)
     compact = engine.startswith("gpt4all")
     system = _load_system_prompt() if not compact else "TMT atlas assistant"
     slim = _slim_report(report_payload, compact=compact)
