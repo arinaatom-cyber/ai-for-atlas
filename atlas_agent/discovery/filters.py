@@ -448,6 +448,9 @@ def classify_candidate(
     elif verdict not in ("already_in_catalog",):
         mq = assess_sample_material(out, blob)
         out.update(mq)
+        if mq["qc_status"] == "rejected":
+            out["verdict"] = "rejected"
+            out["filter_reasons"] = reasons + mq["qc_reasons"]
 
     return out
 

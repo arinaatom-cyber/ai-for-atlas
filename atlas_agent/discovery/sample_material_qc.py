@@ -4,7 +4,7 @@ QC материала образцов для Discovery (не меняет proje
 Статусы:
 - candidate — подходит под атлас
 - requires_manual_check — смешанный dataset (tissue + organoids/spheroids)
-- rejected — не подходит
+- rejected — не подходит, в том числе human без прописанного материала (ткань / клеточная линия)
 
 Атлас: человеческие ткани и клеточные линии. Плазма/сыворотка/моча — нет.
 """
@@ -234,17 +234,9 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
             )
         return _result("candidate", ["Material matches atlas criteria (tissue or cell line)"], included_hits, excluded_hits)
 
-    if CLINICAL_HUMAN.search(blob) or (item.get("human") is True):
-        return _result(
-            "requires_manual_check",
-            ["Human confirmed; tissue/cell-line type unclear"],
-            included_hits,
-            excluded_hits,
-        )
-
     return _result(
         "rejected",
-        ["No confirmed human tissue or cancer cell-line material"],
+        ["Material not specified — no tissue/cell line in metadata or article"],
         included_hits,
         excluded_hits,
     )

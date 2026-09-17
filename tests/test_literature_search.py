@@ -199,3 +199,22 @@ def test_literature_semantic_keeps_strong_cohort():
     out = literature_semantic_candidates(pubs, known_accessions=set(), min_score=0.55)
     assert len(out) == 1
     assert out[0]["pmid"] == "41966223"
+
+
+def test_literature_semantic_drops_unspecified_material():
+    pubs = [
+        {
+            "pmid": "11111111",
+            "title": "Human TMT proteomics cohort",
+            "abstract": "Patients were profiled with TMT 11-plex quantitative proteomics.",
+            "abstract_ai": {
+                "atlas_fit": "maybe",
+                "atlas_fit_score": 0.7,
+                "material": "unclear",
+                "material_suitable": False,
+            },
+            "abstract_reader": "gpt4all:test",
+        }
+    ]
+    out = literature_semantic_candidates(pubs, known_accessions=set(), min_score=0.55)
+    assert out == []

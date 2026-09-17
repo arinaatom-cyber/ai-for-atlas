@@ -283,8 +283,8 @@
   "funnel": {
     "raw_novel_repos": 838,
     "candidates": 56,
-    "manual_check": 19,
-    "rejected_material": 72,
+    "manual_check": 16,
+    "rejected_material": 380,
     "filtered_out": 833,
     "already_in_catalog": 13
   },

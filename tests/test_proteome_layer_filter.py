@@ -76,3 +76,17 @@ def test_tmt_plex_unspecified_goes_manual_not_filtered():
     out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
     assert out["verdict"] == "requires_manual_check"
     assert "tmt_plex_unspecified" in out["filter_reasons"]
+
+
+def test_unspecified_material_rejected_even_if_plex_unknown():
+    item = {
+        "title": "Human TMT proteomics cohort",
+        "accession": "PXD099998",
+        "source": "pride_api",
+        "human": True,
+        "tmt_detected": True,
+        "description": "Quantitative proteomics of patients",
+    }
+    out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
+    assert out["verdict"] == "rejected"
+    assert any("Material not specified" in r for r in out["filter_reasons"])

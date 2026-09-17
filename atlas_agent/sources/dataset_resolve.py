@@ -13,6 +13,7 @@ from atlas_agent.discovery.evaluation.schemas import ModelTrustLevel
 from atlas_agent.discovery.evaluation.thresholds import LITERATURE_SEMANTIC_MIN
 from atlas_agent.discovery.fit_rules import is_non_study_literature
 from atlas_agent.discovery.literature_search import publication_has_repository_id
+from atlas_agent.discovery.sample_material_qc import assess_sample_material
 from atlas_agent.sources.pride import find_pride_project_by_pmid, search_pride_by_terms
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
@@ -228,6 +229,29 @@ def resolve_semantic_publications(
     return out
 
 
+def _literature_material_specified(pub: dict[str, Any], title: str, abstract: str) -> bool:
+    """Keep literature only when tissue/cell-line material is written in AI fields or text."""
+    ai = pub.get("abstract_ai") or {}
+    material = str(ai.get("material") or "").strip().lower()
+    if material in ("plasma", "serum", "blood", "organoid", "pdx"):
+        return False
+    if ai.get("material_suitable") is False:
+        return False
+    if material and material not in ("unclear", "", "other"):
+        return True
+    blob = " ".join(
+        [
+            title,
+            abstract,
+            str(pub.get("abstract_snippet") or ""),
+            str(ai.get("summary_en") or ""),
+            str(ai.get("summary_ru") or ""),
+        ]
+    )
+    mq = assess_sample_material({**pub, "human": True}, blob)
+    return mq.get("qc_status") in ("candidate", "requires_manual_check")
+
+
 def literature_semantic_candidates(
     pubs: list[dict[str, Any]],
     *,
@@ -246,6 +270,8 @@ def literature_semantic_candidates(
         title = str(pub.get("title") or "")
         abstract = str(pub.get("abstract") or "")
         if is_non_study_literature(title, abstract):
+            continue
+        if not _literature_material_specified(pub, title, abstract):
             continue
 
         fit, score = _atlas_fit(pub)

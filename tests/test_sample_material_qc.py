@@ -109,9 +109,10 @@ def test_pdc_clinical_tumor_candidate():
     assert "pdc_clinical_tumor" in r["material_signals"]["included"]
 
 
-def test_unclear_human_manual():
+def test_unclear_human_rejected():
     r = assess_sample_material(_item(
         title="Human clinical proteomics cohort TMT",
         description="homosapiens subjects cohort analysis",
     ))
-    assert r["qc_status"] == "requires_manual_check"
+    assert r["qc_status"] == "rejected"
+    assert any("Material not specified" in x for x in r["qc_reasons"])
