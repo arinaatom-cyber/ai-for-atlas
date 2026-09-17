@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
   "generated_at": "2026-09-17T11:42:09.731383+00:00",
-  "pipeline_git_commit": "d990c57da5f1ef6563481a71a39faae0f435605c",
+  "pipeline_git_commit": "723a3048668e6062b4988ce9a263c05046dcb671",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -116,8 +116,8 @@
         "language": "CSV",
         "script": "data/projects.csv",
         "agent": "—",
-        "purpose_ru": "Мастер-таблица TMT-проектов (только чтение для Discovery)",
-        "purpose_en": "Master TMT project table (read-only for Discovery)"
+        "purpose_ru": "Мастер-таблица data/projects.csv (Excel TMT ATLAS — копия куратора; сверка, не автослияние)",
+        "purpose_en": "Master table data/projects.csv (Excel TMT ATLAS is the curator copy; compare, never auto-merge)"
       },
       {
         "id": "scan",
@@ -160,8 +160,8 @@
         "language": "Python",
         "script": "atlas_agent/discovery/abstract_reader.py",
         "agent": "abstract_reader",
-        "purpose_ru": "Абстракт: LLM читает первые N (abstract_llm_max); остальные — regex fallback",
-        "purpose_en": "Abstract: LLM reads first N (abstract_llm_max); remainder uses regex fallback"
+        "purpose_ru": "Абстракт: LLM читает первые N (abstract_llm_max); остальные — regex; препринты помечаются отдельно",
+        "purpose_en": "Abstract: LLM reads first N (abstract_llm_max); remainder uses regex; preprints are flagged separately"
       },
       {
         "id": "similarity",
@@ -171,8 +171,8 @@
         "language": "Python",
         "script": "atlas_agent/revisor/similarity.py",
         "agent": "—",
-        "purpose_ru": "Jaccard по токенам title/organ/disease vs каталог (0–100%)",
-        "purpose_en": "Jaccard on title/organ/disease tokens vs catalog (0–100%)"
+        "purpose_ru": "Jaccard-подсказка ≥0.18; ≥0.72 — ручная проверка (не авто-исключение). Точный ID/PMID/DOI — already in catalog",
+        "purpose_en": "Jaccard hint ≥0.18; ≥0.72 → manual check (not auto-excluded). Exact ID/PMID/DOI → already in catalog"
       },
       {
         "id": "evaluation",
@@ -238,7 +238,7 @@
     "quantification": "TMT/isobaric >6-plex (reject TMT6 / ≤6-plex; TMT18 allowed)",
     "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
     "material": "Human tissue (tumor / adjacent / normal) or human cancer cell lines (reject plasma/serum/urine-only)",
-    "literature": "Europe PMC semantic screening; repository IDs from data availability only"
+    "literature": "Europe PMC semantic screening; repository IDs from data availability only; preprints tagged (is_preprint) and not auto-excluded"
   },
   "exclusion_criteria": [
     "Non-human, mixed, or xenograft-only",
@@ -326,7 +326,15 @@
     "atlas_fit_maybe": 17,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
-    "regex_only_publications": []
+    "regex_only_publications": [],
+    "preprints": null,
+    "peer_reviewed": null
+  },
+  "dedup": {
+    "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
+    "jaccard_hint": 0.18,
+    "jaccard_close_match": 0.72,
+    "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
     "pride": 79
@@ -343,5 +351,7 @@
     "no_files": 19
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
-  "catalog_read_only": true
+  "catalog_read_only": true,
+  "catalog_runtime": "data/projects.csv",
+  "catalog_workbook": "project of Proteomics.xlsx (TMT ATLAS)"
 }
