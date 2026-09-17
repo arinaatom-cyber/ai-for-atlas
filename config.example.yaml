@@ -28,7 +28,7 @@ agent:
 # ИИ — ключи в .env (не коммитить!)
 llm:
   enabled: true
-  provider: "auto"          # auto | zai | qwen | claude | ollama | gpt4all
+  provider: "auto"          # auto | zai | qwen | claude | grok | ollama | gpt4all
   prefer_cloud: true
   model: "glm-4-flash"
   base_url: "https://api.z.ai/api/paas/v4"

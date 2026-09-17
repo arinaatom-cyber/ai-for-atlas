@@ -4,6 +4,7 @@ from __future__ import annotations
 from typing import Any
 
 from atlas_agent.discovery.evaluation.report import evaluate_discovery_report_from_config
+from atlas_agent.discovery.methods_manifest import build_methods_manifest
 from atlas_agent.viz.portal_index import format_finding_note, resolve_publication_links
 
 
@@ -31,4 +32,5 @@ def finalize_discovery_report(report: dict[str, Any], cfg: dict[str, Any]) -> di
             item["finding_note"] = format_finding_note(item)
 
     evaluate_discovery_report_from_config(report, cfg)
+    report["methods_manifest"] = build_methods_manifest(report, cfg)
     return report

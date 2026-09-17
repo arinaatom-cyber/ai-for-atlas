@@ -1,9 +1,88 @@
 {
   "pipeline": "Atlas Discovery Agent",
-  "pipeline_version": "2026.07.15-nature",
-  "generated_at": "2026-09-14T11:56:53.040581+00:00",
-  "python": "3.12.10",
-  "platform": "Windows-11-10.0.26200-SP0",
+  "generated_at": "2026-09-17T10:28:51.983045+00:00",
+  "ai_agents": {
+    "pipeline_agents": [
+      {
+        "id": "discovery_scan",
+        "role_ru": "Сканирование репозиториев",
+        "role_en": "Repository scan",
+        "detail_ru": "PRIDE, PDC, MassIVE, iProX — rule-based фильтры TMT >6-plex",
+        "detail_en": "PRIDE, PDC, MassIVE, iProX — rule-based TMT >6-plex filters"
+      },
+      {
+        "id": "abstract_reader",
+        "role_ru": "ИИ-разбор абстрактов",
+        "role_en": "Abstract AI reader",
+        "detail_ru": "Europe PMC: смысл, материал, TMT-плекс, atlas_fit",
+        "detail_en": "Europe PMC: meaning, material, TMT plex, atlas_fit"
+      },
+      {
+        "id": "evaluation",
+        "role_ru": "Оценка строк таблицы",
+        "role_en": "Table row evaluation",
+        "detail_ru": "Tier A–D, evidence chain, display_fit (rules + LLM trust)",
+        "detail_en": "Tier A–D, evidence chain, display_fit (rules + LLM trust)"
+      },
+      {
+        "id": "cohort_literature",
+        "role_ru": "Когорты из литературы",
+        "role_en": "Literature cohorts",
+        "detail_ru": "Europe PMC text mining, patient cohorts",
+        "detail_en": "Europe PMC text mining, patient cohorts"
+      }
+    ],
+    "llm_providers": [
+      {
+        "id": "zai",
+        "name": "Z.AI GLM",
+        "env": "ZAI_API_KEY",
+        "trust": "high"
+      },
+      {
+        "id": "qwen_cloud",
+        "name": "Qwen (DashScope)",
+        "env": "DASHSCOPE_API_KEY",
+        "trust": "high"
+      },
+      {
+        "id": "claude",
+        "name": "Claude",
+        "env": "ANTHROPIC_API_KEY",
+        "trust": "high"
+      },
+      {
+        "id": "grok",
+        "name": "Grok (xAI)",
+        "env": "XAI_API_KEY",
+        "trust": "high"
+      },
+      {
+        "id": "ollama",
+        "name": "Ollama (local)",
+        "env": "—",
+        "trust": "medium"
+      },
+      {
+        "id": "gpt4all",
+        "name": "GPT4All (local)",
+        "env": "—",
+        "trust": "low"
+      },
+      {
+        "id": "local_rules",
+        "name": "Regex / rules",
+        "env": "—",
+        "trust": "rules"
+      }
+    ],
+    "llm_active": "Ollama (local)",
+    "llm_available": [
+      "Ollama (local)",
+      "GPT4All (local)"
+    ],
+    "llm_active_engine": "ollama"
+  },
   "catalog_policy": {
     "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
     "catalog_mirror": "data/projects.csv",
@@ -44,13 +123,25 @@
   "filters_applied": {
     "human_only": true,
     "allowed_tmt_plexes": [
+      7,
+      8,
+      9,
       10,
       11,
       12,
-      16
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
     ],
-    "min_tmt_channels": 10,
-    "max_tmt_channels": 16,
+    "reject_tmt_plexes": [
+      2,
+      6
+    ],
+    "min_tmt_channels": 7,
+    "max_tmt_channels": 18,
     "allow_healthy_only": true,
     "allow_cancer_only": true,
     "allow_case_control": true,
@@ -69,28 +160,27 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 95,
-    "candidates": 1,
-    "manual_check": 16,
+    "raw_novel_repos": 117,
+    "candidates": 12,
+    "manual_check": 2,
     "rejected_material": 0,
-    "filtered_out": 56,
+    "filtered_out": 187,
     "already_in_catalog": 10
   },
   "literature_screening": {
-    "publications_scanned": 28,
-    "abstract_llm_read": 0,
-    "abstract_regex_only": 28,
+    "publications_scanned": 6,
+    "abstract_llm_read": 6,
+    "abstract_regex_only": 0,
     "atlas_fit_yes": 0,
-    "atlas_fit_maybe": 12,
+    "atlas_fit_maybe": 2,
     "literature_resolved": 0,
     "semantic_from_abstract": 0
   },
   "data_availability_gate": {
-    "quant_table": 4,
-    "omics_protein": 4,
-    "raw_only": 2,
-    "omics_unknown": 16,
-    "no_files": 14
+    "quant_table": 12,
+    "omics_protein": 12,
+    "no_files": 2,
+    "omics_unknown": 2
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true

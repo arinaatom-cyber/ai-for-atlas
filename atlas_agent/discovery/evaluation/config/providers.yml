@@ -20,6 +20,8 @@ providers:
   claude: cloud
   zai: cloud
   qwen: cloud
+  qwen_cloud: cloud
+  grok: cloud
   openai: cloud
   anthropic: cloud
   ollama: medium

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import html
-import json
 import re
 from pathlib import Path
 
@@ -11,6 +10,7 @@ from atlas_agent.viz.discovery_table_shared import (
     build_unified_discovery_rows,
 )
 from atlas_agent.viz.site_components import (
+    ai_agents_panel,
     kpi_grid,
     meta_pill_text,
     meta_time,
@@ -59,11 +59,9 @@ def _methods_panel(report: dict) -> str:
   <h2 class="section-title" data-i18n="sec_methods"></h2>
   <p class="section-desc" data-i18n="sec_methods_desc"></p>
   <div class="methods-meta">
-    <span class="meta-pill"><span data-i18n="meta_pipeline"></span> <b>{html.escape(str(m.get("pipeline") or "Atlas Discovery Agent"))}</b></span>
-    <span class="meta-pill"><span data-i18n="meta_version"></span> <b>{html.escape(str(m.get("pipeline_version") or "—"))}</b></span>
-    <span class="meta-pill"><span data-i18n="meta_python"></span> <b>{html.escape(str(m.get("python") or "—"))}</b></span>
-    <span class="meta-pill"><span data-i18n="meta_scan_date"></span> <b>{html.escape(str(m.get("generated_at") or report.get("generated_at") or "—"))}</b></span>
+    <span class="meta-pill"><span data-i18n="meta_scan_date"></span> <b>{html.escape(str(m.get("generated_at") or report.get("generated_at") or "—")[:19].replace("T", " "))}</b></span>
   </div>
+  {ai_agents_panel(m)}
   <div class="methods-grid">
     <div class="methods-card">
       <h3 data-i18n="methods_funnel"></h3>
@@ -180,32 +178,11 @@ def _guide_panel() -> str:
 
 
 def _technical_panel(report: dict) -> str:
-    manifest = report.get("methods_manifest") or {}
-    manifest_json = html.escape(json.dumps(manifest, ensure_ascii=False, indent=2)[:12000])
     return f"""
 <section class="section">
   <h2 class="section-title" data-i18n="tech_title"></h2>
   <p class="section-desc" data-i18n="tech_lead"></p>
-  <div class="guide-block">
-    <h3 data-i18n="sec_methods"></h3>
-    <ul>
-      <li data-i18n="tech_step1"></li>
-      <li data-i18n="tech_step2"></li>
-      <li data-i18n="tech_step3"></li>
-      <li data-i18n="tech_step4"></li>
-      <li data-i18n="tech_step5"></li>
-      <li data-i18n="tech_step6"></li>
-    </ul>
-  </div>
   {_methods_panel(report)}
-  <div class="guide-block">
-    <h3 data-i18n="tech_llm_title"></h3>
-    <p data-i18n="tech_llm_desc"></p>
-  </div>
-  <details class="methods-collapse">
-    <summary data-i18n="tech_manifest_title"></summary>
-    <pre class="tech-pre">{manifest_json or "—"}</pre>
-  </details>
 </section>"""
 
 

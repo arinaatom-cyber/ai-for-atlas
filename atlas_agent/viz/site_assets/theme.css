@@ -1011,6 +1011,35 @@ a.id-no-acc:hover {
   border: none;
 }
 
+.agents-panel {
+  margin: 16px 0 20px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.agents-panel h4 {
+  margin: 14px 0 8px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.agents-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.agents-list li {
+  margin-bottom: 6px;
+}
+
+.agents-active b {
+  color: var(--ok);
+}
+
 .section-head {
   display: flex;
   align-items: baseline;

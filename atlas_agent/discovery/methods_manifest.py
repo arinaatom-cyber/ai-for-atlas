@@ -1,10 +1,10 @@
 """Reproducibility manifest for Discovery scans (Methods / supplementary)."""
 from __future__ import annotations
 
-import platform
-import sys
 from datetime import datetime, timezone
 from typing import Any
+
+from atlas_agent.discovery.ai_agents import agents_for_site
 
 
 def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = None) -> dict[str, Any]:
@@ -16,10 +16,8 @@ def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = 
 
     return {
         "pipeline": "Atlas Discovery Agent",
-        "pipeline_version": "2026.07.15-nature",
         "generated_at": report.get("generated_at") or datetime.now(timezone.utc).isoformat(),
-        "python": sys.version.split()[0],
-        "platform": platform.platform(),
+        "ai_agents": agents_for_site(cfg),
         "catalog_policy": report.get("policy") or {},
         "inclusion_criteria": {
             "organism": "Homo sapiens only (reject mouse/rat/chicken and mixed)",

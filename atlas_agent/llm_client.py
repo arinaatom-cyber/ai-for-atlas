@@ -17,9 +17,11 @@ DEFAULT_ZAI_BASE = "https://api.z.ai/api/paas/v4"
 DEFAULT_ZAI_MODEL = "glm-4-flash"
 DEFAULT_QWEN_MODEL = "qwen-plus"
 DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-6"
+DEFAULT_GROK_BASE = "https://api.x.ai/v1"
+DEFAULT_GROK_MODEL = "grok-2-latest"
 
 # При prefer_cloud=True (по умолчанию): облако с ключом → Ollama → GPT4All → regex.
-AUTO_CLOUD_ORDER = ("zai", "qwen", "claude")
+AUTO_CLOUD_ORDER = ("zai", "qwen", "claude", "grok")
 AUTO_LOCAL_ORDER = ("ollama", "gpt4all")
 
 
@@ -101,6 +103,14 @@ def is_claude_available() -> bool:
     return bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
 
 
+def grok_api_key() -> str:
+    return os.environ.get("XAI_API_KEY", "").strip() or os.environ.get("GROK_API_KEY", "").strip()
+
+
+def is_grok_available() -> bool:
+    return bool(grok_api_key())
+
+
 def _engine_available(
     engine: str,
     base_url: str | None = None,
@@ -113,6 +123,8 @@ def _engine_available(
         return is_qwen_cloud_available()
     if engine == "claude":
         return is_claude_available()
+    if engine == "grok":
+        return is_grok_available()
     if engine == "ollama":
         return is_ollama_available(base_url, model=model)
     if engine == "gpt4all":
@@ -138,6 +150,8 @@ def is_llm_available(provider: str, *, prefer_cloud: bool = True) -> bool:
         return is_qwen_cloud_available()
     if p == "claude":
         return is_claude_available()
+    if p == "grok":
+        return is_grok_available()
     return False
 
 
@@ -162,6 +176,8 @@ def resolve_engine(
             return "qwen_cloud"
         if p == "claude" and is_claude_available():
             return "claude"
+        if p == "grok" and is_grok_available():
+            return "grok"
         return "local_rules"
 
     order: list[str] = []
@@ -173,7 +189,13 @@ def resolve_engine(
     for engine in order:
         kw = {"model": ollama_model} if engine == "ollama" else {}
         if _engine_available(engine, base_url, **kw):
-            return "zai" if engine == "zai" else ("qwen_cloud" if engine == "qwen" else engine)
+            if engine == "zai":
+                return "zai"
+            if engine == "qwen":
+                return "qwen_cloud"
+            if engine == "grok":
+                return "grok"
+            return engine
     return "local_rules"
 
 
@@ -186,6 +208,7 @@ def list_llm_engines(*, prefer_cloud: bool = True, model: str | None = None) -> 
         ("zai", "Z.AI (GLM)", is_zai_available(), DEFAULT_ZAI_MODEL, "ZAI_API_KEY"),
         ("qwen_cloud", "Qwen (DashScope)", is_qwen_cloud_available(), DEFAULT_QWEN_MODEL, "DASHSCOPE_API_KEY"),
         ("claude", "Claude", is_claude_available(), DEFAULT_CLAUDE_MODEL, "ANTHROPIC_API_KEY"),
+        ("grok", "Grok (xAI)", is_grok_available(), DEFAULT_GROK_MODEL, "XAI_API_KEY"),
         ("ollama", "Ollama (local)", ollama_ready, ollama_model, "—"),
         ("gpt4all", "GPT4All (local)", is_gpt4all_available(), DEFAULT_GPT4ALL_MODEL, "—"),
     ]
@@ -385,6 +408,19 @@ def _run_llm(
         raw, usage = _chat_claude(user_prompt, model=m, max_tokens=max_tokens, system=system)
         return raw, "claude", usage
 
+    if engine == "grok":
+        url = (base_url or os.environ.get("XAI_BASE_URL") or DEFAULT_GROK_BASE).rstrip("/") + "/"
+        m = model or os.environ.get("GROK_MODEL") or DEFAULT_GROK_MODEL
+        raw, usage = _chat_openai_compatible(
+            user_prompt,
+            model=m,
+            base_url=url,
+            api_key=grok_api_key(),
+            max_tokens=max_tokens,
+            system=system,
+        )
+        return raw, f"grok:{m}", usage
+
     raise RuntimeError("no_llm_engine")
 
 
@@ -477,8 +513,8 @@ def analyze_report(
 
     out = generate_local_analysis(report_payload, df)
     out["llm_note"] = (
-        "Облачный ИИ: задайте ZAI_API_KEY (Z.AI GLM), DASHSCOPE_API_KEY (Qwen) "
-        "или ANTHROPIC_API_KEY (Claude). Локально: Ollama или pip install gpt4all."
+        "Облачный ИИ: ZAI_API_KEY, DASHSCOPE_API_KEY (Qwen), ANTHROPIC_API_KEY (Claude), "
+        "XAI_API_KEY (Grok). Локально: Ollama или pip install gpt4all."
     )
     return out
 
