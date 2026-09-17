@@ -62,7 +62,8 @@
       "still_rejected": 193,
       "qwen_read": 82,
       "display_filled": 64
-    }
+    },
+    "quality_metrics": {}
   },
   "catalog_profile": {
     "n_rows": 123,

@@ -1,0 +1,16 @@
+---
+description: Always commit and push finished work to GitHub (origin main)
+alwaysApply: true
+---
+
+# Always update GitHub
+
+After finishing work that belongs in the repo or on GitHub Pages:
+
+1. Commit the relevant files.
+2. Run `git push origin HEAD` (this repo uses `main`).
+
+Do this without waiting to be asked. Do not force-push. Do not skip hooks.
+
+Never commit `.env`, secrets, `.coverage`, or overwrite `data/projects.csv`.
+If commit or push fails, report the error and stop.

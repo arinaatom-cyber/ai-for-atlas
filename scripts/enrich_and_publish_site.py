@@ -114,7 +114,7 @@ def enrich_report(report: dict, cfg: dict) -> dict:
     return report
 
 
-def enrich_nature_quality(report: dict, cfg: dict) -> dict:
+def enrich_scan_quality(report: dict, cfg: dict) -> dict:
     from atlas_agent.discovery.benchmark import evaluate_literature_benchmark, evaluate_project_benchmark
     from atlas_agent.revisor.similarity import annotate_candidates
     from atlas_agent.sources.projects_table import load_projects_table
@@ -165,7 +165,7 @@ def main() -> int:
     report = json.loads(latest.read_text(encoding="utf-8"))
     print("Обогащение finding_note + data availability…")
     report = enrich_report(report, cfg)
-    report = enrich_nature_quality(report, cfg)
+    report = enrich_scan_quality(report, cfg)
     report = sanitize_report_for_site(report)
     latest.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     site = publish_discovery_site(report, ROOT)

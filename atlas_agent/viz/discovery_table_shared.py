@@ -141,6 +141,35 @@ def _type_badge(kind: str) -> str:
     return _i18n_badge(keys.get(kind, "badge_paper"), css)
 
 
+def item_is_preprint(item: dict | None, pubs_by_pmid: dict[str, dict] | None = None) -> bool:
+    if not item:
+        return False
+    if item.get("is_preprint") is True:
+        return True
+    if str(item.get("publication_status") or "").lower() == "preprint":
+        return True
+    if str(item.get("epmc_source") or "").upper() == "PPR":
+        return True
+    if not pubs_by_pmid:
+        return False
+    pmid = _norm_pmid(item)
+    pub = pubs_by_pmid.get(pmid) if pmid else None
+    if not pub or pub is item:
+        return False
+    return item_is_preprint(pub)
+
+
+def _type_cell(
+    kind: str,
+    item: dict | None = None,
+    pubs_by_pmid: dict[str, dict] | None = None,
+) -> str:
+    html = _type_badge(kind)
+    if item_is_preprint(item, pubs_by_pmid):
+        html += " " + _i18n_badge("badge_preprint", "badge-warn", title_key="badge_preprint_hint")
+    return html
+
+
 def unified_weight_cell(
     *,
     evaluation: ProjectEvaluation | None = None,
@@ -566,8 +595,8 @@ def _design_cell(item: dict) -> str:
     return f'<div class="cell-stack cell-design-block">{"".join(bits)}</div>'
 
 
-def _main_finding_cell(item: dict) -> str:
-    """Short scientific excerpt only — no LLM/PDS/source badges."""
+def finding_plain_text(item: dict, *, limit: int = 400) -> str:
+    """Same excerpt as the site «Кратко» column, without HTML."""
     candidates = [
         item.get("abstract_snippet"),
         item.get("abstract"),
@@ -577,14 +606,67 @@ def _main_finding_cell(item: dict) -> str:
         item.get("description"),
         item.get("sample_processing_protocol"),
         item.get("article_description"),
+        item.get("finding"),
+        item.get("finding_summary"),
     ]
-    snip = ""
     for raw in candidates:
         text = re.sub(r"<[^>]+>", " ", str(raw or ""))
         text = sentence_cap(re.sub(r"\s+", " ", text).strip())
         if text and not is_stub_description(text):
-            snip = text
-            break
+            return text[:limit]
+    return ""
+
+
+def flatten_candidate_row(item: dict, *, profile: dict | None = None) -> dict[str, str]:
+    """Flat columns shared by the Discovery table and supplementary CSV."""
+    acc = str(item.get("accession") or item.get("project_accession") or item.get("linked_accession") or "").strip()
+    organ = _organ_text(item, profile=profile)
+    disease = _disease_text(item, profile=profile)
+    finding = finding_plain_text(item)
+    tmt = str(item.get("tmt_label") or "").strip()
+    if not tmt and item.get("inferred_plex"):
+        tmt = f"TMT {item.get('inferred_plex')}-plex"
+    if item.get("tmt_plex_unspecified"):
+        tmt = tmt or "TMT plex unspecified"
+    verdict = str(item.get("verdict") or item.get("qc_status") or "")
+    try:
+        vlabel, _, _ = project_verdict(item)
+        if vlabel:
+            verdict = vlabel
+    except Exception:
+        pass
+    pmid = re.sub(r"\D", "", str(item.get("pmid") or ""))
+    url = str(item.get("repository_url") or item.get("url") or repository_url(acc) or "")
+    return {
+        "accession": acc,
+        "source": source_label(item),
+        "year": str(item.get("year") or item.get("publication_date") or item.get("submission_date") or "")[:10],
+        "title": str(item.get("title") or ""),
+        "organ": organ,
+        "disease": disease,
+        "finding": finding,
+        "tmt_label": tmt,
+        "verdict": verdict,
+        "pmid": pmid,
+        "url": url,
+    }
+
+
+def attach_flat_display_fields(item: dict, *, profile: dict | None = None) -> dict:
+    """Persist site columns onto the JSON item (organ / disease / finding)."""
+    row = flatten_candidate_row(item, profile=profile)
+    item["organ"] = row["organ"]
+    item["disease"] = row["disease"]
+    item["finding"] = row["finding"]
+    item["finding_summary"] = row["finding"]
+    if row["tmt_label"] and not item.get("tmt_label"):
+        item["tmt_label"] = row["tmt_label"]
+    return item
+
+
+def _main_finding_cell(item: dict) -> str:
+    """Short scientific excerpt only — no LLM/PDS/source badges."""
+    snip = finding_plain_text(item, limit=400)
     if not snip:
         return '<span class="cell-empty">—</span>'
     return (
@@ -893,13 +975,15 @@ def build_unified_discovery_rows(
         passed = bucket == "candidate" and vlabel == "Candidate"
         simple = "1" if passed else "0"
         row_cls = ' class="row-pride-manual"' if bucket == "repository_manual" else ""
+        preprint = "1" if item_is_preprint(it, pubs_by_pmid) else "0"
         rows.append(
             f"<tr{row_cls} data-type='project' data-src='{src_key}' "
             f"data-bucket='{bucket}' data-simple='{simple}' "
+            f"data-preprint='{preprint}' "
             f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
-            f"<td class='col-type'>{_type_badge('project')}</td>"
+            f"<td class='col-type'>{_type_cell('project', it, pubs_by_pmid)}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc, pmid=pmid)}</td>"
@@ -957,12 +1041,14 @@ def build_unified_discovery_rows(
         evaluation = _resolve_evaluation(it, kind=lit_kind, has_accession=bool(acc))
         tier = it.get("confidence_tier") or evaluation.confidence
 
+        preprint = "1" if item_is_preprint(it, pubs_by_pmid) else "0"
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
+            f"data-preprint='{preprint}' "
             f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
-            f"<td class='col-type'>{_type_badge(kind)}</td>"
+            f"<td class='col-type'>{_type_cell(kind, it, pubs_by_pmid)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid)}</td>"

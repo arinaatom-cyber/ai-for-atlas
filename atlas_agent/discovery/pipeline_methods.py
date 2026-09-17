@@ -23,8 +23,8 @@ PIPELINE_STEPS: list[dict[str, str]] = [
         "language": "CSV",
         "script": "data/projects.csv",
         "agent": "—",
-        "purpose_ru": "Мастер-таблица TMT-проектов (только чтение для Discovery)",
-        "purpose_en": "Master TMT project table (read-only for Discovery)",
+        "purpose_ru": "Мастер-таблица data/projects.csv (Excel TMT ATLAS — копия куратора; сверка, не автослияние)",
+        "purpose_en": "Master table data/projects.csv (Excel TMT ATLAS is the curator copy; compare, never auto-merge)",
     },
     {
         "id": "scan",
@@ -67,8 +67,8 @@ PIPELINE_STEPS: list[dict[str, str]] = [
         "language": "Python",
         "script": "atlas_agent/discovery/abstract_reader.py",
         "agent": "abstract_reader",
-        "purpose_ru": "Абстракт / статья: орган, материал, TMT; если статьи нет — карточка репозитория",
-        "purpose_en": "Abstract / paper: organ, material, TMT; repository card if no paper",
+        "purpose_ru": "Абстракт: LLM читает первые N (abstract_llm_max); остальные — regex; препринты помечаются отдельно",
+        "purpose_en": "Abstract: LLM reads first N (abstract_llm_max); remainder uses regex; preprints are flagged separately",
     },
     {
         "id": "similarity",
@@ -78,8 +78,8 @@ PIPELINE_STEPS: list[dict[str, str]] = [
         "language": "Python",
         "script": "atlas_agent/revisor/similarity.py",
         "agent": "—",
-        "purpose_ru": "Jaccard по токенам title/organ/disease vs каталог (0–100%)",
-        "purpose_en": "Jaccard on title/organ/disease tokens vs catalog (0–100%)",
+        "purpose_ru": "Jaccard-подсказка ≥0.18; ≥0.72 — ручная проверка (не авто-исключение). Точный ID/PMID/DOI — already in catalog",
+        "purpose_en": "Jaccard hint ≥0.18; ≥0.72 → manual check (not auto-excluded). Exact ID/PMID/DOI → already in catalog",
     },
     {
         "id": "evaluation",

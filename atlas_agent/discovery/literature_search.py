@@ -165,5 +165,7 @@ def search_atlas_literature(
         "drop_reasons": drop_reasons,
         "returned": len(trimmed),
         "with_repository_id": sum(1 for p in trimmed if publication_has_repository_id(p)),
+        "preprints": sum(1 for p in trimmed if p.get("is_preprint")),
+        "peer_reviewed": sum(1 for p in trimmed if p.get("publication_status") == "journal"),
     }
     return trimmed, stats

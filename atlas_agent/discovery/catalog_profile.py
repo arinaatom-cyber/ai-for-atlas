@@ -42,7 +42,9 @@ def build_catalog_profile(df: pd.DataFrame) -> dict[str, Any]:
         "project_ids_sample": sorted(set(ids))[:30],
         "databases": dict(databases.most_common(10)),
         "top_organs": [k for k, _ in organs.most_common(12)],
+        "organ_counts": dict(organs.most_common(30)),
         "top_diseases": [k for k, _ in diseases.most_common(12)],
+        "disease_counts": dict(diseases.most_common(20)),
         "tmt_plexes": [k for k, _ in tmt_labels.most_common(8)],
         "search_keywords": _build_keywords(organs, diseases, tmt_labels),
     }

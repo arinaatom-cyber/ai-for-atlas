@@ -41,5 +41,17 @@ def finalize_discovery_report(report: dict[str, Any], cfg: dict[str, Any]) -> di
     enrich_items_for_display(report.get("repository_manual") or [], cfg=cfg, fetch_pubmed=True)
 
     evaluate_discovery_report_from_config(report, cfg)
+    from atlas_agent.viz.discovery_table_shared import attach_flat_display_fields
+
+    for key in (
+        "candidates",
+        "new_projects",
+        "repository_manual",
+        "manual_check",
+        "rejected_material",
+        "filtered_out",
+    ):
+        for item in report.get(key) or []:
+            attach_flat_display_fields(item)
     report["methods_manifest"] = build_methods_manifest(report, cfg)
     return report

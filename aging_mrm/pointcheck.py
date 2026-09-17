@@ -57,7 +57,7 @@ def pointcheck(patients: pd.DataFrame, channels: pd.DataFrame, intensities: pd.D
 
 
 ERROR_TEXT = {
-    "age_mismatch": "Возраст в шапке SRM не совпадает с клиникой. В большом файле стоит возраст из клиники.",
+    "age_mismatch": "Возраст в шапке SRM не совпадает с donor_age листа когорты; в таблице используется SRM.",
     "no_srm_channel": "Пациент есть в клинике, канала в матрице SRM нет.",
     "sex_mismatch": "Пол в SRM не совпадает с клиникой.",
     "age_missing": "В клинике нет возраста.",

@@ -1,4 +1,10 @@
-"""Похожие проекты в каталоге (для дедупликации и подсказок)."""
+"""Похожие проекты в каталоге (подсказка куратору, не авто-исключение).
+
+HINT_THRESHOLD (0.18) — колонка «Похож на».
+CLOSE_MATCH_THRESHOLD (0.72) — вероятный тот же датасет (PRIDE+MassIVE,
+повторный accession после ревизии). Discovery не отбрасывает такие хиты:
+вердикт requires_manual_check. Жёсткий дубликат — только точный ID/PMID/DOI.
+"""
 from __future__ import annotations
 
 import re
@@ -13,6 +19,8 @@ STOP = {
     "with", "from", "that", "this", "using", "human", "study", "analysis",
     "proteome", "proteomic", "proteomics", "mass", "spectrometry", "based",
 }
+HINT_THRESHOLD = 0.18
+CLOSE_MATCH_THRESHOLD = 0.72
 
 
 def _tokens(text: str) -> set[str]:
@@ -51,7 +59,7 @@ def find_similar(
     candidate: dict[str, Any],
     df: pd.DataFrame,
     *,
-    threshold: float = 0.18,
+    threshold: float = HINT_THRESHOLD,
     top_k: int = 5,
     index: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
@@ -96,7 +104,8 @@ def annotate_candidates(
     candidates: list[dict],
     df: pd.DataFrame,
     *,
-    threshold: float = 0.18,
+    threshold: float = HINT_THRESHOLD,
+    close_match_threshold: float = CLOSE_MATCH_THRESHOLD,
 ) -> list[dict]:
     catalog_index = catalog_token_index(df)
     out = []
@@ -108,6 +117,7 @@ def annotate_candidates(
             if best and float(best[0].get("score") or 0) > 0:
                 sim = best
         c["similar_in_catalog"] = sim
-        c["has_close_match"] = bool(sim and sim[0]["score"] >= 0.35)
+        top = float(sim[0]["score"]) if sim else 0.0
+        c["has_close_match"] = bool(sim and top >= close_match_threshold)
         out.append(c)
     return out

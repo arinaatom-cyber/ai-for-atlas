@@ -25,12 +25,14 @@ AGENT_CATALOG: list[dict[str, str]] = [
         "role_ru": "Поиск в PDC (CPTAC)",
         "role_en": "PDC (CPTAC) search",
         "detail_ru": (
-            "В PDC болезнь, орган и TMT уже в метаданных. Те же правила включения, что для PRIDE: "
-            "не каждая PDC-запись попадает в список."
+            "В PDC болезнь, орган и TMT уже в метаданных. Те же правила включения, что для PRIDE. "
+            "Поле organism в API нет: human предполагается по scope PDC/CPTAC, если нет non-human слов. "
+            "Нераспознанный plex не отбрасывается на источнике."
         ),
         "detail_en": (
-            "PDC already carries disease, organ, and TMT in metadata. Same inclusion rules as PRIDE: "
-            "not every PDC record is listed."
+            "PDC already carries disease, organ, and TMT in metadata. Same inclusion rules as PRIDE. "
+            "No organism field in uiStudySummary: human is assumed per PDC/CPTAC program scope "
+            "unless metadata names a non-human organism. Unparsed TMT plex is not dropped at source."
         ),
     },
     {
@@ -45,12 +47,12 @@ AGENT_CATALOG: list[dict[str, str]] = [
         "role_ru": "Чтение абстрактов и статей",
         "role_en": "Abstract and paper reader",
         "detail_ru": (
-            "По PMID открываем PubMed / Europe PMC: короткий текст, орган, материал, TMT. "
-            "Если статьи нет — читаем карточку PRIDE или PDC."
+            "По PMID открываем PubMed / Europe PMC. LLM читает первые N абстрактов "
+            "(abstract_llm_max); остальные — keyword/regex, список в контроле качества."
         ),
         "detail_en": (
-            "From PMID, open PubMed / Europe PMC: short text, organ, material, TMT. "
-            "If there is no paper, read the PRIDE or PDC project card."
+            "From PMID, open PubMed / Europe PMC. The LLM reads the first N abstracts "
+            "(abstract_llm_max); the rest use keyword/regex and are listed for curator review."
         ),
     },
     {

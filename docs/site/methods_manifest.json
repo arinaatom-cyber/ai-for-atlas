@@ -1,35 +1,58 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
   "generated_at": "2026-09-17T11:42:09.731383+00:00",
+  "pipeline_git_commit": "d990c57da5f1ef6563481a71a39faae0f435605c",
+  "llm_locked": {
+    "provider": "ollama",
+    "model": "qwen2.5:3b",
+    "prefer_cloud": false,
+    "base_url": "http://127.0.0.1:11434/v1",
+    "resolved_engine": "ollama",
+    "enabled": true
+  },
   "ai_agents": {
     "pipeline_agents": [
       {
-        "id": "discovery_scan",
-        "role_ru": "Сканирование репозиториев",
-        "role_en": "Repository scan",
-        "detail_ru": "PRIDE, PDC, MassIVE, iProX — rule-based фильтры TMT >6-plex",
-        "detail_en": "PRIDE, PDC, MassIVE, iProX — rule-based TMT >6-plex filters"
+        "id": "pride_scan",
+        "role_ru": "Поиск в PRIDE",
+        "role_en": "PRIDE search",
+        "detail_ru": "Архив PRIDE: новые TMT-проекты вне каталога. Смотрим, есть ли TMT-плекс (7–18). Если плекс или материал не в карточке — читаем описание проекта и связанную статью.",
+        "detail_en": "PRIDE Archive: new TMT projects outside the catalog. Check TMT plex (7–18). If plex or material is missing from the record, read the project description and the linked paper."
+      },
+      {
+        "id": "pdc_scan",
+        "role_ru": "Поиск в PDC (CPTAC)",
+        "role_en": "PDC (CPTAC) search",
+        "detail_ru": "В PDC болезнь, орган и TMT уже в метаданных. Те же правила включения, что для PRIDE. Поле organism в API нет: human предполагается по scope PDC/CPTAC, если нет non-human слов. Нераспознанный plex не отбрасывается на источнике.",
+        "detail_en": "PDC already carries disease, organ, and TMT in metadata. Same inclusion rules as PRIDE. No organism field in uiStudySummary: human is assumed per PDC/CPTAC program scope unless metadata names a non-human organism. Unparsed TMT plex is not dropped at source."
+      },
+      {
+        "id": "massive_iprox",
+        "role_ru": "MassIVE и iProX",
+        "role_en": "MassIVE and iProX",
+        "detail_ru": "Поиск по сайтам MassIVE и iProX теми же словами: TMT, human, cancer.",
+        "detail_en": "Site search on MassIVE and iProX with the same TMT / human / cancer keywords."
       },
       {
         "id": "abstract_reader",
-        "role_ru": "ИИ-разбор абстрактов",
-        "role_en": "Abstract AI reader",
-        "detail_ru": "Europe PMC: смысл, материал, TMT-плекс, atlas_fit",
-        "detail_en": "Europe PMC: meaning, material, TMT plex, atlas_fit"
+        "role_ru": "Чтение абстрактов и статей",
+        "role_en": "Abstract and paper reader",
+        "detail_ru": "По PMID открываем PubMed / Europe PMC. LLM читает первые N абстрактов (abstract_llm_max); остальные — keyword/regex, список в контроле качества.",
+        "detail_en": "From PMID, open PubMed / Europe PMC. The LLM reads the first N abstracts (abstract_llm_max); the rest use keyword/regex and are listed for curator review."
       },
       {
-        "id": "evaluation",
-        "role_ru": "Оценка строк таблицы",
-        "role_en": "Table row evaluation",
-        "detail_ru": "Tier A–D, evidence chain, display_fit (rules + LLM trust)",
-        "detail_en": "Tier A–D, evidence chain, display_fit (rules + LLM trust)"
+        "id": "filters",
+        "role_ru": "Отбор по правилам",
+        "role_en": "Rule-based selection",
+        "detail_ru": "Homo sapiens, TMT 7–18, ткань или раковая клеточная линия. Не прошло проверку — не показываем как проект.",
+        "detail_en": "Homo sapiens, TMT 7–18, tissue or cancer cell line. Failed checks are not shown as projects."
       },
       {
-        "id": "cohort_literature",
-        "role_ru": "Когорты из литературы",
-        "role_en": "Literature cohorts",
-        "detail_ru": "Europe PMC text mining, patient cohorts",
-        "detail_en": "Europe PMC text mining, patient cohorts"
+        "id": "literature",
+        "role_ru": "Статьи (Europe PMC)",
+        "role_en": "Papers (Europe PMC)",
+        "detail_ru": "Поиск по названиям и похожим публикациям в Europe PMC — не замена ID репозитория.",
+        "detail_en": "Search by title and similar papers in Europe PMC — not a substitute for a repository ID."
       }
     ],
     "llm_providers": [
@@ -103,9 +126,9 @@
         "stage_en": "Repository scan",
         "language": "Python",
         "script": "run_discovery.py scan",
-        "agent": "discovery_scan",
-        "purpose_ru": "PRIDE, PDC, MassIVE, iProX — поиск новых ID вне каталога",
-        "purpose_en": "PRIDE, PDC, MassIVE, iProX — novel IDs outside catalog"
+        "agent": "pride_scan / pdc_scan / massive_iprox",
+        "purpose_ru": "PRIDE (карточка + статья), PDC/CPTAC, поиск по сайтам MassIVE и iProX",
+        "purpose_en": "PRIDE (record + paper), PDC/CPTAC, MassIVE and iProX site search"
       },
       {
         "id": "filters",
@@ -114,9 +137,9 @@
         "stage_en": "Rule-based filters",
         "language": "Python",
         "script": "atlas_agent/discovery/filters.py",
-        "agent": "discovery_scan",
-        "purpose_ru": "Homo sapiens, TMT >6-plex, белковая квантификация, материал",
-        "purpose_en": "Homo sapiens, TMT >6-plex, protein quant, sample material"
+        "agent": "filters",
+        "purpose_ru": "Homo sapiens, TMT 7–18, ткань или раковая линия — иначе не в списке",
+        "purpose_en": "Homo sapiens, TMT 7–18, tissue or cancer line — otherwise not listed"
       },
       {
         "id": "data_gate",
@@ -137,8 +160,8 @@
         "language": "Python",
         "script": "atlas_agent/discovery/abstract_reader.py",
         "agent": "abstract_reader",
-        "purpose_ru": "Абстракты, atlas_fit, PMID, ссылки на статьи",
-        "purpose_en": "Abstracts, atlas_fit, PMID, article links"
+        "purpose_ru": "Абстракт: LLM читает первые N (abstract_llm_max); остальные — regex fallback",
+        "purpose_en": "Abstract: LLM reads first N (abstract_llm_max); remainder uses regex fallback"
       },
       {
         "id": "similarity",
@@ -154,13 +177,13 @@
       {
         "id": "evaluation",
         "step": "7",
-        "stage_ru": "Оценка строк",
-        "stage_en": "Row evaluation",
+        "stage_ru": "Вердикт строки",
+        "stage_en": "Row verdict",
         "language": "Python",
         "script": "atlas_agent/discovery/evaluation/",
-        "agent": "evaluation",
-        "purpose_ru": "Tier A–D, вердикт, evidence chain",
-        "purpose_en": "Tier A–D, verdict, evidence chain"
+        "agent": "filters",
+        "purpose_ru": "Candidate — прошло; иначе не в главном списке проектов",
+        "purpose_en": "Candidate — passed; otherwise not in the main project list"
       },
       {
         "id": "cohorts",
@@ -169,9 +192,9 @@
         "stage_en": "Literature cohorts",
         "language": "Python",
         "script": "scripts/run_cohort_literature.py",
-        "agent": "cohort_literature",
-        "purpose_ru": "Patient N, has_patients — отдельные строки (может быть неточно)",
-        "purpose_en": "Patient N, has_patients — separate rows (may be imprecise)"
+        "agent": "literature",
+        "purpose_ru": "Europe PMC: названия и похожие статьи, patient N если есть",
+        "purpose_en": "Europe PMC: titles and similar papers, patient N when present"
       },
       {
         "id": "stats_r",
@@ -211,7 +234,7 @@
     "user_action_required_to_add": "manual review or explicit run_revisor.py add --apply"
   },
   "inclusion_criteria": {
-    "organism": "Homo sapiens only (reject mouse/rat/chicken and mixed)",
+    "organism": "Homo sapiens only (allow-list: human / Homo sapiens / patient / known human cancer cell line)",
     "quantification": "TMT/isobaric >6-plex (reject TMT6 / ≤6-plex; TMT18 allowed)",
     "omics_layer": "Global protein-level proteome (reject phospho-only, peptide-only)",
     "material": "Human tissue (tumor / adjacent / normal) or human cancer cell lines (reject plasma/serum/urine-only)",
@@ -226,6 +249,12 @@
     "Review / methods / software papers without cohort data",
     "Phospho-only or RAW-only repository files"
   ],
+  "pdc_human_policy": "PDC uiStudySummary has no organism field; studies are assumed human per PDC/CPTAC clinical program scope unless metadata names a non-human organism.",
+  "search_window": {
+    "year_from": 2024,
+    "year_to": 2026,
+    "note": "Automated weekly monitoring covers repository deposits from year_from. Earlier catalog entries were curated at initial atlas assembly."
+  },
   "search_config": {
     "year_from": 2024,
     "year_to": 2026,
@@ -282,21 +311,29 @@
   },
   "funnel": {
     "raw_novel_repos": 838,
-    "candidates": 56,
+    "candidates": 96,
     "manual_check": 16,
-    "rejected_material": 380,
-    "filtered_out": 833,
+    "rejected_material": 325,
+    "filtered_out": 902,
     "already_in_catalog": 13
   },
   "literature_screening": {
     "publications_scanned": 31,
     "abstract_llm_read": 25,
     "abstract_regex_only": 6,
+    "abstract_llm_max": 25,
     "atlas_fit_yes": 0,
     "atlas_fit_maybe": 17,
     "literature_resolved": 0,
-    "semantic_from_abstract": 0
+    "semantic_from_abstract": 0,
+    "regex_only_publications": []
   },
+  "tmt_plex_unspecified_by_source": {
+    "pride": 79
+  },
+  "pdc_tmt_plex_unspecified": 0,
+  "failed_source_requests": {},
+  "possible_pmid_match": [],
   "data_availability_gate": {
     "maybe_table": 1,
     "omics_unknown": 57,

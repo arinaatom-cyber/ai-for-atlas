@@ -41,9 +41,10 @@ def test_pdc_excludes_low_plex_and_cptac_program():
         exclude_programs=pdc_cfg.get("exclude_programs") or [],
     )
 
-    assert all(p.get("inferred_plex") not in reject for p in filtered)
-    assert all(p.get("inferred_plex", 0) >= 7 for p in filtered)
-    assert all(p.get("inferred_plex", 0) <= 18 for p in filtered)
+    assert all(p.get("inferred_plex") not in reject for p in filtered if p.get("inferred_plex") is not None)
+    with_plex = [p for p in filtered if p.get("inferred_plex") is not None]
+    assert all(p["inferred_plex"] >= 7 for p in with_plex)
+    assert all(p["inferred_plex"] <= 18 for p in with_plex)
     assert len(filtered) < len(all_ok)
     assert not any(
         "Clinical Proteomic Tumor" in (p.get("program") or "") for p in filtered

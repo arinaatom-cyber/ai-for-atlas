@@ -1,10 +1,43 @@
 from __future__ import annotations
 
 import re
+from typing import Any
 
 import requests
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+
+PREPRINT_JOURNAL_RE = re.compile(
+    r"\b(bio[rR]xiv|med[rR]xiv|ar[Xx]iv|chem[rR]xiv|research\s*square|ssrn|preprints?)\b"
+)
+
+
+def publication_status_from_epmc(hit: dict[str, Any] | None) -> dict[str, Any]:
+    """Flag Europe PMC preprints. Does not exclude them from screening."""
+    hit = hit or {}
+    src = str(hit.get("source") or "").strip().upper()
+    ptype = str(hit.get("pubType") or "")
+    journal = str(hit.get("journalTitle") or hit.get("journal") or "")
+    doi = str(hit.get("doi") or "").lower()
+    is_preprint = (
+        src == "PPR"
+        or "preprint" in ptype.lower()
+        or bool(PREPRINT_JOURNAL_RE.search(journal))
+        or "biorxiv.org" in doi
+        or "medrxiv.org" in doi
+    )
+    if is_preprint:
+        status = "preprint"
+    elif journal or src in {"MED", "PMC", "EUR", "AGR", "CBA"}:
+        status = "journal"
+    else:
+        status = "unknown"
+    return {
+        "is_preprint": is_preprint,
+        "publication_status": status,
+        "epmc_source": src,
+        "pub_type": ptype,
+    }
 
 
 def fetch_abstract(pmid: str) -> dict:
@@ -26,6 +59,7 @@ def fetch_abstract(pmid: str) -> dict:
     abstract = str(h.get("abstractText") or "").strip()
     if not abstract:
         abstract = _ncbi_abstract(pmid)
+    status = publication_status_from_epmc(h)
     return {
         "pmid": pmid,
         "title": h.get("title") or "",
@@ -33,6 +67,7 @@ def fetch_abstract(pmid: str) -> dict:
         "year": str(h.get("pubYear") or h.get("firstPublicationDate") or "")[:4],
         "journal": h.get("journalTitle") or "",
         "found": True,
+        **status,
     }
 
 

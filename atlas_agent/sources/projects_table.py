@@ -57,14 +57,38 @@ SHEET_COLUMN_GROUPS = {
 }
 
 
-def catalog_path(sheet_cfg: dict[str, Any]) -> str | None:
-    primary = sheet_cfg.get("projects_file") or sheet_cfg.get("projects_csv")
-    if primary and Path(primary).is_file():
-        return primary
-    fallback = sheet_cfg.get("projects_csv")
-    if fallback and Path(fallback).is_file():
-        return fallback
-    return primary
+def _is_excel_path(path: str | None) -> bool:
+    return bool(path and str(path).lower().endswith((".xlsx", ".xlsm")))
+
+
+def curator_workbook_path(sheet_cfg: dict[str, Any]) -> str | None:
+    """Excel copy (TMT ATLAS). Not the Discovery runtime index."""
+    for key in ("proteomics_workbook", "projects_file"):
+        p = sheet_cfg.get(key)
+        if _is_excel_path(p):
+            return p
+    return None
+
+
+def catalog_path(sheet_cfg: dict[str, Any], *, prefer: str | None = None) -> str | None:
+    """Runtime catalog for Discovery/revisor: data/projects.csv.
+
+    Excel (`project of Proteomics.xlsx`, sheet TMT ATLAS) is the curator workbook.
+    It is used only when CSV is missing. Drift is reported by
+    `atlas_agent.sources.catalog_sync` — never auto-merged.
+    """
+    mode = (prefer or sheet_cfg.get("catalog_runtime") or "csv").lower().strip()
+    csv = sheet_cfg.get("projects_csv")
+    xlsx = curator_workbook_path(sheet_cfg)
+    projects_file = sheet_cfg.get("projects_file")
+    if projects_file and not _is_excel_path(projects_file):
+        csv = csv or projects_file
+
+    ordered = (csv, xlsx) if mode in ("csv", "runtime", "auto") else (xlsx, csv)
+    for path in ordered:
+        if path and Path(path).is_file():
+            return path
+    return csv or xlsx or projects_file
 
 
 def catalog_sheet(sheet_cfg: dict[str, Any]) -> str | None:
@@ -172,7 +196,7 @@ def load_projects_table(
 
 
 def load_catalog(cfg: dict[str, Any] | None = None, *, sheet_cfg: dict | None = None) -> pd.DataFrame:
-    """Каталог: local Excel/CSV или Google Sheet (config sheet.source)."""
+    """Runtime catalog: local CSV (preferred) or Excel fallback, or Google Sheet."""
     sc = sheet_cfg or (cfg or {}).get("sheet") or {}
     mode = catalog_source(sc)
     if mode == "google":
@@ -205,6 +229,25 @@ def primary_project_id(raw: str) -> str:
         return m.group(2).upper()
     m = PID_RE.search(s)
     return m.group(1).upper() if m else s
+
+
+def all_repo_ids(raw: str) -> set[str]:
+    """Every PXD/PDC/MSV/IPX in a Project ID cell (e.g. IPX0001 (PXD022714))."""
+    if raw is None or (isinstance(raw, float) and pd.isna(raw)):
+        return set()
+    s = str(raw).strip()
+    if not s or s.lower() in ("nan", "none"):
+        return set()
+    return {m.upper() for m in PID_RE.findall(s)}
+
+
+def normalize_doi(raw: Any) -> str:
+    s = str(raw or "").strip().lower()
+    if not s or s in ("nan", "none"):
+        return ""
+    s = re.sub(r"^https?://(dx\.)?doi\.org/", "", s)
+    s = re.sub(r"^doi:\s*", "", s)
+    return s.strip().rstrip(".")
 
 
 def protein_count(cell) -> int | None:

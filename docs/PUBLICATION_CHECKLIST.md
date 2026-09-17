@@ -24,8 +24,8 @@
 | 2.2 | Репозиторий **TMT** (карта) + **tmt-projects** (данные) | ✅ | Pages на TMT |
 | 2.3 | `config.example.yaml` без секретов | ✅ | `.env` в gitignore |
 | 2.4 | CI: pytest на push | ⬜ | Добавить workflow `tests/` |
-| 2.5 | Версия Python + `requirements.txt` зафиксированы | ⬜ | Pin major versions для статьи |
-| 2.6 | DOI / Zenodo snapshot перед подачей | ⬜ | После финального коммита |
+| 2.5 | Версия Python + `requirements.txt` зафиксированы | ⬜ | Pin major versions |
+| 2.6 | Снимок данных с checksum | ⬜ | После стабильного коммита |
 
 ---
 
@@ -61,7 +61,7 @@
 |---|----------|--------|-------------|
 | 5.1 | `docs/site/discovery.html` актуален | ⬜ | Обновить после свежего scan |
 | 5.2 | KPI (проекты / пациенты / белки) с каталога | ⬜ | Синхронизация с Excel |
-| 5.3 | QC report (`qc.html`) для рецензентов | ✅ | |
+| 5.3 | QC (`qc.html`) | ✅ | |
 | 5.4 | Карта органов не перезаписывается Discovery | ✅ | `export_site_for_tmt.ps1` только `discovery/` |
 
 ---
@@ -95,11 +95,11 @@
 2. **Исправить в Excel** PXD066224 (proteins), сверить 124 строки
 3. **CI workflow** с `pytest` на GitHub Actions
 4. **Обновить Methods §2.8** из `DISCOVERY_PIPELINE_RU.md`
-5. **Zenodo DOI** после freeze версии
+5. Снимок `data/releases/` при необходимости
 
 ---
 
-## Быстрая проверка перед подачей
+## Быстрая проверка
 
 ```powershell
 python -m pytest tests/ -q

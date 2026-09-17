@@ -1,14 +1,15 @@
 """PDC GraphQL — профессиональный поиск TMT-исследований (read-only)."""
 from __future__ import annotations
 
-import re
 import time
 from typing import Any
 
 import requests
 
+from atlas_agent.discovery.organism_terms import is_human_text, is_non_human_text
+from atlas_agent.discovery.tmt_plex import infer_tmt_plex
+
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
-TMT_TYPE_RE = re.compile(r"tmtpro\s*(\d{1,2})|tmt\s*[- ]?(\d{1,2})\b", re.I)
 ATLAS_PLEXES = set(range(7, 19))  # всё >6 и ≤18
 REJECT_PLEXES = {2, 6}  # 6-plex и ниже — не атлас
 MIN_ATLAS_CHANNELS = 7
@@ -31,7 +32,12 @@ def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
 
 
 def fetch_study_summary() -> list[dict[str, Any]]:
-    """Все исследования PDC с метаданными (uiStudySummary)."""
+    """Все исследования PDC с метаданными (uiStudySummary).
+
+    uiStudySummary does not expose an organism field in the public GraphQL schema.
+    Human status is therefore assumed from PDC/CPTAC clinical program scope unless
+    a free-text organism mention is present in returned metadata.
+    """
     q = """query {
       uiStudySummary {
         pdc_study_id
@@ -49,12 +55,28 @@ def fetch_study_summary() -> list[dict[str, Any]]:
 
 
 def _infer_plex_from_experiment(experiment_type: str) -> int | None:
-    m = TMT_TYPE_RE.search(experiment_type or "")
-    if m:
-        for g in m.groups():
-            if g:
-                return int(g)
-    return None
+    return infer_tmt_plex(experiment_type or "")
+
+
+def _pdc_human_fields(s: dict[str, Any]) -> tuple[bool, bool]:
+    """Return (human, assumed). PDC API has no per-study organism field."""
+    blob = " ".join(
+        str(s.get(k) or "")
+        for k in (
+            "submitter_id_name",
+            "project_name",
+            "program_name",
+            "disease_type",
+            "primary_site",
+            "experiment_type",
+        )
+    )
+    if is_non_human_text(blob):
+        return False, False
+    if is_human_text(blob):
+        return True, False
+    # Assumed human per PDC/CPTAC clinical program scope; not independently verified.
+    return True, True
 
 
 def _study_to_record(s: dict[str, Any]) -> dict[str, Any]:
@@ -67,7 +89,8 @@ def _study_to_record(s: dict[str, Any]) -> dict[str, Any]:
     ]
     title = " — ".join(p for p in title_parts if p) or f"PDC study {acc}"
     plex = _infer_plex_from_experiment(exp)
-    return {
+    human, assumed = _pdc_human_fields(s)
+    rec: dict[str, Any] = {
         "accession": acc,
         "title": title[:500],
         "description": f"{s.get('disease_type', '')} · {s.get('analytical_fraction', '')}".strip(" ·"),
@@ -78,11 +101,16 @@ def _study_to_record(s: dict[str, Any]) -> dict[str, Any]:
         "primary_site": s.get("primary_site", ""),
         "inferred_plex": plex,
         "tmt_detected": bool(plex or (exp and "tmt" in exp.lower())),
-        "human": True,
+        "human": human,
         "source": "pdc_api",
         "consortium": "PDC",
         "url": f"https://proteomic.datacommons.cancer.gov/pdc/study/{acc}",
     }
+    if assumed:
+        rec["human_assumed"] = True
+    if plex is None and rec["tmt_detected"]:
+        rec["tmt_plex_unspecified_pdc"] = True
+    return rec
 
 
 def _program_excluded(program_name: str, exclude_patterns: list[str]) -> bool:
@@ -99,10 +127,12 @@ def search_pdc_tmt_studies(
     max_channels: int = 18,
     programs: list[str] | None = None,
     exclude_programs: list[str] | None = None,
+    stats: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     """
     TMT-исследования PDC: каналов строго больше 6 (7–18, включая TMT18 / TMTpro18).
-    TMT6 и ниже отклоняются. Исключает ID из TMT ATLAS + CPTAC + exclude_programs.
+    TMT6 и ниже отклоняются. Нераспознанный plex не отбрасывается здесь —
+    уходит в classify_candidate как tmt_plex_unspecified (как PRIDE).
     """
     known = {a.upper() for a in (known_accessions or set())}
     program_filter = {p.lower() for p in (programs or [])}
@@ -110,8 +140,13 @@ def search_pdc_tmt_studies(
     ok_plex = allowed_plexes or ATLAS_PLEXES
     exclude_prog = list(exclude_programs or [])
     out: list[dict[str, Any]] = []
+    unspecified = 0
 
-    for s in fetch_study_summary():
+    studies = fetch_study_summary()
+    if stats is not None:
+        stats["failed_requests"] = 0 if studies else 1
+
+    for s in studies:
         exp = str(s.get("experiment_type") or "")
         if "tmt" not in exp.lower():
             continue
@@ -122,14 +157,16 @@ def search_pdc_tmt_studies(
             continue
         plex = _infer_plex_from_experiment(exp)
         if plex is None:
+            unspecified += 1
+        elif plex in reject or plex < min_channels or plex > max_channels:
             continue
-        if plex in reject or plex < min_channels or plex > max_channels:
-            continue
-        if plex not in ok_plex:
+        elif plex not in ok_plex:
             continue
         if program_filter:
             prog = str(s.get("program_name") or "").lower()
             if not any(p in prog for p in program_filter):
                 continue
         out.append(_study_to_record(s))
+    if stats is not None:
+        stats["tmt_plex_unspecified"] = unspecified
     return out

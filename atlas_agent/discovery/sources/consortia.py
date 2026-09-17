@@ -7,6 +7,7 @@ from typing import Any
 import requests
 
 from atlas_agent.discovery.filters import extract_ids_from_text
+from atlas_agent.sources.literature import publication_status_from_epmc
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
@@ -65,6 +66,7 @@ def search_europe_pmc_consortium(
             set(_extract_accessions(blob, meta.get("id_prefix", "")))
             | set(sum((extract_ids_from_text(blob).get(k) or [] for k in ("PXD", "PDC", "MSV", "IPX")), []))
         )
+        status = publication_status_from_epmc(h)
         out.append(
             {
                 "source": f"europe_pmc_{consortium.lower()}",
@@ -75,6 +77,7 @@ def search_europe_pmc_consortium(
                 "doi": h.get("doi", ""),
                 "accessions_mentioned": ids,
                 "url": f"https://pubmed.ncbi.nlm.nih.gov/{h.get('pmid')}/" if h.get("pmid") else "",
+                **status,
             }
         )
     return out

@@ -42,9 +42,11 @@ def cmd_scan(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
     sheet_cfg = cfg.get("sheet") or {}
     df = load_catalog_readonly(cfg)
-    src = sheet_cfg.get("projects_file") or sheet_cfg.get("projects_csv", "?")
+    from atlas_agent.sources.projects_table import catalog_path
+
+    src = catalog_path(sheet_cfg) or sheet_cfg.get("projects_csv", "?")
     sh = sheet_cfg.get("projects_sheet", "TMT ATLAS")
-    print(f"Каталог: {len(df)} строк · {sh} · read-only")
+    print(f"Каталог (runtime CSV): {len(df)} строк · {sh} · read-only")
     print(f"  файл: {src}")
     report = run_discovery_scan(df, cfg, root=ROOT)
     s = report.get("summary") or {}

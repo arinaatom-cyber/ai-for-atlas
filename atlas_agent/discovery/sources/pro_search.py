@@ -72,6 +72,7 @@ def discover_projects_professional(
     disc = (cfg or {}).get("discovery") or {}
 
     pride_cap = optional_cap(pride_max) if pride_max is not None else optional_cap(disc.get("pride_max"))
+    pride_stats: dict[str, Any] = {}
     pride_raw = search_pride_json(
         keywords=pride_keywords,
         profile_keywords=profile_keywords,
@@ -81,33 +82,40 @@ def discover_projects_professional(
         max_results=pride_cap,
         max_pages=20,
         exclude_accessions=known,
+        stats=pride_stats,
     )
 
     from atlas_agent.discovery.filters import ATLAS_TMT_PLEXES
 
     pdc_cfg = disc.get("pdc") or {}
+    pdc_stats: dict[str, Any] = {}
     pdc_raw = search_pdc_tmt_studies(
         known_accessions=known,
         allowed_plexes=set(pdc_cfg.get("allowed_plexes") or ATLAS_TMT_PLEXES),
         reject_plexes=set(pdc_cfg.get("reject_plexes") or [2, 6]),
         min_channels=int(pdc_cfg.get("min_plex_channels") or 7),
         exclude_programs=pdc_cfg.get("exclude_programs") or [],
+        stats=pdc_stats,
     )
 
     massive_cap = optional_cap(massive_max) if massive_max is not None else optional_cap(disc.get("massive_max"))
     iprox_cap = optional_cap(iprox_max) if iprox_max is not None else optional_cap(disc.get("iprox_max"))
     pub_cap = optional_cap(pub_max) if pub_max is not None else optional_cap(disc.get("publications_max"))
 
+    massive_stats: dict[str, Any] = {}
     massive_raw = search_massive_tmt(
         pride_keywords,
         max_results=massive_cap,
         exclude_accessions=known,
+        stats=massive_stats,
     )
 
+    iprox_stats: dict[str, Any] = {}
     iprox_raw = search_iprox_tmt(
         pride_keywords,
         max_results=iprox_cap,
         exclude_accessions=known,
+        stats=iprox_stats,
     )
 
     pubs_raw, abstract_ai_stats = search_publications_professional(
@@ -168,5 +176,15 @@ def discover_projects_professional(
             "literature_raw_hits": (abstract_ai_stats.get("literature_search") or {}).get("raw_hits", 0),
             "literature_prefilter_kept": (abstract_ai_stats.get("literature_search") or {}).get("prefilter_kept", 0),
             "literature_with_repo_id": (abstract_ai_stats.get("literature_search") or {}).get("with_repository_id", 0),
+            "literature_preprints": (abstract_ai_stats.get("literature_search") or {}).get("preprints", 0),
+            "literature_peer_reviewed": (abstract_ai_stats.get("literature_search") or {}).get("peer_reviewed", 0),
+            "pdc_tmt_plex_unspecified": pdc_stats.get("tmt_plex_unspecified", 0),
+            "regex_only_publications": (abstract_ai_stats.get("regex_only_publications") or [])[:80],
+            "failed_source_requests": {
+                "pride": pride_stats.get("failed_requests", 0),
+                "pdc": pdc_stats.get("failed_requests", 0),
+                "massive": massive_stats.get("failed_requests", 0),
+                "iprox": iprox_stats.get("failed_requests", 0),
+            },
         },
     }

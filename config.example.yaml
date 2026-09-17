@@ -5,6 +5,7 @@ sheet:
   google_sheet_id: "1M6hc3vmk1bNchMvEwXsIyyO5iq3mAzP877HTXzhzg38"
   projects_sheet: "TMT ATLAS"
   general_sheet_name: "General single and bulk v2"
+  catalog_runtime: csv
   projects_csv: "./data/projects.csv"
   proteomics_workbook: "./project of Proteomics.xlsx"
 
@@ -21,6 +22,15 @@ github:
 scan:
   pride_max_results: 40
   pride_keywords: ["TMT", "tandem mass tag", "isobaric"]
+
+# Discovery Agent — weekly search (projects.csv read-only)
+discovery:
+  enabled: true
+  year_from: 2024
+  year_to: 2026
+  abstract_llm: true
+  abstract_llm_max: 25   # first N pubs by relevance; rest = regex fallback
+  catalog_read_only: true
 
 agent:
   language: "ru"

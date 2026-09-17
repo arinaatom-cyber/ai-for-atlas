@@ -16,35 +16,17 @@ from typing import Any
 
 import pandas as pd
 
+from atlas_agent.discovery.id_extract import extract_ids_from_text, extract_loose_pmids
+from atlas_agent.discovery.organism_terms import HUMAN, HUMAN_CANCER_CELL_LINE, NON_HUMAN
 from atlas_agent.discovery.sample_material_qc import (
-    HUMAN_CANCER_CELL_LINE,
     assess_sample_material,
     material_blob_from_item,
 )
-from atlas_agent.sources.projects_table import primary_project_id
+from atlas_agent.discovery.tmt_plex import TMT_PLEX_DIGITS as TMT_PLEX
+from atlas_agent.discovery.tmt_plex import infer_tmt_plex
+from atlas_agent.sources.projects_table import all_repo_ids, normalize_doi, primary_project_id
 
-# ID в тексте
-ID_PATTERNS = {
-    "PXD": re.compile(r"\b(PXD\d{6,9})\b", re.I),
-    "PDC": re.compile(r"\b(PDC\d{6,9})\b", re.I),
-    "MSV": re.compile(r"\b(MSV\d{6,12})\b", re.I),
-    "IPX": re.compile(r"\b(IPX\d{6,12})\b", re.I),
-    "PMID": re.compile(r"\b(?:PMID[:\s]*)?(\d{7,9})\b", re.I),
-    "CPTAC": re.compile(r"\b(CPTAC-[A-Z0-9-]+)\b", re.I),
-}
-
-NON_HUMAN = re.compile(
-    r"\b(mouse|mice|murine|mus\s+musculus|rat\b|rattus|rodent|porcine|pig\b|"
-    r"chlamydomonas|xenograft\s+in\s+mouse|mc38|b16|hela\s+mouse|nude\s+mice|"
-    r"salmonella|escherichia|bacterial|maize|arabidopsis|yeast|protist|"
-    r"chicken|gallus|zebrafish|danio|xenopus|canine|bovine|macaque)\b",
-    re.I,
-)
 LABEL_FREE_ONLY = re.compile(r"\blabel[- ]?free\b", re.I)
-HUMAN = re.compile(
-    r"\b(human|homo\s+sapiens|patients?|clinical|donor)\b",
-    re.I,
-)
 HEALTHY = re.compile(
     r"\b(healthy(?:\s+controls?|\s+subjects?|\s+volunteers?|\s+donors?)?|"
     r"normal(?:\s+controls?|\s+subjects?|\s+donors?)?|"
@@ -90,10 +72,6 @@ OFF_ATLAS_DISEASE = re.compile(
 ONCOLOGY_HINT = re.compile(
     r"\b(cancer|carcinoma|tumor|tumour|glioma|melanoma|leukemia|lymphoma|"
     r"adenocarcinoma|sarcoma|myeloma)\b",
-    re.I,
-)
-TMT_PLEX = re.compile(
-    r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})\s*[- ]?plex|tmt(\d{1,2})\b|(\d{1,2})\s*plex",
     re.I,
 )
 ATLAS_TMT_PLEXES = tuple(range(7, 19))  # всё >6 и ≤18 (TMT7…TMT18 / TMTpro)
@@ -166,40 +144,35 @@ def assess_proteome_layer(
     return reasons
 
 
-def extract_ids_from_text(text: str) -> dict[str, list[str]]:
-    found: dict[str, list[str]] = {}
-    for kind, pat in ID_PATTERNS.items():
-        hits = sorted({m.group(1).upper() if kind != "PMID" else m.group(1) for m in pat.finditer(text or "")})
-        if hits:
-            found[kind] = hits
-    return found
-
-
 def build_catalog_index(df: pd.DataFrame) -> dict[str, set[str]]:
     pmids: set[str] = set()
     accessions: set[str] = set()
+    dois: set[str] = set()
     for _, r in df.iterrows():
-        pid = primary_project_id(str(r.get("Project ID", "")))
+        raw_pid = str(r.get("Project ID", "") or "")
+        accessions |= all_repo_ids(raw_pid)
+        pid = primary_project_id(raw_pid)
         if pid:
             accessions.add(pid.upper())
         pm = re.sub(r"\D", "", str(r.get("PMID", "") or ""))
         if pm:
             pmids.add(pm)
-        for col in ("Title", "Short Description", "Experimental Design", "URL"):
+        doi = normalize_doi(r.get("DOI", "") if "DOI" in r.index else "")
+        if doi:
+            dois.add(doi)
+        for col in ("Project ID", "Title", "Short Description", "Experimental Design", "URL"):
             if col in r.index:
                 for ids in extract_ids_from_text(str(r.get(col, ""))).values():
                     accessions.update(x.upper() for x in ids if not x.isdigit())
                     pmids.update(x for x in ids if x.isdigit())
-    return {"pmids": pmids, "accessions": accessions}
+                cell_doi = normalize_doi(r.get(col, ""))
+                if cell_doi:
+                    dois.add(cell_doi)
+    return {"pmids": pmids, "accessions": accessions, "dois": dois}
 
 
 def _infer_plex(blob: str) -> int | None:
-    m = TMT_PLEX.search(blob or "")
-    if m:
-        for g in m.groups():
-            if g:
-                return int(g)
-    return None
+    return infer_tmt_plex(blob)
 
 
 def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bool:
@@ -209,9 +182,7 @@ def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bo
     reject = {int(x) for x in (cfg.get("reject_tmt_plexes") or REJECT_TMT_PLEXES)}
     n = int(plex) if plex is not None else None
     if n is None:
-        m = re.search(r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})", blob, re.I)
-        if m:
-            n = int(next(g for g in m.groups() if g))
+        n = infer_tmt_plex(blob)
     if n is None:
         return False
     if n in reject or n < min_ch or n > max_ch:
@@ -223,7 +194,7 @@ def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bo
 
 
 def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
-    """Только Homo sapiens. Mixed / mouse / rat / yeast — нет."""
+    """Homo sapiens only: explicit human signal, or structured organism, or human=True."""
     if item.get("human") is False:
         return False
 
@@ -240,17 +211,13 @@ def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
         if "homo" in org_text or "human" in org_text:
             return True
 
-    if item.get("human") is True:
-        return True
-
-    src = str(item.get("source") or item.get("consortium") or "").lower()
-    if src in ("pdc_api", "pdc") or item.get("consortium") == "PDC":
-        return True
-
     if HUMAN_CANCER_CELL_LINE.search(blob):
         return True
-
-    return bool(HUMAN.search(blob))
+    if HUMAN.search(blob):
+        return True
+    if item.get("human") is True:
+        return True
+    return False
 
 
 def _infer_sample_design(blob: str) -> str:
@@ -305,8 +272,15 @@ def classify_candidate(
     if direct and direct in catalog_index["accessions"]:
         accs.add(direct)
     pmid = str(item.get("pmid") or "").strip()
-    if pmid and pmid in catalog_index["pmids"]:
+    if pmid and pmid.isdigit() and pmid in (catalog_index.get("pmids") or set()):
         accs.add(f"PMID:{pmid}")
+    doi = normalize_doi(item.get("doi") or item.get("DOI") or "")
+    if doi and doi in (catalog_index.get("dois") or set()):
+        accs.add(f"DOI:{doi}")
+
+    loose_hits = [
+        n for n in extract_loose_pmids(blob) if n in catalog_index["pmids"] and n != pmid
+    ]
 
     reasons: list[str] = []
     verdict = "recommended"
@@ -359,9 +333,11 @@ def classify_candidate(
     min_ch = int(cfg.get("min_tmt_channels") or MIN_TMT_CHANNELS)
     if verdict == "recommended" and not plex_allowed(plex, cfg, blob=blob):
         src = str(item.get("source") or "")
-        is_pride = src.startswith("pride") or str(item.get("accession") or "").upper().startswith("PXD")
+        acc_u = str(item.get("accession") or "").upper()
+        is_pride = src.startswith("pride") or acc_u.startswith("PXD")
+        is_pdc = src.startswith("pdc") or acc_u.startswith("PDC") or item.get("consortium") == "PDC"
         tmt6 = re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob, re.I)
-        if is_pride and item.get("tmt_detected") and not tmt6:
+        if (is_pride or is_pdc) and item.get("tmt_detected") and not tmt6:
             reasons.append("tmt_plex_unspecified")
             verdict = "filtered_out"
         elif plex is not None:
@@ -401,9 +377,12 @@ def classify_candidate(
         reasons.append(f"Design not allowed: {design}")
 
     if item.get("has_close_match") and verdict == "recommended":
-        verdict = "duplicate_similar"
+        verdict = "requires_manual_check"
         sim = (item.get("similar_in_catalog") or [{}])[0]
-        reasons.append(f"Very similar to {sim.get('project_id')} (score {sim.get('score')})")
+        reasons.append(
+            f"similar_catalog_review: {sim.get('project_id')} "
+            f"(Jaccard {sim.get('score')}; likely same study / other repository / revised accession)"
+        )
 
     has_project_id = bool(extracted.get("PXD") or extracted.get("PDC") or extracted.get("MSV") or extracted.get("IPX"))
     has_pmid = bool(extracted.get("PMID") or item.get("pmid"))
@@ -417,11 +396,17 @@ def classify_candidate(
         verdict = "filtered_out"
         reasons.append("Review/methods paper without project ID (PXD/PDC/MSV/IPX) or PMID")
 
+    if verdict == "recommended" and loose_hits:
+        verdict = "requires_manual_check"
+        reasons.append(f"possible_pmid_match: {', '.join(loose_hits[:5])}")
+
     out = dict(item)
     out["verdict"] = verdict
     out["filter_reasons"] = reasons
     out["extracted_ids"] = extracted
     out["inferred_plex"] = plex
+    if loose_hits:
+        out["possible_pmid_match"] = loose_hits
     if plex and re.search(r"tmtpro", blob_lower):
         out["tmt_label"] = f"TMTpro {plex}-plex"
     elif plex:
@@ -442,12 +427,30 @@ def classify_candidate(
             out["filter_reasons"] = reasons + mq["qc_reasons"]
         else:
             out["qc_status"] = "candidate"
-    elif verdict not in ("already_in_catalog",):
+    elif verdict != "already_in_catalog":
         mq = assess_sample_material(out, blob)
         out.update(mq)
         if mq["qc_status"] == "rejected":
-            out["verdict"] = "rejected"
-            out["filter_reasons"] = reasons + mq["qc_reasons"]
+            keep_technical = any(
+                any(
+                    tok in r
+                    for tok in (
+                        "Human only",
+                        "Not human",
+                        "Off-atlas",
+                        "Reference/consortia",
+                        "Label-free",
+                        "TMT not detected",
+                        "Co-IP",
+                        "Review/methods",
+                        "Design not allowed",
+                    )
+                )
+                for r in reasons
+            )
+            if verdict == "requires_manual_check" or not keep_technical:
+                out["verdict"] = "rejected"
+                out["filter_reasons"] = reasons + mq["qc_reasons"]
 
     return out
 

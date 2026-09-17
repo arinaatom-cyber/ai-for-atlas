@@ -1,3 +1,4 @@
+"""PRIDE Archive JSON API (read-only)."""
 from __future__ import annotations
 
 import re
@@ -5,6 +6,10 @@ import time
 from typing import Any
 
 import requests
+
+from atlas_agent.discovery.organism_terms import is_human_text, is_non_human_text
+from atlas_agent.discovery.tmt_plex import infer_tmt_plex
+from atlas_agent.sources.text_limits import DESCRIPTION_LIMIT
 
 PRIDE_API = "https://www.ebi.ac.uk/pride/ws/archive/v3"
 PRIDE_API_V2 = "https://www.ebi.ac.uk/pride/ws/archive/v2"
@@ -66,35 +71,15 @@ def _is_tmt_project(p: dict) -> bool:
 
 
 def _is_human(p: dict) -> bool:
-    """Только Homo sapiens. Mixed / mouse / rat — нет."""
-    title_desc = f"{p.get('title', '')} {p.get('projectDescription', '')}".lower()
-    if re.search(
-        r"\b(mouse|mice|murine|rat\b|porcine|chicken|gallus|zebrafish|"
-        r"chlamydomonas|yeast|arabidopsis|salmonella)\b",
-        title_desc,
-    ):
+    """Allow-list Homo sapiens via shared organism_terms (same list as filters)."""
+    org_text = " ".join(_organism_names(p))
+    title_desc = f"{p.get('title', '')} {p.get('projectDescription', '')}"
+    blob = f"{org_text} {title_desc}"
+    if is_non_human_text(blob):
         return False
-    exclusive_non_human = (
-        "chlamydomonas", "porcine", "pig skin", "escherichia coli", "bacterial",
-        "maize", "unicellular protist",
-    )
-    if any(x in title_desc for x in exclusive_non_human):
-        if "human" not in title_desc and "homo" not in title_desc:
-            return False
-    orgs = p.get("organisms") or []
-    org_text = " ".join(_organism_names(p) or [str(o) for o in orgs]).lower()
-    if org_text:
-        non_human = (
-            "mouse", "mus musculus", "rat", "bacteria", "salmonella", "escherichia",
-            "maize", "plant", "porcine", "chicken", "zebrafish", "yeast",
-        )
-        if any(n in org_text for n in non_human):
-            return False
-        if "homo" in org_text or "human" in org_text:
-            return True
-    if "human" in title_desc or "homo sapiens" in title_desc or re.search(r"\bpatients?\b", title_desc):
+    if org_text and is_human_text(org_text):
         return True
-    return False
+    return is_human_text(title_desc)
 
 
 def _organism_names(p: dict) -> list[str]:
@@ -122,16 +107,7 @@ def _infer_plex_from_pride(p: dict) -> int | None:
         )
     )
     blob = f"{blob} {qm_text}"
-    m = re.search(
-        r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})|(\d{1,2})\s*[- ]?plex",
-        blob,
-        re.I,
-    )
-    if m:
-        for g in m.groups():
-            if g:
-                return int(g)
-    return None
+    return infer_tmt_plex(blob)
 
 
 def project_to_record(p: dict, *, source: str = "pride_api") -> dict[str, Any]:
@@ -153,7 +129,7 @@ def project_to_record(p: dict, *, source: str = "pride_api") -> dict[str, Any]:
     return {
         "accession": acc,
         "title": (p.get("title") or "")[:500],
-        "description": desc[:2500],
+        "description": desc[:DESCRIPTION_LIMIT],
         "submission_date": _project_date(p),
         "publication_date": (p.get("publicationDate") or "")[:10],
         "organisms": _organism_names(p) or p.get("organisms") or [],
@@ -198,6 +174,7 @@ def search_pride_json(
     max_pages: int = 15,
     exclude_accessions: set[str] | None = None,
     profile_keywords: list[str] | None = None,
+    stats: dict[str, Any] | None = None,
 ) -> list[dict]:
     """
     Профессиональный поиск PRIDE v3 /search/projects (сортировка по дате submission).
@@ -213,6 +190,7 @@ def search_pride_json(
     cutoff_hi = f"{year_to}-12-31"
     seen: set[str] = set()
     filtered: list[dict] = []
+    failed_requests = 0
 
     for kw in kws[:8]:
         for page in range(max_pages):
@@ -227,6 +205,7 @@ def search_pride_json(
                 r = requests.get(f"{PRIDE_API}/search/projects", params=params, timeout=60)
                 r.raise_for_status()
             except requests.RequestException:
+                failed_requests += 1
                 break
             batch = _parse_search_results(r.json())
             if not batch:
@@ -253,6 +232,8 @@ def search_pride_json(
             if len(batch) < params["pageSize"]:
                 break
             time.sleep(0.2)
+    if stats is not None:
+        stats["failed_requests"] = failed_requests
     return filtered
 
 

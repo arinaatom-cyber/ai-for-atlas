@@ -13,6 +13,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from atlas_agent.discovery.organism_terms import HUMAN, HUMAN_CANCER_CELL_LINE, NON_HUMAN
+
 # --- Включение: ткани и клеточные линии ---
 HUMAN_TUMOR_TISSUE = re.compile(
     r"\b(tumor\s+tissue|tumou?r\s+specimen|ffpe|surgical\s+specimen|biopsy|"
@@ -31,12 +33,6 @@ HUMAN_TISSUE = re.compile(
     r"tissue\s+(sample|samples|specimen|proteom|lysate)|"
     r"(liver|lung|brain|kidney|colon|gastric|breast|heart|prostate|"
     r"ovarian|pancreatic|skin|muscle|thyroid)\s+tissue)\b",
-    re.I,
-)
-HUMAN_CANCER_CELL_LINE = re.compile(
-    r"\b((human|cancer|tumou?r)\s+cell\s+lines?|cell\s+lines?\s+from\s+(human|patient)|"
-    r"hela|mcf[- ]?7|mcf7|a549|hct116|u2os|pc[- ]?3|du145|t47d|mda[- ]?mb|"
-    r"ccle|depmap)\b",
     re.I,
 )
 CLINICAL_HUMAN = re.compile(
@@ -73,8 +69,7 @@ PDX_XENO = re.compile(
     re.I,
 )
 NON_HUMAN_CELL = re.compile(
-    r"\b(mouse|murine|rat|canine|bovine|porcine|cho\s+cell|3t3|mc38|b16|"
-    r"mda[- ]?mb[- ]?231[- ]?luc|non[- ]?human\s+cell\s+line)\b",
+    r"cho\s+cell|3t3|mc38|\bb16\b|mda[- ]?mb[- ]?231[- ]?luc|non[- ]?human\s+cell\s+line",
     re.I,
 )
 NON_CANCER_HUMAN_CELL = re.compile(
@@ -83,15 +78,8 @@ NON_CANCER_HUMAN_CELL = re.compile(
     r"primary\s+cells?\s+from\s+healthy|stem\s+cell\s+derived)\b",
     re.I,
 )
-ANIMAL_TISSUE = re.compile(
-    r"\b(mouse|mice|murine|rat\b|rodent|porcine|bovine|canine|"
-    r"animal\s+tissue|xenograft\s+in\s+(mouse|rat))\b",
-    re.I,
-)
-NON_HUMAN_ORG = re.compile(
-    r"\b(salmonella|escherichia|chlamydomonas|arabidopsis|yeast|maize|bacteria)\b",
-    re.I,
-)
+ANIMAL_TISSUE = NON_HUMAN
+NON_HUMAN_ORG = NON_HUMAN
 PDC_EXCLUDED_PROGRAM = re.compile(
     r"\b(hcmi|organoid|organoids|spheroid|tumoroid|xenograft|pdx)\b",
     re.I,
@@ -186,13 +174,13 @@ def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dic
     blob = blob or material_blob_from_item(item)
     excluded_hits: list[str] = []
 
-    if NON_HUMAN_ORG.search(blob) and not re.search(r"\bhuman|homo\s+sapiens|patient\b", blob, re.I):
+    if NON_HUMAN_ORG.search(blob) and not HUMAN.search(blob):
         return _result("rejected", ["Non-human organism (bacteria/plant/etc.)"], [], [])
     if ANIMAL_TISSUE.search(blob):
         if not re.search(r"\b(patient|patients|clinical|human\s+tissue)\b", blob, re.I):
             return _result("rejected", ["Animal tissue without human component"], [], ["animal_tissue"])
-    if NON_HUMAN_CELL.search(blob):
-        if not HUMAN_CANCER_CELL_LINE.search(blob):
+    if NON_HUMAN.search(blob) or NON_HUMAN_CELL.search(blob):
+        if not HUMAN_CANCER_CELL_LINE.search(blob) and not HUMAN.search(blob):
             return _result("rejected", ["Non-human cell line"], [], ["non_human_cell_line"])
 
     real_include = _real_include_signals(blob)

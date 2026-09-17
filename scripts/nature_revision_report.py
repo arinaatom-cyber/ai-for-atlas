@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Nature revision: similar projects, atlas gaps, Methods text, workflow schema."""
+"""Discovery summary: similar projects, atlas gaps, Methods text."""
 from __future__ import annotations
 
 import json
@@ -214,7 +214,7 @@ def main() -> int:
     distinct_studies = len(_unique_studies(candidates))
 
     lines: list[str] = [
-        "# Nature revision — Discovery & atlas gaps",
+        "# Discovery — gaps and similar projects",
         "",
         f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}",
         f"Scan: {str(report.get('generated_at', ''))[:19]} UTC",
@@ -234,7 +234,7 @@ def main() -> int:
         "    EPMC[Europe PMC 4 queries]",
         "  end",
         "  subgraph filter [Filters]",
-        "    F1[Human TMT ≥10-plex]",
+        "    F1[Human TMT 7–18 plex]",
         "    F2[No phospho / peptide-only]",
         "    F3[Exclusion engine]",
         "    F4[Sample design QC]",
@@ -311,14 +311,14 @@ def main() -> int:
         lines.append("")
 
     lines.extend([
-        "## Чего не хватает для Nature revision",
+        "## Что ещё можно улучшить",
         "",
         "| Блок | Статус | Действие |",
         "|------|--------|----------|",
-        f"| Living resource pipeline | OK | Methods manifest → Supplementary Table S× |",
-        f"| Benchmark validation | {proj_b['accuracy']:.0%} projects | Cite in Methods |",
-        f"| New tier-A datasets | {len(candidates)} acc / {distinct_studies} studies | Table: accession, organ, TMT, URL |",
-        f"| Organ gaps | {len(gaps)} weak/empty | Discussion: future expansion |",
+        f"| Pipeline | OK | methods_manifest.json |",
+        f"| Filter checks | {proj_b['accuracy']:.0%} on unit cases | tests |",
+        f"| New candidates | {len(candidates)} acc / {distinct_studies} studies | accession, organ, TMT, URL |",
+        f"| Organ gaps | {len(gaps)} weak/empty | catalog coverage |",
         "| PXD from literature | 0 auto-resolved | Manual full-text check for 4 maybe papers |",
         "| Eye / vitreous (PXD077831) | Eye: 1 catalog project | Vitreous fluid — new sub-niche |",
         "| Pediatric glioma PDC | PDC000495 + PDC000498 | One row in expansion table (duplicate arms) |",

@@ -68,7 +68,7 @@ SECTION_28 = [
     "",
     "2.8.2. Критерии отбора наборов данных",
     "",
-    "Иерархия фильтров: (i) accession уже в каталоге → «already in catalog»; (ii) Homo sapiens; (iii) TMT/isobaric ≥10-plex (TMT10, TMT11, TMT12, TMT16, TMTpro16, TMTpro18; отклонение TMT6–TMT9); (iv) exclusion engine (mouse/xenograft-only, phospho-only, peptide-only, method papers); (v) программное исключение CPTAC/Broad/CCLE; (vi) sample design QC (case–control, paired, cancer-only или manual). Ранжирование репозиторных tier A–D выполняется по наличию protein-level quant table и дизайну — без LLM.",
+    "Иерархия фильтров: (i) accession уже в каталоге → «already in catalog»; (ii) Homo sapiens; (iii) TMT/isobaric 7–18 plex (включая TMTpro16/18; отклонение TMT6 и ≤6-plex); (iv) exclusion engine (mouse/xenograft-only, phospho-only, peptide-only, method papers); (v) программное исключение CPTAC/Broad/CCLE; (vi) sample design QC (case–control, paired, cancer-only или manual). Ранжирование репозиторных tier A–D выполняется по наличию protein-level quant table и дизайну — без LLM.",
     "",
     "2.8.3. Семантический анализ публикаций с использованием языковой модели",
     "",

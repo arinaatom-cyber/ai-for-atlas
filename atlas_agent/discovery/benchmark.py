@@ -1,4 +1,4 @@
-"""Gold-standard benchmark for Discovery screening (Nature Methods validation)."""
+"""Unit checks for Discovery screening rules."""
 from __future__ import annotations
 
 from atlas_agent.discovery.confidence import project_confidence

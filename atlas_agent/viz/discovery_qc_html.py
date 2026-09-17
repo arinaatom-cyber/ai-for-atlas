@@ -63,6 +63,25 @@ def _rows(items: list[dict]) -> str:
     return "\n".join(out) or '<tr><td colspan="8" data-i18n="no_rows"></td></tr>'
 
 
+def _simple_rows(items: list[dict], *, extra_key: str = "") -> str:
+    out = []
+    for it in items:
+        acc = str(it.get("accession") or it.get("project_accession") or "—")
+        title = html.escape(str(it.get("title") or "")[:180])
+        extra = it.get(extra_key)
+        if isinstance(extra, list):
+            extra_s = html.escape(", ".join(str(x) for x in extra[:8]))
+        else:
+            extra_s = html.escape(str(extra or it.get("pmid") or it.get("doi") or "—"))
+        pmid = html.escape(str(it.get("pmid") or ""))
+        out.append(
+            f"<tr><td class='col-id cell-mono'>{html.escape(acc)}</td>"
+            f"<td class='col-title'>{title}</td>"
+            f"<td class='col-reason'>{extra_s or pmid or '—'}</td></tr>"
+        )
+    return "\n".join(out) or '<tr><td colspan="3" data-i18n="no_rows"></td></tr>'
+
+
 def _split_candidates(items: list[dict]) -> tuple[list[dict], list[dict]]:
     passed: list[dict] = []
     excluded: list[dict] = []
@@ -104,6 +123,10 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
     rejected = report.get("rejected_material") or []
     technical = report.get("filtered_out") or []
     stats = s.get("source_stats") or {}
+    manifest = report.get("methods_manifest") or {}
+    lit = manifest.get("literature_screening") or {}
+    regex_only = lit.get("regex_only_publications") or stats.get("regex_only_publications") or []
+    pmid_review = manifest.get("possible_pmid_match") or []
     gen = report.get("generated_at") or ""
 
     meta = meta_time(gen) + ' <span class="meta-pill badge badge-muted" data-i18n="badge_readonly"></span>'
@@ -157,6 +180,30 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
     {section_head("qc_filtered", len(technical))}
     <div class="table-wrap table-unified table-qc">
       <table class="data-table">{_table_head()}<tbody>{_rows(technical)}</tbody></table>
+    </div>
+  </section>
+
+  <section class="section">
+    {section_head("qc_regex_only", len(regex_only))}
+    <p class="section-desc" data-i18n="qc_regex_only_desc"></p>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table"><thead><tr>
+        <th class="col-id" data-i18n="th_id"></th>
+        <th class="col-title" data-i18n="th_title"></th>
+        <th class="col-reason" data-i18n="th_reason"></th>
+      </tr></thead><tbody>{_simple_rows(regex_only, extra_key="abstract_reader")}</tbody></table>
+    </div>
+  </section>
+
+  <section class="section">
+    {section_head("qc_pmid_review", len(pmid_review))}
+    <p class="section-desc" data-i18n="qc_pmid_review_desc"></p>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table"><thead><tr>
+        <th class="col-id" data-i18n="th_id"></th>
+        <th class="col-title" data-i18n="th_title"></th>
+        <th class="col-reason" data-i18n="th_reason"></th>
+      </tr></thead><tbody>{_simple_rows(pmid_review, extra_key="possible_pmid_match")}</tbody></table>
     </div>
   </section>
 </div>"""

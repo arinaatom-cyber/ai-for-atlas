@@ -6,6 +6,9 @@ __pycache__/
 *.pyo
 .pytest_cache/
 .mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
 
 # Локальные отчёты (на GitHub — docs/site/)
 reports/
@@ -25,6 +28,7 @@ aging_mrm/output/
 # Heavy generated data / scan history (not for the public code repo)
 data/discovery_history/*
 !data/discovery_history/latest.json
+data/releases/
 data/project-cache/
 *.log
 agent-tools/

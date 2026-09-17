@@ -463,6 +463,15 @@ def read_abstract_with_llm(
     return apply_literature_exclusions(out)
 
 
+def _regex_only_ref(pub: dict[str, Any]) -> dict[str, str]:
+    return {
+        "title": str(pub.get("title") or "")[:200],
+        "pmid": str(pub.get("pmid") or ""),
+        "doi": str(pub.get("doi") or ""),
+        "abstract_reader": str(pub.get("abstract_reader") or "regex"),
+    }
+
+
 def enrich_publications_with_ai(
     pubs: list[dict],
     *,
@@ -473,13 +482,26 @@ def enrich_publications_with_ai(
     """ИИ-чтение абстрактов по смыслу (без PXD/PDC в тексте)."""
     cfg = cfg or {}
     disc = cfg.get("discovery") or {}
-    limit = max_llm if max_llm is not None else int(disc.get("abstract_llm_max") or 25)
+    limit = max_llm
+    if limit is None:
+        raw = disc.get("abstract_llm_max", 25)
+        if raw is None:
+            limit = len(pubs)
+        else:
+            try:
+                limit = int(raw)
+            except (TypeError, ValueError):
+                limit = 25
+            if limit <= 0:
+                limit = len(pubs)
     stats = {
         "llm_read": 0,
         "regex_only": 0,
         "atlas_fit_yes": 0,
         "atlas_fit_maybe": 0,
         "engines": {},
+        "regex_only_publications": [],
+        "abstract_llm_max": limit,
     }
 
     out: list[dict] = []
@@ -489,6 +511,7 @@ def enrich_publications_with_ai(
             reader = enriched.get("abstract_reader", "")
             if reader.startswith("regex"):
                 stats["regex_only"] += 1
+                stats["regex_only_publications"].append(_regex_only_ref(enriched))
             else:
                 stats["llm_read"] += 1
                 stats["engines"][reader] = stats["engines"].get(reader, 0) + 1
@@ -504,5 +527,6 @@ def enrich_publications_with_ai(
                 atlas_context=atlas_context,
             )
             stats["regex_only"] += 1
+            stats["regex_only_publications"].append(_regex_only_ref(enriched))
         out.append(enriched)
     return out, stats

@@ -70,12 +70,24 @@ def _flag_match(left: pd.Series, right: pd.Series, *, numeric: bool = False) -> 
     )
 
 
+def _apply_srm_age(out: pd.DataFrame) -> pd.DataFrame:
+    out = out.copy()
+    out["sex_match"] = _flag_match(out["sex"], out.get("srm_sex", pd.Series("", index=out.index)))
+    out["age_match"] = _flag_match(
+        out["age"], out.get("srm_age", pd.Series(index=out.index, dtype=float)), numeric=True
+    )
+    has_srm_age = out.get("srm_age", pd.Series(index=out.index, dtype=float)).notna()
+    out.loc[has_srm_age, "age"] = out.loc[has_srm_age, "srm_age"]
+    out["age_bin"] = out["age"].map(age_bin)
+    return out
+
+
 def assemble_observed(
     patients: pd.DataFrame,
     channels: pd.DataFrame,
     intensities: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Observed peptide intensities with clinical age/sex as source of truth."""
+    """Observed intensities: SRM header age when measured, else clinical."""
     clinical = patients.drop_duplicates("patient_id", keep="first")
     merged = intensities.merge(channels, on=["channel_id", "patient_id"], how="left")
     merged = merged.merge(clinical, on="patient_id", how="left", suffixes=("", "_clinical"))
@@ -86,9 +98,7 @@ def assemble_observed(
         )
     else:
         merged["cohort"] = merged.get("cohort_from_name")
-    merged["age_bin"] = merged["age"].map(age_bin)
-    merged["sex_match"] = _flag_match(merged["sex"], merged["srm_sex"])
-    merged["age_match"] = _flag_match(merged["age"], merged["srm_age"], numeric=True)
+    merged = _apply_srm_age(merged)
     merged["in_srm"] = 1
     merged["present"] = merged["intensity"].notna().map({True: 1, False: 0})
     merged["missing_reason"] = ""
@@ -133,7 +143,7 @@ def assemble_observed(
 
 
 def assemble_annotation(patients: pd.DataFrame, channels: pd.DataFrame) -> pd.DataFrame:
-    """One row per patient: channel if measured, clinical age/sex always."""
+    """One row per patient: channel if measured; SRM age when present."""
     clinical = patients.drop_duplicates("patient_id", keep="first")
     keep_ch = [
         col
@@ -153,11 +163,7 @@ def assemble_annotation(patients: pd.DataFrame, channels: pd.DataFrame) -> pd.Da
     out = clinical.merge(channels[keep_ch], on="patient_id", how="left")
     out["in_srm"] = out["channel_id"].notna() & (out["channel_id"].astype(str).str.strip() != "")
     out["in_srm"] = out["in_srm"].astype(int)
-    out["age_bin"] = out["age"].map(age_bin)
-    out["sex_match"] = _flag_match(out["sex"], out.get("srm_sex", pd.Series("", index=out.index)))
-    out["age_match"] = _flag_match(
-        out["age"], out.get("srm_age", pd.Series(index=out.index, dtype=float)), numeric=True
-    )
+    out = _apply_srm_age(out)
     for col in ANNOTATION_COLUMNS:
         if col not in out.columns:
             out[col] = pd.NA
@@ -201,17 +207,13 @@ def assemble_values_5000(
         intensities["peptide_sequence"].isin(sequences)
     ][["patient_id", "peptide_sequence", "intensity", "log2_intensity"]]
     grid = grid.merge(obs, on=["patient_id", "peptide_sequence"], how="left")
-    grid["age_bin"] = grid["age"].map(age_bin)
     has_channel = grid["channel_id"].notna() & (grid["channel_id"].astype(str).str.strip() != "")
     grid["in_srm"] = has_channel.astype(int)
     grid["present"] = grid["intensity"].notna().astype(int)
     grid["missing_reason"] = ""
     grid.loc[~has_channel, "missing_reason"] = "no_srm_channel"
     grid.loc[has_channel & (grid["present"] == 0), "missing_reason"] = "no_intensity"
-    grid["sex_match"] = _flag_match(grid["sex"], grid.get("srm_sex", pd.Series("", index=grid.index)))
-    grid["age_match"] = _flag_match(
-        grid["age"], grid.get("srm_age", pd.Series(index=grid.index, dtype=float)), numeric=True
-    )
+    grid = _apply_srm_age(grid)
     for col in VALUES_COLUMNS:
         if col not in grid.columns:
             grid[col] = pd.NA

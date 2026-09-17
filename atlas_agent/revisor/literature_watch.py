@@ -8,13 +8,13 @@ from typing import Any
 import requests
 
 from atlas_agent.discovery.filters import extract_ids_from_text
-from atlas_agent.sources.literature import fetch_abstract
+from atlas_agent.sources.literature import fetch_abstract, publication_status_from_epmc
 from atlas_agent.sources.pride import (
     fetch_projects_json,
     project_to_record,
     search_pride_json,
 )
-from atlas_agent.sources.projects_table import primary_project_id
+from atlas_agent.sources.projects_table import all_repo_ids, primary_project_id
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 
@@ -51,6 +51,7 @@ def search_new_publications(
                 data_avail += " " + str(h[key])
         blob = f"{title} {abstract} {data_avail}"
         ids = extract_ids_from_text(blob)
+        status = publication_status_from_epmc(h)
         out.append(
             {
                 "pmid": pmid,
@@ -63,6 +64,7 @@ def search_new_publications(
                 "pxd_mentioned": ids.get("PXD") or [],
                 "accessions_mentioned": sum((ids.get(k) or [] for k in ("PXD", "PDC", "MSV", "IPX")), []),
                 "source": "europe_pmc",
+                **status,
             }
         )
     return out
@@ -127,7 +129,10 @@ def build_known_sets(df) -> tuple[set[str], set[str]]:
                 known_pmids.add(p)
     if "Project ID" in df.columns:
         for v in df["Project ID"].dropna():
-            known_pxds.add(primary_project_id(str(v)))
+            known_pxds |= all_repo_ids(str(v))
+            pid = primary_project_id(str(v))
+            if pid:
+                known_pxds.add(pid)
     return known_pmids, known_pxds
 
 

@@ -60,8 +60,8 @@ def test_build_pointcheck_clinical_age(tmp_path: Path):
     assert len(long_table) == 6
     row_925 = long_table[long_table["patient_id"] == "925"].iloc[0]
     assert row_925["channel_id"] == "OY1_AV"
-    assert row_925["age"] == 90
-    assert row_925["age_bin"] == "75+"
+    assert row_925["age"] == 35
+    assert row_925["age_bin"] == "25-44"
     assert row_925["srm_age"] == 35
     assert row_925["age_match"] == "0"
     assert row_925["sex_match"] == "1"
@@ -85,5 +85,5 @@ def test_build_pointcheck_clinical_age(tmp_path: Path):
     ].iloc[0]
     assert igkc["patient_id"] == "925"
     assert float(igkc["intensity"]) == 100.0
-    assert igkc["age"] == 90
+    assert igkc["age"] == 35
     assert (tmp_path / "channel_patient_intensity.csv").is_file()

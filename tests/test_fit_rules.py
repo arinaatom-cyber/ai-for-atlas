@@ -1,8 +1,12 @@
 from atlas_agent.discovery.filters import classify_candidate, default_filter_config
 from atlas_agent.discovery.fit_rules import (
     apply_literature_exclusions,
+    cohort_verdict,
+    fit_display_label,
     is_cohort_excluded,
     is_non_study_literature,
+    literature_verdict,
+    project_verdict,
     sanitize_summary,
 )
 
@@ -203,3 +207,42 @@ def test_human_only_rejects_mouse_and_mixed():
         cfg=cfg,
     )
     assert hela["verdict"] != "filtered_out" or "Human only" not in " ".join(hela.get("filter_reasons") or [])
+
+
+def _stored_eval(verdict: str, confidence: str = "B") -> dict:
+    return {
+        "final_verdict": verdict,
+        "confidence": confidence,
+        "confidence_css": "tier-b",
+        "confidence_bullets": ["Needs manual review"],
+        "evidence_chain": [
+            {"source": "regex_engine", "score": 0.4, "is_actionable": True, "detail": "check files"}
+        ],
+        "display_fit_label": "LLM yes",
+    }
+
+
+def test_project_verdict_uses_quant_table_and_mixed_files():
+    base = {"confidence_tier": "B", "evaluation": _stored_eval("Watch", "B")}
+    cand = {**base, "data_availability": {"status": "quant_table"}}
+    assert project_verdict(cand)[0] == "Candidate"
+    mixed = {**base, "data_availability": {"omics_layer": "mixed"}}
+    assert project_verdict(mixed)[0] == "Review"
+    raw = {**base, "data_availability": {"status": "raw_only"}}
+    assert project_verdict(raw)[0] == "Exclude"
+    ok = {**base, "evaluation": _stored_eval("Candidate", "A"), "confidence_tier": "A"}
+    assert project_verdict(ok)[0] == "Candidate"
+    bad = {**base, "evaluation": _stored_eval("Exclude", "D"), "confidence_tier": "D"}
+    assert project_verdict(bad)[0] == "Exclude"
+
+
+def test_literature_and_cohort_verdicts():
+    watch = {"confidence_tier": "C", "evaluation": _stored_eval("Watch", "C")}
+    assert literature_verdict(watch, has_accession=False)[0] == "Watch"
+    excl = {"confidence_tier": "D", "evaluation": _stored_eval("Exclude", "D")}
+    assert literature_verdict(excl, has_accession=True)[0] == "Exclude"
+    assert cohort_verdict(excl)[0] == "Exclude"
+    tmt = {"confidence_tier": "C", "evaluation": _stored_eval("Watch", "C"), "tmt_detected": True}
+    assert cohort_verdict(tmt)[0] == "Watch"
+    assert cohort_verdict(watch)[0] == "Watch"
+    assert "LLM" in fit_display_label({"atlas_fit": "yes"})

@@ -33,8 +33,9 @@ def assert_catalog_read_only(operation: str) -> None:
 
 def policy_summary() -> dict:
     return {
-        "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
-        "catalog_mirror": "data/projects.csv",
+        "catalog_runtime": "data/projects.csv",
+        "catalog_workbook": "project of Proteomics.xlsx (sheet TMT ATLAS)",
+        "catalog_sync": "compare-only; python scripts/sync_tmt_projects_csv.py --apply exports workbook → CSV",
         "catalog_mode": "read_only",
         "delete_allowed": False,
         "auto_update_allowed": False,
