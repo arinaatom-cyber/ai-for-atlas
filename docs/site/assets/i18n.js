@@ -143,8 +143,8 @@
     count_rows: { ru: "{n} / {total} строк", en: "{n} / {total} rows" },
     toolbar_type: { ru: "Тип", en: "Type" },
     toolbar_view: { ru: "Просмотр", en: "View" },
-    filter_view_simple: { ru: "Главное", en: "Main" },
-    filter_view_all: { ru: "Все строки", en: "All rows" },
+    filter_view_simple: { ru: "Подошло", en: "Passed" },
+    filter_view_all: { ru: "Весь поиск", en: "All search" },
     toolbar_source: { ru: "Источник", en: "Source" },
     toolbar_disease: { ru: "Болезнь", en: "Disease" },
     filter_all_disease: { ru: "Все болезни", en: "All diseases" },
@@ -168,7 +168,7 @@
         "Еженедельный ИИ-скрининг PRIDE, PDC и Europe PMC. В таблице — только находки вне каталога атласа.",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
-      kpi_new: "Кандидатов PDC (tier A)",
+      kpi_new: "Подошло (Candidate)",
       kpi_pride_manual: "PRIDE на проверке",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
@@ -192,17 +192,17 @@
         "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.",
       sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
       note_scope_lead:
-        "По умолчанию «Главное»: 12 PDC tier A + PRIDE без явного TMT plex (ручная проверка). «Все» — полный реестр.",
+        "По умолчанию «Подошло»: только проекты с вердиктом Candidate. «Весь поиск» — полный список (ручная проверка, исключённые, статьи).",
       note_scope_row_types:
         "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
       note_scope_kpi:
-        "KPI: PDC Candidate tier A · PRIDE на проверке (TMT есть, plex не в метаданных). «Отклонено» — technical filter + material reject.",
+        "KPI: сколько проектов прошло фильтры (Candidate). «PRIDE на проверке» — plex/дизайн неясны. «Отклонено» в KPI, не в главном списке.",
       note_scope_filter:
         "Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.",
       note_scope_stat_new: "новых проектов (KPI)",
       note_scope_stat_total: "записей в таблице",
       note_kpi_new_projects:
-        "KPI — PDC Candidate tier A. В таблице также PRIDE на ручной проверке и статьи без accession; фильтр «проекты» — все репозиторные строки.",
+        "KPI и вкладка «Подошло» — только Candidate. Исключённые и ручная проверка — во «Весь поиск».",
       sec_methods: "Методы и воронка",
       sec_methods_desc:
         "Пайплайн для Materials & Methods: агенты, скрипты, критерии включения. Цифры воронки — снимок последнего скана (см. дату выше).",
@@ -427,7 +427,7 @@
         "Weekly AI scan of PRIDE, PDC, and Europe PMC. Table lists findings not yet in the atlas catalog.",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
-      kpi_new: "PDC candidates (tier A)",
+      kpi_new: "Passed (Candidate)",
       kpi_pride_manual: "PRIDE manual review",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
@@ -453,17 +453,17 @@
         "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, papers without a repository ID, and oncology cohort literature.",
       sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
       note_scope_lead:
-        "Default «Main» view: 12 PDC tier A + PRIDE without explicit TMT plex (manual review). «All rows» = full registry.",
+        "Default «Passed»: Candidate projects only. «All search» is the full list (manual review, excluded, papers).",
       note_scope_row_types:
         "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
       note_scope_kpi:
-        "KPI: PDC Candidate tier A · PRIDE manual review (TMT confirmed, plex missing in metadata). «Rejected» = technical + material filter.",
+        "KPI: how many projects passed filters (Candidate). «PRIDE manual review» = unclear plex/design. Rejected items are in the KPI, not the main list.",
       note_scope_filter:
         "Filter «projects» for repository IDs only; «papers» and «cohorts» show Europe PMC records without PXD/PDC.",
       note_scope_stat_new: "new projects (KPI)",
       note_scope_stat_total: "rows in table",
       note_kpi_new_projects:
-        "KPI = PDC Candidate tier A. Table also lists PRIDE manual review and papers without accession; filter «projects» for all repository rows.",
+        "KPI and «Passed» tab = Candidate only. Excluded and manual-review rows live under «All search».",
       note_unified_table:
         "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",

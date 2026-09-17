@@ -872,11 +872,8 @@ def build_unified_discovery_rows(
         conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         bucket = str(it.get("_discovery_bucket") or "candidate")
-        simple = "1" if bucket == "repository_manual" or (
-            raw_acc.startswith("PDC")
-            and vlabel == "Candidate"
-            and str(tier) == "A"
-        ) else "0"
+        passed = bucket == "candidate" and vlabel == "Candidate"
+        simple = "1" if passed else "0"
         row_cls = ' class="row-pride-manual"' if bucket == "repository_manual" else ""
         rows.append(
             f"<tr{row_cls} data-type='project' data-src='{src_key}' "

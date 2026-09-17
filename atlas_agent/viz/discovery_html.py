@@ -209,10 +209,10 @@ def _merge_discovery_projects(report: dict) -> list[dict]:
 
 
 def _sort_discovery_projects(items: list[dict]) -> list[dict]:
-    """PDC tier A first, then PRIDE manual review, then other candidates."""
+    """Passed candidates first, then other candidate rows, then PRIDE manual."""
     from atlas_agent.discovery.fit_rules import project_verdict
 
-    def sort_key(it: dict) -> tuple[int, str]:
+    def sort_key(it: dict) -> tuple:
         acc = _project_accession_key(it)
         bucket = str(it.get("_discovery_bucket") or "")
         verdict = project_verdict(it)[0]
@@ -221,42 +221,31 @@ def _sort_discovery_projects(items: list[dict]) -> list[dict]:
             or (it.get("evaluation") or {}).get("confidence_tier")
             or ""
         )
-        if acc.startswith("PDC") and verdict == "Candidate" and tier == "A":
-            return (0, acc)
+        if bucket == "candidate" and verdict == "Candidate":
+            pdc_first = 0 if acc.startswith("PDC") and tier == "A" else 1
+            return (0, pdc_first, acc)
+        if bucket == "candidate":
+            return (1, 0, acc)
         if bucket == "repository_manual":
             pride_first = 0 if acc.startswith("PXD") else 1
-            return (1, pride_first, acc)
-        return (2, 0, acc)
+            return (2, pride_first, acc)
+        return (3, 0, acc)
 
     return sorted(items, key=sort_key)
 
 
-def _count_primary_candidates(projects: list[dict]) -> int:
-    """KPI: PDC repository rows with Candidate verdict and confidence tier A."""
+def _count_passed_candidates(projects: list[dict]) -> int:
+    """Main list / KPI: Candidate verdict (what passed filters)."""
     from atlas_agent.discovery.fit_rules import project_verdict
 
-    n = 0
-    for it in projects:
-        acc = str(it.get("accession") or it.get("project_accession") or "").upper()
-        if not acc.startswith("PDC"):
-            continue
-        if project_verdict(it)[0] != "Candidate":
-            continue
-        tier = str(
-            it.get("confidence_tier")
-            or (it.get("evaluation") or {}).get("confidence_tier")
-            or ""
-        )
-        if tier == "A":
-            n += 1
-    return n
+    return sum(1 for it in projects if project_verdict(it)[0] == "Candidate")
 
 
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
     candidates_only = list(report.get("candidates") or report.get("new_projects") or [])
     items = _merge_discovery_projects(report)
-    candidate_kpi = _count_primary_candidates(candidates_only)
+    candidate_kpi = _count_passed_candidates(candidates_only)
     pride_manual_kpi = len(report.get("repository_manual") or [])
     rejected_kpi = int(s.get("filtered_out") or 0) + int(s.get("rejected_material") or 0)
     pubs = report.get("publications_analyzed") or []
@@ -402,7 +391,11 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       const textOk = !term || search.includes(term);
       const show = typeOk && srcOk && viewOk && diseaseOk && textOk;
       r.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (show) {{
+        visible++;
+        const num = r.querySelector('.col-num b');
+        if (num) num.textContent = String(visible);
+      }}
     }});
     if (count) {{
       const lang = window.AtlasI18n?.getLang?.() || 'ru';
@@ -449,14 +442,16 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     }});
   }});
   const hash = (location.hash || '').replace('#', '');
+  if (hash === 'cohorts' || hash === 'papers' || hash === 'projects') {{
+    vFilter = 'all';
+    document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {{
+      b.classList.toggle('active', b.dataset.vfilter === 'all');
+    }});
+  }}
   if (hash === 'cohorts') setTypeFilter('cohort');
   else if (hash === 'papers') setTypeFilter('paper');
   else if (hash === 'projects') setTypeFilter('project');
   else apply();
-  rows.forEach((r, i) => {{
-    const num = r.querySelector('.col-num b');
-    if (num) num.textContent = String(i + 1);
-  }});
   document.addEventListener('atlas:lang', apply);
 }})();
 </script>
