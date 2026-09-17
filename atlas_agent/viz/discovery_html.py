@@ -287,23 +287,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     {note_discovery_scope(new_projects=candidate_kpi, total_rows=total_rows)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
-      <span class="toolbar-label" data-i18n="toolbar_view"></span>
-      <button type="button" class="chip active" data-vfilter="simple" data-i18n="filter_view_simple"></button>
-      <button type="button" class="chip" data-vfilter="all" data-i18n="filter_view_all"></button>
-      <span class="toolbar-divider" aria-hidden="true"></span>
-      <span class="toolbar-label" data-i18n="toolbar_type"></span>
-      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all"></button>
-      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects"></button>
-      <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers"></button>
-      <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts"></button>
-      <span class="toolbar-divider" aria-hidden="true"></span>
-      <span class="toolbar-label" data-i18n="toolbar_source"></span>
-      <button type="button" class="chip active" data-sfilter="all" data-i18n="filter_all_src"></button>
-      <button type="button" class="chip" data-sfilter="pride" data-i18n="filter_pride"></button>
-      <button type="button" class="chip" data-sfilter="pdc" data-i18n="filter_pdc"></button>
-      <button type="button" class="chip" data-sfilter="massive" data-i18n="filter_massive"></button>
-      <button type="button" class="chip" data-sfilter="iprox" data-i18n="filter_iprox"></button>
-      <button type="button" class="chip" data-sfilter="epmc" data-i18n="filter_epmc"></button>
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
@@ -350,22 +333,12 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'all';
-  let sFilter = 'all';
-  let vFilter = 'simple';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
     let visible = 0;
     rows.forEach(r => {{
-      const typ = (r.dataset.type || '');
-      const src = (r.dataset.src || '');
       const search = (r.dataset.search || '');
-      const simple = (r.dataset.simple || '0') === '1';
-      const typeOk = tFilter === 'all' || typ === tFilter;
-      const srcOk = sFilter === 'all' || src === sFilter;
-      const viewOk = vFilter === 'all' || simple;
-      const textOk = !term || search.includes(term);
-      const show = typeOk && srcOk && viewOk && textOk;
+      const show = !term || search.includes(term);
       r.style.display = show ? '' : 'none';
       if (show) {{
         visible++;
@@ -380,45 +353,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     }}
   }}
   q?.addEventListener('input', apply);
-  function setTypeFilter(value) {{
-    tFilter = value;
-    document.querySelectorAll('#disc-toolbar .chip[data-tfilter]').forEach(b => {{
-      b.classList.toggle('active', b.dataset.tfilter === value);
-    }});
-    apply();
-  }}
-  document.querySelectorAll('#disc-toolbar .chip[data-tfilter]').forEach(btn => {{
-    btn.addEventListener('click', () => setTypeFilter(btn.dataset.tfilter));
-  }});
-  document.querySelectorAll('#disc-toolbar .chip[data-sfilter]').forEach(btn => {{
-    btn.addEventListener('click', () => {{
-      document.querySelectorAll('#disc-toolbar .chip[data-sfilter]').forEach(b => {{
-        b.classList.toggle('active', b === btn);
-      }});
-      sFilter = btn.dataset.sfilter;
-      apply();
-    }});
-  }});
-  document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(btn => {{
-    btn.addEventListener('click', () => {{
-      document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {{
-        b.classList.toggle('active', b === btn);
-      }});
-      vFilter = btn.dataset.vfilter;
-      apply();
-    }});
-  }});
-  const hash = (location.hash || '').replace('#', '');
-  if (hash === 'cohorts' || hash === 'papers' || hash === 'projects') {{
-    vFilter = 'all';
-    document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {{
-      b.classList.toggle('active', b.dataset.vfilter === 'all');
-    }});
-  }}
-  if (hash === 'cohorts') setTypeFilter('cohort');
-  else if (hash === 'papers') setTypeFilter('paper');
-  else if (hash === 'projects') setTypeFilter('project');
-  else apply();
+  apply();
   document.addEventListener('atlas:lang', apply);
 }})();
 </script>

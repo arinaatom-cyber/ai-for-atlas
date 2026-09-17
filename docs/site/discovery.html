@@ -44,11 +44,11 @@
     <div class="section-head"><h2 data-i18n="sec_unified_discovery">Реестр находок Discovery</h2><span class="section-count" data-i18n-title="sec_unified_count_hint" title="Число всех строк таблицы (проекты + статьи + когорты)">124</span></div>
     <p class="section-desc" data-i18n="sec_unified_discovery_desc">Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.</p>
     <aside class="note note-science" aria-label="Table scope">
-  <p class="note-science-lead" data-i18n="note_scope_lead">По умолчанию «Подошло»: только проекты, которые прошли ИИ-фильтры (Candidate). Если plex, дизайн или материал не прошли — это не список проектов, а «Отфильтровано».</p>
+  <p class="note-science-lead" data-i18n="note_scope_lead">В таблице — все находки последнего скана: проекты, статьи и когорты. KPI «Подошло» считает только Candidate.</p>
   <ul class="note-science-list">
     <li data-i18n="note_scope_row_types">Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.</li>
-    <li data-i18n="note_scope_kpi">KPI: сколько проектов прошло фильтры (Candidate). Неясный TMT plex или дизайн = не прошло, не в выдаче. «Смесь ткань+3D» — единственная ручная корзина.</li>
-    <li data-i18n="note_scope_filter">Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.</li>
+    <li data-i18n="note_scope_kpi">KPI: сколько проектов прошло правила (Candidate). Неясный TMT plex или дизайн = не в KPI. «Смесь ткань+3D» — единственная ручная корзина.</li>
+    <li data-i18n="note_scope_filter">Поиск в шапке ищет по ID, названию, болезни и органу.</li>
   </ul>
   <p class="note-science-stats">
     <span class="note-stat">39 новых проектов (KPI)</span>
@@ -58,23 +58,6 @@
 </aside>
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified" placeholder="Поиск по ID, названию, анализу…"/>
-      <span class="toolbar-label" data-i18n="toolbar_view">Просмотр</span>
-      <button type="button" class="chip active" data-vfilter="simple" data-i18n="filter_view_simple">Подошло</button>
-      <button type="button" class="chip" data-vfilter="all" data-i18n="filter_view_all">Весь поиск</button>
-      <span class="toolbar-divider" aria-hidden="true"></span>
-      <span class="toolbar-label" data-i18n="toolbar_type">Тип</span>
-      <button type="button" class="chip active" data-tfilter="all" data-i18n="filter_all">Все</button>
-      <button type="button" class="chip" data-tfilter="project" data-i18n="filter_projects">Проекты</button>
-      <button type="button" class="chip" data-tfilter="paper" data-i18n="filter_papers">Статьи</button>
-      <button type="button" class="chip" data-tfilter="cohort" data-i18n="filter_cohorts">Когорты</button>
-      <span class="toolbar-divider" aria-hidden="true"></span>
-      <span class="toolbar-label" data-i18n="toolbar_source">Источник</span>
-      <button type="button" class="chip active" data-sfilter="all" data-i18n="filter_all_src">Все источники</button>
-      <button type="button" class="chip" data-sfilter="pride" data-i18n="filter_pride">PRIDE</button>
-      <button type="button" class="chip" data-sfilter="pdc" data-i18n="filter_pdc">PDC</button>
-      <button type="button" class="chip" data-sfilter="massive" data-i18n="filter_massive">MassIVE</button>
-      <button type="button" class="chip" data-sfilter="iprox" data-i18n="filter_iprox">iProX</button>
-      <button type="button" class="chip" data-sfilter="epmc" data-i18n="filter_epmc">Europe PMC</button>
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint">Таблица широкая — прокрутите вправо, чтобы увидеть все колонки. Вкладка «Проекты» — данные; «Справка» — расшифровка колонок.</p>
@@ -349,22 +332,12 @@
   const tbl = document.getElementById('tbl-unified');
   const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
   const count = document.getElementById('count');
-  let tFilter = 'all';
-  let sFilter = 'all';
-  let vFilter = 'simple';
   function apply() {
     const term = (q?.value || '').toLowerCase().trim();
     let visible = 0;
     rows.forEach(r => {
-      const typ = (r.dataset.type || '');
-      const src = (r.dataset.src || '');
       const search = (r.dataset.search || '');
-      const simple = (r.dataset.simple || '0') === '1';
-      const typeOk = tFilter === 'all' || typ === tFilter;
-      const srcOk = sFilter === 'all' || src === sFilter;
-      const viewOk = vFilter === 'all' || simple;
-      const textOk = !term || search.includes(term);
-      const show = typeOk && srcOk && viewOk && textOk;
+      const show = !term || search.includes(term);
       r.style.display = show ? '' : 'none';
       if (show) {
         visible++;
@@ -379,45 +352,7 @@
     }
   }
   q?.addEventListener('input', apply);
-  function setTypeFilter(value) {
-    tFilter = value;
-    document.querySelectorAll('#disc-toolbar .chip[data-tfilter]').forEach(b => {
-      b.classList.toggle('active', b.dataset.tfilter === value);
-    });
-    apply();
-  }
-  document.querySelectorAll('#disc-toolbar .chip[data-tfilter]').forEach(btn => {
-    btn.addEventListener('click', () => setTypeFilter(btn.dataset.tfilter));
-  });
-  document.querySelectorAll('#disc-toolbar .chip[data-sfilter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#disc-toolbar .chip[data-sfilter]').forEach(b => {
-        b.classList.toggle('active', b === btn);
-      });
-      sFilter = btn.dataset.sfilter;
-      apply();
-    });
-  });
-  document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {
-        b.classList.toggle('active', b === btn);
-      });
-      vFilter = btn.dataset.vfilter;
-      apply();
-    });
-  });
-  const hash = (location.hash || '').replace('#', '');
-  if (hash === 'cohorts' || hash === 'papers' || hash === 'projects') {
-    vFilter = 'all';
-    document.querySelectorAll('#disc-toolbar .chip[data-vfilter]').forEach(b => {
-      b.classList.toggle('active', b.dataset.vfilter === 'all');
-    });
-  }
-  if (hash === 'cohorts') setTypeFilter('cohort');
-  else if (hash === 'papers') setTypeFilter('paper');
-  else if (hash === 'projects') setTypeFilter('project');
-  else apply();
+  apply();
   document.addEventListener('atlas:lang', apply);
 })();
 </script>

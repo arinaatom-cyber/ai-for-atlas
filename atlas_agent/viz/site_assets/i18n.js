@@ -200,13 +200,13 @@
         "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.",
       sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
       note_scope_lead:
-        "По умолчанию «Подошло»: только проекты, которые прошли ИИ-фильтры (Candidate). Если plex, дизайн или материал не прошли — это не список проектов, а «Отфильтровано».",
+        "В таблице — все находки последнего скана: проекты, статьи и когорты. KPI «Подошло» считает только Candidate.",
       note_scope_row_types:
         "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
       note_scope_kpi:
-        "KPI: сколько проектов прошло фильтры (Candidate). Неясный TMT plex или дизайн = не прошло, не в выдаче. «Смесь ткань+3D» — единственная ручная корзина.",
+        "KPI: сколько проектов прошло правила (Candidate). Неясный TMT plex или дизайн = не в KPI. «Смесь ткань+3D» — единственная ручная корзина.",
       note_scope_filter:
-        "Фильтр «проекты» оставляет только репозиторные ID; «статьи» и «когорты» — Europe PMC без PXD/PDC.",
+        "Поиск в шапке ищет по ID, названию, болезни и органу.",
       note_scope_stat_new: "новых проектов (KPI)",
       note_scope_stat_total: "записей в таблице",
       note_kpi_new_projects:
@@ -471,13 +471,13 @@
         "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, papers without a repository ID, and oncology cohort literature.",
       sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
       note_scope_lead:
-        "Default «Passed»: only projects that passed AI filters (Candidate). Failed plex, design, or material is Filtered, not a project list.",
+        "The table lists every hit from the latest scan: projects, papers, and cohorts. The Passed KPI counts Candidate projects only.",
       note_scope_row_types:
         "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
       note_scope_kpi:
-        "KPI: how many projects passed filters (Candidate). Unclear TMT plex or design = not passed, not in the list. Mixed tissue+3D is the only manual bucket.",
+        "KPI: how many projects passed the rules (Candidate). Unclear TMT plex or design is not in the KPI. Mixed tissue+3D is the only manual bucket.",
       note_scope_filter:
-        "Filter «projects» for repository IDs only; «papers» and «cohorts» show Europe PMC records without PXD/PDC.",
+        "The header search matches ID, title, disease, and organ.",
       note_scope_stat_new: "new projects (KPI)",
       note_scope_stat_total: "rows in table",
       note_kpi_new_projects:
