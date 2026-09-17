@@ -146,11 +146,7 @@ def _guide_panel() -> str:
   <div class="guide-group">{rows}</div>
   <div class="guide-block">
     <h3 data-i18n="guide_filters_title"></h3>
-    <ul>
-      <li data-i18n="guide_filters_type"></li>
-      <li data-i18n="guide_filters_source"></li>
-      <li data-i18n="guide_filters_search"></li>
-    </ul>
+    <p data-i18n="guide_filters_search"></p>
   </div>
   <div class="guide-block">
     <h3 data-i18n="guide_similarity_title"></h3>
