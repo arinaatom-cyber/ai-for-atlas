@@ -122,7 +122,7 @@ def cmd_publish(_args: argparse.Namespace) -> int:
     site_dir = publish_discovery_site(data, ROOT)
     print(f"Сайт обновлён: {site_dir}")
     print(f"  discovery.html — проекты + ИИ-анализ абстрактов")
-    print(f"  qc.html — QC отчёт")
+    print(f"  qc.html — контроль качества")
     print(f"  latest.json — данные для API")
     pubs = len(data.get("publications_analyzed") or [])
     if not pubs:

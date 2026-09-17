@@ -18,7 +18,7 @@
         <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
       </a>
     </div>
-    <nav class="site-nav" aria-label="Main"><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="active" data-i18n="nav_qc">QC</a></nav>
+    <nav class="site-nav" aria-label="Main"><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="active" data-i18n="nav_qc">Quality control</a></nav>
     <div class="header-controls">
       <div class="theme-toggle" aria-label="Theme">
         <button type="button" data-theme="light" title="Light">☀</button>
@@ -35,15 +35,15 @@
 <main class="site-main">
 
 <div class="page-hero">
-  <h1 data-i18n="qc_title">QC отчёт Discovery</h1>
-  <p class="lead" data-i18n="qc_lead">Первый список — только то, что прошло QC (Candidate). Это и есть выдача проектов. Остальное — не прошло: смесь ткань+3D, Exclude, материал, техфильтр.</p>
+  <h1 data-i18n="qc_title">Контроль качества Discovery</h1>
+  <p class="lead" data-i18n="qc_lead">Первый список — только то, что прошло проверку (Candidate). Это и есть выдача проектов. Остальное — не прошло: смесь ткань+3D, Exclude, материал, техфильтр.</p>
   <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-17 11:42:09 UTC</span> <span class="meta-pill badge badge-muted" data-i18n="badge_readonly">только чтение</span></div>
-</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">39</span><span class="kpi-label" data-i18n="qc_candidate">Подошло (QC)</span></div><div class="kpi"><span class="kpi-value">10</span><span class="kpi-label" data-i18n="qc_manual">Ручная проверка</span></div><div class="kpi"><span class="kpi-value">57</span><span class="kpi-label" data-i18n="qc_exclude">Исключено (вердикт)</span></div><div class="kpi"><span class="kpi-value">325</span><span class="kpi-label" data-i18n="qc_rejected">Отклонено (материал)</span></div><div class="kpi"><span class="kpi-value">168</span><span class="kpi-label" data-i18n="qc_filtered">Отфильтровано (техн.)</span></div><div class="kpi"><span class="kpi-value">25</span><span class="kpi-label" data-i18n="kpi_abstracts_ai">LLM abstracts</span></div></div>
+</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">39</span><span class="kpi-label" data-i18n="qc_candidate">Подошло</span></div><div class="kpi"><span class="kpi-value">10</span><span class="kpi-label" data-i18n="qc_manual">Ручная проверка</span></div><div class="kpi"><span class="kpi-value">57</span><span class="kpi-label" data-i18n="qc_exclude">Исключено (вердикт)</span></div><div class="kpi"><span class="kpi-value">325</span><span class="kpi-label" data-i18n="qc_rejected">Отклонено (материал)</span></div><div class="kpi"><span class="kpi-value">168</span><span class="kpi-label" data-i18n="qc_filtered">Отфильтровано (техн.)</span></div><div class="kpi"><span class="kpi-value">25</span><span class="kpi-label" data-i18n="kpi_abstracts_ai">LLM abstracts</span></div></div>
 <div class="page-content">
   <div class="note"><strong data-i18n="qc_rules_title">Правила материала</strong> <span data-i18n="qc_rules">Homo sapiens. Ткань (tumor / adjacent / human tissue) или раковая клеточная линия должна быть прописана в метаданных или статье — иначе reject. Не берём plasma/serum/urine-only, organoids-only, PDX-only, животные. Смешанное tissue+organoid → ручная проверка.</span></div>
 
   <section class="section">
-    <div class="section-head"><h2 data-i18n="qc_candidate">Подошло (QC)</h2><span class="section-count" data-i18n-title="sec_unified_count_hint" title="Число всех строк таблицы (проекты + статьи + когорты)">39</span></div>
+    <div class="section-head"><h2 data-i18n="qc_candidate">Подошло</h2><span class="section-count" data-i18n-title="sec_unified_count_hint" title="Число всех строк таблицы (проекты + статьи + когорты)">39</span></div>
     <p class="section-desc" data-i18n="qc_candidate_desc">Вердикт Candidate — материал и фильтры пройдены. Это же главный список на Discovery.</p>
     <div class="table-wrap table-unified table-qc">
       <table class="data-table"><thead><tr>
@@ -125,7 +125,7 @@
 
   <section class="section">
     <div class="section-head"><h2 data-i18n="qc_exclude">Исключено (вердикт)</h2><span class="section-count" data-i18n-title="sec_unified_count_hint" title="Число всех строк таблицы (проекты + статьи + когорты)">57</span></div>
-    <p class="section-desc" data-i18n="qc_exclude_desc">Дошли до кандидатов, но QC/данные дали Exclude — не в главном списке.</p>
+    <p class="section-desc" data-i18n="qc_exclude_desc">Дошли до кандидатов, но данные и правила дали Exclude — не в главном списке.</p>
     <div class="table-wrap table-unified table-qc">
       <table class="data-table"><thead><tr>
       <th class="col-id" data-i18n="th_id">ID</th>
