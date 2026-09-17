@@ -193,6 +193,61 @@ def test_similar_cell_shows_catalog_match():
     assert "pride" in html.lower()
 
 
+def test_sort_does_not_prefer_pdc():
+    from atlas_agent.viz.discovery_html import _sort_discovery_projects
+
+    items = [
+        {
+            "accession": "PDC000001",
+            "_discovery_bucket": "candidate",
+            "evaluation": {"final_verdict": "Candidate", "confidence": "A"},
+            "year": "2020",
+        },
+        {
+            "accession": "PXD000002",
+            "_discovery_bucket": "candidate",
+            "evaluation": {"final_verdict": "Candidate", "confidence": "B"},
+            "year": "2024",
+        },
+    ]
+    ordered = [it["accession"] for it in _sort_discovery_projects(items)]
+    assert ordered[0] == "PXD000002"
+
+
+def test_unified_row_has_finding_not_confidence():
+    from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
+
+    body, total, _ = build_unified_discovery_rows(
+        [
+            {
+                "accession": "PXD012345",
+                "title": "Human colon TMT proteome",
+                "abstract_snippet": "Paired tumor and adjacent colon tissue labeled with TMT 11-plex.",
+                "disease": "other",
+                "primary_site": "not reported",
+                "evaluation": {
+                    "final_verdict": "Candidate",
+                    "confidence": "A",
+                    "confidence_css": "tier-a",
+                    "evidence_chain": [],
+                    "confidence_bullets": [],
+                },
+            }
+        ],
+        [],
+        [],
+        {},
+        resolve_literature_remote=False,
+        fetch_pride_pmid=False,
+    )
+    assert total == 1
+    assert "col-finding" in body
+    assert "col-confidence" not in body
+    assert "fit_llm" not in body
+    assert "Colon" in body or "colon" in body
+    assert "Paired tumor" in body
+
+
 def test_qc_rows_include_pmid_description_repo():
     html = _rows(
         [

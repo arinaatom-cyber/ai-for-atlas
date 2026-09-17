@@ -70,9 +70,6 @@ def _methods_panel(report: dict) -> str:
     m = report.get("methods_manifest") or {}
     s = report.get("summary") or {}
     st = s.get("source_stats") or {}
-    qm = report.get("quality_metrics") or s.get("quality_metrics") or {}
-    lit_b = qm.get("benchmark_literature") or {}
-    proj_b = qm.get("benchmark_projects") or {}
     funnel = m.get("funnel") or {}
     lit = m.get("literature_screening") or {}
     gate = m.get("data_availability_gate") or {}
@@ -109,10 +106,6 @@ def _methods_panel(report: dict) -> str:
     <div class="methods-card">
       <h3 data-i18n="methods_confidence"></h3>
       <p data-i18n="methods_tier_legend"></p>
-      <ul class="methods-stats">
-        {_methods_stat("bench_literature", f"{lit_b.get('correct', '?')}/{lit_b.get('n', '?')}")}
-        {_methods_stat("bench_projects", f"{proj_b.get('correct', '?')}/{proj_b.get('n', '?')}")}
-      </ul>
       <p class="methods-note" data-i18n="methods_confidence_note"></p>
     </div>
     <div class="methods-card">
@@ -138,12 +131,11 @@ def _guide_panel() -> str:
         ("th_year", "col_help_year"),
         ("th_title", "col_help_title"),
         ("th_disease", "col_help_disease"),
+        ("th_organ", "col_help_organ"),
         ("th_design", "col_help_design"),
         ("th_verdict", "col_help_verdict"),
-        ("th_confidence", "col_help_confidence"),
         ("th_similar", "col_help_similar"),
-        ("th_fit", "col_help_fit"),
-        ("th_analysis", "col_help_analysis"),
+        ("th_finding", "col_help_finding"),
         ("th_data", "col_help_data"),
     ]
     rows = "".join(
@@ -216,20 +208,19 @@ def _sort_discovery_projects(items: list[dict]) -> list[dict]:
         acc = _project_accession_key(it)
         bucket = str(it.get("_discovery_bucket") or "")
         verdict = project_verdict(it)[0]
-        tier = str(
-            it.get("confidence_tier")
-            or (it.get("evaluation") or {}).get("confidence_tier")
-            or ""
-        )
+        year_n = 0
+        for key in ("publication_date", "submission_date", "pub_date", "published", "year"):
+            m = re.search(r"(19|20)\d{2}", str(it.get(key) or ""))
+            if m:
+                year_n = -int(m.group(0))
+                break
         if bucket == "candidate" and verdict == "Candidate":
-            pdc_first = 0 if acc.startswith("PDC") and tier == "A" else 1
-            return (0, pdc_first, acc)
+            return (0, year_n, acc)
         if bucket == "candidate":
-            return (1, 0, acc)
+            return (1, year_n, acc)
         if bucket == "repository_manual":
-            pride_first = 0 if acc.startswith("PXD") else 1
-            return (2, pride_first, acc)
-        return (3, 0, acc)
+            return (2, year_n, acc)
+        return (3, year_n, acc)
 
     return sorted(items, key=sort_key)
 
@@ -331,7 +322,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <tr class="head-groups">
             <th colspan="6" class="th-group" data-i18n="th_group_record"></th>
             <th colspan="2" class="th-group col-split" data-i18n="th_group_context"></th>
-            <th colspan="7" class="th-group col-split" data-i18n="th_group_details"></th>
+            <th colspan="4" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
           <th class="col-num" data-i18n="th_num"></th>
@@ -343,11 +334,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-organ" data-i18n="th_organ"></th>
           <th class="col-design col-split" data-i18n="th_design"></th>
           <th class="col-verdict col-split" data-i18n="th_verdict"></th>
-          <th class="col-confidence" data-i18n="th_confidence"></th>
           <th class="col-similar" data-i18n="th_similar"></th>
-          <th class="col-abstract" data-i18n="th_abstract"></th>
-          <th class="col-weight" data-i18n="th_fit"></th>
-          <th class="col-analysis" data-i18n="th_analysis"></th>
+          <th class="col-finding" data-i18n="th_finding"></th>
           <th class="col-data" data-i18n="th_data"></th>
         </tr></thead>
         <tbody>{unified_rows}</tbody>

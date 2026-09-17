@@ -23,6 +23,7 @@ from atlas_agent.viz.display_format import (
     format_title,
     infer_disease,
     infer_organ,
+    is_stub_description,
     sentence_cap,
 )
 from atlas_agent.viz.portal_index import (
@@ -565,36 +566,36 @@ def _design_cell(item: dict) -> str:
     return f'<div class="cell-stack cell-design-block">{"".join(bits)}</div>'
 
 
-def _abstract_cell(item: dict) -> str:
-    snip = (
-        item.get("abstract_snippet")
-        or item.get("abstract")
-        or (item.get("abstract_ai") or {}).get("summary_en")
-        or (item.get("abstract_ai") or {}).get("summary_ru")
-        or item.get("description")
-        or item.get("sample_processing_protocol")
-        or item.get("disease")
-        or ""
-    )
-    snip = sentence_cap(re.sub(r"\s+", " ", str(snip).strip()))
-    fit = str(
-        item.get("atlas_fit") or (item.get("abstract_ai") or {}).get("atlas_fit") or ""
-    ).strip().lower()
-    parts: list[str] = []
-    if snip:
-        parts.append(f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>')
-    if fit in ("yes", "maybe", "no"):
-        parts.append(
-            f'<span class="badge fit-{_esc(fit)}" data-i18n="fit_llm_{_esc(fit)}"></span>'
-        )
-    src = str(item.get("excerpt_source") or "").strip().lower()
-    if src in ("pubmed", "pride", "pdc"):
-        parts.append(
-            f'<span class="muted excerpt-src" data-i18n="excerpt_src_{_esc(src)}"></span>'
-        )
-    if not parts:
+def _main_finding_cell(item: dict) -> str:
+    """Short scientific excerpt only — no LLM/PDS/source badges."""
+    candidates = [
+        item.get("abstract_snippet"),
+        item.get("abstract"),
+        (item.get("abstract_ai") or {}).get("summary_en"),
+        (item.get("abstract_ai") or {}).get("summary_ru"),
+        item.get("description_en"),
+        item.get("description"),
+        item.get("sample_processing_protocol"),
+        item.get("article_description"),
+    ]
+    snip = ""
+    for raw in candidates:
+        text = re.sub(r"<[^>]+>", " ", str(raw or ""))
+        text = sentence_cap(re.sub(r"\s+", " ", text).strip())
+        if text and not is_stub_description(text):
+            snip = text
+            break
+    if not snip:
         return '<span class="cell-empty">—</span>'
-    return f'<div class="cell-stack cell-abstract-block">{"".join(parts)}</div>'
+    return (
+        f'<div class="cell-stack cell-finding-block">'
+        f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:280])}</p>'
+        f"</div>"
+    )
+
+
+def _abstract_cell(item: dict) -> str:
+    return _main_finding_cell(item)
 
 
 def _similar_hit_label(hit: dict) -> str:
@@ -861,7 +862,7 @@ def build_unified_discovery_rows(
         if label:
             primary = label.split(";")[0].split(",")[0].strip()
             slug = disease_filter_slug(primary)
-            if slug:
+            if slug and slug not in {"other", "not-reported", "not-applicable", "nos", "proteome"}:
                 prev = disease_counts.get(slug)
                 disease_counts[slug] = (prev[0] if prev else primary, (prev[1] if prev else 0) + 1)
         return attr
@@ -887,7 +888,6 @@ def build_unified_discovery_rows(
         vlabel, vcss, vtitle = project_verdict(it)
         verdict_cell = _verdict_badge(vlabel, vcss, vtitle)
         tier = it.get("confidence_tier") or evaluation.confidence
-        conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         bucket = str(it.get("_discovery_bucket") or "candidate")
         passed = bucket == "candidate" and vlabel == "Candidate"
@@ -907,11 +907,8 @@ def build_unified_discovery_rows(
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design_cell}</td>"
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
-            f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
-            f"<td class='col-abstract'>{_abstract_cell(it)}</td>"
-            f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
-            f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=ItemKind.PROJECT, pubs_by_pmid=pubs_by_pmid)}</td>"
+            f"<td class='col-finding'>{_main_finding_cell(it)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
             f"</tr>"
         )
@@ -940,10 +937,6 @@ def build_unified_discovery_rows(
             mat = (paper.get("abstract_ai") or {}).get("material") or ""
             if mat and mat != "unclear":
                 design = _esc(str(mat).replace("|", ", ")[:60])
-        fit = ""
-        if paper:
-            fit = paper.get("atlas_fit") or (paper.get("abstract_ai") or {}).get("atlas_fit") or ""
-        cohort_score = (cohort or it).get("cohort_score")
         hp = it.get("has_patients") or ""
         desc = article_description(it)
         disease_attr = _track_disease(it)
@@ -963,7 +956,6 @@ def build_unified_discovery_rows(
         lit_kind = ItemKind.LITERATURE if paper else ItemKind.COHORT
         evaluation = _resolve_evaluation(it, kind=lit_kind, has_accession=bool(acc))
         tier = it.get("confidence_tier") or evaluation.confidence
-        conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
@@ -978,17 +970,14 @@ def build_unified_discovery_rows(
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
-            f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
-            f"<td class='col-abstract'>{_abstract_cell(paper or it)}</td>"
-            f"<td class='col-weight'>{unified_weight_cell(evaluation=evaluation, fit=fit, cohort_score=cohort_score)}</td>"
-            f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=lit_kind, has_accession=bool(acc), pubs_by_pmid=pubs_by_pmid)}</td>"
+            f"<td class='col-finding'>{_main_finding_cell(paper or it)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
             f"</tr>"
         )
         total += 1
 
-    body = "\n".join(rows) or '<tr><td colspan="15" data-i18n="no_rows"></td></tr>'
+    body = "\n".join(rows) or '<tr><td colspan="12" data-i18n="no_rows"></td></tr>'
     disease_filters = sorted(
         disease_counts.values(),
         key=lambda x: (-x[1], x[0].lower()),

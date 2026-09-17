@@ -8,32 +8,70 @@ from atlas_agent.llm_client import list_llm_engines, resolve_engine
 # Static roles on the Discovery site (no version strings in UI).
 AGENT_CATALOG: list[dict[str, str]] = [
     {
-        "id": "discovery_scan",
-        "role_ru": "Сканирование репозиториев",
-        "role_en": "Repository scan",
-        "detail_ru": "PRIDE, PDC, MassIVE, iProX — rule-based фильтры TMT >6-plex",
-        "detail_en": "PRIDE, PDC, MassIVE, iProX — rule-based TMT >6-plex filters",
+        "id": "pride_scan",
+        "role_ru": "Поиск в PRIDE",
+        "role_en": "PRIDE search",
+        "detail_ru": (
+            "Архив PRIDE: новые TMT-проекты вне каталога. Смотрим, есть ли TMT-плекс (7–18). "
+            "Если плекс или материал не в карточке — читаем описание проекта и связанную статью."
+        ),
+        "detail_en": (
+            "PRIDE Archive: new TMT projects outside the catalog. Check TMT plex (7–18). "
+            "If plex or material is missing from the record, read the project description and the linked paper."
+        ),
+    },
+    {
+        "id": "pdc_scan",
+        "role_ru": "Поиск в PDC (CPTAC)",
+        "role_en": "PDC (CPTAC) search",
+        "detail_ru": (
+            "В PDC болезнь, орган и TMT уже в метаданных. Те же правила включения, что для PRIDE: "
+            "не каждая PDC-запись попадает в список."
+        ),
+        "detail_en": (
+            "PDC already carries disease, organ, and TMT in metadata. Same inclusion rules as PRIDE: "
+            "not every PDC record is listed."
+        ),
+    },
+    {
+        "id": "massive_iprox",
+        "role_ru": "MassIVE и iProX",
+        "role_en": "MassIVE and iProX",
+        "detail_ru": "Поиск по сайтам MassIVE и iProX теми же словами: TMT, human, cancer.",
+        "detail_en": "Site search on MassIVE and iProX with the same TMT / human / cancer keywords.",
     },
     {
         "id": "abstract_reader",
-        "role_ru": "ИИ-разбор абстрактов",
-        "role_en": "Abstract AI reader",
-        "detail_ru": "Europe PMC: смысл, материал, TMT-плекс, atlas_fit",
-        "detail_en": "Europe PMC: meaning, material, TMT plex, atlas_fit",
+        "role_ru": "Чтение абстрактов и статей",
+        "role_en": "Abstract and paper reader",
+        "detail_ru": (
+            "По PMID открываем PubMed / Europe PMC: короткий текст, орган, материал, TMT. "
+            "Если статьи нет — читаем карточку PRIDE или PDC."
+        ),
+        "detail_en": (
+            "From PMID, open PubMed / Europe PMC: short text, organ, material, TMT. "
+            "If there is no paper, read the PRIDE or PDC project card."
+        ),
     },
     {
-        "id": "evaluation",
-        "role_ru": "Оценка строк таблицы",
-        "role_en": "Table row evaluation",
-        "detail_ru": "Tier A–D, evidence chain, display_fit (rules + LLM trust)",
-        "detail_en": "Tier A–D, evidence chain, display_fit (rules + LLM trust)",
+        "id": "filters",
+        "role_ru": "Отбор по правилам",
+        "role_en": "Rule-based selection",
+        "detail_ru": (
+            "Homo sapiens, TMT 7–18, ткань или раковая клеточная линия. "
+            "Не прошло проверку — не показываем как проект."
+        ),
+        "detail_en": (
+            "Homo sapiens, TMT 7–18, tissue or cancer cell line. "
+            "Failed checks are not shown as projects."
+        ),
     },
     {
-        "id": "cohort_literature",
-        "role_ru": "Когорты из литературы",
-        "role_en": "Literature cohorts",
-        "detail_ru": "Europe PMC text mining, patient cohorts",
-        "detail_en": "Europe PMC text mining, patient cohorts",
+        "id": "literature",
+        "role_ru": "Статьи (Europe PMC)",
+        "role_en": "Papers (Europe PMC)",
+        "detail_ru": "Поиск по названиям и похожим публикациям в Europe PMC — не замена ID репозитория.",
+        "detail_en": "Search by title and similar papers in Europe PMC — not a substitute for a repository ID.",
     },
 ]
 

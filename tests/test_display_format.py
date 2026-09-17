@@ -21,6 +21,18 @@ def test_metadata_part_not_reported():
     assert format_metadata_part("Pediatric/AYA Brain Tumors") == "Pediatric/AYA Brain Tumors"
 
 
+def test_clean_taxonomy_drops_pdc_placeholders():
+    from atlas_agent.viz.display_format import clean_taxonomy_value, is_stub_description
+
+    assert clean_taxonomy_value("other; not reported") == ""
+    cleaned = clean_taxonomy_value("gliomas;other;pediatric/aya brain tumors")
+    assert cleaned.startswith("Gliomas")
+    assert "other" not in cleaned.lower()
+    assert clean_taxonomy_value("brain; not reported") == "Brain"
+    assert is_stub_description("Other · Proteome")
+    assert not is_stub_description("Quantitative TMT proteomics of tumor tissue from lung cancer patients.")
+
+
 def test_bullet_design_line():
     assert format_bullet_text("design: cancer_only") == "Design: Cancer-only"
 
@@ -40,6 +52,17 @@ def test_format_title():
 def test_infer_disease_from_title():
     item = {"title": "Quantitative proteomics of melanoma lymphatic fluid"}
     assert infer_disease(item) == "Melanoma"
+
+
+def test_infer_skips_other_and_not_reported():
+    item = {
+        "title": "Proteogenomics analysis of glioma across pediatric age groups",
+        "disease": "other; not reported",
+        "primary_site": "not reported",
+        "description": "Other · Proteome",
+    }
+    assert infer_disease(item) == "Glioma"
+    assert infer_organ(item) == "Brain"
 
 
 def test_infer_organ_from_title():

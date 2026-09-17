@@ -989,23 +989,20 @@ a.id-no-acc:hover {
   word-wrap: break-word;
 }
 
-/* Discovery unified table — 16 columns, sums to 100% */
-.table-unified:not(.table-qc) .col-type { width: 4%; min-width: 56px; }
+/* Discovery unified table — 12 columns */
+.table-unified:not(.table-qc) .col-type { width: 5%; min-width: 56px; }
 .table-unified:not(.table-qc) .col-id { width: 8%; min-width: 100px; }
-.table-unified:not(.table-qc) .col-year { width: 3%; min-width: 48px; }
-.table-unified:not(.table-qc) .col-title { width: 12%; min-width: 168px; }
+.table-unified:not(.table-qc) .col-year { width: 4%; min-width: 48px; }
+.table-unified:not(.table-qc) .col-title { width: 16%; min-width: 180px; }
 .table-unified:not(.table-qc) .col-src { width: 5%; min-width: 64px; }
-.table-unified:not(.table-qc) .col-design { width: 5%; min-width: 68px; }
-.table-unified:not(.table-qc) .col-verdict { width: 5%; min-width: 72px; }
-.table-unified:not(.table-qc) .col-confidence { width: 4%; min-width: 56px; }
-.table-unified:not(.table-qc) .col-num { width: 2%; min-width: 36px; }
-.table-unified:not(.table-qc) .col-disease { width: 6%; min-width: 88px; }
-.table-unified:not(.table-qc) .col-organ { width: 6%; min-width: 88px; }
-.table-unified:not(.table-qc) .col-similar { width: 5%; min-width: 80px; }
-.table-unified:not(.table-qc) .col-abstract { width: 10%; min-width: 140px; }
-.table-unified:not(.table-qc) .col-weight { width: 4%; min-width: 64px; }
-.table-unified:not(.table-qc) .col-analysis { width: 14%; min-width: 180px; }
-.table-unified:not(.table-qc) .col-data { width: 8%; min-width: 96px; }
+.table-unified:not(.table-qc) .col-design { width: 7%; min-width: 72px; }
+.table-unified:not(.table-qc) .col-verdict { width: 6%; min-width: 80px; }
+.table-unified:not(.table-qc) .col-num { width: 3%; min-width: 36px; }
+.table-unified:not(.table-qc) .col-disease { width: 8%; min-width: 88px; }
+.table-unified:not(.table-qc) .col-organ { width: 8%; min-width: 88px; }
+.table-unified:not(.table-qc) .col-similar { width: 6%; min-width: 80px; }
+.table-unified:not(.table-qc) .col-finding { width: 18%; min-width: 180px; }
+.table-unified:not(.table-qc) .col-data { width: 11%; min-width: 96px; }
 .table-unified:not(.table-qc) .col-links { width: 6%; min-width: 72px; }
 
 .cell-design-block {

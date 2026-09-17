@@ -17,26 +17,14 @@ from atlas_agent.viz.site_theme import page_wrap
 def _ai_cell(it: dict) -> str:
     ai = it.get("abstract_ai") or it
     parts = []
-    en = str(ai.get("summary_en") or "").strip()
+    en = str(ai.get("summary_en") or it.get("abstract_snippet") or it.get("abstract") or it.get("description") or "").strip()
     ru = str(ai.get("summary_ru") or "").strip()
     if en:
-        parts.append(f'<span class="lang-block lang-en">{html.escape(en[:200])}</span>')
+        parts.append(f'<span class="lang-block lang-en">{html.escape(en[:280])}</span>')
     if ru and ru != en:
-        parts.append(f'<span class="lang-block lang-ru">{html.escape(ru[:200])}</span>')
+        parts.append(f'<span class="lang-block lang-ru">{html.escape(ru[:280])}</span>')
     elif ru and not en:
-        parts.append(f'<span class="lang-block lang-en lang-ru">{html.escape(ru[:200])}</span>')
-    fit = ai.get("atlas_fit") or it.get("atlas_fit")
-    score = ai.get("atlas_fit_score") or it.get("atlas_fit_score")
-    fit_s = str(fit or "").lower()
-    if fit_s in ("yes", "maybe", "no"):
-        parts.append(
-            f'<span class="badge fit-{fit_s}" data-i18n="fit_llm_{fit_s}"></span>'
-        )
-    elif fit:
-        parts.append(f'<span class="badge fit-unk">{html.escape(str(fit))} {score or ""}</span>')
-    ev = ai.get("semantic_evidence") or it.get("semantic_evidence") or []
-    if ev:
-        parts.append(f'<span class="muted">{html.escape("; ".join(ev[:3]))}</span>')
+        parts.append(f'<span class="lang-block lang-en lang-ru">{html.escape(ru[:280])}</span>')
     return "<br/>".join(parts) if parts else '<span class="cell-empty" data-i18n="cell_empty"></span>'
 
 
@@ -94,7 +82,7 @@ def _table_head(notes: bool = False) -> str:
       <th class="col-plex" data-i18n="th_plex"></th>
       <th class="col-included" data-i18n="th_included"></th>
       <th class="col-excluded" data-i18n="th_excluded"></th>
-      <th class="col-analysis" data-i18n="th_ai"></th>
+      <th class="col-analysis" data-i18n="th_finding"></th>
       <th class="col-data" data-i18n="th_data"></th>
       <th class="col-reason" data-i18n="{reason_key}"></th>
     </tr></thead>"""

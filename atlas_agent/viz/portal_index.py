@@ -8,6 +8,7 @@ from typing import Any
 import pandas as pd
 
 from atlas_agent.catalog.organ_classify import map_project, normalize_project_id
+from atlas_agent.viz.display_format import is_stub_description
 from atlas_agent.sources.dataset_resolve import _url_for_accession
 from atlas_agent.sources.github_client import parse_repo_url
 from atlas_agent.sources.projects_table import primary_project_id
@@ -237,7 +238,7 @@ def article_description(item: dict) -> str:
     if item.get("cohort_score") is not None:
         for key in ("abstract_snippet", "abstract", "article_description", "finding_note"):
             val = str(item.get(key) or "").strip()
-            if val and val.lower() not in ("nan", "none", "—"):
+            if val and val.lower() not in ("nan", "none", "—") and not is_stub_description(val):
                 return _plain_description(val)
     for key in (
         "article_description",
@@ -249,7 +250,7 @@ def article_description(item: dict) -> str:
         "finding_note",
     ):
         val = str(item.get(key) or "").strip()
-        if val and val.lower() not in ("nan", "none", "—"):
+        if val and val.lower() not in ("nan", "none", "—") and not is_stub_description(val):
             return _plain_description(val)
     ai = item.get("abstract_ai") or {}
     for key in ("summary_en", "summary_ru"):

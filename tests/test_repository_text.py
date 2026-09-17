@@ -22,7 +22,8 @@ def test_pride_description_becomes_excerpt_without_pubmed():
     assert item["excerpt_source"] == "pride"
     html = _abstract_cell(item)
     assert "tumor tissue" in html.lower()
-    assert "excerpt_src_pride" in html
+    assert "fit_llm" not in html
+    assert "excerpt_src_" not in html
 
 
 def test_pdc_excerpt_from_disease_and_site():
@@ -39,7 +40,7 @@ def test_pdc_excerpt_from_disease_and_site():
     assert item["excerpt_source"] == "pdc"
     html = _abstract_cell(item)
     assert "Lung adenocarcinoma" in html
-    assert "excerpt_src_pdc" in html
+    assert "excerpt_src_" not in html
 
 
 def test_pubmed_abstract_overrides_pride_card():
@@ -62,10 +63,10 @@ def test_pubmed_abstract_overrides_pride_card():
     assert "tumor tissue" in item["abstract"]
     html = _abstract_cell(item)
     assert "tumor tissue" in html.lower()
-    assert "excerpt_src_pubmed" in html
+    assert "excerpt_src_" not in html
 
 
-def test_abstract_cell_shows_fit_badge():
+def test_abstract_cell_is_summary_without_llm_badge():
     html = _abstract_cell(
         {
             "abstract_snippet": "Human TMT proteome of tumor tissue.",
@@ -73,8 +74,9 @@ def test_abstract_cell_shows_fit_badge():
             "excerpt_source": "pubmed",
         }
     )
-    assert "fit-yes" in html
-    assert "fit_llm_yes" in html
+    assert "tumor tissue" in html.lower()
+    assert "fit_llm" not in html
+    assert "LLM" not in html
 
 
 def test_rescue_reads_pubmed_when_pride_material_missing():

@@ -106,9 +106,6 @@ def note_discovery_scope(*, new_projects: int, total_rows: int) -> str:
 
 def ai_agents_panel(manifest: dict) -> str:
     block = manifest.get("ai_agents") or {}
-    active = esc(block.get("llm_active") or "—")
-    available = block.get("llm_available") or []
-    avail_html = ", ".join(esc(x) for x in available) if available else "—"
     pipeline_rows = "".join(
         f"<li>"
         f"<span class='lang-block lang-ru'><b>{esc(a.get('role_ru') or a.get('id'))}</b> — {esc(a.get('detail_ru') or '')}</span>"
@@ -116,19 +113,10 @@ def ai_agents_panel(manifest: dict) -> str:
         f"</li>"
         for a in (block.get("pipeline_agents") or [])
     )
-    llm_rows = "".join(
-        f"<li><span class='badge badge-muted'>{esc(p.get('name'))}</span> "
-        f"<span class='muted'>{esc(p.get('trust'))}</span></li>"
-        for p in (block.get("llm_providers") or [])
-    )
     return f"""<div class="agents-panel">
   <p class="agents-lead" data-i18n="agents_lead">{_t("agents_lead")}</p>
-  <p class="agents-active"><span data-i18n="agents_active">{_t("agents_active")}</span>: <b>{active}</b></p>
-  <p class="agents-available"><span data-i18n="agents_available">{_t("agents_available")}</span>: {avail_html}</p>
   <h4 data-i18n="agents_pipeline">{_t("agents_pipeline")}</h4>
   <ul class="agents-list">{pipeline_rows}</ul>
-  <h4 data-i18n="agents_llm">{_t("agents_llm")}</h4>
-  <ul class="agents-list agents-llm">{llm_rows}</ul>
 </div>"""
 
 

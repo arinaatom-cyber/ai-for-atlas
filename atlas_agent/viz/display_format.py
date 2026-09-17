@@ -21,6 +21,30 @@ _TOKEN_LABELS = {
     "proteome": "Proteome",
 }
 
+_JUNK_TAXONOMY = frozenset(
+    {
+        "other",
+        "others",
+        "not reported",
+        "not applicable",
+        "n/a",
+        "na",
+        "n.a.",
+        "unknown",
+        "unspecified",
+        "unspecified site",
+        "not specified",
+        "not available",
+        "none",
+        "nos",
+        "proteome",
+        "phosphoproteome",
+        "nan",
+        "null",
+        "missing",
+    }
+)
+
 _ACRONYM = re.compile(r"^[A-Z0-9]{2,}$")
 _WORD = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ]+|[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[-/][A-Za-zÀ-ÖØ-öø-ÿ]+)*")
 
@@ -113,6 +137,8 @@ _ORGAN_TERMS: list[tuple[str, str]] = [
     ("colorectal", "Colorectal"),
     ("pancreas", "Pancreas"),
     ("pancreatic", "Pancreatic"),
+    ("glioblastoma", "Brain"),
+    ("glioma", "Brain"),
     ("brain", "Brain"),
     ("liver", "Liver"),
     ("kidney", "Kidney"),
@@ -166,12 +192,51 @@ def _match_taxonomy_terms(blob: str, terms: list[tuple[str, str]], profile_terms
     return hits
 
 
+def _is_junk_taxonomy(token: str) -> bool:
+    t = re.sub(r"\s+", " ", str(token or "").strip().lower()).strip(" .,-")
+    if not t or t in _JUNK_TAXONOMY:
+        return True
+    if t.endswith(" proteome") and _is_junk_taxonomy(t[: -len(" proteome")]):
+        return True
+    return False
+
+
+def clean_taxonomy_value(raw: object) -> str:
+    """Drop PDC placeholders (Other, Not reported, Proteome) from disease/organ strings."""
+    text = str(raw or "").strip()
+    if not text:
+        return ""
+    parts: list[str] = []
+    seen: set[str] = set()
+    for chunk in re.split(r"[;|]|·", text):
+        for piece in chunk.split(","):
+            token = re.sub(r"\s+", " ", piece).strip(" .")
+            if not token or _is_junk_taxonomy(token):
+                continue
+            key = token.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            parts.append(format_metadata_part(token) or token)
+    return "; ".join(parts[:4])
+
+
+def is_stub_description(text: str) -> bool:
+    """True for short metadata stubs like «Other · Proteome», not real abstracts."""
+    s = re.sub(r"\s+", " ", str(text or "").strip())
+    if not s or s.lower() in ("nan", "none", "—"):
+        return True
+    if len(s) >= 80:
+        return False
+    return not clean_taxonomy_value(s)
+
+
 def infer_disease(item: dict, *, profile: dict | None = None) -> str:
-    explicit = str(item.get("disease") or "").strip()
+    explicit = clean_taxonomy_value(item.get("disease"))
     if explicit:
         return explicit
     ai = item.get("abstract_ai") or {}
-    explicit = str(ai.get("disease") or "").strip()
+    explicit = clean_taxonomy_value(ai.get("disease"))
     if explicit:
         return explicit
     blob = _item_text_blob(item)
@@ -184,13 +249,19 @@ def infer_disease(item: dict, *, profile: dict | None = None) -> str:
 
 def infer_organ(item: dict, *, profile: dict | None = None) -> str:
     for key in ("primary_site", "organ", "tissue"):
-        val = str(item.get(key) or "").strip()
-        if val:
-            return val
+        cleaned = clean_taxonomy_value(item.get(key))
+        if cleaned:
+            return cleaned
     ai = item.get("abstract_ai") or {}
-    val = str(ai.get("organ") or ai.get("material") or "").strip()
-    if val and val.lower() not in ("unclear", "unknown", "—"):
-        return val
+    for key in ("organ", "material"):
+        val = str(ai.get(key) or "").strip()
+        if val.lower() in ("unclear", "unknown", "—"):
+            continue
+        cleaned = clean_taxonomy_value(val)
+        if cleaned:
+            return cleaned
+        if val and not _is_junk_taxonomy(val):
+            return format_metadata_part(val) or val
     blob = _item_text_blob(item)
     if not blob:
         return ""
