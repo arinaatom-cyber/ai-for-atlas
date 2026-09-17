@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Copy Streamlit atlas fixes + catalog CSV into arinaatom-cyber/tmt-projects."""
 from __future__ import annotations
 
 import shutil

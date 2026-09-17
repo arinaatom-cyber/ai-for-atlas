@@ -1,4 +1,3 @@
-"""Unit cases for Discovery filters (organism, plex, PMID, material)."""
 from __future__ import annotations
 
 from typing import Any
@@ -8,7 +7,6 @@ from atlas_agent.discovery.id_extract import extract_ids_from_text, extract_loos
 from atlas_agent.discovery.organism_terms import is_human_text, is_non_human_text
 from atlas_agent.discovery.tmt_plex import infer_tmt_plex
 
-# Binary gold: include = would be auto-Candidate; exclude = must not be auto-listed.
 FILTER_GOLD: list[dict[str, Any]] = [
     {
         "id": "crc_tmt11_tissue",
@@ -169,7 +167,6 @@ def _pred_include(out: dict[str, Any]) -> bool:
 
 
 def evaluate_filter_gold(*, cfg: dict | None = None) -> dict[str, Any]:
-    """Precision/recall of auto-Candidate vs developer gold (not expert IAA)."""
     cfg = cfg or default_filter_config()
     tp = fp = tn = fn = 0
     review_ok = 0

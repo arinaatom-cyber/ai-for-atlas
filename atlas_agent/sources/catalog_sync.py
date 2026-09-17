@@ -1,8 +1,3 @@
-"""Read-only drift check: runtime CSV vs curator Excel (TMT ATLAS).
-
-Discovery always indexes `data/projects.csv`. The workbook is a curator copy.
-This module never writes either file.
-"""
 from __future__ import annotations
 
 import re

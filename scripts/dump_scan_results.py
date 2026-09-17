@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Dump discovery scan results with proteome vs phospho tier breakdown."""
 from __future__ import annotations
 
 import json
@@ -11,7 +10,6 @@ sys.path.insert(0, str(ROOT))
 
 
 def file_tier(item: dict) -> tuple[str, str]:
-    """Tier label from data_availability.omics_layer (committed pipeline field)."""
     da = item.get("data_availability") or {}
     layer = da.get("omics_layer") or ""
     status = da.get("status") or ""

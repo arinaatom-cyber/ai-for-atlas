@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Quick probe: do discovery candidates have downloadable result/table files?"""
 import json
 from pathlib import Path
 

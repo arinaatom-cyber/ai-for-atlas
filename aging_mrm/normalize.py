@@ -1,5 +1,3 @@
-"""Canonical patient IDs, sex, age bins, numeric parsing."""
-
 from __future__ import annotations
 
 import math

@@ -1,4 +1,3 @@
-"""Atlas fit rules — thin facade over evaluation.heuristics + evaluation.service."""
 from __future__ import annotations
 
 import re

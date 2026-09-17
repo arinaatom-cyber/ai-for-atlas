@@ -1,4 +1,3 @@
-"""Classify projects into priority buckets."""
 from __future__ import annotations
 
 from typing import Any
@@ -25,10 +24,6 @@ def classify_project(
     database=None,
     deleted_database=None,
 ) -> dict[str, Any]:
-    """
-    Classify a single project record.
-    Returns record with classification, reasons, and manual fields.
-    """
     rec = normalize_record(record, use_html_fallback=False)
     rec = enrich_record(rec)
     rec = ensure_manual_fields(rec)

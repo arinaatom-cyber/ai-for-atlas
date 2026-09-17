@@ -1,4 +1,3 @@
-"""LLM trust resolution via providers.yml (legacy shim)."""
 from __future__ import annotations
 
 from atlas_agent.discovery.evaluation.llm_evaluator import LLMEvaluatorRegistry

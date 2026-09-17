@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Поштучный аудит каталога: каждая из 123 строк Excel, каждое поле.
-
-  python scripts/audit_project_organs.py              # полный отчёт (deep)
-  python scripts/audit_project_organs.py --pid PXD012173   # один проект
-  python scripts/audit_project_organs.py --organ Blood     # все проекты органа
-  python scripts/audit_project_organs.py --shallow         # быстрый режим
-"""
 from __future__ import annotations
 
 import argparse
@@ -34,7 +26,6 @@ def _row_dict(row) -> dict:
 
 
 def _cross_row_duplicates(records: list[dict]) -> None:
-    """Один PID в нескольких строках — сверить Organ между строками."""
     by_pid: dict[str, list[dict]] = {}
     for rec in records:
         by_pid.setdefault(rec["pid"], []).append(rec)
@@ -107,7 +98,6 @@ def _organ_column(rec: dict) -> str:
 
 
 def print_one_project(records: list[dict], pid_query: str) -> int:
-    """Point check: one Project ID vs map organs."""
     q = primary_project_id(pid_query.strip()).upper()
     hits = [r for r in records if primary_project_id(r.get("pid", "")).upper() == q]
     if not hits:
@@ -127,7 +117,6 @@ def print_one_project(records: list[dict], pid_query: str) -> int:
 
 
 def print_organ_filter(records: list[dict], organ: str) -> int:
-    """List catalog rows mapped to a map organ key (e.g. Blood, Lung)."""
     organ_key = organ.strip().replace(" ", "_")
     hits = [r for r in records if organ_key in (r.get("mapped") or {}).get("organs", [])]
     if not hits:
@@ -182,7 +171,7 @@ def main() -> int:
         records = []
         for i, row in df.iterrows():
             d = _row_dict(row)
-            rec = audit_row_deep(d, row_index=int(i) + 2)  # Excel: row 1 = header
+            rec = audit_row_deep(d, row_index=int(i) + 2)
             if not rec["pid"]:
                 rec["issues"].append({
                     "code": "missing_pid",

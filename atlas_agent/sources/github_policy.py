@@ -1,9 +1,3 @@
-"""
-Политика безопасности GitHub для Atlas.
-
-По умолчанию ТОЛЬКО чтение. Удаление, push и изменение файлов на GitHub
-запрещены и не реализованы в коде.
-"""
 from __future__ import annotations
 
 FORBIDDEN_OPERATIONS = frozenset(
@@ -21,7 +15,7 @@ FORBIDDEN_OPERATIONS = frozenset(
 
 
 class GitHubReadOnlyError(PermissionError):
-    """Попытка деструктивной или записывающей операции."""
+    pass
 
 
 def assert_read_only(operation: str, *, user_confirmed: bool = False) -> None:

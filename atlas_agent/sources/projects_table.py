@@ -12,7 +12,6 @@ PID_RE = re.compile(r"(PXD\d+|PDC\d+|IPX\d+|MSV\d+)", re.I)
 DEFAULT_ATLAS_SHEET = "TMT ATLAS"
 DEFAULT_GENERAL_SHEET = "General single and bulk v2"
 
-# Лист TMT ATLAS — колонки, которые читаем как есть (ничего не дописываем).
 SHEET_COLUMN_GROUPS = {
     "id": ["Database", "Project ID", "PMID", "Title", "URL"],
     "samples": [
@@ -62,7 +61,6 @@ def _is_excel_path(path: str | None) -> bool:
 
 
 def curator_workbook_path(sheet_cfg: dict[str, Any]) -> str | None:
-    """Excel copy (TMT ATLAS). Not the Discovery runtime index."""
     for key in ("proteomics_workbook", "projects_file"):
         p = sheet_cfg.get(key)
         if _is_excel_path(p):
@@ -71,12 +69,6 @@ def curator_workbook_path(sheet_cfg: dict[str, Any]) -> str | None:
 
 
 def catalog_path(sheet_cfg: dict[str, Any], *, prefer: str | None = None) -> str | None:
-    """Runtime catalog for Discovery/revisor: data/projects.csv.
-
-    Excel (`project of Proteomics.xlsx`, sheet TMT ATLAS) is the curator workbook.
-    It is used only when CSV is missing. Drift is reported by
-    `atlas_agent.sources.catalog_sync` — never auto-merged.
-    """
     mode = (prefer or sheet_cfg.get("catalog_runtime") or "csv").lower().strip()
     csv = sheet_cfg.get("projects_csv")
     xlsx = curator_workbook_path(sheet_cfg)
@@ -100,7 +92,6 @@ def google_sheet_export_url(
     *,
     sheet_name: str | None = None,
 ) -> str | None:
-    """Public CSV URL. Prefer sheet name (gviz) — надёжнее, чем gid."""
     direct = (sheet_cfg.get("google_sheet_csv") or "").strip()
     if direct:
         return direct
@@ -143,16 +134,13 @@ def load_google_sheet(
 
 
 def load_general_sheet(cfg: dict[str, Any] | None = None, *, sheet_cfg: dict | None = None) -> pd.DataFrame:
-    """Лист General single and bulk v2 — весь пул (не только TMT ATLAS)."""
     sc = dict(sheet_cfg or (cfg or {}).get("sheet") or {})
     name = sc.get("general_sheet_name") or DEFAULT_GENERAL_SHEET
     return load_google_sheet(sc, sheet_name=name)
 
 
 def normalize_sheet_frame(df: pd.DataFrame) -> pd.DataFrame:
-    """Trim whitespace only — never invent Disease, Organ, TMT, etc."""
     out = df.copy()
-    # Legacy typo column on some sheet exports
     if "Healty trraeted" in out.columns:
         typo = out["Healty trraeted"]
         if "Healthy Treated" in out.columns:
@@ -180,7 +168,6 @@ def load_projects_table(
     *,
     sheet: str | None = None,
 ) -> pd.DataFrame:
-    """Локальный каталог: CSV или Excel (лист TMT ATLAS)."""
     if not projects_path:
         raise FileNotFoundError("Укажите sheet.projects_file в config.yaml")
     path = Path(projects_path)
@@ -196,7 +183,6 @@ def load_projects_table(
 
 
 def load_catalog(cfg: dict[str, Any] | None = None, *, sheet_cfg: dict | None = None) -> pd.DataFrame:
-    """Runtime catalog: local CSV (preferred) or Excel fallback, or Google Sheet."""
     sc = sheet_cfg or (cfg or {}).get("sheet") or {}
     mode = catalog_source(sc)
     if mode == "google":
@@ -232,7 +218,6 @@ def primary_project_id(raw: str) -> str:
 
 
 def all_repo_ids(raw: str) -> set[str]:
-    """Every PXD/PDC/MSV/IPX in a Project ID cell (e.g. IPX0001 (PXD022714))."""
     if raw is None or (isinstance(raw, float) and pd.isna(raw)):
         return set()
     s = str(raw).strip()

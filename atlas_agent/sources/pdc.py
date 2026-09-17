@@ -1,4 +1,3 @@
-"""PDC GraphQL — профессиональный поиск TMT-исследований (read-only)."""
 from __future__ import annotations
 
 import time
@@ -10,8 +9,8 @@ from atlas_agent.discovery.organism_terms import is_human_text, is_non_human_tex
 from atlas_agent.discovery.tmt_plex import infer_tmt_plex
 
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
-ATLAS_PLEXES = set(range(7, 19))  # всё >6 и ≤18
-REJECT_PLEXES = {2, 6}  # 6-plex и ниже — не атлас
+ATLAS_PLEXES = set(range(7, 19))
+REJECT_PLEXES = {2, 6}
 MIN_ATLAS_CHANNELS = 7
 
 
@@ -32,12 +31,6 @@ def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
 
 
 def fetch_study_summary() -> list[dict[str, Any]]:
-    """Все исследования PDC с метаданными (uiStudySummary).
-
-    uiStudySummary does not expose an organism field in the public GraphQL schema.
-    Human status is therefore assumed from PDC/CPTAC clinical program scope unless
-    a free-text organism mention is present in returned metadata.
-    """
     q = """query {
       uiStudySummary {
         pdc_study_id
@@ -59,7 +52,6 @@ def _infer_plex_from_experiment(experiment_type: str) -> int | None:
 
 
 def _pdc_human_fields(s: dict[str, Any]) -> tuple[bool, bool]:
-    """Return (human, assumed). PDC API has no per-study organism field."""
     blob = " ".join(
         str(s.get(k) or "")
         for k in (
@@ -75,7 +67,6 @@ def _pdc_human_fields(s: dict[str, Any]) -> tuple[bool, bool]:
         return False, False
     if is_human_text(blob):
         return True, False
-    # Assumed human per PDC/CPTAC clinical program scope; not independently verified.
     return True, True
 
 
@@ -129,11 +120,6 @@ def search_pdc_tmt_studies(
     exclude_programs: list[str] | None = None,
     stats: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
-    """
-    TMT-исследования PDC: каналов строго больше 6 (7–18, включая TMT18 / TMTpro18).
-    TMT6 и ниже отклоняются. Нераспознанный plex не отбрасывается здесь —
-    уходит в classify_candidate как tmt_plex_unspecified (как PRIDE).
-    """
     known = {a.upper() for a in (known_accessions or set())}
     program_filter = {p.lower() for p in (programs or [])}
     reject = reject_plexes if reject_plexes is not None else REJECT_PLEXES

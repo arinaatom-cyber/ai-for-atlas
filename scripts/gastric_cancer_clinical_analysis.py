@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Clinical-marker cross-analysis and publication figures for gastric cancer manuscript."""
 
 from __future__ import annotations
 
@@ -156,7 +155,6 @@ def panel_label(ax, letter: str) -> None:
 
 
 def figure_clinical_overview(clinical: pd.DataFrame, cross: pd.DataFrame, data: dict) -> None:
-    """Multi-panel clinical landscape."""
     full = data["7_Full_Dataset"]
     top100 = data["1_Top_100_Genes"]
     total_all = int(full["Mentions"].sum())
@@ -168,7 +166,6 @@ def figure_clinical_overview(clinical: pd.DataFrame, cross: pd.DataFrame, data: 
     fig = plt.figure(figsize=(13.5, 9.5))
     gs = GridSpec(2, 2, figure=fig, hspace=0.42, wspace=0.35, height_ratios=[1.15, 1])
 
-    # A — ranked lollipop by clinical group
     ax_a = fig.add_subplot(gs[0, :])
     d = clinical.sort_values("Total Mentions", ascending=True).copy()
     y = np.arange(len(d))
@@ -188,7 +185,6 @@ def figure_clinical_overview(clinical: pd.DataFrame, cross: pd.DataFrame, data: 
     handles = [mpatches.Patch(color=c, label=k) for k, c in CLIN_COLORS.items()]
     ax_a.legend(handles=handles, loc="lower right", frameon=False, fontsize=7.5, ncol=2)
 
-    # B — literature share
     ax_b = fig.add_subplot(gs[1, 0])
     sizes = [clin_total, nonclin_top100, other]
     labels = [
@@ -213,7 +209,6 @@ def figure_clinical_overview(clinical: pd.DataFrame, cross: pd.DataFrame, data: 
     ax_b.set_title("Share of total gene mentions", loc="left")
     panel_label(ax_b, "B")
 
-    # C — intersection with top-20 / top-100
     ax_c = fig.add_subplot(gs[1, 1])
     metrics = {
         "In top-20": int(cross["In_Top20"].sum()),
@@ -276,7 +271,6 @@ def figure_subtype_heatmap(cross: pd.DataFrame) -> None:
     )
     ax_hm.set_xlabel("Molecular / histologic subtype")
     ax_hm.set_title("Subtype distribution of clinical biomarkers", loc="left", pad=10)
-    # annotate raw counts where > 0
     for i in range(mat.shape[0]):
         for j in range(mat.shape[1]):
             v = int(mat.iloc[i, j])
@@ -323,7 +317,6 @@ def figure_go_clinical(go_df: pd.DataFrame) -> None:
 
 
 def figure_pathways(go_df: pd.DataFrame) -> None:
-    """Standalone Figure: KEGG + Reactome pathway enrichment."""
     kegg = go_df[go_df["source"] == "KEGG"].head(8).sort_values("neg_log10_p", ascending=True)
     reac = go_df[go_df["source"] == "REAC"].head(8).sort_values("neg_log10_p", ascending=True)
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 7.2), gridspec_kw={"wspace": 0.42})
@@ -361,7 +354,6 @@ def figure_clinical_vs_landscape(clinical: pd.DataFrame, data: dict, cross: pd.D
     clin_set = set(clinical["Gene"])
     nonclin = top100[~top100["Gene"].isin(clin_set)]
 
-    # group comparison
     groups = {
         "Clinical panel\n(18 genes)": clinical.groupby("Clinical_Relevance")["Total Mentions"].sum(),
     }
@@ -422,7 +414,6 @@ def figure_clinical_vs_landscape(clinical: pd.DataFrame, data: dict, cross: pd.D
 
 
 def figure_intersection_matrix(cross: pd.DataFrame, data: dict) -> None:
-    """Standalone Figure: clinical gene × bibliometric/clinical feature matrix."""
     top20 = set(data["4_Top_20_Presentation"]["Gene"])
     features = {
         "Top-20": cross["Gene"].isin(top20),

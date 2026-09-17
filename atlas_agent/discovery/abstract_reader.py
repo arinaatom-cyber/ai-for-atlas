@@ -1,7 +1,3 @@
-"""
-ИИ-чтение абстрактов по смыслу TMT ATLAS (Europe PMC).
-Номера PXD/PDC в абстракте НЕ ищем — только смысл: human TMT proteomics у пациентов.
-"""
 from __future__ import annotations
 
 import json
@@ -89,7 +85,6 @@ def _default_atlas_context() -> str:
 
 
 def _tmt6_or_low_plex(blob_l: str, tmt: str) -> bool:
-    """True только для 6-plex и ниже — не для 16-plex."""
     label = str(tmt).upper()
     if label in ("TMT6", "TMT2", "TMT3", "TMT4", "TMT5", "6", "2"):
         return True
@@ -199,7 +194,6 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
 
 
 def _is_garbage_llm(parsed: dict[str, Any]) -> bool:
-    """Reject local-model echo of prompt / schema boilerplate."""
     for key in ("summary_ru", "summary_en"):
         text = str(parsed.get(key) or "")
         if sanitize_summary(text):
@@ -247,7 +241,6 @@ def _consensus_with_regex(
     *,
     engine: str,
 ) -> dict[str, Any]:
-    """Conservative merge — regex anchors low-trust LLM."""
     from atlas_agent.discovery.evaluation.llm_evaluator import LLMEvaluatorRegistry
     from atlas_agent.discovery.evaluation.schemas import ModelTrustLevel
 
@@ -257,7 +250,6 @@ def _consensus_with_regex(
     l_fit = str(llm.get("atlas_fit") or "no").lower()
 
     if trust in (ModelTrustLevel.LOW, ModelTrustLevel.RULES):
-        # GPT4All / rules: LLM cannot override regex rejection
         merged["atlas_fit"] = _min_fit(l_fit, r_fit) if trust == ModelTrustLevel.LOW else r_fit
         if trust == ModelTrustLevel.LOW and merged["atlas_fit"] == "yes" and r_fit != "yes":
             merged["atlas_fit"] = "maybe" if r_fit == "maybe" else "no"
@@ -323,7 +315,6 @@ def _normalize_ai_parsed(parsed: dict[str, Any]) -> dict[str, Any]:
         score = float(parsed.get("atlas_fit_score") or 0)
     except (TypeError, ValueError):
         score = 0.0
-    # Do not inflate scores — 0.7 floor was misleading on the public site.
     score = max(0.0, min(1.0, score)) if score else None
 
     summary_ru = sanitize_summary(parsed.get("summary_ru"))
@@ -352,7 +343,6 @@ def read_abstract_with_llm(
     cfg: dict | None = None,
     atlas_context: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """ИИ читает абстракт по смыслу (без поиска PXD/PDC)."""
     cfg = cfg or {}
     llm_cfg = cfg.get("llm") or {}
     disc = cfg.get("discovery") or {}
@@ -479,7 +469,6 @@ def enrich_publications_with_ai(
     atlas_context: dict[str, Any] | None = None,
     max_llm: int | None = None,
 ) -> tuple[list[dict], dict[str, Any]]:
-    """ИИ-чтение абстрактов по смыслу (без PXD/PDC в тексте)."""
     cfg = cfg or {}
     disc = cfg.get("discovery") or {}
     limit = max_llm

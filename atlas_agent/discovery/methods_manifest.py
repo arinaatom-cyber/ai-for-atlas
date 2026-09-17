@@ -1,4 +1,3 @@
-"""Reproducibility manifest for Discovery scans (Methods / supplementary)."""
 from __future__ import annotations
 
 import subprocess

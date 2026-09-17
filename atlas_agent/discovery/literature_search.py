@@ -1,4 +1,3 @@
-"""Professional Europe PMC literature search for TMT ATLAS."""
 from __future__ import annotations
 
 import re
@@ -9,7 +8,6 @@ from atlas_agent.discovery.evaluation.heuristics import has_hard_exclusion, scan
 from atlas_agent.discovery.filters import extract_ids_from_text
 from atlas_agent.revisor.literature_watch import search_new_publications
 
-# Patient cohort studies — exclude methods/reviews at query level (Europe PMC syntax).
 _NEGATIVE = (
     'NOT (review OR editorial OR protocol OR "narrative review" OR perspective OR '
     'benchmark OR tutorial OR integrator OR workflow OR toolbox OR "case study highlighting" OR '
@@ -22,7 +20,6 @@ _CLINICAL = "(patient OR patients OR clinical OR cohort OR biopsy OR FFPE OR tis
 
 
 def atlas_literature_queries(year_from: int, year_to: int) -> list[str]:
-    """Targeted queries — patient TMT proteomics, not software papers."""
     yr = f"PUB_YEAR:[{year_from} TO {year_to}]"
     return [
         f"{_TMT} AND proteomics AND {_CLINICAL} AND {_HUMAN} AND {yr} {_NEGATIVE}",
@@ -48,7 +45,6 @@ def publication_has_repository_id(pub: dict[str, Any]) -> bool:
 
 
 def score_publication_relevance(pub: dict[str, Any]) -> float:
-    """Heuristic 0..1 — rank before LLM (regex only, fast)."""
     blob = _blob(pub).lower()
     score = 0.0
     if re.search(r"\b(tmt|tandem mass tag|isobaric|tmtpro)\b", blob):
@@ -84,11 +80,6 @@ def prefilter_publication(
     engine: ExclusionEngine | None = None,
     min_relevance: float = 0.25,
 ) -> tuple[bool, str]:
-    """
-    Return (keep, reason).
-    Hard exclusions → drop before LLM.
-    Low relevance without repo ID → drop.
-    """
     title = str(pub.get("title") or "")
     abstract = str(pub.get("abstract") or "")
     if not title.strip():
@@ -121,10 +112,6 @@ def search_atlas_literature(
     min_relevance: float = 0.25,
     engine: ExclusionEngine | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """
-    Multi-query Europe PMC search → dedupe → prefilter → rank.
-    Returns publications ready for LLM enrichment (top page_size after rank).
-    """
     seen_pmids: set[str] = set()
     raw: list[dict[str, Any]] = []
     queries = atlas_literature_queries(year_from, year_to)

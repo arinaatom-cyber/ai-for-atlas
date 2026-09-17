@@ -1,5 +1,3 @@
-"""Pointwise checks: one patient = one channel = one age, no 5000-grid."""
-
 from __future__ import annotations
 
 import pandas as pd

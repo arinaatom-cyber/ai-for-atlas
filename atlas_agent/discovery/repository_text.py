@@ -1,9 +1,3 @@
-"""Тексты PRIDE/PDC/PubMed для Abstract/Fit и для QC материала.
-
-ИИ-чтение абстрактов раньше шло только по Europe PMC. Карточки PRIDE
-в таблицу попадали без выдержки, а материал искался regex-ом только
-в коротком title/description — статья не читалась.
-"""
 from __future__ import annotations
 
 import json
@@ -49,7 +43,6 @@ def _parse_qwen_json(raw: str) -> dict[str, Any]:
 
 
 def _qwen_material_fit(title: str, text: str, *, cfg: dict | None = None) -> dict[str, Any] | None:
-    """Локальный Qwen (Ollama) — без облачных токенов."""
     if not is_ollama_available():
         return None
     llm_cfg = (cfg or {}).get("llm") or {}
@@ -117,7 +110,6 @@ def _join_parts(*parts: object) -> str:
 
 
 def local_repository_text(item: dict[str, Any]) -> str:
-    """Описание с карточки PRIDE / PDC / MassIVE без сети."""
     return _join_parts(
         item.get("abstract"),
         item.get("abstract_snippet"),
@@ -150,7 +142,6 @@ def excerpt_source_label(item: dict[str, Any]) -> str:
 
 
 def attach_local_excerpt(item: dict[str, Any]) -> dict[str, Any]:
-    """Краткая выдержка из уже скачанной карточки (PRIDE description / PDC)."""
     text = local_repository_text(item)
     if text and not str(item.get("abstract_snippet") or "").strip():
         item["abstract_snippet"] = text[:_SNIPPET_LEN]
@@ -166,7 +157,6 @@ def attach_pubmed_abstract(
     fetch_fn: Callable[[str], dict] | None = None,
     delay_s: float = 0.08,
 ) -> bool:
-    """Скачать абстракт Europe PMC/PubMed по PMID и подставить как выдержку."""
     pmid = _clean_pmid(item.get("pmid"))
     if not pmid:
         return False
@@ -218,7 +208,6 @@ def read_repository_material(
     atlas_context: dict[str, Any] | None = None,
     use_llm: bool = False,
 ) -> dict[str, Any]:
-    """Локальный Qwen по тексту PRIDE+PDC+PubMed; иначе regex. Облако не вызываем."""
     del atlas_context
     blob = combined_reader_text(item) or str(item.get("title") or "")
     title = str(item.get("title") or "")
@@ -253,7 +242,6 @@ def enrich_items_for_display(
     fetch_pubmed: bool = True,
     use_llm: bool = False,
 ) -> int:
-    """Выдержка PubMed → PRIDE → PDC + Fit для колонки Abstract."""
     filled = 0
     for item in items:
         got = False
@@ -275,7 +263,6 @@ def enrich_existing_report(
     fetch_pubmed: bool = True,
     use_llm: bool = True,
 ) -> dict[str, int]:
-    """Дополнить latest.json выдержками и пересмотреть reject без материала."""
     candidates = list(report.get("candidates") or report.get("new_projects") or [])
     display_n = enrich_items_for_display(
         candidates, cfg=cfg, fetch_pubmed=fetch_pubmed, use_llm=use_llm
@@ -321,7 +308,6 @@ def rescue_unspecified_material(
     fetch_pubmed: bool = True,
     use_llm: bool = False,
 ) -> dict[str, int]:
-    """Если в карточке PRIDE нет материала — прочитать PubMed и локальный Qwen."""
     from atlas_agent.discovery.filters import classify_candidate, default_filter_config
 
     fcfg = {**default_filter_config(), **(cfg or {})}

@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Полный прогон платформы от и до:
-  audit → fix → scan 2026 (PRIDE JSON + статьи) → добавить новые PXD → sync → dashboard → agent
-
-  python run_pipeline.py
-  python run_pipeline.py --apply          # записать fix + новые строки в CSV
-  python run_pipeline.py --no-ai          # без локального ИИ (быстрее)
-"""
 from __future__ import annotations
 
 import argparse

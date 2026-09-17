@@ -1,4 +1,3 @@
-"""Shared row builders for Discovery tables (GitHub + Streamlit)."""
 from __future__ import annotations
 
 import html
@@ -51,7 +50,6 @@ def _resolve_evaluation(
     kind: ItemKind | str,
     has_accession: bool = False,
 ) -> ProjectEvaluation:
-    """Use enriched evaluation from latest.json; re-score stale project rows."""
     force = should_recompute_evaluation(item, kind)
     return _table_context().resolve(
         item,
@@ -176,7 +174,6 @@ def unified_weight_cell(
     fit: str = "",
     cohort_score: object = None,
 ) -> str:
-    """LLM verdict label + optional cohort score 0–100."""
     parts: list[str] = []
     fit_s = str(fit or "").strip().lower()
     label = (evaluation.display_fit_label if evaluation else "") or ""
@@ -247,7 +244,6 @@ def _parse_year(value: object) -> str:
 
 
 def item_year(item: dict, pubs_by_pmid: dict[str, dict] | None = None) -> str:
-    """Year from PRIDE/PDC dates, paper metadata, or linked PMID."""
     for key in ("publication_date", "submission_date", "pub_date", "published"):
         y = _parse_year(item.get(key))
         if y:
@@ -307,7 +303,6 @@ def _coerce_evaluation(
     kind: ItemKind | str,
     has_accession: bool = False,
 ) -> ProjectEvaluation | None:
-    """Parse stored evaluation or compute; None triggers legacy fallback."""
     raw = item.get("evaluation")
     if raw is not None:
         if isinstance(raw, str):
@@ -332,7 +327,6 @@ def _render_analysis_cell(
     has_accession: bool = False,
     pubs_by_pmid: dict[str, dict],
 ) -> str:
-    """Analysis column — delegated to AnalysisFormatter with legacy guard."""
     evaluation = _coerce_evaluation(item, kind=kind, has_accession=has_accession)
     if evaluation is None:
         inner = _FORMATTER.legacy_html()
@@ -596,7 +590,6 @@ def _design_cell(item: dict) -> str:
 
 
 def finding_plain_text(item: dict, *, limit: int = 400) -> str:
-    """Same excerpt as the site «Кратко» column, without HTML."""
     candidates = [
         item.get("abstract_snippet"),
         item.get("abstract"),
@@ -618,7 +611,6 @@ def finding_plain_text(item: dict, *, limit: int = 400) -> str:
 
 
 def flatten_candidate_row(item: dict, *, profile: dict | None = None) -> dict[str, str]:
-    """Flat columns shared by the Discovery table and supplementary CSV."""
     acc = str(item.get("accession") or item.get("project_accession") or item.get("linked_accession") or "").strip()
     organ = _organ_text(item, profile=profile)
     disease = _disease_text(item, profile=profile)
@@ -653,7 +645,6 @@ def flatten_candidate_row(item: dict, *, profile: dict | None = None) -> dict[st
 
 
 def attach_flat_display_fields(item: dict, *, profile: dict | None = None) -> dict:
-    """Persist site columns onto the JSON item (organ / disease / finding)."""
     row = flatten_candidate_row(item, profile=profile)
     item["organ"] = row["organ"]
     item["disease"] = row["disease"]
@@ -665,7 +656,6 @@ def attach_flat_display_fields(item: dict, *, profile: dict | None = None) -> di
 
 
 def _main_finding_cell(item: dict) -> str:
-    """Short scientific excerpt only — no LLM/PDS/source badges."""
     snip = finding_plain_text(item, limit=400)
     if not snip:
         return '<span class="cell-empty">—</span>'
@@ -871,7 +861,6 @@ def _papers_without_accession(manual: list[dict], literature: list[dict]) -> lis
 
 
 def _merge_literature(papers: list[dict], cohorts: list[dict]) -> list[dict]:
-    """Merge papers and cohorts by PMID into unified literature rows."""
     by_pmid: dict[str, dict] = {}
     order: list[str] = []
 
@@ -931,7 +920,6 @@ def build_unified_discovery_rows(
     fetch_pride_pmid: bool = True,
     resolve_literature_remote: bool = True,
 ) -> tuple[str, int, list[tuple[str, str]]]:
-    """One tbody for GitHub Discovery: projects + literature + cohorts."""
     rows: list[str] = []
     total = 0
     row_num = 0

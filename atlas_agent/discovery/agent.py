@@ -1,7 +1,3 @@
-"""
-Discovery Agent — ищет похожие проекты и статьи в интернете.
-Никогда не удаляет и не перезаписывает data/projects.csv.
-"""
 from __future__ import annotations
 
 import json
@@ -62,7 +58,6 @@ def _apply_removed_from_workbook(
     *,
     root: Path | None = None,
 ) -> int:
-    """Перенос совпадений с листом removed for general в rejected."""
     wb_path = workbook_path_from_cfg(cfg, root=root)
     if not wb_path:
         return 0
@@ -127,7 +122,6 @@ def _is_novel(item: dict, known: set[str]) -> bool:
 
 
 def _suggest_processing(item: dict, profile: dict) -> list[str]:
-    """Processing hints for new hits (English, site-facing)."""
     tips: list[str] = []
     src = item.get("source", "")
     if "pdc" in str(src).lower() or item.get("consortium") == "PDC":
@@ -151,7 +145,7 @@ def run_discovery_scan(
     *,
     root: Path,
 ) -> dict[str, Any]:
-    assert_catalog_read_only("read")  # явно: только чтение каталога
+    assert_catalog_read_only("read")
 
     scan_cfg = cfg.get("discovery") or cfg.get("scan") or {}
     year = int(scan_cfg.get("year_from") or 2024)
@@ -220,7 +214,6 @@ def run_discovery_scan(
             known_pmids=known_pmids,
         )
 
-    # Консорциумы (литература CPTAC/CCLE/GTEx — дополнительно)
     consortia = scan_all_consortia(profile.get("search_keywords"), year_from=year)
     cons_flat = _flatten_consortia(consortia)
 

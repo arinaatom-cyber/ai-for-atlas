@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Выдержки PubMed/PRIDE/PDC + локальный Qwen (без облачных токенов), затем сайт."""
 from __future__ import annotations
 
 import json

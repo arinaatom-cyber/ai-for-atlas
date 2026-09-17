@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""CLI: опубликовать Discovery на docs/site/ (только новые проекты)."""
 from __future__ import annotations
 
 import json

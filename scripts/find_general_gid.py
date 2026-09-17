@@ -8,7 +8,6 @@ r = requests.get(
     headers={"User-Agent": "Mozilla/5.0"},
 )
 text = r.text
-# sheetId often near sheet title in JSON blobs
 for m in re.finditer(r"General single and bulk v2", text):
     start = max(0, m.start() - 200)
     snippet = text[start : m.start() + 80]

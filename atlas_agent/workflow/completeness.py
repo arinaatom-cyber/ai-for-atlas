@@ -7,7 +7,6 @@ import pandas as pd
 
 from atlas_agent.sources.projects_table import primary_project_id
 
-# Колонки «Unified» / обязательные для зелёной строки в Excel
 UNIFIED_COLUMNS = [
     "Platform MS (Unified)",
     "TMT Label (Unified)",
@@ -56,11 +55,11 @@ def row_completeness(row: pd.Series) -> dict:
     score = len(filled) / max(len(UNIFIED_COLUMNS), 1)
 
     if score >= 0.95 and not missing:
-        status = "complete"  # аналог «зелёной» строки
+        status = "complete"
     elif score >= 0.5:
-        status = "partial"  # частично заполнено
+        status = "partial"
     else:
-        status = "todo"  # белая — нужно дочитать
+        status = "todo"
 
     return {
         "status": status,
@@ -72,7 +71,6 @@ def row_completeness(row: pd.Series) -> dict:
 
 
 def patient_summary(row: pd.Series) -> dict:
-    """Сводка по пациентам/образцам для статистики."""
     out: dict[str, Any] = {}
     for col in PATIENT_COLUMNS:
         if col in row.index and not _empty(row[col]):

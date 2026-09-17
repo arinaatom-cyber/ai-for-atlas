@@ -1,7 +1,3 @@
-"""
-Поштучный (postрочный) аудит: читает КАЖДОЕ поле строки каталога,
-сверяет Organ / Tissue / Sample Type / Cell lines / Disease / счётчики образцов.
-"""
 from __future__ import annotations
 
 import math
@@ -22,7 +18,6 @@ from atlas_agent.catalog.organ_classify import (
     trim_metastasis_organs,
 )
 
-# Колонки в порядке чтения строки (как в Excel TMT ATLAS)
 ROW_READ_ORDER: list[str] = [
     "Database",
     "Project ID",
@@ -84,7 +79,7 @@ CELL_LINE_KNOWN: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"u[- ]?251|u251", re.I), "Brain"),
     (re.compile(r"hcc827|nci-h322|nci-h358|a549|h1299", re.I), "Lung"),
     (re.compile(r"hep\s*g2|hepg2|sk-hep|huh-?7", re.I), "Liver"),
-    (re.compile(r"hek293|hela|hs578t", re.I), "Other"),  # mixed — flag
+    (re.compile(r"hek293|hela|hs578t", re.I), "Other"),
     (re.compile(r"jurkat|k562|thp-?1|hl-?60", re.I), "Blood"),
     (re.compile(r"sw480|sw620|hct.?116|km12", re.I), "Colon"),
     (re.compile(r"ovcar|caov|ov-?90", re.I), "Ovary"),
@@ -101,7 +96,6 @@ def _s(v: Any) -> str:
 
 
 def organs_from_field(col: str, raw: str, *, tumor_type: str) -> list[str]:
-    """Органы, явно/readable из одного поля."""
     if not raw:
         return []
     if col == "Cell Line Name":
@@ -141,7 +135,6 @@ def _num(v: Any) -> float | None:
 
 
 def read_row_fields(row: dict[str, Any]) -> list[tuple[str, str]]:
-    """Все непустые поля строки в порядке ROW_READ_ORDER, затем прочие."""
     out: list[tuple[str, str]] = []
     seen: set[str] = set()
     for col in ROW_READ_ORDER:
@@ -159,7 +152,6 @@ def read_row_fields(row: dict[str, Any]) -> list[tuple[str, str]]:
 
 
 def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
-    """Полный построчный разбор одной строки Excel."""
     fields = read_row_fields(row)
     mapped = map_project(row)
     pid = mapped["pid"]
@@ -183,7 +175,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
         else []
     )
 
-    # --- 1. Organ column vs map ---
     if not organ_curator:
         fb = map_organs - {"Other"}
         if fb:
@@ -207,7 +198,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
             "msg": f"Organ «{organ_curator[:80]}» → {sorted(curator_parsed)}; карта → {sorted(map_organs)}",
         })
 
-    # --- 2. Каждое organ-поле vs curator Organ (если Organ задан) ---
     if organ_curator and not re.match(r"^(multiple organs|multi-organ)", organ_curator, re.I):
         enumerated = len(split_organ_parts(organ_curator)) >= 5
         for col, info in field_organs.items():
@@ -218,7 +208,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
                 continue
             if enumerated and col in ("Tissue Cell Type Detailed", "Tissue"):
                 continue
-            # Curator single-organ: контекст не должен противоречить
             if len(curator_parsed) == 1:
                 cur = next(iter(curator_parsed))
                 if fo and fo != {cur} and not fo.issubset(curator_parsed):
@@ -238,7 +227,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
                         f"({sorted(curator_parsed)})",
                     })
 
-    # --- 3. Sample Type ↔ все поля ---
     detail = _s(row.get("Tissue Cell Type Detailed")).lower()
     cl_name = _s(row.get("Cell Line Name"))
     cl_organ = _s(row.get("Cell Line Organ"))
@@ -280,7 +268,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
                 "msg": "Primary cells — нужен Organ (напр. Hematopoietic system → Blood)",
             })
 
-    # --- 4. Tumor Type / Disease / healthy ---
     disease = _s(row.get("Disease"))
     subtype = _s(row.get("Disease Subtype"))
     healthy = mapped["healthy"]
@@ -315,7 +302,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
             "msg": f"Total={int(total)} vs сумма колонок Case/Control={int(sum_parts)}",
         })
 
-    # --- 5. pick_organ_raw trace ---
     organ_raw = pick_organ_raw(row)
     if organ_raw == "Unknown" and organ_curator:
         issues.append({
@@ -324,7 +310,6 @@ def audit_row_deep(row: dict[str, Any], *, row_index: int) -> dict[str, Any]:
             "msg": f"pick_organ_raw=Unknown при Organ=«{organ_curator[:60]}»",
         })
 
-    # --- 6. Multi-organ / pan ---
     if len(map_organs) >= 3 and "Multiple_Organs" not in map_organs and not re.match(
         r"^multiple organs", organ_curator, re.I
     ):
@@ -386,7 +371,6 @@ def summarize_row_audits(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def format_row_markdown(rec: dict[str, Any]) -> list[str]:
-    """Markdown-блок для одной строки (полный дамп)."""
     lines = [
         f"## Строка {rec['row_index']} · {rec['pid']} ({rec['database']}) · **{rec['status'].upper()}**",
         "",

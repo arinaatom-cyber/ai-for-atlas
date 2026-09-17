@@ -1,4 +1,3 @@
-"""Freeze a Discovery snapshot (checksums + git + config; no secrets)."""
 from __future__ import annotations
 
 import hashlib

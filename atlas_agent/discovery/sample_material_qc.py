@@ -1,13 +1,3 @@
-"""
-QC материала образцов для Discovery (не меняет projects.csv).
-
-Статусы:
-- candidate — подходит под атлас
-- requires_manual_check — смешанный dataset (tissue + organoids/spheroids)
-- rejected — не подходит, в том числе human без прописанного материала (ткань / клеточная линия)
-
-Атлас: человеческие ткани и клеточные линии. Плазма/сыворотка/моча — нет.
-"""
 from __future__ import annotations
 
 import re
@@ -15,7 +5,6 @@ from typing import Any
 
 from atlas_agent.discovery.organism_terms import HUMAN, HUMAN_CANCER_CELL_LINE, NON_HUMAN
 
-# --- Включение: ткани и клеточные линии ---
 HUMAN_TUMOR_TISSUE = re.compile(
     r"\b(tumor\s+tissue|tumou?r\s+specimen|ffpe|surgical\s+specimen|biopsy|"
     r"resected|primary\s+tumor|malignant\s+tissue|carcinoma\s+tissue)\b",
@@ -47,7 +36,6 @@ REAL_INCLUDE_CHECKS: list[tuple[str, re.Pattern[str]]] = [
     ("human_cancer_cell_line", HUMAN_CANCER_CELL_LINE),
 ]
 
-# --- Исключение ---
 BIOFLUID = re.compile(
     r"\b(plasma|serum|urine|saliva|sperm|csf|cerebrospinal\s+fluid|"
     r"whole\s+blood|peripheral\s+blood|\bpbmc\b)\b",
@@ -114,7 +102,6 @@ def _real_include_signals(blob: str) -> list[str]:
 
 
 def _pdc_clinical_tumor_default(item: dict[str, Any], blob: str) -> bool:
-    """PDC clinical tumor programs — не HCMI/organoid/PDX-only."""
     if item.get("source") != "pdc_api" and item.get("consortium") != "PDC":
         return False
     if PDC_EXCLUDED_PROGRAM.search(blob):
@@ -170,7 +157,6 @@ def _has_include_signal(blob: str, item: dict[str, Any]) -> tuple[bool, list[str
 
 
 def assess_sample_material(item: dict[str, Any], blob: str | None = None) -> dict[str, Any]:
-    """Возвращает qc_status, qc_reasons, material_signals."""
     blob = blob or material_blob_from_item(item)
     excluded_hits: list[str] = []
 

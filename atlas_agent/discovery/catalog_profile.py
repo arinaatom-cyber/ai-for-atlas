@@ -1,4 +1,3 @@
-"""Профиль вашего каталога — для поиска похожих проектов в интернете."""
 from __future__ import annotations
 
 import re
@@ -55,7 +54,6 @@ def _build_keywords(organs, diseases, tmt_labels) -> list[str]:
     kw.extend([o for o, _ in organs.most_common(5) if o not in ("", "nan")])
     kw.extend([d for d, _ in diseases.most_common(5) if d not in ("", "nan", "healthy")])
     kw.extend(["PDC", "CPTAC", "CCLE", "GTEx", "proteogenomics"])
-    # unique preserve order
     seen = set()
     out = []
     for k in kw:
@@ -72,10 +70,6 @@ def build_atlas_semantic_context(
     max_examples: int = 8,
     rejected_titles: list[str] | None = None,
 ) -> dict[str, Any]:
-    """
-    Контекст из TMT ATLAS для ИИ: читать абстракт по смыслу, как ваши 123 проекта.
-    В статьях часто нет PXD — только «proteomics у пациентов», TMT, tumor/plasma.
-    """
     organs: Counter = Counter()
     diseases: Counter = Counter()
     tissues: Counter = Counter()
@@ -160,7 +154,6 @@ def format_atlas_context_for_llm(
     *,
     n_atlas: int,
 ) -> str:
-    """Компактный блок для промпта LLM (обучение на вашем каталоге)."""
     lines = [
         f"REFERENCE ATLAS: {n_atlas} human TMT proteomics projects already curated.",
         "Typical fit: tumor/adjacent/human tissue or human cancer cell lines.",

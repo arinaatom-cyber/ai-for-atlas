@@ -1,4 +1,3 @@
-"""Flatten Discovery candidates to CSV columns matching the public table."""
 from __future__ import annotations
 
 import csv

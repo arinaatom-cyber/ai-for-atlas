@@ -1,4 +1,3 @@
-"""Read-only загрузка каталога из project of Proteomics.xlsx."""
 from __future__ import annotations
 
 import re
@@ -11,10 +10,6 @@ from atlas_agent.sources.projects_table import primary_project_id
 
 PID_RE = re.compile(r"\b(PXD\d+|PDC\d+|IPX\d+|MSV\d+)\b", re.I)
 
-# Листы по договорённости:
-# - TMT ATLAS — проекты, подошедшие в атлас
-# - CPTAC — уже взято и просмотрено
-# - «удалено из general» — явно отклонённые (красные строки)
 SHEET_ATLAS = "TMT ATLAS"
 SHEET_CPTAC = "CPTAC"
 DELETED_SHEET_HINTS = ("удал", "delet", "removed")
@@ -70,7 +65,6 @@ def load_workbook_catalog(
     include_atlas: bool = True,
     include_cptac: bool = True,
 ) -> pd.DataFrame:
-    """Единая таблица для duplicate check (read-only)."""
     path = Path(xlsx_path)
     if not path.is_file():
         return pd.DataFrame(columns=["Project ID", "PMID", "DOI", "Title", "URL", "source_sheet"])
@@ -172,7 +166,6 @@ def _row_from_deleted(r: pd.Series) -> dict[str, str]:
 
 
 def load_deleted_catalog(xlsx_path: str | Path) -> pd.DataFrame:
-    """Лист «удалено из general» — read-only."""
     path = Path(xlsx_path)
     if not path.is_file():
         return pd.DataFrame(columns=["Project ID", "PMID", "DOI", "Title", "URL", "source_sheet"])
@@ -190,12 +183,10 @@ def load_deleted_catalog(xlsx_path: str | Path) -> pd.DataFrame:
 
 
 def atlas_project_count(xlsx_path: str | Path) -> int:
-    """Число проектов на листе TMT ATLAS."""
     return len(load_workbook_catalog(xlsx_path, include_atlas=True, include_cptac=False))
 
 
 def known_accessions_from_workbook(xlsx_path: str | Path) -> set[str]:
-    """Все PXD/PDC/MSV/IPX из TMT ATLAS + CPTAC."""
     df = load_workbook_catalog(xlsx_path)
     known: set[str] = set()
     for _, r in df.iterrows():
@@ -207,7 +198,6 @@ def known_accessions_from_workbook(xlsx_path: str | Path) -> set[str]:
 
 
 def ids_from_discovery_item(item: dict) -> set[str]:
-    """Собрать PXD/PDC/PMID из записи Discovery."""
     ids: set[str] = set()
     for key in ("accession", "project_accession", "title", "description"):
         ids |= _all_ids_from_cell(item.get(key))
@@ -221,7 +211,6 @@ def ids_from_discovery_item(item: dict) -> set[str]:
 
 
 def workbook_path_from_cfg(cfg: dict | None, *, root: Path | None = None) -> Path | None:
-    """Путь к project of Proteomics.xlsx из config (read-only)."""
     wb = (cfg or {}).get("sheet", {}).get("proteomics_workbook")
     if not wb:
         return None
@@ -233,7 +222,6 @@ def workbook_path_from_cfg(cfg: dict | None, *, root: Path | None = None) -> Pat
 
 
 def known_rejected_from_workbook(xlsx_path: str | Path) -> set[str]:
-    """ID из листа «removed for general» / «удалено из general»."""
     df = load_deleted_catalog(xlsx_path)
     known: set[str] = set()
     for _, r in df.iterrows():
@@ -246,7 +234,6 @@ def known_rejected_from_workbook(xlsx_path: str | Path) -> set[str]:
 
 
 def rejection_reasons_from_workbook(xlsx_path: str | Path) -> dict[str, str]:
-    """PXD/PDC/MSV/IPX/PMID → Reason for exclusion (лист removed for general)."""
     df = load_deleted_catalog(xlsx_path)
     reasons: dict[str, str] = {}
     for _, r in df.iterrows():
@@ -264,7 +251,6 @@ def rejection_reasons_from_workbook(xlsx_path: str | Path) -> dict[str, str]:
 
 
 def item_in_known_set(item: dict, known: set[str]) -> bool:
-    """True, если accession/PMID записи уже в каталоге или в removed for general."""
     return bool(ids_from_discovery_item(item) & known)
 
 

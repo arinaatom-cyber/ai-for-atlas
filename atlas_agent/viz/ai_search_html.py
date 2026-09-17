@@ -1,4 +1,3 @@
-"""AI keyword search landing — launches Streamlit app (Pf-HaploAtlas-style workflow)."""
 from __future__ import annotations
 
 import json

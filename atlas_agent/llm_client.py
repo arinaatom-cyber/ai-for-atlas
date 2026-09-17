@@ -20,7 +20,6 @@ DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-6"
 DEFAULT_GROK_BASE = "https://api.x.ai/v1"
 DEFAULT_GROK_MODEL = "grok-2-latest"
 
-# При prefer_cloud=True (по умолчанию): облако с ключом → Ollama → GPT4All → regex.
 AUTO_CLOUD_ORDER = ("zai", "qwen", "claude", "grok")
 AUTO_LOCAL_ORDER = ("ollama", "gpt4all")
 
@@ -65,7 +64,6 @@ def is_ollama_server_up(base_url: str | None = None) -> bool:
 
 
 def is_ollama_available(base_url: str | None = None, model: str | None = None) -> bool:
-    """Ollama запущен и (опционально) нужная модель уже скачана."""
     if not is_ollama_server_up(base_url):
         return False
     m = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
@@ -162,7 +160,6 @@ def resolve_engine(
     prefer_cloud: bool = True,
     model: str | None = None,
 ) -> str:
-    """Какой движок реально будет использован."""
     p = (provider or "auto").lower()
     ollama_model = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
     if p != "auto":
@@ -200,7 +197,6 @@ def resolve_engine(
 
 
 def list_llm_engines(*, prefer_cloud: bool = True, model: str | None = None) -> list[dict[str, Any]]:
-    """Статус всех провайдеров (для `run_discovery.py llm`)."""
     ollama_model = model or os.environ.get("OLLAMA_MODEL") or DEFAULT_OLLAMA_MODEL
     ollama_up = is_ollama_server_up()
     ollama_ready = is_ollama_available(model=ollama_model)
@@ -359,7 +355,6 @@ def _run_llm(
     max_tokens: int,
     prefer_cloud: bool = True,
 ) -> tuple[str, str, dict]:
-    """Returns (raw_text, engine_name, usage_dict)."""
     p = (provider or "auto").lower()
     engine = resolve_engine(p, base_url, prefer_cloud=prefer_cloud, model=model)
 
@@ -432,7 +427,6 @@ def ping_llm(
     gpt4all_model: str | None = None,
     prefer_cloud: bool = True,
 ) -> dict[str, Any]:
-    """Короткий запрос к активному движку (для `run_discovery.py llm --test`)."""
     engine = resolve_engine(provider, base_url, prefer_cloud=prefer_cloud, model=model)
     if engine == "local_rules":
         return {"ok": False, "engine": engine, "error": "no_llm_engine"}

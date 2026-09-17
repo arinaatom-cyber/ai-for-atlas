@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Обновить cohort_literature в latest.json и пересобрать сайт (без полного scan)."""
 from __future__ import annotations
 
 import json

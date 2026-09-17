@@ -1,4 +1,3 @@
-"""Normalize records; optional HTML fallback for incomplete API metadata."""
 from __future__ import annotations
 
 import re
@@ -96,7 +95,6 @@ def _pride_json_fallback(project_id: str) -> dict[str, str]:
 
 
 def normalize_record(record: dict[str, Any], *, use_html_fallback: bool | None = None) -> dict[str, Any]:
-    """Bring any source record to unified schema."""
     cfg = load_config()
     if use_html_fallback is None:
         use_html_fallback = bool(cfg.get("use_html_fallback", True))
@@ -106,7 +104,6 @@ def normalize_record(record: dict[str, Any], *, use_html_fallback: bool | None =
         if record.get(k):
             out[k] = str(record[k]).strip()
 
-    # Aliases from raw APIs
     aliases = {
         "accession": "project_id",
         "project_accession": "project_id",

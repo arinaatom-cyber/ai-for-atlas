@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""GO enrichment and publication figures for gastric cancer bibliometric data."""
 
 from __future__ import annotations
 
@@ -21,7 +20,6 @@ OUT_DIR = PROJECT_ROOT / "figures"
 TABLE_DIR = PROJECT_ROOT / "tables"
 GPROFILER_URL = "https://biit.cs.ut.ee/gprofiler/api/gost/profile/"
 
-# Publication palette (colorblind-friendly, journal-ready)
 COLORS = {
     "CIN": "#2166AC",
     "MSI": "#4393C3",
@@ -98,11 +96,9 @@ def top_go_terms(df: pd.DataFrame, source: str, n: int = 12) -> pd.DataFrame:
 
 
 def clean_go_label(text: str, max_len: int = 58) -> str:
-    """Shorten verbose GO term strings from g:Profiler."""
     t = str(text).strip().strip('"')
     if t.startswith('"') and t.endswith('"'):
         t = t[1:-1]
-    # drop trailing citation blocks
     for sep in ['" [', " [GOC:", " [PMID:", " [ISBN:"]:
         if sep in t:
             t = t.split(sep)[0].strip().strip('"')
@@ -154,7 +150,6 @@ def figure1_bibliometric(data: dict[str, pd.DataFrame]) -> None:
     fig = plt.figure(figsize=(12, 10))
     gs = GridSpec(2, 2, figure=fig, height_ratios=[1.2, 1], hspace=0.38, wspace=0.32)
 
-    # A — top genes
     ax_a = fig.add_subplot(gs[0, :])
     colors_a = [COLORS["highlight"] if g in TARGET_GENES else COLORS["accent"] for g in top20["Gene"]]
     ax_a.barh(top20["Gene"], top20["Total Mentions"], color=colors_a, edgecolor="white", height=0.72)
@@ -163,7 +158,6 @@ def figure1_bibliometric(data: dict[str, pd.DataFrame]) -> None:
     for i, (v, cat) in enumerate(zip(top20["Total Mentions"], top20["Functional Category"])):
         ax_a.text(v + 6, i, cat, va="center", fontsize=6.5, color="#555555")
 
-    # B — subtypes donut
     ax_b = fig.add_subplot(gs[1, 0])
     labels = subtype_totals.index.tolist()
     vals = subtype_totals.values
@@ -189,7 +183,6 @@ def figure1_bibliometric(data: dict[str, pd.DataFrame]) -> None:
     )
     ax_b.set_title("B  Mentions by molecular / histologic subtype", fontweight="bold", loc="left")
 
-    # C — functional categories
     ax_c = fig.add_subplot(gs[1, 1])
     cat_colors = sns.color_palette("Spectral", n_colors=len(categories))[::-1]
     ax_c.barh(
@@ -238,7 +231,6 @@ def figure3_subtype_heatmap(data: dict[str, pd.DataFrame]) -> None:
     full = data["7_Full_Dataset"]
     sub = full[full["Gene"].isin(top_genes)].copy()
     pivot = sub.pivot_table(index="Gene", columns="Subtype", values="Mentions", fill_value=0, aggfunc="sum")
-    # order genes by total mentions
     order = sub.groupby("Gene")["Mentions"].sum().sort_values(ascending=False).index
     pivot = pivot.loc[order]
     col_order = ["CIN", "MSI", "EBV", "GS", "Intestinal", "Diffuse", "Mixed", "Unclassified"]
@@ -263,7 +255,6 @@ def figure3_subtype_heatmap(data: dict[str, pd.DataFrame]) -> None:
 
 
 def figure4_research_gap(data: dict[str, pd.DataFrame]) -> None:
-    """Contrast target/immune markers vs HSP/ANXA/S100 representation."""
     full = data["7_Full_Dataset"]
     top100 = set(data["1_Top_100_Genes"]["Gene"])
 
@@ -278,7 +269,6 @@ def figure4_research_gap(data: dict[str, pd.DataFrame]) -> None:
         "Annexins (ANXA)": family_mentions(STRESS_FAMILIES["ANXA"]),
         "S100 calcium-binding": family_mentions(STRESS_FAMILIES["S100"]),
     }
-    # also count genes in top100 per group
     in_top = {
         "RTK / target\n(ERBB2, EGFR, MET…)": len([g for g in ["ERBB2", "EGFR", "MET", "KRAS", "CLDN18"] if g in top100]),
         "Immune checkpoints\n(CD274, PDCD1…)": len([g for g in ["CD274", "PDCD1", "PDCD1LG2", "CTLA4"] if g in top100]),
@@ -322,7 +312,6 @@ def figure4_research_gap(data: dict[str, pd.DataFrame]) -> None:
 
 
 def figure5_go_bubble_combined(go_df: pd.DataFrame) -> None:
-    """Single-panel GO bubble chart — best for manuscript main figure."""
     parts = [go_df[go_df["source"] == src].nsmallest(8, "p_value") for src in ["GO:BP", "GO:MF", "GO:CC"]]
     top = pd.concat(parts, ignore_index=True).sort_values("neg_log10_p", ascending=True)
     source_labels = {"GO:BP": "Biological Process", "GO:MF": "Molecular Function", "GO:CC": "Cellular Component"}
@@ -371,7 +360,6 @@ def export_tables(go_df: pd.DataFrame, data: dict[str, pd.DataFrame], gene_list:
     }
     (TABLE_DIR / "GO_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # Manuscript-ready numbers for conclusion (HSP+ANXA+S100 share)
     full = data["7_Full_Dataset"]
     total_mentions = int(full["Mentions"].sum())
     stress_genes = set(STRESS_FAMILIES["HSP"] + STRESS_FAMILIES["ANXA"] + STRESS_FAMILIES["S100"])
@@ -394,7 +382,6 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     data = load_data()
 
-    # Gene set: top-100 by bibliometric rank (matches manuscript methods)
     gene_list = data["1_Top_100_Genes"]["Gene"].dropna().astype(str).unique().tolist()
     print(f"Running GO enrichment for {len(gene_list)} genes...")
 

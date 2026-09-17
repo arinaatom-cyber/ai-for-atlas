@@ -1,4 +1,3 @@
-"""Atlas catalog index — FAISS-backed with token Jaccard fallback."""
 from __future__ import annotations
 
 import logging
@@ -25,14 +24,12 @@ class SimilarityHit:
 
 @runtime_checkable
 class AtlasIndex(Protocol):
-    """Vector / token index over atlas catalog entries."""
 
     def search(self, query: str, *, top_k: int = 5) -> list[SimilarityHit]:
         ...
 
 
 class TokenAtlasIndex:
-    """Jaccard token index — always available, no FAISS dependency."""
 
     def __init__(self, df: pd.DataFrame | None = None, index: list[dict[str, Any]] | None = None) -> None:
         self._df = df
@@ -62,7 +59,6 @@ class TokenAtlasIndex:
 
 
 class FaissAtlasIndex:
-    """TF-IDF + FAISS inner-product index. Falls back to TokenAtlasIndex if FAISS missing."""
 
     def __init__(self, df: pd.DataFrame, *, fallback: TokenAtlasIndex | None = None) -> None:
         self._fallback = fallback or TokenAtlasIndex(df)
@@ -73,7 +69,7 @@ class FaissAtlasIndex:
         self._titles: list[str] = []
         self._vectorizer = None
         try:
-            import faiss  # type: ignore[import-untyped]
+            import faiss
             from sklearn.feature_extraction.text import TfidfVectorizer
 
             docs: list[str] = []
@@ -101,7 +97,7 @@ class FaissAtlasIndex:
         if not self._ready or self._index is None or self._vectorizer is None:
             return self._fallback.search(query, top_k=top_k)
         try:
-            import faiss  # type: ignore[import-untyped]
+            import faiss
 
             q = self._vectorizer.transform([query]).astype(np.float32).toarray()
             faiss.normalize_L2(q)

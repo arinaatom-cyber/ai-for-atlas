@@ -1,4 +1,3 @@
-"""Load evaluation YAML configuration."""
 from __future__ import annotations
 
 import logging

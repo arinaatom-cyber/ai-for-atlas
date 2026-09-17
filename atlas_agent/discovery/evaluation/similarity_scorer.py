@@ -1,4 +1,3 @@
-"""Semantic / lexical similarity gate with actionable threshold."""
 from __future__ import annotations
 
 import logging
@@ -10,7 +9,6 @@ logger = logging.getLogger(__name__)
 
 
 class SimilarityScorer:
-    """Score query text against atlas index; mark low scores non-actionable."""
 
     def __init__(self, atlas_index: AtlasIndex, *, threshold: float = 0.35) -> None:
         self._index = atlas_index

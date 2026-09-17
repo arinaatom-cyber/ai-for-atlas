@@ -1,4 +1,3 @@
-"""Shared TMT plex inference for PRIDE, PDC, and filters."""
 from __future__ import annotations
 
 import re

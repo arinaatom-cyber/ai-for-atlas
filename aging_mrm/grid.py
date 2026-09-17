@@ -1,5 +1,3 @@
-"""Designed analysis grids: annotation (500) and core values (10 × 500)."""
-
 from __future__ import annotations
 
 import pandas as pd
@@ -87,7 +85,6 @@ def assemble_observed(
     channels: pd.DataFrame,
     intensities: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Observed intensities: SRM header age when measured, else clinical."""
     clinical = patients.drop_duplicates("patient_id", keep="first")
     merged = intensities.merge(channels, on=["channel_id", "patient_id"], how="left")
     merged = merged.merge(clinical, on="patient_id", how="left", suffixes=("", "_clinical"))
@@ -143,7 +140,6 @@ def assemble_observed(
 
 
 def assemble_annotation(patients: pd.DataFrame, channels: pd.DataFrame) -> pd.DataFrame:
-    """One row per patient: channel if measured; SRM age when present."""
     clinical = patients.drop_duplicates("patient_id", keep="first")
     keep_ch = [
         col
@@ -176,7 +172,6 @@ def assemble_values_5000(
     peptides: pd.DataFrame,
     intensities: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Complete designed grid: core peptides × every clinical patient."""
     sequences = core_sequences(peptides)
     pep = peptides.drop_duplicates("peptide_sequence")
     pep = pep[pep["peptide_sequence"].isin(sequences)].copy()

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Аудит: как найдены проекты/статьи и насколько они подходят TMT ATLAS."""
 from __future__ import annotations
 
 import json
@@ -11,8 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from atlas_agent.catalog.organ_classify import hint_organs_from_text  # noqa: E402
-from atlas_agent.discovery.filters import material_blob_from_item, _infer_sample_design  # noqa: E402
+from atlas_agent.catalog.organ_classify import hint_organs_from_text
+from atlas_agent.discovery.filters import material_blob_from_item, _infer_sample_design
 
 REPORT = ROOT / "reports" / "discovery_relevance_audit.md"
 
@@ -79,7 +78,6 @@ def _data_status(item: dict) -> str:
 
 
 def _relevance_verdict(item: dict, *, kind: str) -> tuple[str, list[str]]:
-    """Ручная эвристика для отчёта (не меняет pipeline)."""
     notes: list[str] = []
     blob = material_blob_from_item(item).lower()
     acc = _acc(item)
@@ -113,7 +111,6 @@ def _relevance_verdict(item: dict, *, kind: str) -> tuple[str, list[str]]:
             return "хорошо", notes or ["репозиторий + TMT + quant table"]
         return "watch", notes or ["низкий tier или слабые файлы"]
 
-    # literature
     fit = str(item.get("atlas_fit") or (item.get("abstract_llm") or {}).get("atlas_fit") or "?")
     if fit == "no":
         return "не подходит", ["LLM atlas_fit=no"]
@@ -196,7 +193,7 @@ def _write_literature(lines: list[str], items: list[dict]) -> None:
         score = it.get("atlas_fit_score")
         rel, notes = _relevance_verdict(it, kind="literature")
         summary = (it.get("summary_ru") or "")[:160]
-        lines.append(f"### PMID {pmid} · atlas_fit={fit}\n")  # pmid already normalized
+        lines.append(f"### PMID {pmid} · atlas_fit={fit}\n")
         lines.append(f"- **Заголовок:** {title}")
         if score is not None:
             lines.append(f"- **LLM score:** {score}")

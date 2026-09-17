@@ -1,4 +1,3 @@
-"""Check if record matches previously removed entries (Удалено / Deleted sheet)."""
 from __future__ import annotations
 
 import re
@@ -14,14 +13,7 @@ from src.utils import load_config
 DELETED_SHEET_NAMES = ("удалено", "deleted", "removed", "previously removed")
 
 
-# load_deleted_database — в database_loader.py (по умолчанию пусто)
-
-
 def check_deleted(record: dict[str, Any], deleted_database: pd.DataFrame | None = None) -> dict[str, Any]:
-    """
-    Check Project ID, PMID, DOI, Title, URL against deleted sheet.
-    Returns {is_deleted, matched_on, matched_value}.
-    """
     from src.duplicate_check import check_duplicate
 
     db = deleted_database if deleted_database is not None else load_deleted_database()

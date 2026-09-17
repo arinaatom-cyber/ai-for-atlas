@@ -1,4 +1,3 @@
-"""Organ map page — embeds interactive TMT body map (GitHub Pages)."""
 from __future__ import annotations
 
 from pathlib import Path

@@ -1,4 +1,3 @@
-"""Accessions already resolved — skip on next API scan."""
 from __future__ import annotations
 
 import json
@@ -46,7 +45,6 @@ def _is_persistent_exclude(item: dict) -> bool:
 
 
 def load_scan_exclusions(base: Path, *, max_scans: int = 12) -> set[str]:
-    """IDs from recent scans that must not re-enter discovery (catalog-adjacent rejects)."""
     hist = base / "data" / "discovery_history"
     if not hist.is_dir():
         return set()

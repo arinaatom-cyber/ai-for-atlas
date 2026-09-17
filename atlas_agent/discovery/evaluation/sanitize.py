@@ -1,4 +1,3 @@
-"""Text sanitization for summaries — shared by evaluation and legacy pipeline."""
 from __future__ import annotations
 
 import re

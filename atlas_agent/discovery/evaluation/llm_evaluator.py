@@ -1,4 +1,3 @@
-"""Capability-based LLM evaluators — trust from providers.yml, not model filenames."""
 from __future__ import annotations
 
 import logging
@@ -170,7 +169,6 @@ class RulesEvaluator(LLMEvaluator):
 
 
 class LLMEvaluatorRegistry:
-    """Resolve evaluator implementation from providers.yml — prefix match only."""
 
     def __init__(self, config: dict[str, Any] | None = None) -> None:
         cfg = config if config is not None else load_providers_config()

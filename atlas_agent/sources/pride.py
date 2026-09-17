@@ -1,4 +1,3 @@
-"""PRIDE Archive JSON API (read-only)."""
 from __future__ import annotations
 
 import re
@@ -29,7 +28,6 @@ def fetch_project(accession: str) -> dict | None:
 
 
 def fetch_projects_json(accessions: list[str]) -> list[dict]:
-    """Полная карточка PRIDE по JSON для каждого PXD."""
     out = []
     for acc in accessions:
         p = fetch_project(acc)
@@ -71,7 +69,6 @@ def _is_tmt_project(p: dict) -> bool:
 
 
 def _is_human(p: dict) -> bool:
-    """Allow-list Homo sapiens via shared organism_terms (same list as filters)."""
     org_text = " ".join(_organism_names(p))
     title_desc = f"{p.get('title', '')} {p.get('projectDescription', '')}"
     blob = f"{org_text} {title_desc}"
@@ -176,10 +173,6 @@ def search_pride_json(
     profile_keywords: list[str] | None = None,
     stats: dict[str, Any] | None = None,
 ) -> list[dict]:
-    """
-    Профессиональный поиск PRIDE v3 /search/projects (сортировка по дате submission).
-    Несколько keyword-запросов + фильтр human/TMT + исключение известных PXD.
-    """
     kws = list(keywords or ["TMT", "tandem mass tag", "isobaric"])
     if profile_keywords:
         for pk in profile_keywords[:6]:
@@ -271,7 +264,6 @@ def find_pride_project_by_pmid(
     *,
     known_accessions: set[str] | None = None,
 ) -> dict[str, Any] | None:
-    """PRIDE v3: найти PXD по PMID (в references), если в абстракте номера нет."""
     pmid = re.sub(r"\D", "", str(pmid or ""))
     if not pmid:
         return None
@@ -313,7 +305,6 @@ def search_pride_by_terms(
     limit: int = 3,
     known_accessions: set[str] | None = None,
 ) -> list[dict[str, Any]]:
-    """Узкий поиск PRIDE по ключевым словам из смысла абстракта."""
     terms = re.sub(r"[^\w\s\-]", " ", terms or "").strip()
     if len(terms) < 4:
         return []
@@ -334,7 +325,6 @@ def search_human_tmt_projects(
     page_size: int = 40,
     year_from: int = 2020,
 ) -> list[dict]:
-    """Human + TMT с year_from (для обратной совместимости)."""
     raw = search_pride_json(
         keywords=keywords,
         year_from=year_from,

@@ -1,5 +1,3 @@
-"""Parse the wide SRM sheet into channels, peptides, and intensity values."""
-
 from __future__ import annotations
 
 import math
@@ -58,7 +56,6 @@ def _cell(raw: pd.DataFrame, row: int, col: int):
 
 
 def parse_srm_matrix(path: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Return (channels, peptides, intensities)."""
     raw = read_csv_raw(path)
     if raw.empty:
         raise ValueError(f"Empty SRM table: {path}")

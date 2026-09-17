@@ -1,5 +1,3 @@
-"""Build tidy patient-channel-intensity tables from the aging MRM-SIS CSVs."""
-
 from __future__ import annotations
 
 import json

@@ -1,4 +1,3 @@
-"""Shared helpers: config, dictionaries, text blob."""
 from __future__ import annotations
 
 from pathlib import Path

@@ -1,4 +1,3 @@
-"""Evaluation orchestrator — chains exclusion, similarity, LLM with DI."""
 from __future__ import annotations
 
 import logging
@@ -57,7 +56,6 @@ def _semantic_evidence(item: dict[str, Any]) -> list[str]:
 
 
 class EvaluationPipeline:
-    """Clean-architecture pipeline with injected components."""
 
     def __init__(
         self,

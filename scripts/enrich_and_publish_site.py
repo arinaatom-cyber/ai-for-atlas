@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Обогатить latest.json (finding_note, data guidance) и опубликовать на docs/site/."""
 from __future__ import annotations
 
 import json

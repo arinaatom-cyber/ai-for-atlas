@@ -6,7 +6,6 @@ from atlas_agent.analysis.stats_plan import build_stats_plan
 
 
 def recommend_stats(row: pd.Series) -> dict:
-    """Рекомендация пайплайна статистики по строке таблицы."""
     plan = build_stats_plan(row)
     steps = [
         f"Design: {plan['design_type']} | test: {plan['test']} | level: {plan['patient_level']}",

@@ -1,4 +1,3 @@
-"""Поиск крупных когортных статей по протеомике / мульти-омике (Europe PMC + text mining)."""
 from __future__ import annotations
 
 import re
@@ -74,7 +73,6 @@ def _cohort_pub_queries(year_from: int, year_to: int) -> list[str]:
 
 
 def extract_patient_count(text: str) -> int | None:
-    """Извлечь максимальное правдоподобное N пациентов/участников из текста."""
     if not text:
         return None
     found: list[int] = []
@@ -85,7 +83,6 @@ def extract_patient_count(text: str) -> int | None:
                 found.append(n)
     if not found:
         return None
-    # Prefer explicit patient/participant counts over stray n=
     best = max(found)
     return best if best >= 5 else None
 
@@ -107,7 +104,6 @@ def assess_patients(text: str, patient_n: int | None) -> str:
 
 
 def build_description_en(item: dict[str, Any], *, include_cohort_meta: bool = True) -> str:
-    """Short English description for cohorts tab (no LLM)."""
     parts: list[str] = []
     if include_cohort_meta:
         omics = item.get("omics") or []
@@ -142,7 +138,6 @@ def build_description_en(item: dict[str, Any], *, include_cohort_meta: bool = Tr
 
 
 def build_description_ru(item: dict[str, Any], *, include_cohort_meta: bool = True) -> str:
-    """Краткое описание для вкладки (без LLM)."""
     parts: list[str] = []
     if include_cohort_meta:
         omics = item.get("omics") or []
@@ -177,7 +172,6 @@ def build_description_ru(item: dict[str, Any], *, include_cohort_meta: bool = Tr
 
 
 def mine_publication(pub: dict[str, Any]) -> dict[str, Any]:
-    """Text mining абстракта: N пациентов, омики, наличие пациентов."""
     blob = " ".join(
         str(pub.get(k) or "")
         for k in ("title", "abstract", "data_availability")
@@ -244,10 +238,6 @@ def search_cohort_literature(
     known_pmids: set[str] | None = None,
     include_without_n: bool = True,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """
-    Поиск крупных когортных статей в Europe PMC + text mining абстрактов.
-    Возвращает отсортированный список и статистику.
-    """
     known = {re.sub(r"\D", "", p) for p in (known_pmids or set()) if p}
     seen: set[str] = set()
     raw: list[dict[str, Any]] = []

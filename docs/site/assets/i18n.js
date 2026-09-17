@@ -1,4 +1,3 @@
-/** Bilingual UI — единые подписи на всех страницах Discovery */
 (function () {
   const STORAGE_KEY = "atlas_site_lang";
 

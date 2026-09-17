@@ -1,4 +1,3 @@
-"""Repository / PubMed ID extraction. Strict PMID is required for auto-exclusion."""
 from __future__ import annotations
 
 import re
@@ -32,7 +31,6 @@ def extract_ids_from_text(text: str) -> dict[str, list[str]]:
 
 
 def extract_loose_pmids(text: str) -> list[str]:
-    """Bare 7–9 digit numbers. Never use alone for already_in_catalog."""
     blob = text or ""
     strict = set(extract_ids_from_text(blob).get("PMID") or [])
     loose: list[str] = []

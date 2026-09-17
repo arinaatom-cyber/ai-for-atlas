@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Find Google Sheet gid by matching CSV header row."""
 from __future__ import annotations
 
 import io
@@ -21,7 +20,6 @@ def probe(gid: str) -> str | None:
 
 
 def main() -> int:
-    # gids from edit page HTML / known tabs
     candidates = [
         "0",
         "1072380314",

@@ -8,7 +8,6 @@ import pandas as pd
 
 
 def generate_local_analysis(report: dict, df: pd.DataFrame | None = None) -> dict[str, Any]:
-    """Локальный «ИИ»-слой без API: резюме и action items по правилам."""
     if df is None:
         df = pd.DataFrame()
 

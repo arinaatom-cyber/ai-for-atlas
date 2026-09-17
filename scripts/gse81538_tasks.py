@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Решение заданий 1-3 для GSE81538 gene expression matrix."""
-
 from __future__ import annotations
 
 import sys
@@ -14,7 +11,6 @@ CSV_PATH = Path(
 
 
 def setup_console() -> None:
-    """Чтобы русский текст не ломался в консоли Windows."""
     if hasattr(sys.stdout, "reconfigure"):
         try:
             sys.stdout.reconfigure(encoding="utf-8")
@@ -44,7 +40,6 @@ def main() -> None:
         raise ValueError(f"В таблице не найдены строки: {missing}")
     print(f"Найденные строки: {', '.join(genes)}")
 
-    # Задание 1: 5-й, 100-й, 200-й столбцы (нумерация с 1)
     row_avg = df.loc[genes].to_numpy().mean()
     col_indices = [4, 99, 199]
     if max(col_indices) >= df.shape[1]:
@@ -52,10 +47,8 @@ def main() -> None:
     col_avg = df.iloc[:, col_indices].to_numpy().mean()
     answer1 = round(row_avg - col_avg, 2)
 
-    # Задание 2
     answer2 = round(df.max(axis=0).mean(), 2)
 
-    # Задание 3
     mask = df.index.str.contains("AB", regex=False) & ~df.index.str.contains(
         "C", regex=False
     )

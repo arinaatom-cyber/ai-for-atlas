@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Find missing i18n keys and empty data-i18n nodes in published HTML."""
 from __future__ import annotations
 
 import re

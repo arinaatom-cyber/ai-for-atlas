@@ -1,4 +1,3 @@
-"""Typed discovery evaluation — Clean Architecture boundary."""
 from atlas_agent.discovery.evaluation.adapters import (
     attach_evaluation,
     display_fit_label,

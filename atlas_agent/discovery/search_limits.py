@@ -1,4 +1,3 @@
-"""Search caps: 0 or null in config = no limit for repository sources."""
 from __future__ import annotations
 
 from typing import Any

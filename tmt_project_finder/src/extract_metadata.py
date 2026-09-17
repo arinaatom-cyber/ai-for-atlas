@@ -1,4 +1,3 @@
-"""Extract organism, TMT, context, material from text using dictionaries.yaml."""
 from __future__ import annotations
 
 import re
@@ -47,7 +46,7 @@ def extract_tmt(record: dict[str, Any], dictionaries: dict | None = None) -> dic
     rejected = _find_terms(full, d.get("rejected_tmt") or [])
     ambiguous = _find_terms(full, d.get("ambiguous_tmt") or [])
 
-    allowed_plex = {str(n) for n in range(7, 19)}  # строго >6 и ≤18
+    allowed_plex = {str(n) for n in range(7, 19)}
     reject_plex = {"2", "3", "4", "5", "6"}
     plex_hits: list[str] = []
     for m in re.finditer(r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})\b", full, re.I):
@@ -134,7 +133,6 @@ def extract_material(record: dict[str, Any], dictionaries: dict | None = None) -
 
 
 def enrich_record(record: dict[str, Any]) -> dict[str, Any]:
-    """Attach extracted metadata fields to record."""
     out = dict(record)
     out["organism_extract"] = extract_organism(out)
     out["tmt_extract"] = extract_tmt(out)

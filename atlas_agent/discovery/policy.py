@@ -1,10 +1,3 @@
-"""
-Политика Discovery Agent.
-
-КРИТИЧНО: data/projects.csv — только чтение.
-Удаление, перезапись и авто-добавление строк ЗАПРЕЩЕНЫ.
-Агент только ищет, сравнивает и предлагает.
-"""
 from __future__ import annotations
 
 FORBIDDEN_ON_CATALOG = frozenset(

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Аудит data availability для кандидатов из latest.json (без полного scan)."""
 from __future__ import annotations
 
 import json

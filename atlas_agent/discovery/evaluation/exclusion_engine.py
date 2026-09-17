@@ -1,4 +1,3 @@
-"""Strategy-pattern exclusion engine — compiled regex from configuration."""
 from __future__ import annotations
 
 import logging
@@ -23,7 +22,6 @@ class ExclusionRule:
 
 
 class ExclusionEngine:
-    """Evaluate title/abstract against configured exclusion strategies."""
 
     def __init__(self, rules: list[ExclusionRule] | None = None) -> None:
         self._rules = rules if rules is not None else self._compile_rules(load_exclusion_config())
@@ -82,7 +80,6 @@ class ExclusionEngine:
         return len(self._rules)
 
     def check(self, title: str, abstract: str = "") -> EvaluationEvidence | None:
-        """Return first matching exclusion evidence, or None."""
         for rule in self._rules:
             if rule.scope == "cohort":
                 continue
@@ -117,7 +114,6 @@ class ExclusionEngine:
         return None
 
     def scan(self, title: str, abstract: str = "") -> list[EvaluationEvidence]:
-        """Full evidence chain for all matching rules (literature scope)."""
         hits: list[EvaluationEvidence] = []
         for rule in self._rules:
             if rule.scope == "cohort":

@@ -1,4 +1,3 @@
-"""HTML-страница: TMT-каналы + матрица + нормализация."""
 from __future__ import annotations
 
 from pathlib import Path

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""End-to-end проверка Discovery: каталог → scan → сайт → JSON."""
 from __future__ import annotations
 
 import json

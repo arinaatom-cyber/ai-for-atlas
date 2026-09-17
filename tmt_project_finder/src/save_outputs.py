@@ -1,4 +1,3 @@
-"""Save classified projects to Excel outputs."""
 from __future__ import annotations
 
 from pathlib import Path

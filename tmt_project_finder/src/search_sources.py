@@ -1,4 +1,3 @@
-"""Search proteomics repositories and literature (read-only APIs)."""
 from __future__ import annotations
 
 import re
@@ -55,7 +54,6 @@ def _cfg_search() -> dict[str, Any]:
 
 
 def search_pride(keywords: list[str] | None = None, max_results: int | None = None) -> list[dict]:
-    """PRIDE Archive v3 project search."""
     sc = _cfg_search()
     keywords = keywords or sc.get("keywords") or ["TMT"]
     max_results = max_results or int(sc.get("pride_max") or 50)
@@ -98,7 +96,6 @@ def search_pride(keywords: list[str] | None = None, max_results: int | None = No
 
 
 def search_pdc(max_results: int | None = None) -> list[dict]:
-    """PDC uiStudySummary — TMT studies."""
     sc = _cfg_search()
     max_results = max_results or int(sc.get("pdc_max") or 80)
     q = """query {
@@ -154,7 +151,6 @@ def search_pdc(max_results: int | None = None) -> list[dict]:
 
 
 def search_massive(keywords: list[str] | None = None, max_results: int | None = None) -> list[dict]:
-    """MassIVE / ProteoSAFe dataset search."""
     sc = _cfg_search()
     keywords = keywords or sc.get("keywords") or ["TMT"]
     max_results = max_results or int(sc.get("massive_max") or 30)
@@ -185,7 +181,6 @@ def search_massive(keywords: list[str] | None = None, max_results: int | None = 
 
 
 def search_iprox(keywords: list[str] | None = None, max_results: int | None = None) -> list[dict]:
-    """iProX project search (best-effort REST)."""
     sc = _cfg_search()
     keywords = keywords or sc.get("keywords") or ["TMT"]
     max_results = max_results or int(sc.get("iprox_max") or 30)
@@ -218,7 +213,6 @@ def search_iprox(keywords: list[str] | None = None, max_results: int | None = No
 
 
 def search_omicsdi(keywords: list[str] | None = None, max_results: int | None = None) -> list[dict]:
-    """OmicsDI dataset search."""
     sc = _cfg_search()
     keywords = keywords or sc.get("keywords") or ["TMT proteomics"]
     max_results = max_results or int(sc.get("omicsdi_max") or 30)
@@ -254,7 +248,6 @@ def search_omicsdi(keywords: list[str] | None = None, max_results: int | None = 
 
 
 def search_pubmed(query: str | None = None, max_results: int | None = None) -> list[dict]:
-    """PubMed E-utilities — publications mentioning TMT + accession IDs."""
     sc = _cfg_search()
     max_results = max_results or int(sc.get("pubmed_max") or 25)
     q = query or '("tandem mass tag"[Title/Abstract] OR TMT[Title/Abstract]) AND proteomics'
@@ -314,7 +307,6 @@ def search_pubmed(query: str | None = None, max_results: int | None = None) -> l
 
 
 def search_europepmc(query: str | None = None, max_results: int | None = None) -> list[dict]:
-    """Europe PMC core search."""
     sc = _cfg_search()
     max_results = max_results or int(sc.get("europepmc_max") or 25)
     q = query or "TMT proteomics human"
@@ -361,7 +353,6 @@ def search_europepmc(query: str | None = None, max_results: int | None = None) -
 
 
 def run_all_searches(cfg: dict | None = None) -> tuple[list[dict], list[str], list[str]]:
-    """Run enabled sources; return records, errors, warnings."""
     cfg = cfg or load_config()
     sources = cfg.get("sources") or {}
     records: list[dict] = []

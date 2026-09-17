@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""End-to-end проверка AI-оценки всех находок Discovery (evaluation pipeline)."""
 from __future__ import annotations
 
 import json
@@ -111,10 +110,9 @@ def audit_evaluations(report: dict) -> dict:
             stats["verdicts"][str(ev.get("final_verdict") or "?")] += 1
             if item.get("requires_manual_review") or ev.get("requires_manual_review"):
                 stats["review_flags"] += 1
-            # schema sanity
             if not ev.get("confidence_bullets"):
                 warn(f"{key}:{iid} — evaluation without confidence_bullets")
-            _ = kind_map.get(kind_name)  # reserved for future strict kind checks
+            _ = kind_map.get(kind_name)
         stats["buckets"][key] = bucket
     return stats
 

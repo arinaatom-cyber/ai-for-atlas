@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Audit Discovery site: i18n keys, buttons, project rows."""
 from __future__ import annotations
 
 import json
@@ -17,7 +16,6 @@ def load_i18n_keys() -> set[str]:
         m = re.search(rf"const {block} = \{{", js)
         if not m:
             continue
-        # crude: keys at start of lines inside ru/en blocks
     keys.update(re.findall(r"^\s+(\w+):\s", js, re.M))
     return keys
 

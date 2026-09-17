@@ -1,4 +1,3 @@
-"""Каталог из project of Proteomics.xlsx (read-only)."""
 from __future__ import annotations
 
 import re
@@ -43,7 +42,6 @@ def resolve_database_path(cfg: dict | None = None) -> Path:
 
 
 def load_catalog_database(cfg: dict | None = None) -> pd.DataFrame:
-    """TMT ATLAS + CPTAC — уже в базе / просмотрено."""
     cfg = cfg or load_config()
     path = resolve_database_path(cfg)
 
@@ -56,12 +54,10 @@ def load_catalog_database(cfg: dict | None = None) -> pd.DataFrame:
             include_cptac=SHEET_CPTAC in reviewed,
         )
 
-    # Legacy single xlsx with Database sheet
     return pd.read_excel(path, sheet_name=0, engine="openpyxl")
 
 
 def load_deleted_database(cfg: dict | None = None) -> pd.DataFrame:
-    """Лист «удалено из general» (красные строки) — read-only."""
     cfg = cfg or load_config()
     if not cfg.get("use_deleted_sheet", True):
         return pd.DataFrame(columns=["Project ID", "PMID", "DOI", "Title", "URL"])

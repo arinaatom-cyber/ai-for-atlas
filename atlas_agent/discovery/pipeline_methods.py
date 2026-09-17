@@ -1,4 +1,3 @@
-"""Discovery pipeline toolchain for Methods section (site + manifest)."""
 from __future__ import annotations
 
 from pathlib import Path

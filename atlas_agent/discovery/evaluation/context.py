@@ -1,4 +1,3 @@
-"""Evaluation runtime context — DI container for pipeline + formatter."""
 from __future__ import annotations
 
 import logging
@@ -19,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class EvaluationContext:
-    """Injectable evaluation runtime used by enrich, HTML, and Streamlit."""
 
     pipeline: EvaluationPipeline
     formatter: AnalysisFormatter = field(default_factory=AnalysisFormatter)
@@ -38,7 +36,6 @@ class EvaluationContext:
         has_accession: bool = False,
         mutate: bool = True,
     ) -> ProjectEvaluation:
-        """Return typed evaluation; optionally persist on item."""
         stored = item.get("evaluation")
         if stored and item.get("confidence_tier") and not should_recompute_evaluation(item, kind):
             try:

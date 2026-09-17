@@ -1,4 +1,3 @@
-"""Portal — redirect to Discovery table (single-purpose site)."""
 from __future__ import annotations
 
 from pathlib import Path

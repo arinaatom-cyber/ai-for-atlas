@@ -29,7 +29,6 @@ def first_result_file(cell: str) -> str:
 
 
 def inspect_matrix_file(path: Path, max_rows: int = 500) -> dict:
-    """Эвристики по колонкам/значениям матрицы (без полного парсинга атласа)."""
     info: dict = {"path": str(path), "format": path.suffix.lower(), "columns_sample": [], "hints": []}
     try:
         if path.suffix.lower() in (".tsv", ".txt"):

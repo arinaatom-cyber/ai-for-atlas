@@ -1,4 +1,3 @@
-"""Copy key Discovery files to Desktop and write Materials & Methods + links."""
 from __future__ import annotations
 
 import json

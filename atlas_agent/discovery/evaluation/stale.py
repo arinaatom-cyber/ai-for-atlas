@@ -1,4 +1,3 @@
-"""Detect cached evaluations that must be recomputed."""
 from __future__ import annotations
 
 from typing import Any
@@ -11,7 +10,6 @@ def _kind_value(kind: ItemKind | str) -> str:
 
 
 def is_stale_project_evaluation(item: dict[str, Any], stored: dict[str, Any] | None = None) -> bool:
-    """Project rows scored as literature watch before file audit is unreliable."""
     ev = stored if stored is not None else item.get("evaluation")
     if not ev or not isinstance(ev, dict):
         return False

@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""
-GitHub для Atlas — ТОЛЬКО чтение (ничего не удаляется и не пушится).
-
-  python run_github.py policy          # правила безопасности
-  python run_github.py repos           # статус репозиториев из config.yaml
-  python run_github.py ls Projects     # список файлов/папок в data_repo
-  python run_github.py cat projects/PXD005410/README.md
-  python run_github.py projects        # все PXD на GitHub
-  python run_github.py compare         # CSV vs GitHub vs локальный диск
-  python run_github.py analyze PXD005410
-  python run_github.py report          # полный JSON для интеграции
-"""
 from __future__ import annotations
 
 import argparse

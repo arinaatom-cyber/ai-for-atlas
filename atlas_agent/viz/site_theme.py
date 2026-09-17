@@ -1,4 +1,3 @@
-"""Shared HTML shell, nav, and asset deployment for English Discovery site."""
 from __future__ import annotations
 
 import html
@@ -47,7 +46,6 @@ def _header_controls() -> str:
 
 
 def _nav_paths(deploy: str) -> dict[str, str]:
-    """Relative hrefs — Discovery-only public site."""
     if deploy == DEPLOY_DOCS_PORTAL:
         return {
             "discovery": "site/discovery.html",

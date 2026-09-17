@@ -1,4 +1,3 @@
-"""Поиск новых TMT human proteomics (Europe PMC + PRIDE JSON)."""
 from __future__ import annotations
 
 import re
@@ -80,7 +79,6 @@ def discover_pride_2026(
     profile_keywords: list[str] | None = None,
     known_accessions: set[str] | None = None,
 ) -> tuple[list[dict], list[dict]]:
-    """Обратная совместимость — делегирует в профессиональный поиск."""
     from atlas_agent.discovery.sources.pro_search import discover_projects_professional
 
     result = discover_projects_professional(

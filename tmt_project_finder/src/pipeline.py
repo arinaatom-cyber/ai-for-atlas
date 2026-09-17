@@ -1,4 +1,3 @@
-"""End-to-end search → classify → save → report."""
 from __future__ import annotations
 
 import sys

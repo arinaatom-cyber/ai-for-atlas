@@ -1,4 +1,3 @@
-"""Проверка доступности Result Files / количественных таблиц для кандидатов Discovery."""
 from __future__ import annotations
 
 import re
@@ -18,7 +17,6 @@ TABLE_EXT = re.compile(r"\.(tsv|txt|csv|xlsx|mztab)$", re.I)
 RAW_EXT = re.compile(r"\.(raw|mzml|mgf|wiff|d)$", re.I)
 PSM_NAME = re.compile(r"\b(psm|peptide|mzid|identification)\b", re.I)
 
-# Protein-level tables (global proteome / protein groups)
 PROTEOME_FILE = re.compile(
     r"(?<![\w-])(?:protein\.txt|protein[_ ]?groups?|"
     r"(?<![\w-])proteome(?![\w-])|global[_ ]?proteome|whole[_ ]?proteome|"
@@ -26,7 +24,6 @@ PROTEOME_FILE = re.compile(
     re.I,
 )
 
-# Phospho-PTM tables — must NOT share status with protein-level proteome
 PHOSPHO_FILE = re.compile(
     r"phospho|p\s*site|phosphosite|phosphopeptide|kinase\s*substrate|"
     r"phosphoryl|_phos[_\.]|[_\.\-]phos[_\.\-]|\.site\.|site[_ ]?table",
@@ -45,11 +42,9 @@ PDC_TABLE = re.compile(
 
 
 def _file_omics_kind(name: str) -> str | None:
-    """Return 'proteome', 'phospho', 'generic_quant', or None for non-quant tables."""
     low = (name or "").lower()
     if not TABLE_EXT.search(low):
         return None
-    # Phospho before proteome — *Phosphoproteome* also contains "proteome"
     if "phosphoproteome" in low or PHOSPHO_FILE.search(low):
         return "phospho"
     if low.endswith("protein.txt") or "proteome" in low or PROTEOME_FILE.search(low):
@@ -138,7 +133,6 @@ def _classify_files(names: list[str]) -> dict[str, Any]:
 
 
 def has_protein_level_table(item: dict[str, Any]) -> bool:
-    """True when repository lists a protein-level quant table (not raw/phospho-only)."""
     da = item.get("data_availability") or {}
     if da.get("proteome_files"):
         return True
@@ -155,7 +149,6 @@ def partition_table_only_candidates(
     pdc_requires_table: bool = True,
     reject_raw_no_files: bool = True,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    """Drop PDC without protein table; optionally drop raw-only / no-files for all sources."""
     kept: list[dict[str, Any]] = []
     moved: list[dict[str, Any]] = []
     for item in candidates:
@@ -186,7 +179,6 @@ def partition_phospho_only_candidates(
     *,
     reject_phospho_only: bool = True,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    """Move phospho-only file listings out of the candidate bucket."""
     if not reject_phospho_only:
         return list(candidates), []
     kept: list[dict[str, Any]] = []
@@ -315,7 +307,6 @@ def check_item_data_availability(
     tmt_root: str | Path | None = None,
     fetch_remote: bool = True,
 ) -> dict[str, Any]:
-    """Вернуть блок data_availability для одного кандидата."""
     acc = primary_project_id(str(item.get("project_accession") or item.get("accession") or ""))
     out: dict[str, Any] = {"accession": acc, "source_checked": None}
 
@@ -359,7 +350,6 @@ def check_item_data_availability(
 
 
 def data_guidance(da: dict[str, Any]) -> str:
-    """Short hint: where to find protein groups / supplementary / raw files."""
     status = da.get("status") or "unknown"
     layer = da.get("omics_layer") or "unknown"
     proteome = da.get("proteome_files") or []
@@ -390,7 +380,6 @@ def data_guidance(da: dict[str, Any]) -> str:
 
 
 def literature_data_hint(pub: dict[str, Any]) -> str:
-    """Data availability hint from abstract / Europe PMC."""
     text = " ".join(
         str(pub.get(k) or "")
         for k in ("data_availability", "abstract", "title")
@@ -419,7 +408,6 @@ def annotate_data_availability(
     fetch_remote: bool = True,
     delay_s: float = 0.15,
 ) -> list[dict[str, Any]]:
-    """Добавить data_availability к каждому элементу (in-place + return)."""
     for i, item in enumerate(items):
         item["data_availability"] = check_item_data_availability(
             item, tmt_root=tmt_root, fetch_remote=fetch_remote

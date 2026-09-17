@@ -1,4 +1,3 @@
-"""Adapters between legacy dict pipeline and typed ProjectEvaluation."""
 from __future__ import annotations
 
 from typing import Any
@@ -31,7 +30,6 @@ def attach_evaluation(
     has_accession: bool = False,
     pipeline: EvaluationPipeline | None = None,
 ) -> None:
-    """Drop-in replacement for confidence.attach_confidence — writes legacy + structured fields."""
     ev = _service(pipeline).evaluate(item, kind=kind, has_accession=has_accession)
     item["confidence_tier"] = ev.confidence
     item["confidence_css"] = ev.confidence_css
@@ -42,7 +40,6 @@ def attach_evaluation(
 
 
 def verdict_badge(evaluation: ProjectEvaluation) -> tuple[str, str, str]:
-    """UI layer: label, badge class, tooltip — separated from scoring."""
     v = evaluation.final_verdict
     if v == FinalVerdict.CANDIDATE.value:
         return ("Candidate", "badge-ok", evaluation.confidence_bullets[0] if evaluation.confidence_bullets else "")
@@ -58,7 +55,6 @@ def verdict_badge(evaluation: ProjectEvaluation) -> tuple[str, str, str]:
 
 
 def display_fit_score(score: float | None, *, min_threshold: float = DISPLAY_SCORE_MIN) -> str | None:
-    """Formatting only — never used inside evaluators."""
     if score is None or score < min_threshold:
         return None
     return f"{score:.2f}"

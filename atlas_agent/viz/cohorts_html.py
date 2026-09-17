@@ -1,4 +1,3 @@
-"""HTML: large proteomics / multi-omics cohort literature (dedicated page)."""
 from __future__ import annotations
 
 import html
@@ -70,7 +69,6 @@ def build_cohort_table_rows(items: list[dict]) -> str:
 
 
 def generate_cohorts_html(report: dict, out_path: str | Path, *, deploy: str = "docs_site") -> Path:
-    """Legacy URL — redirect to unified Discovery table."""
     _ = report
     if deploy == "docs_portal":
         target = "site/discovery.html"

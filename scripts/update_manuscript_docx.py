@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Патч рукописи: §2.7, §2.8 (Discovery + LLM), §3.9, удаление multiomics-мусора."""
 from __future__ import annotations
 
 import argparse
@@ -189,7 +188,6 @@ def remove_section_27(doc: Document) -> None:
 
 
 def replace_section_27(doc: Document) -> None:
-    """§2.7 после §2.6 (стандартизация), перед §2.8."""
     remove_section_27(doc)
     anchor = find_para(doc, "2.8. Автоматизированный мониторинг")
     if anchor is None:
@@ -293,19 +291,15 @@ def _is_junk_multiomics(text: str) -> bool:
 def patch_docx(path: Path) -> None:
     doc = Document(str(path))
 
-    # 1) Удалить multiomics-мусор
     for p in list(doc.paragraphs):
         if _is_junk_multiomics(p.text):
             remove_paragraph(p)
 
-    # 2) Нумерация §2.1–§2.6 и типографика
     renumber_methods_headings(doc)
     apply_text_fixes(doc)
 
-    # 3) §2.7 — после §2.6, перед §2.8
     replace_section_27(doc)
 
-    # 4) §2.8 — пересобрать
     disc_idx = next(
         (i for i, p in enumerate(doc.paragraphs) if "Конвейер мониторинга новых депонирований" in p.text),
         None,
@@ -316,7 +310,6 @@ def patch_docx(path: Path) -> None:
             remove_paragraph(doc.paragraphs[disc_idx])
     replace_section_28(doc)
 
-    # 5) §2.9 заголовок
     for p in doc.paragraphs:
         if p.text.strip() in (
             "Доступность данных, кода и веб-интерфейса",
@@ -325,10 +318,8 @@ def patch_docx(path: Path) -> None:
             p.text = "2.9. Доступность данных, кода и веб-интерфейса"
             break
 
-    # 6) §3.9 в Results (перед DISCUSSION)
     replace_section_39(doc, SECTION_39)
 
-    # 7) Streamlit URL
     for p in doc.paragraphs:
         if "tmt-projects-j6vqdccqua9qym6apskrkw.streamlit.app" in p.text:
             p.text = p.text.replace(

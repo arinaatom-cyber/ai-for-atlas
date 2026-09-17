@@ -1,4 +1,3 @@
-"""UI formatting — renders only actionable evidence from ProjectEvaluation."""
 from __future__ import annotations
 
 import html
@@ -12,7 +11,6 @@ logger = logging.getLogger(__name__)
 
 
 class AnalysisFormatter:
-    """Decoupled presentation layer for discovery table / QC cells."""
 
     def __init__(self, *, max_summary_len: int = 280, max_bullet_len: int = 200) -> None:
         self._max_summary = max_summary_len
@@ -93,7 +91,6 @@ class AnalysisFormatter:
 
     @staticmethod
     def legacy_html() -> str:
-        """Safe placeholder when stored evaluation cannot be parsed."""
         return '<span class="badge badge-muted" data-i18n="legacy_rescan"></span>'
 
     def to_markdown(self, evaluation: ProjectEvaluation, *, summary: str = "") -> str:

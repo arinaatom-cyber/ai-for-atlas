@@ -1,4 +1,3 @@
-"""Per-project organ & sample-type audit (point check vs map logic)."""
 from __future__ import annotations
 
 import re
@@ -31,7 +30,6 @@ def _text_blob(row: dict[str, Any]) -> str:
 
 
 def expected_organs_from_text(row: dict[str, Any], *, tumor_type: str) -> set[str]:
-    """Independent organ hints from metadata (not curator Organ column)."""
     blob = _text_blob(row)
     expected: set[str] = set(hint_organs_from_text(blob))
 
@@ -43,7 +41,6 @@ def expected_organs_from_text(row: dict[str, Any], *, tumor_type: str) -> set[st
         else:
             expected.update(hint_organs_from_text(part))
 
-    # Cell line organ column when Organ empty
     organ_col = str(row.get("Organ") or "").strip()
     if not organ_col or re.match(r"^(not specified|unknown)$", organ_col, re.I):
         for key in ("Cell Line Organ", "Tissue for cell lines", "Tissue"):
@@ -65,7 +62,6 @@ def curator_organs_from_column(row: dict[str, Any], *, tumor_type: str) -> set[s
 
 
 def audit_one(row: dict[str, Any], mapped: dict[str, Any]) -> dict[str, Any]:
-    """Return audit record with issues list."""
     issues: list[dict[str, str]] = []
     pid = mapped["pid"]
     organs = set(mapped["organs"])
@@ -94,7 +90,7 @@ def audit_one(row: dict[str, Any], mapped: dict[str, Any]) -> dict[str, Any]:
         extra = organs - expected - {"Multiple_Organs"}
         missing = expected - organs - {"Multiple_Organs"}
         if enumerated:
-            extra = set()  # long tissue list in Organ column (e.g. GTEx) — curator authoritative
+            extra = set()
         if extra:
             issues.append({
                 "code": "extra_organs",
@@ -106,7 +102,6 @@ def audit_one(row: dict[str, Any], mapped: dict[str, Any]) -> dict[str, Any]:
                 "msg": f"Text suggests also: {sorted(missing)}",
             })
 
-    # Metastasis: curator lists liver but map drops it
     raw_organs = set(classify_all_organs(pick_organ_raw(row)))
     if "Liver" in raw_organs and "Liver" not in organs and canon_disease(tumor_type) == "Lung cancer":
         issues.append({
@@ -115,7 +110,6 @@ def audit_one(row: dict[str, Any], mapped: dict[str, Any]) -> dict[str, Any]:
             "severity": "info",
         })
 
-    # Sample type cross-check
     if sample_type == "Cell Lines":
         if not re.search(r"cell line|cell-line|cell lines", blob):
             issues.append({
@@ -130,7 +124,6 @@ def audit_one(row: dict[str, Any], mapped: dict[str, Any]) -> dict[str, Any]:
                     "msg": "Sample Type=Tissue but detail mentions cell lines",
                 })
 
-    # Multi-organ sanity
     if len(organs) >= 5 and "Multiple_Organs" not in organs:
         issues.append({
             "code": "many_organs_no_pan",

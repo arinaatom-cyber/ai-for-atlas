@@ -1,21 +1,16 @@
-"""Парсинг сложных аннотаций TMT из текста таблицы и файлов."""
 from __future__ import annotations
 
 import re
 from typing import Any
 
-# Patient 1 → 126 / 127N
 PATIENT_LINE_RE = re.compile(
     r"patient\s*(\d+|[A-Za-z0-9_-]+)\s*[:|\t]\s*([\dNC,\s;]+)",
     re.I,
 )
-# set_k_1 = X126 = Normal  |  126 = Control 1
 CHANNEL_EQ_RE = re.compile(
     r"(?:set_[A-Za-z0-9_]+\s*=\s*)?(?:[Xx])?(\d{3})\s*([NC])?\s*=\s*(.+?)(?:\s{2,}|\t|$)",
     re.I,
 )
-# 127N (Control 2) — уже в tmt_channels
-# X103B  103  Normal
 TRIPLE_RE = re.compile(
     r"[Xx]?(\d{3})\s*([A-Z])?\s+(\d+)\s+(.+?)(?:\s{2,}|\t|$)",
 )
@@ -53,7 +48,6 @@ def extract_patient_from_label(label: str) -> str | None:
 
 
 def expand_channel_range(spec: str) -> list[str]:
-    """126–130C → [126, 127N, 127C, 128N, 128C, 129N, 129C, 130N, 130C] (TMT10 order)."""
     spec = spec.strip().replace("–", "-").replace("—", "-")
     m = re.match(r"(\d{3})\s*-\s*(\d{3})([NC])?", spec, re.I)
     if not m:
@@ -72,14 +66,12 @@ def expand_channel_range(spec: str) -> list[str]:
 
 
 def parse_freeform_channel_text(text: str, source: str = "freeform") -> list[dict[str, Any]]:
-    """Из многострочного поля TMT Channels / Description."""
     if not text or str(text).strip().lower() in ("nan", ""):
         return []
     blob = str(text).replace("\r\n", "\n")
     out: list[dict[str, Any]] = []
     seen: set[str] = set()
 
-    # Patient N <tab> 126 <tab> 127N
     for line in blob.split("\n"):
         line = line.strip()
         if not line:
@@ -105,7 +97,6 @@ def parse_freeform_channel_text(text: str, source: str = "freeform") -> list[dic
                         )
             continue
 
-        # 126–130C = tumor/normal  |  131 = pooled reference
         rm = re.match(r"([Xx]?[\dNC–—\-]+)\s*=\s*(.+)", line)
         if rm:
             left, cond = rm.group(1).strip(), rm.group(2).strip()

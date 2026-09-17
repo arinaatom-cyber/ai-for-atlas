@@ -16,7 +16,7 @@ def is_gpt4all_available() -> bool:
     if os.environ.get("ATLAS_SKIP_GPT4ALL", "").strip() in ("1", "true", "yes"):
         return False
     try:
-        import gpt4all  # noqa: F401
+        import gpt4all
     except ImportError:
         return False
     return model_is_cached(DEFAULT_GPT4ALL_MODEL)
@@ -26,7 +26,6 @@ DEFAULT_GPT4ALL_MODEL = "qwen2-1_5b-instruct-q4_0.gguf"
 
 
 def model_is_cached(filename: str) -> bool:
-    """GPT4All без локального файла может зависнуть на download — не использовать в scan."""
     name = Path(filename).name
     roots = []
     local = os.environ.get("LOCALAPPDATA", "")

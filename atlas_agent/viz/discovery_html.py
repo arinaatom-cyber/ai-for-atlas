@@ -1,4 +1,3 @@
-"""HTML Discovery: one unified table (projects + papers + cohorts)."""
 from __future__ import annotations
 
 import html
@@ -178,7 +177,6 @@ def _project_accession_key(item: dict) -> str:
 
 
 def _merge_discovery_projects(report: dict) -> list[dict]:
-    """Candidates plus PRIDE/PDC rows that need manual review (not already listed)."""
     items: list[dict] = []
     seen: set[str] = set()
     for it in report.get("candidates") or report.get("new_projects") or []:
@@ -201,7 +199,6 @@ def _merge_discovery_projects(report: dict) -> list[dict]:
 
 
 def _sort_discovery_projects(items: list[dict]) -> list[dict]:
-    """Passed candidates first, then other candidate rows, then PRIDE manual."""
     from atlas_agent.discovery.fit_rules import project_verdict
 
     def sort_key(it: dict) -> tuple:
@@ -226,7 +223,6 @@ def _sort_discovery_projects(items: list[dict]) -> list[dict]:
 
 
 def _count_passed_candidates(projects: list[dict]) -> int:
-    """Main list / KPI: Candidate verdict (what passed filters)."""
     from atlas_agent.discovery.fit_rules import project_verdict
 
     return sum(1 for it in projects if project_verdict(it)[0] == "Candidate")

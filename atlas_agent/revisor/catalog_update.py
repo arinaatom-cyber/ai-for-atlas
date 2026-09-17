@@ -1,4 +1,3 @@
-"""Добавление новых PXD в projects.csv (черновые строки)."""
 from __future__ import annotations
 
 from datetime import datetime
@@ -48,9 +47,6 @@ def append_candidates(
     dry_run: bool = True,
     skip_similar: bool = True,
 ) -> dict[str, Any]:
-    """
-    Добавляет новые PXD. skip_similar=True — не добавлять при score>=0.35 к существующему.
-    """
     from atlas_agent.sources.projects_table import primary_project_id
 
     known = {

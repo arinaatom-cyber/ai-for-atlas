@@ -1,4 +1,3 @@
-"""HTML-дашборд платформы Atlas (без внешних зависимостей)."""
 from __future__ import annotations
 
 import json

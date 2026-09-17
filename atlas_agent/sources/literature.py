@@ -13,7 +13,6 @@ PREPRINT_JOURNAL_RE = re.compile(
 
 
 def publication_status_from_epmc(hit: dict[str, Any] | None) -> dict[str, Any]:
-    """Flag Europe PMC preprints. Does not exclude them from screening."""
     hit = hit or {}
     src = str(hit.get("source") or "").strip().upper()
     ptype = str(hit.get("pubType") or "")
@@ -72,7 +71,6 @@ def fetch_abstract(pmid: str) -> dict:
 
 
 def _ncbi_abstract(pmid: str) -> str:
-    """Fallback when Europe PMC lite/core has a title but no abstractText."""
     try:
         r = requests.get(
             "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
@@ -89,7 +87,6 @@ def _ncbi_abstract(pmid: str) -> str:
 
 
 def text_mentions_normalization(text: str, strategy: str) -> dict:
-    """Простая эвристика: есть ли слова из таблицы в статье/описании PRIDE."""
     blob = (text or "").lower()
     strat = (strategy or "").lower()
     if not strat or strat in ("not specified", "—", "-", "n/a"):

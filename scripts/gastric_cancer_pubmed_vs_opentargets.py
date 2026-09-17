@@ -1,11 +1,4 @@
 #!/usr/bin/env python3
-"""PubMed vs Open Targets scatterplots for gastric cancer Top-100 markers.
-
-Cross-references the Top-100 PubMed gene list against Open Targets association
-scores and produces several publication-grade scatterplot variants. Genes
-absent from Open Targets are excluded from the plots. Only markers that are
-significant in BOTH resources are labelled.
-"""
 
 from __future__ import annotations
 
@@ -22,9 +15,8 @@ PROJECT_ROOT = Path(r"C:\Users\Arina1996\Desktop\Gastric_Cancer_Review")
 EXCEL_PATH = PROJECT_ROOT / "tables" / "gastric_cancer_markers_only_clin_study_2016_2026.xlsx"
 OUT_DIR = PROJECT_ROOT / "figures" / "opentargets"
 
-# Open Targets significance threshold (matches the Overlap_score_0.3 sheet)
 OT_THRESHOLD = 0.30
-N_LABELS = 20  # label the top markers significant in both resources
+N_LABELS = 20
 
 PRIORITY_COLORS = {"High": "#B2182B", "Medium": "#4575B4", "Low": "#BDBDBD"}
 EVIDENCE_COLORS = {
@@ -66,7 +58,6 @@ def load() -> pd.DataFrame:
 
 
 def pick_labels(df: pd.DataFrame, n: int = N_LABELS) -> set[str]:
-    """Genes significant in Open Targets, ranked by combined PubMed + OT standing."""
     sig = df[df["significant_both"]].copy()
     sig["pub_rank"] = sig["PubMed_mentions"].rank(ascending=False)
     sig["ot_rank"] = sig["OpenTargets_score"].rank(ascending=False)
@@ -96,7 +87,6 @@ def _label_points(ax, df_lab: pd.DataFrame, xcol: str, ycol: str) -> None:
 
 
 def fig_a_score_scatter(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
-    """Main figure: PubMed mentions (log) vs Open Targets association score."""
     fig, ax = plt.subplots(figsize=(9, 6.5))
 
     for prio in ["Low", "Medium", "High"]:
@@ -140,7 +130,6 @@ def fig_a_score_scatter(df: pd.DataFrame, labels: set[str], n_missing: int) -> N
 
 
 def fig_b_quadrant(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
-    """Quadrant view with median splits — significant vs insignificant."""
     fig, ax = plt.subplots(figsize=(9, 6.5))
     x_med = df["PubMed_mentions"].median()
     colors = np.where(df["significant_both"], "#B2182B", "#90A4AE")
@@ -177,7 +166,6 @@ def fig_b_quadrant(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
 
 
 def fig_c_rank_rank(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
-    """Rank–rank concordance plot (both axes: 1 = best)."""
     d = df.copy()
     d["pub_rank"] = d["PubMed_mentions"].rank(ascending=False, method="min")
     d["ot_rank"] = d["OpenTargets_score"].rank(ascending=False, method="min")
@@ -208,7 +196,6 @@ def fig_c_rank_rank(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
 
 
 def fig_d_evidence(df: pd.DataFrame, labels: set[str], n_missing: int) -> None:
-    """Same scatter coloured by Open Targets evidence type."""
     fig, ax = plt.subplots(figsize=(9, 6.5))
     order = ["clinical", "biomarker", "genetic", "literature", "weak/no specific evidence"]
     for ev in order:

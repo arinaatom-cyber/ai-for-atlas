@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Запуск Atlas Agent (локальные данные + Claude API)."""
 from __future__ import annotations
 
 import argparse
@@ -61,7 +60,6 @@ def build_parser() -> argparse.ArgumentParser:
     ask_p.add_argument("-q", "--question")
     ask_p.set_defaults(func=cmd_ask)
 
-    # Флаги верхнего уровня для python run_agent.py (без подкоманды run)
     p.add_argument("--validate-limit", type=int, default=25)
     p.add_argument("--file-audit-limit", type=int, default=20)
     p.add_argument("--no-pride-scan", action="store_true")
@@ -77,7 +75,6 @@ def main() -> int:
 
     if args.command == "ask":
         return cmd_ask(args)
-    # run явно или по умолчанию
     return cmd_run(args)
 
 

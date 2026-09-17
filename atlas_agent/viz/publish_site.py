@@ -1,4 +1,3 @@
-"""Publish Discovery to GitHub Pages (docs/site/) — bilingual UI + atlas profile."""
 from __future__ import annotations
 
 import json
@@ -112,7 +111,6 @@ def _write_html_redirect(path: Path, target: str) -> None:
 
 
 def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:
-    """Public site: Discovery table + QC only."""
     generate_discovery_html(site_report, site / "discovery.html", deploy=deploy)
     generate_qc_html(site_report, site / "qc.html", deploy=deploy)
     _write_html_redirect(site / "cohorts.html", "discovery.html#cohorts")
@@ -142,7 +140,6 @@ def publish_discovery_site(report: dict, root: Path, *, tmt_discovery_dir: Path 
 
 
 def publish_tmt_discovery_site(report: dict, discovery_dir: Path) -> Path:
-    """TMT GitHub Pages: discovery/* only — never touches repo root index.html (organ map)."""
     discovery_dir = Path(discovery_dir)
     if discovery_dir.exists():
         shutil.rmtree(discovery_dir)

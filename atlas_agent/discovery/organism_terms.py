@@ -1,4 +1,3 @@
-"""Single organism / cell-line vocabulary for Discovery (human-only atlas)."""
 from __future__ import annotations
 
 import re

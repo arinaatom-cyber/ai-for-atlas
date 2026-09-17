@@ -1,4 +1,3 @@
-"""Reusable layout blocks — единое оформление всех страниц Discovery."""
 from __future__ import annotations
 
 import html
@@ -49,7 +48,6 @@ def page_hero(title_key: str, lead_key: str, meta_html: str) -> str:
 
 
 def kpi_grid(items: list[tuple[str, str]]) -> str:
-    """items: [(value, i18n_label_key), ...]"""
     cells = "".join(
         f'<div class="kpi"><span class="kpi-value">{esc(v)}</span>'
         f'<span class="kpi-label" data-i18n="{k}">{_t(k)}</span></div>'
@@ -86,7 +84,6 @@ def note_i18n(key: str) -> str:
 
 
 def note_discovery_scope(*, new_projects: int, total_rows: int) -> str:
-    """Structured scope note with live counts from the last scan."""
     stat_new = f"{ru_project_count(new_projects)} (KPI)"
     stat_total = f"{ru_row_count(total_rows)} в таблице"
     return f"""<aside class="note note-science" aria-label="Table scope">
@@ -314,7 +311,6 @@ def toolbar_search(
     chips: list[tuple[str, str, str]],
     count_id: str | None = None,
 ) -> str:
-    """chips: [(data_attr, filter_value, i18n_or_label_key), ...]"""
     chip_html = "".join(
         f'<button type="button" class="chip{" active" if i == 0 else ""}" '
         f'data-{attr}="{esc(val)}" data-i18n="{label}">{_t(label)}</button>'

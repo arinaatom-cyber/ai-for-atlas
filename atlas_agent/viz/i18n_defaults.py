@@ -1,4 +1,3 @@
-"""Fallback strings for static HTML — synced from site_assets/i18n.js."""
 from __future__ import annotations
 
 from atlas_agent.viz.i18n_loader import en as _en

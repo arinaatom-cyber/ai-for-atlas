@@ -1,4 +1,3 @@
-"""Клиент GitHub REST API — только чтение."""
 from __future__ import annotations
 
 import base64
@@ -42,7 +41,6 @@ def parse_repo_url(url: str, *, default_branch: str = "main") -> RepoRef:
 
 
 class GitHubClient:
-    """Только GET-операции к GitHub API."""
 
     def __init__(self, token: str | None = None):
         self.token = token or os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
@@ -112,7 +110,6 @@ class GitHubClient:
         return {"found": False, "path": path, "error": "empty"}
 
     def list_tree_paths(self, repo: RepoRef, *, max_paths: int = 8000) -> list[str]:
-        """Рекурсивное дерево (для поиска PXD). Ограничено max_paths."""
         tree = self._get(f"/repos/{repo.slug}/git/trees/{repo.branch}", {"recursive": "1"})
         if not tree:
             return []
@@ -130,9 +127,6 @@ class GitHubClient:
         repo: RepoRef,
         projects_subdir: str,
     ) -> list[dict[str, Any]]:
-        """
-        Папки PXD* в projects_subdir (например Projects или projects).
-        """
         sub = projects_subdir.strip("/")
         entries = self.list_contents(repo, sub)
         out = []

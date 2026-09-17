@@ -21,7 +21,6 @@ from atlas_agent.sources.projects_table import load_catalog, primary_project_id
 
 
 class AtlasAgent:
-    """ИИ-агент: таблица → правила Python → интерпретация Claude → отчёт."""
 
     def __init__(self, config_path: str | None = None):
         self.cfg = load_config(config_path)
@@ -39,7 +38,6 @@ class AtlasAgent:
         self.llm_max_tokens = int(llm_cfg.get("max_tokens") or 2048)
         self.llm_prefer_cloud = bool(llm_cfg.get("prefer_cloud", True))
         self.ai_enabled = bool(llm_cfg.get("enabled", True))
-        # совместимость
         self.claude_model = self.llm_model
         self.claude_enabled = self.ai_enabled
 
@@ -105,7 +103,7 @@ class AtlasAgent:
                 "available": False,
                 "error": "ИИ отключён (--no-ai)",
             }
-        report["claude_analysis"] = report["ai_analysis"]  # совместимость
+        report["claude_analysis"] = report["ai_analysis"]
 
         return report
 

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Исправление порядка разделов в рукописи после первого дополнения."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -109,13 +108,11 @@ def main() -> None:
     path = DOCX.parent / DOCX.name
     doc = Document(str(path))
 
-    # §2.7 Methods
     if not has_methods_27(doc):
         anchor = next(p for p in doc.paragraphs if p.text.startswith("2.8. Автоматизированный мониторинг"))
         for line in reversed(SECTION_27):
             insert_before(anchor, line)
 
-    # Удалить перевёрнутый блок перед БЛАГОДАРНОСТИ
     to_remove = []
     capture = False
     for p in doc.paragraphs:
@@ -132,7 +129,6 @@ def main() -> None:
     for p in to_remove:
         remove_paragraph(p)
 
-    # Вставить правильный блок перед БЛАГОДАРНОСТИ
     anchor = next(p for p in doc.paragraphs if p.text.strip() == "БЛАГОДАРНОСТИ")
     if not any(
         x.text.strip() == "4.1. Кросс-репозиторный реестр как инфраструктура онкопротеомики"

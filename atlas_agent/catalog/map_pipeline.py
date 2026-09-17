@@ -1,4 +1,3 @@
-"""Load TMT ATLAS the same way the live organ map does (tmt-projects / Streamlit)."""
 from __future__ import annotations
 
 import importlib.util
@@ -50,7 +49,6 @@ def row_to_dict(row: pd.Series) -> dict[str, Any]:
 
 
 def prepare_map_frame(df: pd.DataFrame, cfg: dict[str, Any] | None = None) -> pd.DataFrame:
-    """Same steps as streamlit_app.load_projects() — source for organ counts on the map."""
     oa = _load_organ_atlas(cfg)
     out = df.copy()
     pid = out["Project ID"].astype(str).str.strip()
@@ -61,7 +59,6 @@ def prepare_map_frame(df: pd.DataFrame, cfg: dict[str, Any] | None = None) -> pd
 
 
 def compute_map_overview(df: pd.DataFrame) -> dict[str, int | float]:
-    """KPI block matching Streamlit statistics fallback."""
     return {
         "datasets": len(df),
         "unique_pmids": int(df["PMID"].nunique()) if "PMID" in df.columns else 0,
@@ -84,7 +81,6 @@ def organ_label(key: str) -> str:
 
 
 def build_map_stats_sections(df: pd.DataFrame, cfg: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Overview + organ dataset counts from map logic (for atlas_stats.json)."""
     overview = compute_map_overview(df)
     ctr = organ_counts_for_map(df, cfg)
     top_organs_datasets = [
@@ -115,7 +111,6 @@ def patch_deployed_stats_from_sheet(
     *,
     write: bool = False,
 ) -> dict[str, Any]:
-    """Refresh overview + top_organs_datasets in atlas_stats.json from TMT ATLAS."""
     path = tmt_projects_root(cfg) / TMT_STATS_JSON
     existing = load_deployed_stats(cfg) if path.is_file() else {}
     map_df = prepare_map_frame(sheet_df, cfg)
@@ -162,7 +157,6 @@ def compare_frames(
     deployed_df: pd.DataFrame,
     cfg: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Sheet (TMT ATLAS) vs deployed map CSV — per Project ID."""
     sheet_map = prepare_map_frame(sheet_df, cfg)
     dep_map = prepare_map_frame(deployed_df, cfg)
 

@@ -1,4 +1,3 @@
-"""Rule-calibrated confidence tiers — delegates to evaluation module."""
 from __future__ import annotations
 
 from typing import Any

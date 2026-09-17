@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Discovery summary: similar projects, atlas gaps, Methods text."""
 from __future__ import annotations
 
 import json
@@ -20,7 +19,6 @@ from atlas_agent.revisor.similarity import annotate_candidates
 
 REPORT = ROOT / "reports" / "nature_revision.md"
 
-# Organs on the public body map (TMT GitHub Pages)
 MAP_ORGANS = [
     "Brain", "Lung", "Colon", "Stomach", "Liver", "Kidney", "Pancreas", "Ovary",
     "Breast", "Prostate", "Bladder", "Esophagus", "Thyroid", "Skin", "Eye",

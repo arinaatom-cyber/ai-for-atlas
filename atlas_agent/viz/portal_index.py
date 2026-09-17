@@ -1,4 +1,3 @@
-"""Индекс каталога TMT ATLAS: органы, ссылки на GitHub, репозитории, краткие описания."""
 from __future__ import annotations
 
 import html
@@ -44,7 +43,6 @@ def europe_pmc_url(pmid: Any) -> str:
 
 
 def atlas_organ_map_url(organ_canon: str, *, base: str | None = None) -> str:
-    """Deep link to organ map (?organ= on GitHub Pages, or Streamlit portal base)."""
     map_base = (base or ATLAS_MAP_BASE).rstrip("/")
     key = (organ_canon or "").strip().replace(" ", "_")
     if "streamlit.app" in map_base:
@@ -61,7 +59,6 @@ def github_tree_url(repo_url: str, branch: str, subpath: str) -> str:
 
 
 def project_github_links(cfg: dict, project_id: str) -> dict[str, str]:
-    """Папки в tmt-projects и (для PXD) в репозитории TMT."""
     gh = cfg.get("github") or {}
     pid = primary_project_id(project_id)
     branch = gh.get("raw_branch") or "main"
@@ -86,7 +83,6 @@ def project_github_links(cfg: dict, project_id: str) -> dict[str, str]:
 
 
 def brief_description(row: dict | pd.Series) -> str:
-    """Краткое описание для портала — не дословный заголовок статьи."""
     for col in ("Short Description", "Short description", "Design", "Tissue Cell Type Detailed"):
         val = str(row.get(col) or "").strip()
         if len(val) > 20:
@@ -128,7 +124,6 @@ def catalog_row_to_portal(row: dict | pd.Series, cfg: dict) -> dict[str, Any]:
 
 
 def build_organ_index(df: pd.DataFrame, cfg: dict) -> dict[str, Any]:
-    """Группировка проектов каталога по органу для Streamlit / отчётов."""
     by_organ: dict[str, list[dict[str, Any]]] = {}
     all_projects: list[dict[str, Any]] = []
 
@@ -197,7 +192,6 @@ def material_keywords_from_item(item: dict) -> list[str]:
 
 
 def _resolve_pmid_from_literature(item: dict) -> str:
-    """Fallback: Europe PMC search by accession or title."""
     acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
     title = (item.get("title") or "").strip()
     queries: list[str] = []
@@ -234,7 +228,6 @@ def _plain_description(text: str) -> str:
 
 
 def article_description(item: dict) -> str:
-    """Short article / project description for tables and JSON."""
     if item.get("cohort_score") is not None:
         for key in ("abstract_snippet", "abstract", "article_description", "finding_note"):
             val = str(item.get(key) or "").strip()
@@ -284,7 +277,6 @@ def _fetch_pride_project_cached(acc: str) -> dict:
 
 
 def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> None:
-    """Set repository_url, pubmed_url, pmid, description on discovery items (in-place)."""
     acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
     if acc.startswith("PMID:"):
         acc = ""
@@ -354,7 +346,6 @@ def _data_file_hint(item: dict) -> str:
 
 
 def format_finding_note(item: dict, *, keywords: list[str] | None = None) -> str:
-    """English note: why this hit appears + what material/files to inspect."""
     parts: list[str] = []
 
     kw = list(keywords or []) + material_keywords_from_item(item)

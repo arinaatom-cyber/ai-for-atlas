@@ -1,10 +1,8 @@
-"""Normalize discovery scan payloads to English before static site publish."""
 from __future__ import annotations
 
 import re
 from typing import Any
 
-# Legacy Russian strings from older scans / filters (exact or substring)
 _RU_TO_EN: list[tuple[str, str]] = [
     ("Материал соответствует критериям атласа", "Material matches atlas criteria"),
     ("Дизайн образцов не ясен — проверить healthy/cancer", "Sample design unclear — check healthy/cancer labels"),
@@ -23,7 +21,7 @@ _RU_TO_EN: list[tuple[str, str]] = [
     ("Human only: не подтверждён Homo sapiens", "Human only: Homo sapiens not confirmed"),
     ("TMT не обнаружен в метаданных", "TMT not detected in metadata"),
     ("Label-free, не TMT", "Label-free, not TMT"),
-    ("TMT plex", "TMT plex"),  # partial — rest often English already
+    ("TMT plex", "TMT plex"),
     ("tmt_plex_unspecified", "TMT plex not specified — needs review"),
     ("не в атласе (только", "not in atlas (allowed:"),
     ("не определён (нужен", "unknown (need"),
@@ -66,7 +64,6 @@ def _is_repository_project(item: dict[str, Any]) -> bool:
 
 
 def sanitize_discovery_item(item: dict[str, Any]) -> None:
-    """In-place English cleanup for one discovery item."""
     from atlas_agent.discovery.fit_rules import apply_literature_exclusions, sanitize_summary
 
     item["qc_reasons"] = _translate_list(item.get("qc_reasons"))
@@ -87,7 +84,6 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
             pass
         elif ai.get("summary_ru") and not ai.get("summary_en"):
             ai["summary_en"] = sanitize_summary(ai["summary_ru"])
-    # Do not re-score PXD/PDC/MSV/IPX rows as literature — wipes project tier A.
     if not _is_repository_project(item):
         apply_literature_exclusions(item)
     ai = item.get("abstract_ai")
@@ -99,7 +95,6 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
 
 
 def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
-    """Ensure all user-visible scan fields are English before HTML/JSON publish."""
     from atlas_agent.discovery.cohort_literature import (
         build_description_en,
         build_description_ru,

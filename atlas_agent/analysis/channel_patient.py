@@ -1,7 +1,3 @@
-"""
-Сбор аннотаций канал→пациент из таблицы, диска, GitHub (read-only).
-Обучение простых правил на «зелёных» (complete) проектах Protomix.
-"""
 from __future__ import annotations
 
 import json
@@ -212,7 +208,7 @@ def build_full_dataset(
         comp = row_completeness(row)
         recs = build_project_channel_map(row, pid, tmt_root=tmt_root, cfg=cfg)
         for r in recs:
-            r["protomix_status"] = comp["status"]  # complete = green
+            r["protomix_status"] = comp["status"]
             r["database"] = str(row.get("Database", "") or "")
             r["organ"] = str(row.get("Organ", "") or "")
             r["disease"] = str(row.get("Disease", "") or "")
@@ -230,7 +226,6 @@ def build_full_dataset(
 
 
 def learn_label_rules(dataset: pd.DataFrame, min_count: int = 3) -> dict[str, Any]:
-    """Частые слова в label → patient_id / condition (для подсказок)."""
     labeled = dataset[dataset["patient_id"].astype(str).str.len() > 0]
     token_to_patients: dict[str, Counter] = defaultdict(Counter)
     token_to_cond: dict[str, Counter] = defaultdict(Counter)

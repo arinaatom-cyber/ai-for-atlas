@@ -1,4 +1,3 @@
-"""Display formatting for Discovery table — titles, labels, sentence starts."""
 from __future__ import annotations
 
 import re
@@ -93,7 +92,6 @@ def sentence_cap(text: str) -> str:
 
 
 def format_title(text: str) -> str:
-    """Table title — capitalize first letter (keep original casing elsewhere, e.g. TMT)."""
     return sentence_cap(str(text or "").strip())
 
 
@@ -202,7 +200,6 @@ def _is_junk_taxonomy(token: str) -> bool:
 
 
 def clean_taxonomy_value(raw: object) -> str:
-    """Drop PDC placeholders (Other, Not reported, Proteome) from disease/organ strings."""
     text = str(raw or "").strip()
     if not text:
         return ""
@@ -222,7 +219,6 @@ def clean_taxonomy_value(raw: object) -> str:
 
 
 def is_stub_description(text: str) -> bool:
-    """True for short metadata stubs like «Other · Proteome», not real abstracts."""
     s = re.sub(r"\s+", " ", str(text or "").strip())
     if not s or s.lower() in ("nan", "none", "—"):
         return True

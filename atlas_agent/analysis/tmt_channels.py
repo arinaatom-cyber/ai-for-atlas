@@ -1,6 +1,3 @@
-"""
-TMT-каналы: аннотации из таблицы, роли (reference / control / case), матрица, нормализация.
-"""
 from __future__ import annotations
 
 import os
@@ -14,13 +11,11 @@ import pandas as pd
 
 from atlas_agent.analysis.result_files import first_result_file
 
-# Не отбрасывать PSM-таблицы с TMT-каналами (в result_files perc_psm фильтруется)
 MATRIX_SKIP = re.compile(
     r"\.pdf$|\.fasta$|\.xml$|\.rar$|readme\.txt$|checksum|_reference_",
     re.I,
 )
 
-# 126, 127N, 127C, 128N, 130C, 131 ...
 CHANNEL_LABEL_RE = re.compile(
     r"(\d{3})\s*([NC])?\s*\(([^)]+)\)",
     re.I,
@@ -40,25 +35,25 @@ PROTEIN_ID_COLS = (
 
 class ChannelRole(str, Enum):
     REFERENCE = "reference"
-    CONTROL = "control"  # здоровый / mock / untreated
-    CASE = "case"  # больной / treated / stimulus
+    CONTROL = "control"
+    CASE = "case"
     OTHER = "other"
     UNKNOWN = "unknown"
 
 
 @dataclass
 class ChannelAnnotation:
-    tag: str  # e.g. 127N
-    label: str  # e.g. Control 2
+    tag: str
+    label: str
     role: ChannelRole
-    source_field: str  # Used / Comparison / Additional
+    source_field: str
     notes: str = ""
 
 
 @dataclass
 class MatrixColumnInfo:
     name: str
-    kind: str  # raw | ratio | meta
+    kind: str
     tag: str | None = None
     denominator: str | None = None
 
@@ -107,7 +102,6 @@ def _classify_label(label: str, *, is_used_field: bool) -> ChannelRole:
     for role, words in _ROLE_KEYWORDS.items():
         if any(w in low for w in words):
             return role
-    # TMT 10-plex: 126 часто reference, если не указано иное
     if is_used_field and re.search(r"\b126\b", label) and "control" in low:
         return ChannelRole.CONTROL
     if re.match(r"^126\b", label.strip()) and "control" not in low and "nicotine" not in low:
@@ -153,7 +147,6 @@ def _parse_channel_field(text: str, source_field: str, *, is_used: bool) -> list
 
 
 def parse_channels_from_row(row: pd.Series) -> list[ChannelAnnotation]:
-    """Все каналы из projects.csv для одной строки."""
     channels: list[ChannelAnnotation] = []
     fields = [
         ("TMT Channels Used", True),
@@ -268,7 +261,6 @@ def classify_matrix_columns(columns: list[str]) -> list[MatrixColumnInfo]:
 
 
 def _tag_to_col_names(tag: str, columns: list[str]) -> list[str]:
-    """Сопоставление 127N → колонка 127_N или 127N в файле."""
     num = re.match(r"(\d{3})", tag)
     if not num:
         return []
@@ -391,7 +383,6 @@ def build_tmt_view(
     *,
     quick: bool = False,
 ) -> dict[str, Any]:
-    """Полная карточка TMT для проекта."""
     channels = parse_channels_from_row(row)
     ch_table = channels_summary_table(channels)
 
@@ -428,7 +419,6 @@ def build_tmt_view(
             matrix_info.get("ratio_columns") or [],
             matrix_info.get("raw_channel_columns") or [],
         )
-        # связать аннотации с колонками файла
         cols_all = (matrix_info.get("raw_channel_columns") or []) + (
             matrix_info.get("ratio_columns") or []
         )

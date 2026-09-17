@@ -1,5 +1,3 @@
-"""CSV / Excel readers that keep duplicate header names usable."""
-
 from __future__ import annotations
 
 from pathlib import Path
@@ -17,7 +15,6 @@ def read_table(path: Path, *, header: int | None = 0) -> pd.DataFrame:
 
 
 def read_csv_raw(path: Path) -> pd.DataFrame:
-    """Read without promoting a header — used for the SRM metadata matrix."""
     return pd.read_csv(path, header=None, encoding="utf-8-sig", dtype=object)
 
 

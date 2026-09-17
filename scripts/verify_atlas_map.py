@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""Verify TMT ATLAS sheet vs live organ map (tmt-projects/data/projects.csv).
-
-Uses the same pipeline as Streamlit: organ_atlas.enrich_projects + dedup by Project ID.
-
-  python scripts/verify_atlas_map.py
-  python scripts/verify_atlas_map.py --from-google
-  python scripts/verify_atlas_map.py --pid PXD021265_CL
-"""
 from __future__ import annotations
 
 import argparse

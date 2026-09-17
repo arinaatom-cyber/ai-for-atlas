@@ -1,4 +1,3 @@
-"""Generate report.md and search_log.json."""
 from __future__ import annotations
 
 import json

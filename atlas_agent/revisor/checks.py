@@ -1,4 +1,3 @@
-"""Проверки целостности таблицы projects.csv и локальных файлов."""
 from __future__ import annotations
 
 import re

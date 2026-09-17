@@ -1,5 +1,3 @@
-"""Default locations for the aging MRM-SIS workbook and CSV export."""
-
 from __future__ import annotations
 
 from pathlib import Path

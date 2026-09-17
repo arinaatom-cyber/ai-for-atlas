@@ -1,4 +1,3 @@
-"""Профессиональный поиск: репозитории первично, литература — для резолва accession."""
 from __future__ import annotations
 
 from typing import Any
@@ -61,13 +60,6 @@ def discover_projects_professional(
     cfg: dict | None = None,
     atlas_context: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """
-    1. PRIDE v3 JSON /search/projects + /projects/{PXD}
-    2. PDC GraphQL uiStudySummary
-    3. MassIVE JSON datasets_json.jsp
-    4. iProX JSON search
-    5. Europe PMC — статьи/абстракты → PXD/PDC/MSV/IPX
-    """
     known = {a.upper() for a in (known_accessions or set())}
     disc = (cfg or {}).get("discovery") or {}
 

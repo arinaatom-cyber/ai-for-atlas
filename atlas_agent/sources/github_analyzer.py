@@ -1,4 +1,3 @@
-"""Анализ репозиториев GitHub vs локальный каталог и CSV."""
 from __future__ import annotations
 
 import os

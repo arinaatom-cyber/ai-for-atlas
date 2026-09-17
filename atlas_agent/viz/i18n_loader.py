@@ -1,7 +1,4 @@
-"""Load RU/EN strings from site_assets/i18n.js for static HTML fallbacks."""
-
 from __future__ import annotations
-
 
 
 import html
@@ -13,19 +10,12 @@ from functools import lru_cache
 from pathlib import Path
 
 
-
 _JS = Path(__file__).resolve().parent / "site_assets" / "i18n.js"
-
-
-
 
 
 def _unescape(s: str) -> str:
 
     return s.replace("\\n", "\n").replace('\\"', '"').replace("\\\\", "\\")
-
-
-
 
 
 @lru_cache(maxsize=1)
@@ -39,13 +29,11 @@ def load_i18n_dicts() -> tuple[dict[str, str], dict[str, str]]:
     en: dict[str, str] = {}
 
 
-
     m = re.search(r'brand_title:\s*"([^"]+)"', js)
 
     if m:
 
         ru["brand_title"] = en["brand_title"] = m.group(1)
-
 
 
     for m in re.finditer(
@@ -61,7 +49,6 @@ def load_i18n_dicts() -> tuple[dict[str, str], dict[str, str]]:
         ru[m.group(1)] = _unescape(m.group(2))
 
         en[m.group(1)] = _unescape(m.group(3))
-
 
 
     for lang, target in (("ru", ru), ("en", en)):
@@ -97,11 +84,7 @@ def load_i18n_dicts() -> tuple[dict[str, str], dict[str, str]]:
             target[km.group(1)] = _unescape(km.group(2))
 
 
-
     return ru, en
-
-
-
 
 
 def t(key: str, lang: str = "ru") -> str:
@@ -113,23 +96,14 @@ def t(key: str, lang: str = "ru") -> str:
     return d.get(key) or en.get(key) or ru.get(key) or key
 
 
-
-
-
 def ru(key: str) -> str:
 
     return t(key, "ru")
 
 
-
-
-
 def en(key: str) -> str:
 
     return t(key, "en")
-
-
-
 
 
 def ru_project_count(n: int) -> str:
@@ -147,17 +121,11 @@ def ru_project_count(n: int) -> str:
     return f"{n} новых проектов"
 
 
-
-
-
 def en_project_count(n: int) -> str:
 
     n = abs(int(n))
 
     return f"{n} new project" if n == 1 else f"{n} new projects"
-
-
-
 
 
 def ru_row_count(n: int) -> str:
@@ -175,9 +143,6 @@ def ru_row_count(n: int) -> str:
     return f"{n} записей"
 
 
-
-
-
 def en_row_count(n: int) -> str:
 
     n = abs(int(n))
@@ -185,19 +150,14 @@ def en_row_count(n: int) -> str:
     return f"{n} row" if n == 1 else f"{n} rows"
 
 
-
-
-
 def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
 
-    """Fill empty data-i18n / placeholder nodes with fallback text."""
 
     text = path.read_text(encoding="utf-8")
 
     ru_d, en_d = load_i18n_dicts()
 
     d = ru_d if lang == "ru" else en_d
-
 
 
     def fill_suffix(m: re.Match[str]) -> str:
@@ -231,7 +191,6 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
     )
 
 
-
     def fill_ph(m: re.Match[str]) -> str:
 
         key = m.group(1)
@@ -243,7 +202,6 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
         return f'data-i18n-placeholder="{key}" placeholder="{html.escape(d[key], quote=True)}"'
 
 
-
     text = re.sub(
 
         r'data-i18n-placeholder="([^"]+)"(?!\s+placeholder=)',
@@ -253,7 +211,6 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
         text,
 
     )
-
 
 
     def fill_title(m: re.Match[str]) -> str:
@@ -271,7 +228,6 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
         )
 
 
-
     text = re.sub(
 
         r'data-i18n-title="([^"]+)"(?!\s+title=)(\s*)>',
@@ -283,16 +239,11 @@ def hydrate_i18n_html(path: Path, *, lang: str = "ru") -> None:
     )
 
 
-
     path.write_text(text, encoding="utf-8")
-
-
-
 
 
 def hydrate_site_html(root: Path, *, lang: str = "ru") -> int:
 
-    """Hydrate all HTML under root (skip tiny redirect stubs)."""
 
     n = 0
 
@@ -307,4 +258,3 @@ def hydrate_site_html(root: Path, *, lang: str = "ru") -> int:
         n += 1
 
     return n
-

@@ -1,4 +1,3 @@
-"""HTML generators — unified layout via site_components."""
 from __future__ import annotations
 
 import html

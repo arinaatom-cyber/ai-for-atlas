@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""
-Ревизор платформы Atlas — проверка таблицы, авто-правки, поиск новых публикаций.
-
-  python run_revisor.py audit          # полный аудит → reports/revisor_*.json
-  python run_revisor.py fix            # показать что исправится (dry-run)
-  python run_revisor.py fix --apply    # применить + бэкап CSV
-  python run_revisor.py scan           # PRIDE JSON + статьи 2026
-  python run_revisor.py add            # добавить новые PXD (dry-run)
-  python run_revisor.py add --apply    # записать в projects.csv
-  python run_revisor.py viz            # HTML dashboard
-  python run_revisor.py all            # audit + scan + fix dry-run
-"""
 from __future__ import annotations
 
 import argparse

@@ -1,5 +1,3 @@
-"""CLI: python -m aging_mrm build"""
-
 from __future__ import annotations
 
 import argparse

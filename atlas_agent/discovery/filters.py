@@ -1,14 +1,3 @@
-"""
-Фильтры атласа для Discovery Agent.
-
-Правила (из вашего каталога + запрос):
-- Human only (без mouse/rat)
-- TMT >6 каналов (7–18, включая TMTpro18; TMT6 и ниже — нет)
-- Protein-level proteome (не phosphoproteomics, не peptide-only)
-- Healthy-only / cancer-only / case-control (с healthy) — OK
-- PMID, PXD, PDC, MSV, IPX, iProX — извлечение из текста
-- Уже в каталоге → not recommended
-"""
 from __future__ import annotations
 
 import re
@@ -74,7 +63,7 @@ ONCOLOGY_HINT = re.compile(
     r"adenocarcinoma|sarcoma|myeloma)\b",
     re.I,
 )
-ATLAS_TMT_PLEXES = tuple(range(7, 19))  # всё >6 и ≤18 (TMT7…TMT18 / TMTpro)
+ATLAS_TMT_PLEXES = tuple(range(7, 19))
 REJECT_TMT_PLEXES = (2, 6)
 MIN_TMT_CHANNELS = 7
 MAX_TMT_CHANNELS = 18
@@ -104,13 +93,13 @@ PEPTIDE_ONLY_OMICS = re.compile(
 def default_filter_config() -> dict[str, Any]:
     return {
         "human_only": True,
-        "allowed_tmt_plexes": list(ATLAS_TMT_PLEXES),  # >6ch: 7–18, включая TMTpro16/18
+        "allowed_tmt_plexes": list(ATLAS_TMT_PLEXES),
         "reject_tmt_plexes": list(REJECT_TMT_PLEXES),
         "min_tmt_channels": MIN_TMT_CHANNELS,
         "max_tmt_channels": MAX_TMT_CHANNELS,
         "allow_healthy_only": True,
         "allow_cancer_only": True,
-        "allow_case_control": True,    # smokers vs healthy OK
+        "allow_case_control": True,
         "allowed_databases": ["PRIDE", "PDC", "iProX", "MassIVE", "IPX", "MSV"],
         "reject_non_human": True,
         "reject_phosphoproteomics": True,
@@ -124,7 +113,6 @@ def assess_proteome_layer(
     *,
     cfg: dict[str, Any] | None = None,
 ) -> list[str]:
-    """Фосфопротеомика и peptide-only — не подходят (нужен protein-level proteome)."""
     cfg = cfg or default_filter_config()
     reasons: list[str] = []
 
@@ -176,7 +164,6 @@ def _infer_plex(blob: str) -> int | None:
 
 
 def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bool:
-    """TMT >6 каналов (не 6 и не меньше): 7–18, включая TMTpro16/18."""
     min_ch = int(cfg.get("min_tmt_channels") or MIN_TMT_CHANNELS)
     max_ch = int(cfg.get("max_tmt_channels") or MAX_TMT_CHANNELS)
     reject = {int(x) for x in (cfg.get("reject_tmt_plexes") or REJECT_TMT_PLEXES)}
@@ -194,7 +181,6 @@ def plex_allowed(plex: int | None, cfg: dict[str, Any], *, blob: str = "") -> bo
 
 
 def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
-    """Homo sapiens only: explicit human signal, or structured organism, or human=True."""
     if item.get("human") is False:
         return False
 
@@ -243,7 +229,6 @@ def classify_candidate(
     *,
     cfg: dict | None = None,
 ) -> dict[str, Any]:
-    """Возвращает item с полями: verdict, filter_reasons, extracted_ids."""
     cfg = cfg or default_filter_config()
     blob = material_blob_from_item(item)
     blob_lower = blob.lower()
@@ -459,7 +444,6 @@ PROJECT_PREFIXES = ("PXD", "PDC", "MSV", "IPX")
 
 
 def get_project_accession(item: dict) -> str | None:
-    """Номер проекта (не PMID)."""
     acc = (item.get("accession") or item.get("project_accession") or "").strip().upper()
     if acc.startswith(PROJECT_PREFIXES):
         return acc
@@ -477,10 +461,6 @@ def select_new_projects(
     verdict: str = "recommended",
     qc_status: str = "candidate",
 ) -> list[dict]:
-    """
-    Только новые проекты с номером PXD/PDC/MSV/IPX, которых нет в каталоге.
-    Статьи только с PMID — не включаются.
-    """
     seen: set[str] = set()
     out: list[dict] = []
     for item in items:

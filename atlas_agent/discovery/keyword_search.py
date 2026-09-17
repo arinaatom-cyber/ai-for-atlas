@@ -1,4 +1,3 @@
-"""Поиск новых проектов по ключевым словам (каталог + config) с ИИ-разбором абстрактов."""
 from __future__ import annotations
 
 from typing import Any
@@ -15,7 +14,6 @@ from atlas_agent.sources.proteomics_workbook import filter_items_not_in_known
 
 
 def default_search_keywords(cfg: dict, profile: dict | None = None) -> list[str]:
-    """Ключевые слова: pride_keywords из config + органы/болезни из TMT ATLAS."""
     disc = cfg.get("discovery") or {}
     scan = cfg.get("scan") or {}
     base = list(disc.get("pride_keywords") or scan.get("pride_keywords") or ["TMT", "tandem mass tag", "isobaric"])
@@ -34,7 +32,6 @@ def default_search_keywords(cfg: dict, profile: dict | None = None) -> list[str]
 
 
 def build_literature_query(keywords: list[str], year_from: int, year_to: int) -> str:
-    """Europe PMC: TMT + тематика из ключевых слов."""
     tmt = [k for k in keywords if any(x in k.lower() for x in ("tmt", "isobaric", "mass tag", "plex"))]
     theme = [k for k in keywords if k not in tmt][:6]
     core = " OR ".join(f'"{k}"' for k in (tmt[:4] or ["TMT", "isobaric", "tandem mass tag"]))
@@ -61,10 +58,6 @@ def run_keyword_ai_search(
     massive_max: int = 15,
     iprox_max: int = 10,
 ) -> dict[str, Any]:
-    """
-    Лёгкий поиск для Streamlit: PRIDE/PDC/MassIVE/iProX + Europe PMC + ИИ на абстрактах.
-    Каталог только read-only; новые ID не добавляются автоматически.
-    """
     profile = build_catalog_profile(df)
     kw = [k.strip() for k in (keywords or default_search_keywords(cfg, profile)) if k.strip()]
     known = _known_accessions(df, cfg)

@@ -1,4 +1,3 @@
-"""Domain models for discovery evaluation — no raw dicts at boundaries."""
 from __future__ import annotations
 
 from enum import Enum
@@ -21,10 +20,10 @@ class ExclusionReason(str, Enum):
 
 
 class ModelTrustLevel(str, Enum):
-    HIGH = "high"  # GPT-4o, Claude, cloud APIs
-    MEDIUM = "medium"  # Local Ollama qwen2.5:3b+
-    LOW = "low"  # GPT4All qwen2-1.5b
-    RULES = "rules"  # regex / deterministic fallback
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
+    RULES = "rules"
 
 
 class FinalVerdict(str, Enum):

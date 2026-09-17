@@ -1,4 +1,3 @@
-"""Application service — delegates to EvaluationPipeline."""
 from __future__ import annotations
 
 import logging
@@ -13,7 +12,6 @@ logger = logging.getLogger(__name__)
 
 
 class EvaluationService:
-    """Single entry point; inject a custom pipeline for tests."""
 
     def __init__(self, pipeline: EvaluationPipeline | None = None) -> None:
         self._pipeline = pipeline or get_default_pipeline()

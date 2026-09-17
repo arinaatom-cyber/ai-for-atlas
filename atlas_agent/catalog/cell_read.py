@@ -1,4 +1,3 @@
-"""Canonical rules for reading TMT ATLAS cells (empty vs zero vs gap)."""
 from __future__ import annotations
 
 import math
@@ -52,7 +51,6 @@ def cell_state(v: Any) -> CellState:
 
 
 def parse_number(v: Any) -> float | None:
-    """Empty -> None; explicit 0 -> 0.0; invalid -> None."""
     s = strip_cell(v)
     if not s:
         return None
@@ -63,7 +61,6 @@ def parse_number(v: Any) -> float | None:
 
 
 def parse_count(v: Any) -> float:
-    """For KPI sums: empty/invalid -> 0; explicit zero stays 0."""
     n = parse_number(v)
     return 0.0 if n is None else n
 
@@ -82,7 +79,6 @@ def sample_parts_sum(row: dict[str, Any]) -> float:
 
 
 def audit_sample_columns(row: dict[str, Any]) -> list[dict[str, str]]:
-    """Flag empty vs zero vs Total mismatch (map KPI rules)."""
     issues: list[dict[str, str]] = []
     total = parse_number(row.get("Total Samples"))
     parts = sample_parts_sum(row)

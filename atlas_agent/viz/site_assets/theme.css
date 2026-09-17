@@ -1,6 +1,3 @@
-/* Human Cancer-Associated TMT Proteome Atlas — strict scientific UI */
-
-/* 1. Light academic mode (default) */
 :root {
   --sci-bg-base: #fbfbfd;
   --sci-bg-surface: #f5f5f7;
@@ -183,7 +180,7 @@ code {
 
 .site-main { min-height: calc(100vh - 140px); }
 
-/* Header — frosted institutional bar */
+
 .site-header {
   border-bottom: 1px solid var(--border);
   background: color-mix(in srgb, var(--sci-bg-base) 88%, transparent);
@@ -549,7 +546,7 @@ code {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Hero */
+
 .page-hero {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -604,7 +601,7 @@ code {
   border: none;
 }
 
-/* KPIs */
+
 .kpi-grid {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -648,7 +645,7 @@ code {
   font-weight: 400;
 }
 
-/* Content */
+
 .page-content {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -989,7 +986,7 @@ a.id-no-acc:hover {
   word-wrap: break-word;
 }
 
-/* Discovery unified table — 12 columns */
+
 .table-unified:not(.table-qc) .col-type { width: 5%; min-width: 56px; }
 .table-unified:not(.table-qc) .col-id { width: 8%; min-width: 100px; }
 .table-unified:not(.table-qc) .col-year { width: 4%; min-width: 48px; }
@@ -1068,7 +1065,7 @@ a.id-no-acc:hover {
   font-weight: 600;
 }
 
-/* QC tables — 8 columns */
+
 .table-unified.table-qc table.data-table { min-width: 1100px; }
 .table-unified.table-qc .col-id { width: 11%; min-width: 100px; }
 .table-unified.table-qc .col-title { width: 22%; min-width: 200px; }
@@ -1213,7 +1210,7 @@ a.id-no-acc:hover {
   max-width: 72ch;
 }
 
-/* Cards */
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1297,7 +1294,7 @@ a.id-no-acc:hover {
   text-decoration: none;
 }
 
-/* Toolbar */
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -1379,7 +1376,7 @@ a.id-no-acc:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Data plates — tables and chart blocks */
+
 .data-plate,
 .table-wrap {
   overflow-x: auto;
@@ -1618,7 +1615,7 @@ a.cell-mono:hover {
   font-style: normal;
 }
 
-/* Scientific micro-labels (badges) */
+
 .badge {
   display: inline-block;
   padding: 5px 12px;
@@ -1868,7 +1865,7 @@ a.cell-mono:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Atlas profile */
+
 .profile-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1929,7 +1926,7 @@ a.cell-mono:hover {
   font-variant-numeric: tabular-nums;
 }
 
-/* Footer */
+
 .footer {
   max-width: min(1760px, 97vw);
   margin: 0 auto;
@@ -1944,7 +1941,7 @@ a.cell-mono:hover {
 .footer a { color: var(--text-secondary); }
 .footer a:hover { color: var(--link-hover); }
 
-/* Embedded map / Streamlit (Pf-HaploAtlas-style interactive panel) */
+
 .embed-shell {
   margin: 0 28px 2rem;
   border: 1px solid var(--border);

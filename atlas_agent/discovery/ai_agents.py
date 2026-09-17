@@ -1,11 +1,9 @@
-"""Unified catalog of Discovery AI agents / LLM providers."""
 from __future__ import annotations
 
 from typing import Any
 
 from atlas_agent.llm_client import list_llm_engines, resolve_engine
 
-# Static roles on the Discovery site (no version strings in UI).
 AGENT_CATALOG: list[dict[str, str]] = [
     {
         "id": "pride_scan",
@@ -89,7 +87,6 @@ LLM_PROVIDER_CATALOG: list[dict[str, str]] = [
 
 
 def llm_snapshot(cfg: dict[str, Any] | None = None) -> dict[str, Any]:
-    """Runtime LLM status for manifest and site (no Python/platform versions)."""
     llm = (cfg or {}).get("llm") or {}
     prefer_cloud = bool(llm.get("prefer_cloud", True))
     engines = list_llm_engines(prefer_cloud=prefer_cloud, model=llm.get("model"))

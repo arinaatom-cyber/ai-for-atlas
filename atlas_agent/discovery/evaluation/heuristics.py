@@ -1,4 +1,3 @@
-"""Legacy heuristic facade — delegates to ExclusionEngine."""
 from __future__ import annotations
 
 from atlas_agent.discovery.evaluation.exclusion_engine import ExclusionEngine
@@ -13,7 +12,6 @@ def scan_literature_text(title: str, abstract: str = "", *, engine: ExclusionEng
 
 
 def scan_cohort_text(title: str, abstract: str = "", *, engine: ExclusionEngine | None = None) -> list[EvaluationEvidence]:
-    """Same hard exclusions as literature, plus cohort-scoped rules."""
     eng = engine or _default_engine
     hits = list(eng.scan(title, abstract))
     extra = eng.check_cohort(title, abstract)

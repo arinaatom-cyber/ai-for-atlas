@@ -1,4 +1,3 @@
-"""Organ classification — mirrors human-proteome-atlas/app.js (TMT map)."""
 from __future__ import annotations
 
 import json
@@ -148,7 +147,6 @@ def pick_organ_raw(row: dict[str, Any]) -> str:
                 parts.append(p)
 
     if organ_main and not VAGUE_ORGAN.match(organ_main):
-        # Keep pan-organ labels intact (split strips "Multiple organs (22 types)" → empty)
         if classify_all_organs(organ_main) == ["Multiple_Organs"]:
             return organ_main
         add_parts(organ_main)

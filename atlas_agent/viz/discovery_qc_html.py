@@ -1,4 +1,3 @@
-"""HTML QC report Discovery (bilingual UI)."""
 from __future__ import annotations
 
 import html

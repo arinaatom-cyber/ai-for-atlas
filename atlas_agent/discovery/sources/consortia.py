@@ -1,4 +1,3 @@
-"""Поиск по консорциумам: PDC, CCLE, GTEx, CPTAC (публикации + API где доступно)."""
 from __future__ import annotations
 
 import re
@@ -105,7 +104,6 @@ def search_pdc_studies(
     limit: int = 20,
     known_accessions: set[str] | None = None,
 ) -> list[dict[str, Any]]:
-    """PDC GraphQL uiStudySummary — TMT-исследования (read-only)."""
     from atlas_agent.sources.pdc import search_pdc_tmt_studies
 
     return search_pdc_tmt_studies(known_accessions=known_accessions)[:limit]

@@ -1,4 +1,3 @@
-"""Безопасные авто-исправления таблицы (с бэкапом)."""
 from __future__ import annotations
 
 import re
@@ -10,7 +9,6 @@ import pandas as pd
 
 from atlas_agent.revisor.checks import _normalize_pmid_cell
 def apply_safe_fixes(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
-    """Только детерминированные правки без изменения смысла полей."""
     out = df.copy()
     log: list[str] = []
 

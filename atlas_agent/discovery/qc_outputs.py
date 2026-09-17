@@ -1,4 +1,3 @@
-"""Сборка candidate / manual-check / rejected списков (без изменения CSV)."""
 from __future__ import annotations
 
 import re

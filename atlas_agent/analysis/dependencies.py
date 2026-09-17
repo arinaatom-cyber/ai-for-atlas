@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pandas as pd
 
-# Логические связи между колонками таблицы (для отчёта и проверок)
 COLUMN_GROUPS = {
     "идентификация": ["Database", "Project ID", "PMID", "Title", "URL"],
     "дизайн_образцов": [
@@ -54,7 +53,6 @@ def column_coverage(df: pd.DataFrame) -> dict:
 
 
 def dependency_rules(df: pd.DataFrame) -> list[dict]:
-    """Правила-связи: если заполнено A, ожидается B."""
     rules = []
     if "TMT Label (Unified)" not in df.columns:
         return rules

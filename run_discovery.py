@@ -1,20 +1,4 @@
 #!/usr/bin/env python3
-"""
-Discovery Agent — поиск похожих проектов и статей (PRIDE, PDC, CCLE, GTEx, CPTAC).
-
-ВАЖНО: data/projects.csv только ЧИТАЕТСЯ. Удаление и авто-изменение ЗАПРЕЩЕНЫ.
-
-  python run_discovery.py policy     # правила
-  python run_discovery.py scan       # полный поиск + отчёт
-  python run_discovery.py latest     # последний отчёт
-  python run_discovery.py history    # история еженедельных сканов
-  python run_discovery.py profile    # профиль вашего атласа
-  python run_discovery.py llm        # какой ИИ активен (Z.AI/Qwen/Claude/GPT4All)
-  python run_discovery.py llm --test # проверка API-запроса
-
-Еженедельно (Task Scheduler / cron):
-  python run_discovery.py scan
-"""
 from __future__ import annotations
 
 import argparse

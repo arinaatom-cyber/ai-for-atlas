@@ -27,7 +27,6 @@ def _classify_design(row: pd.Series) -> str:
 
 
 def build_stats_plan(row: pd.Series) -> dict[str, Any]:
-    """Структурированный стат-план + прозрачный R-шаблон."""
     design_type = _classify_design(row)
     pat = patient_summary(row)
     n = pat.get("n_samples_used")

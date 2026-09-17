@@ -1,5 +1,3 @@
-"""Quality checks: pointwise channel–patient–age, not a 5000 grid."""
-
 from __future__ import annotations
 
 from typing import Any

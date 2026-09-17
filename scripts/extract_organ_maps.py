@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Sync organ MAP / ORGAN_EXACT from human-proteome-atlas/app.js → organ_maps.json."""
 from __future__ import annotations
 
 import json
@@ -29,10 +28,8 @@ def extract_brace_object(js: str, const_name: str) -> str | None:
 
 
 def js_object_to_dict(block: str) -> dict[str, str]:
-    """Parse simple string→string JS object (keys quoted or bare)."""
     inner = block.strip()[1:-1]
     out: dict[str, str] = {}
-    # 'key':'Val' or key:'Val' or "key":"Val"
     for m in re.finditer(
         r"(?:'([^']+)'|\"([^\"]+)\"|([a-zA-Z_][\w]*))\s*:\s*'([^']*)'",
         inner,

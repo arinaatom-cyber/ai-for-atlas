@@ -1,4 +1,3 @@
-"""Резолв PXD/PDC/MSV/IPX из публикаций (Europe PMC, DOI)."""
 from __future__ import annotations
 
 import re
@@ -53,7 +52,6 @@ def resolve_accessions_from_publication(
     title: str = "",
     abstract: str = "",
 ) -> dict[str, list[str]]:
-    """Извлечь ID репозиториев из публикации (abstract + data availability)."""
     record = fetch_europe_pmc_record(pmid=pmid, doi=doi) if (pmid or doi) else {}
     parts = [
         title,
@@ -92,7 +90,6 @@ def publications_to_projects(
     known_accessions: set[str],
     max_resolve: int = 40,
 ) -> list[dict[str, Any]]:
-    """PMID/DOI → PXD/PDC через Europe PMC, затем обогащение PRIDE."""
     known = {a.upper() for a in known_accessions}
     seen: set[str] = set()
     out: list[dict[str, Any]] = []
@@ -109,7 +106,6 @@ def publications_to_projects(
                 abstract=str(pub.get("abstract") or pub.get("abstract_snippet") or ""),
             )
         else:
-            # дополнить из Europe PMC data availability
             extra = resolve_accessions_from_publication(
                 pmid=str(pub.get("pmid") or ""),
                 doi=str(pub.get("doi") or ""),
@@ -152,7 +148,6 @@ def publications_to_projects(
 
 
 def _pub_has_accession(pub: dict[str, Any]) -> bool:
-    """True when PMID record already mentions a repository accession."""
     return publication_has_repository_id(pub)
 
 
@@ -175,9 +170,6 @@ def resolve_semantic_publications(
     max_resolve: int = 12,
     min_score: float = 0.5,
 ) -> list[dict[str, Any]]:
-    """
-    Абстракт без PXD, но по смыслу как атлас → PRIDE по PMID или pride_search_terms.
-    """
     known = {a.upper() for a in known_accessions}
     seen: set[str] = set()
     out: list[dict[str, Any]] = []
@@ -230,7 +222,6 @@ def resolve_semantic_publications(
 
 
 def _literature_material_specified(pub: dict[str, Any], title: str, abstract: str) -> bool:
-    """Keep literature only when tissue/cell-line material is written in AI fields or text."""
     ai = pub.get("abstract_ai") or {}
     material = str(ai.get("material") or "").strip().lower()
     if material in ("plasma", "serum", "blood", "organoid", "pdx"):
@@ -258,7 +249,6 @@ def literature_semantic_candidates(
     known_accessions: set[str],
     min_score: float = LITERATURE_SEMANTIC_MIN,
 ) -> list[dict[str, Any]]:
-    """Статьи похожи на атлас, но PXD так и не найден — ручная проверка."""
     known = {a.upper() for a in known_accessions}
     known_pmids = {re.sub(r"\D", "", x) for x in known if re.sub(r"\D", "", x)}
     registry = LLMEvaluatorRegistry()

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Пересборка хвоста рукописи (§2.7 — Благодарности) в правильном порядке."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -114,7 +113,6 @@ def main() -> None:
         if p.text.strip().startswith("Отдельно фиксировались проекты, связанные одной публикацией")
     )
 
-    # удалить всё после §2.6 до БЛАГОДАРНОСТИ
     to_remove = []
     started = False
     for p in doc.paragraphs:

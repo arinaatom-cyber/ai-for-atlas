@@ -1,4 +1,3 @@
-"""Post-scan enrichment: file audit + AI evaluation before site publish."""
 from __future__ import annotations
 
 from typing import Any
@@ -9,7 +8,6 @@ from atlas_agent.viz.portal_index import format_finding_note, resolve_publicatio
 
 
 def finalize_discovery_report(report: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any]:
-    """Annotate data availability and attach typed evaluation to every bucket."""
     from atlas_agent.discovery.data_availability import annotate_data_availability
 
     tmt_root = (cfg.get("paths") or {}).get("tmt_projects_dir") or ""

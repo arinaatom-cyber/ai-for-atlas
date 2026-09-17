@@ -1,5 +1,3 @@
-"""Independent checks that the big channel–patient–intensity CSV assembled correctly."""
-
 from __future__ import annotations
 
 from typing import Any

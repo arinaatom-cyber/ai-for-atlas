@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""Скачать лист TMT ATLAS из Google Sheets → локальный CSV (без дописывания полей).
-
-Источник (read-only export):
-  https://docs.google.com/spreadsheets/d/1M6hc3vmk1bNchMvEwXsIyyO5iq3mAzP877HTXzhzg38
-  gid=1072380314 (legacy; prefer --sheet name)
-
-Пустые Disease / Organ / Subtype остаются пустыми — агент ничего не выдумывает.
-
-  python scripts/pull_google_sheet.py              # → data/projects_from_google.csv
-  python scripts/pull_google_sheet.py --compare    # diff с data/projects.csv
-  python scripts/pull_google_sheet.py --apply      # перезаписать data/projects.csv (явно)
-"""
 from __future__ import annotations
 
 import argparse

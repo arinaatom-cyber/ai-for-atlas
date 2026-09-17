@@ -1,4 +1,3 @@
-"""История еженедельных сканов — без изменения projects.csv."""
 from __future__ import annotations
 
 import json

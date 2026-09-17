@@ -1,5 +1,3 @@
-"""Clinical patient tables from the three cohort sheets."""
-
 from __future__ import annotations
 
 from pathlib import Path

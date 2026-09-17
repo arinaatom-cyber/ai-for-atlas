@@ -1,4 +1,3 @@
-"""Batch evaluation enrichment for discovery scan reports."""
 from __future__ import annotations
 
 import logging
@@ -32,7 +31,6 @@ def evaluate_discovery_report(
     *,
     catalog_df: pd.DataFrame | None = None,
 ) -> EvaluationContext:
-    """Attach typed `evaluation` to every discovery bucket item."""
     ctx = EvaluationContext.create(catalog_df=catalog_df)
     total = 0
     seen: set[int] = set()
@@ -53,7 +51,6 @@ def evaluate_discovery_report(
 
 
 def evaluate_discovery_report_from_config(report: dict[str, Any], cfg: dict) -> EvaluationContext:
-    """Load catalog once and run catalog-backed similarity scoring."""
     from atlas_agent.discovery import load_catalog_readonly
 
     df: pd.DataFrame | None

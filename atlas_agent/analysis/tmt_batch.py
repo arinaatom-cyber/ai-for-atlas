@@ -1,4 +1,3 @@
-"""Пакетный TMT-обзор по всем проектам каталога."""
 from __future__ import annotations
 
 import json
@@ -14,7 +13,6 @@ from atlas_agent.viz.tmt_view import save_tmt_view_html
 
 
 def iter_tmt_projects(df: pd.DataFrame) -> list[tuple[str, pd.Series]]:
-    """Уникальные TMT-проекты (первая строка на PXD)."""
     if "TMT Label (Unified)" not in df.columns:
         return []
     mask = df["TMT Label (Unified)"].astype(str).str.contains("TMT", case=False, na=False)

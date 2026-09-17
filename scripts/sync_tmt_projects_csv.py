@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""Compare curator Excel (TMT ATLAS) with runtime data/projects.csv.
-
-Default is a read-only drift report. Discovery indexes the CSV; Excel is the
-curator workbook. They are never auto-merged.
-
-  python scripts/sync_tmt_projects_csv.py           # compare only
-  python scripts/sync_tmt_projects_csv.py --apply   # export Excel → CSV (explicit)
-"""
 from __future__ import annotations
 
 import argparse
@@ -17,12 +9,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from atlas_agent.config import load_config  # noqa: E402
-from atlas_agent.sources.catalog_sync import (  # noqa: E402
+from atlas_agent.config import load_config
+from atlas_agent.sources.catalog_sync import (
     compare_from_config,
     format_compare_report,
 )
-from atlas_agent.sources.projects_table import curator_workbook_path  # noqa: E402
+from atlas_agent.sources.projects_table import curator_workbook_path
 
 
 def main() -> int:

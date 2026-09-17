@@ -1,4 +1,3 @@
-"""Check if record already exists in main database sheet."""
 from __future__ import annotations
 
 import re
@@ -40,10 +39,6 @@ def load_database(path: Path | None = None) -> pd.DataFrame:
 
 
 def check_duplicate(record: dict[str, Any], database: pd.DataFrame | None = None) -> dict[str, Any]:
-    """
-    Check Project ID, PMID, DOI, Title, URL against main database.
-    Returns {is_duplicate, matched_on, matched_value}.
-    """
     db = database if database is not None else load_database()
     if db.empty:
         return {"is_duplicate": False, "matched_on": "", "matched_value": ""}
@@ -62,7 +57,6 @@ def check_duplicate(record: dict[str, Any], database: pd.DataFrame | None = None
         for mc in MATCH_COLUMNS:
             if cl == mc.lower():
                 col_map[mc] = col
-    # CPTAC legacy column
     if "Project ID" not in col_map:
         for col in db.columns:
             if str(col).strip().lower() in ("pdc study id", "identifier", "accession", "project id"):

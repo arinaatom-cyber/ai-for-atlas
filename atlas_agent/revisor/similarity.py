@@ -1,10 +1,3 @@
-"""Похожие проекты в каталоге (подсказка куратору, не авто-исключение).
-
-HINT_THRESHOLD (0.18) — колонка «Похож на».
-CLOSE_MATCH_THRESHOLD (0.72) — вероятный тот же датасет (PRIDE+MassIVE,
-повторный accession после ревизии). Discovery не отбрасывает такие хиты:
-вердикт requires_manual_check. Жёсткий дубликат — только точный ID/PMID/DOI.
-"""
 from __future__ import annotations
 
 import re
@@ -63,7 +56,6 @@ def find_similar(
     top_k: int = 5,
     index: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
-    """Возвращает похожие строки каталога (не дубликат по PXD). Jaccard по токенам title/organ/tissue."""
     cand_acc = (
         candidate.get("accession") or candidate.get("project_id") or candidate.get("pxd") or ""
     ).upper()

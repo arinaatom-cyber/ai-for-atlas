@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Канал TMT → пациент: зелёные проекты Protomix + таблица + диск + GitHub.
-
-  python run_channels.py build          # датасет + обучение правил
-  python run_channels.py build --pdc    # только зелёные PDC
-  python run_channels.py show PXD026279 # один проект
-  python run_channels.py apply          # применить модель к неразмеченным
-"""
 from __future__ import annotations
 
 import argparse
