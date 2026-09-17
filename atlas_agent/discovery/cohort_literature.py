@@ -96,29 +96,30 @@ def assess_patients(text: str, patient_n: int | None) -> str:
     return "no"
 
 
-def build_description_en(item: dict[str, Any]) -> str:
+def build_description_en(item: dict[str, Any], *, include_cohort_meta: bool = True) -> str:
     """Short English description for cohorts tab (no LLM)."""
     parts: list[str] = []
-    omics = item.get("omics") or []
-    if omics:
-        labels = {
-            "proteomics": "proteomics",
-            "phosphoproteomics": "phosphoproteomics",
-            "transcriptomics": "transcriptomics",
-            "genomics": "genomics",
-            "metabolomics": "metabolomics",
-            "lipidomics": "lipidomics",
-            "glycoproteomics": "glycoproteomics",
-            "multi_omics": "multi-omics",
-        }
-        parts.append("Omics: " + ", ".join(labels.get(o, o) for o in omics[:5]))
-    n = item.get("patient_n")
-    if n:
-        parts.append(f"Cohort: ~{n} patients/participants (from abstract)")
-    elif item.get("has_patients") == "maybe":
-        parts.append("Patients mentioned; exact N not extracted")
-    elif item.get("has_patients") == "no":
-        parts.append("Patients not confirmed in abstract")
+    if include_cohort_meta:
+        omics = item.get("omics") or []
+        if omics:
+            labels = {
+                "proteomics": "proteomics",
+                "phosphoproteomics": "phosphoproteomics",
+                "transcriptomics": "transcriptomics",
+                "genomics": "genomics",
+                "metabolomics": "metabolomics",
+                "lipidomics": "lipidomics",
+                "glycoproteomics": "glycoproteomics",
+                "multi_omics": "multi-omics",
+            }
+            parts.append("Omics: " + ", ".join(labels.get(o, o) for o in omics[:5]))
+        n = item.get("patient_n")
+        if n:
+            parts.append(f"Cohort: ~{n} patients/participants (from abstract)")
+        elif item.get("has_patients") == "maybe":
+            parts.append("Patients mentioned; exact N not extracted")
+        elif item.get("has_patients") == "no":
+            parts.append("Patients not confirmed in abstract")
     if item.get("tmt_detected"):
         parts.append("TMT/isobaric")
     if item.get("large_scale"):
@@ -130,29 +131,30 @@ def build_description_en(item: dict[str, Any]) -> str:
     return ". ".join(parts) if parts else "Clinical proteomics / multi-omics (Europe PMC)."
 
 
-def build_description_ru(item: dict[str, Any]) -> str:
+def build_description_ru(item: dict[str, Any], *, include_cohort_meta: bool = True) -> str:
     """Краткое описание для вкладки (без LLM)."""
     parts: list[str] = []
-    omics = item.get("omics") or []
-    if omics:
-        labels = {
-            "proteomics": "протеомика",
-            "phosphoproteomics": "фосфопротеомика",
-            "transcriptomics": "транскриптомика",
-            "genomics": "геномика",
-            "metabolomics": "метаболомика",
-            "lipidomics": "липидомика",
-            "glycoproteomics": "гликопротеомика",
-            "multi_omics": "мульти-омика",
-        }
-        parts.append("Омики: " + ", ".join(labels.get(o, o) for o in omics[:5]))
-    n = item.get("patient_n")
-    if n:
-        parts.append(f"Когорта: ~{n} пациентов/участников (из абстракта)")
-    elif item.get("has_patients") == "maybe":
-        parts.append("Пациенты упомянуты, точное N не извлечено")
-    elif item.get("has_patients") == "no":
-        parts.append("Пациенты в абстракте не подтверждены")
+    if include_cohort_meta:
+        omics = item.get("omics") or []
+        if omics:
+            labels = {
+                "proteomics": "протеомика",
+                "phosphoproteomics": "фосфопротеомика",
+                "transcriptomics": "транскриптомика",
+                "genomics": "геномика",
+                "metabolomics": "метаболомика",
+                "lipidomics": "липидомика",
+                "glycoproteomics": "гликопротеомика",
+                "multi_omics": "мульти-омика",
+            }
+            parts.append("Омики: " + ", ".join(labels.get(o, o) for o in omics[:5]))
+        n = item.get("patient_n")
+        if n:
+            parts.append(f"Когорта: ~{n} пациентов/участников (из абстракта)")
+        elif item.get("has_patients") == "maybe":
+            parts.append("Пациенты упомянуты, точное N не извлечено")
+        elif item.get("has_patients") == "no":
+            parts.append("Пациенты в абстракте не подтверждены")
     if item.get("tmt_detected"):
         parts.append("TMT/isobaric")
     if item.get("large_scale"):

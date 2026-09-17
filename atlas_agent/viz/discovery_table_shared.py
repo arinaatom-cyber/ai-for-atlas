@@ -224,10 +224,18 @@ def item_year(item: dict, pubs_by_pmid: dict[str, dict] | None = None) -> str:
     return "—"
 
 
+def _is_cohort_item(item: dict) -> bool:
+    return item.get("cohort_score") is not None
+
+
 def _item_summaries(item: dict, pubs_by_pmid: dict[str, dict]) -> tuple[str, str]:
     pmid = str(item.get("pmid") or "").strip()
     pub = pubs_by_pmid.get(pmid) if pmid else None
     ai = item.get("abstract_ai") or {}
+    if _is_cohort_item(item):
+        en = str(item.get("abstract_snippet") or item.get("abstract") or item.get("description_en") or "")
+        ru = str(item.get("description_ru") or "")
+        return en.strip(), ru.strip()
     en = str(
         (pub or {}).get("summary_en")
         or ai.get("summary_en")
@@ -321,13 +329,7 @@ def _links_stack(chips: list[str]) -> str:
 
 
 def _project_links(acc: str, repo: str, pmid: str) -> str:
-    src = source_label({"accession": acc}) if acc else ""
     chips: list[str] = []
-    if repo:
-        if src:
-            chips.append(_link_chip(repo, src))
-        else:
-            chips.append(_link_chip(repo, "", i18n_key="link_open_repo"))
     if pmid:
         chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
         chips.append(_link_chip(europe_pmc_url(pmid), "", i18n_key="link_epmc"))
@@ -339,7 +341,7 @@ def _literature_links(acc: str, repo: str, pmid: str) -> str:
     if pmid:
         chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
         chips.append(_link_chip(europe_pmc_url(pmid), "", i18n_key="link_epmc"))
-    if repo and acc:
+    if repo and acc and not _is_repo_accession(acc):
         src = source_label({"accession": acc})
         chips.append(_link_chip(repo, f"{src} {acc}".strip()))
     return _links_stack(chips)
@@ -491,10 +493,12 @@ def _similar_cell(item: dict) -> str:
     if not sim:
         return '<span class="cell-empty">—</span>'
     chips: list[str] = []
-    for hit in sim[:2]:
-        pid = str(hit.get("project_id") or "").strip()
-        if not pid:
+    seen: set[str] = set()
+    for hit in sim[:3]:
+        pid = str(hit.get("project_id") or "").strip().upper()
+        if not pid or pid in seen:
             continue
+        seen.add(pid)
         score = hit.get("score")
         try:
             score_s = f"{float(score):.0%}" if score is not None else ""

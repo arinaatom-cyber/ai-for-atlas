@@ -96,7 +96,7 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
 
 def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
     """Ensure all user-visible scan fields are English before HTML/JSON publish."""
-    from atlas_agent.discovery.cohort_literature import build_description_en
+    from atlas_agent.discovery.cohort_literature import build_description_en, build_description_ru
     from atlas_agent.viz.portal_index import format_finding_note
 
     buckets = (
@@ -114,9 +114,8 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
             item["finding_note"] = format_finding_note(item)
 
     for item in report.get("cohort_literature") or []:
-        item["description_en"] = build_description_en(item)
-        if not item.get("description_ru"):
-            item["description_ru"] = item["description_en"]
+        item["description_en"] = build_description_en(item, include_cohort_meta=False)
+        item["description_ru"] = build_description_ru(item, include_cohort_meta=False)
 
     for pub in report.get("publications_analyzed") or []:
         sanitize_discovery_item(pub)

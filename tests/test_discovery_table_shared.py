@@ -121,16 +121,28 @@ def test_source_link_cell_skips_repo_duplicate():
     assert "cell-empty" in html
 
 
-def test_project_links_massive_and_pmid():
+def test_project_links_skips_repo_when_in_id_column():
     html = _project_links(
         "MSV000080000",
         "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000080000",
         "38765432",
     )
-    assert "MassIVE" in html
+    assert "MassIVE" not in html
+    assert "accession=MSV000080000" not in html
     assert "PMID 38765432" in html
-    assert "accession=MSV000080000" in html
     assert 'data-i18n="link_epmc"' in html
+
+
+def test_similar_cell_dedupes_catalog_hits():
+    html = _similar_cell(
+        {
+            "similar_in_catalog": [
+                {"project_id": "PXD031107", "score": 0.19},
+                {"project_id": "PXD031107", "score": 0.19},
+            ]
+        }
+    )
+    assert html.count('class="link-row"') == 1
 
 
 def test_similar_cell_shows_catalog_match():

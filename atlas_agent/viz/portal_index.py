@@ -234,6 +234,11 @@ def _plain_description(text: str) -> str:
 
 def article_description(item: dict) -> str:
     """Short article / project description for tables and JSON."""
+    if item.get("cohort_score") is not None:
+        for key in ("abstract_snippet", "abstract", "article_description", "finding_note"):
+            val = str(item.get(key) or "").strip()
+            if val and val.lower() not in ("nan", "none", "—"):
+                return _plain_description(val)
     for key in (
         "article_description",
         "description_en",
