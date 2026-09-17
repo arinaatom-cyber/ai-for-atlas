@@ -363,6 +363,10 @@ def run_discovery_scan(
             }
         )
 
+    from atlas_agent.sources.catalog_sync import compare_summary, safe_compare_from_config
+
+    catalog_compare = compare_summary(safe_compare_from_config(cfg))
+
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "policy": policy_summary(),
@@ -370,6 +374,7 @@ def run_discovery_scan(
         "summary": {
             "catalog_rows": len(df),
             "catalog_unique_ids": profile.get("n_atlas_projects") or profile["n_unique_ids"],
+            "catalog_compare": catalog_compare,
             "novel_pride": len(pride_novel),
             "novel_pdc": len(pdc_novel),
             "novel_publications": len(pub_novel),
@@ -458,6 +463,20 @@ def run_discovery_scan(
     return report
 
 
+def _catalog_compare_md(cc: dict[str, Any]) -> str:
+    if not cc:
+        return "- CSV vs workbook: (not compared)"
+    if cc.get("error"):
+        return f"- CSV vs workbook: compare failed ({cc.get('error')})"
+    if cc.get("in_sync"):
+        return "- CSV vs workbook: in sync"
+    return (
+        f"- CSV vs workbook: DRIFT — only CSV {len(cc.get('only_csv') or [])}, "
+        f"only workbook {len(cc.get('only_workbook') or [])}, "
+        f"cell diffs {cc.get('cell_diff_count', 0)}"
+    )
+
+
 def _to_markdown(report: dict) -> str:
     s = report.get("summary") or {}
     lines = [
@@ -474,6 +493,7 @@ def _to_markdown(report: dict) -> str:
         "",
         f"- Строк в каталоге: **{s.get('catalog_rows', 0)}**",
         f"- Уникальных ID: **{s.get('catalog_unique_ids', 0)}**",
+        _catalog_compare_md(s.get("catalog_compare") or {}),
         f"- **Новых проектов (PXD/PDC/MSV/IPX): {s.get('new_projects', 0)}**",
         f"- PRIDE (v3 search): {s.get('source_stats', {}).get('pride_v3_search', 0)}",
         f"- PDC (uiStudySummary): {s.get('source_stats', {}).get('pdc_uiStudySummary', 0)}",

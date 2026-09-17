@@ -154,3 +154,47 @@ def format_compare_report(result: dict[str, Any]) -> str:
     if result.get("in_sync"):
         lines.append("CSV and workbook IDs/key columns match.")
     return "\n".join(lines)
+
+
+def safe_compare_from_config(cfg: dict[str, Any] | None) -> dict[str, Any]:
+    try:
+        return compare_from_config(cfg)
+    except Exception as exc:
+        return {
+            "in_sync": False,
+            "error": type(exc).__name__,
+            "detail": str(exc)[:240],
+        }
+
+
+def compare_summary(result: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "in_sync": bool(result.get("in_sync")),
+        "error": result.get("error"),
+        "warning": result.get("warning"),
+        "csv_rows": result.get("left_rows"),
+        "workbook_rows": result.get("right_rows"),
+        "only_csv": (result.get("only_left") or [])[:20],
+        "only_workbook": (result.get("only_right") or [])[:20],
+        "cell_diff_count": len(result.get("cell_diffs") or []),
+    }
+
+
+def catalog_sync_lines(result: dict[str, Any]) -> list[str]:
+    if result.get("error"):
+        detail = result.get("detail") or result.get("csv") or ""
+        extra = f" ({detail})" if detail else ""
+        return [f"WARNING: catalog compare failed ({result['error']}){extra}."]
+    if result.get("warning") == "xlsx_missing":
+        return ["Catalog workbook not found — runtime is CSV only."]
+    if result.get("in_sync"):
+        n = result.get("left_rows")
+        suffix = f" ({n} rows)" if n is not None else ""
+        return [f"CSV and workbook: in sync{suffix}."]
+    lines = ["WARNING: runtime CSV and Proteomics workbook differ."]
+    lines.extend(format_compare_report(result).splitlines())
+    lines.append(
+        "Runtime catalog stays data/projects.csv. "
+        "After checking the workbook: python scripts/sync_tmt_projects_csv.py --apply"
+    )
+    return lines

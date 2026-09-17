@@ -26,12 +26,15 @@ def cmd_scan(args: argparse.Namespace) -> int:
     cfg = load_config(args.config)
     sheet_cfg = cfg.get("sheet") or {}
     df = load_catalog_readonly(cfg)
+    from atlas_agent.sources.catalog_sync import catalog_sync_lines, safe_compare_from_config
     from atlas_agent.sources.projects_table import catalog_path
 
     src = catalog_path(sheet_cfg) or sheet_cfg.get("projects_csv", "?")
     sh = sheet_cfg.get("projects_sheet", "TMT ATLAS")
     print(f"Каталог (runtime CSV): {len(df)} строк · {sh} · read-only")
     print(f"  файл: {src}")
+    for line in catalog_sync_lines(safe_compare_from_config(cfg)):
+        print(line)
     report = run_discovery_scan(df, cfg, root=ROOT)
     s = report.get("summary") or {}
     print(f"QC candidate: {s.get('candidates', s.get('new_projects', 0))}")

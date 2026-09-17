@@ -3,7 +3,12 @@ from pathlib import Path
 import pandas as pd
 
 from atlas_agent.discovery.filters import build_catalog_index, classify_candidate, default_filter_config
-from atlas_agent.sources.catalog_sync import compare_frames
+from atlas_agent.sources.catalog_sync import (
+    catalog_sync_lines,
+    compare_frames,
+    compare_summary,
+    safe_compare_from_config,
+)
 from atlas_agent.sources.projects_table import all_repo_ids, catalog_path, normalize_doi, primary_project_id
 
 
@@ -99,3 +104,93 @@ def test_same_doi_is_already_in_catalog():
 
 def test_normalize_doi_strips_resolver():
     assert normalize_doi("https://doi.org/10.1/ABC") == "10.1/abc"
+
+
+def test_catalog_sync_lines_warn_on_id_drift():
+    left = pd.DataFrame([{"Project ID": "PXD000001", "Title": "A", "PMID": ""}])
+    right = pd.DataFrame([{"Project ID": "PXD000002", "Title": "A", "PMID": ""}])
+    lines = catalog_sync_lines(compare_frames(left, right))
+    text = "\n".join(lines)
+    assert "WARNING: runtime CSV and Proteomics workbook differ." in text
+    assert "PXD000001" in text
+    assert "sync_tmt_projects_csv.py --apply" in text
+
+
+def test_catalog_sync_lines_ok_when_in_sync():
+    df = pd.DataFrame([{"Project ID": "PXD000001", "Title": "A", "PMID": ""}])
+    lines = catalog_sync_lines(compare_frames(df, df.copy()))
+    assert lines == ["CSV and workbook: in sync (1 rows)."]
+
+
+def test_catalog_sync_lines_xlsx_missing_is_note_not_warning():
+    lines = catalog_sync_lines(
+        {
+            "in_sync": True,
+            "warning": "xlsx_missing",
+            "note": "Runtime catalog is CSV; workbook absent — nothing to compare.",
+        }
+    )
+    assert lines
+    assert not any(line.startswith("WARNING") for line in lines)
+
+
+def test_safe_compare_from_config_survives_bad_loader(monkeypatch):
+    def boom(_cfg):
+        raise RuntimeError("openpyxl exploded")
+
+    monkeypatch.setattr(
+        "atlas_agent.sources.catalog_sync.compare_from_config",
+        boom,
+    )
+    out = safe_compare_from_config({})
+    assert out["in_sync"] is False
+    assert out["error"] == "RuntimeError"
+    lines = catalog_sync_lines(out)
+    assert lines[0].startswith("WARNING: catalog compare failed")
+
+
+def test_compare_summary_counts_diffs():
+    left = pd.DataFrame([{"Project ID": "PXD000001", "Title": "A", "PMID": ""}])
+    right = pd.DataFrame([{"Project ID": "PXD000002", "Title": "A", "PMID": ""}])
+    slim = compare_summary(compare_frames(left, right))
+    assert slim["in_sync"] is False
+    assert slim["only_csv"] == ["PXD000001"]
+    assert slim["only_workbook"] == ["PXD000002"]
+    assert slim["cell_diff_count"] == 0
+
+
+def test_cmd_scan_prints_catalog_drift(monkeypatch, capsys):
+    import argparse
+
+    import run_discovery
+
+    monkeypatch.setattr(
+        run_discovery,
+        "load_config",
+        lambda _=None: {"sheet": {"projects_csv": "data/projects.csv", "projects_sheet": "TMT ATLAS"}},
+    )
+    monkeypatch.setattr(
+        run_discovery,
+        "load_catalog_readonly",
+        lambda cfg: pd.DataFrame([{"Project ID": "PXD000001"}]),
+    )
+    monkeypatch.setattr(
+        "atlas_agent.sources.projects_table.catalog_path",
+        lambda sc: "data/projects.csv",
+    )
+    monkeypatch.setattr(
+        "atlas_agent.sources.catalog_sync.safe_compare_from_config",
+        lambda cfg: compare_frames(
+            pd.DataFrame([{"Project ID": "PXD000001", "Title": "A", "PMID": ""}]),
+            pd.DataFrame([{"Project ID": "PXD000002", "Title": "A", "PMID": ""}]),
+        ),
+    )
+    monkeypatch.setattr(
+        run_discovery,
+        "run_discovery_scan",
+        lambda df, cfg, root=None: {"summary": {}, "report_md": "x"},
+    )
+    rc = run_discovery.cmd_scan(argparse.Namespace(config=None))
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "WARNING: runtime CSV and Proteomics workbook differ." in out
