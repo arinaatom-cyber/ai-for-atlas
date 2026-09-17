@@ -1,19 +1,8 @@
-﻿# Discovery scan + GitHub Pages (new projects on site; full catalog not published)
+﻿# Discovery scan + GitHub Pages. Push to main uses "Deploy GitHub Pages" only,
+# so a slow enrich job cannot overwrite a fresh HTML deploy.
 name: Discovery Scan & Pages
 
 on:
-  push:
-    branches: [main, master]
-    paths:
-      - "atlas_agent/**"
-      - "run_discovery.py"
-      - "discovery_app.py"
-      - "config.yaml"
-      - "data/projects.csv"
-      - "data/discovery_history/**"
-      - "scripts/enrich_and_publish_site.py"
-      - "scripts/publish_site.py"
-      - ".github/workflows/discovery_pages.yml"
   schedule:
     - cron: "0 6 * * 1"   # Monday 06:00 UTC
   workflow_dispatch:
@@ -24,7 +13,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: discovery-pages
+  group: github-pages
   cancel-in-progress: false
 
 jobs:
