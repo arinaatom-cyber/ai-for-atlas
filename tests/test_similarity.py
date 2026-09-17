@@ -30,6 +30,36 @@ def test_annotate_reuses_catalog_index(monkeypatch):
     assert calls == [1]
 
 
+def test_find_similar_dedupes_duplicate_catalog_ids():
+    df = pd.DataFrame(
+        [
+            {
+                "Project ID": "PXD031107",
+                "Title": "AML proteogenomics cohort A",
+                "Organ": "Blood",
+            },
+            {
+                "Project ID": "PXD031107",
+                "Title": "AML proteogenomics cohort B",
+                "Organ": "Blood",
+            },
+            {
+                "Project ID": "PXD008378",
+                "Title": "CD34 progenitor proteomics",
+                "Organ": "Blood",
+            },
+        ]
+    )
+    sim = find_similar(
+        {"accession": "PDC000604", "title": "Pediatric AML TMT proteomics"},
+        df,
+        threshold=0.0,
+        top_k=5,
+    )
+    ids = [x["project_id"] for x in sim]
+    assert ids.count("PXD031107") == 1
+
+
 def test_find_similar_accepts_prebuilt_index():
     df = pd.DataFrame(
         [{"Project ID": "PXD000001", "Title": "Gastric cancer TMT atlas", "Organ": "Stomach"}]

@@ -71,21 +71,24 @@ def find_similar(
         )
     )
     catalog_index = index if index is not None else catalog_token_index(df)
-    scored = []
+    best_by_pid: dict[str, dict[str, Any]] = {}
     for entry in catalog_index:
-        if entry["project_id"] == cand_acc:
+        pid = str(entry["project_id"] or "").upper()
+        if not pid or pid == cand_acc:
             continue
         score = jaccard(cand_tokens, entry["tokens"])
-        if score >= threshold:
-            scored.append(
-                {
-                    "project_id": entry["project_id"],
-                    "score": round(score, 3),
-                    "title": entry["title"],
-                    "row_index": entry["row_index"],
-                }
-            )
-    scored.sort(key=lambda x: -x["score"])
+        if score < threshold:
+            continue
+        hit = {
+            "project_id": pid,
+            "score": round(score, 3),
+            "title": entry["title"],
+            "row_index": entry["row_index"],
+        }
+        prev = best_by_pid.get(pid)
+        if prev is None or hit["score"] > prev["score"]:
+            best_by_pid[pid] = hit
+    scored = sorted(best_by_pid.values(), key=lambda x: -x["score"])
     return scored[:top_k]
 
 
