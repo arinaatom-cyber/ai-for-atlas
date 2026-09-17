@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 SITE = ROOT / "docs" / "site"
-REQUIRED_PAGES = ("discovery.html", "qc.html")
+REQUIRED_PAGES = ("discovery.html", "guide.html", "methods.html", "qc.html")
 REDIRECT_PAGES = ("cohorts.html", "atlas.html", "ai_search.html", "map.html")
 REQUIRED_ASSETS = ("assets/theme.css", "assets/i18n.js")
 REQUIRED_JSON = ("latest.json", "meta.json", "atlas_profile.json")

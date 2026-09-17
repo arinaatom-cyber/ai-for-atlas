@@ -49,15 +49,21 @@ def _nav_paths(deploy: str) -> dict[str, str]:
     if deploy == DEPLOY_DOCS_PORTAL:
         return {
             "discovery": "site/discovery.html",
+            "guide": "site/guide.html",
+            "methods": "site/methods.html",
             "qc": "site/qc.html",
         }
     if deploy == DEPLOY_TMT:
         return {
             "discovery": "discovery.html",
+            "guide": "guide.html",
+            "methods": "methods.html",
             "qc": "qc.html",
         }
     return {
         "discovery": "discovery.html",
+        "guide": "guide.html",
+        "methods": "methods.html",
         "qc": "qc.html",
     }
 
@@ -103,6 +109,8 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
         nav(paths[page], key, page)
         for page, key in (
             ("discovery", "nav_discovery"),
+            ("guide", "nav_guide"),
+            ("methods", "nav_methods"),
             ("qc", "nav_qc"),
         )
         if paths.get(page)

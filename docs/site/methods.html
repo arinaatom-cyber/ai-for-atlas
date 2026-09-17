@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>Human Cancer-Associated TMT Proteome Atlas</title>
+  <script>(function(){try{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;var t=localStorage.getItem('atlas_site_theme')||'auto';if(t!=='auto')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+  <link rel="stylesheet" href="assets/theme.css"/>
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/site_ui.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <a href="discovery.html" class="brand-link">
+        <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Main"><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="guide.html" class="" data-i18n="nav_guide">Guide</a><a href="methods.html" class="active" data-i18n="nav_methods">Methods</a><a href="qc.html" class="" data-i18n="nav_qc">Quality control</a></nav>
+    <div class="header-controls">
+      <div class="theme-toggle" aria-label="Theme">
+        <button type="button" data-theme="light" title="Light">☀</button>
+        <button type="button" data-theme="dark" title="Dark">☾</button>
+        <button type="button" data-theme="auto" class="active" title="System">◐</button>
+      </div>
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="sec_methods">Методы и воронка</h1>
+  <p class="lead" data-i18n="sec_methods_desc">Пайплайн для Materials &amp; Methods: агенты, скрипты, критерии включения. Цифры воронки — снимок последнего скана (см. дату выше).</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-17 11:42:09 UTC</span></div>
+</div>
+<div class="page-content">
+  
+<section class="section methods-panel" id="methods">
+  <div class="methods-meta">
+    <span class="meta-pill"><span data-i18n="meta_scan_date">Дата скана</span> <b>2026-09-17 11:42:09</b></span>
+  </div>
+  <div class="agents-panel">
+  <p class="agents-lead" data-i18n="agents_lead">Поиск идёт по репозиториям и литературе. PRIDE: TMT-плекс и карточка, при необходимости статья. PDC/CPTAC: метаданные уже заполнены, но отбор тот же. MassIVE и iProX — поиск по сайту. Статьи — Europe PMC по названию и похожим. Абстракт читает отдельный агент; в таблице — только проект и краткое изложение.</p>
+  <h4 data-i18n="agents_pipeline">Как идёт поиск</h4>
+  <ul class="agents-list"><li><span class='lang-block lang-ru'><b>Поиск в PRIDE</b> — Архив PRIDE: новые TMT-проекты вне каталога. Смотрим, есть ли TMT-плекс (7–18). Если плекс или материал не в карточке — читаем описание проекта и связанную статью.</span><span class='lang-block lang-en'><b>PRIDE search</b> — PRIDE Archive: new TMT projects outside the catalog. Check TMT plex (7–18). If plex or material is missing from the record, read the project description and the linked paper.</span></li><li><span class='lang-block lang-ru'><b>Поиск в PDC (CPTAC)</b> — В PDC болезнь, орган и TMT уже в метаданных. Те же правила включения, что для PRIDE. Поле organism в API нет: human предполагается по scope PDC/CPTAC, если нет non-human слов. Нераспознанный plex не отбрасывается на источнике.</span><span class='lang-block lang-en'><b>PDC (CPTAC) search</b> — PDC already carries disease, organ, and TMT in metadata. Same inclusion rules as PRIDE. No organism field in uiStudySummary: human is assumed per PDC/CPTAC program scope unless metadata names a non-human organism. Unparsed TMT plex is not dropped at source.</span></li><li><span class='lang-block lang-ru'><b>MassIVE и iProX</b> — Поиск по сайтам MassIVE и iProX теми же словами: TMT, human, cancer.</span><span class='lang-block lang-en'><b>MassIVE and iProX</b> — Site search on MassIVE and iProX with the same TMT / human / cancer keywords.</span></li><li><span class='lang-block lang-ru'><b>Чтение абстрактов и статей</b> — По PMID открываем PubMed / Europe PMC. LLM читает первые N абстрактов (abstract_llm_max); остальные — keyword/regex, список в контроле качества.</span><span class='lang-block lang-en'><b>Abstract and paper reader</b> — From PMID, open PubMed / Europe PMC. The LLM reads the first N abstracts (abstract_llm_max); the rest use keyword/regex and are listed for curator review.</span></li><li><span class='lang-block lang-ru'><b>Отбор по правилам</b> — Homo sapiens, TMT 7–18, ткань или раковая клеточная линия. Не прошло проверку — не показываем как проект.</span><span class='lang-block lang-en'><b>Rule-based selection</b> — Homo sapiens, TMT 7–18, tissue or cancer cell line. Failed checks are not shown as projects.</span></li><li><span class='lang-block lang-ru'><b>Статьи (Europe PMC)</b> — Поиск по названиям и похожим публикациям в Europe PMC — не замена ID репозитория.</span><span class='lang-block lang-en'><b>Papers (Europe PMC)</b> — Search by title and similar papers in Europe PMC — not a substitute for a repository ID.</span></li></ul>
+</div>
+  <div class="pipeline-panel">
+  <p class="pipeline-lead" data-i18n="pipeline_lead">Пошаговый пайплайн: язык, скрипт, агент и назначение каждого этапа.</p>
+  <p class="pipeline-meta">
+    <span data-i18n="pipeline_similarity">Коэффициент схожести</span>: <code>Jaccard token overlap (atlas_agent/revisor/similarity.py)</code>
+    · <span data-i18n="pipeline_example_file">Пример файла данных</span>: <code class="file-name">CPTAC4_Kids_First_AML_PNNL_Proteome.label.txt</code>
+    · <span data-i18n="pipeline_r_plans">R-планов в каталоге</span>: <b>122</b>
+  </p>
+  <p class="pipeline-opensource">
+    <a href="https://github.com/arinaatom-cyber/ai-for-atlas" target="_blank" rel="noopener" data-i18n="pipeline_github">github.com/arinaatom-cyber/ai-for-atlas</a>
+  </p>
+  <div class="table-wrap">
+    <table class="data-table pipeline-table">
+      <thead>
+        <tr>
+          <th data-i18n="pipe_th_step">Шаг</th>
+          <th data-i18n="pipe_th_stage">Этап</th>
+          <th data-i18n="pipe_th_lang">Язык</th>
+          <th data-i18n="pipe_th_script">Скрипт / файл</th>
+          <th data-i18n="pipe_th_agent">Агент</th>
+          <th data-i18n="pipe_th_purpose">Назначение</th>
+        </tr>
+      </thead>
+      <tbody><tr><td class='cell-mono'><b>1</b></td><td><span class='lang-block lang-ru'>Каталог атласа</span><span class='lang-block lang-en'>Atlas catalog</span></td><td><code>CSV</code></td><td><code class='file-name'>data/projects.csv</code></td><td>—</td><td><span class='lang-block lang-ru'>Мастер-таблица data/projects.csv (Excel TMT ATLAS — копия куратора; сверка, не автослияние)</span><span class='lang-block lang-en'>Master table data/projects.csv (Excel TMT ATLAS is the curator copy; compare, never auto-merge)</span></td></tr><tr><td class='cell-mono'><b>2</b></td><td><span class='lang-block lang-ru'>Сканирование репозиториев</span><span class='lang-block lang-en'>Repository scan</span></td><td><code>Python</code></td><td><code class='file-name'>run_discovery.py scan</code></td><td>pride_scan / pdc_scan / massive_iprox</td><td><span class='lang-block lang-ru'>PRIDE (карточка + статья), PDC/CPTAC, поиск по сайтам MassIVE и iProX</span><span class='lang-block lang-en'>PRIDE (record + paper), PDC/CPTAC, MassIVE and iProX site search</span></td></tr><tr><td class='cell-mono'><b>3</b></td><td><span class='lang-block lang-ru'>Rule-based фильтры</span><span class='lang-block lang-en'>Rule-based filters</span></td><td><code>Python</code></td><td><code class='file-name'>atlas_agent/discovery/filters.py</code></td><td>filters</td><td><span class='lang-block lang-ru'>Homo sapiens, TMT 7–18, ткань или раковая линия — иначе не в списке</span><span class='lang-block lang-en'>Homo sapiens, TMT 7–18, tissue or cancer line — otherwise not listed</span></td></tr><tr><td class='cell-mono'><b>4</b></td><td><span class='lang-block lang-ru'>Проверка файлов данных</span><span class='lang-block lang-en'>Data availability gate</span></td><td><code>Python</code></td><td><code class='file-name'>atlas_agent/discovery/qc_outputs.py</code></td><td>discovery_scan</td><td><span class='lang-block lang-ru'>Пример файла (.label.txt, matrix) — колонка «Данные / файлы»</span><span class='lang-block lang-en'>Example file (.label.txt, matrix) — Data / files column</span></td></tr><tr><td class='cell-mono'><b>5</b></td><td><span class='lang-block lang-ru'>Литература Europe PMC</span><span class='lang-block lang-en'>Europe PMC literature</span></td><td><code>Python</code></td><td><code class='file-name'>atlas_agent/discovery/abstract_reader.py</code></td><td>abstract_reader</td><td><span class='lang-block lang-ru'>Абстракт: LLM читает первые N (abstract_llm_max); остальные — regex; препринты помечаются отдельно</span><span class='lang-block lang-en'>Abstract: LLM reads first N (abstract_llm_max); remainder uses regex; preprints are flagged separately</span></td></tr><tr><td class='cell-mono'><b>6</b></td><td><span class='lang-block lang-ru'>Коэффициент схожести</span><span class='lang-block lang-en'>Similarity score</span></td><td><code>Python</code></td><td><code class='file-name'>atlas_agent/revisor/similarity.py</code></td><td>—</td><td><span class='lang-block lang-ru'>Jaccard-подсказка ≥0.18; ≥0.72 — ручная проверка (не авто-исключение). Точный ID/PMID/DOI — already in catalog</span><span class='lang-block lang-en'>Jaccard hint ≥0.18; ≥0.72 → manual check (not auto-excluded). Exact ID/PMID/DOI → already in catalog</span></td></tr><tr><td class='cell-mono'><b>7</b></td><td><span class='lang-block lang-ru'>Вердикт строки</span><span class='lang-block lang-en'>Row verdict</span></td><td><code>Python</code></td><td><code class='file-name'>atlas_agent/discovery/evaluation/</code></td><td>filters</td><td><span class='lang-block lang-ru'>Candidate — прошло; иначе не в главном списке проектов</span><span class='lang-block lang-en'>Candidate — passed; otherwise not in the main project list</span></td></tr><tr><td class='cell-mono'><b>8</b></td><td><span class='lang-block lang-ru'>Когорты (литература)</span><span class='lang-block lang-en'>Literature cohorts</span></td><td><code>Python</code></td><td><code class='file-name'>scripts/run_cohort_literature.py</code></td><td>literature</td><td><span class='lang-block lang-ru'>Europe PMC: названия и похожие статьи, patient N если есть</span><span class='lang-block lang-en'>Europe PMC: titles and similar papers, patient N when present</span></td></tr><tr><td class='cell-mono'><b>9</b></td><td><span class='lang-block lang-ru'>Планы статистики атласа</span><span class='lang-block lang-en'>Atlas stats plans</span></td><td><code>R</code></td><td><code class='file-name'>data/stats_plans/*_stats.R</code></td><td>—</td><td><span class='lang-block lang-ru'>limma / DE для проектов уже в каталоге (не для новых кандидатов)</span><span class='lang-block lang-en'>limma / DE for catalog projects (not new candidates)</span></td></tr><tr><td class='cell-mono'><b>10</b></td><td><span class='lang-block lang-ru'>Публикация сайта</span><span class='lang-block lang-en'>Site publish</span></td><td><code>Python</code></td><td><code class='file-name'>scripts/enrich_and_publish_site.py</code></td><td>—</td><td><span class='lang-block lang-ru'>HTML-таблица, i18n RU/EN, GitHub Pages</span><span class='lang-block lang-en'>HTML table, RU/EN i18n, GitHub Pages</span></td></tr></tbody>
+    </table>
+  </div>
+</div>
+  <div class="scan-funnel-viz">
+  <p class="funnel-viz-lead" data-i18n="funnel_viz_lead">Воронка скрининга: слева — сжатие от API-хитов до кандидатов; справа — детализация по репозиториям, литературе и data gate.</p>
+  <div class="funnel-viz-layout">
+    <div class="funnel-viz-chart"><svg class="funnel-svg" viewBox="0 0 420 120" role="img" aria-labelledby="funnel-svg-title"><title id="funnel-svg-title">Screening funnel</title><defs><linearGradient id="funnelGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--link)" stop-opacity="0.85"/><stop offset="100%" stop-color="var(--link)" stop-opacity="0.35"/></linearGradient></defs><polygon points="10,8 410,8 360,112 60,112" fill="url(#funnelGrad)" opacity="0.22"/><text x="210" y="34" text-anchor="middle" class="funnel-svg-label" data-i18n="funnel_svg_in">API PRIDE + PDC</text><text x="210" y="54" text-anchor="middle" class="funnel-svg-num">838</text><text x="210" y="78" text-anchor="middle" class="funnel-svg-label" data-i18n="funnel_svg_out">Кандидаты в таблице</text><text x="210" y="98" text-anchor="middle" class="funnel-svg-num funnel-svg-ok">96</text></svg></div>
+    <div class="funnel-viz-bars"><div class="funnel-block"><h4 data-i18n="methods_funnel">Воронка репозиториев</h4><div class="funnel-rows"><div class="funnel-row funnel-input"><span class="funnel-label" data-i18n="funnel_raw_repos">Новые записи PRIDE+PDC</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:93%"></div></div><span class="funnel-value">838</span></div><div class="funnel-row funnel-muted"><span class="funnel-label" data-i18n="funnel_in_catalog">Уже в каталоге</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:1%"></div></div><span class="funnel-value">13</span></div><div class="funnel-row funnel-warn"><span class="funnel-label" data-i18n="funnel_filtered">Отфильтровано (техн.)</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:100%"></div></div><span class="funnel-value">902</span></div><div class="funnel-row funnel-ok"><span class="funnel-label" data-i18n="funnel_candidates">Кандидаты</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:11%"></div></div><span class="funnel-value">96</span></div><div class="funnel-row funnel-watch"><span class="funnel-label" data-i18n="funnel_manual">Ручная проверка</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:2%"></div></div><span class="funnel-value">16</span></div><div class="funnel-row funnel-bad"><span class="funnel-label" data-i18n="funnel_rejected">Отклонено (материал)</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:36%"></div></div><span class="funnel-value">325</span></div></div></div><div class="funnel-block"><h4 data-i18n="methods_literature">Литература (Europe PMC)</h4><div class="funnel-rows"><div class="funnel-row funnel-input"><span class="funnel-label" data-i18n="lit_scanned">Статей просмотрено</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:100%"></div></div><span class="funnel-value">31</span></div><div class="funnel-row funnel-neutral"><span class="funnel-label" data-i18n="lit_llm_read">Абстрактов прочитано LLM</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:81%"></div></div><span class="funnel-value">25</span></div><div class="funnel-row funnel-ok"><span class="funnel-label" data-i18n="lit_fit_yes">Atlas fit: да</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:0%"></div></div><span class="funnel-value"></span></div><div class="funnel-row funnel-watch"><span class="funnel-label" data-i18n="lit_fit_maybe">Atlas fit: возможно</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:55%"></div></div><span class="funnel-value">17</span></div><div class="funnel-row funnel-ok"><span class="funnel-label" data-i18n="lit_resolved">ID из Data availability</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:0%"></div></div><span class="funnel-value"></span></div></div></div><div class="funnel-block"><h4 data-i18n="methods_data_gate">Data availability gate</h4><div class="funnel-rows"><div class="funnel-row funnel-ok"><span class="funnel-label" data-i18n="gate_quant_table">Protein table</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:74%"></div></div><span class="funnel-value">42</span></div><div class="funnel-row funnel-ok"><span class="funnel-label" data-i18n="gate_omics_protein">Global proteome</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:32%"></div></div><span class="funnel-value">18</span></div><div class="funnel-row funnel-warn"><span class="funnel-label" data-i18n="gate_no_files">Нет файлов в API</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:33%"></div></div><span class="funnel-value">19</span></div><div class="funnel-row funnel-warn"><span class="funnel-label" data-i18n="gate_unknown">Omics unknown</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:100%"></div></div><span class="funnel-value">57</span></div><div class="funnel-row funnel-bad"><span class="funnel-label" data-i18n="gate_raw_only">Только RAW</span><div class="funnel-bar-track" aria-hidden="true"><div class="funnel-bar-fill" style="width:0%"></div></div><span class="funnel-value"></span></div></div></div></div>
+  </div>
+</div>
+  <details class="site-fold methods-raw-stats">
+  <summary data-i18n="methods_raw_stats">Таблица чисел для supplementary (развернуть)</summary>
+  <div class="methods-grid methods-grid-compact">
+    <div class="methods-card"><h3 data-i18n="methods_funnel">Воронка репозиториев</h3><ul class="methods-stats"><li><span data-i18n="funnel_raw_repos">Новые записи PRIDE+PDC</span> <b>838</b></li><li><span data-i18n="funnel_in_catalog">Уже в каталоге</span> <b>13</b></li><li><span data-i18n="funnel_filtered">Отфильтровано (техн.)</span> <b>902</b></li><li><span data-i18n="funnel_candidates">Кандидаты</span> <b>96</b></li><li><span data-i18n="funnel_manual">Ручная проверка</span> <b>16</b></li><li><span data-i18n="funnel_rejected">Отклонено (материал)</span> <b>325</b></li></ul></div>
+    <div class="methods-card"><h3 data-i18n="methods_literature">Литература (Europe PMC)</h3><ul class="methods-stats"><li><span data-i18n="lit_scanned">Статей просмотрено</span> <b>31</b></li><li><span data-i18n="lit_llm_read">Абстрактов прочитано LLM</span> <b>25</b></li><li><span data-i18n="lit_regex_only">Только regex</span> <b>6</b></li><li><span data-i18n="lit_fit_yes">Atlas fit: да</span> <b></b></li><li><span data-i18n="lit_fit_maybe">Atlas fit: возможно</span> <b>17</b></li><li><span data-i18n="lit_resolved">ID из Data availability</span> <b></b></li></ul></div>
+    <div class="methods-card"><h3 data-i18n="methods_data_gate">Data availability gate</h3><ul class="methods-stats"><li><span data-i18n="gate_quant_table">Protein table</span> <b>42</b></li><li><span data-i18n="gate_omics_protein">Global proteome</span> <b>18</b></li><li><span data-i18n="gate_raw_only">Только RAW</span> <b></b></li><li><span data-i18n="gate_no_files">Нет файлов в API</span> <b>19</b></li><li><span data-i18n="gate_unknown">Omics unknown</span> <b>57</b></li></ul></div>
+  </div>
+</details>
+  <div class="methods-grid">
+    <div class="methods-card">
+      <h3 data-i18n="methods_search_cfg">Параметры поиска</h3>
+      <ul class="methods-stats">
+        <li><span data-i18n="cfg_years">Годы</span> <b>2024–2026</b></li><li><span data-i18n="cfg_repo_search">Репозитории (PRIDE, PDC, MassIVE, iProX)</span> <b data-i18n="cfg_unlimited">без лимита</b></li><li><span data-i18n="cfg_pubs_max">Лимит публикаций</span> <b data-i18n="cfg_unlimited">без лимита</b></li>
+        <li><span data-i18n="cfg_llm">LLM abstract read</span> <b data-i18n="cfg_llm_on">вкл</b></li>
+        <li><span data-i18n="cfg_mode">Режим поиска</span> <b>professional</b></li>
+        <li><span data-i18n="cfg_tmt_plex">TMT plex</span> <b>7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18</b></li>
+        <li><span data-i18n="cfg_databases">Базы</span> <b>PRIDE, PDC, iProX, MassIVE, IPX, MSV</b></li>
+      </ul>
+    </div>
+    <div class="methods-card">
+      <h3 data-i18n="methods_confidence">Что в таблице</h3>
+      <p data-i18n="methods_tier_legend">Проект, вердикт Candidate и краткое изложение. Орган и болезнь — из метаданных или из названия/статьи. Заглушки Other / Not reported не показываем.</p>
+      <p class="methods-note" data-i18n="methods_confidence_note">PDC не ставится первым автоматически: те же фильтры, что для PRIDE. В таблице нет букв A–D и меток LLM.</p>
+    </div>
+    <div class="methods-card">
+      <h3 data-i18n="methods_inclusion">Критерии включения</h3>
+      <ul class="methods-stats">
+        <li data-i18n="inc_organism">Homo sapiens (отклонять mouse/rat/chicken и mixed)</li>
+        <li data-i18n="inc_quant">TMT/isobaric &gt;6-plex (TMT6 и ≤6-plex — нет; TMT18 — да)</li>
+        <li data-i18n="inc_omics">Global protein-level proteome (не phospho-only, не peptide-only)</li>
+        <li data-i18n="inc_material">Ткань (tumor/adjacent/normal) или линии рака; не plasma/serum/urine-only</li>
+        <li data-i18n="inc_literature">Europe PMC + ID только из Data availability</li>
+      </ul>
+      <h4 data-i18n="methods_exclusion">Критерии исключения</h4>
+      <ul class="methods-stats"><li data-i18n="exc_1">Non-human, mixed, xenograft-only</li><li data-i18n="exc_2">TMT6 или ≤6-plex</li><li data-i18n="exc_3">Plasma / serum / urine / blood-only</li><li data-i18n="exc_4">Phosphoproteomics-only</li><li data-i18n="exc_5">Peptide-level quantification only</li><li data-i18n="exc_6">Review / methods / software без когорты</li><li data-i18n="exc_7">Phospho-only или RAW-only в репозитории</li></ul>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p class="footer-opensource">
+    <a href="https://github.com/arinaatom-cyber/ai-for-atlas" target="_blank" rel="noopener" data-i18n="footer_opensource">Open source on GitHub</a>
+  </p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/ai-for-atlas" target="_blank" rel="noopener" data-i18n="footer_code">Discovery code</a> ·
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
+</body>
+</html>

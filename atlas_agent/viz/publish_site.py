@@ -5,7 +5,7 @@ import shutil
 from pathlib import Path
 
 from atlas_agent.viz.site_sanitize import sanitize_report_for_site
-from atlas_agent.viz.discovery_html import generate_discovery_html
+from atlas_agent.viz.discovery_html import generate_discovery_html, generate_guide_html, generate_methods_html
 from atlas_agent.viz.discovery_qc_html import generate_qc_html
 from atlas_agent.viz.portal_html import generate_portal_html
 from atlas_agent.viz.i18n_loader import hydrate_site_html
@@ -112,6 +112,8 @@ def _write_html_redirect(path: Path, target: str) -> None:
 
 def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:
     generate_discovery_html(site_report, site / "discovery.html", deploy=deploy)
+    generate_guide_html(site / "guide.html", deploy=deploy)
+    generate_methods_html(site_report, site / "methods.html", deploy=deploy)
     generate_qc_html(site_report, site / "qc.html", deploy=deploy)
     _write_html_redirect(site / "cohorts.html", "discovery.html#cohorts")
     for legacy in ("atlas.html", "ai_search.html", "map.html"):

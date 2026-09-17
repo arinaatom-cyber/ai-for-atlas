@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Мониторинг human TMT в PRIDE, PDC, MassIVE, iProX · ИИ-разбор абстрактов · крупные когорты в литературе"/>
+  <title>Human Cancer-Associated TMT Proteome Atlas</title>
+  <script>(function(){try{var l=localStorage.getItem('atlas_site_lang')||'ru';document.documentElement.lang=l;var t=localStorage.getItem('atlas_site_theme')||'auto';if(t!=='auto')document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+  <link rel="stylesheet" href="assets/theme.css"/>
+  <script src="assets/i18n.js" defer></script>
+  <script src="assets/site_ui.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <a href="discovery.html" class="brand-link">
+        <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Main"><a href="discovery.html" class="" data-i18n="nav_discovery">Discovery</a><a href="guide.html" class="active" data-i18n="nav_guide">Guide</a><a href="methods.html" class="" data-i18n="nav_methods">Methods</a><a href="qc.html" class="" data-i18n="nav_qc">Quality control</a></nav>
+    <div class="header-controls">
+      <div class="theme-toggle" aria-label="Theme">
+        <button type="button" data-theme="light" title="Light">☀</button>
+        <button type="button" data-theme="dark" title="Dark">☾</button>
+        <button type="button" data-theme="auto" class="active" title="System">◐</button>
+      </div>
+      <div class="lang-toggle" aria-label="Language">
+        <button type="button" data-lang="ru" class="active">RU</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+
+<div class="page-hero">
+  <h1 data-i18n="guide_title">Как читать таблицу</h1>
+  <p class="lead" data-i18n="guide_lead">Один экран — новые TMT-проекты вне каталога. По умолчанию показаны только строки типа «Project» (PXD/PDC/MSV/IPX).</p>
+  <div class="page-meta"></div>
+</div>
+<div class="page-content">
+  
+<section class="section guide-section">
+  <h3 class="section-subtitle" data-i18n="guide_columns_title">Колонки</h3>
+  <div class="guide-group"><div class="guide-row"><div class="guide-row-title" data-i18n="th_type">Тип</div><div class="guide-row-desc" data-i18n="col_help_type">Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_project_id">ID проекта</div><div class="guide-row-desc" data-i18n="col_help_id">Репозиторий: accession + синяя ссылка PRIDE/PDC/MassIVE/iProX. Статья: Europe PMC или PXD, если найден по PMID. PMID/PXD — также в «Название».</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_year">Год</div><div class="guide-row-desc" data-i18n="col_help_year">Год публикации или submission из PRIDE/PDC или PubMed.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_title">Название</div><div class="guide-row-desc" data-i18n="col_help_title">Заголовок (клик → PRIDE/PDC или PubMed), описание и строка PMID / Europe PMC.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_disease">Болезнь</div><div class="guide-row-desc" data-i18n="col_help_disease">Нозология из метаданных или из названия/статьи. Other и Not reported не показываем.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_organ">Орган / ткань</div><div class="guide-row-desc" data-i18n="col_help_organ">Орган или ткань из метаданных, названия или статьи. Заглушки Other / Not reported скрыты.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_design">Дизайн / TMT</div><div class="guide-row-desc" data-i18n="col_help_design">Дизайн и TMT plex. Если PRIDE не указал plex — жёлтый бейдж «TMT plex не прописан — нужна проверка».</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_verdict">Вердикт</div><div class="guide-row-desc" data-i18n="col_help_verdict">Candidate — в атлас; Watch — наблюдение; Exclude — не подходит.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_similar">Похож на</div><div class="guide-row-desc" data-i18n="col_help_similar">Схожесть с каталогом (Jaccard). Строка сворачивается — клик разворачивает все совпадения PXD/PDC · %.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_finding">Кратко</div><div class="guide-row-desc" data-i18n="col_help_finding">Короткое изложение из абстракта, статьи или карточки репозитория. Без меток LLM и без источника вроде PRIDE/PDC.</div></div><div class="guide-row"><div class="guide-row-title" data-i18n="th_data">Данные / файлы</div><div class="guide-row-desc" data-i18n="col_help_data">Наличие protein-level таблицы в репозитории или локальном mirror.</div></div></div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_filters_title">Фильтры над таблицей</h3>
+    <ul>
+      <li data-i18n="guide_filters_type">Тип строки: все / проекты / статьи / когорты.</li>
+      <li data-i18n="guide_filters_source">Источник: PRIDE, PDC, MassIVE, iProX, Europe PMC.</li>
+      <li data-i18n="guide_filters_search">Поиск по ID, названию, PMID, описанию и тексту анализа.</li>
+    </ul>
+  </div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_similarity_title">Похожесть на атлас</h3>
+    <p data-i18n="guide_similarity_desc">Для каждого кандидата считается Jaccard к projects.csv (title, tissue, disease, TMT). ≥72% — вероятный тот же датасет (другой репозиторий или новый accession) и уходит в ручную проверку, не исключается. 18–71% — подсказка «Похож на». Точный PXD/PDC/MSV/IPX, PMID или DOI — already in catalog.</p>
+  </div>
+</section>
+</div>
+</main>
+<footer class="footer">
+  <p data-i18n="footer_policy">Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.</p>
+  <p class="footer-opensource">
+    <a href="https://github.com/arinaatom-cyber/ai-for-atlas" target="_blank" rel="noopener" data-i18n="footer_opensource">Open source on GitHub</a>
+  </p>
+  <p>
+    <a href="https://github.com/arinaatom-cyber/ai-for-atlas" target="_blank" rel="noopener" data-i18n="footer_code">Discovery code</a> ·
+    <a href="https://github.com/arinaatom-cyber/TMT" target="_blank" rel="noopener" data-i18n="footer_github">GitHub TMT</a> ·
+    <a href="https://github.com/arinaatom-cyber/tmt-projects/tree/main/Projects" target="_blank" rel="noopener" data-i18n="footer_projects">tmt-projects</a> ·
+    <a href="https://arinaatom-cyber.github.io/TMT/discovery/discovery.html" target="_blank" rel="noopener" data-i18n="footer_live">Live (GitHub Pages)</a>
+  </p>
+</footer>
+</body>
+</html>

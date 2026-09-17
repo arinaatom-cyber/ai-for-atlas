@@ -217,7 +217,7 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
 def qc_markdown_summary(report: dict) -> str:
     s = report.get("summary") or {}
     lines = [
-        "## QC материала образцов",
+        "## Контроль качества материала",
         "",
         f"- **Candidate (passed):** {s.get('candidates', 0)}",
         f"- **Requires manual check:** {s.get('manual_check', 0)} + repository_manual",

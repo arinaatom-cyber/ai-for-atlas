@@ -82,8 +82,6 @@ def _methods_panel(report: dict) -> str:
     exc_items = "".join(f'<li data-i18n="exc_{i}"></li>' for i in range(1, 8))
     return f"""
 <section class="section methods-panel" id="methods">
-  <h2 class="section-title" data-i18n="sec_methods"></h2>
-  <p class="section-desc" data-i18n="sec_methods_desc"></p>
   <div class="methods-meta">
     <span class="meta-pill"><span data-i18n="meta_scan_date"></span> <b>{html.escape(str(m.get("generated_at") or report.get("generated_at") or "—")[:19].replace("T", " "))}</b></span>
   </div>
@@ -144,8 +142,6 @@ def _guide_panel() -> str:
     )
     return f"""
 <section class="section guide-section">
-  <h2 class="section-title" data-i18n="guide_title"></h2>
-  <p class="section-desc" data-i18n="guide_lead"></p>
   <h3 class="section-subtitle" data-i18n="guide_columns_title"></h3>
   <div class="guide-group">{rows}</div>
   <div class="guide-block">
@@ -160,15 +156,6 @@ def _guide_panel() -> str:
     <h3 data-i18n="guide_similarity_title"></h3>
     <p data-i18n="guide_similarity_desc"></p>
   </div>
-</section>"""
-
-
-def _technical_panel(report: dict) -> str:
-    return f"""
-<section class="section">
-  <h2 class="section-title" data-i18n="tech_title"></h2>
-  <p class="section-desc" data-i18n="tech_lead"></p>
-  {_methods_panel(report)}
 </section>"""
 
 
@@ -312,15 +299,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       </table>
     </div>
   </section>
-
-  <details class="site-fold" id="guide">
-    <summary data-i18n="tab_guide"></summary>
-    {_guide_panel()}
-  </details>
-  <details class="site-fold" id="technical">
-    <summary data-i18n="tab_technical"></summary>
-    {_technical_panel(report)}
-  </details>
 </div>
 
 <script>
@@ -360,4 +338,30 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     out.parent.mkdir(parents=True, exist_ok=True)
     nav_active = "discovery"
     out.write_text(page_wrap(active=nav_active, body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
+    return out
+
+
+def generate_guide_html(out_path: str | Path, *, deploy: str = "docs_site") -> Path:
+    body = page_hero("guide_title", "guide_lead", "") + f"""
+<div class="page-content">
+  {_guide_panel()}
+</div>"""
+    out = Path(out_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page_wrap(active="guide", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
+    return out
+
+
+def generate_methods_html(report: dict, out_path: str | Path, *, deploy: str = "docs_site") -> Path:
+    gen = report.get("generated_at") or ""
+    body = (
+        page_hero("sec_methods", "sec_methods_desc", meta_time(gen))
+        + f"""
+<div class="page-content">
+  {_methods_panel(report)}
+</div>"""
+    )
+    out = Path(out_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(page_wrap(active="methods", body=body, title=BRAND_NAME, deploy=deploy), encoding="utf-8")
     return out
