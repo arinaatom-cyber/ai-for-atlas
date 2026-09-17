@@ -9,6 +9,7 @@ from atlas_agent.viz.discovery_table_shared import (
     _project_links,
     _render_analysis_cell,
     _similar_cell,
+    _source_link_cell,
     _title_cell,
     source_label,
 )
@@ -74,6 +75,20 @@ def test_id_cell_pmid_and_repo_link():
     assert "PXD012345" in html
     assert "PMID 38765432" in html
     assert "pride/archive/projects/PXD012345" in html
+    assert ">PRIDE</" in html
+    assert 'class="cell-mono id-acc"' in html
+    assert 'class="cell-mono id-acc"><b>PXD012345</b></a>' not in html
+
+
+def test_id_cell_pdc_blue_repo_link_once():
+    html = _id_cell(
+        acc="PDC000604",
+        repo="https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
+        pmid="",
+    )
+    assert html.count(">PDC</") == 1
+    assert "PDC000604" in html
+    assert "pdc/study/PDC000604" in html
 
 
 def test_title_cell_includes_description():
@@ -86,6 +101,24 @@ def test_title_cell_includes_description():
     assert "cell-desc" in html
     assert "Paired tumor and adjacent colon tissue." in html
     assert "Human TMT colon proteome" in html
+    assert "pride/archive/projects/PXD012345" not in html
+
+
+def test_title_cell_no_repo_link_without_pmid():
+    html = _title_cell(
+        "CPTAC pediatric AML",
+        "",
+        "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
+    )
+    assert "CPTAC pediatric AML" in html
+    assert "pdc/study/PDC000604" not in html
+    assert "<a " not in html
+
+
+def test_source_link_cell_skips_repo_duplicate():
+    html = _source_link_cell({"accession": "PDC000604"}, acc="PDC000604")
+    assert "PDC" not in html
+    assert "cell-empty" in html
 
 
 def test_project_links_massive_and_pmid():

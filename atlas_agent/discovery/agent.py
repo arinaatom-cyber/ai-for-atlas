@@ -12,6 +12,7 @@ from typing import Any
 import pandas as pd
 
 from atlas_agent.discovery.catalog_profile import build_atlas_semantic_context, build_catalog_profile
+from atlas_agent.discovery.exclusion_registry import load_scan_exclusions
 from atlas_agent.discovery.history import save_scan
 from atlas_agent.discovery.policy import assert_catalog_read_only, policy_summary
 from atlas_agent.discovery.sources.consortia import scan_all_consortia
@@ -34,18 +35,24 @@ from atlas_agent.sources.proteomics_workbook import (
 )
 
 
-def _known_accessions(df: pd.DataFrame, cfg: dict | None = None) -> set[str]:
+def _known_accessions(
+    df: pd.DataFrame,
+    cfg: dict | None = None,
+    *,
+    root: Path | None = None,
+) -> set[str]:
     known_pmids, known_pxds = build_known_sets(df)
     known = known_pmids | known_pxds | {
         primary_project_id(str(x)).upper()
         for x in df["Project ID"].dropna()
         if str(x).strip()
     }
-    # TMT ATLAS + CPTAC + removed for general из project of Proteomics.xlsx (read-only)
     wb_path = workbook_path_from_cfg(cfg)
     if wb_path:
         known |= known_accessions_from_workbook(wb_path)
         known |= known_rejected_from_workbook(wb_path)
+    if root is not None:
+        known |= load_scan_exclusions(root)
     return known
 
 
@@ -168,7 +175,7 @@ def run_discovery_scan(
                 rejected_titles = []
     atlas_context = build_atlas_semantic_context(df, rejected_titles=rejected_titles)
     profile["semantic"] = atlas_context
-    known = _known_accessions(df, cfg)
+    known = _known_accessions(df, cfg, root=root)
 
     filter_cfg = {**default_filter_config(), **(scan_cfg.get("filters") or {})}
     if scan_cfg.get("strict_sample_design") is not None:

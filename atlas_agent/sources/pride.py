@@ -108,8 +108,33 @@ def _organism_names(p: dict) -> list[str]:
     return names
 
 
+def _infer_plex_from_pride(p: dict) -> int | None:
+    qm = p.get("quantificationMethods") or []
+    qm_text = " ".join(str(x) for x in qm) if isinstance(qm, list) else str(qm)
+    blob = " ".join(
+        str(p.get(k) or "")
+        for k in (
+            "title",
+            "projectDescription",
+            "sampleProcessingProtocol",
+            "dataProcessingProtocol",
+            "keywords",
+        )
+    )
+    blob = f"{blob} {qm_text}"
+    m = re.search(
+        r"tmtpro\s*[- ]?(\d{1,2})|tmt\s*[- ]?(\d{1,2})|(\d{1,2})\s*[- ]?plex",
+        blob,
+        re.I,
+    )
+    if m:
+        for g in m.groups():
+            if g:
+                return int(g)
+    return None
+
+
 def project_to_record(p: dict, *, source: str = "pride_api") -> dict[str, Any]:
-    """Нормализованная запись кандидата из JSON PRIDE."""
     acc = (p.get("accession") or "").upper()
     refs = p.get("references") or []
     pmid = ""
@@ -134,6 +159,9 @@ def project_to_record(p: dict, *, source: str = "pride_api") -> dict[str, Any]:
         "organisms": _organism_names(p) or p.get("organisms") or [],
         "instruments": (p.get("instruments") or [])[:5],
         "quantification_methods": qm,
+        "sample_processing_protocol": str(p.get("sampleProcessingProtocol") or "")[:1200],
+        "data_processing_protocol": str(p.get("dataProcessingProtocol") or "")[:1200],
+        "inferred_plex": _infer_plex_from_pride(p),
         "pmid": pmid,
         "doi": doi,
         "url": f"https://www.ebi.ac.uk/pride/archive/projects/{acc}",
@@ -212,10 +240,9 @@ def search_pride_json(
                 if d and (d < cutoff_lo or d > cutoff_hi):
                     continue
                 detail = summary
-                if not summary.get("projectDescription") or not summary.get("organisms"):
-                    full = _fetch_project_detail(acc)
-                    if full:
-                        detail = full
+                full = _fetch_project_detail(acc)
+                if full:
+                    detail = {**summary, **full}
                 if not _is_tmt_project(detail):
                     continue
                 if not _is_human(detail):

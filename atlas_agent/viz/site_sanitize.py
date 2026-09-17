@@ -24,6 +24,7 @@ _RU_TO_EN: list[tuple[str, str]] = [
     ("TMT не обнаружен в метаданных", "TMT not detected in metadata"),
     ("Label-free, не TMT", "Label-free, not TMT"),
     ("TMT plex", "TMT plex"),  # partial — rest often English already
+    ("tmt_plex_unspecified", "TMT plex not specified — needs review"),
     ("не в атласе (только", "not in atlas (allowed:"),
     ("не определён (нужен", "unknown (need"),
     ("Дизайн не подходит:", "Design not allowed:"),

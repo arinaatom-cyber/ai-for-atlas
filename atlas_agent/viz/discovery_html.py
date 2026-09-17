@@ -137,9 +137,6 @@ def _guide_panel() -> str:
         ("th_title", "col_help_title"),
         ("th_source", "col_help_source"),
         ("th_design", "col_help_design"),
-        ("th_omics", "col_help_omics"),
-        ("th_patients", "col_help_patients"),
-        ("th_n", "col_help_n"),
         ("th_verdict", "col_help_verdict"),
         ("th_confidence", "col_help_confidence"),
         ("th_similar", "col_help_similar"),
@@ -241,7 +238,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         <thead>
           <tr class="head-groups">
             <th colspan="6" class="th-group" data-i18n="th_group_record"></th>
-            <th colspan="5" class="th-group col-split" data-i18n="th_group_context"></th>
+            <th colspan="3" class="th-group col-split" data-i18n="th_group_context"></th>
             <th colspan="8" class="th-group col-split" data-i18n="th_group_details"></th>
           </tr>
           <tr>
@@ -254,9 +251,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-organ" data-i18n="th_organ"></th>
           <th class="col-src col-split" data-i18n="th_source"></th>
           <th class="col-design" data-i18n="th_design"></th>
-          <th class="col-omics" data-i18n="th_omics"></th>
-          <th class="col-pat" data-i18n="th_patients"></th>
-          <th class="col-n" data-i18n="th_n"></th>
           <th class="col-verdict col-split" data-i18n="th_verdict"></th>
           <th class="col-confidence" data-i18n="th_confidence"></th>
           <th class="col-similar" data-i18n="th_similar"></th>

@@ -448,6 +448,30 @@ def _organ_cell(item: dict) -> str:
     return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
 
 
+def _tmt_plex_unspecified(item: dict) -> bool:
+    if item.get("tmt_plex_unspecified"):
+        return True
+    blob = " ".join(str(x) for x in (item.get("filter_reasons") or []))
+    if "tmt_plex_unspecified" in blob or "plex not in metadata" in blob:
+        return True
+    acc = str(item.get("accession") or item.get("project_accession") or "").upper()
+    src = str(item.get("source") or "").lower()
+    if (acc.startswith("PXD") or src.startswith("pride")) and item.get("tmt_detected"):
+        return not bool(item.get("inferred_plex") or item.get("tmt_label"))
+    return False
+
+
+def _design_cell(item: dict) -> str:
+    design = _esc(str(item.get("sample_design") or "—").replace("_", "-"))
+    bits = [f'<span class="cell-design-label">{design}</span>']
+    label = str(item.get("tmt_label") or "").strip()
+    if label:
+        bits.append(f'<span class="badge badge-muted">{_esc(label)}</span>')
+    if _tmt_plex_unspecified(item):
+        bits.append(_i18n_badge("tmt_plex_unspecified", "badge-warn", title_key="tmt_plex_unspecified_hint"))
+    return f'<div class="cell-stack cell-design-block">{"".join(bits)}</div>'
+
+
 def _abstract_cell(item: dict) -> str:
     snip = (
         item.get("abstract_snippet")
@@ -535,6 +559,8 @@ def _data_cell(it: dict) -> str:
 
 def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
     acc = acc or _first_accession(it)
+    if acc and _is_repo_accession(acc):
+        return '<span class="cell-empty">—</span>'
     label = source_label(it) if acc else "Europe PMC"
     if acc:
         repo = it.get("repository_url") or it.get("url") or repository_url(acc)
@@ -554,17 +580,18 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
         kind = source_label({"accession": acc})
         acc_esc = _esc(acc)
         if repo:
-            body = (
-                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-mono id-acc">'
-                f"<b>{acc_esc}</b></a>"
+            repo_link = (
+                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-src">'
+                f"<b>{_esc(kind)}</b></a>"
             )
         else:
-            body = f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
-        extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
-        return (
-            f'<div class="cell-stack id-cell">'
-            f'<span class="cell-label">{_esc(kind)}</span>{body}{extra}</div>'
+            repo_link = f'<span class="cell-src"><b>{_esc(kind)}</b></span>'
+        body = (
+            f"{repo_link}"
+            f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
         )
+        extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
+        return f'<div class="cell-stack id-cell">{body}{extra}</div>'
     pub = pubmed_url(pmid) if pmid else ""
     no_acc = '<span class="id-no-acc" data-i18n="no_accession"></span>'
     if pub:
@@ -589,8 +616,6 @@ def _title_cell(
     title_esc = _esc(title[:180] or "—")
     if pub_url:
         head = f'<a href="{_esc(pub_url)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
-    elif repo:
-        head = f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
     else:
         head = f'<span class="cell-title">{title_esc}</span>'
     bits = [head]
@@ -687,11 +712,9 @@ def build_unified_discovery_rows(
         title = (it.get("title") or "").strip()
         desc = article_description(it)
         year = item_year(it, pubs_by_pmid)
-        design = _esc(str(it.get("sample_design") or "—").replace("_", "-"))
+        design_cell = _design_cell(it)
         src_key = source_label(it).lower()
         search = f"{raw_acc} {title} {pmid} {desc} {year} {it.get('program') or ''}".lower()
-
-        omics_cell = _omics_cell(it) if it.get("omics") else '<span class="cell-empty">—</span>'
 
         evaluation = _resolve_evaluation(it, kind=ItemKind.PROJECT)
         vlabel, vcss, vtitle = project_verdict(it)
@@ -709,10 +732,7 @@ def build_unified_discovery_rows(
             f"<td class='col-disease'>{_disease_cell(it)}</td>"
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
-            f"<td class='col-design'>{design}</td>"
-            f"<td class='col-omics'>{omics_cell}</td>"
-            f"<td class='col-pat'><span class='cell-empty'>—</span></td>"
-            f"<td class='col-n'><span class='cell-empty'>—</span></td>"
+            f"<td class='col-design'>{design_cell}</td>"
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
@@ -750,8 +770,6 @@ def build_unified_discovery_rows(
         if paper:
             fit = paper.get("atlas_fit") or (paper.get("abstract_ai") or {}).get("atlas_fit") or ""
         cohort_score = (cohort or it).get("cohort_score")
-        n = it.get("patient_n") or ""
-        n_cell = f"<b>{_esc(n)}</b>" if n not in (None, "") else '<span class="cell-empty">—</span>'
         hp = it.get("has_patients") or ""
         desc = article_description(it)
         search = f"{title} {pmid} {acc} {desc}".lower()
@@ -781,9 +799,6 @@ def build_unified_discovery_rows(
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-design'>{design}</td>"
-            f"<td class='col-omics'>{_omics_cell(it)}</td>"
-            f"<td class='col-pat'>{_patient_cell(it)}</td>"
-            f"<td class='col-n cell-mono'>{n_cell}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
@@ -796,5 +811,5 @@ def build_unified_discovery_rows(
         )
         total += 1
 
-    body = "\n".join(rows) or '<tr><td colspan="20" data-i18n="no_rows"></td></tr>'
+    body = "\n".join(rows) or '<tr><td colspan="17" data-i18n="no_rows"></td></tr>'
     return body, total

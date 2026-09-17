@@ -104,10 +104,15 @@ def material_blob_from_item(item: dict[str, Any]) -> str:
         for o in (item.get("organisms") or [])
     )
     parts = [orgs]
+    qm = item.get("quantification_methods") or []
+    if isinstance(qm, list):
+        parts.append(" ".join(str(x) for x in qm))
+    else:
+        parts.append(str(qm or ""))
     for k in (
         "title", "description", "abstract", "abstract_snippet",
         "program", "disease", "experiment_type", "analytical_fraction",
-        "primary_site", "sample_processing_protocol",
+        "primary_site", "sample_processing_protocol", "data_processing_protocol",
     ):
         parts.append(str(item.get(k) or ""))
     return " ".join(parts)

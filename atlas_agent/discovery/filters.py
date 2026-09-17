@@ -340,11 +340,17 @@ def classify_candidate(
         reasons.append("Label-free, not TMT")
     min_ch = int(cfg.get("min_tmt_channels") or MIN_TMT_CHANNELS)
     if verdict == "recommended" and not plex_allowed(plex, cfg, blob=blob):
-        if plex is not None:
+        src = str(item.get("source") or "")
+        is_pride = src.startswith("pride") or str(item.get("accession") or "").upper().startswith("PXD")
+        tmt6 = re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob, re.I)
+        if is_pride and item.get("tmt_detected") and not tmt6:
+            reasons.append("tmt_plex_unspecified")
+        elif plex is not None:
             reasons.append(f"TMT plex {plex} rejected (need >6 channels, min {min_ch})")
+            verdict = "filtered_out"
         else:
             reasons.append(f"TMT plex unknown (need >6 channels, min {min_ch})")
-        verdict = "filtered_out"
+            verdict = "filtered_out"
 
     omics_reasons = assess_proteome_layer(item, blob, cfg=cfg)
     if omics_reasons and verdict == "recommended":
@@ -393,6 +399,8 @@ def classify_candidate(
         out["tmt_label"] = f"TMTpro {plex}-plex"
     elif plex:
         out["tmt_label"] = f"TMT {plex}-plex"
+    if "tmt_plex_unspecified" in reasons:
+        out["tmt_plex_unspecified"] = True
     out["sample_design"] = design
     out["catalog_matches"] = sorted(accs)
 

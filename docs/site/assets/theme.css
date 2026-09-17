@@ -626,7 +626,7 @@ code {
 .table-unified table.data-table {
   table-layout: fixed;
   width: 100%;
-  min-width: 1520px;
+  min-width: 1280px;
   border-collapse: collapse;
 }
 
@@ -860,8 +860,15 @@ code {
   line-height: 1.2;
 }
 
+.id-cell .cell-src {
+  display: inline-block;
+  margin-bottom: 0.12rem;
+}
+
 .id-cell .id-acc {
+  display: block;
   font-size: 0.92rem;
+  color: var(--text);
 }
 
 .cell-desc {
@@ -948,9 +955,6 @@ a.id-no-acc:hover {
 .table-unified:not(.table-qc) .col-title { width: 12%; min-width: 168px; }
 .table-unified:not(.table-qc) .col-src { width: 5%; min-width: 64px; }
 .table-unified:not(.table-qc) .col-design { width: 5%; min-width: 68px; }
-.table-unified:not(.table-qc) .col-omics { width: 5%; min-width: 68px; }
-.table-unified:not(.table-qc) .col-pat { width: 4%; min-width: 56px; }
-.table-unified:not(.table-qc) .col-n { width: 3%; min-width: 44px; }
 .table-unified:not(.table-qc) .col-verdict { width: 5%; min-width: 72px; }
 .table-unified:not(.table-qc) .col-confidence { width: 4%; min-width: 56px; }
 .table-unified:not(.table-qc) .col-num { width: 2%; min-width: 36px; }
@@ -962,6 +966,16 @@ a.id-no-acc:hover {
 .table-unified:not(.table-qc) .col-analysis { width: 14%; min-width: 180px; }
 .table-unified:not(.table-qc) .col-data { width: 8%; min-width: 96px; }
 .table-unified:not(.table-qc) .col-links { width: 6%; min-width: 72px; }
+
+.cell-design-block {
+  gap: 8px;
+}
+
+.cell-design-block .badge-warn {
+  white-space: normal;
+  text-align: left;
+  line-height: 1.35;
+}
 
 .cell-abstract {
   margin: 0;
