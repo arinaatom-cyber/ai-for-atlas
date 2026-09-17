@@ -134,25 +134,41 @@ def _pub_index(pubs: list[dict]) -> dict[str, dict]:
 
 
 def _analysis_text(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
+    from atlas_agent.discovery.evaluation import AnalysisFormatter
+    from atlas_agent.discovery.evaluation.schemas import ProjectEvaluation
     from atlas_agent.viz.portal_index import format_finding_note
 
-    parts: list[str] = []
+    formatter = AnalysisFormatter()
     note = item.get("finding_note") or format_finding_note(item)
-    if note:
-        parts.append(note[:200])
     pmid = str(item.get("pmid") or "").strip()
     pub = pubs_by_pmid.get(pmid) if pmid else None
+    summary = ""
     if pub:
         summary = pub.get("summary_en") or ""
-        fit = pub.get("atlas_fit")
-        if summary:
-            parts.append(summary[:180])
-        if fit:
-            parts.append(f"fit: {fit}")
     else:
         ai = item.get("abstract_ai") or {}
-        if ai.get("summary_en"):
-            parts.append(ai["summary_en"][:180])
+        summary = ai.get("summary_en") or ""
+
+    stored = item.get("evaluation")
+    if stored:
+        try:
+            evaluation = ProjectEvaluation.model_validate(stored)
+            parts = [note[:200]] if note else []
+            md = formatter.to_markdown(evaluation, summary=summary[:180] if summary else "")
+            if md and md != "—":
+                parts.append(md)
+            return " · ".join(parts) if parts else ""
+        except Exception:
+            pass
+
+    parts: list[str] = []
+    if note:
+        parts.append(note[:200])
+    if summary:
+        parts.append(summary[:180])
+    fit = (pub or item).get("atlas_fit") or (item.get("abstract_ai") or {}).get("atlas_fit")
+    if fit:
+        parts.append(f"fit: {fit}")
     return " · ".join(parts) if parts else ""
 
 
@@ -168,7 +184,12 @@ def _data_label(item: dict) -> str:
 
 
 def new_projects_table(items: list[dict], pubs: list[dict]) -> pd.DataFrame:
-    from atlas_agent.viz.portal_index import format_finding_note, resolve_publication_links, repository_url
+    from atlas_agent.viz.portal_index import (
+        article_description,
+        format_finding_note,
+        resolve_publication_links,
+        repository_url,
+    )
 
     pubs_by_pmid = _pub_index(pubs)
     rows = []
@@ -179,7 +200,9 @@ def new_projects_table(items: list[dict], pubs: list[dict]) -> pd.DataFrame:
         repo = p.get("repository_url") or repository_url(acc)
         rows.append({
             "ID": acc,
+            "PMID": p.get("pmid") or "",
             "Title": (p.get("title") or "")[:100],
+            "Description": article_description(p)[:320],
             "Source": _source_label(p),
             "Design": str(p.get("sample_design") or "").replace("_", "-"),
             "Analysis": _analysis_text(p, pubs_by_pmid),
@@ -192,7 +215,7 @@ def new_projects_table(items: list[dict], pubs: list[dict]) -> pd.DataFrame:
 
 def papers_without_id_table(manual: list[dict], literature: list[dict]) -> pd.DataFrame:
     from atlas_agent.sources.dataset_resolve import _url_for_accession
-    from atlas_agent.viz.portal_index import europe_pmc_url, pubmed_url
+    from atlas_agent.viz.portal_index import article_description, europe_pmc_url, pubmed_url
 
     seen: set[str] = set()
     rows = []
@@ -211,17 +234,19 @@ def papers_without_id_table(manual: list[dict], literature: list[dict]) -> pd.Da
         rows.append({
             "PMID": pmid,
             "Title": (p.get("title") or "")[:100],
+            "Description": article_description(p)[:320],
             "Weight": weight,
             "Europe PMC": europe_pmc_url(pmid) if pmid else "",
             "Analysis": ai.get("summary_en") or p.get("summary_en") or p.get("finding_note") or "",
             "PubMed": pubmed_url(pmid),
             "Project": _url_for_accession(acc) if acc else "",
+            "Accession": acc,
         })
     return pd.DataFrame(rows)
 
 
 def cohorts_table(items: list[dict]) -> pd.DataFrame:
-    from atlas_agent.viz.portal_index import europe_pmc_url, pubmed_url
+    from atlas_agent.viz.portal_index import article_description, europe_pmc_url, pubmed_url
 
     rows = []
     for p in items:
@@ -230,6 +255,7 @@ def cohorts_table(items: list[dict]) -> pd.DataFrame:
         rows.append({
             "PMID": pmid,
             "Title": (p.get("title") or "")[:100],
+            "Description": article_description(p)[:320],
             "Weight": p.get("cohort_score") or "",
             "Europe PMC": europe_pmc_url(pmid) if pmid else "",
             "Year": p.get("year") or "",
@@ -259,7 +285,9 @@ def unified_discovery_table(report: dict) -> pd.DataFrame:
         rows.append({
             "Type": "Project",
             "Project ID": r["ID"],
+            "PMID": r["PMID"],
             "Title": r["Title"],
+            "Description": r["Description"],
             "Source": r["Source"],
             "Design": r["Design"],
             "Patients": "",
@@ -273,8 +301,10 @@ def unified_discovery_table(report: dict) -> pd.DataFrame:
     for _, r in papers_without_id_table(manual, literature).iterrows():
         rows.append({
             "Type": "Paper",
-            "Project ID": "No PXD",
+            "Project ID": r["Accession"] or "No repo ID",
+            "PMID": r["PMID"],
             "Title": r["Title"],
+            "Description": r["Description"],
             "Source": "Europe PMC",
             "Design": "",
             "Patients": "",
@@ -289,7 +319,9 @@ def unified_discovery_table(report: dict) -> pd.DataFrame:
         rows.append({
             "Type": "Cohort",
             "Project ID": r["PMID"],
+            "PMID": r["PMID"],
             "Title": r["Title"],
+            "Description": r["Description"],
             "Source": "Europe PMC",
             "Design": r["Omics"],
             "Patients": r["Patients"],
@@ -530,26 +562,29 @@ with tab_discovery:
 with tab_map:
     st.subheader("Human body organ map")
     streamlit_map = gh_meta.get("streamlit_map") or gh_meta.get("atlas_map", "")
-    github_map = gh_meta.get("atlas_map", "")
+    github_map = gh_meta.get("atlas_map", "") or "https://arinaatom-cyber.github.io/TMT/"
+
     st.markdown(
-        "Open the interactive map in a **separate tab** (faster than embedding). "
-        "Streamlit Cloud hosts the portal; GitHub Pages hosts the static SVG map."
+        "Interactive silhouette map — click organs to filter TMT projects. "
+        "Scroll inside the frame or open full-screen."
     )
+    st.components.v1.iframe(github_map, height=720, scrolling=True)
+
     c1, c2 = st.columns(2)
     if streamlit_map:
-        c1.link_button("Open on Streamlit Cloud", streamlit_map, use_container_width=True)
-    if github_map:
-        c2.link_button("Open on GitHub Pages (TMT)", github_map, use_container_width=True)
-    st.caption("Deep link example: add `?organ=gastric` to filter by organ.")
+        c1.link_button("Open portal on Streamlit", streamlit_map, use_container_width=True)
+    c2.link_button("Open map full-screen (GitHub Pages)", github_map, use_container_width=True)
+    st.caption("Deep link: add `?organ=gastric` to filter by organ.")
 
     organs = sorted(
         organ_index["organ_counts"].keys(),
         key=lambda o: (-organ_index["organ_counts"][o], o),
     )
-    st.markdown("**Organs in catalog** (quick index — full map opens above)")
+    st.markdown("**Organs in catalog**")
     cols = st.columns(4)
     for i, organ in enumerate(organs[:16]):
         n = organ_index["organ_counts"][organ]
-        cols[i % 4].markdown(f"· {organ.replace('_', ' ')} ({n})")
+        organ_url = f"{github_map.rstrip('/')}?organ={organ.replace(' ', '_')}"
+        cols[i % 4].markdown(f"[{organ.replace('_', ' ')} ({n})]({organ_url})")
     if len(organs) > 16:
-        st.caption(f"+ {len(organs) - 16} more organs — see full map")
+        st.caption(f"+ {len(organs) - 16} more organs — use the map above")

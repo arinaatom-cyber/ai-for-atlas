@@ -1,0 +1,61 @@
+# Exclusion engine rules — add patterns here without code changes.
+# Fields:
+#   pattern: regex (required)
+#   reason: ExclusionReason enum value
+#   detail: human-readable trace string
+#   scope: title | full (default full = title + abstract)
+#   unless_pattern: skip if this regex matches the blob
+#   require_absent: skip unless this regex is absent from blob
+
+patterns:
+  # Title-only murine/avian — do not let "recombinant human …" cancel the rule
+  - pattern: '\b(mouse|mice|murine|rat\b|xenograft|gallus|chicken)\b'
+    reason: non_human
+    detail: non-human organism in title
+    scope: title
+
+  - pattern: '\b(murine model|in mice|mouse model|nude mice|xenografted in)\b'
+    reason: non_human
+    detail: animal experimental system — atlas is Homo sapiens only
+
+  - pattern: '\b(review|perspective|editorial|protocol\s+paper|narrative\s+review|benchmark|tutorial|guide\s+to|methods?\s+paper|software|toolbox|platform|integrator|workflow|explorer|scanner|a tool to|applications of artificial intelligence)\b'
+    reason: methodology_review
+    detail: review / methods / software title
+    scope: title
+    unless_pattern: '\b(\d+\s+patients?|clinical\s+cohort|multicenter)\b'
+
+  - pattern: '\b(single-cell|scproteomics|microfluidic\s+platform)\b'
+    reason: single_cell
+    detail: single-cell / platform without patient cohort
+    scope: title
+    unless_pattern: '\b(cohort|patients?)\b'
+
+  - pattern: '\b(phosphoproteom\w*|phospho[- ]?proteom\w*|phosphorylome|phosphosite\w*|phosphorylation[- ]?profil\w*|phospho[- ]?peptide|kinase[- ]?substrate|tiO2\s+enrichment|tio2\s+enrichment)\b'
+    reason: phospho_only
+    detail: phospho-only emphasis in text
+    unless_pattern: '\b(proteome|protein[- ]level|global\s+proteom)\b'
+
+  - pattern: '\b(peptide[- ]?level|peptidome|neuropeptidom|peptide\s+quantif|peptide\s+profil|peptide\s+centric|peptide\s+atlas)\b'
+    reason: peptide_only
+    detail: peptide-level without protein groups
+    unless_pattern: '\b(global\s+proteome|protein[- ]?level|protein\s+group)\b'
+
+  - pattern: '\btmt\s*[- ]?[2-6]\b|\btmt[2-6]\b|\b(?:2|6)-plex\b'
+    reason: tmt6_or_low_plex
+    detail: TMT6 / <=6-plex (need >6 channels)
+
+  - pattern: '\b(building consensus|spectral cluster|consensus spectra|search-assisted)\b'
+    reason: methodology_review
+    detail: TMT methods / spectral clustering pipeline
+    scope: title
+
+  - pattern: '\b(plasma|serum|urine|saliva|cerebrospinal\s+fluid|\bpbmc\b|whole\s+blood)\b'
+    reason: biofluid
+    detail: biofluid only — atlas needs tissue or cell line
+    unless_pattern: '\b(tissue|ffpe|biopsy|cell\s+line|resected|surgical\s+specimen)\b'
+
+  # Human Cancer-Associated Atlas: drop non-oncology disease cohorts
+  - pattern: '\b(rhegmatogenous|vitreoretinopath\w*|vitreous proteome|glaucoma\w*|trabecular meshwork|hydrocephalus|hypertrophic cardiomyopathy|phospholamban|srd5a3|hypoglycosylation|systemic lupus|chicken ovarian|kidney injury|cardiac biomarker|heart failure)\b'
+    reason: off_atlas_disease
+    detail: non-cancer / off-atlas disease cohort
+    unless_pattern: '\b(cancer|carcinoma|tumor|tumour|glioma|melanoma|leukemia|lymphoma)\b'

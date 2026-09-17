@@ -4,20 +4,49 @@ from __future__ import annotations
 import html
 import re
 
-from atlas_agent.discovery.confidence import attach_confidence
+from atlas_agent.discovery.evaluation import AnalysisFormatter, display_fit_label
+from atlas_agent.discovery.evaluation.context import EvaluationContext
+from atlas_agent.discovery.evaluation.schemas import ItemKind, ProjectEvaluation
+from atlas_agent.discovery.evaluation.stale import should_recompute_evaluation
 from atlas_agent.discovery.fit_rules import (
     cohort_verdict,
-    fit_display_label,
     is_cohort_excluded,
     literature_verdict,
     project_verdict,
 )
 from atlas_agent.viz.portal_index import (
+    article_description,
     europe_pmc_url,
-    format_finding_note,
     pubmed_url,
     repository_url,
+    resolve_publication_links,
 )
+
+_FORMATTER = AnalysisFormatter()
+_TABLE_CTX: EvaluationContext | None = None
+
+
+def _table_context() -> EvaluationContext:
+    global _TABLE_CTX
+    if _TABLE_CTX is None:
+        _TABLE_CTX = EvaluationContext.create(catalog_df=None)
+    return _TABLE_CTX
+
+
+def _resolve_evaluation(
+    item: dict,
+    *,
+    kind: ItemKind | str,
+    has_accession: bool = False,
+) -> ProjectEvaluation:
+    """Use enriched evaluation from latest.json; re-score stale project rows."""
+    force = should_recompute_evaluation(item, kind)
+    return _table_context().resolve(
+        item,
+        kind=kind,
+        has_accession=has_accession,
+        mutate=force or not item.get("evaluation"),
+    )
 
 
 def _esc(s: object) -> str:
@@ -70,13 +99,6 @@ def _confidence_cell(tier: str, css: str, bullets: list[str]) -> str:
     return body
 
 
-def _evidence_inline(bullets: list[str]) -> str:
-    if not bullets:
-        return ""
-    items = "".join(f"<li>{_esc(b)}</li>" for b in bullets[:4])
-    return f'<ul class="cell-bullets evidence-bullets">{items}</ul>'
-
-
 def _verdict_badge(label: str, css: str, title: str = "") -> str:
     t = f' title="{_esc(title)}"' if title else ""
     return f'<span class="badge {css}"{t}>{_esc(label)}</span>'
@@ -88,14 +110,22 @@ def _type_badge(kind: str) -> str:
     return _verdict_badge(labels.get(kind, kind), css)
 
 
-def unified_weight_cell(*, fit: str = "", fit_score: object = None, cohort_score: object = None) -> str:
-    """LLM verdict label (no inflated 0.7) + optional cohort score 0–100."""
+def unified_weight_cell(
+    *,
+    evaluation: ProjectEvaluation | None = None,
+    fit: str = "",
+    cohort_score: object = None,
+) -> str:
+    """LLM verdict label + optional cohort score 0–100."""
     parts: list[str] = []
     fit_s = str(fit or "").strip().lower()
-    if fit_s in ("yes", "maybe", "no"):
+    label = (evaluation.display_fit_label if evaluation else "") or ""
+    if not label and fit_s in ("yes", "maybe", "no"):
+        label = display_fit_label({"atlas_fit": fit_s}, evaluation)
+    if label:
         parts.append(
             f'<span class="badge {fit_class(fit_s)}" title="LLM atlas screening (trained on catalog exclusions)">'
-            f"{_esc(fit_display_label({'atlas_fit': fit_s}))}</span>"
+            f"{_esc(label)}</span>"
         )
     if cohort_score not in (None, ""):
         parts.append(
@@ -162,33 +192,60 @@ def item_year(item: dict, pubs_by_pmid: dict[str, dict] | None = None) -> str:
     return "—"
 
 
-def _note_bullets(note: str) -> str:
-    parts = [p.strip() for p in str(note or "").split(" · ") if p.strip()]
-    if not parts:
-        return ""
-    items = "".join(f"<li>{_esc(p)}</li>" for p in parts[:8])
-    return f'<ul class="cell-bullets">{items}</ul>'
+def _item_summary(item: dict, pubs_by_pmid: dict[str, dict]) -> str:
+    pmid = str(item.get("pmid") or "").strip()
+    pub = pubs_by_pmid.get(pmid) if pmid else None
+    if pub and pub.get("summary_en"):
+        return str(pub["summary_en"])
+    ai = item.get("abstract_ai") or {}
+    return str(
+        ai.get("summary_en")
+        or item.get("summary_en")
+        or item.get("article_description")
+        or item.get("description")
+        or item.get("abstract_snippet")
+        or ""
+    )
 
 
-def _dedupe_evidence(note: str, bullets: list[str]) -> list[str]:
-    """Skip bullets already present in finding_note or Design column."""
-    note_l = str(note or "").lower()
-    out: list[str] = []
-    for b in bullets:
-        bl = str(b or "").strip()
-        if not bl:
-            continue
-        low = bl.lower()
-        if low in note_l:
-            continue
-        if low.startswith("design:") and "design:" in note_l:
-            continue
-        if "mixed protein" in low and "mixed protein" in note_l:
-            continue
-        if low.startswith("tmt ") and "tmt" in note_l:
-            continue
-        out.append(bl)
-    return out
+def _coerce_evaluation(
+    item: dict,
+    *,
+    kind: ItemKind | str,
+    has_accession: bool = False,
+) -> ProjectEvaluation | None:
+    """Parse stored evaluation or compute; None triggers legacy fallback."""
+    raw = item.get("evaluation")
+    if raw is not None:
+        if isinstance(raw, str):
+            return None
+        if isinstance(raw, dict):
+            if "evidence_chain" not in raw:
+                return None
+            try:
+                return ProjectEvaluation.model_validate(raw)
+            except Exception:
+                return None
+    try:
+        return _resolve_evaluation(item, kind=kind, has_accession=has_accession)
+    except Exception:
+        return None
+
+
+def _render_analysis_cell(
+    item: dict,
+    *,
+    kind: ItemKind | str,
+    has_accession: bool = False,
+    pubs_by_pmid: dict[str, dict],
+) -> str:
+    """Analysis column — delegated to AnalysisFormatter with legacy guard."""
+    evaluation = _coerce_evaluation(item, kind=kind, has_accession=has_accession)
+    if evaluation is None:
+        inner = _FORMATTER.legacy_html()
+    else:
+        inner = _FORMATTER.to_html(evaluation, summary=_item_summary(item, pubs_by_pmid))
+    return f'<div class="cell-stack cell-analysis">{inner}</div>'
 
 
 def _badge_stack(*badges: str) -> str:
@@ -224,18 +281,19 @@ def _project_links(acc: str, repo: str, pmid: str) -> str:
     if repo:
         chips.append(_link_chip(repo, src or "Repo"))
     if pmid:
-        chips.append(_link_chip(pubmed_url(pmid), "PubMed"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "EPMC"))
+        chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
     return _links_stack(chips)
 
 
 def _literature_links(acc: str, repo: str, pmid: str) -> str:
     chips: list[str] = []
     if pmid:
-        chips.append(_link_chip(pubmed_url(pmid), "PubMed"))
-        chips.append(_link_chip(europe_pmc_url(pmid), "EPMC"))
+        chips.append(_link_chip(pubmed_url(pmid), f"PMID {pmid}"))
+        chips.append(_link_chip(europe_pmc_url(pmid), "Europe PMC"))
     if repo and acc:
-        chips.append(_link_chip(repo, f"{acc} project"))
+        src = source_label({"accession": acc})
+        chips.append(_link_chip(repo, f"{src} {acc}".strip()))
     return _links_stack(chips)
 
 
@@ -376,6 +434,8 @@ def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
 
 
 def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
+    pmid = re.sub(r"\D", "", str(pmid or ""))
+    pmid_html = pubmed_link(pmid, label=f"PMID {pmid}") if pmid else ""
     if acc:
         kind = source_label({"accession": acc})
         acc_esc = _esc(acc)
@@ -386,78 +446,47 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
             )
         else:
             body = f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
+        extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
         return (
             f'<div class="cell-stack id-cell">'
-            f'<span class="cell-label">{_esc(kind)}</span>{body}</div>'
+            f'<span class="cell-label">{_esc(kind)}</span>{body}{extra}</div>'
         )
     pub = pubmed_url(pmid) if pmid else ""
-    no_acc = '<span class="id-no-acc">No PXD/PDC</span>'
+    no_acc = '<span class="id-no-acc">No PXD/PDC/MSV/IPX</span>'
     if pub:
         no_acc = (
-            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc">No PXD/PDC</a>'
+            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc">No PXD/PDC/MSV/IPX</a>'
         )
+    extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
     return (
         f'<div class="cell-stack id-cell">'
-        f'<span class="cell-label">Paper</span>{no_acc}</div>'
+        f'<span class="cell-label">Paper</span>{no_acc}{extra}</div>'
     )
 
 
-def _title_cell(title: str, pub_url: str, repo: str) -> str:
-    title_esc = _esc(title[:140])
+def _title_cell(
+    title: str,
+    pub_url: str,
+    repo: str,
+    *,
+    description: str = "",
+    pmid: str = "",
+) -> str:
+    title_esc = _esc(title[:180] or "—")
     if pub_url:
-        return f'<a href="{_esc(pub_url)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
-    if repo:
-        return f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
-    return f'<span class="cell-title">{title_esc}</span>'
-
-
-def _analysis_project(it: dict, pubs_by_pmid: dict[str, dict]) -> str:
-    blocks: list[str] = ['<div class="cell-stack cell-analysis">']
-    note = it.get("finding_note") or format_finding_note(it)
-    bullets = _note_bullets(note)
-    if bullets:
-        blocks.append(bullets)
-    pmid = str(it.get("pmid") or "").strip()
-    pub = pubs_by_pmid.get(pmid) if pmid else None
-    summary = ""
-    if pub and pub.get("summary_en"):
-        summary = pub["summary_en"]
+        head = f'<a href="{_esc(pub_url)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
+    elif repo:
+        head = f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
     else:
-        ai = it.get("abstract_ai") or {}
-        summary = ai.get("summary_en") or ""
-    if summary:
-        blocks.append(f'<p class="cell-summary cell-clip">{_esc(summary[:280])}</p>')
-    ev = _dedupe_evidence(note, list(it.get("confidence_evidence") or []))
-    if ev:
-        blocks.append(f'<div class="cell-clip">{_evidence_inline(ev[:3])}</div>')
-    if len(blocks) == 1:
-        blocks.append('<span class="cell-empty">—</span>')
-    blocks.append("</div>")
-    return "".join(blocks)
-
-
-def _analysis_literature(paper: dict | None, cohort: dict | None) -> str:
-    blocks: list[str] = ['<div class="cell-stack cell-analysis">']
-    if paper:
-        note = paper.get("finding_note") or format_finding_note(paper) or ""
-        bullets = _note_bullets(note)
-        if bullets:
-            blocks.append(bullets)
-        ai = paper.get("abstract_ai") or {}
-        summary = ai.get("summary_en") or paper.get("summary_en") or ""
-        if summary and summary not in note:
-            blocks.append(f'<p class="cell-summary cell-clip">{_esc(summary[:240])}</p>')
-        ev = list((paper or {}).get("confidence_evidence") or (paper or {}).get("abstract_ai", {}).get("semantic_evidence") or [])[:2]
-        if ev:
-            blocks.append(f'<div class="cell-clip">{_evidence_inline(ev)}</div>')
-    if cohort:
-        desc = cohort.get("description_en") or cohort.get("description_ru") or ""
-        if desc:
-            blocks.append(f'<p class="cell-cohort">{_esc(desc[:280])}</p>')
-    if len(blocks) == 1:
-        blocks.append('<span class="cell-empty">—</span>')
-    blocks.append("</div>")
-    return "".join(blocks)
+        head = f'<span class="cell-title">{title_esc}</span>'
+    bits = [head]
+    desc = (description or "").strip()
+    if desc:
+        bits.append(f'<p class="cell-desc">{_esc(desc[:320])}</p>')
+    pmid = re.sub(r"\D", "", str(pmid or ""))
+    if pmid:
+        bits.append(f'<div class="pmid-row">{pubmed_link(pmid, label=f"PMID {pmid}")}</div>')
+    return f'<div class="cell-stack cell-title-block">{"".join(bits)}</div>'
 
 
 def _papers_without_accession(manual: list[dict], literature: list[dict]) -> list[dict]:
@@ -534,30 +563,32 @@ def build_unified_discovery_rows(
     total = 0
 
     for it in projects:
+        resolve_publication_links(it, fetch_pride_pmid=False)
         raw_acc = _first_accession(it)
         repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
         pmid = str(it.get("pmid") or "").strip()
         pub = it.get("pubmed_url") or pubmed_url(pmid)
         title = (it.get("title") or "").strip()
+        desc = article_description(it)
         year = item_year(it, pubs_by_pmid)
         design = _esc(str(it.get("sample_design") or "—").replace("_", "-"))
         src_key = source_label(it).lower()
-        search = f"{raw_acc} {title} {year} {it.get('program') or ''}".lower()
+        search = f"{raw_acc} {title} {pmid} {desc} {year} {it.get('program') or ''}".lower()
 
         omics_cell = _omics_cell(it) if it.get("omics") else '<span class="cell-empty">—</span>'
 
-        attach_confidence(it, kind="project")
+        evaluation = _resolve_evaluation(it, kind=ItemKind.PROJECT)
         vlabel, vcss, vtitle = project_verdict(it)
         verdict_cell = _verdict_badge(vlabel, vcss, vtitle)
-        tier = it.get("confidence_tier") or ""
-        conf_cell = _confidence_cell(tier, it.get("confidence_css") or "tier-c", it.get("confidence_evidence") or [])
+        tier = it.get("confidence_tier") or evaluation.confidence
+        conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         rows.append(
             f"<tr data-type='project' data-src='{src_key}' data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"<td class='col-type'>{_type_badge('project')}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
             f"<td class='col-design'>{design}</td>"
             f"<td class='col-omics'>{omics_cell}</td>"
@@ -566,7 +597,7 @@ def build_unified_discovery_rows(
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
             f"<td class='col-weight'><span class='cell-empty'>—</span></td>"
-            f"<td class='col-analysis analysis-cell'>{_analysis_project(it, pubs_by_pmid)}</td>"
+            f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=ItemKind.PROJECT, pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
             f"<td class='col-links'>{_project_links(raw_acc, repo, pmid)}</td>"
             f"</tr>"
@@ -576,13 +607,14 @@ def build_unified_discovery_rows(
     lit_rows = _merge_literature(papers, cohorts)
     for entry in lit_rows:
         it = entry["item"]
+        resolve_publication_links(it, fetch_pride_pmid=False)
         paper = entry.get("paper")
         cohort = entry.get("cohort")
         kind = entry["kind"]
         pmid = _norm_pmid(it)
         pub = pubmed_url(pmid)
         acc = _first_accession(it)
-        repo = repository_url(acc) if acc else ""
+        repo = it.get("repository_url") or (repository_url(acc) if acc else "")
         title = (it.get("title") or "").strip()
         year = item_year(it if paper else (cohort or it), pubs_by_pmid)
         if year == "—" and cohort:
@@ -599,7 +631,8 @@ def build_unified_discovery_rows(
         n = it.get("patient_n") or ""
         n_cell = f"<b>{_esc(n)}</b>" if n not in (None, "") else '<span class="cell-empty">—</span>'
         hp = it.get("has_patients") or ""
-        search = f"{title} {pmid} {acc} {it.get('description_en') or ''}".lower()
+        desc = article_description(it)
+        search = f"{title} {pmid} {acc} {desc}".lower()
 
         if kind == "cohort" and is_cohort_excluded(title, str(it.get("abstract") or "")):
             vlabel, vcss, vtitle = ("Exclude", "badge-bad", "Review / software / narrative")
@@ -610,17 +643,17 @@ def build_unified_discovery_rows(
         else:
             vlabel, vcss, vtitle = ("Watch", "badge-warn", "Literature surveillance")
 
-        lit_kind = "paper" if paper else "cohort"
-        attach_confidence(it, kind=lit_kind, has_accession=bool(acc))
-        tier = it.get("confidence_tier") or ""
-        conf_cell = _confidence_cell(tier, it.get("confidence_css") or "tier-c", it.get("confidence_evidence") or [])
+        lit_kind = ItemKind.LITERATURE if paper else ItemKind.COHORT
+        evaluation = _resolve_evaluation(it, kind=lit_kind, has_accession=bool(acc))
+        tier = it.get("confidence_tier") or evaluation.confidence
+        conf_cell = _confidence_cell(tier, it.get("confidence_css") or evaluation.confidence_css, evaluation.confidence_bullets)
 
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"<td class='col-type'>{_type_badge(kind)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-design'>{design}</td>"
             f"<td class='col-omics'>{_omics_cell(it)}</td>"
@@ -628,8 +661,8 @@ def build_unified_discovery_rows(
             f"<td class='col-n cell-mono'>{n_cell}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
-            f"<td class='col-weight'>{unified_weight_cell(fit=fit, cohort_score=cohort_score)}</td>"
-            f"<td class='col-analysis analysis-cell'>{_analysis_literature(paper, cohort)}</td>"
+            f"<td class='col-weight'>{unified_weight_cell(evaluation=evaluation, fit=fit, cohort_score=cohort_score)}</td>"
+            f"<td class='col-analysis analysis-cell'>{_render_analysis_cell(it, kind=lit_kind, has_accession=bool(acc), pubs_by_pmid=pubs_by_pmid)}</td>"
             f"<td class='col-data'>{_data_cell(paper or it)}</td>"
             f"<td class='col-links'>{_literature_links(acc, repo, pmid)}</td>"
             f"</tr>"

@@ -144,6 +144,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       <button type="button" class="chip" data-sfilter="all" data-i18n="filter_all_src"></button>
       <button type="button" class="chip" data-sfilter="pride" data-i18n="filter_pride"></button>
       <button type="button" class="chip" data-sfilter="pdc" data-i18n="filter_pdc"></button>
+      <button type="button" class="chip" data-sfilter="massive" data-i18n="filter_massive"></button>
+      <button type="button" class="chip" data-sfilter="iprox" data-i18n="filter_iprox"></button>
       <button type="button" class="chip" data-sfilter="epmc" data-i18n="filter_epmc"></button>
       <span class="count-badge" id="count"></span>
     </div>

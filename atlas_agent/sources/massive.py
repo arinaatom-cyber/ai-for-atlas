@@ -49,7 +49,7 @@ def search_massive_tmt(
                 "accession": acc,
                 "title": (d.get("title") or d.get("name") or "")[:500],
                 "description": (d.get("description") or "")[:800],
-                "url": f"https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task={acc}",
+                "url": f"https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession={acc}",
                 "source": "massive_api",
                 "tmt_detected": True,
                 "human": None,

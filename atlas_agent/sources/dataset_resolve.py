@@ -8,6 +8,11 @@ from typing import Any
 import requests
 
 from atlas_agent.discovery.filters import extract_ids_from_text
+from atlas_agent.discovery.evaluation.llm_evaluator import LLMEvaluatorRegistry
+from atlas_agent.discovery.evaluation.schemas import ModelTrustLevel
+from atlas_agent.discovery.evaluation.thresholds import LITERATURE_SEMANTIC_MIN
+from atlas_agent.discovery.fit_rules import is_non_study_literature
+from atlas_agent.discovery.literature_search import publication_has_repository_id
 from atlas_agent.sources.pride import find_pride_project_by_pmid, search_pride_by_terms
 
 EUROPE_PMC = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
@@ -146,8 +151,8 @@ def publications_to_projects(
 
 
 def _pub_has_accession(pub: dict[str, Any]) -> bool:
-    """Семантический режим: абстракты без номеров проекта."""
-    return False
+    """True when PMID record already mentions a repository accession."""
+    return publication_has_repository_id(pub)
 
 
 def _atlas_fit(pub: dict[str, Any]) -> tuple[str, float]:
@@ -227,53 +232,85 @@ def literature_semantic_candidates(
     pubs: list[dict[str, Any]],
     *,
     known_accessions: set[str],
-    min_score: float = 0.55,
+    min_score: float = LITERATURE_SEMANTIC_MIN,
 ) -> list[dict[str, Any]]:
     """Статьи похожи на атлас, но PXD так и не найден — ручная проверка."""
     known = {a.upper() for a in known_accessions}
+    known_pmids = {re.sub(r"\D", "", x) for x in known if re.sub(r"\D", "", x)}
+    registry = LLMEvaluatorRegistry()
     out: list[dict[str, Any]] = []
+
     for pub in pubs:
         if _pub_has_accession(pub):
             continue
+        title = str(pub.get("title") or "")
+        abstract = str(pub.get("abstract") or "")
+        if is_non_study_literature(title, abstract):
+            continue
+
         fit, score = _atlas_fit(pub)
         if fit not in ("yes", "maybe"):
             continue
-        if score and score < min_score:
+
+        reader = str(pub.get("abstract_reader") or "")
+        trust = registry.trust_for_engine(reader)
+        effective_min = min_score
+        if trust == ModelTrustLevel.LOW:
+            effective_min = max(min_score, 0.62)
+            if fit == "yes" and str((pub.get("abstract_ai") or {}).get("regex_fit") or "") != "yes":
+                fit = "maybe"
+        elif trust == ModelTrustLevel.MEDIUM:
+            effective_min = max(min_score, 0.55)
+            if fit == "yes" and str((pub.get("abstract_ai") or {}).get("regex_fit") or "") == "no":
+                fit = "maybe"
+
+        if score and score < effective_min:
             continue
+        if fit == "maybe" and (not score or score < effective_min - 0.05):
+            continue
+
         pmid = re.sub(r"\D", "", str(pub.get("pmid") or ""))
-        if pmid and pmid in known:
+        if pmid and pmid in known_pmids:
             continue
+
         ai = pub.get("abstract_ai") or {}
+        rel = pub.get("literature_relevance")
         out.append(
             {
                 "pmid": pmid,
                 "doi": pub.get("doi", ""),
-                "title": (pub.get("title") or "")[:400],
-                "abstract_snippet": (pub.get("abstract") or "")[:500],
+                "title": title[:400],
+                "abstract_snippet": abstract[:500],
                 "source": "literature_semantic_candidate",
                 "atlas_fit": fit,
                 "atlas_fit_score": score,
+                "literature_relevance": rel,
                 "abstract_ai": ai,
-                "abstract_reader": pub.get("abstract_reader"),
+                "abstract_reader": reader,
                 "pride_search_terms": ai.get("pride_search_terms", ""),
                 "summary_ru": ai.get("summary_ru", ""),
                 "verdict": "requires_manual_check",
                 "filter_reasons": [
-                    "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
+                    "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC "
+                    "(accession not extracted from abstract)"
                 ],
-                "human": ai.get("human_suitable", True),
+                "human": bool(ai.get("human_suitable")),
                 "tmt_detected": str(ai.get("tmt") or "") not in ("none", "unclear", ""),
                 "recommendation": "literature_manual_resolve",
             }
         )
+    out.sort(key=lambda x: float(x.get("atlas_fit_score") or 0), reverse=True)
     return out
 
 
 def _url_for_accession(acc: str) -> str:
+    acc = (acc or "").strip().upper()
     if acc.startswith("PDC"):
         return f"https://proteomic.datacommons.cancer.gov/pdc/study/{acc}"
     if acc.startswith("PXD"):
         return f"https://www.ebi.ac.uk/pride/archive/projects/{acc}"
     if acc.startswith("MSV"):
-        return f"https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task={acc}"
+        return f"https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession={acc}"
+    if acc.startswith("IPX"):
+        return f"https://www.iprox.cn/page/project.html?id={acc}"
     return ""

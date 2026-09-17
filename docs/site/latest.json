@@ -197,15 +197,38 @@
         "guidance": "Protein-level table: Protein.txt"
       },
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
-      "confidence_tier": "A",
-      "confidence_css": "tier-a",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
       "confidence_evidence": [
-        "Protein quant table confirmed",
-        "TMT 10",
-        "design: healthy_only"
+        "non-cancer / off-atlas disease cohort"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Quantitative proteomic analysis of undiluted human vitreous biopsies collected at the time of primary surgical repair of rhegmatogenous retinal detachment (RRD), comparing patients who later developed proliferative vitreoretinopathy (PVR; n=8) with matched RRD controls who did not (n=8). Vitreous samples were processed by S-Trap digestion, labeled with TMT 10-plex reagents, and analyzed by LC–MS/MS on a Thermo Q Exactive instrument (two TMT 10-plex sets, two LC-MS/MS injection replicates per set; four .raw files total). Identification and quantitation were performed using Mascot followed by the proteoQ R pipeline. The dataset comprises 879 quantified proteins after stringent contaminant filtering. The deposition is intended as a methodologically transparent reference dataset of the baselin",
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "exclusion_engine",
+            "score": null,
+            "is_actionable": true,
+            "reason": "off_atlas_disease",
+            "detail": "non-cancer / off-atlas disease cohort"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "non-cancer / off-atlas disease cohort"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Exclude",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000495",
@@ -305,7 +328,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Other · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000498",
@@ -405,7 +455,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000606",
@@ -505,7 +582,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 16",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     }
   ],
   "candidates": [
@@ -585,15 +689,38 @@
         "guidance": "Protein-level table: Protein.txt"
       },
       "finding_note": "Keywords from title: vitreous, retinal, proteome · Material type: human clinical samples · Design: healthy-only · Download: Protein.txt (protein-level table)",
-      "confidence_tier": "A",
-      "confidence_css": "tier-a",
+      "confidence_tier": "D",
+      "confidence_css": "tier-d",
       "confidence_evidence": [
-        "Protein quant table confirmed",
-        "TMT 10",
-        "design: healthy_only"
+        "non-cancer / off-atlas disease cohort"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD077831",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Quantitative proteomic analysis of undiluted human vitreous biopsies collected at the time of primary surgical repair of rhegmatogenous retinal detachment (RRD), comparing patients who later developed proliferative vitreoretinopathy (PVR; n=8) with matched RRD controls who did not (n=8). Vitreous samples were processed by S-Trap digestion, labeled with TMT 10-plex reagents, and analyzed by LC–MS/MS on a Thermo Q Exactive instrument (two TMT 10-plex sets, two LC-MS/MS injection replicates per set; four .raw files total). Identification and quantitation were performed using Mascot followed by the proteoQ R pipeline. The dataset comprises 879 quantified proteins after stringent contaminant filtering. The deposition is intended as a methodologically transparent reference dataset of the baselin",
+      "evaluation": {
+        "final_verdict": "Exclude",
+        "confidence": "D",
+        "evidence_chain": [
+          {
+            "source": "exclusion_engine",
+            "score": null,
+            "is_actionable": true,
+            "reason": "off_atlas_disease",
+            "detail": "non-cancer / off-atlas disease cohort"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-d",
+        "confidence_bullets": [
+          "non-cancer / off-atlas disease cohort"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Exclude",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000495",
@@ -693,7 +820,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000495",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Other · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000498",
@@ -793,7 +947,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000498",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Gliomas;Other;Pediatric/AYA Brain Tumors · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 11",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     },
     {
       "accession": "PDC000606",
@@ -893,7 +1074,34 @@
         "design: cancer_only"
       ],
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000606",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Epithelial Neoplasms, NOS;Not Applicable;Other · Proteome",
+      "evaluation": {
+        "final_verdict": "Candidate",
+        "confidence": "A",
+        "evidence_chain": [
+          {
+            "source": "similarity_scorer",
+            "score": 0.0,
+            "is_actionable": false,
+            "reason": null,
+            "detail": "no catalog similarity hits"
+          }
+        ],
+        "requires_manual_review": false,
+        "confidence_css": "tier-a",
+        "confidence_bullets": [
+          "Protein quant table confirmed",
+          "TMT 16",
+          "design: cancer_only"
+        ],
+        "display_fit_label": ""
+      },
+      "ui_verdict": "Candidate",
+      "requires_manual_review": false
     }
   ],
   "manual_check": [
@@ -969,7 +1177,11 @@
       },
       "finding_note": "Keywords from title: proteome · Material type: PDC clinical tumor cohort · Download: AP4C_v2_QEHFX3_AP4C-APT_8_02-2.raw (quant table)",
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000757",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Ductal and Lobular Neoplasms;Not Reported · Proteome"
     },
     {
       "accession": "PDC000430",
@@ -1043,7 +1255,11 @@
       },
       "finding_note": "Material type: PDC clinical tumor cohort · Download: BL20161130_BI_FM_Medullo_KAc_Plex01_Fxn3.raw (quant table)",
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000430",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "Other;Pediatric/AYA Brain Tumors · Acetylome"
     },
     {
       "accession": "MSV000102463",
@@ -1104,7 +1320,11 @@
       },
       "finding_note": "Keywords from title: CSF · Material type: patient plasma/serum/blood/CSF · No files in API — check Data availability / paper Supplementary",
       "abstract_ai": {},
-      "atlas_fit_score": null
+      "atlas_fit_score": null,
+      "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=MSV000102463",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
+      "article_description": "This dataset contains TMT10 quantitative tandem mass spectrometry data from depleted neonatal cerebrospinal fluid samples, including hydrocephalus cases and controls. Samples were multiplexed using TMT channels with reference-pool channels included across runs. The original search parameters used Homo sapiens taxonomy, SwissProt plus cRAP contaminant FASTA databases, Trypsin/P digestion with up to 4 missed cleavages, 20 ppm precursor mass tolerance, 0.02 Da fragment mass tolerance, fixed carbamidomethylation of cysteine, fixed TMT labeling of peptide N-termini and lysine residues, and variable oxidation of methionine, protein N-terminal acetylation, asparagine deamidation, and N-terminal glutamine to pyroglutamate conversion. The submitted files include original Thermo RAW files, MGF peak"
     },
     {
       "pmid": "42573022",
@@ -1165,7 +1385,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42573022/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42573022",
+      "article_description": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and c",
+      "description": "Breast cancer remains a leading cause of cancer-related morbidity and mortality among women worldwide. Despite major progress in genomic classification, molecular pathology, and targeted therapy, the identification of clinically reliable proteomics-derived biomarkers for early detection, prognostic stratification, treatment response prediction, and longitudinal monitoring remains an unresolved translational challenge. Recent studies have applied proteomic profiling to breast cancer tissues and c"
     },
     {
       "pmid": "42439869",
@@ -1226,7 +1451,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42439869/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42439869",
+      "article_description": "Glycosylation is one of the most structurally diverse and biologically consequential co- and post-translational modifications, yet its analytical characterisation remains challenging due to extensive isomerism, microheterogeneity, branching structure and the presence of labile residues. Among the available analytical platforms, capillary electrophoresis (CE), particularly when coupled to mass spectrometry (CE-MS), offers exceptional separation efficiency at nanolitre sample loadings and can reso",
+      "description": "Glycosylation is one of the most structurally diverse and biologically consequential co- and post-translational modifications, yet its analytical characterisation remains challenging due to extensive isomerism, microheterogeneity, branching structure and the presence of labile residues. Among the available analytical platforms, capillary electrophoresis (CE), particularly when coupled to mass spectrometry (CE-MS), offers exceptional separation efficiency at nanolitre sample loadings and can reso"
     },
     {
       "pmid": "42310533",
@@ -1287,7 +1517,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · LLM material: plasma · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42310533/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42310533",
+      "article_description": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers",
+      "description": "<h4>Background</h4>Earlier detection is strongly associated with increased survival for women with ovarian cancer. Unfortunately, current screening strategies, employing serial serum or ultrasound assessments, lack adequate sensitivity and specificity for use in the low-prevalence general population. In contrast, screening for cervical cancer by Pap tests has been routinely performed for over 50 years. Since ovarian cancer cells have been observed in Pap tests, ovarian cancer protein biomarkers"
     },
     {
       "pmid": "42499581",
@@ -1349,7 +1584,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42499581/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42499581",
+      "article_description": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al",
+      "description": "Type I collagen is the most abundant form of collagen and forms the organic component of bone. Pathogenic variants in genes encoding its constituent polypeptide chains, <i>COL1A1</i> and <i>COL1A2</i>, can result in autosomal dominant osteogenesis imperfecta and other connective tissue disorders. Although osteogenesis imperfecta is clinically well-described, the molecular basis of clinical heterogeneity among patients is not well understood. We undertook a global proteomic approach to uncover al"
     },
     {
       "pmid": "41622683",
@@ -1408,7 +1648,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41622683/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/41622683",
+      "article_description": "Isobaric labeling is widely used in quantitative proteomics for its multiplexing capabilities, but scaling beyond current limits remains a challenge. Here, we introduce UltraPlex-TMT, a streamlined and scalable workflow that integrates orthogonal protease digestion with hyperplex TMT/TMTpro labeling to effectively double sample throughput. UltraPlex-TMT can be readily implemented without custom chemistry or instrumentation. We benchmarked UltraPlex-TMT using lysine- and arginine-specific proteas",
+      "description": "Isobaric labeling is widely used in quantitative proteomics for its multiplexing capabilities, but scaling beyond current limits remains a challenge. Here, we introduce UltraPlex-TMT, a streamlined and scalable workflow that integrates orthogonal protease digestion with hyperplex TMT/TMTpro labeling to effectively double sample throughput. UltraPlex-TMT can be readily implemented without custom chemistry or instrumentation. We benchmarked UltraPlex-TMT using lysine- and arginine-specific proteas"
     },
     {
       "pmid": "41851243",
@@ -1469,7 +1714,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41851243/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/41851243",
+      "article_description": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and",
+      "description": "Glaucoma trabecular meshwork (GTM) cells cultured in vitro retain many characteristics of their in situ phenotype. Here, we used isobaric tandem mass tags (TMTpro) to label peptides from glaucomatous and non-glaucomatous TM (NTM) cells to identify differentially regulated proteins. Confluent NTM (n = 5) and GTM (n = 5) cells were lysed, proteins were trypsin digested, and peptides were labeled with 18-plex TMTpro. TMT-labeled peptides were fractionated on an Orbitrap Fusion mass spectrometer and"
     },
     {
       "pmid": "42056117",
@@ -1531,7 +1781,12 @@
       },
       "finding_note": "Keywords from title: CSF · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42056117/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42056117",
+      "article_description": "Mass spectrometry-based proteomic profiling of cerebrospinal fluid (CSF) in large patient cohorts, particularly among childhood cancer survivors, remains scarce, limiting opportunities for benchmarking, method development, and validation. Here, we present a longitudinal CSF proteomics dataset from survivors of childhood acute lymphoblastic leukemia (ALL). Samples were collected from 178 patients enrolled in the TOTXVI therapeutic protocol at two timepoints: diagnosis (pre-treatment) and during t",
+      "description": "Mass spectrometry-based proteomic profiling of cerebrospinal fluid (CSF) in large patient cohorts, particularly among childhood cancer survivors, remains scarce, limiting opportunities for benchmarking, method development, and validation. Here, we present a longitudinal CSF proteomics dataset from survivors of childhood acute lymphoblastic leukemia (ALL). Samples were collected from 178 patients enrolled in the TOTXVI therapeutic protocol at two timepoints: diagnosis (pre-treatment) and during t"
     },
     {
       "pmid": "42643821",
@@ -1590,7 +1845,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42643821/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42643821",
+      "article_description": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote",
+      "description": "Hydroxy-α-sanshool (HAS), a bioactive alkylamide from Sichuan peppercorns, is known for its antioxidant and neurosensory properties, yet the molecular mechanism underlying its skin-protective effects remains unclear. Herein, we report that HAS alleviates RSL-3-induced ferroptosis in human keratinocytes by restoring cell viability and reducing reactive oxygen species, lipid peroxidation, and iron accumulation. To elucidate the molecular mechanisms, a tandem mass tag (TMT)-based quantitative prote"
     },
     {
       "pmid": "42051158",
@@ -1652,7 +1912,12 @@
       },
       "finding_note": "Keywords from title: urine · No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42051158/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42051158",
+      "article_description": "Dravet syndrome (DS) is a rare and severe childhood-onset developmental epileptic encephalopathy caused primarily by mutations in the sodium channel gene SCN1A. Animal models have undeniably advanced our understanding of DS, but they still do not fully capture its clinical heterogeneity, highlighting the need for complementary human in vitro systems. Here, we generated induced pluripotent stem cells (iPSCs) from urine epithelial cells of three DS patients carrying distinct SCN1A variants and dif",
+      "description": "Dravet syndrome (DS) is a rare and severe childhood-onset developmental epileptic encephalopathy caused primarily by mutations in the sodium channel gene SCN1A. Animal models have undeniably advanced our understanding of DS, but they still do not fully capture its clinical heterogeneity, highlighting the need for complementary human in vitro systems. Here, we generated induced pluripotent stem cells (iPSCs) from urine epithelial cells of three DS patients carrying distinct SCN1A variants and dif"
     },
     {
       "pmid": "41966223",
@@ -1714,7 +1979,12 @@
       },
       "finding_note": "Keywords from title: tumor tissue · No files in API — check Data availability / paper Supplementary · LLM material: tumor tissue · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41966223/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/41966223",
+      "article_description": "Colorectal cancer (CRC) remains a leading cause of cancer-related mortality worldwide. Stage II CRC poses a clinical challenge due to its heterogeneous outcomes, with 15-20% of patients experiencing recurrence. Current prognostic models based on clinicopathologic features lack sufficient precision, highlighting the need for new molecular markers. In this study, we employed an integrative TMT-based proteomics strategy to identify biomarkers of recurrence in stage II CRC. We analyzed paired formal",
+      "description": "Colorectal cancer (CRC) remains a leading cause of cancer-related mortality worldwide. Stage II CRC poses a clinical challenge due to its heterogeneous outcomes, with 15-20% of patients experiencing recurrence. Current prognostic models based on clinicopathologic features lack sufficient precision, highlighting the need for new molecular markers. In this study, we employed an integrative TMT-based proteomics strategy to identify biomarkers of recurrence in stage II CRC. We analyzed paired formal"
     },
     {
       "pmid": "42702608",
@@ -1773,7 +2043,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42702608/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42702608",
+      "article_description": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o",
+      "description": "RNA modifications regulate RNA stability, translation, stress responses, and disease processes, yet their function remains poorly understood due to technical limitations in sequence analysis. Here, we present an RNA-specific isobaric tandem mass tagging (RMT) platform for omic-scale quantitative mapping of RNA modifications. The platform combines RNA-specific tags adapted from proteomics with an end-to-end workflow spanning sample preparation through data processing. Validation using synthetic o"
     },
     {
       "pmid": "42204619",
@@ -1834,7 +2109,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42204619/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/42204619",
+      "article_description": "<h4>Background</h4>It is generally considered that eukaryotic translation initiation prominently occurs from the first AUG codon by ribosomal scanning from the 5-cap end of each mRNA. In order to identify cryptic internal translation initiation sites defined by alternative AUG codons on a proteome-wide scale, we generate a customized amino acid sequence database which contain differential AUG-guided tryptic peptide fragments computationally predicted from well-curated Swiss-Prot human protein re",
+      "description": "<h4>Background</h4>It is generally considered that eukaryotic translation initiation prominently occurs from the first AUG codon by ribosomal scanning from the 5-cap end of each mRNA. In order to identify cryptic internal translation initiation sites defined by alternative AUG codons on a proteome-wide scale, we generate a customized amino acid sequence database which contain differential AUG-guided tryptic peptide fragments computationally predicted from well-curated Swiss-Prot human protein re"
     },
     {
       "pmid": "41301916",
@@ -1893,7 +2173,12 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Atlas fit: maybe",
       "qc_reasons": [],
-      "processing_tips": []
+      "processing_tips": [],
+      "repository_url": "",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41301916/",
+      "europe_pmc_url": "https://europepmc.org/article/MED/41301916",
+      "article_description": "Lysine methylation is a regulatory post-translational modification with diverse roles across both histone and non-histone proteins. Despite its biological relevance, comprehensive characterization of lysine methylation remains analytically challenging due to its low stoichiometry, subtle mass changes, and the absence of standardized, robust enrichment strategies. Mass spectrometry (MS) has become the cornerstone of methylation analysis, supporting both targeted and proteome-wide investigations.",
+      "description": "Lysine methylation is a regulatory post-translational modification with diverse roles across both histone and non-histone proteins. Despite its biological relevance, comprehensive characterization of lysine methylation remains analytically challenging due to its low stoichiometry, subtle mass changes, and the absence of standardized, robust enrichment strategies. Mass spectrometry (MS) has become the cornerstone of methylation analysis, supporting both targeted and proteome-wide investigations."
     }
   ],
   "rejected_material": [],

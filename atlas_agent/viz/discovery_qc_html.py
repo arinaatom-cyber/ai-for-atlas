@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import html
+import re
 from pathlib import Path
 
-from atlas_agent.viz.portal_index import format_finding_note
+from atlas_agent.viz.discovery_table_shared import _first_accession, _id_cell, _title_cell
+from atlas_agent.viz.portal_index import article_description, format_finding_note, pubmed_url, repository_url, resolve_publication_links
 from atlas_agent.viz.site_sanitize import translate_legacy_text
 from atlas_agent.viz.site_components import kpi_grid, meta_time, note_rules, page_hero, section_head
 from atlas_agent.viz.i18n_defaults import BRAND_NAME
@@ -30,8 +32,13 @@ def _ai_cell(it: dict) -> str:
 def _rows(items: list[dict]) -> str:
     out = []
     for it in items:
-        acc = html.escape(it.get("project_accession") or it.get("accession") or "—")
-        title = html.escape((it.get("title") or "")[:120])
+        resolve_publication_links(it, fetch_pride_pmid=False)
+        acc = _first_accession(it) or str(it.get("project_accession") or it.get("accession") or "").strip()
+        repo = it.get("repository_url") or it.get("url") or repository_url(acc)
+        pmid = re.sub(r"\D", "", str(it.get("pmid") or ""))
+        title = (it.get("title") or "").strip()
+        desc = article_description(it)
+        pub = it.get("pubmed_url") or pubmed_url(pmid)
         note = it.get("finding_note") or format_finding_note(it)
         if not note:
             raw = (it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]
@@ -47,8 +54,9 @@ def _rows(items: list[dict]) -> str:
         if da.get("quant_files"):
             da_col += "<br/><span class='muted'>" + html.escape(da["quant_files"][0][:60]) + "</span>"
         out.append(
-            f"<tr><td class='cell-mono'><b>{acc}</b></td><td class='cell-title'>{title}</td>"
-            f"<td>{plex}</td><td>{inc}</td><td>{exc}</td>"
+            f"<tr><td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td>{html.escape(str(plex))}</td><td>{inc}</td><td>{exc}</td>"
             f"<td class='analysis-cell'>{ai_col}</td><td>{da_col}</td><td>{reasons}</td></tr>"
         )
     return "\n".join(out) or '<tr><td colspan="8" data-i18n="no_rows"></td></tr>'
@@ -135,8 +143,8 @@ def qc_markdown_summary(report: dict) -> str:
         f"- **Rejected (material):** {s.get('rejected_material', 0)}",
         f"- **Filtered (technical):** {s.get('filtered_out', 0)}",
         "",
-        "Правила: Homo sapiens; tumor/adjacent/plasma/blood/human cancer cell lines; "
-        "исключить spheroids/organoids-only, PDX-only, xenograft-only, animal tissue.",
+        "Правила: Homo sapiens; ткани (tumor/adjacent/human tissue) или human cancer cell lines; "
+        "исключить plasma/serum-only, spheroids/organoids-only, PDX-only, xenograft-only, animal tissue.",
         "",
     ]
     for label, key in (

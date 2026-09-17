@@ -12,7 +12,7 @@ from atlas_agent.sources.github_client import parse_repo_url
 from atlas_agent.sources.projects_table import primary_project_id
 
 ATLAS_MAP_BASE = "https://arinaatom-cyber.github.io/TMT/"
-STREAMLIT_ATLAS_URL = "https://human-cancser-tmt-proteome-atlas.streamlit.app/#human-proteome-atlas"
+STREAMLIT_ATLAS_URL = "https://human-cancser-tmt-proteome-atlas.streamlit.app/"
 DISCOVERY_SITE = "https://arinaatom-cyber.github.io/ai-for-atlas/site/discovery.html"
 PORTAL_SITE = "https://arinaatom-cyber.github.io/ai-for-atlas/"
 
@@ -225,11 +225,46 @@ def _resolve_pmid_from_literature(item: dict) -> str:
     return ""
 
 
+def article_description(item: dict) -> str:
+    """Short article / project description for tables and JSON."""
+    for key in (
+        "article_description",
+        "description_en",
+        "description",
+        "abstract_snippet",
+        "abstract",
+        "projectDescription",
+        "finding_note",
+    ):
+        val = str(item.get(key) or "").strip()
+        if val and val.lower() not in ("nan", "none", "—"):
+            return val
+    ai = item.get("abstract_ai") or {}
+    for key in ("summary_en", "summary_ru"):
+        val = str(ai.get(key) or item.get(key) or "").strip()
+        if val:
+            return val
+    return ""
+
+
+def _pmid_from_text(*parts: object) -> str:
+    blob = " ".join(str(p or "") for p in parts)
+    m = re.search(r"\b(?:PMID[:\s]*)?(\d{7,9})\b", blob, re.I)
+    return m.group(1) if m else ""
+
+
 def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> None:
-    """Set repository_url, pubmed_url, pmid on discovery items (in-place)."""
+    """Set repository_url, pubmed_url, pmid, description on discovery items (in-place)."""
     acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
     item["repository_url"] = item.get("repository_url") or item.get("url") or repository_url(acc)
     pmid = _clean_pmid(item.get("pmid"))
+    if not pmid:
+        pmid = _pmid_from_text(
+            item.get("description"),
+            item.get("abstract"),
+            item.get("abstract_snippet"),
+            item.get("title"),
+        )
     if not pmid and fetch_pride_pmid and acc.startswith("PXD"):
         try:
             from atlas_agent.sources.pride import fetch_project
@@ -239,13 +274,25 @@ def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> N
                 pmid = _clean_pmid(ref.get("pubmedID"))
                 if pmid:
                     break
+            if not item.get("description"):
+                desc = str(detail.get("projectDescription") or "").strip()
+                if desc:
+                    item["description"] = desc[:800]
+            if not item.get("title"):
+                item["title"] = str(detail.get("title") or "")[:500]
         except Exception:
             pass
-    if not pmid:
+    if not pmid and fetch_pride_pmid:
         pmid = _resolve_pmid_from_literature(item)
-        if pmid:
-            item["pmid"] = pmid
-    item["pubmed_url"] = pubmed_url(item.get("pmid"))
+    if pmid:
+        item["pmid"] = pmid
+    item["pubmed_url"] = pubmed_url(pmid)
+    item["europe_pmc_url"] = europe_pmc_url(pmid)
+    desc = article_description(item)
+    if desc:
+        item["article_description"] = desc
+        if not str(item.get("description") or "").strip():
+            item["description"] = desc[:800]
     if item.get("pmid") and not item.get("doi"):
         item.setdefault("doi", "")
 

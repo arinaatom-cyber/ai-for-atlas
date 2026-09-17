@@ -1,0 +1,29 @@
+# Capability-based LLM routing — business logic reads trust, not model filenames.
+default_evaluator: local
+
+evaluators:
+  cloud:
+    implementation: cloud
+    trust: high
+  medium:
+    implementation: medium
+    trust: medium
+  local:
+    implementation: local
+    trust: low
+  rules:
+    implementation: rules
+    trust: rules
+
+# Map resolve_engine() provider id → evaluator key (prefix match for gpt4all:* / ollama:*)
+providers:
+  claude: cloud
+  zai: cloud
+  qwen: cloud
+  openai: cloud
+  anthropic: cloud
+  ollama: medium
+  gpt4all: local
+  regex: rules
+  regex_no_abstract: rules
+  local_rules: rules
