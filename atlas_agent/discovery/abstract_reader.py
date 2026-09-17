@@ -46,6 +46,10 @@ Task:
 6) Reject non-cancer disease cohorts (glaucoma, retinal detachment, cardiomyopathy, congenital metabolic, hydrocephalus) unless the study is a human cancer proteome.
 7) Reject mouse/rat/chicken and mixed human+animal studies. Recombinant human protein in an animal model is not human.
 8) Reject plasma/serum/urine/blood-only studies — atlas needs tissue or cell line.
+9) FFPE tumor tissue is acceptable — do not reject FFPE when cancer/tumor/biopsy tissue is described.
+10) Disease controls (e.g. patients without complication vs with complication) are NOT healthy controls — case-control disease comparisons are OK.
+11) Reject microbiome/pathogen/bacteria-only proteomics unless human tumor tissue proteomics is also present.
+12) In summary_ru use Russian words «статья», «абстракт», «проект» — never «пейсаж», «пейдж», «пакет».
 
 Return a JSON object (no markdown) with fields:
 {{

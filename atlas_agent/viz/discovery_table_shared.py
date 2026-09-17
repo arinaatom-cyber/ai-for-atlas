@@ -15,6 +15,8 @@ from atlas_agent.discovery.fit_rules import (
     literature_verdict,
     project_verdict,
 )
+from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
+from atlas_agent.viz.display_format import format_design_label, format_metadata_part, sentence_cap
 from atlas_agent.viz.portal_index import (
     article_description,
     europe_pmc_url,
@@ -235,7 +237,7 @@ def _item_summaries(item: dict, pubs_by_pmid: dict[str, dict]) -> tuple[str, str
     if _is_cohort_item(item):
         en = str(item.get("abstract_snippet") or item.get("abstract") or item.get("description_en") or "")
         ru = str(item.get("description_ru") or "")
-        return en.strip(), ru.strip()
+        return sanitize_summary(en.strip()), sanitize_summary(ru.strip())
     en = str(
         (pub or {}).get("summary_en")
         or ai.get("summary_en")
@@ -436,7 +438,7 @@ def _disease_cell(item: dict) -> str:
         d = str((item.get("abstract_ai") or {}).get("disease") or "").strip()
     if not d:
         return '<span class="cell-empty">—</span>'
-    parts = [_esc(x.strip()) for x in re.split(r"[;/|]", d) if x.strip()]
+    parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", d) if x.strip()]
     return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
 
 
@@ -446,7 +448,7 @@ def _organ_cell(item: dict) -> str:
         o = str((item.get("abstract_ai") or {}).get("organ") or "").strip()
     if not o:
         return '<span class="cell-empty">—</span>'
-    parts = [_esc(x.strip()) for x in re.split(r"[;/|]", o) if x.strip()]
+    parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", o) if x.strip()]
     return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
 
 
@@ -464,7 +466,7 @@ def _tmt_plex_unspecified(item: dict) -> bool:
 
 
 def _design_cell(item: dict) -> str:
-    design = _esc(str(item.get("sample_design") or "—").replace("_", "-"))
+    design = _esc(format_design_label(item.get("sample_design") or "—"))
     bits = [f'<span class="cell-design-label">{design}</span>']
     label = str(item.get("tmt_label") or "").strip()
     if label:
@@ -482,7 +484,7 @@ def _abstract_cell(item: dict) -> str:
         or (item.get("abstract_ai") or {}).get("summary_ru")
         or ""
     )
-    snip = re.sub(r"\s+", " ", str(snip).strip())
+    snip = sentence_cap(re.sub(r"\s+", " ", str(snip).strip()))
     if not snip:
         return '<span class="cell-empty">—</span>'
     return f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:220])}</p>'
@@ -578,8 +580,6 @@ def _source_link_cell(it: dict, *, acc: str = "", pmid: str = "") -> str:
 
 
 def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
-    pmid = re.sub(r"\D", "", str(pmid or ""))
-    pmid_html = pubmed_link(pmid, label=f"PMID {pmid}") if pmid else ""
     if acc:
         kind = source_label({"accession": acc})
         acc_esc = _esc(acc)
@@ -594,18 +594,11 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
             f"{repo_link}"
             f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
         )
-        extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
-        return f'<div class="cell-stack id-cell">{body}{extra}</div>'
-    pub = pubmed_url(pmid) if pmid else ""
+        return f'<div class="cell-stack id-cell">{body}</div>'
     no_acc = '<span class="id-no-acc" data-i18n="no_accession"></span>'
-    if pub:
-        no_acc = (
-            f'<a href="{_esc(pub)}" target="_blank" rel="noopener" class="id-no-acc" data-i18n="no_accession"></a>'
-        )
-    extra = f'<div class="pmid-row">{pmid_html}</div>' if pmid_html else ""
     return (
         f'<div class="cell-stack id-cell">'
-        f'<span class="cell-label" data-i18n="badge_paper"></span>{no_acc}{extra}</div>'
+        f'<span class="cell-label" data-i18n="badge_paper"></span>{no_acc}</div>'
     )
 
 
@@ -615,20 +608,22 @@ def _title_cell(
     repo: str,
     *,
     description: str = "",
-    pmid: str = "",
+    acc: str = "",
 ) -> str:
-    title_esc = _esc(title[:180] or "—")
-    if pub_url:
-        head = f'<a href="{_esc(pub_url)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
+    title_esc = _esc(sentence_cap(title[:180] or "—"))
+    href = ""
+    if repo and acc and _is_repo_accession(acc):
+        href = repo
+    elif pub_url:
+        href = pub_url
+    if href:
+        head = f'<a href="{_esc(href)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
     else:
         head = f'<span class="cell-title">{title_esc}</span>'
     bits = [head]
     desc = (description or "").strip()
     if desc:
-        bits.append(f'<p class="cell-desc">{_esc(desc[:320])}</p>')
-    pmid = re.sub(r"\D", "", str(pmid or ""))
-    if pmid:
-        bits.append(f'<div class="pmid-row">{pubmed_link(pmid, label=f"PMID {pmid}")}</div>')
+        bits.append(f'<p class="cell-desc">{_esc(sentence_cap(desc[:320]))}</p>')
     return f'<div class="cell-stack cell-title-block">{"".join(bits)}</div>'
 
 
@@ -732,7 +727,7 @@ def build_unified_discovery_rows(
             f"<td class='col-type'>{_type_badge('project')}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc)}</td>"
             f"<td class='col-disease'>{_disease_cell(it)}</td>"
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=raw_acc)}</td>"
@@ -798,7 +793,7 @@ def build_unified_discovery_rows(
             f"<td class='col-type'>{_type_badge(kind)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc)}</td>"
             f"<td class='col-disease'>{_disease_cell(it)}</td>"
             f"<td class='col-organ'>{_organ_cell(it)}</td>"
             f"<td class='col-src col-split'>{_source_link_cell(it, acc=acc, pmid=pmid)}</td>"

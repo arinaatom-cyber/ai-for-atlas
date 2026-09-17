@@ -5,6 +5,16 @@ import re
 from typing import Any
 
 from atlas_agent.discovery.fit_rules import is_cohort_excluded
+
+ONCOLOGY_COHORT = re.compile(
+    r"\b(cancer|carcinoma|tumor|tumour|oncolog|leukemia|lymphoma|glioma|melanoma|"
+    r"sarcoma|myeloma|neoplasms?|carcinomas?|adenocarcinoma)\b",
+    re.I,
+)
+
+
+def is_oncology_cohort(title: str, abstract: str = "") -> bool:
+    return bool(ONCOLOGY_COHORT.search(f"{title or ''} {abstract or ''}"))
 from atlas_agent.revisor.literature_watch import search_new_publications
 
 PATIENT_N_PATTERNS = [
@@ -258,7 +268,11 @@ def search_cohort_literature(
     mined = [mine_publication(p) for p in raw]
     kept: list[dict[str, Any]] = []
     for item in mined:
-        if is_cohort_excluded(str(item.get("title") or ""), str(item.get("abstract") or "")):
+        title = str(item.get("title") or "")
+        abstract = str(item.get("abstract") or "")
+        if is_cohort_excluded(title, abstract):
+            continue
+        if not is_oncology_cohort(title, abstract):
             continue
         n = item.get("patient_n") or 0
         score = item.get("cohort_score") or 0

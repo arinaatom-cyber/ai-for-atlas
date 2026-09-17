@@ -59,3 +59,33 @@ patterns:
     reason: off_atlas_disease
     detail: non-cancer / off-atlas disease cohort
     unless_pattern: '\b(cancer|carcinoma|tumor|tumour|glioma|melanoma|leukemia|lymphoma)\b'
+
+  - pattern: '\b(co[- ]?immunoprecipit\w*|interactome|pull[- ]?down\s+proteom|affinity[- ]?purification|\bip[- ]?ms\b)\b'
+    reason: methodology_review
+    detail: Co-IP / interactome enrichment — need global proteome
+    unless_pattern: '\b(global\s+proteome|protein[- ]?level|protein\s+group|proteome\s+analysis)\b'
+
+  - pattern: '\b(microbiome|microbiota|klebsiella|bacterial proteome|pathogen proteome|gut\s+microbiome)\b'
+    reason: off_atlas_disease
+    detail: microbiome / pathogen focus — need human tumor tissue proteomics
+    unless_pattern: '\b(tumor tissue|ffpe|biopsy|patient tissue|human tissue proteom|colorectal|carcinoma)\b'
+
+  - pattern: '\b(type\s*[12]\s*diabetes|diabetes\s+mellitus|diabetic\s+nephropathy|diabetic\s+kidney|diabetic\s+kidney\s+disease)\b'
+    reason: off_atlas_disease
+    detail: diabetes — not cancer-associated proteome atlas
+    unless_pattern: '\b(cancer|carcinoma|tumor|tumour|oncolog|glioma|melanoma|leukemia|lymphoma)\b'
+
+  - pattern: '\b(sepsis|septic\s+shock|bacteremia|septicemia)\b'
+    reason: off_atlas_disease
+    detail: sepsis / critical infection — not cancer atlas cohort
+    unless_pattern: '\b(cancer|carcinoma|tumor|tumour|oncolog)\b'
+
+  - pattern: '\b(monkeypox|mpox|\bmpx\b|hiv\s+infection|\baids\b)\b'
+    reason: off_atlas_disease
+    detail: infectious disease — not cancer proteome atlas
+    unless_pattern: '\b(cancer|carcinoma|tumor|tumour|oncolog|kaposi|lymphoma)\b'
+
+  - pattern: '\b(hemodialysis|dialysis\s+patients?|chronic\s+kidney\s+disease|\bckd\b)\b'
+    reason: off_atlas_disease
+    detail: dialysis / CKD cohort — not tumor tissue atlas
+    unless_pattern: '\b(cancer|carcinoma|tumor|tumour|oncolog|renal\s+cell|rcc|glioma)\b'

@@ -62,3 +62,17 @@ def test_combined_proteome_phospho_rejected():
         "Integrated proteome and phosphoproteome analyses TMT 10-plex",
     )
     assert reasons
+
+
+def test_tmt_plex_unspecified_goes_manual_not_filtered():
+    item = {
+        "title": "Human cancer TMT proteomics",
+        "accession": "PXD099999",
+        "source": "pride_api",
+        "human": True,
+        "tmt_detected": True,
+        "description": "Quantitative proteomics of tumor tissue from patients",
+    }
+    out = classify_candidate(item, {"pmids": set(), "accessions": set()}, cfg=default_filter_config())
+    assert out["verdict"] == "requires_manual_check"
+    assert "tmt_plex_unspecified" in out["filter_reasons"]

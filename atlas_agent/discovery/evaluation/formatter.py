@@ -6,6 +6,7 @@ import logging
 from typing import Literal
 
 from atlas_agent.discovery.evaluation.schemas import EvaluationEvidence, ProjectEvaluation
+from atlas_agent.viz.display_format import format_bullet_text, sentence_cap
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +38,8 @@ class AnalysisFormatter:
         return lines
 
     def _summary_blocks(self, summary: str, summary_ru: str = "") -> str:
-        en = summary.strip()[: self._max_summary]
-        ru = summary_ru.strip()[: self._max_summary]
+        en = sentence_cap(summary.strip()[: self._max_summary])
+        ru = sentence_cap(summary_ru.strip()[: self._max_summary])
         if not en and not ru:
             return ""
         parts: list[str] = []
@@ -82,7 +83,7 @@ class AnalysisFormatter:
                 if not key or key in seen:
                     continue
                 seen.add(key)
-                unique.append(b)
+                unique.append(format_bullet_text(b))
             if unique:
                 note_items = "".join(f"<li>{self._esc(b[: self._max_bullet])}</li>" for b in unique)
                 blocks.append(f'<ul class="cell-bullets">{note_items}</ul>')

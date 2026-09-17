@@ -180,9 +180,33 @@ def _technical_panel(report: dict) -> str:
 </section>"""
 
 
+def _project_accession_key(item: dict) -> str:
+    return str(item.get("accession") or item.get("project_accession") or "").strip().upper()
+
+
+def _merge_discovery_projects(report: dict) -> list[dict]:
+    """Candidates plus PRIDE/PDC rows that need manual review (not already listed)."""
+    items = list(report.get("candidates") or report.get("new_projects") or [])
+    seen = {_project_accession_key(it) for it in items if _project_accession_key(it)}
+    for it in report.get("repository_manual") or []:
+        key = _project_accession_key(it)
+        if key and key not in seen:
+            items.append(it)
+            seen.add(key)
+    return items
+
+
+def _count_candidate_verdict(projects: list[dict]) -> int:
+    from atlas_agent.discovery.fit_rules import project_verdict
+
+    return sum(1 for it in projects if project_verdict(it)[0] == "Candidate")
+
+
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
     s = report.get("summary") or {}
-    items = report.get("candidates") or report.get("new_projects") or []
+    items = _merge_discovery_projects(report)
+    candidate_kpi = _count_candidate_verdict(items)
+    rejected_kpi = int(s.get("filtered_out") or 0) + int(s.get("rejected_material") or 0)
     pubs = report.get("publications_analyzed") or []
     manual = report.get("manual_check") or []
     literature = report.get("literature_semantic") or []
@@ -200,11 +224,12 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         page_hero(
             "disc_title",
             "disc_lead",
-            meta_time(gen) + meta_pill_text(str(len(items)), css="badge-ok"),
+            meta_time(gen) + meta_pill_text(str(candidate_kpi), css="badge-ok"),
         )
         + kpi_grid(
             [
-                (str(len(items)), "kpi_new"),
+                (str(candidate_kpi), "kpi_new"),
+                (str(rejected_kpi), "kpi_rejected"),
                 (str(len(papers)), "kpi_papers_no_id"),
                 (str(len(cohorts)), "kpi_cohorts"),
             ]
@@ -214,7 +239,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
-    {note_discovery_scope(new_projects=len(items), total_rows=total_rows)}
+    {note_discovery_scope(new_projects=candidate_kpi, total_rows=total_rows)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
       <span class="toolbar-label" data-i18n="toolbar_type"></span>

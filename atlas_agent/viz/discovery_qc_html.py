@@ -65,7 +65,7 @@ def _rows(items: list[dict]) -> str:
             da_col += "<br/><span class='muted'>" + html.escape(da["quant_files"][0][:60]) + "</span>"
         out.append(
             f"<tr><td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc)}</td>"
             f"<td class='col-plex cell-mono'>{html.escape(str(plex))}</td>"
             f"<td class='col-included'>{inc}</td><td class='col-excluded'>{exc}</td>"
             f"<td class='col-analysis analysis-cell'>{ai_col}</td>"

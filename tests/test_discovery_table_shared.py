@@ -66,14 +66,14 @@ def test_source_label_massive_iprox():
     assert source_label({"accession": "PXD012345"}) == "PRIDE"
 
 
-def test_id_cell_pmid_and_repo_link():
+def test_id_cell_repo_link_without_pmid_duplicate():
     html = _id_cell(
         acc="PXD012345",
         repo="https://www.ebi.ac.uk/pride/archive/projects/PXD012345",
         pmid="38765432",
     )
     assert "PXD012345" in html
-    assert "PMID 38765432" in html
+    assert "PMID" not in html
     assert "pride/archive/projects/PXD012345" in html
     assert ">PRIDE</" in html
     assert 'class="cell-mono id-acc"' in html
@@ -91,28 +91,42 @@ def test_id_cell_pdc_blue_repo_link_once():
     assert "pdc/study/PDC000604" in html
 
 
-def test_title_cell_includes_description():
+def test_title_cell_repo_over_pubmed_for_project():
     html = _title_cell(
         "Human TMT colon proteome",
         "https://pubmed.ncbi.nlm.nih.gov/38765432/",
         "https://www.ebi.ac.uk/pride/archive/projects/PXD012345",
         description="Paired tumor and adjacent colon tissue.",
+        acc="PXD012345",
     )
     assert "cell-desc" in html
     assert "Paired tumor and adjacent colon tissue." in html
     assert "Human TMT colon proteome" in html
-    assert "pride/archive/projects/PXD012345" not in html
+    assert "pride/archive/projects/PXD012345" in html
+    assert "pubmed.ncbi.nlm.nih.gov" not in html
 
 
-def test_title_cell_no_repo_link_without_pmid():
+def test_title_cell_pubmed_link_for_paper():
+    html = _title_cell(
+        "Human TMT colon proteome",
+        "https://pubmed.ncbi.nlm.nih.gov/38765432/",
+        "",
+        description="Paired tumor and adjacent colon tissue.",
+    )
+    assert "pubmed.ncbi.nlm.nih.gov/38765432" in html
+
+
+def test_title_cell_repo_link_for_project():
     html = _title_cell(
         "CPTAC pediatric AML",
         "",
         "https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
+        acc="PDC000604",
     )
     assert "CPTAC pediatric AML" in html
-    assert "pdc/study/PDC000604" not in html
-    assert "<a " not in html
+    assert "pdc/study/PDC000604" in html
+    assert 'class="cell-title"' in html
+    assert "PMID" not in html
 
 
 def test_source_link_cell_skips_repo_duplicate():
@@ -167,7 +181,7 @@ def test_qc_rows_include_pmid_description_repo():
             }
         ]
     )
-    assert "PMID 38765432" in html
     assert "cell-desc" in html
     assert "Paired tumor and adjacent colon tissue." in html
     assert "pride/archive/projects/PXD012345" in html
+    assert "Human TMT colon proteome" in html

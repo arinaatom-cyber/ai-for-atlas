@@ -19,6 +19,9 @@ project of Proteomics.xlsx
 # Local runtime config (publish config.example.yaml only)
 config.yaml
 
+# Aging MRM tidy export (generated)
+aging_mrm/output/
+
 # Heavy generated data / scan history (not for the public code repo)
 data/discovery_history/*
 !data/discovery_history/latest.json

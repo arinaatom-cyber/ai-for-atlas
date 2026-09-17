@@ -73,6 +73,10 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
     item["filter_reasons"] = _translate_list(item.get("filter_reasons"))
     item["processing_tips"] = _translate_list(item.get("processing_tips"))
 
+    for key in ("summary_ru", "summary_en"):
+        if item.get(key):
+            item[key] = sanitize_summary(item[key])
+
     ai = item.get("abstract_ai")
     if isinstance(ai, dict):
         if ai.get("summary_en"):
@@ -96,13 +100,31 @@ def sanitize_discovery_item(item: dict[str, Any]) -> None:
 
 def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
     """Ensure all user-visible scan fields are English before HTML/JSON publish."""
-    from atlas_agent.discovery.cohort_literature import build_description_en, build_description_ru
+    from atlas_agent.discovery.cohort_literature import (
+        build_description_en,
+        build_description_ru,
+        is_oncology_cohort,
+    )
+    from atlas_agent.discovery.fit_rules import is_cohort_excluded
     from atlas_agent.viz.portal_index import format_finding_note
+
+    cohort_clean: list[dict[str, Any]] = []
+    for item in report.get("cohort_literature") or []:
+        title = str(item.get("title") or "")
+        abstract = str(item.get("abstract") or "")
+        if is_cohort_excluded(title, abstract):
+            continue
+        if not is_oncology_cohort(title, abstract):
+            continue
+        cohort_clean.append(item)
+    if report.get("cohort_literature") is not None:
+        report["cohort_literature"] = cohort_clean
 
     buckets = (
         "candidates",
         "new_projects",
         "manual_check",
+        "repository_manual",
         "rejected_material",
         "filtered_out",
         "literature_semantic",

@@ -46,8 +46,24 @@ HUMAN = re.compile(
     re.I,
 )
 HEALTHY = re.compile(
-    r"\b(healthy|normal|control|adjacent\s+normal|benign|non[- ]?smoker|"
-    r"never[- ]?smoker|wild[- ]?type\s+control)\b",
+    r"\b(healthy(?:\s+controls?|\s+subjects?|\s+volunteers?|\s+donors?)?|"
+    r"normal(?:\s+controls?|\s+subjects?|\s+donors?)?|"
+    r"adjacent\s+normal|benign|non[- ]?smoker|never[- ]?smoker|"
+    r"wild[- ]?type\s+control)\b",
+    re.I,
+)
+DISEASE_CONTROL = re.compile(
+    r"\b(matched\s+controls?|disease\s+controls?|"
+    r"controls?\s+who\s+did\s+not|without\s+complication|non[- ]?progressive|"
+    r"compared\s+(?:with|to)\s+controls?|"
+    r"patients?\s+.+\s+controls?)\b",
+    re.I,
+)
+INTERACTOME = re.compile(
+    r"\b(co[- ]?immunoprecipit\w*|interactome|"
+    r"immunoprecipit\w*(?:\s+(?:followed\s+by\s+)?mass|\s+ms)?|"
+    r"pull[- ]?down\s+proteom|affinity[- ]?purification|"
+    r"\bip[- ]?ms\b|bait\s+protein)\b",
     re.I,
 )
 REVIEW_ONLY = re.compile(
@@ -239,7 +255,9 @@ def is_confirmed_human(item: dict[str, Any], blob: str) -> bool:
 
 def _infer_sample_design(blob: str) -> str:
     blob_l = blob.lower()
-    if re.search(r"\bcase\s*[-–—]?\s*control\b|\bmatched\s+controls?\b|\bvs\.?\s+controls?\b", blob_l):
+    if re.search(r"\bcase\s*[-–—]?\s*control\b", blob_l):
+        return "case_control"
+    if DISEASE_CONTROL.search(blob):
         return "case_control"
     has_h = bool(HEALTHY.search(blob))
     has_c = bool(CANCER.search(blob))
@@ -345,17 +363,29 @@ def classify_candidate(
         tmt6 = re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob, re.I)
         if is_pride and item.get("tmt_detected") and not tmt6:
             reasons.append("tmt_plex_unspecified")
+            verdict = "requires_manual_check"
         elif plex is not None:
             reasons.append(f"TMT plex {plex} rejected (need >6 channels, min {min_ch})")
             verdict = "filtered_out"
         else:
             reasons.append(f"TMT plex unknown (need >6 channels, min {min_ch})")
-            verdict = "filtered_out"
+            if is_pride and item.get("tmt_detected") and not tmt6:
+                verdict = "requires_manual_check"
+            else:
+                verdict = "filtered_out"
 
     omics_reasons = assess_proteome_layer(item, blob, cfg=cfg)
     if omics_reasons and verdict == "recommended":
         verdict = "filtered_out"
         reasons.extend(omics_reasons)
+
+    if (
+        verdict == "recommended"
+        and INTERACTOME.search(blob)
+        and not PROTEIN_LEVEL_OMICS.search(blob)
+    ):
+        verdict = "filtered_out"
+        reasons.append("Co-IP / interactome enrichment — atlas needs global proteome, not IP-MS")
 
     design = _infer_sample_design(blob)
     allowed_designs = []
