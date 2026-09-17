@@ -265,9 +265,28 @@ def _pmid_from_text(*parts: object) -> str:
     return m.group(1) if m else ""
 
 
+_PRIDE_DETAIL_CACHE: dict[str, dict] = {}
+
+
+def _fetch_pride_project_cached(acc: str) -> dict:
+    key = acc.strip().upper()
+    if key in _PRIDE_DETAIL_CACHE:
+        return _PRIDE_DETAIL_CACHE[key]
+    try:
+        from atlas_agent.sources.pride import fetch_project
+
+        detail = fetch_project(key) or {}
+    except Exception:
+        detail = {}
+    _PRIDE_DETAIL_CACHE[key] = detail
+    return detail
+
+
 def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> None:
     """Set repository_url, pubmed_url, pmid, description on discovery items (in-place)."""
     acc = (item.get("project_accession") or item.get("accession") or "").strip().upper()
+    if acc.startswith("PMID:"):
+        acc = ""
     item["repository_url"] = item.get("repository_url") or item.get("url") or repository_url(acc)
     pmid = _clean_pmid(item.get("pmid"))
     if not pmid:
@@ -277,11 +296,11 @@ def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> N
             item.get("abstract_snippet"),
             item.get("title"),
         )
+    if not pmid and fetch_pride_pmid:
+        pmid = _resolve_pmid_from_literature(item)
     if not pmid and fetch_pride_pmid and acc.startswith("PXD"):
         try:
-            from atlas_agent.sources.pride import fetch_project
-
-            detail = fetch_project(acc) or {}
+            detail = _fetch_pride_project_cached(acc)
             for ref in detail.get("references") or []:
                 pmid = _clean_pmid(ref.get("pubmedID"))
                 if pmid:
@@ -294,8 +313,6 @@ def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> N
                 item["title"] = str(detail.get("title") or "")[:500]
         except Exception:
             pass
-    if not pmid and fetch_pride_pmid:
-        pmid = _resolve_pmid_from_literature(item)
     if pmid:
         item["pmid"] = pmid
     item["pubmed_url"] = pubmed_url(pmid)

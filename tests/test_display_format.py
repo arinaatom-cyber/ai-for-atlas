@@ -5,6 +5,8 @@ from atlas_agent.viz.display_format import (
     format_design_label,
     format_metadata_part,
     format_title,
+    infer_disease,
+    infer_organ,
     sentence_cap,
 )
 
@@ -33,3 +35,13 @@ def test_sentence_cap():
 def test_format_title():
     assert format_title("human tmt colon proteome") == "Human tmt colon proteome"
     assert format_title("tmt-based proteomics of HT-1080 cells").startswith("Tmt")
+
+
+def test_infer_disease_from_title():
+    item = {"title": "Quantitative proteomics of melanoma lymphatic fluid"}
+    assert infer_disease(item) == "Melanoma"
+
+
+def test_infer_organ_from_title():
+    item = {"title": "Brain glioma TMT proteomics cohort"}
+    assert infer_organ(item) == "Brain"

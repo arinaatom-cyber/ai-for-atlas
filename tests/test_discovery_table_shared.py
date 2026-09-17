@@ -5,11 +5,13 @@ from atlas_agent.discovery.evaluation.schemas import ItemKind
 from atlas_agent.viz.discovery_qc_html import _rows
 from atlas_agent.viz.discovery_table_shared import (
     _coerce_evaluation,
+    _enrich_literature_accession,
     _id_cell,
     _project_links,
     _render_analysis_cell,
     _similar_cell,
     _title_cell,
+    build_pmid_repo_index,
     source_label,
 )
 
@@ -127,7 +129,7 @@ def test_title_cell_skips_invalid_pmid_zero():
         acc="PXD079670",
         pmid="0",
     )
-    assert "title-links" not in html
+    assert "PXD079670" in html
     assert "PMID 0" not in html
 
 
@@ -144,6 +146,18 @@ def test_id_cell_epmc_for_paper_without_accession():
     assert 'data-i18n="link_epmc"' in html
     assert 'data-i18n="no_accession"' in html
     assert "40493991" in html
+
+
+def test_build_pmid_repo_index():
+    projects = [{"pmid": "41271007", "accession": "PXD063898"}]
+    assert build_pmid_repo_index(projects)["41271007"] == "PXD063898"
+
+
+def test_enrich_literature_accession_from_index():
+    item = {"pmid": "41271007", "title": "Melanoma vesicles"}
+    acc = _enrich_literature_accession(item, {"41271007": "PXD063898"}, resolve_remote=False)
+    assert acc == "PXD063898"
+    assert item["repository_url"]
 
 
 def test_project_links_skips_repo_when_in_id_column():

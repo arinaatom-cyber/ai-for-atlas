@@ -16,7 +16,15 @@ from atlas_agent.discovery.fit_rules import (
     project_verdict,
 )
 from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
-from atlas_agent.viz.display_format import format_design_label, format_metadata_part, format_title, sentence_cap
+from atlas_agent.viz.display_format import (
+    disease_filter_slug,
+    format_design_label,
+    format_metadata_part,
+    format_title,
+    infer_disease,
+    infer_organ,
+    sentence_cap,
+)
 from atlas_agent.viz.portal_index import (
     article_description,
     europe_pmc_url,
@@ -439,24 +447,98 @@ def _num_cell(n: int) -> str:
     return f'<td class="col-num cell-mono"><b>{n}</b></td>'
 
 
-def _disease_cell(item: dict) -> str:
-    d = str(item.get("disease") or "").strip()
-    if not d:
-        d = str((item.get("abstract_ai") or {}).get("disease") or "").strip()
+def _catalog_profile(item_ctx: dict | None) -> dict:
+    return dict(item_ctx or {})
+
+
+def _disease_text(item: dict, *, profile: dict | None = None) -> str:
+    return infer_disease(item, profile=_catalog_profile(profile))
+
+
+def _organ_text(item: dict, *, profile: dict | None = None) -> str:
+    return infer_organ(item, profile=_catalog_profile(profile))
+
+
+def _disease_cell(item: dict, *, profile: dict | None = None) -> str:
+    d = _disease_text(item, profile=profile)
     if not d:
         return '<span class="cell-empty">—</span>'
     parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", d) if x.strip()]
     return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
 
 
-def _organ_cell(item: dict) -> str:
-    o = str(item.get("primary_site") or item.get("organ") or item.get("tissue") or "").strip()
-    if not o:
-        o = str((item.get("abstract_ai") or {}).get("organ") or "").strip()
+def _organ_cell(item: dict, *, profile: dict | None = None) -> str:
+    o = _organ_text(item, profile=profile)
     if not o:
         return '<span class="cell-empty">—</span>'
     parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", o) if x.strip()]
     return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
+
+
+def _disease_filter_attr(item: dict, *, profile: dict | None = None) -> str:
+    slugs: list[str] = []
+    seen: set[str] = set()
+    for part in re.split(r"[;/|,]", _disease_text(item, profile=profile)):
+        slug = disease_filter_slug(part.strip())
+        if slug and slug not in seen:
+            seen.add(slug)
+            slugs.append(slug)
+    return " ".join(slugs)
+
+
+def build_pmid_repo_index(projects: list[dict]) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for it in projects:
+        pmid = _norm_pmid(it)
+        acc = _first_accession(it)
+        if pmid and acc:
+            out[pmid] = acc
+    return out
+
+
+def _enrich_literature_accession(
+    item: dict,
+    pmid_index: dict[str, str],
+    *,
+    resolve_remote: bool = True,
+) -> str:
+    acc = _first_accession(item)
+    if acc:
+        return acc
+    pmid = _norm_pmid(item)
+    if pmid and pmid in pmid_index:
+        acc = pmid_index[pmid]
+        item["linked_accession"] = acc
+        item["repository_url"] = repository_url(acc)
+        return acc
+    if not resolve_remote or not pmid:
+        return ""
+    try:
+        from atlas_agent.sources.dataset_resolve import resolve_accessions_from_publication
+        from atlas_agent.sources.pride import find_pride_project_by_pmid
+
+        ids = resolve_accessions_from_publication(
+            pmid=pmid,
+            doi=str(item.get("doi") or ""),
+            title=str(item.get("title") or ""),
+            abstract=str(item.get("abstract") or item.get("abstract_snippet") or ""),
+        )
+        for kind in ("PXD", "PDC", "MSV", "IPX"):
+            group = ids.get(kind) or []
+            if group:
+                acc = str(group[0]).strip().upper()
+                item["linked_accession"] = acc
+                item["repository_url"] = repository_url(acc)
+                return acc
+        rec = find_pride_project_by_pmid(pmid)
+        if rec and rec.get("accession"):
+            acc = str(rec["accession"]).strip().upper()
+            item["linked_accession"] = acc
+            item["repository_url"] = repository_url(acc)
+            return acc
+    except Exception:
+        pass
+    return ""
 
 
 def _tmt_plex_unspecified(item: dict) -> bool:
@@ -622,16 +704,27 @@ def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
     )
 
 
-def _title_inline_links(pmid: str) -> str:
-    pmid = _valid_pmid(pmid)
-    if not pmid:
+def _repo_link_chip(acc: str, repo: str) -> str:
+    if not acc or not repo or not _is_repo_accession(acc):
         return ""
-    chips = [
-        pubmed_link(pmid, label=f"PMID {pmid}"),
-        epmc_link(pmid),
-    ]
+    return (
+        f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="link-chip">'
+        f"{_esc(acc)}</a>"
+    )
+
+
+def _title_inline_links(pmid: str, *, acc: str = "", repo: str = "") -> str:
+    chips: list[str] = []
+    pmid = _valid_pmid(pmid)
+    if pmid:
+        chips.extend([pubmed_link(pmid, label=f"PMID {pmid}"), epmc_link(pmid)])
+    repo_chip = _repo_link_chip(acc, repo)
+    if repo_chip:
+        chips.append(repo_chip)
+    if not chips:
+        return ""
     body = "".join(f'<span class="title-link-item">{c}</span>' for c in chips if c)
-    return f'<div class="title-links">{body}</div>' if body else ""
+    return f'<div class="title-links">{body}</div>'
 
 
 def _title_cell(
@@ -657,7 +750,7 @@ def _title_cell(
     desc = (description or "").strip()
     if desc:
         bits.append(f'<p class="cell-desc">{_esc(format_title(desc[:320]))}</p>')
-    inline = _title_inline_links(pmid)
+    inline = _title_inline_links(pmid, acc=acc, repo=repo)
     if inline:
         bits.append(inline)
     return f'<div class="cell-stack cell-title-block">{"".join(bits)}</div>'
@@ -731,25 +824,46 @@ def build_unified_discovery_rows(
     papers: list[dict],
     cohorts: list[dict],
     pubs_by_pmid: dict[str, dict],
-) -> tuple[str, int]:
+    *,
+    catalog_profile: dict | None = None,
+    pmid_index: dict[str, str] | None = None,
+    fetch_pride_pmid: bool = True,
+    resolve_literature_remote: bool = True,
+) -> tuple[str, int, list[tuple[str, str]]]:
     """One tbody for GitHub Discovery: projects + literature + cohorts."""
     rows: list[str] = []
     total = 0
     row_num = 0
+    pmid_index = pmid_index or build_pmid_repo_index(projects)
+    disease_counts: dict[str, tuple[str, int]] = {}
+
+    def _track_disease(item: dict) -> str:
+        attr = _disease_filter_attr(item, profile=catalog_profile)
+        label = _disease_text(item, profile=catalog_profile)
+        if label:
+            primary = label.split(";")[0].split(",")[0].strip()
+            slug = disease_filter_slug(primary)
+            if slug:
+                prev = disease_counts.get(slug)
+                disease_counts[slug] = (prev[0] if prev else primary, (prev[1] if prev else 0) + 1)
+        return attr
 
     for it in projects:
         row_num += 1
-        resolve_publication_links(it, fetch_pride_pmid=False)
+        resolve_publication_links(it, fetch_pride_pmid=fetch_pride_pmid)
         raw_acc = _first_accession(it)
         repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
-        pmid = str(it.get("pmid") or "").strip()
+        pmid = _valid_pmid(str(it.get("pmid") or ""))
         pub = it.get("pubmed_url") or pubmed_url(pmid)
         title = (it.get("title") or "").strip()
         desc = article_description(it)
         year = item_year(it, pubs_by_pmid)
         design_cell = _design_cell(it)
         src_key = source_label(it).lower()
-        search = f"{raw_acc} {title} {pmid} {desc} {year} {it.get('program') or ''}".lower()
+        disease_attr = _track_disease(it)
+        disease_txt = _disease_text(it, profile=catalog_profile)
+        organ_txt = _organ_text(it, profile=catalog_profile)
+        search = f"{raw_acc} {title} {pmid} {desc} {year} {disease_txt} {organ_txt} {it.get('program') or ''}".lower()
 
         evaluation = _resolve_evaluation(it, kind=ItemKind.PROJECT)
         vlabel, vcss, vtitle = project_verdict(it)
@@ -767,14 +881,15 @@ def build_unified_discovery_rows(
         rows.append(
             f"<tr{row_cls} data-type='project' data-src='{src_key}' "
             f"data-bucket='{bucket}' data-simple='{simple}' "
+            f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge('project')}</td>"
             f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc, pmid=pmid)}</td>"
-            f"<td class='col-disease'>{_disease_cell(it)}</td>"
-            f"<td class='col-organ'>{_organ_cell(it)}</td>"
+            f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
+            f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design_cell}</td>"
             f"<td class='col-verdict col-split'>{verdict_cell}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
@@ -797,7 +912,9 @@ def build_unified_discovery_rows(
         kind = entry["kind"]
         pmid = _norm_pmid(it)
         pub = pubmed_url(pmid)
-        acc = _first_accession(it)
+        acc = _enrich_literature_accession(
+            it, pmid_index, resolve_remote=resolve_literature_remote
+        ) or _first_accession(it)
         repo = it.get("repository_url") or (repository_url(acc) if acc else "")
         title = (it.get("title") or "").strip()
         year = item_year(it if paper else (cohort or it), pubs_by_pmid)
@@ -814,7 +931,10 @@ def build_unified_discovery_rows(
         cohort_score = (cohort or it).get("cohort_score")
         hp = it.get("has_patients") or ""
         desc = article_description(it)
-        search = f"{title} {pmid} {acc} {desc}".lower()
+        disease_attr = _track_disease(it)
+        disease_txt = _disease_text(it, profile=catalog_profile)
+        organ_txt = _organ_text(it, profile=catalog_profile)
+        search = f"{title} {pmid} {acc} {desc} {disease_txt} {organ_txt}".lower()
 
         if kind == "cohort" and is_cohort_excluded(title, str(it.get("abstract") or "")):
             vlabel, vcss, vtitle = ("Exclude", "badge-bad", "Review / software / narrative")
@@ -832,14 +952,15 @@ def build_unified_discovery_rows(
 
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
+            f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_badge(kind)}</td>"
             f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid)}</td>"
-            f"<td class='col-disease'>{_disease_cell(it)}</td>"
-            f"<td class='col-organ'>{_organ_cell(it)}</td>"
+            f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
+            f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design}</td>"
             f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-confidence'>{conf_cell}</td>"
@@ -853,4 +974,9 @@ def build_unified_discovery_rows(
         total += 1
 
     body = "\n".join(rows) or '<tr><td colspan="15" data-i18n="no_rows"></td></tr>'
-    return body, total
+    disease_filters = sorted(
+        disease_counts.values(),
+        key=lambda x: (-x[1], x[0].lower()),
+    )[:14]
+    filter_options = [(disease_filter_slug(label), label) for label, _ in disease_filters if label]
+    return body, total, filter_options

@@ -6,7 +6,9 @@ import re
 from pathlib import Path
 
 from atlas_agent.viz.discovery_table_shared import (
+    _norm_pmid,
     _papers_without_accession,
+    build_pmid_repo_index,
     build_unified_discovery_rows,
 )
 from atlas_agent.viz.site_components import (
@@ -135,6 +137,7 @@ def _guide_panel() -> str:
         ("th_project_id", "col_help_id"),
         ("th_year", "col_help_year"),
         ("th_title", "col_help_title"),
+        ("th_disease", "col_help_disease"),
         ("th_design", "col_help_design"),
         ("th_verdict", "col_help_verdict"),
         ("th_confidence", "col_help_confidence"),
@@ -259,15 +262,33 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     pubs = report.get("publications_analyzed") or []
     manual = report.get("manual_check") or []
     literature = report.get("literature_semantic") or []
-    papers = _papers_without_accession(manual, literature)
     cohorts = report.get("cohort_literature") or []
     gen = report.get("generated_at") or ""
+    profile = report.get("catalog_profile") or {}
+    pmid_index = build_pmid_repo_index(items)
+    papers_raw = _papers_without_accession(manual, literature)
+    linked_pmids = set(pmid_index.keys())
+    papers = [p for p in papers_raw if _norm_pmid(p) not in linked_pmids]
     pubs_by_pmid = _pub_index(
         pubs,
         (report.get("manual_check") or []) + (report.get("literature_semantic") or []),
     )
 
-    unified_rows, total_rows = build_unified_discovery_rows(items, papers, cohorts, pubs_by_pmid)
+    unified_rows, total_rows, disease_filters = build_unified_discovery_rows(
+        items,
+        papers,
+        cohorts,
+        pubs_by_pmid,
+        catalog_profile=profile,
+        pmid_index=pmid_index,
+        fetch_pride_pmid=False,
+        resolve_literature_remote=False,
+    )
+    disease_chips = "".join(
+        f'<button type="button" class="chip" data-dfilter="{html.escape(slug)}" '
+        f'title="{html.escape(label)}">{html.escape(label)}</button>'
+        for slug, label in disease_filters
+    )
 
     body = (
         page_hero(
@@ -308,6 +329,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       <button type="button" class="chip" data-sfilter="massive" data-i18n="filter_massive"></button>
       <button type="button" class="chip" data-sfilter="iprox" data-i18n="filter_iprox"></button>
       <button type="button" class="chip" data-sfilter="epmc" data-i18n="filter_epmc"></button>
+      <span class="toolbar-divider" aria-hidden="true"></span>
+      <span class="toolbar-label" data-i18n="toolbar_disease"></span>
+      <button type="button" class="chip active" data-dfilter="all" data-i18n="filter_all_disease"></button>
+      {disease_chips}
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
@@ -360,6 +385,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   let tFilter = 'all';
   let sFilter = 'all';
   let vFilter = 'simple';
+  let dFilter = 'all';
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
     let visible = 0;
@@ -367,12 +393,14 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       const typ = (r.dataset.type || '');
       const src = (r.dataset.src || '');
       const search = (r.dataset.search || '');
+      const diseases = (r.dataset.disease || '').split(/\\s+/).filter(Boolean);
       const simple = (r.dataset.simple || '0') === '1';
       const typeOk = tFilter === 'all' || typ === tFilter;
       const srcOk = sFilter === 'all' || src === sFilter;
       const viewOk = vFilter === 'all' || simple;
+      const diseaseOk = dFilter === 'all' || diseases.includes(dFilter);
       const textOk = !term || search.includes(term);
-      const show = typeOk && srcOk && viewOk && textOk;
+      const show = typeOk && srcOk && viewOk && diseaseOk && textOk;
       r.style.display = show ? '' : 'none';
       if (show) visible++;
     }});
@@ -408,6 +436,15 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         b.classList.toggle('active', b === btn);
       }});
       vFilter = btn.dataset.vfilter;
+      apply();
+    }});
+  }});
+  document.querySelectorAll('#disc-toolbar .chip[data-dfilter]').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      document.querySelectorAll('#disc-toolbar .chip[data-dfilter]').forEach(b => {{
+        b.classList.toggle('active', b === btn);
+      }});
+      dFilter = btn.dataset.dfilter;
       apply();
     }});
   }});

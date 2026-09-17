@@ -146,6 +146,8 @@
     filter_view_simple: { ru: "Главное", en: "Main" },
     filter_view_all: { ru: "Все строки", en: "All rows" },
     toolbar_source: { ru: "Источник", en: "Source" },
+    toolbar_disease: { ru: "Болезнь", en: "Disease" },
+    filter_all_disease: { ru: "Все болезни", en: "All diseases" },
     legacy_rescan: { ru: "Устаревший формат — перезапустите scan", en: "Legacy format — re-scan required" },
     link_open_repo: { ru: "Репозиторий", en: "Repository" },
     card_open: { ru: "Открыть", en: "Open" },
@@ -377,7 +379,9 @@
       table_scroll_hint: "Таблица широкая — прокрутите вправо, чтобы увидеть все колонки. Вкладка «Проекты» — данные; «Справка» — расшифровка колонок.",
       col_help_type: "Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.",
       col_help_id:
-        "Репозиторий: accession + синяя ссылка PRIDE/PDC/MassIVE/iProX. Статья без ID: Europe PMC + «Нет PXD/PDC/MSV/IPX». PMID — также в «Название».",
+        "Репозиторий: accession + синяя ссылка PRIDE/PDC/MassIVE/iProX. Статья: Europe PMC или PXD, если найден по PMID. PMID/PXD — также в «Название».",
+      col_help_disease:
+        "Нозология из метаданных или из названия/описания. Фильтр «Болезнь» над таблицей.",
       col_help_year: "Год публикации или submission из PRIDE/PDC или PubMed.",
       col_help_title: "Заголовок (клик → PRIDE/PDC или PubMed), описание и строка PMID / Europe PMC.",
       col_help_design: "Дизайн и TMT plex. Если PRIDE не указал plex — жёлтый бейдж «TMT plex не прописан — нужна проверка».",
@@ -637,7 +641,9 @@
       table_scroll_hint: "Wide table — scroll right for all columns. Projects tab = data; Guide tab = column legend.",
       col_help_type: "Project = repository accession; Paper = literature without ID; Cohort = large cohort from Europe PMC.",
       col_help_id:
-        "Repository: accession + blue PRIDE/PDC/MassIVE/iProX link. Paper without ID: Europe PMC + «No PXD/PDC/MSV/IPX». PMID also in Title.",
+        "Repository: accession + blue PRIDE/PDC/MassIVE/iProX link. Paper: Europe PMC or PXD when resolved from PMID. Links also in Title.",
+      col_help_disease:
+        "Disease from metadata or inferred from title/description. Use Disease filter above the table.",
       col_help_year: "Publication or submission year from PRIDE/PDC or PubMed.",
       col_help_title: "Title (click → PRIDE/PDC or PubMed), description, and PMID / Europe PMC links.",
       col_help_design: "Design and TMT plex. If PRIDE omits plex — yellow badge «TMT plex not specified — needs review».",
