@@ -44,15 +44,15 @@ class AnalysisFormatter:
         parts: list[str] = []
         if en:
             parts.append(
-                f'<p class="cell-summary cell-clip lang-block lang-en">{self._esc(en)}</p>'
+                f'<p class="cell-summary lang-block lang-en">{self._esc(en)}</p>'
             )
         if ru and ru != en:
             parts.append(
-                f'<p class="cell-summary cell-clip lang-block lang-ru">{self._esc(ru)}</p>'
+                f'<p class="cell-summary lang-block lang-ru">{self._esc(ru)}</p>'
             )
         elif ru and not en:
             parts.append(
-                f'<p class="cell-summary cell-clip lang-block lang-en lang-ru">{self._esc(ru)}</p>'
+                f'<p class="cell-summary lang-block lang-en lang-ru">{self._esc(ru)}</p>'
             )
         return "".join(parts)
 
@@ -68,13 +68,24 @@ class AnalysisFormatter:
         if summary_html:
             blocks.append(summary_html)
         actionable = evaluation.actionable_evidence()
+        seen: set[str] = set()
         if actionable:
-            items = "".join(f"<li>{self.format_evidence_line(e)}</li>" for e in actionable)
+            lines = [self.format_evidence_line(e) for e in actionable]
+            seen = {line.lower() for line in lines}
+            items = "".join(f"<li>{line}</li>" for line in lines)
             blocks.append(f'<ul class="cell-bullets evidence-bullets">{items}</ul>')
         bullets = evaluation.confidence_bullets
         if bullets:
-            note_items = "".join(f"<li>{self._esc(b[: self._max_bullet])}</li>" for b in bullets[:8])
-            blocks.append(f'<ul class="cell-bullets">{note_items}</ul>')
+            unique = []
+            for b in bullets[:8]:
+                key = b.strip().lower()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                unique.append(b)
+            if unique:
+                note_items = "".join(f"<li>{self._esc(b[: self._max_bullet])}</li>" for b in unique)
+                blocks.append(f'<ul class="cell-bullets">{note_items}</ul>')
         if evaluation.display_fit_label:
             blocks.append(f'<span class="badge badge-muted">{self._esc(evaluation.display_fit_label)}</span>')
         return "".join(blocks) if blocks else '<span class="cell-empty">—</span>'

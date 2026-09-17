@@ -66,18 +66,25 @@ def _rows(items: list[dict]) -> str:
         out.append(
             f"<tr><td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc)}</td>"
-            f"<td>{html.escape(str(plex))}</td><td>{inc}</td><td>{exc}</td>"
-            f"<td class='analysis-cell'>{ai_col}</td><td>{da_col}</td><td>{reasons}</td></tr>"
+            f"<td class='col-plex cell-mono'>{html.escape(str(plex))}</td>"
+            f"<td class='col-included'>{inc}</td><td class='col-excluded'>{exc}</td>"
+            f"<td class='col-analysis analysis-cell'>{ai_col}</td>"
+            f"<td class='col-data'>{da_col}</td><td class='col-reason'>{reasons}</td></tr>"
         )
     return "\n".join(out) or '<tr><td colspan="8" data-i18n="no_rows"></td></tr>'
 
 
 def _table_head(notes: bool = False) -> str:
-    notes_th = '<th data-i18n="th_notes"></th>' if notes else '<th data-i18n="th_reason"></th>'
+    reason_key = "th_notes" if notes else "th_reason"
     return f"""<thead><tr>
-      <th data-i18n="th_id"></th><th data-i18n="th_title"></th><th data-i18n="th_plex"></th>
-      <th data-i18n="th_included"></th><th data-i18n="th_excluded"></th><th data-i18n="th_ai"></th>
-      <th data-i18n="th_data"></th>{notes_th}
+      <th class="col-id" data-i18n="th_id"></th>
+      <th class="col-title" data-i18n="th_title"></th>
+      <th class="col-plex" data-i18n="th_plex"></th>
+      <th class="col-included" data-i18n="th_included"></th>
+      <th class="col-excluded" data-i18n="th_excluded"></th>
+      <th class="col-analysis" data-i18n="th_ai"></th>
+      <th class="col-data" data-i18n="th_data"></th>
+      <th class="col-reason" data-i18n="{reason_key}"></th>
     </tr></thead>"""
 
 
@@ -110,28 +117,28 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
 
   <section class="section">
     {section_head("qc_candidate", len(cand))}
-    <div class="table-wrap">
-      <table>{_table_head(notes=True)}<tbody>{_rows(cand)}</tbody></table>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table">{_table_head(notes=True)}<tbody>{_rows(cand)}</tbody></table>
     </div>
   </section>
 
   <section class="section">
     {section_head("qc_manual", len(manual))}
-    <div class="table-wrap">
-      <table>{_table_head()}<tbody>{_rows(manual)}</tbody></table>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table">{_table_head()}<tbody>{_rows(manual)}</tbody></table>
     </div>
   </section>
 
   <section class="section">
     {section_head("qc_rejected", len(rejected))}
-    <div class="table-wrap">
-      <table>{_table_head()}<tbody>{_rows(rejected)}</tbody></table>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table">{_table_head()}<tbody>{_rows(rejected)}</tbody></table>
     </div>
   </section>
   <section class="section">
     {section_head("qc_filtered", len(technical))}
-    <div class="table-wrap">
-      <table>{_table_head()}<tbody>{_rows(technical)}</tbody></table>
+    <div class="table-wrap table-unified table-qc">
+      <table class="data-table">{_table_head()}<tbody>{_rows(technical)}</tbody></table>
     </div>
   </section>
 </div>"""

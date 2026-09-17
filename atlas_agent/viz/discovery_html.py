@@ -284,7 +284,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
-    <div class="table-wrap table-standard table-unified">
+    <div class="table-wrap table-unified">
       <table id="tbl-unified" class="data-table">
         <thead>
           <tr class="head-groups">
@@ -295,20 +295,20 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <tr>
           <th class="col-type" data-i18n="th_type"></th>
           <th class="col-id"><span class="th-main" data-i18n="th_project_id"></span><span class="th-hint" data-i18n="th_project_id_hint"></span></th>
-          <th data-i18n="th_year"></th>
-          <th data-i18n="th_title"></th>
-          <th data-i18n="th_source" class="col-split"></th>
-          <th data-i18n="th_design"></th>
-          <th data-i18n="th_omics"></th>
-          <th data-i18n="th_patients"></th>
-          <th data-i18n="th_n"></th>
-          <th data-i18n="th_verdict" class="col-split"></th>
-          <th data-i18n="th_confidence"></th>
-          <th data-i18n="th_similar"></th>
-          <th data-i18n="th_fit"></th>
-          <th data-i18n="th_analysis"></th>
-          <th data-i18n="th_data"></th>
-          <th data-i18n="th_links"></th>
+          <th class="col-year" data-i18n="th_year"></th>
+          <th class="col-title" data-i18n="th_title"></th>
+          <th class="col-src col-split" data-i18n="th_source"></th>
+          <th class="col-design" data-i18n="th_design"></th>
+          <th class="col-omics" data-i18n="th_omics"></th>
+          <th class="col-pat" data-i18n="th_patients"></th>
+          <th class="col-n" data-i18n="th_n"></th>
+          <th class="col-verdict col-split" data-i18n="th_verdict"></th>
+          <th class="col-confidence" data-i18n="th_confidence"></th>
+          <th class="col-similar" data-i18n="th_similar"></th>
+          <th class="col-weight" data-i18n="th_fit"></th>
+          <th class="col-analysis" data-i18n="th_analysis"></th>
+          <th class="col-data" data-i18n="th_data"></th>
+          <th class="col-links" data-i18n="th_links"></th>
         </tr></thead>
         <tbody>{unified_rows}</tbody>
       </table>
