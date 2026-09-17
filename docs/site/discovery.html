@@ -14,15 +14,11 @@
 <header class="site-header">
   <div class="site-header-inner">
     <div class="brand">
-      <a href="../index.html" class="brand-link">
+      <a href="discovery.html" class="brand-link">
         <span class="brand-title" data-i18n="brand_title">Human Cancer-Associated TMT Proteome Atlas</span>
       </a>
-      <div class="brand-actions">
-        <a href="ai_search.html" class="brand-action brand-action-primary" data-i18n="brand_link_ai">Atlas AI</a>
-        <a href="discovery.html#technical" class="brand-action brand-action-secondary" data-i18n="brand_link_technical">Методы · версии скриптов</a>
-      </div>
     </div>
-    <nav class="site-nav" aria-label="Main"><a href="../index.html" class="" data-i18n="nav_home">Home</a><a href="discovery.html" class="active" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="" data-i18n="nav_qc">QC</a><a href="atlas.html" class="" data-i18n="nav_atlas">Atlas</a><a href="ai_search.html" class="" data-i18n="nav_ai">AI search</a><a href="map.html" class="" data-i18n="nav_map">Organ map</a></nav>
+    <nav class="site-nav" aria-label="Main"><a href="discovery.html" class="active" data-i18n="nav_discovery">Discovery</a><a href="qc.html" class="" data-i18n="nav_qc">QC</a></nav>
     <div class="header-controls">
       <div class="lang-toggle" aria-label="Language">
         <button type="button" data-lang="ru" class="active">RU</button>
@@ -34,18 +30,11 @@
 <main class="site-main">
 
 <div class="page-hero">
-  <h1 data-i18n="disc_title">Новые проекты</h1>
-  <p class="lead" data-i18n="disc_lead">Скрининг human TMT-протеомики вне каталога TMT ATLAS: репозиторные accession, публикации без ID, когорты из Europe PMC. Tier A–D, protein-table gate, similarity к projects.csv.</p>
-  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-14 11:56:53 UTC</span><span class="meta-pill badge badge-ok" data-i18n="disc_catalog_hidden">каталог скрыт</span><span class="meta-pill badge badge-muted">121</span> <span class="meta-pill badge badge-muted" data-i18n="disc_catalog_n">проектов в атласе</span></div>
-</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">1</span><span class="kpi-label" data-i18n="kpi_new">новых проектов</span></div><div class="kpi"><span class="kpi-value">1</span><span class="kpi-label" data-i18n="kpi_with_table">с protein table</span></div><div class="kpi"><span class="kpi-value">16</span><span class="kpi-label" data-i18n="kpi_papers_no_id">статей без ID</span></div><div class="kpi"><span class="kpi-value">18</span><span class="kpi-label" data-i18n="kpi_cohorts">статей в списке</span></div><div class="kpi"><span class="kpi-value">1</span><span class="kpi-label" data-i18n="kpi_pride">PRIDE</span></div><div class="kpi"><span class="kpi-value">0</span><span class="kpi-label" data-i18n="kpi_pdc">PDC</span></div></div>
+  <h1 data-i18n="disc_title">Discovery — новые TMT-проекты</h1>
+  <p class="lead" data-i18n="disc_lead">Еженедельный ИИ-скрининг PRIDE, PDC и Europe PMC. В таблице — только находки вне каталога атласа.</p>
+  <div class="page-meta"><span class="meta-pill badge badge-muted"><span data-i18n="meta_updated">Updated</span> 2026-09-14 11:56:53 UTC</span><span class="meta-pill badge badge-ok">1</span></div>
+</div><div class="kpi-grid"><div class="kpi"><span class="kpi-value">1</span><span class="kpi-label" data-i18n="kpi_new">новых проектов</span></div><div class="kpi"><span class="kpi-value">16</span><span class="kpi-label" data-i18n="kpi_papers_no_id">статей без ID</span></div><div class="kpi"><span class="kpi-value">18</span><span class="kpi-label" data-i18n="kpi_cohorts">статей в списке</span></div></div>
 <div class="page-content page-content-wide">
-  <nav class="page-tabs" aria-label="Sections">
-    <button type="button" class="page-tab active" data-tab="projects" data-i18n="tab_projects">Проекты</button>
-    <button type="button" class="page-tab" data-tab="guide" data-i18n="tab_guide">Справка</button>
-    <button type="button" class="page-tab" data-tab="technical" data-i18n="tab_technical">Методы</button>
-  </nav>
-
-  <div id="panel-projects" class="tab-panel active">
   <section class="section" id="discovery">
     <div class="section-head"><h2 data-i18n="sec_unified_discovery">Реестр находок Discovery</h2><span class="section-count" data-i18n-title="sec_unified_count_hint" title="Число всех строк таблицы (проекты + статьи + когорты)">33</span></div>
     <p class="section-desc" data-i18n="sec_unified_discovery_desc">Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и крупные patient cohorts. В каждой строке — метаданные, tier, ссылки на PRIDE/PDC и PubMed.</p>
@@ -142,9 +131,10 @@
       </table>
     </div>
   </section>
-  </div>
 
-  <div id="panel-guide" class="tab-panel">
+  <details class="site-fold" id="guide">
+    <summary data-i18n="tab_guide">Справка</summary>
+    
 <section class="section guide-section">
   <h2 class="section-title" data-i18n="guide_title">Как читать таблицу</h2>
   <p class="section-desc" data-i18n="guide_lead">Один экран — новые TMT-проекты вне каталога. По умолчанию показаны только строки типа «Project» (PXD/PDC/MSV/IPX).</p>
@@ -162,8 +152,11 @@
     <h3 data-i18n="guide_similarity_title">Похожесть на атлас</h3>
     <p data-i18n="guide_similarity_desc">Для каждого кандидата считается similarity score к проектам из projects.csv (title, tissue, disease, TMT). 80%+ — очень близко; 40–60% — та же тема; &lt;30% — новая ниша. Клик по PXD в колонке Similar — карточка в PRIDE.</p>
   </div>
-</section></div>
-  <div id="panel-technical" class="tab-panel">
+</section>
+  </details>
+  <details class="site-fold" id="technical">
+    <summary data-i18n="tab_technical">Методы</summary>
+    
 <section class="section">
   <h2 class="section-title" data-i18n="tech_title">Пайплайн Discovery Agent</h2>
   <p class="section-desc" data-i18n="tech_lead">Пошаговое описание последнего скана — готово для Methods / Supplementary.</p>
@@ -360,8 +353,8 @@
   &quot;catalog_read_only&quot;: true
 }</pre>
   </details>
-</section></div>
-
+</section>
+  </details>
 </div>
 
 <script>

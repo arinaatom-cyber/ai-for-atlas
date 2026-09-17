@@ -9,11 +9,9 @@ from pathlib import Path
 from atlas_agent.viz.discovery_table_shared import (
     _papers_without_accession,
     build_unified_discovery_rows,
-    source_label,
 )
 from atlas_agent.viz.site_components import (
     kpi_grid,
-    meta_pill_i18n,
     meta_pill_text,
     meta_time,
     note_discovery_scope,
@@ -225,43 +223,23 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         (report.get("manual_check") or []) + (report.get("literature_semantic") or []),
     )
 
-    pride_n = sum(1 for x in items if source_label(x) == "PRIDE")
-    pdc_n = sum(1 for x in items if source_label(x) == "PDC")
-    table_n = sum(
-        1 for x in items
-        if (x.get("data_availability") or {}).get("status") == "quant_table"
-    )
-
     unified_rows, total_rows = build_unified_discovery_rows(items, papers, cohorts, pubs_by_pmid)
 
     body = (
         page_hero(
             "disc_title",
             "disc_lead",
-            meta_time(gen)
-            + meta_pill_i18n("disc_catalog_hidden", css="badge-ok")
-            + meta_pill_text(f"{s.get('catalog_unique_ids', '?')}")
-            + ' <span class="meta-pill badge badge-muted" data-i18n="disc_catalog_n"></span>',
+            meta_time(gen) + meta_pill_text(str(len(items)), css="badge-ok"),
         )
         + kpi_grid(
             [
                 (str(len(items)), "kpi_new"),
-                (str(table_n), "kpi_with_table"),
                 (str(len(papers)), "kpi_papers_no_id"),
                 (str(len(cohorts)), "kpi_cohorts"),
-                (str(pride_n), "kpi_pride"),
-                (str(pdc_n), "kpi_pdc"),
             ]
         )
         + f"""
 <div class="page-content page-content-wide">
-  <nav class="page-tabs" aria-label="Sections">
-    <button type="button" class="page-tab active" data-tab="projects" data-i18n="tab_projects"></button>
-    <button type="button" class="page-tab" data-tab="guide" data-i18n="tab_guide"></button>
-    <button type="button" class="page-tab" data-tab="technical" data-i18n="tab_technical"></button>
-  </nav>
-
-  <div id="panel-projects" class="tab-panel active">
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
     {section_desc("sec_unified_discovery_desc")}
@@ -314,11 +292,15 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       </table>
     </div>
   </section>
-  </div>
 
-  <div id="panel-guide" class="tab-panel">{_guide_panel()}</div>
-  <div id="panel-technical" class="tab-panel">{_technical_panel(report)}</div>
-
+  <details class="site-fold" id="guide">
+    <summary data-i18n="tab_guide"></summary>
+    {_guide_panel()}
+  </details>
+  <details class="site-fold" id="technical">
+    <summary data-i18n="tab_technical"></summary>
+    {_technical_panel(report)}
+  </details>
 </div>
 
 <script>

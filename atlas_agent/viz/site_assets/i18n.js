@@ -141,9 +141,9 @@
       brand_link_technical: "Методы · версии скриптов",
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
-      disc_title: "Новые проекты",
+      disc_title: "Discovery — новые TMT-проекты",
       disc_lead:
-        "Скрининг human TMT-протеомики вне каталога TMT ATLAS: репозиторные accession, публикации без ID, когорты из Europe PMC. Tier A–D, protein-table gate, similarity к projects.csv.",
+        "Еженедельный ИИ-скрининг PRIDE, PDC и Europe PMC. В таблице — только находки вне каталога атласа.",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
       kpi_new: "новых проектов",
@@ -374,9 +374,9 @@
       brand_link_technical: "Methods · script versions",
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
-      disc_title: "New projects",
+      disc_title: "Discovery — new TMT projects",
       disc_lead:
-        "Screening of human TMT proteomics outside the TMT ATLAS catalog: repository accessions, papers without IDs, and Europe PMC cohorts. Tier A–D, protein-table gate, similarity to projects.csv.",
+        "Weekly AI scan of PRIDE, PDC, and Europe PMC. Table lists findings not yet in the atlas catalog.",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
       kpi_new: "new projects",

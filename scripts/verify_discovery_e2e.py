@@ -10,8 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 SITE = ROOT / "docs" / "site"
-REQUIRED_PAGES = ("discovery.html", "qc.html", "atlas.html", "ai_search.html", "map.html")
-REDIRECT_PAGES = ("cohorts.html",)  # legacy URL → discovery.html
+REQUIRED_PAGES = ("discovery.html", "qc.html")
+REDIRECT_PAGES = ("cohorts.html", "atlas.html", "ai_search.html", "map.html")
 REQUIRED_ASSETS = ("assets/theme.css", "assets/i18n.js")
 REQUIRED_JSON = ("latest.json", "meta.json", "atlas_profile.json")
 
@@ -99,10 +99,9 @@ def check_portal() -> None:
     if not p.is_file():
         fail("missing docs/index.html")
     t = p.read_text(encoding="utf-8")
-    for href in ("site/discovery.html", "site/qc.html", "site/ai_search.html"):
-        if href not in t:
-            fail(f"portal missing link {href}")
-    ok("docs/index.html portal links")
+    if "site/discovery.html" not in t:
+        fail("portal should redirect to site/discovery.html")
+    ok("docs/index.html redirects to discovery")
 
 
 def check_candidates_have_fields(data: dict) -> None:

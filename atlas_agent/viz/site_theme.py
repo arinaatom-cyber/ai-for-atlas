@@ -41,30 +41,18 @@ def _header_controls() -> str:
 
 
 def _nav_paths(deploy: str) -> dict[str, str]:
-    """Relative hrefs for top navigation."""
+    """Relative hrefs — Discovery-only public site."""
     if deploy == DEPLOY_DOCS_PORTAL:
         return {
-            "home": "index.html",
-            "ai": "site/ai_search.html",
-            "map": "site/map.html",
-            "atlas": "site/atlas.html",
             "discovery": "site/discovery.html",
             "qc": "site/qc.html",
         }
     if deploy == DEPLOY_TMT:
         return {
-            "home": "index.html",
-            "ai": "ai_search.html",
-            "map": "../index.html",
-            "atlas": "atlas.html",
             "discovery": "discovery.html",
             "qc": "qc.html",
         }
     return {
-        "home": "../index.html",
-        "ai": "ai_search.html",
-        "map": "map.html",
-        "atlas": "atlas.html",
         "discovery": "discovery.html",
         "qc": "qc.html",
     }
@@ -107,34 +95,23 @@ def site_header_bar(*, active: str, deploy: str = DEPLOY_DOCS_SITE) -> str:
         cls = "active" if active == page else ""
         return _i18n_el(key, tag="a", href=href, cls=cls)
 
-    home_href = paths.get("home") or "index.html"
-
     nav_html = "".join(
         nav(paths[page], key, page)
         for page, key in (
-            ("home", "nav_home"),
             ("discovery", "nav_discovery"),
             ("qc", "nav_qc"),
-            ("atlas", "nav_atlas"),
-            ("ai", "nav_ai"),
-            ("map", "nav_map"),
         )
         if paths.get(page)
     )
 
-    ai_href = paths.get("ai") or "ai_search.html"
-    tech_href = f"{paths.get('discovery') or 'discovery.html'}#technical"
+    discovery_href = paths.get("discovery") or "discovery.html"
 
     return f"""<header class="site-header">
   <div class="site-header-inner">
     <div class="brand">
-      <a href="{_esc(home_href)}" class="brand-link">
+      <a href="{_esc(discovery_href)}" class="brand-link">
         {_i18n_el("brand_title", tag="span", cls="brand-title")}
       </a>
-      <div class="brand-actions">
-        {_i18n_el("brand_link_ai", tag="a", href=ai_href, cls="brand-action brand-action-primary")}
-        {_i18n_el("brand_link_technical", tag="a", href=tech_href, cls="brand-action brand-action-secondary")}
-      </div>
     </div>
     <nav class="site-nav" aria-label="Main">{nav_html}</nav>
     {_header_controls()}

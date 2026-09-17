@@ -6,11 +6,8 @@ import shutil
 from pathlib import Path
 
 from atlas_agent.viz.site_sanitize import sanitize_report_for_site
-from atlas_agent.viz.ai_search_html import generate_ai_search_html
-from atlas_agent.viz.atlas_html import generate_atlas_html
 from atlas_agent.viz.discovery_html import generate_discovery_html
 from atlas_agent.viz.discovery_qc_html import generate_qc_html
-from atlas_agent.viz.map_html import generate_map_html
 from atlas_agent.viz.portal_html import generate_portal_html
 from atlas_agent.viz.i18n_loader import hydrate_site_html
 from atlas_agent.viz.site_theme import (
@@ -114,13 +111,12 @@ def _write_html_redirect(path: Path, target: str) -> None:
 
 
 def _render_site_pages(site: Path, site_report: dict, *, deploy: str) -> None:
-    """Discovery sub-pages under docs/site/ (or TMT discovery/)."""
+    """Public site: Discovery table + QC only."""
     generate_discovery_html(site_report, site / "discovery.html", deploy=deploy)
     generate_qc_html(site_report, site / "qc.html", deploy=deploy)
-    generate_atlas_html(site_report, site / "atlas.html", deploy=deploy)
-    generate_ai_search_html(site_report, site / "ai_search.html", deploy=deploy)
-    generate_map_html(site_report, site / "map.html", deploy=deploy)
     _write_html_redirect(site / "cohorts.html", "discovery.html#cohorts")
+    for legacy in ("atlas.html", "ai_search.html", "map.html"):
+        _write_html_redirect(site / legacy, "discovery.html")
 
 
 def publish_discovery_site(report: dict, root: Path, *, tmt_discovery_dir: Path | None = None) -> Path:
