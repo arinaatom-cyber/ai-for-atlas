@@ -1,13 +1,13 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-09-17T11:42:09.731383+00:00",
-  "pipeline_git_commit": "1ff0ccd31235f99f8fecca212d6faf88ce6aa93b",
+  "generated_at": "2026-09-21T12:13:41.264404+00:00",
+  "pipeline_git_commit": "0080a89e4a284a5b6c2c1be4e200226f789ab9f0",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
     "prefer_cloud": false,
     "base_url": "http://127.0.0.1:11434/v1",
-    "resolved_engine": "ollama",
+    "resolved_engine": "local_rules",
     "enabled": true
   },
   "ai_agents": {
@@ -99,12 +99,9 @@
         "trust": "rules"
       }
     ],
-    "llm_active": "Ollama (local)",
-    "llm_available": [
-      "Ollama (local)",
-      "GPT4All (local)"
-    ],
-    "llm_active_engine": "ollama"
+    "llm_active": "local_rules",
+    "llm_available": [],
+    "llm_active_engine": "local_rules"
   },
   "pipeline": {
     "steps": [
@@ -225,8 +222,9 @@
     "github_repo": "https://github.com/arinaatom-cyber/ai-for-atlas"
   },
   "catalog_policy": {
-    "catalog_file": "project of Proteomics.xlsx (TMT ATLAS)",
-    "catalog_mirror": "data/projects.csv",
+    "catalog_runtime": "data/projects.csv",
+    "catalog_workbook": "project of Proteomics.xlsx (sheet TMT ATLAS)",
+    "catalog_sync": "compare-only; python scripts/sync_tmt_projects_csv.py --apply exports workbook → CSV",
     "catalog_mode": "read_only",
     "delete_allowed": false,
     "auto_update_allowed": false,
@@ -310,25 +308,212 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 838,
-    "candidates": 96,
-    "manual_check": 16,
-    "rejected_material": 325,
-    "filtered_out": 902,
-    "already_in_catalog": 13
+    "raw_novel_repos": 532,
+    "candidates": 28,
+    "manual_check": 0,
+    "rejected_material": 332,
+    "filtered_out": 690,
+    "already_in_catalog": 10
   },
   "literature_screening": {
     "publications_scanned": 31,
-    "abstract_llm_read": 25,
-    "abstract_regex_only": 6,
+    "abstract_llm_read": 0,
+    "abstract_regex_only": 31,
     "abstract_llm_max": 25,
     "atlas_fit_yes": 0,
     "atlas_fit_maybe": 17,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
-    "regex_only_publications": [],
-    "preprints": null,
-    "peer_reviewed": null
+    "regex_only_publications": [
+      {
+        "title": "Comprehensive Proteomic Analysis of Dysferlinopathy Unveiling Molecular Mechanisms and Biomarkers Linked to Pathological Progression.",
+        "pmid": "39350328",
+        "doi": "10.1111/cns.70065",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "The deubiquitinase OTUB2 promotes cervical cancer growth through stabilizing FOXM1.",
+        "pmid": "38322554",
+        "doi": "10.62347/ujnc4213",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomic alterations in patient bone-derived stromal cells and their secretomes in osteogenesis imperfecta.",
+        "pmid": "42499581",
+        "doi": "10.1016/j.ymgmr.2026.101341",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomic Analysis of Small Extracellular Vesicles From Lymphatic Affluents in Developing Premetastatic Niche in Melanoma.",
+        "pmid": "41271007",
+        "doi": "10.1016/j.mcpro.2025.101472",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Spatial proteomics to discover aging-associated alterations in the renal tubulointerstitium.",
+        "pmid": "41062932",
+        "doi": "10.1186/s12014-025-09550-8",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Integrative multi-omics refines the molecular subtypes of thyroid cancers and enhances cancer-progression prediction: a retrospective cohort study.",
+        "pmid": "41728981",
+        "doi": "10.1097/js9.0000000000004979",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell.",
+        "pmid": "40493991",
+        "doi": "10.1016/j.bbrc.2025.152148",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell",
+        "pmid": "IND609300501",
+        "doi": "",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "In-Depth Proteomic Analysis of Paraffin-Embedded Tissue Samples from Colorectal Cancer Patients Revealed TXNDC17 and SLC8A1 as Key Proteins Associated with the Disease.",
+        "pmid": "39441737",
+        "doi": "10.1021/acs.jproteome.3c00749",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "KDM3B promotes neural invasion in colorectal cancer through TrkA upregulation by inhibiting H3K9 dimethylation.",
+        "pmid": "41488357",
+        "doi": "10.1016/j.isci.2025.114262",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Targeting PTGDS Promotes ferroptosis in peripheral T cell lymphoma through regulating HMOX1-mediated iron metabolism.",
+        "pmid": "39706989",
+        "doi": "10.1038/s41416-024-02919-w",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "The Ubiquitin Ligase CHIP Accelerates Papillary Thyroid Carcinoma Metastasis via the Transgelin-Matrix Metalloproteinase-9 Axis.",
+        "pmid": "39869438",
+        "doi": "10.1021/acs.jproteome.4c00726",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Bone and periosteum protein analysis via tandem mass tag quantitative proteomics in pediatric patients with osteomyelitis.",
+        "pmid": "39380190",
+        "doi": "10.1002/bmc.5999",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomic profiling of cephalic vein reveals potential biomarkers for arteriovenous fistula neointimal hyperplasia in ESRD patients.",
+        "pmid": "42703036",
+        "doi": "10.1080/0886022x.2026.2716956",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomics Data Imputation With a Deep Model That Learns From Many Datasets.",
+        "pmid": "41260499",
+        "doi": "10.1016/j.mcpro.2025.101461",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Acute degradation of nucleolin reveals its novel functions in cell cycle progression and cell division in triple negative breast cancer.",
+        "pmid": "40653460",
+        "doi": "10.1186/s13046-025-03401-y",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteome Profiling Reveals NQO2 Activity Contributing to Proteasome Inhibitor Resistance in Multiple Myeloma Cell Lines.",
+        "pmid": "42362189",
+        "doi": "10.1016/j.mcpro.2026.101615",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "The PD Effluentome-A Multi-Omics Atlas Defining the Composition, Transport Dynamics, and Molecular Origin of Peritoneal Dialysis Effluent.",
+        "pmid": "42646630",
+        "doi": "10.3390/medsci14040496",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Atractylon inhibits hepatocellular carcinoma by inducing ferroptosis with increasing SLC39A14 expression.",
+        "pmid": "42156485",
+        "doi": "10.1038/s41598-026-53504-5",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer.",
+        "pmid": "40889039",
+        "doi": "10.1007/s12672-025-03486-z",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteome-wide multipoint internal calibration curves for mass spectrometry-based quantitative proteomics",
+        "pmid": "PPR983979",
+        "doi": "10.1101/2025.02.24.639845",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Whole transcriptome and proteome analyses identify ncRNAs and mRNAs to predict competing endogenous RNA networks in hepatitis B virus-induced hepatocellular carcinoma.",
+        "pmid": "39710348",
+        "doi": "10.1016/j.micpath.2024.107248",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomic study on nintedanib in gastric cancer cells.",
+        "pmid": "38406279",
+        "doi": "10.7717/peerj.16771",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Repair effect analysis of mesenchymal stem cell conditioned media from multiple sources on HUVECs damaged by high glucose",
+        "pmid": "PPR868988",
+        "doi": "10.21203/rs.3.rs-4520607/v1",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Hormonal Contraceptives and Depression: A Proteomic Analysis Using Neuronal Models.",
+        "pmid": "40931400",
+        "doi": "10.1002/prca.70017",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Klebsiella pneumoniae LPS drives stromal-mediated repression of p53 and colorectal cancer chemoresistance.",
+        "pmid": "42002547",
+        "doi": "10.1038/s41419-026-08756-4",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Inhibition of NAMPT targets DNA damage response to sensitize alkylating chemotherapy in TP53 mutant mantle cell lymphoma.",
+        "pmid": "41428986",
+        "doi": "10.1182/bloodadvances.2025016765",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "SerpinB7 promotes c-Myc-mediated glycolysis by interacting with ANXA2 to facilitate the progression of non-small cell lung cancer.",
+        "pmid": "42310746",
+        "doi": "10.1186/s12943-026-02684-9",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "A transcriptomic and proteomic analysis and comparison of human brain tissue from patients with and without epilepsy.",
+        "pmid": "40350490",
+        "doi": "10.1038/s41598-025-00986-4",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "SAA1 Promotes Ulcerative Colitis and Activating Colonic TLR4/NF-κB/NLRP3 Signaling Pathway.",
+        "pmid": "40526227",
+        "doi": "10.1007/s10753-025-02299-0",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Insights into Divergent Leishmaniasis Pathogenesis: A Quantitative Flagellar Proteomic Comparison of &lt;i&gt;L. mexicana&lt;/i&gt;, &lt;i&gt;L. amazonensis&lt;/i&gt;, and &lt;i&gt;L. infantum&lt;/i&g",
+        "pmid": "42513917",
+        "doi": "10.3390/microorganisms14071411",
+        "abstract_reader": "regex"
+      }
+    ],
+    "preprints": 2,
+    "peer_reviewed": 29
   },
   "dedup": {
     "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
@@ -337,18 +522,21 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 79
+    "pride": 85
   },
   "pdc_tmt_plex_unspecified": 0,
-  "failed_source_requests": {},
+  "failed_source_requests": {
+    "pride": 0,
+    "pdc": 0,
+    "massive": 0,
+    "iprox": 3
+  },
   "possible_pmid_match": [],
   "data_availability_gate": {
-    "maybe_table": 1,
-    "omics_unknown": 57,
-    "quant_table": 42,
-    "processed_psm": 13,
-    "omics_protein": 18,
-    "no_files": 19
+    "quant_table": 23,
+    "omics_unknown": 14,
+    "processed_psm": 5,
+    "omics_protein": 14
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
