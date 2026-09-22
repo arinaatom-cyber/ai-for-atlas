@@ -19,7 +19,9 @@ from atlas_agent.llm_client import _run_llm, resolve_engine
 
 ABSTRACT_SYSTEM = """You are a curator assistant for a human TMT proteomics atlas.
 Read abstracts by MEANING using the reference atlas — do NOT extract repository accession numbers.
-Reply with ONLY valid JSON, no markdown. Be conservative: if unclear, use "unclear"."""
+Reply with ONLY valid JSON, no markdown.
+Use "unclear" only for organism/tmt/material when the abstract does not state that fact.
+For atlas_fit decide yes or no when those facts are present — do not default to maybe."""
 
 ABSTRACT_PROMPT = """{atlas_context}
 
@@ -49,6 +51,11 @@ Task:
 10) Disease controls (e.g. patients without complication vs with complication) are NOT healthy controls — case-control disease comparisons are OK.
 11) Reject microbiome/pathogen/bacteria-only proteomics unless human tumor tissue proteomics is also present.
 12) In summary_ru use Russian words «статья», «абстракт», «проект» — never «пейсаж», «пейдж», «пакет».
+13) Decide atlas_fit as yes or no whenever the abstract gives enough detail to check
+    criteria 1–11 directly (TMT plex stated, material stated, organism stated).
+    Use "maybe" only when a required detail (plex, material, or organism) is
+    genuinely absent from the abstract — not merely because the study is
+    borderline-relevant.
 
 Return a JSON object (no markdown) with fields:
 {{
@@ -65,6 +72,8 @@ Return a JSON object (no markdown) with fields:
 }}"""
 
 _EMPTY_ACCESSIONS = {"PXD": [], "PDC": [], "MSV": [], "IPX": []}
+# MEDIUM-only: a confident maybe is a yes. LOW stays capped; HIGH decides in the prompt.
+MAYBE_PROMOTE_SCORE = 0.75
 logger = logging.getLogger(__name__)
 _INJECTION_RE = re.compile(
     r"ignore\s+(all\s+)?(previous|prior|above)\s+instructions|"
@@ -295,6 +304,17 @@ def _consensus_with_regex(
             )
         except (TypeError, ValueError):
             merged["atlas_fit_score"] = regex.get("atlas_fit_score")
+
+    try:
+        merged_score = float(merged.get("atlas_fit_score") or 0)
+    except (TypeError, ValueError):
+        merged_score = 0.0
+    if (
+        merged["atlas_fit"] == "maybe"
+        and trust == ModelTrustLevel.MEDIUM
+        and merged_score >= MAYBE_PROMOTE_SCORE
+    ):
+        merged["atlas_fit"] = "yes"
 
     if _is_garbage_llm(llm):
         merged["atlas_fit"] = regex.get("atlas_fit", "no")

@@ -97,6 +97,54 @@ def test_high_trust_llm_yes_when_regex_maybe():
     assert merged["atlas_fit"] == "yes"
 
 
+def test_medium_promotes_confident_maybe_to_yes():
+    regex = _regex_extract(
+        "TMT proteomics of colorectal tumor tissue",
+        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "",
+    )
+    llm = {
+        "atlas_fit": "maybe",
+        "atlas_fit_score": 0.92,
+        "summary_ru": "Человеческий TMT11 опухоли.",
+        "semantic_evidence": ["TMT 11-plex", "tumor tissue"],
+    }
+    merged = _consensus_with_regex(regex, llm, engine="ollama")
+    assert merged["atlas_fit"] == "yes"
+
+
+def test_medium_keeps_weak_maybe():
+    regex = _regex_extract(
+        "TMT proteomics of colorectal tumor tissue",
+        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "",
+    )
+    llm = {
+        "atlas_fit": "maybe",
+        "atlas_fit_score": 0.55,
+        "summary_ru": "Возможно подходит.",
+        "semantic_evidence": ["TMT"],
+    }
+    merged = _consensus_with_regex(regex, llm, engine="ollama")
+    assert merged["atlas_fit"] == "maybe"
+
+
+def test_high_does_not_auto_promote_maybe():
+    regex = _regex_extract(
+        "TMT proteomics of colorectal tumor tissue",
+        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "",
+    )
+    llm = {
+        "atlas_fit": "maybe",
+        "atlas_fit_score": 0.92,
+        "summary_ru": "Человеческий TMT11 опухоли.",
+        "semantic_evidence": ["TMT 11-plex"],
+    }
+    merged = _consensus_with_regex(regex, llm, engine="claude")
+    assert merged["atlas_fit"] == "maybe"
+
+
 def test_high_trust_cannot_override_regex_no():
     regex = _regex_extract(
         "Mouse TMT proteomics",
