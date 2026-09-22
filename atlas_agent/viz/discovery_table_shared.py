@@ -1031,9 +1031,15 @@ def build_unified_discovery_rows(
         return attr
 
     for it in projects:
+        raw_acc = _first_accession(it)
+        if raw_acc.upper().startswith("PDC"):
+            from atlas_agent.sources.pdc import pdc_has_linked_article
+
+            resolve_publication_links(it, fetch_pride_pmid=False)
+            if not pdc_has_linked_article(it):
+                continue
         row_num += 1
         resolve_publication_links(it, fetch_pride_pmid=fetch_pride_pmid)
-        raw_acc = _first_accession(it)
         repo = it.get("repository_url") or it.get("url") or repository_url(raw_acc)
         pmid = _valid_pmid(str(it.get("pmid") or ""))
         pub = it.get("pubmed_url") or pubmed_url(pmid)

@@ -32,6 +32,7 @@ def test_pdc_excludes_low_plex_and_cptac_program():
         reject_plexes=reject,
         min_channels=int(pdc_cfg.get("min_plex_channels") or 7),
         exclude_programs=[],
+        require_publication=False,
     )
     filtered = search_pdc_tmt_studies(
         known_accessions=known,
@@ -39,6 +40,7 @@ def test_pdc_excludes_low_plex_and_cptac_program():
         reject_plexes=reject,
         min_channels=int(pdc_cfg.get("min_plex_channels") or 7),
         exclude_programs=pdc_cfg.get("exclude_programs") or [],
+        require_publication=False,
     )
 
     assert all(p.get("inferred_plex") not in reject for p in filtered if p.get("inferred_plex") is not None)
@@ -54,3 +56,31 @@ def test_pdc_publication_for_study_uses_index():
     }
     rec = pdc_mod.pdc_publication_for_study("pdc000606")
     assert rec and rec["pmid"] == "41512870"
+
+
+def test_pdc_search_skips_studies_without_article(monkeypatch):
+    from atlas_agent.sources import pdc as pdc_mod
+
+    studies = [
+        {
+            "pdc_study_id": "PDC000001",
+            "experiment_type": "TMT10",
+            "submitter_id_name": "With paper",
+            "program_name": "Other",
+        },
+        {
+            "pdc_study_id": "PDC000002",
+            "experiment_type": "TMT10",
+            "submitter_id_name": "No paper",
+            "program_name": "Other",
+        },
+    ]
+    monkeypatch.setattr(pdc_mod, "fetch_study_summary", lambda: studies)
+    pdc_mod._PDC_PUB_INDEX = {
+        "PDC000001": {"pmid": "38765432", "title": "A real gallbladder paper"}
+    }
+    stats: dict = {}
+    out = search_pdc_tmt_studies(stats=stats)
+    assert [p["accession"] for p in out] == ["PDC000001"]
+    assert out[0]["pmid"] == "38765432"
+    assert stats.get("skipped_no_publication") == 1

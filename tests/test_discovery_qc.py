@@ -137,6 +137,36 @@ class SanitizeJoinTests(unittest.TestCase):
         out = dedupe_literature(rows)
         self.assertEqual({r["accession"] for r in out}, {"PDC000646", "PDC000655"})
 
+    def test_sanitize_drops_pdc_without_article(self):
+        from atlas_agent.sources import pdc as pdc_mod
+        from atlas_agent.viz.site_sanitize import sanitize_report_for_site
+
+        pdc_mod._PDC_PUB_INDEX = {}
+        report = sanitize_report_for_site(
+            {
+                "candidates": [
+                    {"accession": "PXD012345", "title": "Colon TMT"},
+                    {
+                        "accession": "PDC000002",
+                        "title": "No paper",
+                        "source": "pdc_api",
+                        "consortium": "PDC",
+                    },
+                    {
+                        "accession": "PDC000001",
+                        "title": "Has paper",
+                        "pmid": "38765432",
+                        "source": "pdc_api",
+                    },
+                ],
+                "summary": {},
+            }
+        )
+        accs = [c["accession"] for c in report["candidates"]]
+        self.assertIn("PXD012345", accs)
+        self.assertIn("PDC000001", accs)
+        self.assertNotIn("PDC000002", accs)
+
 
 if __name__ == "__main__":
     unittest.main()

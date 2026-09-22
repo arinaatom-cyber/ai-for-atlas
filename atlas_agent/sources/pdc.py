@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import time
 from typing import Any
 
@@ -92,6 +93,32 @@ def pdc_publication_for_study(accession: str) -> dict[str, Any] | None:
     return fetch_pdc_publication_index().get(acc)
 
 
+def _plausible_pmid(raw: object) -> bool:
+    digits = re.sub(r"\D", "", str(raw or "").split(".")[0])
+    if not digits.isdigit():
+        return False
+    n = int(digits)
+    return 1_000_000 <= n <= 99_999_999
+
+
+def pdc_has_linked_article(item: dict[str, Any]) -> bool:
+    """True only if PDC catalog (or the record) has a paper, not a search fallback."""
+    if _plausible_pmid(item.get("pmid")):
+        return True
+    if str(item.get("doi") or "").strip():
+        return True
+    if len(str(item.get("publication_title") or "").strip()) > 20:
+        return True
+    pub = pdc_publication_for_study(str(item.get("accession") or ""))
+    if not pub:
+        return False
+    if _plausible_pmid(pub.get("pmid")):
+        return True
+    if str(pub.get("doi") or "").strip():
+        return True
+    return bool(str(pub.get("title") or "").strip())
+
+
 def fetch_study_summary() -> list[dict[str, Any]]:
     q = """query {
       uiStudySummary {
@@ -163,6 +190,19 @@ def _study_to_record(s: dict[str, Any]) -> dict[str, Any]:
         rec["human_assumed"] = True
     if plex is None and rec["tmt_detected"]:
         rec["tmt_plex_unspecified_pdc"] = True
+    pub = pdc_publication_for_study(acc)
+    if pub:
+        if pub.get("pmid"):
+            rec["pmid"] = pub["pmid"]
+        if pub.get("doi"):
+            rec["doi"] = pub["doi"]
+        if pub.get("year"):
+            rec["publication_date"] = pub["year"]
+        if pub.get("title"):
+            rec["publication_title"] = pub["title"]
+        if pub.get("abstract"):
+            rec["abstract"] = pub["abstract"]
+            rec["abstract_snippet"] = str(pub["abstract"])[:1200]
     return rec
 
 
@@ -181,6 +221,7 @@ def search_pdc_tmt_studies(
     programs: list[str] | None = None,
     exclude_programs: list[str] | None = None,
     stats: dict[str, Any] | None = None,
+    require_publication: bool = True,
 ) -> list[dict[str, Any]]:
     known = {a.upper() for a in (known_accessions or set())}
     program_filter = {p.lower() for p in (programs or [])}
@@ -189,6 +230,7 @@ def search_pdc_tmt_studies(
     exclude_prog = list(exclude_programs or [])
     out: list[dict[str, Any]] = []
     unspecified = 0
+    skipped_no_paper = 0
 
     studies = fetch_study_summary()
     if stats is not None:
@@ -214,7 +256,12 @@ def search_pdc_tmt_studies(
             prog = str(s.get("program_name") or "").lower()
             if not any(p in prog for p in program_filter):
                 continue
-        out.append(_study_to_record(s))
+        rec = _study_to_record(s)
+        if require_publication and not pdc_has_linked_article(rec):
+            skipped_no_paper += 1
+            continue
+        out.append(rec)
     if stats is not None:
         stats["tmt_plex_unspecified"] = unspecified
+        stats["skipped_no_publication"] = skipped_no_paper
     return out

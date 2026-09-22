@@ -58,6 +58,18 @@ def _translate_list(values: list[Any] | None) -> list[str]:
 _REPO_PREFIXES = ("PXD", "PDC", "MSV", "IPX")
 
 
+def _is_pdc_project(item: dict[str, Any]) -> bool:
+    acc = str(item.get("accession") or item.get("project_accession") or "").strip().upper()
+    src = str(item.get("source") or "").lower()
+    return acc.startswith("PDC") or src.startswith("pdc") or item.get("consortium") == "PDC"
+
+
+def _drop_pdc_without_article(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    from atlas_agent.sources.pdc import pdc_has_linked_article
+
+    return [it for it in items if not _is_pdc_project(it) or pdc_has_linked_article(it)]
+
+
 def _is_repository_project(item: dict[str, Any]) -> bool:
     acc = str(item.get("accession") or item.get("project_accession") or "").strip().upper()
     return any(acc.startswith(p) for p in _REPO_PREFIXES)
@@ -134,6 +146,15 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
             item["finding_note"] = format_finding_note(item)
         if key in ("manual_check", "literature_semantic"):
             report[key] = dedupe_literature(list(report.get(key) or []))
+        if key in (
+            "candidates",
+            "new_projects",
+            "manual_check",
+            "repository_manual",
+            "rejected_material",
+            "filtered_out",
+        ):
+            report[key] = _drop_pdc_without_article(list(report.get(key) or []))
 
     for item in report.get("cohort_literature") or []:
         item["description_en"] = build_description_en(item, include_cohort_meta=False)
