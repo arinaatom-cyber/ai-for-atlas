@@ -27,6 +27,9 @@ from atlas_agent.viz.site_theme import DEPLOY_TMT, page_wrap
 
 
 def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, dict]:
+    # Later list wins: extra (manual / literature) is walked first, then
+    # publications_analyzed overwrites the same PMID. Do not swap the
+    # concatenation order without changing that priority.
     out: dict[str, dict] = {}
     for p in (extra or []) + pubs:
         pmid = re.sub(r"\D", "", str(p.get("pmid") or ""))
@@ -332,18 +335,30 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   const q = document.getElementById('q');
   const tbl = document.getElementById('tbl-unified');
   const tbody = tbl ? tbl.querySelector('tbody') : null;
+  // Snapshot of server-rendered <tr>s. Rebuild this list if rows are ever
+  // loaded asynchronously or paginated.
   const rows = tbody ? [...tbody.querySelectorAll('tr')] : [];
   const count = document.getElementById('count');
   const fType = document.getElementById('f-type');
   const fVerdict = document.getElementById('f-verdict');
   const fYear = document.getElementById('f-year');
+  const VERDICT_RANK = {{Candidate:0, Review:1, Watch:2, Exclude:3}};
+  function missingYear(v) {{
+    return !v || v === '—' || Number.isNaN(parseInt(v, 10));
+  }}
   if (fYear) {{
-    const years = [...new Set(rows.map(r => r.dataset.year).filter(y => y && y !== '—'))].sort().reverse();
+    const years = [...new Set(rows.map(r => r.dataset.year).filter(y => y && y !== '—'))]
+      .sort((a, b) => parseInt(b, 10) - parseInt(a, 10));
     years.forEach(y => {{
       const o = document.createElement('option');
       o.value = y; o.textContent = y;
       fYear.appendChild(o);
     }});
+    if (rows.some(r => r.dataset.year === '—')) {{
+      const o = document.createElement('option');
+      o.value = '—'; o.textContent = '—';
+      fYear.appendChild(o);
+    }}
   }}
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
@@ -358,11 +373,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         && (!verdict || r.dataset.verdict === verdict)
         && (!year || r.dataset.year === year);
       r.style.display = show ? '' : 'none';
-      if (show) {{
-        visible++;
-        const num = r.querySelector('.col-num b');
-        if (num) num.textContent = String(visible);
-      }}
+      if (show) visible++;
     }});
     if (count) {{
       const lang = window.AtlasI18n?.getLang?.() || 'ru';
@@ -382,6 +393,19 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     rows.sort((a, b) => {{
       const av = (a.dataset[key] || '');
       const bv = (b.dataset[key] || '');
+      if (key === 'verdict') {{
+        const ar = VERDICT_RANK[av] ?? 9;
+        const br = VERDICT_RANK[bv] ?? 9;
+        return dir === 'asc' ? ar - br : br - ar;
+      }}
+      if (key === 'year') {{
+        const am = missingYear(av);
+        const bm = missingYear(bv);
+        if (am !== bm) return am ? 1 : -1;
+        const an = parseInt(av, 10);
+        const bn = parseInt(bv, 10);
+        return dir === 'asc' ? an - bn : bn - an;
+      }}
       return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
     }});
     const wrap = tbl.closest('.table-wrap');

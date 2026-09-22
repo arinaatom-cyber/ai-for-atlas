@@ -2,6 +2,7 @@ import unittest
 
 from atlas_agent.viz.discovery_qc import (
     abstract_matches_title,
+    content_tokens,
     dedupe_literature,
     is_plausible_pmid,
     sanitize_item_publication,
@@ -47,7 +48,7 @@ class AbstractOverlapTests(unittest.TestCase):
             with self.subTest(title=title[:32]):
                 self.assertFalse(abstract_matches_title(title, abstract))
 
-    def test_synonyms_and_prefixes_still_match(self):
+    def test_synonyms_still_match_without_prefix(self):
         self.assertTrue(
             abstract_matches_title(
                 "Proteomics of glioma U251 cells",
@@ -60,6 +61,32 @@ class AbstractOverlapTests(unittest.TestCase):
                 "CRC remains a leading cause of cancer-related mortality.",
             )
         )
+
+    def test_single_weak_token_is_not_a_match(self):
+        self.assertFalse(
+            abstract_matches_title(
+                "Clinical treatment effects of TMT labelling weeks",
+                "Clinical treatment effects of breastfeeding counselling after 12 weeks.",
+            )
+        )
+
+    def test_organ_stem_is_not_a_prefix_match(self):
+        self.assertFalse(
+            abstract_matches_title(
+                "TMT proteome of hepatocellular carcinoma",
+                "Primary human hepatocyte cultures after isolation.",
+            )
+        )
+        self.assertFalse(
+            abstract_matches_title(
+                "Pancreatic ductal adenocarcinoma TMT",
+                "Chronic pancreatitis cohort serum proteins.",
+            )
+        )
+
+    def test_lowercase_mm_is_not_myeloma(self):
+        self.assertNotIn("myeloma", content_tokens("the tumor was 12 mm in diameter"))
+        self.assertIn("myeloma", content_tokens("CD70 CAR-T in MM cell lines"))
 
     def test_matching_abstract_kept(self):
         title = "In-Depth Proteomic Analysis of Stage II Colorectal Cancer"

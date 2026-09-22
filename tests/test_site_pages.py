@@ -49,3 +49,15 @@ def test_nav_qc_label_is_quality_control_not_qc():
     assert en["nav_guide"] == "Guide"
     assert ru["nav_methods"] == "Методы"
     assert en["nav_methods"] == "Methods"
+
+
+def test_discovery_sort_uses_verdict_rank_and_keeps_stable_row_numbers(tmp_path: Path):
+    html = generate_discovery_html(
+        {"generated_at": "2026-09-22T00:00:00Z", "summary": {}, "candidates": []},
+        tmp_path / "discovery.html",
+    ).read_text(encoding="utf-8")
+    assert "const VERDICT_RANK" in html
+    assert "Candidate:0, Review:1, Watch:2, Exclude:3" in html
+    assert "function missingYear" in html
+    assert "if (num) num.textContent" not in html
+    assert "rows.some(r => r.dataset.year === '—')" in html

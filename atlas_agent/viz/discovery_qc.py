@@ -11,7 +11,8 @@ PMID_MIN = 1_000_000
 PMID_MAX = 99_999_999
 
 _WORD_RE = re.compile(r"[A-Za-z]{4,}")
-_SHORT_RE = re.compile(r"\b[A-Za-z]{2,4}\b")
+_SHORT_RE = re.compile(r"\b[A-Za-z]{3,4}\b")
+_ACRONYM_RE = re.compile(r"\b[A-Z]{2,4}\b")
 _STOP = frozenset(
     {
         "that",
@@ -72,10 +73,41 @@ _STOP = frozenset(
         "samples",
         "tandem",
         "mass",
+        "compare",
+        "compared",
+        "effect",
+        "effects",
+        "group",
+        "groups",
+        "significant",
+        "week",
+        "weeks",
+        "month",
+        "months",
+        "treatment",
+        "treatments",
+        "clinical",
+        "response",
+        "responses",
+        "associated",
+        "target",
+        "therapy",
+        "inhibition",
+        "quantitative",
+        "global",
+        "primary",
+        "chronic",
+        "serum",
+        "culture",
+        "cultures",
+        "diameter",
+        "size",
+        "uncovers",
+        "serial",
+        "duration",
     }
 )
-# Canonical disease/method aliases so glioma vs glioblastoma is a hit,
-# not a false mismatch. Token overlap is exact + 7-letter prefix + this map.
+# Synonyms only — not stem/prefix. glioma/GBM is a hit; hepatocellular/hepatocyte is not.
 _ALIASES = {
     "glioma": "glioma",
     "gliomas": "glioma",
@@ -84,12 +116,19 @@ _ALIASES = {
     "crc": "colorectal",
     "colorectal": "colorectal",
     "colon": "colorectal",
-    "mm": "myeloma",
     "myeloma": "myeloma",
     "aml": "leukemia",
     "leukemia": "leukemia",
     "leukaemia": "leukemia",
 }
+# Case-sensitive acronyms. "12 mm" must not become myeloma; "MM cell lines" may.
+_ACRONYMS = {
+    "MM": "myeloma",
+    "CRC": "colorectal",
+    "GBM": "glioma",
+    "AML": "leukemia",
+}
+_STRONG = frozenset(_ALIASES.values()) | frozenset(_ACRONYMS.values())
 
 
 def digits_pmid(raw: object) -> str:
@@ -116,6 +155,10 @@ def content_tokens(text: object) -> set[str]:
         for w in _WORD_RE.findall(blob)
         if w.lower() not in _STOP
     }
+    for w in _ACRONYM_RE.findall(blob):
+        canon = _ACRONYMS.get(w)
+        if canon:
+            toks.add(canon)
     for w in _SHORT_RE.findall(blob):
         key = w.lower()
         if key in _ALIASES:
@@ -123,32 +166,21 @@ def content_tokens(text: object) -> set[str]:
     return toks
 
 
-def _prefix_hit(a: str, b: str) -> bool:
-    # 7 letters avoids proteome/proteomics; glioma/glioblastoma is an alias.
-    if min(len(a), len(b)) < 7:
-        return False
-    return a.startswith(b[:7]) or b.startswith(a[:7])
+def abstract_matches_title(title: object, abstract: object, *, min_overlap: int = 2) -> bool:
+    """Canonical token overlap, not embeddings and not stem prefixes.
 
-
-def abstract_matches_title(title: object, abstract: object, *, min_overlap: int = 1) -> bool:
-    """Token overlap, not embeddings.
-
-    A hit is (1) the same canonical token, or (2) a shared 7-letter prefix
-    (plus aliases: glioma/glioblastoma, CRC/colorectal). Empty title or abstract is
-    treated as unknown — not as a mismatch — so we do not drop a project
-    row; only a mismatched *joined* abstract/PMID is cleared.
+    One shared token is enough only if it is a disease alias (glioma, CRC,
+    myeloma, …). Otherwise at least two non-stop tokens must overlap.
+    Empty title or abstract is unknown, not a mismatch.
     """
     title_toks = content_tokens(title)
     abs_toks = content_tokens(abstract)
     if not title_toks or not abs_toks:
         return True
-    if len(title_toks & abs_toks) >= min_overlap:
+    shared = title_toks & abs_toks
+    if shared & _STRONG:
         return True
-    for t in title_toks:
-        for a in abs_toks:
-            if _prefix_hit(t, a):
-                return True
-    return False
+    return len(shared) >= min_overlap
 
 
 def _clear_publication(item: dict[str, Any], reason: str) -> None:

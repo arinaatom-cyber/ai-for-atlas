@@ -506,7 +506,13 @@ def _patient_cell(item: dict) -> str:
 
 
 def _num_cell(n: int) -> str:
+    # Publish-time index. Do not rewrite in the client on filter/sort.
     return f'<td class="col-num cell-mono"><b>{n}</b></td>'
+
+
+def _stable_row_id(acc: str, pmid: str, row_num: int) -> str:
+    raw = str(acc or pmid or f"row-{row_num}").strip()
+    return _esc(raw)
 
 
 def _year_cell(year: str) -> str:
@@ -1052,6 +1058,7 @@ def build_unified_discovery_rows(
         preprint = "1" if item_is_preprint(it, pubs_by_pmid) else "0"
         rows.append(
             f"<tr{row_cls} data-type='project' data-src='{src_key}' "
+            f"data-row-id='{_stable_row_id(raw_acc, pmid, row_num)}' "
             f"data-bucket='{bucket}' data-simple='{simple}' "
             f"data-preprint='{preprint}' "
             f"data-verdict='{_esc(vlabel)}' data-year='{_esc(year)}' "
@@ -1123,6 +1130,7 @@ def build_unified_discovery_rows(
         data_cell = _data_cell(paper or it) if kind == "project" else _muted_unclear()
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
+            f"data-row-id='{_stable_row_id(acc, pmid, row_num)}' "
             f"data-preprint='{preprint}' "
             f"data-verdict='{_esc(vlabel)}' data-year='{_esc(year)}' "
             f"data-disease='{_esc(disease_attr)}' "
