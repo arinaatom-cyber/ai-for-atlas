@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
   "generated_at": "2026-09-21T12:13:41.264404+00:00",
-  "pipeline_git_commit": "287335773492e416a0cf260823d50ebe4077b1e9",
+  "pipeline_git_commit": "069b58c837bc3600c2e61ffe9b910d112cfc5d76",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",

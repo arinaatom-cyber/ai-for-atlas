@@ -37,6 +37,7 @@ from atlas_agent.viz.portal_index import (
 )
 
 _FORMATTER = AnalysisFormatter()
+_TABLE_FORMATTER = AnalysisFormatter(max_summary_len=140, max_bullet_len=90)
 _TABLE_CTX: EvaluationContext | None = None
 
 
@@ -85,9 +86,19 @@ def _analysis_html(
 ) -> str:
     if evaluation is None:
         inner = _FORMATTER.legacy_html()
-    else:
-        en, ru = _item_summaries(item, pubs_by_pmid)
-        inner = _FORMATTER.to_html(evaluation, summary=en, summary_ru=ru)
+        return f'<div class="cell-stack cell-analysis">{inner}</div>'
+    en, ru = _item_summaries(item, pubs_by_pmid)
+    inner = _TABLE_FORMATTER.to_html(evaluation, summary=en, summary_ru=ru)
+    preview = (en or ru or "").strip()
+    if len(preview) > 90:
+        preview = preview[:88].rsplit(" ", 1)[0] + "…"
+    if preview:
+        return (
+            f'<details class="finding-fold">'
+            f"<summary>{_esc(preview)}</summary>"
+            f'<div class="cell-stack cell-analysis">{inner}</div>'
+            f"</details>"
+        )
     return f'<div class="cell-stack cell-analysis">{inner}</div>'
 
 
@@ -812,13 +823,13 @@ def _main_finding_cell(item: dict) -> str:
     snip = finding_plain_text(item, limit=2000)
     if not snip:
         return '<span class="cell-empty">—</span>'
-    if len(snip) <= 180:
+    if len(snip) <= 110:
         return (
             f'<div class="cell-stack cell-finding-block">'
             f'<p class="cell-abstract">{_esc(snip)}</p>'
             f"</div>"
         )
-    preview = snip[:160].rsplit(" ", 1)[0] + "…"
+    preview = snip[:90].rsplit(" ", 1)[0] + "…"
     return (
         f'<details class="finding-fold">'
         f'<summary>{_esc(preview)}</summary>'

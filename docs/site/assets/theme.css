@@ -714,7 +714,7 @@ code {
 .table-unified table.data-table {
   table-layout: fixed;
   width: 100%;
-  min-width: 1680px;
+  min-width: 1280px;
   border-collapse: collapse;
 }
 
@@ -726,7 +726,7 @@ code {
   vertical-align: top;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  padding: 14px 14px;
+  padding: 10px 8px;
   line-height: 1.5;
   font-size: var(--text-sm);
 }
@@ -1068,7 +1068,7 @@ a.id-no-acc:hover {
 .table-unified:not(.table-qc) .col-disease { width: 6%; min-width: 72px; }
 .table-unified:not(.table-qc) .col-organ { width: 6%; min-width: 72px; }
 .table-unified:not(.table-qc) .col-similar { width: 5%; min-width: 64px; }
-.table-unified:not(.table-qc) .col-finding { width: 38%; min-width: 520px; }
+.table-unified:not(.table-qc) .col-finding { width: 22%; min-width: 220px; }
 .table-unified:not(.table-qc) .col-data { width: 8%; min-width: 80px; }
 .table-unified:not(.table-qc) .col-links { width: 6%; min-width: 72px; }
 
