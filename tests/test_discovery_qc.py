@@ -125,6 +125,18 @@ class SanitizeJoinTests(unittest.TestCase):
         self.assertEqual(len(out), 1)
         self.assertEqual(out[0]["pmid"], "40493991")
 
+    def test_same_template_title_keeps_distinct_accessions(self):
+        title = (
+            "Proteogenomics Analysis of Glioma across Pediatric Adolescent "
+            "and Young Adult Age Groups — Pediatric Brain Tumor Atlas - CBTN"
+        )
+        rows = [
+            {"accession": "PDC000646", "title": title, "pmid": "41111111"},
+            {"accession": "PDC000655", "title": title, "pmid": "41111112"},
+        ]
+        out = dedupe_literature(rows)
+        self.assertEqual({r["accession"] for r in out}, {"PDC000646", "PDC000655"})
+
 
 if __name__ == "__main__":
     unittest.main()

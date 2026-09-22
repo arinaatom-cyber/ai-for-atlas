@@ -212,23 +212,36 @@ def _title_key(item: dict[str, Any]) -> str:
     return re.sub(r"[^a-z0-9]+", " ", str(item.get("title") or "").lower()).strip()
 
 
+def _item_accession(item: dict[str, Any]) -> str:
+    return str(item.get("accession") or item.get("study_id") or "").strip().upper()
+
+
 def dedupe_literature(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    # Accession wins: identical CPTAC template titles (PDC000646 vs PDC000655)
+    # must not collapse. Title-only collapse is for papers without a repo id.
     seen_pmid: set[str] = set()
+    seen_acc: set[str] = set()
     seen_title: set[str] = set()
     out: list[dict[str, Any]] = []
     for item in items:
         sanitize_item_publication(item)
         pmid = digits_pmid(item.get("pmid"))
+        acc = _item_accession(item)
         title_key = _title_key(item)
         if pmid and not is_plausible_pmid(pmid):
             continue
         if pmid and pmid in seen_pmid:
             continue
-        if title_key and title_key in seen_title:
+        if acc:
+            if acc in seen_acc:
+                continue
+        elif title_key and title_key in seen_title:
             continue
         if pmid:
             seen_pmid.add(pmid)
-        if title_key:
+        if acc:
+            seen_acc.add(acc)
+        elif title_key:
             seen_title.add(title_key)
         out.append(item)
     return out
