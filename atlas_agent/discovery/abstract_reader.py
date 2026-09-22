@@ -483,6 +483,23 @@ def read_abstract_with_llm(
     return apply_literature_exclusions(out)
 
 
+def _tally_abstract_reader(stats: dict[str, Any], reader: str, enriched: dict[str, Any] | None = None) -> None:
+    if reader.startswith("regex_error:"):
+        err = reader.split(":", 1)[-1] or "Exception"
+        stats["llm_errors"][err] = stats["llm_errors"].get(err, 0) + 1
+        return
+    if reader.startswith("regex"):
+        stats["regex_only"] += 1
+        if enriched is not None:
+            stats["regex_only_publications"].append(_regex_only_ref(enriched))
+        return
+    if reader == "exclusion_engine":
+        stats["exclusion_engine"] += 1
+        return
+    stats["llm_read"] += 1
+    stats["engines"][reader] = stats["engines"].get(reader, 0) + 1
+
+
 def _regex_only_ref(pub: dict[str, Any]) -> dict[str, str]:
     return {
         "title": str(pub.get("title") or "")[:200],
@@ -516,6 +533,7 @@ def enrich_publications_with_ai(
     stats = {
         "llm_read": 0,
         "regex_only": 0,
+        "exclusion_engine": 0,
         "llm_errors": {},
         "atlas_fit_yes": 0,
         "atlas_fit_maybe": 0,
@@ -530,15 +548,7 @@ def enrich_publications_with_ai(
         if i < limit and (pub.get("abstract") or "").strip():
             enriched = read_abstract_with_llm(pub, cfg=cfg, atlas_context=atlas_context)
             reader = enriched.get("abstract_reader", "")
-            if reader.startswith("regex_error:"):
-                err = reader.split(":", 1)[-1] or "Exception"
-                stats["llm_errors"][err] = stats["llm_errors"].get(err, 0) + 1
-            elif reader.startswith("regex"):
-                stats["regex_only"] += 1
-                stats["regex_only_publications"].append(_regex_only_ref(enriched))
-            else:
-                stats["llm_read"] += 1
-                stats["engines"][reader] = stats["engines"].get(reader, 0) + 1
+            _tally_abstract_reader(stats, reader, enriched)
             fit = (enriched.get("abstract_ai") or {}).get("atlas_fit")
             if fit == "yes":
                 stats["atlas_fit_yes"] += 1

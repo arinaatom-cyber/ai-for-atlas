@@ -5,6 +5,7 @@ from atlas_agent.discovery.abstract_reader import (
     _consensus_with_regex,
     _is_garbage_llm,
     _regex_extract,
+    _tally_abstract_reader,
 )
 from atlas_agent.discovery.evaluation.sanitize import sanitize_summary
 from atlas_agent.discovery.filters import _infer_sample_design
@@ -123,6 +124,26 @@ def test_untrusted_prompt_strips_braces_and_flags_injection():
     assert flagged is True
     assert "{" not in text
     assert "}" not in text
+
+
+def test_exclusion_engine_not_counted_as_llm_read():
+    stats = {
+        "llm_read": 0,
+        "regex_only": 0,
+        "exclusion_engine": 0,
+        "llm_errors": {},
+        "engines": {},
+        "regex_only_publications": [],
+    }
+    _tally_abstract_reader(stats, "exclusion_engine")
+    _tally_abstract_reader(stats, "regex_error:Timeout")
+    _tally_abstract_reader(stats, "regex_no_abstract", {"title": "x", "pmid": "", "doi": ""})
+    _tally_abstract_reader(stats, "claude")
+    assert stats["exclusion_engine"] == 1
+    assert stats["llm_read"] == 1
+    assert stats["engines"] == {"claude": 1}
+    assert stats["llm_errors"] == {"Timeout": 1}
+    assert stats["regex_only"] == 1
 
 
 def test_sanitize_strips_boilerplate():

@@ -197,6 +197,7 @@ def build_methods_manifest(report: dict[str, Any], cfg: dict[str, Any] | None = 
             "publications_scanned": st.get("publications_scanned"),
             "abstract_llm_read": st.get("abstract_llm_read"),
             "abstract_regex_only": st.get("abstract_regex_only"),
+            "abstract_exclusion_engine": st.get("abstract_exclusion_engine", 0),
             "abstract_llm_errors": st.get("abstract_llm_errors") or {},
             "abstract_summary_sanitize": st.get("abstract_summary_sanitize") or {},
             "abstract_llm_max": disc.get("abstract_llm_max", 25),

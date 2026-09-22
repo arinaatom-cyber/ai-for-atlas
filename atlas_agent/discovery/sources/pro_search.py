@@ -163,6 +163,7 @@ def discover_projects_professional(
             "publications_scanned": len(pubs_raw),
             "abstract_llm_read": abstract_ai_stats.get("llm_read", 0),
             "abstract_regex_only": abstract_ai_stats.get("regex_only", 0),
+            "abstract_exclusion_engine": abstract_ai_stats.get("exclusion_engine", 0),
             "abstract_llm_errors": abstract_ai_stats.get("llm_errors") or {},
             "abstract_summary_sanitize": abstract_ai_stats.get("summary_sanitize") or {},
             "abstract_atlas_fit_yes": abstract_ai_stats.get("atlas_fit_yes", 0),
