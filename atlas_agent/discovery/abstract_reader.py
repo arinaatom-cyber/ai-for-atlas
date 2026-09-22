@@ -20,8 +20,10 @@ from atlas_agent.llm_client import _run_llm, resolve_engine
 ABSTRACT_SYSTEM = """You are a curator assistant for a human TMT proteomics atlas.
 Read abstracts by MEANING using the reference atlas — do NOT extract repository accession numbers.
 Reply with ONLY valid JSON, no markdown.
-Use "unclear" only for organism/tmt/material when the abstract does not state that fact.
-For atlas_fit decide yes or no when those facts are present — do not default to maybe."""
+Decide atlas_fit as "yes" or "no" whenever the abstract states TMT plex, material,
+and organism clearly enough to check criteria 1-11. Use "maybe" only when one of
+those three facts is genuinely missing from the text — not because the paper is
+borderline-relevant."""
 
 ABSTRACT_PROMPT = """{atlas_context}
 
@@ -51,10 +53,9 @@ Task:
 10) Disease controls (e.g. patients without complication vs with complication) are NOT healthy controls — case-control disease comparisons are OK.
 11) Reject microbiome/pathogen/bacteria-only proteomics unless human tumor tissue proteomics is also present.
 12) In summary_ru use Russian words «статья», «абстракт», «проект» — never «пейсаж», «пейдж», «пакет».
-13) Decide atlas_fit as yes or no whenever the abstract gives enough detail to check
-    criteria 1–11 directly (TMT plex stated, material stated, organism stated).
-    Use "maybe" only when a required detail (plex, material, or organism) is
-    genuinely absent from the abstract — not merely because the study is
+13) Decide atlas_fit as "yes" or "no" whenever the abstract states TMT plex, material,
+    and organism clearly enough to check criteria 1-11. Use "maybe" only when one of
+    those three facts is genuinely missing from the text — not because the paper is
     borderline-relevant.
 
 Return a JSON object (no markdown) with fields:
@@ -296,6 +297,8 @@ def _consensus_with_regex(
         merged["atlas_fit_score"] = min(r_score or 0.55, l_score or 0.55) if merged["atlas_fit"] != "no" else min(r_score, l_score, 0.35)
     elif trust == ModelTrustLevel.MEDIUM:
         merged["atlas_fit_score"] = max(r_score, l_score * 0.85) if merged["atlas_fit"] != "no" else min(r_score, l_score, 0.4)
+        if merged["atlas_fit"] == "maybe" and merged.get("atlas_fit_score") and float(merged["atlas_fit_score"]) >= MAYBE_PROMOTE_SCORE:
+            merged["atlas_fit"] = "yes"
     else:
         try:
             merged["atlas_fit_score"] = min(
@@ -304,17 +307,6 @@ def _consensus_with_regex(
             )
         except (TypeError, ValueError):
             merged["atlas_fit_score"] = regex.get("atlas_fit_score")
-
-    try:
-        merged_score = float(merged.get("atlas_fit_score") or 0)
-    except (TypeError, ValueError):
-        merged_score = 0.0
-    if (
-        merged["atlas_fit"] == "maybe"
-        and trust == ModelTrustLevel.MEDIUM
-        and merged_score >= MAYBE_PROMOTE_SCORE
-    ):
-        merged["atlas_fit"] = "yes"
 
     if _is_garbage_llm(llm):
         merged["atlas_fit"] = regex.get("atlas_fit", "no")
