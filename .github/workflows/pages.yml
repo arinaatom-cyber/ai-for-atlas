@@ -28,6 +28,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install and test publish QC
+        run: |
+          pip install -r requirements.txt
+          python -m unittest tests.test_discovery_qc
+
       - name: Rebuild HTML from latest.json
         run: |
           pip install -r requirements.txt

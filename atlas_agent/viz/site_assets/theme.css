@@ -652,7 +652,45 @@ code {
   padding: 0 22px 64px;
 }
 
-.table-wrap.table-unified {
+.catalog-banner {
+  margin: 0 0 10px;
+  font-size: var(--text-sm);
+  color: var(--text);
+  font-weight: 600;
+}
+.verdict-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+.verdict-legend li { display: flex; align-items: center; gap: 6px; }
+.toolbar select {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--text);
+  padding: 6px 8px;
+  font-size: var(--text-sm);
+}
+.verdict-reason {
+  display: block;
+  margin-top: 4px;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  line-height: 1.35;
+}
+.finding-fold summary {
+  cursor: pointer;
+  color: var(--text);
+  line-height: 1.45;
+}
+.finding-fold[open] summary { margin-bottom: 8px; color: var(--muted); }
+.sort-th::after { content: " ↕"; font-size: 0.75em; color: var(--muted); }
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: none;

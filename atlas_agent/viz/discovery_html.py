@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 from atlas_agent.viz.discovery_table_shared import (
+    _first_accession,
     _norm_pmid,
     _papers_without_accession,
     build_pmid_repo_index,
@@ -210,6 +211,9 @@ def _count_passed_candidates(projects: list[dict]) -> int:
 
 
 def generate_discovery_html(report: dict, out_path: str | Path | None = None, *, deploy: str = "docs_site") -> Path:
+    from atlas_agent.viz.site_sanitize import sanitize_report_for_site
+
+    report = sanitize_report_for_site(dict(report))
     s = report.get("summary") or {}
     candidates_only = list(report.get("candidates") or report.get("new_projects") or [])
     items = _merge_discovery_projects(report)
@@ -225,7 +229,12 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     pmid_index = build_pmid_repo_index(items)
     papers_raw = _papers_without_accession(manual, literature)
     linked_pmids = set(pmid_index.keys())
-    papers = [p for p in papers_raw if _norm_pmid(p) not in linked_pmids]
+    papers = [
+        p
+        for p in papers_raw
+        if _norm_pmid(p) not in linked_pmids and (_norm_pmid(p) or _first_accession(p))
+    ]
+    cohorts = [c for c in cohorts if _norm_pmid(c) or _first_accession(c)]
     pubs_by_pmid = _pub_index(
         pubs,
         (report.get("manual_check") or []) + (report.get("literature_semantic") or []),
@@ -260,8 +269,29 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 <div class="page-content page-content-wide">
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
+    <p class="catalog-banner" data-i18n="disc_catalog_banner"></p>
+    <ul class="verdict-legend" aria-label="Verdict legend">
+      <li><span class="badge badge-ok" data-i18n="verdict_candidate"></span> <span data-i18n="legend_candidate"></span></li>
+      <li><span class="badge badge-warn" data-i18n="verdict_review"></span> <span data-i18n="legend_review"></span></li>
+      <li><span class="badge badge-muted" data-i18n="verdict_watch"></span> <span data-i18n="legend_watch"></span></li>
+      <li><span class="badge badge-bad" data-i18n="verdict_exclude"></span> <span data-i18n="legend_exclude"></span></li>
+    </ul>
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
+      <select id="f-type" aria-label="Type">
+        <option value="" data-i18n="filter_all">All</option>
+        <option value="project" data-i18n="badge_project">Project</option>
+        <option value="paper" data-i18n="badge_paper">Paper</option>
+        <option value="cohort" data-i18n="badge_cohort">Cohort</option>
+      </select>
+      <select id="f-verdict" aria-label="Verdict">
+        <option value="" data-i18n="filter_all">All</option>
+        <option value="Candidate" data-i18n="verdict_candidate">Candidate</option>
+        <option value="Review" data-i18n="verdict_review">Review</option>
+        <option value="Watch" data-i18n="verdict_watch">Watch</option>
+        <option value="Exclude" data-i18n="verdict_exclude">Exclude</option>
+      </select>
+      <select id="f-year" aria-label="Year"><option value="" data-i18n="filter_all">All</option></select>
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
@@ -277,13 +307,13 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
           <th class="col-num" data-i18n="th_num"></th>
           <th class="col-type" data-i18n="th_type"></th>
           <th class="col-id"><span class="th-main" data-i18n="th_project_id"></span><span class="th-hint" data-i18n="th_project_id_hint"></span></th>
-          <th class="col-year" data-i18n="th_year"></th>
+          <th class="col-year sort-th" data-sort="year" data-i18n="th_year"></th>
           <th class="col-title" data-i18n="th_title"></th>
           <th class="col-disease" data-i18n="th_disease"></th>
           <th class="col-organ" data-i18n="th_organ"></th>
           <th class="col-design col-split" data-i18n="th_design"></th>
-          <th class="col-verdict col-split" data-i18n="th_verdict"></th>
-          <th class="col-similar" data-i18n="th_similar"></th>
+          <th class="col-verdict col-split sort-th" data-sort="verdict" data-i18n="th_verdict"></th>
+          <th class="col-similar" data-i18n="th_similar" data-i18n-title="th_similar_hint"></th>
           <th class="col-finding" data-i18n="th_finding"></th>
           <th class="col-data" data-i18n="th_data"></th>
         </tr></thead>
@@ -297,14 +327,32 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 (function() {{
   const q = document.getElementById('q');
   const tbl = document.getElementById('tbl-unified');
-  const rows = tbl ? [...tbl.querySelectorAll('tbody tr')] : [];
+  const tbody = tbl ? tbl.querySelector('tbody') : null;
+  const rows = tbody ? [...tbody.querySelectorAll('tr')] : [];
   const count = document.getElementById('count');
+  const fType = document.getElementById('f-type');
+  const fVerdict = document.getElementById('f-verdict');
+  const fYear = document.getElementById('f-year');
+  if (fYear) {{
+    const years = [...new Set(rows.map(r => r.dataset.year).filter(y => y && y !== '—'))].sort().reverse();
+    years.forEach(y => {{
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y;
+      fYear.appendChild(o);
+    }});
+  }}
   function apply() {{
     const term = (q?.value || '').toLowerCase().trim();
+    const type = fType?.value || '';
+    const verdict = fVerdict?.value || '';
+    const year = fYear?.value || '';
     let visible = 0;
     rows.forEach(r => {{
       const search = (r.dataset.search || '');
-      const show = !term || search.includes(term);
+      const show = (!term || search.includes(term))
+        && (!type || r.dataset.type === type)
+        && (!verdict || r.dataset.verdict === verdict)
+        && (!year || r.dataset.year === year);
       r.style.display = show ? '' : 'none';
       if (show) {{
         visible++;
@@ -319,6 +367,24 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     }}
   }}
   q?.addEventListener('input', apply);
+  fType?.addEventListener('change', apply);
+  fVerdict?.addEventListener('change', apply);
+  fYear?.addEventListener('change', apply);
+  tbl?.querySelectorAll('th.sort-th').forEach(th => {{
+    th.style.cursor = 'pointer';
+    th.addEventListener('click', () => {{
+      const key = th.dataset.sort;
+      const dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
+      th.dataset.dir = dir;
+      rows.sort((a, b) => {{
+        const av = (a.dataset[key] || '');
+        const bv = (b.dataset[key] || '');
+        return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+      }});
+      rows.forEach(r => tbody.appendChild(r));
+      apply();
+    }});
+  }});
   apply();
   document.addEventListener('atlas:lang', apply);
 }})();

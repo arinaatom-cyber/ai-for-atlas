@@ -119,6 +119,16 @@ def _i18n_badge(key: str, css: str, *, title: str = "", title_key: str = "") -> 
     return f'<span class="badge {css}" data-i18n="{_esc(key)}"{t_attr}>{text}</span>'
 
 
+def _verdict_cell(label: str, css: str, title: str = "") -> str:
+    badge = _verdict_badge(label, css, title)
+    if not title:
+        return badge
+    return (
+        f'<div class="cell-stack cell-verdict">{badge}'
+        f'<span class="verdict-reason">{_esc(title)}</span></div>'
+    )
+
+
 def _verdict_badge(label: str, css: str, title: str = "") -> str:
     key_map = {
         "Candidate": "verdict_candidate",
@@ -422,10 +432,10 @@ def _data_status_key(status: str) -> str:
 
 
 def _valid_pmid(pmid: str) -> str:
-    digits = re.sub(r"\D", "", str(pmid or ""))
-    if len(digits) < 7:
-        return ""
-    return digits
+    from atlas_agent.viz.discovery_qc import digits_pmid, is_plausible_pmid
+
+    digits = digits_pmid(pmid)
+    return digits if is_plausible_pmid(digits) else ""
 
 
 def _norm_pmid(item: dict) -> str:
@@ -634,6 +644,9 @@ def _design_cell(item: dict) -> str:
 
 
 def finding_plain_text(item: dict, *, limit: int = 2000) -> str:
+    from atlas_agent.viz.discovery_qc import abstract_matches_title
+
+    title = str(item.get("title") or "")
     candidates = [
         item.get("abstract_snippet"),
         item.get("abstract"),
@@ -649,7 +662,7 @@ def finding_plain_text(item: dict, *, limit: int = 2000) -> str:
     for raw in candidates:
         text = re.sub(r"<[^>]+>", " ", str(raw or ""))
         text = sentence_cap(re.sub(r"\s+", " ", text).strip())
-        if text and not is_stub_description(text):
+        if text and not is_stub_description(text) and abstract_matches_title(title, text):
             return text[:limit]
     return ""
 
@@ -703,10 +716,18 @@ def _main_finding_cell(item: dict) -> str:
     snip = finding_plain_text(item, limit=2000)
     if not snip:
         return '<span class="cell-empty">—</span>'
+    if len(snip) <= 180:
+        return (
+            f'<div class="cell-stack cell-finding-block">'
+            f'<p class="cell-abstract">{_esc(snip)}</p>'
+            f"</div>"
+        )
+    preview = snip[:160].rsplit(" ", 1)[0] + "…"
     return (
-        f'<div class="cell-stack cell-finding-block">'
+        f'<details class="finding-fold">'
+        f'<summary>{_esc(preview)}</summary>'
         f'<p class="cell-abstract">{_esc(snip)}</p>'
-        f"</div>"
+        f"</details>"
     )
 
 
@@ -1022,7 +1043,6 @@ def build_unified_discovery_rows(
 
         evaluation = _resolve_evaluation(it, kind=ItemKind.PROJECT)
         vlabel, vcss, vtitle = project_verdict(it)
-        verdict_cell = _verdict_badge(vlabel, vcss, vtitle)
         tier = it.get("confidence_tier") or evaluation.confidence
 
         bucket = str(it.get("_discovery_bucket") or "candidate")
@@ -1034,6 +1054,7 @@ def build_unified_discovery_rows(
             f"<tr{row_cls} data-type='project' data-src='{src_key}' "
             f"data-bucket='{bucket}' data-simple='{simple}' "
             f"data-preprint='{preprint}' "
+            f"data-verdict='{_esc(vlabel)}' data-year='{_esc(year)}' "
             f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
@@ -1044,7 +1065,7 @@ def build_unified_discovery_rows(
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design_cell}</td>"
-            f"<td class='col-verdict col-split'>{verdict_cell}</td>"
+            f"<td class='col-verdict col-split'>{_verdict_cell(vlabel, vcss, vtitle)}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
             f"<td class='col-finding'>{_main_finding_cell(it)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
@@ -1098,9 +1119,12 @@ def build_unified_discovery_rows(
         tier = it.get("confidence_tier") or evaluation.confidence
 
         preprint = "1" if item_is_preprint(it, pubs_by_pmid) else "0"
+        similar = _similar_cell(it) if kind == "project" else _muted_unclear()
+        data_cell = _data_cell(paper or it) if kind == "project" else _muted_unclear()
         rows.append(
             f"<tr data-type='{kind}' data-src='epmc' data-bucket='literature' data-simple='0' "
             f"data-preprint='{preprint}' "
+            f"data-verdict='{_esc(vlabel)}' data-year='{_esc(year)}' "
             f"data-disease='{_esc(disease_attr)}' "
             f"data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
@@ -1111,10 +1135,10 @@ def build_unified_discovery_rows(
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design}</td>"
-            f"<td class='col-verdict col-split'>{_verdict_badge(vlabel, vcss, vtitle)}</td>"
-            f"<td class='col-similar'>{_similar_cell(it)}</td>"
+            f"<td class='col-verdict col-split'>{_verdict_cell(vlabel, vcss, vtitle)}</td>"
+            f"<td class='col-similar'>{similar}</td>"
             f"<td class='col-finding'>{_main_finding_cell(paper or it)}</td>"
-            f"<td class='col-data'>{_data_cell(paper or it)}</td>"
+            f"<td class='col-data'>{data_cell}</td>"
             f"</tr>"
         )
         total += 1

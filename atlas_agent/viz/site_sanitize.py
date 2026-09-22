@@ -103,6 +103,8 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
     from atlas_agent.discovery.fit_rules import is_cohort_excluded
     from atlas_agent.viz.portal_index import format_finding_note
 
+    from atlas_agent.viz.discovery_qc import dedupe_literature, sanitize_item_publication
+
     cohort_clean: list[dict[str, Any]] = []
     for item in report.get("cohort_literature") or []:
         title = str(item.get("title") or "")
@@ -113,7 +115,7 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
             continue
         cohort_clean.append(item)
     if report.get("cohort_literature") is not None:
-        report["cohort_literature"] = cohort_clean
+        report["cohort_literature"] = dedupe_literature(cohort_clean)
 
     buckets = (
         "candidates",
@@ -128,7 +130,10 @@ def sanitize_report_for_site(report: dict[str, Any]) -> dict[str, Any]:
     for key in buckets:
         for item in report.get(key) or []:
             sanitize_discovery_item(item)
+            sanitize_item_publication(item)
             item["finding_note"] = format_finding_note(item)
+        if key in ("manual_check", "literature_semantic"):
+            report[key] = dedupe_literature(list(report.get(key) or []))
 
     for item in report.get("cohort_literature") or []:
         item["description_en"] = build_description_en(item, include_cohort_meta=False)
