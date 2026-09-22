@@ -677,6 +677,18 @@ code {
   padding: 6px 8px;
   font-size: var(--text-sm);
 }
+.sort-bar { display: inline-flex; gap: 6px; flex-shrink: 0; }
+.sort-btn {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.sort-btn[data-dir="asc"]::after { content: " ↑"; }
+.sort-btn[data-dir="desc"]::after { content: " ↓"; }
 .verdict-reason {
   display: block;
   margin-top: 4px;

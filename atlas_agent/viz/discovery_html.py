@@ -292,6 +292,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         <option value="Exclude" data-i18n="verdict_exclude">Exclude</option>
       </select>
       <select id="f-year" aria-label="Year"><option value="" data-i18n="filter_all">All</option></select>
+      <span class="sort-bar">
+        <button type="button" class="sort-btn" data-sort="year" data-i18n="th_year">Year</button>
+        <button type="button" class="sort-btn" data-sort="verdict" data-i18n="th_verdict">Verdict</button>
+      </span>
       <span class="count-badge" id="count"></span>
     </div>
     <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
@@ -370,20 +374,28 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
   fType?.addEventListener('change', apply);
   fVerdict?.addEventListener('change', apply);
   fYear?.addEventListener('change', apply);
+  function sortBy(key) {{
+    const btn = document.querySelector('.sort-btn[data-sort="' + key + '"]');
+    const dir = btn && btn.dataset.dir === 'asc' ? 'desc' : 'asc';
+    document.querySelectorAll('.sort-btn').forEach(b => {{ b.dataset.dir = ''; }});
+    if (btn) btn.dataset.dir = dir;
+    rows.sort((a, b) => {{
+      const av = (a.dataset[key] || '');
+      const bv = (b.dataset[key] || '');
+      return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    }});
+    const wrap = tbl.closest('.table-wrap');
+    const left = wrap ? wrap.scrollLeft : 0;
+    rows.forEach(r => tbody.appendChild(r));
+    if (wrap) wrap.scrollLeft = left;
+    apply();
+  }}
+  document.querySelectorAll('.sort-btn').forEach(btn => {{
+    btn.addEventListener('click', () => sortBy(btn.dataset.sort));
+  }});
   tbl?.querySelectorAll('th.sort-th').forEach(th => {{
     th.style.cursor = 'pointer';
-    th.addEventListener('click', () => {{
-      const key = th.dataset.sort;
-      const dir = th.dataset.dir === 'asc' ? 'desc' : 'asc';
-      th.dataset.dir = dir;
-      rows.sort((a, b) => {{
-        const av = (a.dataset[key] || '');
-        const bv = (b.dataset[key] || '');
-        return dir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
-      }});
-      rows.forEach(r => tbody.appendChild(r));
-      apply();
-    }});
+    th.addEventListener('click', () => sortBy(th.dataset.sort));
   }});
   apply();
   document.addEventListener('atlas:lang', apply);

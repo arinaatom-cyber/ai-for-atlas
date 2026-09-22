@@ -16141,7 +16141,7 @@
       "sample_processing_protocol": "For each sample, 2𝜇 of total peptides were separated and analyzed with a nano-UPLC (EASY-nLC1200) coupled to a Q Exactive HFX Orbitrap instrument (Thermo Fisher Scientific) with a nano-electrospray ion source. Separation was performed using a reversed-phase column (100 𝜇 ID ×15 cm, Reprosil-Pur 120 C18-AQ, 1.9 𝜇, Dr. Maisch). Mobile phases were H2O with 0.1% FA, 2% ACN (phase A) and 80% ACN, 0.1% FA (phase B). Separation of sample was executed with a 90 min gradient at 300 nL/min flow rate. Gradient B: 2-5% for 2 min, 5-22% for 68 min, 22-45% for 16 min, 45-95% for 2 min, 95% for 2 min. Data dependent acquisition (DDA) was performed in profile and positive mode with Orbitrap analyzer at a resolution of 120,000 (@200 m/z) and m/z range of 350-1600 for MS1; For MS2, the resolution was set to 15k with a fixed first mass of 110 m/z. The automatic gain control (AGC) target for MS1 was set to 3E6 with max IT 30 ms, and 1E5 for MS2 with max IT 96 ms. The top 20 most intense ions were fragmented by HCD with normalized collision energy (NCE) of 32%, and isolation window of 0.7 m/z. The dynamic exclusion time window was 45s, single charged peaks and peaks with charge exceeding 6 were exclude",
       "data_processing_protocol": "Vendor’s raw MS files were processed using Proteome Discoverer(PD) software (Version 2.4.0.305) and the built-in Sequest HT search engine. MS spectra lists were searched against their species-level UniProt FASTA databases (uniprot-Homo sapiens-9606-2022-11.fasta), with Carbamidomethyl [C], TMT 6 plex(K) and TMT 6 plex (N-term) as a fixed modification and Oxi- dation (M) and Acetyl (Protein N-term) as variable modifications. Trypsin was used as proteases. A maximum of 2 missed cleavage(s) was allowed. The false discovery rate (FDR) was set to 0.01 for both PSM and peptide levels. Peptide identification was performed with an initial precursor mass deviation of up to 10 ppm and a fragment mass deviation of 0.02Da. Unique peptide and Razor peptide were used for protein quantification and total peptide amount for normalization. All the other parameters were reserved as default.",
       "inferred_plex": 6,
-      "pmid": "0",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD063478",
       "tmt_detected": true,
@@ -16213,8 +16213,8 @@
       },
       "finding_note": "Download: 8.raw (quant table) · Similar to catalog PXD010744 (score 0.065)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD063478",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/0/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/0",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Differentially expressed proteins (DEPs) in HPMVECs treated with either Vector or USP2a-OE lentivirus were screened through Tandem Mass Tag (TMT)-based quantitative proteomics analysis.",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -16255,7 +16255,8 @@
       "disease": "",
       "finding": "Differentially expressed proteins (DEPs) in HPMVECs treated with either Vector or USP2a-OE lentivirus were screened through Tandem Mass Tag (TMT)-based quantitative proteomics analysis. For each sample, 2𝜇 of total peptides were separated and analyzed with a nano-UPLC (EASY-nLC1200) coupled to a Q Exactive HFX Orbitrap instrument (Thermo Fisher Scientific) with a nano-electrospray ion source. Sepa",
       "finding_summary": "Differentially expressed proteins (DEPs) in HPMVECs treated with either Vector or USP2a-OE lentivirus were screened through Tandem Mass Tag (TMT)-based quantitative proteomics analysis. For each sample, 2𝜇 of total peptides were separated and analyzed with a nano-UPLC (EASY-nLC1200) coupled to a Q Exactive HFX Orbitrap instrument (Thermo Fisher Scientific) with a nano-electrospray ion source. Sepa",
-      "year": "2026"
+      "year": "2026",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "PXD063040",
@@ -16572,7 +16573,7 @@
       "sample_processing_protocol": "The cultured cells were processed for bottom-up proteomics. The cells were lysed, reduced with dithiothreitol, alkylated with iodoacetamide, and the extracted proteins were purified via precipitation (acetone, –20 ºC, overnight). The protein pellets were reconstructed in 50 mM ammonium bicarbonate, followed by tryptic digestion (1:50 protein:protease ratio, 37 ºC, 12 h, overnight). The resulting peptides were barcoded using isobaric tandem mass tags following a TMT10plex reagent (Lot no. SG253269, Thermo Scientific). The labeling channels were randomized across phenotypes. Each phenotype was measured in n = 5 biological replicates (BRs, BR1–5). The schema of labeling was as follows: Nt (129N), La (131), Pg (126), AppNt (128N), AppLa (130N), and AppPg (127N) for BR1; Nt (128), La (129N), Pg (127N), AppNt (131), AppLa (126), and AppPg (130N) for BR2; Nt (131), La (126), Pg (129N), AppNt (128N), AppLa (127N), and AppPg (130N) for BR3; Nt (127N), La (130N), Pg (129N), AppNt (131), AppLa (126), AppPg (128N) for BR4; Nt (130N), La (128N), Pg (127N), AppNt (126), AppLa (131), and AppPg (129N) for BR5. The tagged peptides were mixed in an equal total peptide ratio. The mixture was fraction",
       "data_processing_protocol": "The MS files were analyzed in Proteome Discoverer 2.2 (for proteomics) or 3.0 (for phosphoproteomics) against the UniProt Homo Sapiens proteome (20,380 genes, downloaded on 6/8/2021) using SEQUEST-HT. The search settings were: methionine oxidation, variable; N-terminus acetylation, dynamic; carbamidomethylation on cysteine, fixed; lysine TMT10plex, fixed; max missed cleavage, 2; precursor mass tolerance, 10 ppm; fragment mass tolerance, 0.6 Da. The peptides and proteins were filtered to < 1% FDR, determined against the reversed-sequence decoy. Protein identification and quantification were based on detecting at least 1 proteotypic peptide. The measured reporter ion signal abundance was used as a proxy for protein concentration.",
       "inferred_plex": 10,
-      "pmid": "41418982",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD062605",
       "tmt_detected": true,
@@ -16593,8 +16594,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Characterization of the proteome provides direct information on disease-associated pathways during the onset and progression of Alzheimer’s Disease (AD). In this project, we employed high-resolution mass spectrometry to quantify the proteomes of AD cell cultures using multiplexed quantification. The following phenotypes were measured: Control (Nt), lamin A mutation (La), progerin (Pg), classical AD mutation (AppNt), ",
-      "abstract": "Characterization of the proteome provides direct information on disease-associated pathways during the onset and progression of Alzheimer’s Disease (AD). In this project, we employed high-resolution mass spectrometry to quantify the proteomes of AD cell cultures using multiplexed quantification. The following phenotypes were measured: Control (Nt), lamin A mutation (La), progerin (Pg), classical AD mutation (AppNt), AD mutation with lamin A (AppLa), and AD mutation with progerin (AppPg). The cultured cells were processed for bottom-up proteomics. The cells were lysed, reduced with dithiothreitol, alkylated with iodoacetamide, and the extracted proteins were purified via precipitation (acetone, –20 ºC, overnight). The protein pellets were reconstructed in 50 mM ammonium bicarbonate, followed by tryptic digestion (1:50 protein:protease ratio, 37 ºC, 12 h, overnight). The resulting peptides were barcoded using isobaric tandem mass tags following a TMT10plex reagent (Lot no. SG253269, Thermo Scientific). The labeling channels were randomized across phenotypes. Each phenotype was measured in n = 5 biological replicates (BRs, BR1–5). The schema of labeling was as follows: Nt (129N), La (131), Pg (126), AppNt (128N), AppLa (130N), and AppPg (127N) for BR1; Nt (128), La (129N), Pg (127N), AppNt (131), AppLa (126), and AppPg (130N) for BR2; Nt (131), La (126), Pg (129N), AppNt (128N), AppLa (127N), and AppPg (130N) for BR3; Nt (127N), La (130N), Pg (129N), AppNt (131), AppLa (126), AppPg (128N) for BR4; Nt (130N), La (128N), Pg (127N), AppNt (126), AppLa (131), and AppPg (129N) for BR5. The tagged peptides were mixed in an equal total peptide ratio. The mixture was fraction",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "pride",
       "verdict": "rejected",
       "filter_reasons": [
@@ -16665,8 +16666,8 @@
       },
       "finding_note": "Keywords from title: proteome · Design: cancer-only · Phospho table only (not global proteome): 2024-07-07_TRK_Aging_cell_BR1_All-Frac_phosphoprotein.mzTab · Similar to catalog PXD017852 (score 0.15)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD062605",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41418982/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/41418982",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Characterization of the proteome provides direct information on disease-associated pathways during the onset and progression of Alzheimer’s Disease (AD). In this project, we employed high-resolution mass spectrometry to quantify the proteomes of AD cell cultures using multiplexed quantification. The following phenotypes were measured: Control (Nt), lamin A mutation (La), progerin (Pg), classical AD mutation (AppNt), AD mutation with lamin A (AppLa), and AD mutation with progerin (AppPg).",
       "confidence_tier": "B",
       "confidence_css": "tier-b",
@@ -16702,7 +16703,8 @@
       "disease": "Alzheimer disease",
       "finding": "Characterization of the proteome provides direct information on disease-associated pathways during the onset and progression of Alzheimer’s Disease (AD). In this project, we employed high-resolution mass spectrometry to quantify the proteomes of AD cell cultures using multiplexed quantification. The following phenotypes were measured: Control (Nt), lamin A mutation (La), progerin (Pg), classical A",
       "finding_summary": "Characterization of the proteome provides direct information on disease-associated pathways during the onset and progression of Alzheimer’s Disease (AD). In this project, we employed high-resolution mass spectrometry to quantify the proteomes of AD cell cultures using multiplexed quantification. The following phenotypes were measured: Control (Nt), lamin A mutation (La), progerin (Pg), classical A",
-      "year": "2026"
+      "year": "2026",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "PXD062271",
@@ -19536,7 +19538,7 @@
       "sample_processing_protocol": "Cells were seeded overnight at 0.5 million cells/well in 6-well plates. Before harvesting, cells were treated with Vemurafenib (APExBio, Cat no: A3004) (1 mM) and Trametinib (APExBIO, Cat no: A3018) (10 nM) separately or in combination for 6 hours. Approximately 1 million cells were used as the starting material. Cells were washed twice with ice-cold PBS, scrapped with a cell scraper, and then centrifuged at 1000 × g for 3 min. The supernatant was removed, and the cell pellets were frozen in liquid nitrogen.  For kinomics data generation, the same protocol was used except 2 million cells/T-25 flasks were seeded overnight and all cells were collected post treatment.   300 μL of a detergent-based buffer (1% sodium deoxycholate (SDC), 10 mM tris(2-carboxyethyl)phosphine (TCEP), 10 mM Tris, and 40 mM chloroacetamide) with Complete mini EDTA-free protease inhibitor cocktail (Roche) was added to the cell lysates, boiled for 5 min at 95 °C, and sonicated using the Bioruptor for 20 cycles of 30sec on:30 sec off. Protein quantified was carried out using the Bradford assay and an aliquot corresponding to 200ug was retained for each sample. 50 mM ammonium bicarbonate was added and digestion w",
       "data_processing_protocol": "All spectra were acquired on an Orbitrap Exploris mass spectrometer (Thermo Fisher Scientific) coupled to an Ultimate3000 liquid chromatography system. Peptides were trapped on an 300 µm i.d. x 5mm C18 PepMap100, 5 µm, 100 Å trap column (Thermo Scientific, P/N 160454) and then separated on a 50cm (75um ID) in-house packed column using Poroshell 120 EC-C18 2.7-Micron (ZORBAX Chromatographic Packing, Agilent). Samples were eluted over a linear gradient ranging from 9-45% 80%ACN/0.1%FA over 65 min, 45-99% 80%ACN/0.1%FA for 3 min, followed by maintaining at 99% 80%ACN/0.1%FA for 5 min at a flow rate of 300 nl/min. Phosphopeptide-enriched samples were eluted over a linear gradient ranging from 9-34% 80%ACN/0.1%FA over 95 min, 45-99% 80%ACN/0.1%FA for 3 min, followed by maintaining at 99% 80%ACN/0.1%FA for 5 min at a flow rate of 300 nl/min. MS1 scans were carried out at a resolution of 60000, with standard AGC target and automatic IT. The intensity threshold was set to 5.0e4, charge states 2-6 were included, and dynamic exclusion was used for a duration of 14s. For the MS2 scans, a window of 1.2m/z was applied, with HCD collision energy set to 30%, an orbitrap resolution of 45000 and st",
       "inferred_plex": 11,
-      "pmid": "0",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD058857",
       "tmt_detected": true,
@@ -19608,8 +19610,8 @@
       },
       "finding_note": "Design: cancer-only · Download: 20211115_EX3_UM1_Vollm004_SA_EXT01_proj254_TMTproteome_plex6_F8.raw (protein-level table) · Similar to catalog PXD019240 (score 0.054)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD058857",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/0/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/0",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Proteomic study studying how ARID1A-mediated transcriptional rewiring drives resistance to MAPK inhibitors in melanoma by altering signalling pathways, immune interactions, and receptor dynamics, highlighting potential targets for combinatorial therapies.",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -19650,7 +19652,8 @@
       "disease": "Melanoma",
       "finding": "Proteomic study studying how ARID1A-mediated transcriptional rewiring drives resistance to MAPK inhibitors in melanoma by altering signalling pathways, immune interactions, and receptor dynamics, highlighting potential targets for combinatorial therapies. Cells were seeded overnight at 0.5 million cells/well in 6-well plates. Before harvesting, cells were treated with Vemurafenib (APExBio, Cat no:",
       "finding_summary": "Proteomic study studying how ARID1A-mediated transcriptional rewiring drives resistance to MAPK inhibitors in melanoma by altering signalling pathways, immune interactions, and receptor dynamics, highlighting potential targets for combinatorial therapies. Cells were seeded overnight at 0.5 million cells/well in 6-well plates. Before harvesting, cells were treated with Vemurafenib (APExBio, Cat no:",
-      "year": "2025"
+      "year": "2025",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "PXD058802",
@@ -21523,7 +21526,7 @@
       "sample_processing_protocol": "1. Drug treatment in dose-dependent manner. 2. Digestion 3. TMT-labeling 4. Phospho-enrichement 5. Fractionation 6. LC-MS",
       "data_processing_protocol": "MS raw files were searched with MaxQuant software (version 1.6.17.0) using the UniProtKB human as reference list for in-silico digest. Default settings were used unless stated specifically. Trypsin was selected as protease and less than 3 missed cleavages were permitted for the phosphoproteome research. Carbamidomethylation of cysteine was set as a fixed modification, meanwhile oxidation of methionine and N-terminal protein acetylation were set as variable modifications. Phosphorylation of serine, threonine and tyrosine was set as variable modifications. Up to 6 modifications were allowed on peptides and the peptide length was restricted within the range of 6-25 amino acids. FDR was set as 1% on protein- and PSM- level. Isotopic impurities in the TMT batch were accounted for by configuring the TMT modifications, allowing MaxQuant to automatically adjust and correct the TMT intensities.",
       "inferred_plex": null,
-      "pmid": "0",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD056908",
       "tmt_detected": true,
@@ -21595,8 +21598,8 @@
       },
       "finding_note": "Download: 06641_GB10_P093418_U4_R1.raw (quant table) · Similar to catalog PDC000358 (score 0.032)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD056908",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/0/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/0",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Comparing the performance of methylamine and hydroxylamine on phospho-peptide analysis, particularly in relation to the identification of more complex dose-dependent patterns.",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -21629,7 +21632,8 @@
       "finding": "Comparing the performance of methylamine and hydroxylamine on phospho-peptide analysis, particularly in relation to the identification of more complex dose-dependent patterns. 1. Drug treatment in dose-dependent manner. 2. Digestion 3. TMT-labeling 4. Phospho-enrichement 5. Fractionation 6. LC-MS",
       "finding_summary": "Comparing the performance of methylamine and hydroxylamine on phospho-peptide analysis, particularly in relation to the identification of more complex dose-dependent patterns. 1. Drug treatment in dose-dependent manner. 2. Digestion 3. TMT-labeling 4. Phospho-enrichement 5. Fractionation 6. LC-MS",
       "tmt_label": "TMT plex unspecified",
-      "year": "2025"
+      "year": "2025",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "PXD056863",
@@ -24791,7 +24795,7 @@
       "sample_processing_protocol": "Protein was extracted and estimated using BCA (Bicinchoninic Acid) protein assay followed by reduction, alkylation, and precipitation of an equal amount of protein from each sample were performed with 100 mM (dithiothreitol) DTT, 20 mM iodoacetamide (IAA), and ice-cold acetone. The samples were then digested with trypsin (1:20, Promega) 12–16 h at 37°C and the peptides were cleaned using Sep-Pak C18 Plus Light cartridge (Waters, Catalog # WAT023501). Peptides were labeled with 10 plex TMT (Tandem Mass Tags) labels (ThermoFisher Scientific). The pooled peptides were fractionated by basic pH liquid chromatography and were subjected to IMAC based phosphopeptide enrichment. The peptides were analyzed on QExactive HF-X Hybrid Quadrupole-Orbitrap mass spectrometer (Thermo Scientific, Bremen, Germany) interfaced with Dionex Ultimate 3000 nanoflow liquid chromatography system. Each of the fractions were then reconstituted in 0.1% formic acid (Solvent A) and loaded in trap column (Thermo Fisher Scientific Acclaim PepMap100 75µm x 2cm nanoViper 2Pk). The peptides were then resolved on an analytical column (Thermo Scientific PepMap RSLC C18 2µm, 100Å, 75 μm × 50 cm,) at a flow rate of 300 nL/",
       "data_processing_protocol": "The data were then searched against the Human RefSeq protein database (version 81, containing protein entries with common contaminants) using the SEQUEST search algorithm through the Proteome Discoverer platform (version 2.1, Thermo Scientific). Search parameters for Proteome Discoverer analysis were as follows: two missed cleavages allowed, trypsin as cleavage enzyme, a tolerance of 10 ppm on precursors, and 0.02 Daltons on the fragment ions. The fixed modification includes carbamidomethylation at cysteine, TMT 10-plex (+229.163) modification at N-terminus of peptide and lysine, and variable modification as oxidation of methionine; the phosphorylations of serine, threonine, and tyrosine; and the deamidation of asparagine and glutamine were selected as dynamic modifications. Data were also searched against a decoy database and filtered with a 1% false discovery rate (FDR).",
       "inferred_plex": 10,
-      "pmid": "0",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD055164",
       "tmt_detected": true,
@@ -24863,8 +24867,8 @@
       },
       "finding_note": "Design: cancer-only · Download: Cervical_3_R2.raw (quant table) · Similar to catalog PDC000342 (score 0.077)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD055164",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/0/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/0",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Cervical cancer is one of the leading causes of cancer related deaths among females. Due to proper screening programmes, most of the cervical cancer cases are presented in the locally advanced stage of the disease. Concurrent chemoradiotherapy (CCRT) is the standard treatment for locally advanced cervical cancer. However, resistance to CCRT limit the success of the treatment regimen. In this study, we investigated the altered phosphoproteome of CCRT resistant and sensitive cohort using Mass spectrometry-based proteomics. We carried out phosphoproteomic analysis of treatment naïve cervical cancer patients whose response to CCRT is recorded. The Phosphoproteomic analysis revealed kinases and the pathways associated with CCRT resistance in cervical cancer patients.",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -24896,7 +24900,8 @@
       "disease": "Cervical cancer",
       "finding": "Cervical cancer is one of the leading causes of cancer related deaths among females. Due to proper screening programmes, most of the cervical cancer cases are presented in the locally advanced stage of the disease. Concurrent chemoradiotherapy (CCRT) is the standard treatment for locally advanced cervical cancer. However, resistance to CCRT limit the success of the treatment regimen. In this study",
       "finding_summary": "Cervical cancer is one of the leading causes of cancer related deaths among females. Due to proper screening programmes, most of the cervical cancer cases are presented in the locally advanced stage of the disease. Concurrent chemoradiotherapy (CCRT) is the standard treatment for locally advanced cervical cancer. However, resistance to CCRT limit the success of the treatment regimen. In this study",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "PXD055167",
@@ -27760,7 +27765,7 @@
       "sample_processing_protocol": "Sample preparation for liquid chromatography coupled to tandem mass spectrometry (LC-MS/MS) analysis Cell pellets were lysed in 5% SDS, 5 mM tris(2-carboxyethyl)phosphine, 10 mM chloroacetamide, 100 mM Tris pH 8.5 heated at 95 ℃ and mixed in a thermo-shaker at 1000 rpm and 95 ℃ for 10 min. Then, lysates were sonicated using a probe sonicator (1 minute, 1 second ON, 1 second OFF, 30% amplitude, 2mm Fisherbrand™ Probe for Model 120 Sonic Dismembrator). Protein amount in the samples was measured using bicinchoninic acid assay and an equal amount of protein in each samples was used for sample preparation. Proteins were digested overnight using Protein Aggregation Capture [1] in a KingFisher Flex robot (ThermoFischer Scientific) with 2:1 MagReSyn® Hydroxyl beads to protein ratio (w/w), 1:500 for lysyl endopeptidase and 1:250 for trypsin in 100 mM HEPES pH 8. Acetonitrile (ACN) was added to a concentration of 20% and peptides were labeled with TMTpro 16-plex Label Reagent (ThermoFischer Scientific) at 1:4 protein to TMT label ratio, using only labels 126, 127N, 128N, 129N, 130N and 131N and incubated for 2h at RT. The reaction was quenched by adding 0.5% hydroxylamine (Sigma–Aldrich) for",
       "data_processing_protocol": "Protein and phosphopeptides quantification  Raw files for full proteome and phosphoproteomics analysis were searched separately with MaxQuant version 2.1.4.0 using the integrated Andromeda search engine, with the same human protein sequence database (Uniprot reference proteome 2019 release, 20 380 entries). Trypsin/P was selected as the enzyme, cysteine carbamidomethylation was set as fixed modification while oxidation of methionine, N-terminal acetylation were set as variable modifications enabling at most five modifications per peptide. For phosphopeptides analysis, serine, threonine and tyrosine phosphorylation were also added as variable modifications.",
       "inferred_plex": 16,
-      "pmid": "0",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD052956",
       "tmt_detected": true,
@@ -27841,8 +27846,8 @@
       },
       "finding_note": "Design: cancer-only · Download: proteinGroups_FP.txt (protein-level table) · Similar to catalog PDC000356 (score 0.087)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD052956",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/0/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/0",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Metabolic dysfunction-associated steatohepatitis (MASH) is a leading cause of liver disease. A multitude of compounds have been developed in recent years but, due to lack of efficacy or safety concerns, receiving market approval has been challenging and restricted. These failures emphasize the need for robust pre-clinical data that can narrow the translational gap. We here present an organotypic 3D liver model established from primary human hepatocytes (PHH) and non-parenchymal cells derived from patients with clinical diagnosis of MASH. The model closely recapitulates disease relevant endpoints, such as steatosis, inflammation, hepatocyte ballooning and fibrosis for multiple weeks in culture. Using integrative multi-omics profiling, we moreover identify the underlying molecular networks of MASH at the transcriptomic, proteomic and lipidomic level. Importantly, by combining biochemical and high content imaging-based multiplexed chemogenomic screening using selective, highly validated chemical probes, we identified multiple novel targets with anti-steatotic, anti-inflammatory and anti-fibrotic effects. Among these, activation of the muscarinic receptor 1 (CHRM1) using a positive allosteric modulator and inhibition of the transient receptor potential cation channel subfamily M member 8 (TRPM8) ion channel resulted in strong anti-fibrotic effects, which could be confirmed using orthogonal genetic assays. Strikingly, using an array of bioluminescence resonance energy transfer (BRET) sensors and small molecule interference, we identify a novel signaling axis in which CHRM1 inhibits TRPM8 via Gq/11 and phospholipase C-mediated depletion of phosphatidylinositol 4,5-bisphosphate (PIP2). Combined, this study presents the first scalable patient-derived 3D liver model for NASH in which disease-relevant endpoints are recapitulated ex vivo, identified a novel CHRM1-TRPM8 signaling module with anti-fibrotic effects and highlights the potential of organotypic culture systems as phenotypic assays for comprehensive chemogenomic drug target identification.",
       "confidence_tier": "B",
       "confidence_css": "tier-b",
@@ -27883,7 +27888,8 @@
       "disease": "",
       "finding": "Metabolic dysfunction-associated steatohepatitis (MASH) is a leading cause of liver disease. A multitude of compounds have been developed in recent years but, due to lack of efficacy or safety concerns, receiving market approval has been challenging and restricted. These failures emphasize the need for robust pre-clinical data that can narrow the translational gap. We here present an organotypic 3",
       "finding_summary": "Metabolic dysfunction-associated steatohepatitis (MASH) is a leading cause of liver disease. A multitude of compounds have been developed in recent years but, due to lack of efficacy or safety concerns, receiving market approval has been challenging and restricted. These failures emphasize the need for robust pre-clinical data that can narrow the translational gap. We here present an organotypic 3",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "PXD052854",
@@ -29945,7 +29951,7 @@
       "sample_processing_protocol": "Samples were processed with a modified SP3 protocol, digested using trypsin and labeled with TMT. Shotgun proteomics using a Orbitrap Exploris 480 was then performed.",
       "data_processing_protocol": "TMT quantification was used, and data was processed by using MSFragger with the standard workflow.",
       "inferred_plex": null,
-      "pmid": "41260515",
+      "pmid": "",
       "doi": "",
       "url": "https://www.ebi.ac.uk/pride/archive/projects/PXD051268",
       "tmt_detected": true,
@@ -29966,8 +29972,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "We measured the impact of knocking down FBL on the proteome of Homo sapiens. Samples were processed with a modified SP3 protocol, digested using trypsin and labeled with TMT. Shotgun proteomics using a Orbitrap Exploris 480 was then performed.",
-      "abstract": "We measured the impact of knocking down FBL on the proteome of Homo sapiens. Samples were processed with a modified SP3 protocol, digested using trypsin and labeled with TMT. Shotgun proteomics using a Orbitrap Exploris 480 was then performed.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "pride",
       "verdict": "rejected",
       "filter_reasons": [
@@ -30020,8 +30026,8 @@
       },
       "finding_note": "Keywords from title: proteome · Download: protein_48h.tsv (quant table) · Similar to catalog PXD006430 (score 0.033)",
       "repository_url": "https://www.ebi.ac.uk/pride/archive/projects/PXD051268",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/41260515/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/41260515",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "We measured the impact of knocking down FBL on the proteome of Homo sapiens.",
       "confidence_tier": "B",
       "confidence_css": "tier-b",
@@ -30058,7 +30064,8 @@
       "finding": "We measured the impact of knocking down FBL on the proteome of Homo sapiens. Samples were processed with a modified SP3 protocol, digested using trypsin and labeled with TMT. Shotgun proteomics using a Orbitrap Exploris 480 was then performed.",
       "finding_summary": "We measured the impact of knocking down FBL on the proteome of Homo sapiens. Samples were processed with a modified SP3 protocol, digested using trypsin and labeled with TMT. Shotgun proteomics using a Orbitrap Exploris 480 was then performed.",
       "tmt_label": "TMT plex unspecified",
-      "year": "2025"
+      "year": "2025",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "PXD051216",
@@ -38142,8 +38149,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Discovery proteomics of plasma samples from ChILI patients. EV enrichment was performed using Mag-Net protocol and samples were labelled with TMTpro.",
-      "abstract": "Discovery proteomics of plasma samples from ChILI patients. EV enrichment was performed using Mag-Net protocol and samples were labelled with TMTpro.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -38189,10 +38196,10 @@
       },
       "finding_note": "Keywords from title: plasma · No files in API — check Data availability / paper Supplementary · Similar to catalog PDC000198 (score 0.057)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000096928",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/40317333/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/40317333",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Discovery proteomics of plasma samples from ChILI patients. EV enrichment was performed using Mag-Net protocol and samples were labelled with TMTpro.",
-      "pmid": "40317333",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -38224,7 +38231,8 @@
       "disease": "",
       "finding": "Discovery proteomics of plasma samples from ChILI patients. EV enrichment was performed using Mag-Net protocol and samples were labelled with TMTpro.",
       "finding_summary": "Discovery proteomics of plasma samples from ChILI patients. EV enrichment was performed using Mag-Net protocol and samples were labelled with TMTpro.",
-      "year": "2025"
+      "year": "2025",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000096869",
@@ -39180,8 +39188,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Plasma membrane proteomics by TMT: 126: WT1 127N: WT2 127C: WT3 128N: WT4 128C: WT5 129N: WT6 129C: EV1 130N: EV2 130C: EV3 131N: EV4 131C: EV5 132N: EV6 132C: DM1 133N: DM2 133C: DM3 134N: DM4 134C: DM5 135: DM6",
-      "abstract": "Plasma membrane proteomics by TMT: 126: WT1 127N: WT2 127C: WT3 128N: WT4 128C: WT5 129N: WT6 129C: EV1 130N: EV2 130C: EV3 131N: EV4 131C: EV5 132N: EV6 132C: DM1 133N: DM2 133C: DM3 134N: DM4 134C: DM5 135: DM6",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -39227,10 +39235,10 @@
       },
       "finding_note": "Keywords from title: plasma · No files in API — check Data availability / paper Supplementary · Similar to catalog PXD016999 (score 0.012)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000095676",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/39587083/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/39587083",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Plasma membrane proteomics by TMT: 126: WT1 127N: WT2 127C: WT3 128N: WT4 128C: WT5 129N: WT6 129C: EV1 130N: EV2 130C: EV3 131N: EV4 131C: EV5 132N: EV6 132C: DM1 133N: DM2 133C: DM3 134N: DM4 134C: DM5 135: DM6",
-      "pmid": "39587083",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -39262,7 +39270,8 @@
       "disease": "",
       "finding": "Plasma membrane proteomics by TMT: 126: WT1 127N: WT2 127C: WT3 128N: WT4 128C: WT5 129N: WT6 129C: EV1 130N: EV2 130C: EV3 131N: EV4 131C: EV5 132N: EV6 132C: DM1 133N: DM2 133C: DM3 134N: DM4 134C: DM5 135: DM6",
       "finding_summary": "Plasma membrane proteomics by TMT: 126: WT1 127N: WT2 127C: WT3 128N: WT4 128C: WT5 129N: WT6 129C: EV1 130N: EV2 130C: EV3 131N: EV4 131C: EV5 132N: EV6 132C: DM1 133N: DM2 133C: DM3 134N: DM4 134C: DM5 135: DM6",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000095629",
@@ -40184,8 +40193,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "H460 cells were treated with vehicle or IACS for 24 hours followed by protein isolation and TMT10plex labelling. Samples with TMT labels 126, 127N, 127C, 128N, 128C were treated with vehicle (or DMSO), and samples with TMT labels 129N, 129C, 130N, 130C, and 131 were treated with IACS-010759.",
-      "abstract": "H460 cells were treated with vehicle or IACS for 24 hours followed by protein isolation and TMT10plex labelling. Samples with TMT labels 126, 127N, 127C, 128N, 128C were treated with vehicle (or DMSO), and samples with TMT labels 129N, 129C, 130N, 130C, and 131 were treated with IACS-010759.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -40230,10 +40239,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog PXD020586 (score 0.03)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000094553",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38876105/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/38876105",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "H460 cells were treated with vehicle or IACS for 24 hours followed by protein isolation and TMT10plex labelling. Samples with TMT labels 126, 127N, 127C, 128N, 128C were treated with vehicle (or DMSO), and samples with TMT labels 129N, 129C, 130N, 130C, and 131 were treated with IACS-010759.",
-      "pmid": "38876105",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -40274,7 +40283,8 @@
       "disease": "",
       "finding": "H460 cells were treated with vehicle or IACS for 24 hours followed by protein isolation and TMT10plex labelling. Samples with TMT labels 126, 127N, 127C, 128N, 128C were treated with vehicle (or DMSO), and samples with TMT labels 129N, 129C, 130N, 130C, and 131 were treated with IACS-010759.",
       "finding_summary": "H460 cells were treated with vehicle or IACS for 24 hours followed by protein isolation and TMT10plex labelling. Samples with TMT labels 126, 127N, 127C, 128N, 128C were treated with vehicle (or DMSO), and samples with TMT labels 129N, 129C, 130N, 130C, and 131 were treated with IACS-010759.",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000094352",
@@ -40757,8 +40767,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Description Cells were cultured as described above and synchronized in G2/M phase by incubating them for 24 hours with 2mM thymidine and, subsequently, for 12 hours with STLC 10uM. From each culture, 106 cells were collected by mitotic shake off, centrifuged and pellets were washed twice with PBS. Cells were lysed in 200 ul lysis buffer (2% sodium deoxycholate (SDC), 0.1 M ammoniumbicarbonate) using strong ultra-soni",
-      "abstract": "Description Cells were cultured as described above and synchronized in G2/M phase by incubating them for 24 hours with 2mM thymidine and, subsequently, for 12 hours with STLC 10uM. From each culture, 106 cells were collected by mitotic shake off, centrifuged and pellets were washed twice with PBS. Cells were lysed in 200 ul lysis buffer (2% sodium deoxycholate (SDC), 0.1 M ammoniumbicarbonate) using strong ultra-sonication (two cycles of sonication S3 for 10 seconds, Hielscher Ultrasonicator). Protein concentration was determined by BCA assay (Thermo Fisher Scientific) using a small sample aliquot. 50ug of proteins were digested as described previously (Ahrne et al., 2016), reduced with 5 mM TCEP for 15 min at 95 C and alkylated with 10 mM iodoacetamide for 30 min in the dark at 25 C. After diluting samples with 100 mM ammonium bicarbonate buffer to a final DOC concentration of 1%, proteins were digested by incubation with sequencing-grade modified trypsin (1/50, w/w; Promega, Madison, Wisconsin) overnight at 37C. Then, the samples were acidified with 2 M HCl to a final concentration of 50 mM, incubated for 15 min at 37 C and the precipitated detergent removed by centrifugation at 10,000xg for 15 min. Subsequently, peptides were desalted on C18 reversed-phase spin columns according to the manufacturers instructions (Microspin, Harvard Apparatus) and dried under vacuum. The dried peptide samples were subsequently labeled with isobaric tags (TMT 10plex, Thermo Fisher Scientific) according to the manufacturers instructions. To control for ratio distortion during quantification, a peptide calibration mixture consisting of six digested standard proteins mixed in different amounts was added to each sample before TMT labeling as recently described (Ahrne et al., 2016). After pooling the TMT labeled peptide samples, peptides were again desalted on C18 reversed-phase spin columns according to the manufacturers instructions (Macrospin, Harvard Apparatus) and dried under vacuum. TMT-labeled peptides were fractionated by high-pH reversed phase separation using a XBridge Peptide BEH C18 column (3,5 um, 130 A, 1 mm x 150 mm, Waters) on an Agilent 1260 Infinity HPLC system. Peptides were loaded onto the column in buffer A (ammonium formate (20 mM, pH 10) in water) and eluted using a two-step linear gradient starting from 2% to 10% in 5 minutes and then to 50% (v/v) buffer B (90% acetonitrile / 10% ammonium formate (20 mM, pH 10) over 55 minutes at a flow rate of 42 ul/",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -40803,10 +40813,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog PXD027335 (score 0.043)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000094028",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/39930267/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/39930267",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Description Cells were cultured as described above and synchronized in G2/M phase by incubating them for 24 hours with 2mM thymidine and, subsequently, for 12 hours with STLC 10uM. From each culture, 106 cells were collected by mitotic shake off, centrifuged and pellets were washed twice with PBS. Cells were lysed in 200 ul lysis buffer (2% sodium deoxycholate (SDC), 0.1 M ammoniumbicarbonate) using strong ultra-sonication (two cycles of sonication S3 for 10 seconds, Hielscher Ultrasonicator). Protein concentration was determined by BCA assay (Thermo Fisher Scientific) using a small sample aliquot. 50ug of proteins were digested as described previously (Ahrne et al., 2016), reduced with 5 mM TCEP for 15 min at 95 C and alkylated with 10 mM iodoacetamide for 30 min in the dark at 25 C. After diluting samples with 100 mM ammonium bicarbonate buffer to a final DOC concentration of 1%, proteins were digested by incubation with sequencing-grade modified trypsin (1/50, w/w; Promega, Madison, Wisconsin) overnight at 37C. Then, the samples were acidified with 2 M HCl to a final concentration of 50 mM, incubated for 15 min at 37 C and the precipitated detergent removed by centrifugation at 10,000xg for 15 min. Subsequently, peptides were desalted on C18 reversed-phase spin columns according to the manufacturers instructions (Microspin, Harvard Apparatus) and dried under vacuum. The dried peptide samples were subsequently labeled with isobaric tags (TMT 10plex, Thermo Fisher Scientific) according to the manufacturers instructions. To control for ratio distortion during quantification, a peptide calibration mixture consisting of six digested standard proteins mixed in different amounts was added to each sample before TMT labeling as recently described (Ahrne et al., 2016). After pooling the TMT labeled peptide samples, peptides were again desalted on C18 reversed-phase spin columns according to the manufacturers instructions (Macrospin, Harvard Apparatus) and dried under vacuum. TMT-labeled peptides were fractionated by high-pH reversed phase separation using a XBridge Peptide BEH C18 column (3,5 um, 130 A, 1 mm x 150 mm, Waters) on an Agilent 1260 Infinity HPLC system. Peptides were loaded onto the column in buffer A (ammonium formate (20 mM, pH 10) in water) and eluted using a two-step linear gradient starting from 2% to 10% in 5 minutes and then to 50% (v/v) buffer B (90% acetonitrile / 10% ammonium formate (20 mM, pH 10) over 55 minutes at a flow rate of 42 ul/",
-      "pmid": "39930267",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -40847,7 +40857,8 @@
       "disease": "",
       "finding": "Description Cells were cultured as described above and synchronized in G2/M phase by incubating them for 24 hours with 2mM thymidine and, subsequently, for 12 hours with STLC 10uM. From each culture, 106 cells were collected by mitotic shake off, centrifuged and pellets were washed twice with PBS. Cells were lysed in 200 ul lysis buffer (2% sodium deoxycholate (SDC), 0.1 M ammoniumbicarbonate) usi",
       "finding_summary": "Description Cells were cultured as described above and synchronized in G2/M phase by incubating them for 24 hours with 2mM thymidine and, subsequently, for 12 hours with STLC 10uM. From each culture, 106 cells were collected by mitotic shake off, centrifuged and pellets were washed twice with PBS. Cells were lysed in 200 ul lysis buffer (2% sodium deoxycholate (SDC), 0.1 M ammoniumbicarbonate) usi",
-      "year": "2025"
+      "year": "2025",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000093793",
@@ -41634,7 +41645,8 @@
       "organ": "",
       "disease": "",
       "finding": "Supporting raw MS data for paper (DOI:10.1083/jcb.202303082) by Paul S. et al., titled \"NAK-associated protein 1/NAP1 activates TBK1 to ensure accurate mitosis and cytokinesis\". Index of MS supporting files uploaded: - Related to Figure 6A;S4A (AO3556-AO3579: whole proteome (Unimod: 35; 2016; 4)). - Related to Figure 6A-D;S4B-D (AO3580-AO3603: phospho proteome (Unimod: 35; 21; 2016; 4)). TMTpro ch",
-      "finding_summary": "Supporting raw MS data for paper (DOI:10.1083/jcb.202303082) by Paul S. et al., titled \"NAK-associated protein 1/NAP1 activates TBK1 to ensure accurate mitosis and cytokinesis\". Index of MS supporting files uploaded: - Related to Figure 6A;S4A (AO3556-AO3579: whole proteome (Unimod: 35; 2016; 4)). - Related to Figure 6A-D;S4B-D (AO3580-AO3603: phospho proteome (Unimod: 35; 21; 2016; 4)). TMTpro ch"
+      "finding_summary": "Supporting raw MS data for paper (DOI:10.1083/jcb.202303082) by Paul S. et al., titled \"NAK-associated protein 1/NAP1 activates TBK1 to ensure accurate mitosis and cytokinesis\". Index of MS supporting files uploaded: - Related to Figure 6A;S4A (AO3556-AO3579: whole proteome (Unimod: 35; 2016; 4)). - Related to Figure 6A-D;S4B-D (AO3580-AO3603: phospho proteome (Unimod: 35; 21; 2016; 4)). TMTpro ch",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "MSV000093136",
@@ -42112,8 +42124,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "This deposition is of TMT-MS datasets for multiple myeloma RPMI 8226 WT cells treated with DMSO or XL44.",
-      "abstract": "This deposition is of TMT-MS datasets for multiple myeloma RPMI 8226 WT cells treated with DMSO or XL44.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -42157,10 +42169,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog PXD027335 (score 0.033)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000092929",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38509117/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/38509117",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "This deposition is of TMT-MS datasets for multiple myeloma RPMI 8226 WT cells treated with DMSO or XL44.",
-      "pmid": "38509117",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -42201,7 +42213,8 @@
       "disease": "Multiple myeloma",
       "finding": "This deposition is of TMT-MS datasets for multiple myeloma RPMI 8226 WT cells treated with DMSO or XL44.",
       "finding_summary": "This deposition is of TMT-MS datasets for multiple myeloma RPMI 8226 WT cells treated with DMSO or XL44.",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000092769",
@@ -43475,8 +43488,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Supporting raw data of HEK293T cells proteomics analysis. (related to Horste et al 2023 - DOI: 10.1016/j.molcel.2023.11.025). TMTpro channel used for analysis 132c and 133n.",
-      "abstract": "Supporting raw data of HEK293T cells proteomics analysis. (related to Horste et al 2023 - DOI: 10.1016/j.molcel.2023.11.025). TMTpro channel used for analysis 132c and 133n.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -43522,10 +43535,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog PXD022252 (score 0.056)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000092176",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38134885/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/38134885",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Supporting raw data of HEK293T cells proteomics analysis. (related to Horste et al 2023 - DOI: 10.1016/j.molcel.2023.11.025). TMTpro channel used for analysis 132c and 133n.",
-      "pmid": "38134885",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -43566,7 +43579,8 @@
       "disease": "",
       "finding": "Supporting raw data of HEK293T cells proteomics analysis. (related to Horste et al 2023 - DOI: 10.1016/j.molcel.2023.11.025). TMTpro channel used for analysis 132c and 133n.",
       "finding_summary": "Supporting raw data of HEK293T cells proteomics analysis. (related to Horste et al 2023 - DOI: 10.1016/j.molcel.2023.11.025). TMTpro channel used for analysis 132c and 133n.",
-      "year": "2023"
+      "year": "2023",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000092103",
@@ -43594,8 +43608,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "PM proteomics by TMT6plex, comparing WT to EV. 126: EV, rep1 127: EV, rep2 128: EV, rep3 129: WT, rep1 130: WT, rep2 131: WT, rep3",
-      "abstract": "PM proteomics by TMT6plex, comparing WT to EV. 126: EV, rep1 127: EV, rep2 128: EV, rep3 129: WT, rep1 130: WT, rep2 131: WT, rep3",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -43640,10 +43654,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog MSV000085836 (score 0.029)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000092103",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/38062209/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/38062209",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "PM proteomics by TMT6plex, comparing WT to EV. 126: EV, rep1 127: EV, rep2 128: EV, rep3 129: WT, rep1 130: WT, rep2 131: WT, rep3",
-      "pmid": "38062209",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -43684,7 +43698,8 @@
       "disease": "",
       "finding": "PM proteomics by TMT6plex, comparing WT to EV. 126: EV, rep1 127: EV, rep2 128: EV, rep3 129: WT, rep1 130: WT, rep2 131: WT, rep3",
       "finding_summary": "PM proteomics by TMT6plex, comparing WT to EV. 126: EV, rep1 127: EV, rep2 128: EV, rep3 129: WT, rep1 130: WT, rep2 131: WT, rep3",
-      "year": "2024"
+      "year": "2024",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000091796",
@@ -44742,8 +44757,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Each TMT6 sample contains one replicate with the sub-samples representing subsequent time points. Detailed culture and processing methods are described in Panariello et al, Nat Comm, under revision.",
-      "abstract": "Each TMT6 sample contains one replicate with the sub-samples representing subsequent time points. Detailed culture and processing methods are described in Panariello et al, Nat Comm, under revision.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -44788,10 +44803,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary · Similar to catalog PXD017857 (score 0.042)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000090954",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37198156/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/37198156",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Each TMT6 sample contains one replicate with the sub-samples representing subsequent time points. Detailed culture and processing methods are described in Panariello et al, Nat Comm, under revision.",
-      "pmid": "37198156",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -44823,7 +44838,8 @@
       "disease": "",
       "finding": "Each TMT6 sample contains one replicate with the sub-samples representing subsequent time points. Detailed culture and processing methods are described in Panariello et al, Nat Comm, under revision.",
       "finding_summary": "Each TMT6 sample contains one replicate with the sub-samples representing subsequent time points. Detailed culture and processing methods are described in Panariello et al, Nat Comm, under revision.",
-      "year": "2023"
+      "year": "2023",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000090932",
@@ -44851,8 +44867,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "HEK293A cells treated with either DMSO or 1 micromolar Thapsigargin for 1 hour. Lysates were heat treated at 8 temperatures and supernatant was reduced, alkylated and digested with Trp/LysC. Samples were desalted and labeled with TMTPro.",
-      "abstract": "HEK293A cells treated with either DMSO or 1 micromolar Thapsigargin for 1 hour. Lysates were heat treated at 8 temperatures and supernatant was reduced, alkylated and digested with Trp/LysC. Samples were desalted and labeled with TMTPro.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -44896,8 +44912,8 @@
       },
       "finding_note": "Keywords from title: proteome · No files in API — check Data availability / paper Supplementary · Similar to catalog PXD043580 (score 0.055)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000090932",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/37562535/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/37562535",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "HEK293A cells treated with either DMSO or 1 micromolar Thapsigargin for 1 hour. Lysates were heat treated at 8 temperatures and supernatant was reduced, alkylated and digested with Trp/LysC. Samples were desalted and labeled with TMTPro.",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -44938,9 +44954,10 @@
       "disease": "",
       "finding": "HEK293A cells treated with either DMSO or 1 micromolar Thapsigargin for 1 hour. Lysates were heat treated at 8 temperatures and supernatant was reduced, alkylated and digested with Trp/LysC. Samples were desalted and labeled with TMTPro.",
       "finding_summary": "HEK293A cells treated with either DMSO or 1 micromolar Thapsigargin for 1 hour. Lysates were heat treated at 8 temperatures and supernatant was reduced, alkylated and digested with Trp/LysC. Samples were desalted and labeled with TMTPro.",
-      "pmid": "37562535",
+      "pmid": "",
       "doi": "",
-      "year": "2023"
+      "year": "2023",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000090685",
@@ -47005,8 +47022,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling.",
-      "abstract": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -47050,10 +47067,10 @@
       },
       "finding_note": "No files in API — check Data availability / paper Supplementary",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000087753",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/34360947/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/34360947",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling.",
-      "pmid": "34360947",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -47093,7 +47110,8 @@
       "organ": "",
       "disease": "",
       "finding": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling.",
-      "finding_summary": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling."
+      "finding_summary": "Semi-quantitative analysis was performed on human meniscal tissues to compare the protein compositions of lateral and medial lesions using six plex-tandem mass tag (TMT) labeling.",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000087598",
@@ -49148,8 +49166,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "TMT protein abundance profiling of human serum from 30 young and 30 older adults.",
-      "abstract": "TMT protein abundance profiling of human serum from 30 young and 30 older adults.",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -49195,10 +49213,10 @@
       },
       "finding_note": "Keywords from title: plasma · Design: cancer-only · No files in API — check Data availability / paper Supplementary · Similar to catalog PXD006430 (score 0.081)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000084974",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/32814897/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/32814897",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "TMT protein abundance profiling of human serum from 30 young and 30 older adults.",
-      "pmid": "32814897",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -49229,7 +49247,8 @@
       "organ": "Serum",
       "disease": "",
       "finding": "TMT protein abundance profiling of human serum from 30 young and 30 older adults.",
-      "finding_summary": "TMT protein abundance profiling of human serum from 30 young and 30 older adults."
+      "finding_summary": "TMT protein abundance profiling of human serum from 30 young and 30 older adults.",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000084813",
@@ -49608,8 +49627,8 @@
         "Add to CSV only after manual review (projects.csv is never modified automatically)"
       ],
       "is_novel": true,
-      "abstract_snippet": "Two glioblastoma stem cell lines, GBM8 and BT07, were either treated with OBT for 20 hours (triplicate measurements) or studied untreated (duplicates). Proteomes were mapped using TMT10 on an Orbitrap Fusion mass spectrometer using the SPS-MS3 method. TMT labeling was done as follows: GBM8_CTRL_1 (130n), GBM8_CTRL_2 (131n), GBM8_OBT_1 (126), GBM8_OBT_2 (127c), GBM8_OBT_3 (127n), BT07_CTRL_1 (129n), BT07_CTRL_2 (130c)",
-      "abstract": "Two glioblastoma stem cell lines, GBM8 and BT07, were either treated with OBT for 20 hours (triplicate measurements) or studied untreated (duplicates). Proteomes were mapped using TMT10 on an Orbitrap Fusion mass spectrometer using the SPS-MS3 method. TMT labeling was done as follows: GBM8_CTRL_1 (130n), GBM8_CTRL_2 (131n), GBM8_OBT_1 (126), GBM8_OBT_2 (127c), GBM8_OBT_3 (127n), BT07_CTRL_1 (129n), BT07_CTRL_2 (130c), BT07_OBT_1 (128c), BT07_OBT_2 (128n), BT07_OBT_3 (129c).",
+      "abstract_snippet": "",
+      "abstract": "",
       "excerpt_source": "massive",
       "verdict": "rejected",
       "filter_reasons": [
@@ -49653,10 +49672,10 @@
       },
       "finding_note": "Design: cancer-only · No files in API — check Data availability / paper Supplementary · Similar to catalog PXD017857 (score 0.04)",
       "repository_url": "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?accession=MSV000084647",
-      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/32338864/",
-      "europe_pmc_url": "https://europepmc.org/article/MED/32338864",
+      "pubmed_url": "",
+      "europe_pmc_url": "",
       "article_description": "Two glioblastoma stem cell lines, GBM8 and BT07, were either treated with OBT for 20 hours (triplicate measurements) or studied untreated (duplicates). Proteomes were mapped using TMT10 on an Orbitrap Fusion mass spectrometer using the SPS-MS3 method. TMT labeling was done as follows: GBM8_CTRL_1 (130n), GBM8_CTRL_2 (131n), GBM8_OBT_1 (126), GBM8_OBT_2 (127c), GBM8_OBT_3 (127n), BT07_CTRL_1 (129n), BT07_CTRL_2 (130c), BT07_OBT_1 (128c), BT07_OBT_2 (128n), BT07_OBT_3 (129c).",
-      "pmid": "32338864",
+      "pmid": "",
       "doi": "",
       "confidence_tier": "D",
       "confidence_css": "tier-d",
@@ -49697,7 +49716,8 @@
       "disease": "Glioblastoma",
       "finding": "Two glioblastoma stem cell lines, GBM8 and BT07, were either treated with OBT for 20 hours (triplicate measurements) or studied untreated (duplicates). Proteomes were mapped using TMT10 on an Orbitrap Fusion mass spectrometer using the SPS-MS3 method. TMT labeling was done as follows: GBM8_CTRL_1 (130n), GBM8_CTRL_2 (131n), GBM8_OBT_1 (126), GBM8_OBT_2 (127c), GBM8_OBT_3 (127n), BT07_CTRL_1 (129n)",
       "finding_summary": "Two glioblastoma stem cell lines, GBM8 and BT07, were either treated with OBT for 20 hours (triplicate measurements) or studied untreated (duplicates). Proteomes were mapped using TMT10 on an Orbitrap Fusion mass spectrometer using the SPS-MS3 method. TMT labeling was done as follows: GBM8_CTRL_1 (130n), GBM8_CTRL_2 (131n), GBM8_OBT_1 (126), GBM8_OBT_2 (127c), GBM8_OBT_3 (127n), BT07_CTRL_1 (129n)",
-      "year": "2020"
+      "year": "2020",
+      "publication_qc": "abstract_mismatch"
     },
     {
       "accession": "MSV000084530",
@@ -50151,7 +50171,8 @@
       "organ": "",
       "disease": "",
       "finding": "Urine TMT-multiplexing proteomic study using high pH RP 1st dimension fractionation and 2nd dimension 1D-low pH RP LCMS analysis. Two 2D-LCMS runs in this study. Each run has 20 fractions. Urine samples are paired with MSV 000084084.",
-      "finding_summary": "Urine TMT-multiplexing proteomic study using high pH RP 1st dimension fractionation and 2nd dimension 1D-low pH RP LCMS analysis. Two 2D-LCMS runs in this study. Each run has 20 fractions. Urine samples are paired with MSV 000084084."
+      "finding_summary": "Urine TMT-multiplexing proteomic study using high pH RP 1st dimension fractionation and 2nd dimension 1D-low pH RP LCMS analysis. Two 2D-LCMS runs in this study. Each run has 20 fractions. Urine samples are paired with MSV 000084084.",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "accession": "MSV000083948",
@@ -53936,7 +53957,7 @@
       "summary_en": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell."
     },
     {
-      "pmid": "IND609300501",
+      "pmid": "",
       "title": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell",
       "doi": "",
       "journal": "",
@@ -53994,7 +54015,9 @@
       ],
       "requires_manual_review": true,
       "finding_note": "Atlas fit: maybe",
-      "summary_en": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell"
+      "summary_en": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell",
+      "pubmed_url": "",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "pmid": "39441737",
@@ -54724,7 +54747,7 @@
       "summary_en": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer."
     },
     {
-      "pmid": "PPR983979",
+      "pmid": "",
       "title": "Proteome-wide multipoint internal calibration curves for mass spectrometry-based quantitative proteomics",
       "doi": "10.1101/2025.02.24.639845",
       "journal": "",
@@ -54780,7 +54803,9 @@
       ],
       "requires_manual_review": true,
       "finding_note": "Keywords from title: proteome · Atlas fit: maybe",
-      "summary_en": "Proteome-wide multipoint internal calibration curves for mass spectrometry-based quantitative proteomics"
+      "summary_en": "Proteome-wide multipoint internal calibration curves for mass spectrometry-based quantitative proteomics",
+      "pubmed_url": "",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "pmid": "39710348",
@@ -54901,7 +54926,7 @@
       "summary_en": "Proteomic study on nintedanib in gastric cancer cells."
     },
     {
-      "pmid": "PPR868988",
+      "pmid": "",
       "title": "Repair effect analysis of mesenchymal stem cell conditioned media from multiple sources on HUVECs damaged by high glucose",
       "doi": "10.21203/rs.3.rs-4520607/v1",
       "journal": "",
@@ -54959,7 +54984,9 @@
       ],
       "requires_manual_review": true,
       "finding_note": "Atlas fit: maybe",
-      "summary_en": "Repair effect analysis of mesenchymal stem cell conditioned media from multiple sources on HUVECs damaged by high glucose"
+      "summary_en": "Repair effect analysis of mesenchymal stem cell conditioned media from multiple sources on HUVECs damaged by high glucose",
+      "pubmed_url": "",
+      "publication_qc": "pmid_out_of_range"
     },
     {
       "pmid": "40931400",
@@ -55620,84 +55647,6 @@
       "pmid": "40493991",
       "doi": "10.1016/j.bbrc.2025.152148",
       "title": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell.",
-      "abstract_snippet": "Glioblastoma multiforme (GBM) is an intracranial malignant tumor that seriously threatens human life. Recently, studies have reported that solid glioma can be effectively treated with Apatinib by inhibiting vascular endothelial growth factor receptor-2 (VEGFR-2) tyrosine kinase from affecting the formation of new blood vessels. However, whether Apatinib can inhibit the proliferation of glioma cells by affecting potential targets beyond angiogenesis in glioma remains unclear. We used the Tandem M",
-      "source": "literature_semantic_candidate",
-      "atlas_fit": "maybe",
-      "atlas_fit_score": 0.65,
-      "literature_relevance": 0.65,
-      "abstract_ai": {
-        "atlas_fit": "maybe",
-        "semantic_evidence": [
-          "human clinical proteomics"
-        ],
-        "similar_atlas_theme": "",
-        "accessions": {
-          "PXD": [],
-          "PDC": [],
-          "MSV": [],
-          "IPX": []
-        },
-        "organism": "human",
-        "tmt": "ambiguous",
-        "material": "tumor tissue",
-        "human_suitable": true,
-        "material_suitable": true,
-        "summary_ru": "",
-        "reader": "regex"
-      },
-      "abstract_reader": "regex",
-      "pride_search_terms": "",
-      "summary_ru": "",
-      "verdict": "requires_manual_check",
-      "filter_reasons": [
-        "Semantically similar to TMT ATLAS — verify manually in PRIDE/PDC (accession not extracted from abstract)"
-      ],
-      "human": true,
-      "tmt_detected": true,
-      "recommendation": "literature_manual_resolve",
-      "confidence_tier": "C",
-      "confidence_css": "tier-c",
-      "confidence_evidence": [
-        "LLM maybe — literature watch",
-        "human clinical proteomics"
-      ],
-      "evaluation": {
-        "final_verdict": "Watch",
-        "confidence": "C",
-        "evidence_chain": [
-          {
-            "source": "similarity_scorer",
-            "score": 0.0,
-            "is_actionable": false,
-            "reason": null,
-            "detail": "no catalog similarity hits"
-          },
-          {
-            "source": "regex_engine",
-            "score": null,
-            "is_actionable": false,
-            "reason": null,
-            "detail": "reader=regex; fit=maybe"
-          }
-        ],
-        "requires_manual_review": true,
-        "confidence_css": "tier-c",
-        "confidence_bullets": [
-          "LLM maybe — literature watch",
-          "human clinical proteomics"
-        ],
-        "display_fit_label": "LLM maybe"
-      },
-      "ui_verdict": "Watch",
-      "requires_manual_review": true,
-      "qc_reasons": [],
-      "processing_tips": [],
-      "finding_note": "LLM material: tumor tissue · Atlas fit: maybe"
-    },
-    {
-      "pmid": "609300501",
-      "doi": "",
-      "title": "Proteomics profiling reveals the potential targets of Apatinib inhibiting the proliferation of glioma U251 cell",
       "abstract_snippet": "Glioblastoma multiforme (GBM) is an intracranial malignant tumor that seriously threatens human life. Recently, studies have reported that solid glioma can be effectively treated with Apatinib by inhibiting vascular endothelial growth factor receptor-2 (VEGFR-2) tyrosine kinase from affecting the formation of new blood vessels. However, whether Apatinib can inhibit the proliferation of glioma cells by affecting potential targets beyond angiogenesis in glioma remains unclear. We used the Tandem M",
       "source": "literature_semantic_candidate",
       "atlas_fit": "maybe",
