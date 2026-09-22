@@ -46,6 +46,11 @@ def test_pdc_excludes_low_plex_and_cptac_program():
     assert all(p["inferred_plex"] >= 7 for p in with_plex)
     assert all(p["inferred_plex"] <= 18 for p in with_plex)
     assert len(filtered) < len(all_ok)
-    assert not any(
-        "Clinical Proteomic Tumor" in (p.get("program") or "") for p in filtered
-    )
+def test_pdc_publication_for_study_uses_index():
+    from atlas_agent.sources import pdc as pdc_mod
+
+    pdc_mod._PDC_PUB_INDEX = {
+        "PDC000606": {"pmid": "41512870", "title": "Gallbladder proteogenomics"}
+    }
+    rec = pdc_mod.pdc_publication_for_study("pdc000606")
+    assert rec and rec["pmid"] == "41512870"

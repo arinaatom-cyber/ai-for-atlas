@@ -67,18 +67,20 @@ def test_source_label_massive_iprox():
     assert source_label({"accession": "PXD012345"}) == "PRIDE"
 
 
-def test_id_cell_repo_link_without_pmid_duplicate():
+def test_id_cell_repo_link_then_article():
     html = _id_cell(
         acc="PXD012345",
         repo="https://www.ebi.ac.uk/pride/archive/projects/PXD012345",
         pmid="38765432",
     )
     assert "PXD012345" in html
-    assert "PMID" not in html
+    assert "PMID 38765432" in html
+    assert 'data-i18n="link_epmc"' in html
     assert "pride/archive/projects/PXD012345" in html
-    assert ">PRIDE</" in html
-    assert 'class="cell-mono id-acc"' in html
-    assert 'class="cell-mono id-acc"><b>PXD012345</b></a>' not in html
+    assert 'class="link-chip cell-mono id-acc"' in html
+    pxd_at = html.find("PXD012345")
+    pmid_at = html.find("PMID 38765432")
+    assert 0 <= pxd_at < pmid_at
 
 
 def test_id_cell_pdc_blue_repo_link_once():
@@ -87,12 +89,14 @@ def test_id_cell_pdc_blue_repo_link_once():
         repo="https://proteomic.datacommons.cancer.gov/pdc/study/PDC000604",
         pmid="",
     )
-    assert html.count(">PDC</") == 1
-    assert "PDC000604" in html
-    assert "pdc/study/PDC000604" in html
+    assert html.count("pdc/study/PDC000604") >= 1
+    assert 'class="link-chip cell-mono id-acc">PDC000604</a>' in html
+    assert 'data-i18n="link_pdc_papers"' in html
+    assert "europepmc.org/search?query=PDC000604" in html
+    assert "pubmed.ncbi.nlm.nih.gov/?term=" in html
 
 
-def test_title_cell_repo_link_and_inline_pmid():
+def test_title_cell_title_only_no_inline_links():
     html = _title_cell(
         "Human TMT colon proteome",
         "https://pubmed.ncbi.nlm.nih.gov/38765432/",
@@ -101,13 +105,13 @@ def test_title_cell_repo_link_and_inline_pmid():
         acc="PXD012345",
         pmid="38765432",
     )
-    assert "cell-desc" in html
+    assert "cell-desc" not in html
     assert "Human TMT colon proteome" in html
-    assert "pride/archive/projects/PXD012345" in html
+    assert "pride/archive/projects/PXD012345" not in html
+    assert "<a " not in html
     assert 'class="cell-title"' in html
-    assert "title-links" in html
-    assert "PMID 38765432" in html
-    assert 'data-i18n="link_epmc"' in html
+    assert "title-links" not in html
+    assert "PMID 38765432" not in html
 
 
 def test_title_cell_pubmed_link_for_paper():
@@ -117,16 +121,15 @@ def test_title_cell_pubmed_link_for_paper():
         "",
         pmid="38765432",
     )
-    assert "pubmed.ncbi.nlm.nih.gov/38765432" in html
+    assert "Human TMT colon proteome" in html
     assert 'class="cell-title"' in html
+    assert "<a " not in html
 
 
 def test_title_cell_skips_invalid_pmid_zero():
-    html = _title_cell(
-        "BioId experiment",
-        "",
-        "https://www.ebi.ac.uk/pride/archive/projects/PXD079670",
+    html = _id_cell(
         acc="PXD079670",
+        repo="https://www.ebi.ac.uk/pride/archive/projects/PXD079670",
         pmid="0",
     )
     assert "PXD079670" in html
@@ -145,7 +148,7 @@ def test_id_cell_epmc_for_paper_without_accession():
     html = _id_cell(acc="", repo="", pmid="40493991")
     assert 'data-i18n="link_epmc"' in html
     assert 'data-i18n="no_accession"' in html
-    assert "40493991" in html
+    assert "PMID 40493991" in html
 
 
 def test_build_pmid_repo_index():

@@ -291,6 +291,31 @@ def resolve_publication_links(item: dict, *, fetch_pride_pmid: bool = True) -> N
         )
     if not pmid and fetch_pride_pmid:
         pmid = _resolve_pmid_from_literature(item)
+    if not pmid and acc.startswith("PDC"):
+        try:
+            from atlas_agent.sources.pdc import pdc_publication_for_study
+
+            pub = pdc_publication_for_study(acc)
+        except Exception:
+            pub = None
+        if pub:
+            pmid = pmid or _clean_pmid(pub.get("pmid"))
+            if pub.get("doi") and not item.get("doi"):
+                item["doi"] = pub["doi"]
+            if pub.get("year") and not item.get("publication_date"):
+                item["publication_date"] = pub["year"]
+            paper_title = str(pub.get("title") or "").strip()
+            if paper_title:
+                item["publication_title"] = paper_title
+                current_title = str(item.get("title") or "")
+                if len(paper_title) > 20 and (
+                    not current_title or current_title.startswith(acc) or " — " in current_title
+                ):
+                    item["title"] = paper_title[:500]
+            abstract = str(pub.get("abstract") or "").strip()
+            if abstract:
+                item["abstract"] = abstract
+                item["abstract_snippet"] = abstract[:1200]
     if not pmid and fetch_pride_pmid and acc.startswith("PXD"):
         try:
             detail = _fetch_pride_project_cached(acc)

@@ -38,11 +38,12 @@ def meta_pill_text(text: str, *, css: str = "badge-muted") -> str:
     return f'<span class="meta-pill badge {css}">{esc(text)}</span>'
 
 
-def page_hero(title_key: str, lead_key: str, meta_html: str) -> str:
+def page_hero(title_key: str, lead_key: str | None, meta_html: str) -> str:
+    lead = i18n_el(lead_key, tag="p", cls="lead") if lead_key else ""
     return f"""
 <div class="page-hero">
   {i18n_el(title_key, tag="h1")}
-  {i18n_el(lead_key, tag="p", cls="lead")}
+  {lead}
   <div class="page-meta">{meta_html}</div>
 </div>"""
 

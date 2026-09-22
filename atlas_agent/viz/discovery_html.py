@@ -15,16 +15,14 @@ from atlas_agent.viz.site_components import (
     kpi_grid,
     meta_pill_text,
     meta_time,
-    note_discovery_scope,
     page_hero,
     pipeline_steps_panel,
     scan_funnel_raw_stats,
     scan_funnel_viz,
-    section_desc,
     section_head,
 )
 from atlas_agent.viz.i18n_defaults import BRAND_NAME
-from atlas_agent.viz.site_theme import DEPLOY_DOCS_PORTAL, DEPLOY_TMT, page_wrap
+from atlas_agent.viz.site_theme import DEPLOY_TMT, page_wrap
 
 
 def _pub_index(pubs: list[dict], extra: list[dict] | None = None) -> dict[str, dict]:
@@ -247,7 +245,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     body = (
         page_hero(
             "disc_title",
-            "disc_lead",
+            None,
             meta_time(gen) + meta_pill_text(str(candidate_kpi), css="badge-ok"),
         )
         + kpi_grid(
@@ -262,8 +260,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 <div class="page-content page-content-wide">
   <section class="section" id="discovery">
     {section_head("sec_unified_discovery", total_rows)}
-    {section_desc("sec_unified_discovery_desc")}
-    {note_discovery_scope(new_projects=candidate_kpi, total_rows=total_rows)}
     <div class="toolbar" id="disc-toolbar">
       <input type="search" id="q" data-i18n-placeholder="search_unified"/>
       <span class="count-badge" id="count"></span>

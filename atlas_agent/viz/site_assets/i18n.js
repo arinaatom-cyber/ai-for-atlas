@@ -46,8 +46,8 @@
     th_id: { ru: "ID", en: "ID" },
     th_project_id: { ru: "ID проекта", en: "Project ID" },
     th_project_id_hint: {
-      ru: "PRIDE/PDC/MSV/IPX или Europe PMC",
-      en: "PRIDE/PDC/MSV/IPX or Europe PMC",
+      ru: "сначала проект, затем статья",
+      en: "project first, then paper",
     },
     th_type: { ru: "Тип", en: "Type" },
     th_confidence: { ru: "Уверенность", en: "Confidence" },
@@ -103,6 +103,7 @@
     tab_guide: { ru: "Гайд", en: "Guide" },
     tab_technical: { ru: "Методы", en: "Methods" },
     cell_empty: { ru: "—", en: "—" },
+    cell_unclear: { ru: "непонятно", en: "unclear" },
     pat_yes: { ru: "да", en: "yes" },
     pat_maybe: { ru: "возможно", en: "maybe" },
     pat_no: { ru: "нет", en: "no" },
@@ -120,6 +121,8 @@
     verdict_review: { ru: "Проверка", en: "Review" },
     no_accession: { ru: "Нет PXD/PDC/MSV/IPX", en: "No PXD/PDC/MSV/IPX" },
     link_epmc: { ru: "Europe PMC", en: "Europe PMC" },
+    link_pdc_papers: { ru: "статьи PDC", en: "PDC papers" },
+    link_pubmed_search: { ru: "PubMed", en: "PubMed" },
     fit_llm_yes: { ru: "ИИ: да", en: "LLM yes" },
     fit_llm_maybe: { ru: "ИИ: возможно", en: "LLM maybe" },
     fit_llm_no: { ru: "ИИ: нет", en: "LLM no" },
@@ -172,9 +175,8 @@
       brand_link_technical: "Методы · версии скриптов",
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
-      disc_title: "Discovery — новые TMT-проекты",
-      disc_lead:
-        "Еженедельный ИИ-скрининг PRIDE, PDC и Europe PMC. В таблице — только находки вне каталога атласа.",
+      disc_title: "Discovery",
+      disc_lead: "",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
       kpi_new: "Подошло (Candidate)",
@@ -196,9 +198,8 @@
       kpi_with_table: "с protein table",
       note_projects_unified:
         "ID → репозиторий (синяя ссылка). Название → клик на PRIDE/PDC или PubMed; под описанием — PMID и Europe PMC. В «Подошло» только Candidate. Неясный plex/дизайн не выдаём как проекты.",
-      sec_unified_discovery: "Реестр находок Discovery",
-      sec_unified_discovery_desc:
-        "Единая таблица последнего скана: новые PXD/PDC/MSV/IPX, статьи без repository accession и онкологические когорты из литературы.",
+      sec_unified_discovery: "Находки",
+      sec_unified_discovery_desc: "",
       sec_unified_count_hint: "Число всех строк таблицы (проекты + статьи + когорты)",
       note_scope_lead:
         "В таблице — все находки последнего скана: проекты, статьи и когорты. KPI «Подошло» считает только Candidate.",
@@ -398,13 +399,13 @@
       table_scroll_hint: "Таблица широкая — прокрутите вправо, чтобы увидеть все колонки. Вкладка «Проекты» — данные; «Справка» — расшифровка колонок.",
       col_help_type: "Project — репозиторий с accession; Paper — статья без ID; Cohort — крупная когорта из литературы.",
       col_help_id:
-        "Репозиторий: accession + синяя ссылка PRIDE/PDC/MassIVE/iProX. Статья: Europe PMC или PXD, если найден по PMID. PMID/PXD — также в «Название».",
+        "Сначала синяя ссылка на проект (PXD/PDC/MSV/IPX). Ниже — PMID и Europe PMC. Без accession — «нет ID» и статья.",
       col_help_disease:
         "Нозология из метаданных или из названия/статьи. Other и Not reported не показываем.",
       col_help_organ:
         "Орган или ткань из метаданных, названия или статьи. Заглушки Other / Not reported скрыты.",
       col_help_year: "Год публикации или submission из PRIDE/PDC или PubMed.",
-      col_help_title: "Заголовок (клик → PRIDE/PDC или PubMed), описание и строка PMID / Europe PMC.",
+      col_help_title: "Заголовок (клик → репозиторий или PubMed) и краткое описание. Ссылки на проект и статью — в колонке ID.",
       col_help_design: "Дизайн и TMT plex. Если PRIDE не указал plex — жёлтый бейдж «TMT plex не прописан — нужна проверка».",
       col_help_omics: "Тип омики: proteomics, phospho, multi-omics (для когорт).",
       col_help_patients: "Есть ли пациенты в тексте: да / возможно / нет.",
@@ -439,9 +440,8 @@
       brand_link_technical: "Methods · script versions",
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
-      disc_title: "Discovery — new TMT projects",
-      disc_lead:
-        "Weekly AI scan of PRIDE, PDC, and Europe PMC. Table lists findings not yet in the atlas catalog.",
+      disc_title: "Discovery",
+      disc_lead: "",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
       kpi_new: "Passed (Candidate)",
@@ -465,9 +465,8 @@
       kpi_with_table: "with protein table",
       note_projects_unified:
         "ID → repository (blue link). Title → PRIDE/PDC or PubMed; PMID and Europe PMC under the description. «Passed» is Candidate only. Unclear plex/design is not handed over as projects.",
-      sec_unified_discovery: "Discovery findings registry",
-      sec_unified_discovery_desc:
-        "Unified table from the latest scan: novel PXD/PDC/MSV/IPX accessions, papers without a repository ID, and oncology cohort literature.",
+      sec_unified_discovery: "Findings",
+      sec_unified_discovery_desc: "",
       sec_unified_count_hint: "Total table rows (projects + papers + cohorts)",
       note_scope_lead:
         "The table lists every hit from the latest scan: projects, papers, and cohorts. The Passed KPI counts Candidate projects only.",
@@ -668,13 +667,13 @@
       table_scroll_hint: "Wide table — scroll right for all columns. Projects tab = data; Guide tab = column legend.",
       col_help_type: "Project = repository accession; Paper = literature without ID; Cohort = large cohort from Europe PMC.",
       col_help_id:
-        "Repository: accession + blue PRIDE/PDC/MassIVE/iProX link. Paper: Europe PMC or PXD when resolved from PMID. Links also in Title.",
+        "Blue project link first (PXD/PDC/MSV/IPX). PMID and Europe PMC underneath. No accession → no-ID plus paper links.",
       col_help_disease:
         "Disease from metadata or inferred from the title/paper. Other and Not reported are hidden.",
       col_help_organ:
         "Organ or tissue from metadata, title, or paper. Placeholder Other / Not reported is hidden.",
       col_help_year: "Publication or submission year from PRIDE/PDC or PubMed.",
-      col_help_title: "Title (click → PRIDE/PDC or PubMed), description, and PMID / Europe PMC links.",
+      col_help_title: "Title (click → repository or PubMed) and short description. Project and paper links are in the ID column.",
       col_help_design: "Design and TMT plex. If PRIDE omits plex — yellow badge «TMT plex not specified — needs review».",
       col_help_omics: "Omics type: proteomics, phospho, multi-omics (cohorts).",
       col_help_patients: "Patients mentioned in text: yes / maybe / no.",

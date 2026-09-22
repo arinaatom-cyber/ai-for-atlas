@@ -529,7 +529,29 @@ code {
 }
 
 .id-cell .id-acc {
+  display: inline-block;
   font-size: 0.92rem;
+  color: var(--link);
+  font-weight: 600;
+}
+
+.id-cell .link-pub,
+.id-cell .link-epmc {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.id-cell .link-epmc {
+  color: var(--muted);
+}
+
+.muted-unclear,
+.cell-empty.muted-unclear {
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .id-no-acc {

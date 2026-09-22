@@ -9,15 +9,27 @@ from atlas_agent.discovery.organism_terms import is_human_text, is_non_human_tex
 from atlas_agent.discovery.tmt_plex import infer_tmt_plex
 
 PDC_GRAPHQL = "https://pdc.cancer.gov/graphql"
+PDC_GRAPHQL_FALLBACK = "https://proteomic.datacommons.cancer.gov/graphql"
+PDC_PUBLICATIONS_URL = "https://proteomic.datacommons.cancer.gov/pdc/publications"
+PDC_STUDY_URL = "https://proteomic.datacommons.cancer.gov/pdc/study"
+
+
+def pdc_study_url(accession: str) -> str:
+    acc = str(accession or "").strip().upper()
+    return f"{PDC_STUDY_URL}/{acc}" if acc else PDC_PUBLICATIONS_URL
+
+
 ATLAS_PLEXES = set(range(7, 19))
 REJECT_PLEXES = {2, 6}
 MIN_ATLAS_CHANNELS = 7
 
 
 def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
+    urls = (PDC_GRAPHQL, PDC_GRAPHQL_FALLBACK)
     for attempt in range(retries):
+        url = urls[attempt % len(urls)]
         try:
-            r = requests.post(PDC_GRAPHQL, json={"query": query}, timeout=timeout)
+            r = requests.post(url, json={"query": query}, timeout=timeout)
             if r.status_code == 200:
                 body = r.json()
                 if not body.get("errors"):
@@ -28,6 +40,56 @@ def _post_graphql(query: str, *, timeout: int = 120, retries: int = 3) -> dict:
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
     return {}
+
+
+_PDC_PUB_INDEX: dict[str, dict[str, Any]] | None = None
+
+
+def fetch_pdc_publication_index() -> dict[str, dict[str, Any]]:
+    """Map PDC000xxx → first linked paper from the PDC publications catalog."""
+    global _PDC_PUB_INDEX
+    if _PDC_PUB_INDEX is not None:
+        return _PDC_PUB_INDEX
+    q = """query {
+      getPaginatedPublications(offset: 0, limit: 500) {
+        total
+        uiPublication {
+          pubmed_id
+          doi
+          title
+          year
+          abstract
+          journal
+          studies { pdc_study_id }
+        }
+      }
+    }"""
+    body = _post_graphql(q)
+    pubs = ((body.get("data") or {}).get("getPaginatedPublications") or {}).get("uiPublication") or []
+    index: dict[str, dict[str, Any]] = {}
+    for pub in pubs:
+        pmid = str(pub.get("pubmed_id") or "").strip()
+        rec = {
+            "pmid": pmid,
+            "doi": str(pub.get("doi") or "").strip(),
+            "title": str(pub.get("title") or "").strip(),
+            "year": str(pub.get("year") or "").strip(),
+            "abstract": str(pub.get("abstract") or "").strip(),
+            "journal": str(pub.get("journal") or "").strip(),
+        }
+        for study in pub.get("studies") or []:
+            acc = str(study.get("pdc_study_id") or "").strip().upper()
+            if acc and acc not in index and (pmid or rec["title"]):
+                index[acc] = rec
+    _PDC_PUB_INDEX = index
+    return index
+
+
+def pdc_publication_for_study(accession: str) -> dict[str, Any] | None:
+    acc = str(accession or "").strip().upper()
+    if not acc.startswith("PDC"):
+        return None
+    return fetch_pdc_publication_index().get(acc)
 
 
 def fetch_study_summary() -> list[dict[str, Any]]:

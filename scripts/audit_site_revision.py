@@ -44,7 +44,7 @@ def audit_rows(html_path: Path) -> list[str]:
     issues: list[str] = []
     for i, row in enumerate(rows, 1):
         typ = re.search(r'data-type="([^"]+)"', row)
-        acc = re.search(r'class="cell-mono id-acc"[^>]*><b>([^<]+)</b>', row)
+        acc = re.search(r'class="[^"]*id-acc[^"]*"[^>]*>(?:<b>)?([^<]+)(?:</b>)?', row)
         title = re.search(r'class="cell-title[^"]*"[^>]*>([^<]+)<', row)
         empty_links = "cell-empty" in row and "link-chip" not in row
         hardcoded = []

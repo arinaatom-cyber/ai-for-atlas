@@ -210,6 +210,34 @@ def score_badge(score: object) -> str:
     return f'<span class="badge badge-muted">{_esc(s)}</span>'
 
 
+_UNCLEAR_LABELS = frozenset(
+    {
+        "",
+        "—",
+        "-",
+        "unknown",
+        "unclear",
+        "not reported",
+        "not applicable",
+        "unspecified",
+        "n/a",
+        "na",
+        "none",
+    }
+)
+
+
+def _is_unclear_label(text: object) -> bool:
+    return str(text or "").strip().lower() in _UNCLEAR_LABELS
+
+
+def _muted_unclear(text: object = "") -> str:
+    label = _esc(i18n_default("cell_unclear"))
+    return (
+        f'<span class="cell-empty muted-unclear" data-i18n="cell_unclear">{label}</span>'
+    )
+
+
 def pubmed_link(pmid: str, *, label: str | None = None) -> str:
     if not pmid:
         return ""
@@ -471,6 +499,13 @@ def _num_cell(n: int) -> str:
     return f'<td class="col-num cell-mono"><b>{n}</b></td>'
 
 
+def _year_cell(year: str) -> str:
+    y = str(year or "").strip()
+    if not y or _is_unclear_label(y):
+        return f'<td class="col-year">{_muted_unclear()}</td>'
+    return f'<td class="col-year cell-mono"><b>{_esc(y)}</b></td>'
+
+
 def _catalog_profile(item_ctx: dict | None) -> dict:
     return dict(item_ctx or {})
 
@@ -485,18 +520,24 @@ def _organ_text(item: dict, *, profile: dict | None = None) -> str:
 
 def _disease_cell(item: dict, *, profile: dict | None = None) -> str:
     d = _disease_text(item, profile=profile)
-    if not d:
-        return '<span class="cell-empty">—</span>'
-    parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", d) if x.strip()]
-    return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
+    if not d or _is_unclear_label(d):
+        return _muted_unclear("—")
+    parts = [format_metadata_part(x) for x in re.split(r"[;/|]", d) if x.strip()]
+    parts = [p for p in parts if p and not _is_unclear_label(p)]
+    if not parts:
+        return _muted_unclear("—")
+    return _esc(", ".join(parts[:3]))
 
 
 def _organ_cell(item: dict, *, profile: dict | None = None) -> str:
     o = _organ_text(item, profile=profile)
-    if not o:
-        return '<span class="cell-empty">—</span>'
-    parts = [_esc(format_metadata_part(x)) for x in re.split(r"[;/|]", o) if x.strip()]
-    return ", ".join(parts[:3]) if parts else '<span class="cell-empty">—</span>'
+    if not o or _is_unclear_label(o):
+        return _muted_unclear("—")
+    parts = [format_metadata_part(x) for x in re.split(r"[;/|]", o) if x.strip()]
+    parts = [p for p in parts if p and not _is_unclear_label(p)]
+    if not parts:
+        return _muted_unclear("—")
+    return _esc(", ".join(parts[:3]))
 
 
 def _disease_filter_attr(item: dict, *, profile: dict | None = None) -> str:
@@ -579,17 +620,20 @@ def _tmt_plex_unspecified(item: dict) -> bool:
 
 
 def _design_cell(item: dict) -> str:
-    design = _esc(format_design_label(item.get("sample_design") or "—"))
-    bits = [f'<span class="cell-design-label">{design}</span>']
+    design = format_design_label(item.get("sample_design") or "—")
+    if _is_unclear_label(design):
+        bits = [_muted_unclear(design)]
+    else:
+        bits = [f'<span class="cell-design-label">{_esc(design)}</span>']
     label = str(item.get("tmt_label") or "").strip()
     if label:
         bits.append(f'<span class="badge badge-muted">{_esc(label)}</span>')
     if _tmt_plex_unspecified(item):
-        bits.append(_i18n_badge("tmt_plex_unspecified", "badge-warn", title_key="tmt_plex_unspecified_hint"))
+        bits.append(_i18n_badge("tmt_plex_unspecified", "badge-muted", title_key="tmt_plex_unspecified_hint"))
     return f'<div class="cell-stack cell-design-block">{"".join(bits)}</div>'
 
 
-def finding_plain_text(item: dict, *, limit: int = 400) -> str:
+def finding_plain_text(item: dict, *, limit: int = 2000) -> str:
     candidates = [
         item.get("abstract_snippet"),
         item.get("abstract"),
@@ -656,12 +700,12 @@ def attach_flat_display_fields(item: dict, *, profile: dict | None = None) -> di
 
 
 def _main_finding_cell(item: dict) -> str:
-    snip = finding_plain_text(item, limit=400)
+    snip = finding_plain_text(item, limit=2000)
     if not snip:
         return '<span class="cell-empty">—</span>'
     return (
         f'<div class="cell-stack cell-finding-block">'
-        f'<p class="cell-abstract" title="{_esc(snip[:400])}">{_esc(snip[:280])}</p>'
+        f'<p class="cell-abstract">{_esc(snip)}</p>'
         f"</div>"
     )
 
@@ -769,30 +813,67 @@ def _data_cell(it: dict) -> str:
     )
 
 
-def _id_cell(*, acc: str, repo: str, pmid: str) -> str:
-    if acc:
-        kind = source_label({"accession": acc})
+def _pdc_article_bits(acc: str, *, pmid: str = "", title: str = "") -> list[str]:
+    from urllib.parse import quote
+
+    from atlas_agent.sources.pdc import pdc_publication_for_study, pdc_study_url
+
+    acc = str(acc or "").strip().upper()
+    pmid = _valid_pmid(pmid)
+    if not pmid:
+        try:
+            pub = pdc_publication_for_study(acc)
+        except Exception:
+            pub = None
+        if pub:
+            pmid = _valid_pmid(str(pub.get("pmid") or ""))
+            title = title or str(pub.get("title") or "")
+    if pmid:
+        return [pubmed_link(pmid, label=f"PMID {pmid}"), epmc_link(pmid)]
+    study = pdc_study_url(acc)
+    q = quote(" ".join(p for p in (acc, title[:80]) if p).strip() or acc)
+    return [
+        (
+            f'<a href="{_esc(study)}" target="_blank" rel="noopener" '
+            f'class="link-epmc cell-src"><b data-i18n="link_pdc_papers">PDC papers</b></a>'
+        ),
+        (
+            f'<a href="https://pubmed.ncbi.nlm.nih.gov/?term={_esc(q)}" target="_blank" '
+            f'rel="noopener" class="link-epmc cell-src"><b data-i18n="link_pubmed_search">PubMed</b></a>'
+        ),
+        (
+            f'<a href="https://europepmc.org/search?query={_esc(acc)}" target="_blank" '
+            f'rel="noopener" class="link-epmc cell-src"><b data-i18n="link_epmc"></b></a>'
+        ),
+    ]
+
+
+def _id_cell(*, acc: str, repo: str, pmid: str, title: str = "") -> str:
+    pmid = _valid_pmid(pmid)
+    bits: list[str] = []
+    if acc and _is_repo_accession(acc):
         acc_esc = _esc(acc)
         if repo:
-            repo_link = (
-                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" class="cell-src">'
-                f"<b>{_esc(kind)}</b></a>"
+            bits.append(
+                f'<a href="{_esc(repo)}" target="_blank" rel="noopener" '
+                f'class="link-chip cell-mono id-acc">{acc_esc}</a>'
             )
         else:
-            repo_link = f'<span class="cell-src"><b>{_esc(kind)}</b></span>'
-        body = (
-            f"{repo_link}"
-            f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>'
-        )
-        return f'<div class="cell-stack id-cell">{body}</div>'
-    no_acc = '<span class="id-no-acc" data-i18n="no_accession"></span>'
-    if pmid:
-        src = epmc_link(pmid)
-        return f'<div class="cell-stack id-cell">{src}{no_acc}</div>'
-    return (
-        f'<div class="cell-stack id-cell">'
-        f'<span class="cell-label" data-i18n="badge_paper"></span>{no_acc}</div>'
-    )
+            bits.append(f'<span class="cell-mono id-acc"><b>{acc_esc}</b></span>')
+    elif acc:
+        kind = source_label({"accession": acc})
+        bits.append(f'<span class="cell-src"><b>{_esc(kind)}</b></span>')
+        bits.append(f'<span class="cell-mono id-acc"><b>{_esc(acc)}</b></span>')
+    else:
+        bits.append('<span class="id-no-acc" data-i18n="no_accession"></span>')
+    if acc.upper().startswith("PDC"):
+        bits.extend(_pdc_article_bits(acc, pmid=pmid, title=title))
+    elif pmid:
+        bits.append(pubmed_link(pmid, label=f"PMID {pmid}"))
+        bits.append(epmc_link(pmid))
+    elif not acc:
+        bits.append('<span class="cell-label" data-i18n="badge_paper"></span>')
+    return f'<div class="cell-stack id-cell">{"".join(bits)}</div>'
 
 
 def _repo_link_chip(acc: str, repo: str) -> str:
@@ -805,17 +886,8 @@ def _repo_link_chip(acc: str, repo: str) -> str:
 
 
 def _title_inline_links(pmid: str, *, acc: str = "", repo: str = "") -> str:
-    chips: list[str] = []
-    pmid = _valid_pmid(pmid)
-    if pmid:
-        chips.extend([pubmed_link(pmid, label=f"PMID {pmid}"), epmc_link(pmid)])
-    repo_chip = _repo_link_chip(acc, repo)
-    if repo_chip:
-        chips.append(repo_chip)
-    if not chips:
-        return ""
-    body = "".join(f'<span class="title-link-item">{c}</span>' for c in chips if c)
-    return f'<div class="title-links">{body}</div>'
+    del pmid, acc, repo
+    return ""
 
 
 def _title_cell(
@@ -826,24 +898,18 @@ def _title_cell(
     description: str = "",
     acc: str = "",
     pmid: str = "",
+    show_desc: bool = False,
 ) -> str:
-    title_esc = _esc(format_title(title[:180] or "—"))
-    href = ""
-    if repo and acc and _is_repo_accession(acc):
-        href = repo
-    elif pub_url:
-        href = pub_url
-    if href:
-        head = f'<a href="{_esc(href)}" target="_blank" rel="noopener" class="cell-title">{title_esc}</a>'
-    else:
-        head = f'<span class="cell-title">{title_esc}</span>'
-    bits = [head]
+    del pub_url, repo, acc, pmid
+    raw = format_title(title[:180] or "")
+    if not raw or _is_unclear_label(raw):
+        return (
+            f'<div class="cell-stack cell-title-block">{_muted_unclear()}</div>'
+        )
+    bits = [f'<span class="cell-title">{_esc(raw)}</span>']
     desc = (description or "").strip()
-    if desc:
+    if show_desc and desc:
         bits.append(f'<p class="cell-desc">{_esc(format_title(desc[:320]))}</p>')
-    inline = _title_inline_links(pmid, acc=acc, repo=repo)
-    if inline:
-        bits.append(inline)
     return f'<div class="cell-stack cell-title-block">{"".join(bits)}</div>'
 
 
@@ -972,8 +1038,8 @@ def build_unified_discovery_rows(
             f"data-search='{_esc(search)}' data-patients='' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_cell('project', it, pubs_by_pmid)}</td>"
-            f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid)}</td>"
-            f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
+            f"<td class='col-id'>{_id_cell(acc=raw_acc, repo=repo, pmid=pmid, title=title)}</td>"
+            f"{_year_cell(year)}"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=raw_acc, pmid=pmid)}</td>"
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
@@ -1009,6 +1075,8 @@ def build_unified_discovery_rows(
             mat = (paper.get("abstract_ai") or {}).get("material") or ""
             if mat and mat != "unclear":
                 design = _esc(str(mat).replace("|", ", ")[:60])
+        if _is_unclear_label(design) or design == "—":
+            design = _muted_unclear("—")
         hp = it.get("has_patients") or ""
         desc = article_description(it)
         disease_attr = _track_disease(it)
@@ -1037,8 +1105,8 @@ def build_unified_discovery_rows(
             f"data-search='{_esc(search)}' data-patients='{_esc(hp)}' data-tier='{_esc(tier)}'>"
             f"{_num_cell(row_num)}"
             f"<td class='col-type'>{_type_cell(kind, it, pubs_by_pmid)}</td>"
-            f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
-            f"<td class='col-year cell-mono'><b>{_esc(year)}</b></td>"
+            f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid, title=title)}</td>"
+            f"{_year_cell(year)}"
             f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid)}</td>"
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
