@@ -230,6 +230,7 @@ def scan_funnel_raw_stats(
         li("lit_scanned", lit.get("publications_scanned", 0))
         + li("lit_llm_read", lit.get("abstract_llm_read", st.get("abstract_llm_read", 0)))
         + li("lit_regex_only", lit.get("abstract_regex_only", 0))
+        + li("lit_llm_errors", sum((lit.get("abstract_llm_errors") or {}).values()) if isinstance(lit.get("abstract_llm_errors"), dict) else lit.get("abstract_llm_errors", 0))
         + li("lit_fit_yes", lit.get("atlas_fit_yes", 0))
         + li("lit_fit_maybe", lit.get("atlas_fit_maybe", 0))
         + li("lit_resolved", lit.get("literature_resolved", st.get("literature_resolved", 0)))

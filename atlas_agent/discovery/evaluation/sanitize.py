@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import logging
 import re
+
+logger = logging.getLogger(__name__)
+
+_SANITIZE_STATS = {"dropped": 0, "gloss_rewritten": 0}
 
 GARBAGE_SUMMARY = re.compile(
     r"json\s*schema|this\s+json\s+schema|reply\s+with\s+only\s+valid\s+json|"
@@ -46,9 +51,23 @@ def fix_ru_llm_gloss(text: str) -> str:
     return s
 
 
+def consume_sanitize_stats() -> dict[str, int]:
+    snap = dict(_SANITIZE_STATS)
+    _SANITIZE_STATS["dropped"] = 0
+    _SANITIZE_STATS["gloss_rewritten"] = 0
+    return snap
+
+
 def sanitize_summary(text: object) -> str:
     s = str(text or "").strip()
-    if not s or GARBAGE_SUMMARY.search(s):
+    if not s:
         return ""
-    s = fix_ru_llm_gloss(s)
-    return s[:320]
+    if GARBAGE_SUMMARY.search(s):
+        _SANITIZE_STATS["dropped"] += 1
+        logger.info("sanitize_summary dropped garbage (%s chars)", len(s))
+        return ""
+    fixed = fix_ru_llm_gloss(s)
+    if fixed != s:
+        _SANITIZE_STATS["gloss_rewritten"] += 1
+        logger.info("sanitize_summary rewrote Russian gloss")
+    return fixed[:320]
