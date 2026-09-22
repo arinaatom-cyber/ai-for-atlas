@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import html
+import logging
 import re
+
+logger = logging.getLogger(__name__)
 
 from atlas_agent.discovery.evaluation import AnalysisFormatter, display_fit_label
 from atlas_agent.viz.i18n_defaults import en as i18n_default
@@ -57,6 +60,35 @@ def _resolve_evaluation(
         has_accession=has_accession,
         mutate=force or not item.get("evaluation"),
     )
+
+
+def _safe_resolve_evaluation(
+    item: dict,
+    *,
+    kind: ItemKind | str,
+    has_accession: bool = False,
+) -> ProjectEvaluation | None:
+    try:
+        return _resolve_evaluation(item, kind=kind, has_accession=has_accession)
+    except Exception:
+        logger.exception(
+            "evaluation failed for %s",
+            item.get("pmid") or item.get("accession") or item.get("title"),
+        )
+        return None
+
+
+def _analysis_html(
+    evaluation: ProjectEvaluation | None,
+    item: dict,
+    pubs_by_pmid: dict[str, dict],
+) -> str:
+    if evaluation is None:
+        inner = _FORMATTER.legacy_html()
+    else:
+        en, ru = _item_summaries(item, pubs_by_pmid)
+        inner = _FORMATTER.to_html(evaluation, summary=en, summary_ru=ru)
+    return f'<div class="cell-stack cell-analysis">{inner}</div>'
 
 
 def _esc(s: object) -> str:
@@ -117,6 +149,45 @@ def _i18n_badge(key: str, css: str, *, title: str = "", title_key: str = "") -> 
         t_attr = f' title="{_esc(title)}"'
     text = _esc(i18n_default(key))
     return f'<span class="badge {css}" data-i18n="{_esc(key)}"{t_attr}>{text}</span>'
+
+
+def _reader_hint(item: dict) -> str:
+    ai = item.get("abstract_ai") or {}
+    reader = str(item.get("abstract_reader") or ai.get("reader") or "").strip()
+    trust = str(ai.get("model_trust") or "").strip()
+    return " · ".join(p for p in (reader, trust) if p)
+
+
+def _fit_score(item: dict) -> object:
+    ai = item.get("abstract_ai") or {}
+    if item.get("atlas_fit_score") not in (None, ""):
+        return item.get("atlas_fit_score")
+    return ai.get("atlas_fit_score")
+
+
+def _fit_label(item: dict) -> str:
+    ai = item.get("abstract_ai") or {}
+    return str(item.get("atlas_fit") or ai.get("atlas_fit") or "").strip().lower()
+
+
+def _verdict_stack(
+    label: str,
+    css: str,
+    title: str,
+    item: dict,
+    evaluation: ProjectEvaluation | None = None,
+) -> str:
+    weight = unified_weight_cell(
+        evaluation=evaluation,
+        fit=_fit_label(item),
+        cohort_score=item.get("cohort_score"),
+        score=_fit_score(item),
+        reader_hint=_reader_hint(item),
+    )
+    verdict = _verdict_cell(label, css, title)
+    if "cell-empty" in weight and not _fit_label(item) and item.get("cohort_score") in (None, ""):
+        return verdict
+    return f'<div class="cell-stack cell-verdict-fit">{verdict}{weight}</div>'
 
 
 def _verdict_cell(label: str, css: str, title: str = "") -> str:
@@ -183,31 +254,44 @@ def unified_weight_cell(
     evaluation: ProjectEvaluation | None = None,
     fit: str = "",
     cohort_score: object = None,
+    score: object = None,
+    reader_hint: str = "",
 ) -> str:
     parts: list[str] = []
     fit_s = str(fit or "").strip().lower()
     label = (evaluation.display_fit_label if evaluation else "") or ""
     if not label and fit_s in ("yes", "maybe", "no"):
         label = display_fit_label({"atlas_fit": fit_s}, evaluation)
+    score_s = ""
+    if score not in (None, ""):
+        try:
+            score_s = f"{float(score):.2f}"
+        except (TypeError, ValueError):
+            score_s = str(score).strip()
+    hint_bits = [str(i18n_default("fit_llm_hint"))]
+    if reader_hint:
+        hint_bits.append(reader_hint)
+    hint = _esc(" · ".join(hint_bits))
     if label:
         fit_key = f"fit_llm_{fit_s}" if fit_s in ("yes", "maybe", "no") else ""
+        shown = _esc(i18n_default(fit_key) if fit_key else label)
+        if score_s:
+            shown = f"{shown} ({_esc(score_s)})"
         if fit_key:
-            fit_text = _esc(i18n_default(fit_key))
-            hint = _esc(i18n_default("fit_llm_hint"))
             parts.append(
                 f'<span class="badge {fit_class(fit_s)}" data-i18n="{fit_key}" '
-                f'data-i18n-title="fit_llm_hint" title="{hint}">{fit_text}</span>'
+                f'data-i18n-title="fit_llm_hint" title="{hint}">{shown}</span>'
             )
         else:
-            parts.append(f'<span class="badge {fit_class(fit_s)}">{_esc(label)}</span>')
+            parts.append(f'<span class="badge {fit_class(fit_s)}" title="{hint}">{shown}</span>')
     if cohort_score not in (None, ""):
         score_text = _esc(
             i18n_default("badge_cohort_score").replace("{n}", str(cohort_score)).replace("{score}", str(cohort_score))
         )
-        hint = _esc(i18n_default("badge_cohort_hint"))
+        chint = _esc(i18n_default("badge_cohort_hint"))
         parts.append(
             f'<span class="badge badge-muted" data-i18n="badge_cohort_score" '
-            f'data-i18n-title="badge_cohort_hint" title="{hint}" '
+            f'data-i18n-title="badge_cohort_hint" title="{chint}" '
             f'data-i18n-suffix="{_esc(cohort_score)}">{score_text}</span>'
         )
     if not parts:
@@ -653,21 +737,27 @@ def finding_plain_text(item: dict, *, limit: int = 2000) -> str:
     from atlas_agent.viz.discovery_qc import abstract_matches_title
 
     title = str(item.get("title") or "")
-    candidates = [
+    ai = item.get("abstract_ai") or {}
+
+    def _clean(raw: object) -> str:
+        text = re.sub(r"<[^>]+>", " ", str(raw or ""))
+        return sentence_cap(re.sub(r"\s+", " ", text).strip())
+
+    for raw in (ai.get("summary_en"), ai.get("summary_ru")):
+        text = _clean(raw)
+        if text and not is_stub_description(text):
+            return text[:limit]
+    for raw in (
         item.get("abstract_snippet"),
         item.get("abstract"),
-        (item.get("abstract_ai") or {}).get("summary_en"),
-        (item.get("abstract_ai") or {}).get("summary_ru"),
         item.get("description_en"),
         item.get("description"),
         item.get("sample_processing_protocol"),
         item.get("article_description"),
         item.get("finding"),
         item.get("finding_summary"),
-    ]
-    for raw in candidates:
-        text = re.sub(r"<[^>]+>", " ", str(raw or ""))
-        text = sentence_cap(re.sub(r"\s+", " ", text).strip())
+    ):
+        text = _clean(raw)
         if text and not is_stub_description(text) and abstract_matches_title(title, text):
             return text[:limit]
     return ""
@@ -1053,9 +1143,9 @@ def build_unified_discovery_rows(
         organ_txt = _organ_text(it, profile=catalog_profile)
         search = f"{raw_acc} {title} {pmid} {desc} {year} {disease_txt} {organ_txt} {it.get('program') or ''}".lower()
 
-        evaluation = _resolve_evaluation(it, kind=ItemKind.PROJECT)
+        evaluation = _safe_resolve_evaluation(it, kind=ItemKind.PROJECT)
         vlabel, vcss, vtitle = project_verdict(it)
-        tier = it.get("confidence_tier") or evaluation.confidence
+        tier = it.get("confidence_tier") or (evaluation.confidence if evaluation else "")
 
         bucket = str(it.get("_discovery_bucket") or "candidate")
         passed = bucket == "candidate" and vlabel == "Candidate"
@@ -1078,7 +1168,7 @@ def build_unified_discovery_rows(
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design_cell}</td>"
-            f"<td class='col-verdict col-split'>{_verdict_cell(vlabel, vcss, vtitle)}</td>"
+            f"<td class='col-verdict col-split'>{_verdict_stack(vlabel, vcss, vtitle, it, evaluation)}</td>"
             f"<td class='col-similar'>{_similar_cell(it)}</td>"
             f"<td class='col-finding'>{_main_finding_cell(it)}</td>"
             f"<td class='col-data'>{_data_cell(it)}</td>"
@@ -1128,8 +1218,10 @@ def build_unified_discovery_rows(
             vlabel, vcss, vtitle = ("Watch", "badge-warn", "Literature surveillance")
 
         lit_kind = ItemKind.LITERATURE if paper else ItemKind.COHORT
-        evaluation = _resolve_evaluation(it, kind=lit_kind, has_accession=bool(acc))
-        tier = it.get("confidence_tier") or evaluation.confidence
+        analysis_src = paper or it
+        evaluation = _safe_resolve_evaluation(analysis_src, kind=lit_kind, has_accession=bool(acc))
+        tier = it.get("confidence_tier") or (evaluation.confidence if evaluation else "")
+        analysis_html = _analysis_html(evaluation, analysis_src, pubs_by_pmid)
 
         preprint = "1" if item_is_preprint(it, pubs_by_pmid) else "0"
         similar = _similar_cell(it) if kind == "project" else _muted_unclear()
@@ -1149,9 +1241,9 @@ def build_unified_discovery_rows(
             f"<td class='col-disease'>{_disease_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-organ'>{_organ_cell(it, profile=catalog_profile)}</td>"
             f"<td class='col-design col-split'>{design}</td>"
-            f"<td class='col-verdict col-split'>{_verdict_cell(vlabel, vcss, vtitle)}</td>"
+            f"<td class='col-verdict col-split'>{_verdict_stack(vlabel, vcss, vtitle, analysis_src, evaluation)}</td>"
             f"<td class='col-similar'>{similar}</td>"
-            f"<td class='col-finding'>{_main_finding_cell(paper or it)}</td>"
+            f"<td class='col-finding'>{analysis_html}</td>"
             f"<td class='col-data'>{data_cell}</td>"
             f"</tr>"
         )

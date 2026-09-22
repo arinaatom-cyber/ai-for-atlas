@@ -12,6 +12,7 @@ from atlas_agent.viz.discovery_table_shared import (
     _similar_cell,
     _title_cell,
     build_pmid_repo_index,
+    finding_plain_text,
     source_label,
 )
 
@@ -249,6 +250,70 @@ def test_unified_row_has_finding_not_confidence():
     assert "fit_llm" not in body
     assert "Colon" in body or "colon" in body
     assert "Paired tumor" in body
+
+
+def test_literature_row_renders_analysis_from_evaluation():
+    from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
+
+    body, total, _ = build_unified_discovery_rows(
+        [],
+        [
+            {
+                "title": "Discovery and Development of CD70 As a Cellular Therapy Target",
+                "pmid": "40359480",
+                "abstract": "High-risk multiple myeloma patients.",
+                "atlas_fit": "maybe",
+                "atlas_fit_score": 0.65,
+                "abstract_reader": "claude",
+                "abstract_ai": {
+                    "atlas_fit": "maybe",
+                    "atlas_fit_score": 0.65,
+                    "reader": "claude",
+                    "model_trust": "high",
+                    "summary_en": "The study seeks a new immunotherapy target in high-risk myeloma.",
+                    "summary_ru": "Исследование ищет мишень для терапии множественной миеломы.",
+                    "semantic_evidence": ["TMT + patient samples"],
+                },
+                "evaluation": {
+                    "final_verdict": "Watch",
+                    "confidence": "C",
+                    "confidence_css": "tier-c",
+                    "confidence_bullets": ["LLM maybe — literature watch", "TMT + patient samples"],
+                    "display_fit_label": "LLM maybe",
+                    "evidence_chain": [
+                        {
+                            "source": "llm_high",
+                            "score": 0.65,
+                            "is_actionable": True,
+                            "detail": "TMT + patient samples",
+                        }
+                    ],
+                },
+            }
+        ],
+        [],
+        {},
+        resolve_literature_remote=False,
+        fetch_pride_pmid=False,
+    )
+    assert total == 1
+    assert "cell-analysis" in body
+    assert "The study seeks a new immunotherapy target" in body
+    assert "llm_high" in body
+    assert "0.65" in body
+    assert "fit_llm" in body
+
+
+def test_llm_summary_skips_title_overlap_gate():
+    text = finding_plain_text(
+        {
+            "title": "Discovery and Development of CD70 As a Cellular Therapy Target",
+            "abstract_ai": {
+                "summary_en": "The study seeks a new immunotherapy target in high-risk myeloma."
+            },
+        }
+    )
+    assert "immunotherapy target" in text
 
 
 def test_qc_rows_include_pmid_description_repo():
