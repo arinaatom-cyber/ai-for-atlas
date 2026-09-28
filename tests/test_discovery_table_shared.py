@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from atlas_agent.discovery.evaluation.schemas import ItemKind
-from atlas_agent.viz.discovery_qc_html import _rows, _split_candidates
+from atlas_agent.viz.discovery_qc_html import _accepted_rows
+from atlas_agent.viz.discovery_stats import passed_candidates
 from atlas_agent.viz.discovery_table_shared import (
     _coerce_evaluation,
     _enrich_literature_accession,
@@ -229,13 +230,14 @@ def test_unified_row_has_finding_not_confidence():
                 "abstract_snippet": "Paired tumor and adjacent colon tissue labeled with TMT 11-plex.",
                 "disease": "other",
                 "primary_site": "not reported",
-                "evaluation": {
-                    "final_verdict": "Candidate",
-                    "confidence": "A",
-                    "confidence_css": "tier-a",
-                    "evidence_chain": [],
-                    "confidence_bullets": [],
-                },
+                    "confidence_tier": "A",
+                    "evaluation": {
+                        "final_verdict": "Candidate",
+                        "confidence": "A",
+                        "confidence_css": "tier-a",
+                        "evidence_chain": [],
+                        "confidence_bullets": [],
+                    },
             }
         ],
         [],
@@ -247,9 +249,42 @@ def test_unified_row_has_finding_not_confidence():
     assert total == 1
     assert "col-finding" in body
     assert "col-confidence" not in body
-    assert "fit_llm" not in body
+    assert "fit_llm_yes" in body
+    assert "fit_llm_no" not in body
     assert "Colon" in body or "colon" in body
     assert "Paired tumor" in body
+
+
+def test_candidate_overrides_stale_llm_no():
+    from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
+
+    body, total, _ = build_unified_discovery_rows(
+        [
+            {
+                "accession": "PXD067886",
+                "title": "Global proteomic determination of PARP inhibitors",
+                    "atlas_fit": "no",
+                    "abstract_ai": {"atlas_fit": "no", "atlas_fit_score": 0.2},
+                    "confidence_tier": "A",
+                    "evaluation": {
+                        "final_verdict": "Candidate",
+                        "confidence": "A",
+                        "confidence_css": "tier-a",
+                        "evidence_chain": [],
+                        "confidence_bullets": ["Protein quant table confirmed"],
+                        "display_fit_label": "LLM no",
+                    },
+            }
+        ],
+        [],
+        [],
+        {},
+        resolve_literature_remote=False,
+        fetch_pride_pmid=False,
+    )
+    assert total == 1
+    assert "fit_llm_yes" in body
+    assert "fit_llm_no" not in body
 
 
 def test_literature_row_renders_analysis_from_evaluation():
@@ -317,7 +352,7 @@ def test_llm_summary_skips_title_overlap_gate():
 
 
 def test_qc_rows_include_pmid_description_repo():
-    html = _rows(
+    html = _accepted_rows(
         [
             {
                 "accession": "PXD012345",
@@ -329,27 +364,28 @@ def test_qc_rows_include_pmid_description_repo():
             }
         ]
     )
-    assert "cell-desc" in html
     assert "Paired tumor and adjacent colon tissue." in html
     assert "pride/archive/projects/PXD012345" in html
     assert "Human TMT colon proteome" in html
+    assert "PMID 38765432" in html
 
 
 def test_qc_splits_passed_from_exclude():
-    passed, excluded = _split_candidates(
-        [
-            {
-                "accession": "PDC000604",
-                "title": "AML proteome",
-                "evaluation": {"final_verdict": "Candidate", "confidence": "A"},
-                "data_availability": {"status": "quant_table"},
-            },
-            {
-                "accession": "PXD000001",
-                "title": "Interactome",
-                "evaluation": {"final_verdict": "Exclude", "confidence": "D"},
-            },
-        ]
+    passed = passed_candidates(
+        {
+            "candidates": [
+                {
+                    "accession": "PDC000604",
+                    "title": "AML proteome",
+                    "evaluation": {"final_verdict": "Candidate", "confidence": "A"},
+                    "data_availability": {"status": "quant_table"},
+                },
+                {
+                    "accession": "PXD000001",
+                    "title": "Interactome",
+                    "evaluation": {"final_verdict": "Exclude", "confidence": "D"},
+                },
+            ]
+        }
     )
     assert [x["accession"] for x in passed] == ["PDC000604"]
-    assert [x["accession"] for x in excluded] == ["PXD000001"]

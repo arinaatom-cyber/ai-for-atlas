@@ -188,15 +188,16 @@ def _verdict_stack(
     item: dict,
     evaluation: ProjectEvaluation | None = None,
 ) -> str:
+    fit = "yes" if label == "Candidate" else _fit_label(item)
     weight = unified_weight_cell(
         evaluation=evaluation,
-        fit=_fit_label(item),
+        fit=fit,
         cohort_score=item.get("cohort_score"),
-        score=_fit_score(item),
+        score=_fit_score(item) if label != "Candidate" else None,
         reader_hint=_reader_hint(item),
     )
     verdict = _verdict_cell(label, css, title)
-    if "cell-empty" in weight and not _fit_label(item) and item.get("cohort_score") in (None, ""):
+    if "cell-empty" in weight and fit not in ("yes", "maybe", "no") and item.get("cohort_score") in (None, ""):
         return verdict
     return f'<div class="cell-stack cell-verdict-fit">{verdict}{weight}</div>'
 
@@ -271,7 +272,9 @@ def unified_weight_cell(
     parts: list[str] = []
     fit_s = str(fit or "").strip().lower()
     label = (evaluation.display_fit_label if evaluation else "") or ""
-    if not label and fit_s in ("yes", "maybe", "no"):
+    if fit_s == "yes":
+        label = display_fit_label({"atlas_fit": "yes"})
+    elif not label and fit_s in ("maybe", "no"):
         label = display_fit_label({"atlas_fit": fit_s}, evaluation)
     score_s = ""
     if score not in (None, ""):

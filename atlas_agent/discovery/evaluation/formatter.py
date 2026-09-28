@@ -85,8 +85,6 @@ class AnalysisFormatter:
             if unique:
                 note_items = "".join(f"<li>{self._esc(b[: self._max_bullet])}</li>" for b in unique)
                 blocks.append(f'<ul class="cell-bullets">{note_items}</ul>')
-        if evaluation.display_fit_label:
-            blocks.append(f'<span class="badge badge-muted">{self._esc(evaluation.display_fit_label)}</span>')
         return "".join(blocks) if blocks else '<span class="cell-empty">—</span>'
 
     @staticmethod

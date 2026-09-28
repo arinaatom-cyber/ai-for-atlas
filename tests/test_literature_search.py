@@ -67,7 +67,7 @@ def test_garbage_llm_detected():
 def test_low_trust_llm_cannot_promote_to_yes_alone():
     regex = _regex_extract(
         "TMT proteomics in patients",
-        "Human cohort TMT 10-plex tumor tissue protein quantification.",
+        "Human cohort TMT proteomics without named plex or tissue.",
         "",
     )
     llm = {
@@ -86,7 +86,7 @@ def test_high_trust_llm_yes_when_regex_maybe():
         "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
         "",
     )
-    assert regex["atlas_fit"] == "maybe"
+    assert regex["atlas_fit"] == "yes"
     llm = {
         "atlas_fit": "yes",
         "atlas_fit_score": 0.9,
@@ -115,10 +115,11 @@ def test_medium_promotes_confident_maybe_to_yes():
 
 def test_medium_keeps_weak_maybe():
     regex = _regex_extract(
-        "TMT proteomics of colorectal tumor tissue",
-        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "TMT proteomics of colorectal cancer",
+        "Human patients, TMT labeling of samples.",
         "",
     )
+    assert regex["atlas_fit"] == "maybe"
     llm = {
         "atlas_fit": "maybe",
         "atlas_fit_score": 0.55,
@@ -131,10 +132,11 @@ def test_medium_keeps_weak_maybe():
 
 def test_high_does_not_auto_promote_maybe():
     regex = _regex_extract(
-        "TMT proteomics of colorectal tumor tissue",
-        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "TMT proteomics of colorectal cancer",
+        "Human patients, TMT labeling of samples.",
         "",
     )
+    assert regex["atlas_fit"] == "maybe"
     llm = {
         "atlas_fit": "maybe",
         "atlas_fit_score": 0.92,
@@ -143,6 +145,23 @@ def test_high_does_not_auto_promote_maybe():
     }
     merged = _consensus_with_regex(regex, llm, engine="claude")
     assert merged["atlas_fit"] == "maybe"
+
+
+def test_regex_yes_not_overridden_by_high_llm_no():
+    regex = _regex_extract(
+        "TMT proteomics of colorectal tumor tissue",
+        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "",
+    )
+    assert regex["atlas_fit"] == "yes"
+    llm = {
+        "atlas_fit": "no",
+        "atlas_fit_score": 0.2,
+        "summary_ru": "Не подходит.",
+        "semantic_evidence": [],
+    }
+    merged = _consensus_with_regex(regex, llm, engine="claude")
+    assert merged["atlas_fit"] == "yes"
 
 
 def test_high_trust_cannot_override_regex_no():
@@ -248,7 +267,17 @@ def test_regex_extract_tmt7_allowed():
         "",
     )
     assert out["tmt"] == "TMT7"
-    assert out["atlas_fit"] in ("yes", "maybe")
+    assert out["atlas_fit"] == "yes"
+
+
+def test_regex_extract_complete_human_tmt_is_yes():
+    out = _regex_extract(
+        "TMT proteomics of colorectal tumor tissue",
+        "Human patients, TMT 11-plex, protein-level quantification of tumor tissue.",
+        "",
+    )
+    assert out["atlas_fit"] == "yes"
+    assert out["human_suitable"] is True
 
 
 def test_regex_extract_plasma_only_rejected():
@@ -269,7 +298,7 @@ def test_regex_extract_tmtpro18():
         "",
     )
     assert out["tmt"] == "TMTpro18"
-    assert out["atlas_fit"] in ("yes", "maybe")
+    assert out["atlas_fit"] == "yes"
 
 
 def test_regex_extract_rejects_glaucoma():

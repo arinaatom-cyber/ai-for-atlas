@@ -226,7 +226,7 @@ class EvaluationPipeline:
                     f"TMT {plex}" if plex else "TMT detected",
                     f"design: {design}",
                 ],
-                display_fit="",
+                display_fit="yes",
             )
 
         if status in ("quant_table", "local_mirror", "maybe_table"):
@@ -237,7 +237,7 @@ class EvaluationPipeline:
                 chain,
                 requires_manual_review=verdict == FinalVerdict.WATCH,
                 bullets=["Quant files present", f"design: {design}", reasons[0] if reasons else "verify sample labels"],
-                display_fit="",
+                display_fit="yes" if verdict == FinalVerdict.CANDIDATE else "",
             )
 
         return self._finalize(

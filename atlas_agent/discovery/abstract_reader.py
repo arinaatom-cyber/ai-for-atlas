@@ -187,19 +187,29 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
     elif organism == "human" and re.search(
         r"\b(proteom\w*|mass\s+spectrom\w*|tmt\w*|isobaric|quantitative)\b", blob_l
     ):
-        if re.search(r"\b(patients?|clinical|donor|cohort)\b", blob_l):
-            evidence.append("human clinical proteomics")
+        has_material = material in (
+            "tumor tissue",
+            "cancer cell line",
+            "human tissue",
+            "adjacent normal",
+        )
+        has_plex = tmt not in ("none", "unclear", "TMT6", "ambiguous")
+        has_tmt_word = bool(re.search(r"\b(tmt|isobaric)\b", blob_l))
+        has_protein = bool(PROTEIN_LEVEL_OMICS.search(blob_l))
+        has_sample = bool(re.search(r"\b(patients?|tumor|ffpe|tissue|cell\s+line)\b", blob_l))
+        if has_material and (has_plex or (has_tmt_word and has_protein and has_sample)):
+            atlas_fit = "yes"
+            score = 0.78 if has_plex else 0.72
+            evidence.append("human TMT tissue/cell line protein-level")
+        elif re.search(r"\b(patients?|clinical|donor|cohort)\b", blob_l) or (
+            has_tmt_word and has_sample
+        ):
+            evidence.append("human clinical proteomics — plex or material incomplete")
             score = 0.55
             atlas_fit = "maybe"
-        if tmt not in ("none", "unclear", "TMT6") and material not in ("organoid", "pdx", "plasma"):
-            score = max(score, 0.65)
+        else:
             atlas_fit = "maybe"
-        if re.search(r"\b(tmt|isobaric)\b", blob_l) and re.search(
-            r"\b(patients?|tumor|ffpe|tissue|cell\s+line)\b", blob_l
-        ) and PROTEIN_LEVEL_OMICS.search(blob_l):
-            score = 0.6
-            atlas_fit = "maybe"
-            evidence.append("TMT + patient samples (regex — conservative maybe, never yes)")
+            score = 0.5
     else:
         atlas_fit = "no"
     if organism in ("mouse", "mixed") or material in ("organoid", "pdx", "plasma"):
@@ -277,14 +287,16 @@ def _consensus_with_regex(
     merged = dict(llm)
     r_fit = str(regex.get("atlas_fit") or "no").lower()
     l_fit = str(llm.get("atlas_fit") or "no").lower()
-    # Regex is a hard veto when it says no (TMT6 / mouse / plasma). It never
-    # emits yes — that is reserved for MEDIUM/HIGH LLM when regex is maybe.
+    # Regex no is a hard veto (TMT6 / mouse / plasma / phospho).
+    # Regex yes means complete atlas facts — MEDIUM/HIGH cannot downgrade to no.
     if trust == ModelTrustLevel.RULES:
         merged["atlas_fit"] = r_fit
     elif trust == ModelTrustLevel.LOW:
         merged["atlas_fit"] = _min_fit(l_fit, r_fit)
     elif r_fit == "no":
         merged["atlas_fit"] = "no"
+    elif r_fit == "yes":
+        merged["atlas_fit"] = "yes"
     else:
         merged["atlas_fit"] = l_fit if l_fit in ("yes", "maybe", "no") else r_fit
 
