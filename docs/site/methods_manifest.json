@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
   "generated_at": "2026-09-21T12:13:41.264404+00:00",
-  "pipeline_git_commit": "069b58c837bc3600c2e61ffe9b910d112cfc5d76",
+  "pipeline_git_commit": "0080a89e4a284a5b6c2c1be4e200226f789ab9f0",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -319,9 +319,6 @@
     "publications_scanned": 31,
     "abstract_llm_read": 0,
     "abstract_regex_only": 31,
-    "abstract_exclusion_engine": 0,
-    "abstract_llm_errors": {},
-    "abstract_summary_sanitize": {},
     "abstract_llm_max": 25,
     "atlas_fit_yes": 0,
     "atlas_fit_maybe": 17,

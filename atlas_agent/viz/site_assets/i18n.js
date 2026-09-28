@@ -180,7 +180,8 @@
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
       disc_title: "Discovery",
-      disc_lead: "",
+      disc_lead:
+        "Каждый понедельник локальная нейросеть проверяет кандидатов и обновляет таблицу. KPI — сколько проверено и сколько принято.",
       disc_catalog_banner:
         "Каталог Excel не публикуется. Здесь только новые находки вне атласа.",
       filter_all: "Все",
@@ -190,7 +191,16 @@
       legend_exclude: "не подходит под критерии атласа",
       disc_catalog_hidden: "каталог скрыт",
       disc_catalog_n: "проектов в атласе",
-      kpi_new: "Подошло (Candidate)",
+      kpi_new: "Принято",
+      kpi_checked: "Проверено",
+      kpi_accepted: "Принято",
+      kpi_cell_line: "Клеточная линия",
+      kpi_tissue: "Ткань",
+      kpi_primary_site: "Primary site",
+      cadence_monday: "Каждый понедельник",
+      cadence_local_llm: "Локальная нейросеть",
+      th_material: "Материал",
+      th_primary_site: "Primary site",
       kpi_pride_manual: "Смесь ткань+3D",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
@@ -217,7 +227,7 @@
       note_scope_row_types:
         "Типы строк: Project — PXD/PDC/MSV/IPX; Paper — PMID без accession; Cohort — крупная когорта из литературы.",
       note_scope_kpi:
-        "KPI: сколько проектов прошло правила (Candidate). Неясный TMT plex или дизайн = не в KPI. «Смесь ткань+3D» — единственная ручная корзина.",
+        "KPI «Проверено» — все проекты, которые прошли фильтры скана. «Принято» — только Candidate: клеточная линия, ткань или primary site.",
       note_scope_filter:
         "Поиск в шапке ищет по ID, названию, болезни и органу.",
       note_scope_stat_new: "новых проектов (KPI)",
@@ -226,7 +236,7 @@
         "KPI и вкладка «Подошло» — только Candidate. Не прошедшие фильтры — в «Отфильтровано», не в выдаче проектов.",
       sec_methods: "Методы и воронка",
       sec_methods_desc:
-        "Пайплайн для Materials & Methods: агенты, скрипты, критерии включения. Цифры воронки — снимок последнего скана (см. дату выше).",
+        "Каждый понедельник на локальной нейросети: поиск, проверка кандидатов, обновление сайта. Цифры воронки — снимок последнего понедельника.",
       funnel_viz_lead:
         "Воронка скрининга: слева — сжатие от API-хитов до кандидатов; справа — детализация по репозиториям, литературе и data gate.",
       funnel_svg_in: "API PRIDE + PDC",
@@ -322,12 +332,13 @@
       no_pubs: "Нет проанализированных статей",
       no_literature: "Нет статей для ручной проверки",
       qc_title: "Контроль качества",
-      qc_lead: "Первый список — только то, что прошло проверку (Candidate). Это и есть выдача проектов. Остальное — не прошло: смесь ткань+3D, Exclude, материал, техфильтр.",
+      qc_lead:
+        "Каждый понедельник локальная нейросеть проверяет кандидатов. Здесь только принятые проекты и из чего они: клеточная линия, ткань или primary site.",
       qc_rules_title: "Правила материала",
       qc_rules:
         "Homo sapiens. Ткань (tumor / adjacent / human tissue) или раковая клеточная линия должна быть прописана в метаданных или статье — иначе reject. Не берём plasma/serum/urine-only, organoids-only, PDX-only, животные. Смешанное tissue+organoid → ручная проверка.",
-      qc_candidate: "Подошло",
-      qc_candidate_desc: "Вердикт Candidate — материал и фильтры пройдены. Это же главный список на Discovery.",
+      qc_candidate: "Принято",
+      qc_candidate_desc: "Те же принятые проекты, что в KPI Discovery. Без смеси ткань+3D и без отклонённых.",
       qc_manual: "Ручная проверка",
       qc_manual_desc: "Только смешанный материал (ткань + organoid/3D). Неясный plex или дизайн — не прошло, в «Отфильтровано», не в выдаче проектов.",
       qc_exclude: "Исключено (вердикт)",
@@ -356,7 +367,7 @@
       card_discovery_title: "Полный анализ Discovery",
       card_discovery_desc: "Единая таблица: PXD/PDC · статьи · когорты · контроль качества · файлы",
       card_qc_title: "Контроль качества",
-      card_qc_desc: "Подошло / ручная проверка / Exclude / rejected — те же правила, что в Discovery",
+      card_qc_desc: "Сколько проверено и принято: клеточная линия, ткань, primary site",
       card_atlas_title: "Профиль атласа",
       card_atlas_desc: "Статистика каталога: репозитории, органы, нозологии, TMT-плексы",
       card_cohorts_title: "Крупные когорты",
@@ -434,6 +445,9 @@
       guide_similarity_title: "Похожесть на атлас",
       guide_similarity_desc:
         "Для каждого кандидата считается Jaccard к projects.csv (title, tissue, disease, TMT). ≥72% — вероятный тот же датасет (другой репозиторий или новый accession) и уходит в ручную проверку, не исключается. 18–71% — подсказка «Похож на». Точный PXD/PDC/MSV/IPX, PMID или DOI — already in catalog.",
+      guide_cadence_title: "Как обновляется таблица",
+      guide_cadence_desc:
+        "Каждый понедельник на этом компьютере запускается локальная нейросеть (Ollama / Qwen). Она проверяет новых кандидатов и пересобирает сайт. Каталог Excel не меняется.",
       tech_title: "Пайплайн Discovery Agent",
       tech_lead: "Пошаговое описание последнего скана — готово для Methods / Supplementary.",
       tech_step1: "1. PRIDE: TMT-проекты, плекс 7–18; если в карточке пусто — читаем статью и абстракт.",
@@ -454,7 +468,8 @@
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
       disc_title: "Discovery",
-      disc_lead: "",
+      disc_lead:
+        "Every Monday a local neural net checks candidates and updates the table. KPIs are how many were checked and how many were accepted.",
       disc_catalog_banner:
         "The Excel catalog is not published. This page lists only new findings outside the atlas.",
       filter_all: "All",
@@ -464,7 +479,16 @@
       legend_exclude: "does not meet atlas criteria",
       disc_catalog_hidden: "catalog hidden",
       disc_catalog_n: "projects in atlas",
-      kpi_new: "Passed (Candidate)",
+      kpi_new: "Accepted",
+      kpi_checked: "Checked",
+      kpi_accepted: "Accepted",
+      kpi_cell_line: "Cell line",
+      kpi_tissue: "Tissue",
+      kpi_primary_site: "Primary site",
+      cadence_monday: "Every Monday",
+      cadence_local_llm: "Local neural net",
+      th_material: "Material",
+      th_primary_site: "Primary site",
       kpi_pride_manual: "Mixed tissue+3D",
       kpi_pride: "PRIDE",
       kpi_pdc: "PDC",
@@ -493,7 +517,7 @@
       note_scope_row_types:
         "Row types: Project — PXD/PDC/MSV/IPX; Paper — PMID without accession; Cohort — large literature cohort.",
       note_scope_kpi:
-        "KPI: how many projects passed the rules (Candidate). Unclear TMT plex or design is not in the KPI. Mixed tissue+3D is the only manual bucket.",
+        "Checked = projects screened in the scan. Accepted = Candidate only: cell line, tissue, or primary site.",
       note_scope_filter:
         "The header search matches ID, title, disease, and organ.",
       note_scope_stat_new: "new projects (KPI)",
@@ -504,7 +528,7 @@
         "AI search uses TMT ATLAS profile + hard exclusions. Confidence A–D is rule-based. Verdict: Candidate / Watch / Exclude.",
       sec_methods: "Methods & funnel",
       sec_methods_desc:
-        "Pipeline for Materials & Methods: agents, scripts, inclusion criteria. Funnel counts are a snapshot of the last scan (see date above).",
+        "Every Monday on a local neural net: search, check candidates, rebuild the site. Funnel counts are last Monday’s snapshot.",
       funnel_viz_lead:
         "Screening funnel: left — compression from API hits to table candidates; right — repository, literature, and data-gate breakdown.",
       funnel_svg_in: "API PRIDE + PDC",
@@ -599,12 +623,13 @@
       no_pubs: "No analyzed publications",
       no_literature: "No papers for manual review",
       qc_title: "Quality control",
-      qc_lead: "First table = what passed the check (Candidate) — that is the project list. Everything else failed: mixed tissue+3D, Exclude, material, technical filter.",
+      qc_lead:
+        "Every Monday a local neural net checks candidates. This page shows accepted projects only, split into cell line, tissue, or primary site.",
       qc_rules_title: "Material rules",
       qc_rules:
         "Homo sapiens. Tissue (tumor / adjacent / human tissue) or a cancer cell line must be stated in metadata or the paper — otherwise reject. No plasma/serum/urine-only, organoids-only, PDX-only, animal tissue. Mixed tissue+organoid → manual review.",
-      qc_candidate: "Passed",
-      qc_candidate_desc: "Candidate verdict — material and filters passed. Same rows as Discovery «Passed».",
+      qc_candidate: "Accepted",
+      qc_candidate_desc: "The same accepted projects as the Discovery KPI. No mixed tissue+3D and no rejected rows.",
       qc_manual: "Manual review",
       qc_manual_desc: "Only mixed material (tissue + organoid/3D). Missing plex or design = not passed, in Filtered, not in the project list.",
       qc_exclude: "Excluded (verdict)",
@@ -633,7 +658,7 @@
       card_discovery_title: "Full Discovery analysis",
       card_discovery_desc: "Unified table: new PXD/PDC · papers · cohorts · quality control · data files",
       card_qc_title: "Quality control",
-      card_qc_desc: "Passed / manual / Exclude / rejected — same rules as Discovery",
+      card_qc_desc: "How many were checked and accepted: cell line, tissue, primary site",
       card_atlas_title: "Atlas profile",
       card_atlas_desc: "Catalog stats: repositories, organs, diseases, TMT plexes",
       card_cohorts_title: "Large cohorts",
@@ -711,6 +736,9 @@
       guide_similarity_title: "Atlas similarity",
       guide_similarity_desc:
         "Each candidate is scored against projects.csv (title, tissue, disease, TMT). ≥72% likely the same dataset (other repository or revised accession) → manual check, not auto-excluded. 18–71% is a Similar hint. Exact PXD/PDC/MSV/IPX, PMID, or DOI → already in catalog.",
+      guide_cadence_title: "How the table updates",
+      guide_cadence_desc:
+        "Every Monday a local neural net (Ollama / Qwen) runs on this computer. It checks new candidates and rebuilds the site. The Excel catalog is not changed.",
       tech_title: "Discovery Agent pipeline",
       tech_lead: "Step-by-step description of the last scan — ready for Methods / Supplementary.",
       tech_step1: "1. PRIDE: TMT projects, plex 7–18; if the card is empty, read the paper and abstract.",

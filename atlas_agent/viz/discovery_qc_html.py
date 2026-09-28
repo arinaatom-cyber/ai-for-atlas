@@ -4,30 +4,50 @@ import html
 import re
 from pathlib import Path
 
-from atlas_agent.discovery.fit_rules import project_verdict
+from atlas_agent.viz.discovery_stats import (
+    classify_accepted_material,
+    passed_candidates,
+    summarize_report,
+)
 from atlas_agent.viz.discovery_table_shared import _first_accession, _id_cell, _title_cell
-from atlas_agent.viz.portal_index import article_description, format_finding_note, pubmed_url, repository_url, resolve_publication_links
-from atlas_agent.viz.site_sanitize import translate_legacy_text
-from atlas_agent.viz.site_components import kpi_grid, meta_time, note_rules, page_hero, section_head
+from atlas_agent.viz.display_format import clean_taxonomy_value
 from atlas_agent.viz.i18n_defaults import BRAND_NAME
+from atlas_agent.viz.portal_index import article_description, pubmed_url, repository_url, resolve_publication_links
+from atlas_agent.viz.site_components import cadence_pills, dashboard_kpis, meta_time, page_hero, section_head
 from atlas_agent.viz.site_theme import page_wrap
 
 
+def _material_label(kind: str) -> tuple[str, str]:
+    keys = {
+        "cell_line": "kpi_cell_line",
+        "tissue": "kpi_tissue",
+        "primary_site": "kpi_primary_site",
+    }
+    return keys.get(kind, "kpi_tissue"), kind
+
+
+def _site_cell(it: dict) -> str:
+    site = clean_taxonomy_value(it.get("primary_site"))
+    if site:
+        return html.escape(site)
+    return '<span class="cell-empty">—</span>'
+
+
 def _ai_cell(it: dict) -> str:
-    ai = it.get("abstract_ai") or it
-    parts = []
-    en = str(ai.get("summary_en") or it.get("abstract_snippet") or it.get("abstract") or it.get("description") or "").strip()
-    ru = str(ai.get("summary_ru") or "").strip()
-    if en:
-        parts.append(f'<span class="lang-block lang-en">{html.escape(en[:280])}</span>')
-    if ru and ru != en:
-        parts.append(f'<span class="lang-block lang-ru">{html.escape(ru[:280])}</span>')
-    elif ru and not en:
-        parts.append(f'<span class="lang-block lang-en lang-ru">{html.escape(ru[:280])}</span>')
-    return "<br/>".join(parts) if parts else '<span class="cell-empty" data-i18n="cell_empty"></span>'
+    ai = it.get("abstract_ai") or {}
+    en = str(
+        ai.get("summary_en")
+        or it.get("abstract_snippet")
+        or it.get("abstract")
+        or it.get("description")
+        or ""
+    ).strip()
+    if not en:
+        return '<span class="cell-empty" data-i18n="cell_empty"></span>'
+    return f'<span class="cell-finding-block">{html.escape(en[:260])}</span>'
 
 
-def _rows(items: list[dict]) -> str:
+def _accepted_rows(items: list[dict]) -> str:
     out = []
     for it in items:
         resolve_publication_links(it, fetch_pride_pmid=False)
@@ -37,172 +57,54 @@ def _rows(items: list[dict]) -> str:
         title = (it.get("title") or "").strip()
         desc = article_description(it)
         pub = it.get("pubmed_url") or pubmed_url(pmid)
-        note = it.get("finding_note") or format_finding_note(it)
-        if not note:
-            raw = (it.get("qc_reasons") or it.get("filter_reasons") or [])[:2]
-            note = "; ".join(translate_legacy_text(str(x)) for x in raw)
-        reasons = html.escape(note[:320])
-        sig = it.get("material_signals") or {}
-        inc = html.escape(", ".join(sig.get("included") or [])[:80]) or "—"
-        exc = html.escape(", ".join(sig.get("excluded") or [])[:80]) or "—"
         plex = it.get("tmt_label") or it.get("inferred_plex") or "—"
-        ai_col = _ai_cell(it)
+        kind = classify_accepted_material(it)
+        mat_key, _ = _material_label(kind)
         da = it.get("data_availability") or {}
         da_col = html.escape(da.get("label") or da.get("status") or "—")
         if da.get("quant_files"):
-            da_col += "<br/><span class='muted'>" + html.escape(da["quant_files"][0][:60]) + "</span>"
+            da_col += "<br/><span class='muted'>" + html.escape(str(da["quant_files"][0])[:72]) + "</span>"
         out.append(
-            f"<tr><td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid)}</td>"
-            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid, show_desc=True)}</td>"
+            f"<tr data-material='{html.escape(kind)}'>"
+            f"<td class='col-id'>{_id_cell(acc=acc, repo=repo, pmid=pmid, title=title)}</td>"
+            f"<td class='col-title'>{_title_cell(title, pub, repo, description=desc, acc=acc, pmid=pmid, show_desc=False)}</td>"
+            f"<td class='col-material'><span class='badge badge-ok' data-i18n='{mat_key}'></span></td>"
+            f"<td class='col-site'>{_site_cell(it)}</td>"
             f"<td class='col-plex cell-mono'>{html.escape(str(plex))}</td>"
-            f"<td class='col-included'>{inc}</td><td class='col-excluded'>{exc}</td>"
-            f"<td class='col-analysis analysis-cell'>{ai_col}</td>"
-            f"<td class='col-data'>{da_col}</td><td class='col-reason'>{reasons}</td></tr>"
+            f"<td class='col-finding'>{_ai_cell(it)}</td>"
+            f"</tr>"
         )
-    return "\n".join(out) or '<tr><td colspan="8" data-i18n="no_rows"></td></tr>'
-
-
-def _simple_rows(items: list[dict], *, extra_key: str = "") -> str:
-    out = []
-    for it in items:
-        acc = str(it.get("accession") or it.get("project_accession") or "—")
-        title = html.escape(str(it.get("title") or "")[:180])
-        extra = it.get(extra_key)
-        if isinstance(extra, list):
-            extra_s = html.escape(", ".join(str(x) for x in extra[:8]))
-        else:
-            extra_s = html.escape(str(extra or it.get("pmid") or it.get("doi") or "—"))
-        pmid = html.escape(str(it.get("pmid") or ""))
-        out.append(
-            f"<tr><td class='col-id cell-mono'>{html.escape(acc)}</td>"
-            f"<td class='col-title'>{title}</td>"
-            f"<td class='col-reason'>{extra_s or pmid or '—'}</td></tr>"
-        )
-    return "\n".join(out) or '<tr><td colspan="3" data-i18n="no_rows"></td></tr>'
-
-
-def _split_candidates(items: list[dict]) -> tuple[list[dict], list[dict]]:
-    passed: list[dict] = []
-    excluded: list[dict] = []
-    for it in items:
-        if project_verdict(it)[0] == "Candidate":
-            passed.append(it)
-        else:
-            excluded.append(it)
-    return passed, excluded
-
-
-def _table_head(notes: bool = False) -> str:
-    reason_key = "th_notes" if notes else "th_reason"
-    return f"""<thead><tr>
-      <th class="col-id" data-i18n="th_id"></th>
-      <th class="col-title" data-i18n="th_title"></th>
-      <th class="col-plex" data-i18n="th_plex"></th>
-      <th class="col-included" data-i18n="th_included"></th>
-      <th class="col-excluded" data-i18n="th_excluded"></th>
-      <th class="col-analysis" data-i18n="th_finding"></th>
-      <th class="col-data" data-i18n="th_data"></th>
-      <th class="col-reason" data-i18n="{reason_key}"></th>
-    </tr></thead>"""
+    return "\n".join(out) or '<tr><td colspan="6" data-i18n="no_rows"></td></tr>'
 
 
 def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_site") -> Path:
-    s = report.get("summary") or {}
-    cand = report.get("candidates") or report.get("new_projects") or []
-    passed, excluded = _split_candidates(cand)
-    manual = [
-        it
-        for it in (report.get("repository_manual") or [])
-        if (it.get("qc_status") == "requires_manual_check")
-        or any(
-            "Mixed" in str(x) or "3D" in str(x) or "organoid" in str(x).lower()
-            for x in (it.get("qc_reasons") or it.get("filter_reasons") or [])
-        )
-    ]
-    rejected = report.get("rejected_material") or []
-    technical = report.get("filtered_out") or []
-    stats = s.get("source_stats") or {}
-    manifest = report.get("methods_manifest") or {}
-    lit = manifest.get("literature_screening") or {}
-    regex_only = lit.get("regex_only_publications") or stats.get("regex_only_publications") or []
-    pmid_review = manifest.get("possible_pmid_match") or []
-    gen = report.get("generated_at") or ""
+    from atlas_agent.viz.site_sanitize import sanitize_report_for_site
 
-    meta = meta_time(gen) + ' <span class="meta-pill badge badge-muted" data-i18n="badge_readonly"></span>'
+    report = sanitize_report_for_site(dict(report))
+    stats = summarize_report(report)
+    passed = passed_candidates(report)
+    gen = report.get("generated_at") or ""
+    meta = meta_time(gen) + " " + cadence_pills()
     body = (
         page_hero("qc_title", "qc_lead", meta)
-        + kpi_grid(
-            [
-                (str(len(passed)), "qc_candidate"),
-                (str(len(manual)), "qc_manual"),
-                (str(len(excluded)), "qc_exclude"),
-                (str(len(rejected)), "qc_rejected"),
-                (str(len(technical)), "qc_filtered"),
-                (str(stats.get("abstract_llm_read", 0)), "kpi_abstracts_ai"),
-            ]
-        )
+        + dashboard_kpis(stats)
         + f"""
-<div class="page-content">
-  {note_rules("qc_rules_title", "qc_rules")}
-
+<div class="page-content page-content-wide">
   <section class="section">
-    {section_head("qc_candidate", len(passed))}
+    {section_head("qc_candidate", stats["accepted"])}
     <p class="section-desc" data-i18n="qc_candidate_desc"></p>
     <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head(notes=True)}<tbody>{_rows(passed)}</tbody></table>
-    </div>
-  </section>
-
-  <section class="section">
-    {section_head("qc_manual", len(manual))}
-    <p class="section-desc" data-i18n="qc_manual_desc"></p>
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head()}<tbody>{_rows(manual)}</tbody></table>
-    </div>
-  </section>
-
-  <section class="section">
-    {section_head("qc_exclude", len(excluded))}
-    <p class="section-desc" data-i18n="qc_exclude_desc"></p>
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head()}<tbody>{_rows(excluded)}</tbody></table>
-    </div>
-  </section>
-
-  <section class="section">
-    {section_head("qc_rejected", len(rejected))}
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head()}<tbody>{_rows(rejected)}</tbody></table>
-    </div>
-  </section>
-  <section class="section">
-    {section_head("qc_filtered", len(technical))}
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table">{_table_head()}<tbody>{_rows(technical)}</tbody></table>
-    </div>
-  </section>
-
-  <section class="section">
-    {section_head("qc_regex_only", len(regex_only))}
-    <p class="section-desc" data-i18n="qc_regex_only_desc"></p>
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table"><thead><tr>
-        <th class="col-id" data-i18n="th_id"></th>
-        <th class="col-title" data-i18n="th_title"></th>
-        <th class="col-reason" data-i18n="th_reason"></th>
-      </tr></thead><tbody>{_simple_rows(regex_only, extra_key="abstract_reader")}</tbody></table>
-    </div>
-  </section>
-
-  <section class="section">
-    {section_head("qc_pmid_review", len(pmid_review))}
-    <p class="section-desc" data-i18n="qc_pmid_review_desc"></p>
-    <div class="table-wrap table-unified table-qc">
-      <table class="data-table"><thead><tr>
-        <th class="col-id" data-i18n="th_id"></th>
-        <th class="col-title" data-i18n="th_title"></th>
-        <th class="col-reason" data-i18n="th_reason"></th>
-      </tr></thead><tbody>{_simple_rows(pmid_review, extra_key="possible_pmid_match")}</tbody></table>
+      <table class="data-table">
+        <thead><tr>
+          <th class="col-id" data-i18n="th_id"></th>
+          <th class="col-title" data-i18n="th_title"></th>
+          <th class="col-material" data-i18n="th_material"></th>
+          <th class="col-site" data-i18n="th_primary_site"></th>
+          <th class="col-plex" data-i18n="th_plex"></th>
+          <th class="col-finding" data-i18n="th_finding"></th>
+        </tr></thead>
+        <tbody>{_accepted_rows(passed)}</tbody>
+      </table>
     </div>
   </section>
 </div>"""
@@ -215,32 +117,19 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
 
 
 def qc_markdown_summary(report: dict) -> str:
-    s = report.get("summary") or {}
-    lines = [
-        "## Контроль качества материала",
-        "",
-        f"- **Candidate (passed):** {s.get('candidates', 0)}",
-        f"- **Requires manual check:** {s.get('manual_check', 0)} + repository_manual",
-        f"- **Rejected (material):** {s.get('rejected_material', 0)}",
-        f"- **Filtered (technical):** {s.get('filtered_out', 0)}",
-        "",
-        "Правила: Homo sapiens; ткань (tumor/adjacent) или cancer cell line должна быть прописана "
-        "в метаданных или статье; иначе reject. Исключить plasma/serum-only, spheroids/organoids-only, "
-        "PDX-only, xenograft-only, animal tissue.",
-        "",
-    ]
-    for label, key in (
-        ("Manual check", "manual_check"),
-        ("Rejected", "rejected_material"),
-    ):
-        items = report.get(key) or []
-        if not items:
-            continue
-        lines.append(f"### {label} (top 10)")
-        lines.append("")
-        for it in items[:10]:
-            acc = it.get("project_accession") or it.get("accession") or "?"
-            rs = "; ".join((it.get("qc_reasons") or [])[:1])
-            lines.append(f"- **{acc}** {(it.get('title') or '')[:70]} — {rs}")
-        lines.append("")
-    return "\n".join(lines)
+    stats = summarize_report(report)
+    return "\n".join(
+        [
+            "## Контроль качества материала",
+            "",
+            f"- **Проверено:** {stats['checked']}",
+            f"- **Принято:** {stats['accepted']}",
+            f"- **Клеточная линия:** {stats['cell_line']}",
+            f"- **Ткань:** {stats['tissue']}",
+            f"- **Primary site:** {stats['primary_site']}",
+            "",
+            "Каждый понедельник локальная нейросеть проверяет кандидатов. "
+            "На сайте — только принятые: ткань, клеточная линия или primary site.",
+            "",
+        ]
+    )

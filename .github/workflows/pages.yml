@@ -31,12 +31,13 @@ jobs:
       - name: Install and test publish QC
         run: |
           pip install -r requirements.txt
-          python -m unittest tests.test_discovery_qc
+          python -m unittest tests.test_discovery_qc tests.test_discovery_stats
 
       - name: Rebuild HTML from latest.json
         run: |
           pip install -r requirements.txt
-          test -f data/discovery_history/latest.json && python scripts/publish_site.py || true
+          test -f data/discovery_history/latest.json || test -f docs/site/latest.json
+          python scripts/publish_site.py
 
       - name: Jekyll bypass
         run: touch docs/.nojekyll

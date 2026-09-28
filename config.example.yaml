@@ -36,6 +36,7 @@ agent:
   language: "ru"
 
 # ИИ — ключи в .env (не коммитить!)
+# Понедельник: локальная нейросеть (Ollama qwen2.5:3b) через scripts/run_weekly_discovery.ps1
 llm:
   enabled: true
   provider: "auto"          # auto | zai | qwen | claude | grok | ollama | gpt4all

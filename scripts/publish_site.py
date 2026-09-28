@@ -15,6 +15,8 @@ from atlas_agent.viz.publish_site import publish_discovery_site
 
 def main() -> int:
     latest = ROOT / "data" / "discovery_history" / "latest.json"
+    if not latest.is_file():
+        latest = ROOT / "docs" / "site" / "latest.json"
     report = json.loads(latest.read_text(encoding="utf-8")) if latest.is_file() else {}
     cfg = load_config()
     report["methods_manifest"] = build_methods_manifest(report, cfg)

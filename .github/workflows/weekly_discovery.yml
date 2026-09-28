@@ -1,4 +1,6 @@
-# Weekly Discovery — обновляет docs/site/ и history (projects.csv read-only, каталог не на сайте)
+# Weekly Discovery — cloud backup. Primary run is local Monday
+# (scripts/install_weekly_task.ps1 → run_weekly_discovery.ps1).
+# projects.csv read-only, catalog not on the site.
 name: Weekly Discovery Scan
 
 on:

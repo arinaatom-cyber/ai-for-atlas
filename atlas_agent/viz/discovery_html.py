@@ -11,10 +11,11 @@ from atlas_agent.viz.discovery_table_shared import (
     build_pmid_repo_index,
     build_unified_discovery_rows,
 )
+from atlas_agent.viz.discovery_stats import summarize_report
 from atlas_agent.viz.site_components import (
     ai_agents_panel,
-    kpi_grid,
-    meta_pill_text,
+    cadence_pills,
+    dashboard_kpis,
     meta_time,
     page_hero,
     pipeline_steps_panel,
@@ -154,6 +155,10 @@ def _guide_panel() -> str:
     <h3 data-i18n="guide_similarity_title"></h3>
     <p data-i18n="guide_similarity_desc"></p>
   </div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_cadence_title"></h3>
+    <p data-i18n="guide_cadence_desc"></p>
+  </div>
 </section>"""
 
 
@@ -217,12 +222,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     from atlas_agent.viz.site_sanitize import sanitize_report_for_site
 
     report = sanitize_report_for_site(dict(report))
-    s = report.get("summary") or {}
-    candidates_only = list(report.get("candidates") or report.get("new_projects") or [])
     items = _merge_discovery_projects(report)
-    candidate_kpi = _count_passed_candidates(candidates_only)
-    pride_manual_kpi = len(report.get("repository_manual") or [])
-    rejected_kpi = int(s.get("filtered_out") or 0) + int(s.get("rejected_material") or 0)
+    stats = summarize_report(report)
     pubs = report.get("publications_analyzed") or []
     manual = report.get("manual_check") or []
     literature = report.get("literature_semantic") or []
@@ -257,17 +258,10 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
     body = (
         page_hero(
             "disc_title",
-            None,
-            meta_time(gen) + meta_pill_text(str(candidate_kpi), css="badge-ok"),
+            "disc_lead",
+            meta_time(gen) + " " + cadence_pills(),
         )
-        + kpi_grid(
-            [
-                (str(candidate_kpi), "kpi_new"),
-                (str(pride_manual_kpi), "kpi_pride_manual"),
-                (str(rejected_kpi), "kpi_rejected"),
-                (str(len(papers)), "kpi_papers_no_id"),
-            ]
-        )
+        + dashboard_kpis(stats)
         + f"""
 <div class="page-content page-content-wide">
   <section class="section" id="discovery">
@@ -301,7 +295,6 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
       </span>
       <span class="count-badge" id="count"></span>
     </div>
-    <p class="table-scroll-hint" data-i18n="table_scroll_hint"></p>
     <div class="table-wrap table-unified">
       <table id="tbl-unified" class="data-table">
         <thead>
@@ -436,8 +429,8 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
 
 
 def generate_guide_html(out_path: str | Path, *, deploy: str = "docs_site") -> Path:
-    body = page_hero("guide_title", "guide_lead", "") + f"""
-<div class="page-content">
+    body = page_hero("guide_title", "guide_lead", cadence_pills()) + f"""
+<div class="page-content page-content-wide">
   {_guide_panel()}
 </div>"""
     out = Path(out_path)
@@ -449,7 +442,7 @@ def generate_guide_html(out_path: str | Path, *, deploy: str = "docs_site") -> P
 def generate_methods_html(report: dict, out_path: str | Path, *, deploy: str = "docs_site") -> Path:
     gen = report.get("generated_at") or ""
     body = (
-        page_hero("sec_methods", "sec_methods_desc", meta_time(gen))
+        page_hero("sec_methods", "sec_methods_desc", meta_time(gen) + " " + cadence_pills())
         + f"""
 <div class="page-content">
   {_methods_panel(report)}

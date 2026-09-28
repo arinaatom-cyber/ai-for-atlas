@@ -36,6 +36,10 @@ def test_site_pages_split_guide_methods_qc(tmp_path: Path):
     assert 'data-i18n="sec_methods"' in methods
     assert 'data-i18n="qc_title"' in qc
     assert 'class="active" data-i18n="nav_qc"' in qc
+    assert 'data-i18n="kpi_accepted"' in disc
+    assert 'data-i18n="kpi_accepted"' in qc
+    assert "kpi_pride_manual" not in disc
+    assert "kpi_pride_manual" not in qc
 
 
 def test_nav_qc_label_is_quality_control_not_qc():

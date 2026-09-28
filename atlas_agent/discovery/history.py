@@ -24,9 +24,12 @@ def save_scan(payload: dict, base: Path) -> Path:
 
 def load_latest(base: Path) -> dict | None:
     p = history_dir(base) / "latest.json"
-    if not p.is_file():
-        return None
-    return json.loads(p.read_text(encoding="utf-8"))
+    if p.is_file():
+        return json.loads(p.read_text(encoding="utf-8"))
+    fallback = Path(base) / "docs" / "site" / "latest.json"
+    if fallback.is_file():
+        return json.loads(fallback.read_text(encoding="utf-8"))
+    return None
 
 
 def list_scans(base: Path, limit: int = 20) -> list[dict]:

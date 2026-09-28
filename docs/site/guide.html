@@ -37,9 +37,9 @@
 <div class="page-hero">
   <h1 data-i18n="guide_title">Как читать таблицу</h1>
   <p class="lead" data-i18n="guide_lead">Один экран — новые TMT-проекты вне каталога. По умолчанию показаны только строки типа «Project» (PXD/PDC/MSV/IPX).</p>
-  <div class="page-meta"></div>
+  <div class="page-meta"><span class="meta-pill badge badge-ok" data-i18n="cadence_monday">Каждый понедельник</span> <span class="meta-pill badge badge-muted" data-i18n="cadence_local_llm">Локальная нейросеть</span></div>
 </div>
-<div class="page-content">
+<div class="page-content page-content-wide">
   
 <section class="section guide-section">
   <h3 class="section-subtitle" data-i18n="guide_columns_title">Колонки</h3>
@@ -51,6 +51,10 @@
   <div class="guide-block">
     <h3 data-i18n="guide_similarity_title">Похожесть на атлас</h3>
     <p data-i18n="guide_similarity_desc">Для каждого кандидата считается Jaccard к projects.csv (title, tissue, disease, TMT). ≥72% — вероятный тот же датасет (другой репозиторий или новый accession) и уходит в ручную проверку, не исключается. 18–71% — подсказка «Похож на». Точный PXD/PDC/MSV/IPX, PMID или DOI — already in catalog.</p>
+  </div>
+  <div class="guide-block">
+    <h3 data-i18n="guide_cadence_title">Как обновляется таблица</h3>
+    <p data-i18n="guide_cadence_desc">Каждый понедельник на этом компьютере запускается локальная нейросеть (Ollama / Qwen). Она проверяет новых кандидатов и пересобирает сайт. Каталог Excel не меняется.</p>
   </div>
 </section>
 </div>

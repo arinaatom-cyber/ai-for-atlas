@@ -48,13 +48,38 @@ def page_hero(title_key: str, lead_key: str | None, meta_html: str) -> str:
 </div>"""
 
 
-def kpi_grid(items: list[tuple[str, str]]) -> str:
+def cadence_pills() -> str:
+    return (
+        meta_pill_i18n("cadence_monday", css="badge-ok")
+        + " "
+        + meta_pill_i18n("cadence_local_llm", css="badge-muted")
+    )
+
+
+def kpi_grid(items: list[tuple[str, str]], *, css: str = "kpi-grid") -> str:
     cells = "".join(
         f'<div class="kpi"><span class="kpi-value">{esc(v)}</span>'
         f'<span class="kpi-label" data-i18n="{k}">{_t(k)}</span></div>'
         for v, k in items
     )
-    return f'<div class="kpi-grid">{cells}</div>'
+    return f'<div class="{esc(css)}">{cells}</div>'
+
+
+def dashboard_kpis(stats: dict) -> str:
+    return kpi_grid(
+        [
+            (str(stats.get("checked", 0)), "kpi_checked"),
+            (str(stats.get("accepted", 0)), "kpi_accepted"),
+        ],
+        css="kpi-grid kpi-grid-main",
+    ) + kpi_grid(
+        [
+            (str(stats.get("cell_line", 0)), "kpi_cell_line"),
+            (str(stats.get("tissue", 0)), "kpi_tissue"),
+            (str(stats.get("primary_site", 0)), "kpi_primary_site"),
+        ],
+        css="kpi-grid kpi-grid-material",
+    )
 
 
 def section_head(

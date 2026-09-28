@@ -1,5 +1,6 @@
-﻿# Discovery scan + GitHub Pages. Push to main uses "Deploy GitHub Pages" only,
-# so a slow enrich job cannot overwrite a fresh HTML deploy.
+﻿# Discovery scan + GitHub Pages.
+# Primary cadence: Monday local neural net (scripts/install_weekly_task.ps1).
+# This workflow is a cloud backup and manual/Pages deploy.
 name: Discovery Scan & Pages
 
 on:

@@ -8,30 +8,30 @@ description: Runs Atlas Discovery Agent to find new TMT proteomics projects (PRI
 ## Quick run
 
 ```powershell
-cd "c:\Users\Arina1996\Desktop\AI for atlas"
+cd "C:\Users\Sirius\Desktop\ai-for-atlas"
 python run_discovery.py scan
+python run_discovery.py publish
 ```
 
 Expected ~1–2 min. On success:
 
 - `data/discovery_history/latest.json` — full result
-- `reports/discovery_index.html` — **website** with all new projects
-- `reports/discovery_report_*.md` — human report
+- `docs/site/discovery.html` — website
+- `docs/site/qc.html` — accepted projects only
 
 ## Show results
 
 ```powershell
 python run_discovery.py latest
-start reports\discovery_index.html
-streamlit run discovery_app.py
+start docs\site\qc.html
 ```
 
 ## Checklist after scan
 
 ```
 - [ ] summary.new_projects > 0 or explain why 0
-- [ ] reports/discovery_index.html exists and opens
-- [ ] latest.json new_projects length matches summary.new_projects
+- [ ] docs/site/qc.html and discovery.html open
+- [ ] Checked / Accepted KPIs match on Discovery and QC
 - [ ] No writes to data/projects.csv
 ```
 
@@ -41,21 +41,22 @@ streamlit run discovery_app.py
 2. Europe PMC 503 — retry; search still works via PRIDE+PDC
 3. Do not fall back to showing PMID-only articles as "projects"
 
-## Weekly automation
+## Weekly automation (Monday, local neural net)
 
 ```powershell
+powershell -File scripts/install_weekly_task.ps1
 powershell -File scripts/run_weekly_discovery.ps1
 ```
 
-Task Scheduler: weekly, same command.
+Task Scheduler: every Monday 09:00, Ollama / Qwen on this computer.
 
 ## UI / site
 
 | Surface | Path |
 |---------|------|
-| Static HTML | `reports/discovery_index.html` |
+| Static HTML | `docs/site/discovery.html` |
+| Quality control | `docs/site/qc.html` |
 | Streamlit | `discovery_app.py` → http://localhost:8501 |
-| Dashboard | `reports/dashboard.html` (Discovery section) |
 
 ## Adding to catalog (manual only)
 
