@@ -171,21 +171,25 @@ def _reader_hint(item: dict) -> str:
 
 
 def _fit_score(item: dict) -> object:
-    ai = article_atlas_fit(item)
-    if ai.get("atlas_fit_score") not in (None, ""):
-        return ai.get("atlas_fit_score")
-    stored = item.get("abstract_ai") or {}
+    ai = item.get("abstract_ai") or {}
     if item.get("atlas_fit_score") not in (None, ""):
         return item.get("atlas_fit_score")
-    return stored.get("atlas_fit_score")
+    if ai.get("atlas_fit_score") not in (None, ""):
+        return ai.get("atlas_fit_score")
+    return article_atlas_fit(item).get("atlas_fit_score")
 
 
 def _fit_label(item: dict) -> str:
+    ai = item.get("abstract_ai") or {}
+    reader = str(item.get("abstract_reader") or ai.get("reader") or "").strip().lower()
+    stored = str(item.get("atlas_fit") or ai.get("atlas_fit") or "").strip().lower()
+    llm_like = bool(reader) and not reader.startswith("regex")
+    if llm_like and stored in ("yes", "maybe", "no"):
+        return stored
     fit = str(article_atlas_fit(item).get("atlas_fit") or "").strip().lower()
     if fit in ("yes", "maybe", "no"):
         return fit
-    ai = item.get("abstract_ai") or {}
-    return str(item.get("atlas_fit") or ai.get("atlas_fit") or "").strip().lower()
+    return stored if stored in ("yes", "maybe", "no") else ""
 
 
 def _verdict_stack(
@@ -201,7 +205,7 @@ def _verdict_stack(
         fit=fit,
         cohort_score=item.get("cohort_score"),
         score=_fit_score(item) if fit in ("yes", "maybe", "no") else None,
-        reader_hint="regex",
+        reader_hint=_reader_hint(item),
     )
     verdict = _verdict_cell(label, css, title)
     if "cell-empty" in weight and fit not in ("yes", "maybe", "no") and item.get("cohort_score") in (None, ""):
@@ -277,9 +281,10 @@ def unified_weight_cell(
     reader_hint: str = "",
 ) -> str:
     parts: list[str] = []
-    del evaluation
     fit_s = str(fit or "").strip().lower()
-    label = display_fit_label({"atlas_fit": fit_s}) if fit_s in ("yes", "maybe", "no") else ""
+    label = (evaluation.display_fit_label if evaluation else "") or ""
+    if fit_s in ("yes", "maybe", "no"):
+        label = display_fit_label({"atlas_fit": fit_s})
     score_s = ""
     if score not in (None, ""):
         try:

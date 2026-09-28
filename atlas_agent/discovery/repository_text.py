@@ -14,10 +14,10 @@ _SNIPPET_LEN = 420
 _QWEN_SYS = "You curate a human TMT proteome atlas. Reply with ONLY valid JSON, no markdown."
 _QWEN_PROMPT = """Title: {title}
 
-Article abstract:
+Text from the article and/or PRIDE/PDC:
 {text}
 
-Decide sample material and atlas fit from this article only.
+Decide sample material and atlas fit from this text.
 Atlas wants human tumor/adjacent/human tissue or a cancer cell line. Reject plasma/serum/urine-only, organoid-only, PDX-only, TMT6.
 
 JSON:
@@ -208,10 +208,16 @@ def read_repository_material(
     atlas_context: dict[str, Any] | None = None,
     use_llm: bool = False,
 ) -> dict[str, Any]:
-    del atlas_context, cfg, use_llm
+    del atlas_context
     title, abstract, extra = article_text_for_fit(item)
+    blob = " ".join(p for p in (abstract, extra) if p) or title
     ai = _regex_extract(title, abstract, extra)
     reader = "regex"
+    if use_llm:
+        qwen = _qwen_material_fit(title, blob, cfg=cfg)
+        if qwen:
+            ai = {**ai, **{k: v for k, v in qwen.items() if v not in (None, "", [])}}
+            reader = str(qwen.get("reader") or "ollama")
     item["abstract_ai"] = {**(item.get("abstract_ai") or {}), **ai}
     item["abstract_reader"] = reader
     if ai.get("atlas_fit"):
@@ -304,7 +310,6 @@ def rescue_unspecified_material(
     from atlas_agent.discovery.filters import classify_candidate, default_filter_config
 
     fcfg = {**default_filter_config(), **(cfg or {})}
-    del use_llm
     stats = {"inspected": 0, "rescued": 0, "still_rejected": 0, "qwen_read": 0}
     remaining: list[dict] = []
     for item in buckets.get("rejected") or []:
@@ -324,6 +329,10 @@ def rescue_unspecified_material(
         attach_local_excerpt(item)
         read_repository_material(item, cfg=cfg, use_llm=False)
         out = classify_candidate(item, catalog_index, cfg=fcfg)
+        if out.get("verdict") == "rejected" and _material_unspecified(out) and use_llm:
+            read_repository_material(out, cfg=cfg, use_llm=True)
+            stats["qwen_read"] += 1
+            out = classify_candidate(out, catalog_index, cfg=fcfg)
         verdict = out.get("verdict") or "rejected"
         if verdict == "rejected" and _material_unspecified(out):
             stats["still_rejected"] += 1

@@ -235,7 +235,7 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
 
 
 def article_text_for_fit(item: dict[str, Any]) -> tuple[str, str, str]:
-    """Title + abstract, plus PRIDE/PDC description and protocol. No LLM."""
+    """Title + abstract, plus PRIDE/PDC description and protocol."""
     title = str(item.get("title") or "")
     abstract = str(item.get("abstract") or "").strip()
     if len(abstract) < 40:

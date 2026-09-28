@@ -255,7 +255,48 @@ def test_unified_row_has_finding_not_confidence():
     assert "Paired tumor" in body
 
 
-def test_article_fit_ignores_stale_llm_no():
+def test_llm_fit_shown_when_reader_is_llm():
+    from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
+
+    body, total, _ = build_unified_discovery_rows(
+        [
+            {
+                "accession": "PXD067886",
+                "title": "Global proteomic determination of PARP inhibitors in ovarian cancer",
+                "abstract": (
+                    "High-grade serous ovarian cancer cell lines were labeled with TMT 10-plex "
+                    "for protein-level quantification."
+                ),
+                "atlas_fit": "maybe",
+                "abstract_reader": "ollama:qwen2.5:3b",
+                "abstract_ai": {
+                    "atlas_fit": "maybe",
+                    "atlas_fit_score": 0.6,
+                    "reader": "ollama:qwen2.5:3b",
+                },
+                "confidence_tier": "A",
+                "evaluation": {
+                    "final_verdict": "Candidate",
+                    "confidence": "A",
+                    "confidence_css": "tier-a",
+                    "evidence_chain": [],
+                    "confidence_bullets": ["Protein quant table confirmed"],
+                    "display_fit_label": "LLM maybe",
+                },
+            }
+        ],
+        [],
+        [],
+        {},
+        resolve_literature_remote=False,
+        fetch_pride_pmid=False,
+    )
+    assert total == 1
+    assert "fit_llm_maybe" in body
+    assert "fit_llm_yes" not in body
+
+
+def test_regex_fit_when_llm_did_not_run():
     from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
 
     body, total, _ = build_unified_discovery_rows(
