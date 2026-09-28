@@ -280,6 +280,18 @@ def test_regex_extract_complete_human_tmt_is_yes():
     assert out["human_suitable"] is True
 
 
+def test_regex_extract_cancer_cell_lines_tmt_is_yes():
+    out = _regex_extract(
+        "Global proteomic determination of PARP inhibitors in ovarian cancer",
+        "High-grade serous ovarian cancer cell lines were labeled with TMT 10-plex "
+        "for protein-level quantification.",
+        "",
+    )
+    assert out["material"] == "cancer cell line"
+    assert out["organism"] == "human"
+    assert out["atlas_fit"] == "yes"
+
+
 def test_regex_extract_plasma_only_rejected():
     out = _regex_extract(
         "Plasma proteomics of colorectal cancer",

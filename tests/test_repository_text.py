@@ -143,6 +143,19 @@ def test_enrich_display_uses_injected_pubmed():
     assert item.get("atlas_fit") in ("yes", "maybe")
 
 
+def test_pride_description_counts_for_fit():
+    from atlas_agent.discovery.abstract_reader import article_atlas_fit
+
+    item = {
+        "title": "Lung cancer proteome",
+        "description": "Quantitative TMT 11-plex proteomics of tumor tissue from patients.",
+        "sample_processing_protocol": "Proteins extracted from FFPE sections, TMT 11-plex labeling.",
+    }
+    ai = article_atlas_fit(item)
+    assert ai["atlas_fit"] == "yes"
+    assert ai["material"] == "tumor tissue"
+
+
 def test_fetch_abstract_requests_europe_pmc_core():
     from unittest.mock import patch
 

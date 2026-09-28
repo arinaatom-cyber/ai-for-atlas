@@ -6,6 +6,7 @@ import re
 
 logger = logging.getLogger(__name__)
 
+from atlas_agent.discovery.abstract_reader import article_atlas_fit
 from atlas_agent.discovery.evaluation import AnalysisFormatter, display_fit_label
 from atlas_agent.viz.i18n_defaults import en as i18n_default
 from atlas_agent.discovery.evaluation.context import EvaluationContext
@@ -170,13 +171,19 @@ def _reader_hint(item: dict) -> str:
 
 
 def _fit_score(item: dict) -> object:
-    ai = item.get("abstract_ai") or {}
+    ai = article_atlas_fit(item)
+    if ai.get("atlas_fit_score") not in (None, ""):
+        return ai.get("atlas_fit_score")
+    stored = item.get("abstract_ai") or {}
     if item.get("atlas_fit_score") not in (None, ""):
         return item.get("atlas_fit_score")
-    return ai.get("atlas_fit_score")
+    return stored.get("atlas_fit_score")
 
 
 def _fit_label(item: dict) -> str:
+    fit = str(article_atlas_fit(item).get("atlas_fit") or "").strip().lower()
+    if fit in ("yes", "maybe", "no"):
+        return fit
     ai = item.get("abstract_ai") or {}
     return str(item.get("atlas_fit") or ai.get("atlas_fit") or "").strip().lower()
 
@@ -188,13 +195,13 @@ def _verdict_stack(
     item: dict,
     evaluation: ProjectEvaluation | None = None,
 ) -> str:
-    fit = "yes" if label == "Candidate" else _fit_label(item)
+    fit = _fit_label(item)
     weight = unified_weight_cell(
         evaluation=evaluation,
         fit=fit,
         cohort_score=item.get("cohort_score"),
-        score=_fit_score(item) if label != "Candidate" else None,
-        reader_hint=_reader_hint(item),
+        score=_fit_score(item) if fit in ("yes", "maybe", "no") else None,
+        reader_hint="regex",
     )
     verdict = _verdict_cell(label, css, title)
     if "cell-empty" in weight and fit not in ("yes", "maybe", "no") and item.get("cohort_score") in (None, ""):
@@ -270,12 +277,9 @@ def unified_weight_cell(
     reader_hint: str = "",
 ) -> str:
     parts: list[str] = []
+    del evaluation
     fit_s = str(fit or "").strip().lower()
-    label = (evaluation.display_fit_label if evaluation else "") or ""
-    if fit_s == "yes":
-        label = display_fit_label({"atlas_fit": "yes"})
-    elif not label and fit_s in ("maybe", "no"):
-        label = display_fit_label({"atlas_fit": fit_s}, evaluation)
+    label = display_fit_label({"atlas_fit": fit_s}) if fit_s in ("yes", "maybe", "no") else ""
     score_s = ""
     if score not in (None, ""):
         try:

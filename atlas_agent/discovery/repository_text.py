@@ -5,7 +5,7 @@ import re
 import time
 from typing import Any, Callable
 
-from atlas_agent.discovery.abstract_reader import _regex_extract
+from atlas_agent.discovery.abstract_reader import article_text_for_fit, _regex_extract
 from atlas_agent.llm_client import DEFAULT_OLLAMA_MODEL, _run_llm, is_ollama_available
 from atlas_agent.sources.literature import fetch_abstract
 
@@ -14,10 +14,10 @@ _SNIPPET_LEN = 420
 _QWEN_SYS = "You curate a human TMT proteome atlas. Reply with ONLY valid JSON, no markdown."
 _QWEN_PROMPT = """Title: {title}
 
-Text from PubMed and/or PRIDE/PDC:
+Article abstract:
 {text}
 
-Decide sample material and atlas fit.
+Decide sample material and atlas fit from this article only.
 Atlas wants human tumor/adjacent/human tissue or a cancer cell line. Reject plasma/serum/urine-only, organoid-only, PDX-only, TMT6.
 
 JSON:
@@ -208,17 +208,10 @@ def read_repository_material(
     atlas_context: dict[str, Any] | None = None,
     use_llm: bool = False,
 ) -> dict[str, Any]:
-    del atlas_context
-    blob = combined_reader_text(item) or str(item.get("title") or "")
-    title = str(item.get("title") or "")
-    extra = str(item.get("sample_processing_protocol") or "")
-    ai = _regex_extract(title, blob, extra)
+    del atlas_context, cfg, use_llm
+    title, abstract, extra = article_text_for_fit(item)
+    ai = _regex_extract(title, abstract, extra)
     reader = "regex"
-    if use_llm:
-        qwen = _qwen_material_fit(title, blob, cfg=cfg)
-        if qwen:
-            ai = {**ai, **{k: v for k, v in qwen.items() if v not in (None, "", [])}}
-            reader = str(qwen.get("reader") or "ollama")
     item["abstract_ai"] = {**(item.get("abstract_ai") or {}), **ai}
     item["abstract_reader"] = reader
     if ai.get("atlas_fit"):
@@ -311,6 +304,7 @@ def rescue_unspecified_material(
     from atlas_agent.discovery.filters import classify_candidate, default_filter_config
 
     fcfg = {**default_filter_config(), **(cfg or {})}
+    del use_llm
     stats = {"inspected": 0, "rescued": 0, "still_rejected": 0, "qwen_read": 0}
     remaining: list[dict] = []
     for item in buckets.get("rejected") or []:
@@ -330,10 +324,6 @@ def rescue_unspecified_material(
         attach_local_excerpt(item)
         read_repository_material(item, cfg=cfg, use_llm=False)
         out = classify_candidate(item, catalog_index, cfg=fcfg)
-        if out.get("verdict") == "rejected" and _material_unspecified(out) and use_llm:
-            read_repository_material(out, cfg=cfg, use_llm=True)
-            stats["qwen_read"] += 1
-            out = classify_candidate(out, catalog_index, cfg=fcfg)
         verdict = out.get("verdict") or "rejected"
         if verdict == "rejected" and _material_unspecified(out):
             stats["still_rejected"] += 1

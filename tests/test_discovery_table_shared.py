@@ -230,14 +230,14 @@ def test_unified_row_has_finding_not_confidence():
                 "abstract_snippet": "Paired tumor and adjacent colon tissue labeled with TMT 11-plex.",
                 "disease": "other",
                 "primary_site": "not reported",
-                    "confidence_tier": "A",
-                    "evaluation": {
-                        "final_verdict": "Candidate",
-                        "confidence": "A",
-                        "confidence_css": "tier-a",
-                        "evidence_chain": [],
-                        "confidence_bullets": [],
-                    },
+                "confidence_tier": "A",
+                "evaluation": {
+                    "final_verdict": "Candidate",
+                    "confidence": "A",
+                    "confidence_css": "tier-a",
+                    "evidence_chain": [],
+                    "confidence_bullets": [],
+                },
             }
         ],
         [],
@@ -255,25 +255,29 @@ def test_unified_row_has_finding_not_confidence():
     assert "Paired tumor" in body
 
 
-def test_candidate_overrides_stale_llm_no():
+def test_article_fit_ignores_stale_llm_no():
     from atlas_agent.viz.discovery_table_shared import build_unified_discovery_rows
 
     body, total, _ = build_unified_discovery_rows(
         [
             {
                 "accession": "PXD067886",
-                "title": "Global proteomic determination of PARP inhibitors",
-                    "atlas_fit": "no",
-                    "abstract_ai": {"atlas_fit": "no", "atlas_fit_score": 0.2},
-                    "confidence_tier": "A",
-                    "evaluation": {
-                        "final_verdict": "Candidate",
-                        "confidence": "A",
-                        "confidence_css": "tier-a",
-                        "evidence_chain": [],
-                        "confidence_bullets": ["Protein quant table confirmed"],
-                        "display_fit_label": "LLM no",
-                    },
+                "title": "Global proteomic determination of PARP inhibitors in ovarian cancer",
+                "abstract": (
+                    "High-grade serous ovarian cancer cell lines were labeled with TMT 10-plex "
+                    "for protein-level quantification."
+                ),
+                "atlas_fit": "no",
+                "abstract_ai": {"atlas_fit": "no", "atlas_fit_score": 0.2},
+                "confidence_tier": "A",
+                "evaluation": {
+                    "final_verdict": "Candidate",
+                    "confidence": "A",
+                    "confidence_css": "tier-a",
+                    "evidence_chain": [],
+                    "confidence_bullets": ["Protein quant table confirmed"],
+                    "display_fit_label": "LLM no",
+                },
             }
         ],
         [],
@@ -296,7 +300,7 @@ def test_literature_row_renders_analysis_from_evaluation():
             {
                 "title": "Discovery and Development of CD70 As a Cellular Therapy Target",
                 "pmid": "40359480",
-                "abstract": "High-risk multiple myeloma patients.",
+                "abstract": "High-risk multiple myeloma patients, TMT labeling of samples.",
                 "atlas_fit": "maybe",
                 "atlas_fit_score": 0.65,
                 "abstract_reader": "claude",

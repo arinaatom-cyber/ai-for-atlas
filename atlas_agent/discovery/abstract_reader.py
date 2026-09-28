@@ -137,8 +137,8 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         else:
             organism = "mouse"
     elif re.search(r"\b(human|homo sapiens|patients?)\b", blob_l) or re.search(
-        r"\b((human|cancer|tumou?r)\s+cell\s+line|mcf[- ]?7|a549|hct116|hela)\b", blob_l
-    ):
+        r"\b((human|cancer|tumou?r)\s+cell\s+lines?|mcf[- ]?7|a549|hct116|hela)\b", blob_l
+    ) or (ONCOLOGY_HINT.search(blob) and re.search(r"\bcell\s+lines?\b", blob_l)):
         organism = "human"
     tmt = "unclear"
     if re.search(r"\btmt\s*[- ]?6\b|\btmt6\b", blob_l, re.I):
@@ -156,14 +156,16 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
     for label, pat in [
         ("organoid", r"\borganoid"),
         ("pdx", r"\b(pdx|xenograft)\b"),
-        ("tumor tissue", r"\b(tumor tissue|ffpe|biopsy|tumou?r)\b"),
-        ("cancer cell line", r"\b((cancer|human|tumou?r)\s+cell\s+line|mcf[- ]?7|a549|hct116|hela)\b"),
+        ("tumor tissue", r"\b(tumor tissue|ffpe|biopsy|tumou?rs?)\b"),
+        ("cancer cell line", r"\b((cancer|human|tumou?r)\s+cell\s+lines?|mcf[- ]?7|a549|hct116|hela)\b"),
         ("human tissue", r"\b(human tissue|normal tissue|healthy tissue|tissue sample)\b"),
         ("plasma", r"\b(plasma|serum|urine|whole blood)\b"),
     ]:
         if re.search(pat, blob_l, re.I):
             material = label
             break
+    if material == "unclear" and ONCOLOGY_HINT.search(blob) and re.search(r"\bcell\s+lines?\b", blob_l):
+        material = "cancer cell line"
 
     atlas_fit = "no"
     score = 0.2
@@ -196,7 +198,7 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         has_plex = tmt not in ("none", "unclear", "TMT6", "ambiguous")
         has_tmt_word = bool(re.search(r"\b(tmt|isobaric)\b", blob_l))
         has_protein = bool(PROTEIN_LEVEL_OMICS.search(blob_l))
-        has_sample = bool(re.search(r"\b(patients?|tumor|ffpe|tissue|cell\s+line)\b", blob_l))
+        has_sample = bool(re.search(r"\b(patients?|tumou?rs?|ffpe|tissue|cell\s+lines?)\b", blob_l))
         if has_material and (has_plex or (has_tmt_word and has_protein and has_sample)):
             atlas_fit = "yes"
             score = 0.78 if has_plex else 0.72
@@ -230,6 +232,27 @@ def _regex_extract(title: str, abstract: str, extra: str = "") -> dict[str, Any]
         "summary_ru": "",
         "reader": "regex",
     }
+
+
+def article_text_for_fit(item: dict[str, Any]) -> tuple[str, str, str]:
+    """Title + abstract, plus PRIDE/PDC description and protocol. No LLM."""
+    title = str(item.get("title") or "")
+    abstract = str(item.get("abstract") or "").strip()
+    if len(abstract) < 40:
+        snippet = str(item.get("abstract_snippet") or "").strip()
+        if snippet:
+            abstract = snippet
+    extra_parts: list[str] = []
+    for key in ("description", "sample_processing_protocol", "disease", "primary_site", "experiment_type"):
+        val = re.sub(r"\s+", " ", str(item.get(key) or "")).strip()
+        if len(val) >= 8:
+            extra_parts.append(val)
+    return title, abstract, " ".join(extra_parts)
+
+
+def article_atlas_fit(item: dict[str, Any]) -> dict[str, Any]:
+    title, abstract, extra = article_text_for_fit(item)
+    return _regex_extract(title, abstract, extra)
 
 
 def _is_garbage_llm(parsed: dict[str, Any]) -> bool:
