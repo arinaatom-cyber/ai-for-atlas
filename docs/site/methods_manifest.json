@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-09-21T12:13:41.264404+00:00",
-  "pipeline_git_commit": "0080a89e4a284a5b6c2c1be4e200226f789ab9f0",
+  "generated_at": "2026-09-28T13:46:45.990400+00:00",
+  "pipeline_git_commit": "5ac9b6fae8caf7f8a26279ba7b1844eecceced08",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,20 +308,26 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 532,
-    "candidates": 28,
+    "raw_novel_repos": 652,
+    "candidates": 19,
     "manual_check": 0,
-    "rejected_material": 332,
-    "filtered_out": 690,
-    "already_in_catalog": 10
+    "rejected_material": 268,
+    "filtered_out": 713,
+    "already_in_catalog": 36
   },
   "literature_screening": {
-    "publications_scanned": 31,
+    "publications_scanned": 29,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 31,
+    "abstract_regex_only": 29,
+    "abstract_exclusion_engine": 0,
+    "abstract_llm_errors": {},
+    "abstract_summary_sanitize": {
+      "dropped": 0,
+      "gloss_rewritten": 0
+    },
     "abstract_llm_max": 25,
     "atlas_fit_yes": 0,
-    "atlas_fit_maybe": 17,
+    "atlas_fit_maybe": 16,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
@@ -410,12 +416,6 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Proteomics Data Imputation With a Deep Model That Learns From Many Datasets.",
-        "pmid": "41260499",
-        "doi": "10.1016/j.mcpro.2025.101461",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Acute degradation of nucleolin reveals its novel functions in cell cycle progression and cell division in triple negative breast cancer.",
         "pmid": "40653460",
         "doi": "10.1186/s13046-025-03401-y",
@@ -470,12 +470,6 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Hormonal Contraceptives and Depression: A Proteomic Analysis Using Neuronal Models.",
-        "pmid": "40931400",
-        "doi": "10.1002/prca.70017",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Klebsiella pneumoniae LPS drives stromal-mediated repression of p53 and colorectal cancer chemoresistance.",
         "pmid": "42002547",
         "doi": "10.1038/s41419-026-08756-4",
@@ -513,7 +507,7 @@
       }
     ],
     "preprints": 2,
-    "peer_reviewed": 29
+    "peer_reviewed": 27
   },
   "dedup": {
     "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
@@ -522,7 +516,7 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 85
+    "pride": 148
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
@@ -533,10 +527,10 @@
   },
   "possible_pmid_match": [],
   "data_availability_gate": {
-    "quant_table": 23,
-    "omics_unknown": 14,
+    "quant_table": 14,
+    "omics_unknown": 15,
     "processed_psm": 5,
-    "omics_protein": 14
+    "omics_protein": 4
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
