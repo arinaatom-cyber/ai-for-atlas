@@ -13,7 +13,7 @@ from atlas_agent.viz.discovery_table_shared import _first_accession, _id_cell, _
 from atlas_agent.viz.display_format import clean_taxonomy_value
 from atlas_agent.viz.i18n_defaults import BRAND_NAME
 from atlas_agent.viz.portal_index import article_description, pubmed_url, repository_url, resolve_publication_links
-from atlas_agent.viz.site_components import cadence_pills, dashboard_kpis, meta_time, page_hero, section_head
+from atlas_agent.viz.site_components import dashboard_kpis, meta_time, page_hero, section_head
 from atlas_agent.viz.site_theme import page_wrap
 
 
@@ -84,7 +84,7 @@ def generate_qc_html(report: dict, out_path: str | Path, *, deploy: str = "docs_
     stats = summarize_report(report)
     passed = passed_candidates(report)
     gen = report.get("generated_at") or ""
-    meta = meta_time(gen) + " " + cadence_pills()
+    meta = meta_time(gen)
     body = (
         page_hero("qc_title", "qc_lead", meta)
         + dashboard_kpis(stats)
@@ -128,7 +128,7 @@ def qc_markdown_summary(report: dict) -> str:
             f"- **Ткань:** {stats['tissue']}",
             f"- **Primary site:** {stats['primary_site']}",
             "",
-            "Каждый понедельник локальная нейросеть проверяет кандидатов. "
+            "Поиск новых протеомных проектов с помощью ИИ. "
             "На сайте — только принятые: ткань, клеточная линия или primary site.",
             "",
         ]

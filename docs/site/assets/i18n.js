@@ -12,7 +12,15 @@
     nav_methods: { ru: "Методы", en: "Methods" },
     nav_cohorts: { ru: "Когорты", en: "Cohorts" },
     nav_qc: { ru: "Контроль качества", en: "Quality control" },
-    meta_updated: { ru: "Обновлено", en: "Updated" },
+    meta_updated: { ru: "Последнее обновление", en: "Last update" },
+    disc_lead: {
+      ru: "Поиск новых протеомных проектов с помощью ИИ.",
+      en: "Search for new proteomics projects with AI.",
+    },
+    qc_lead: {
+      ru: "Поиск новых протеомных проектов с помощью ИИ. Здесь только принятые проекты: клеточная линия, ткань или primary site.",
+      en: "Search for new proteomics projects with AI. This page shows accepted projects only: cell line, tissue, or primary site.",
+    },
     badge_readonly: { ru: "только чтение", en: "read-only" },
     meta_candidates: { ru: "кандидатов", en: "candidates" },
     meta_atlas_ids: { ru: "ID в атласе", en: "atlas IDs" },
@@ -180,8 +188,6 @@
       footer_policy:
         "Каталог Excel не публикуется. На сайте — только новые кандидаты, литература и анализ.",
       disc_title: "Discovery",
-      disc_lead:
-        "Каждый понедельник локальная нейросеть проверяет кандидатов и обновляет таблицу. KPI — сколько проверено и сколько принято.",
       disc_catalog_banner:
         "Каталог Excel не публикуется. Здесь только новые находки вне атласа.",
       filter_all: "Все",
@@ -332,8 +338,6 @@
       no_pubs: "Нет проанализированных статей",
       no_literature: "Нет статей для ручной проверки",
       qc_title: "Контроль качества",
-      qc_lead:
-        "Каждый понедельник локальная нейросеть проверяет кандидатов. Здесь только принятые проекты и из чего они: клеточная линия, ткань или primary site.",
       qc_rules_title: "Правила материала",
       qc_rules:
         "Homo sapiens. Ткань (tumor / adjacent / human tissue) или раковая клеточная линия должна быть прописана в метаданных или статье — иначе reject. Не берём plasma/serum/urine-only, organoids-only, PDX-only, животные. Смешанное tissue+organoid → ручная проверка.",
@@ -468,8 +472,6 @@
       footer_policy:
         "Excel catalog is not published. Site shows new candidates, literature, and analysis only.",
       disc_title: "Discovery",
-      disc_lead:
-        "Every Monday a local neural net checks candidates and updates the table. KPIs are how many were checked and how many were accepted.",
       disc_catalog_banner:
         "The Excel catalog is not published. This page lists only new findings outside the atlas.",
       filter_all: "All",
@@ -623,8 +625,6 @@
       no_pubs: "No analyzed publications",
       no_literature: "No papers for manual review",
       qc_title: "Quality control",
-      qc_lead:
-        "Every Monday a local neural net checks candidates. This page shows accepted projects only, split into cell line, tissue, or primary site.",
       qc_rules_title: "Material rules",
       qc_rules:
         "Homo sapiens. Tissue (tumor / adjacent / human tissue) or a cancer cell line must be stated in metadata or the paper — otherwise reject. No plasma/serum/urine-only, organoids-only, PDX-only, animal tissue. Mixed tissue+organoid → manual review.",

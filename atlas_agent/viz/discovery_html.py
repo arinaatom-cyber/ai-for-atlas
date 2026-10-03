@@ -259,7 +259,7 @@ def generate_discovery_html(report: dict, out_path: str | Path | None = None, *,
         page_hero(
             "disc_title",
             "disc_lead",
-            meta_time(gen) + " " + cadence_pills(),
+            meta_time(gen),
         )
         + dashboard_kpis(stats)
         + f"""
