@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-09-28T13:46:45.990400+00:00",
-  "pipeline_git_commit": "5ac9b6fae8caf7f8a26279ba7b1844eecceced08",
+  "generated_at": "2026-10-05T14:02:04.981738+00:00",
+  "pipeline_git_commit": "9ebf780aa005ee49b79569d8b67786eb1b5ff30b",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,12 +308,12 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 652,
-    "candidates": 19,
+    "raw_novel_repos": 546,
+    "candidates": 22,
     "manual_check": 0,
-    "rejected_material": 268,
-    "filtered_out": 713,
-    "already_in_catalog": 36
+    "rejected_material": 319,
+    "filtered_out": 735,
+    "already_in_catalog": 21
   },
   "literature_screening": {
     "publications_scanned": 29,
@@ -326,8 +326,8 @@
       "gloss_rewritten": 0
     },
     "abstract_llm_max": 25,
-    "atlas_fit_yes": 0,
-    "atlas_fit_maybe": 16,
+    "atlas_fit_yes": 1,
+    "atlas_fit_maybe": 15,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
@@ -516,7 +516,7 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 148
+    "pride": 78
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
@@ -527,10 +527,10 @@
   },
   "possible_pmid_match": [],
   "data_availability_gate": {
-    "quant_table": 14,
-    "omics_unknown": 15,
+    "quant_table": 17,
+    "omics_unknown": 16,
     "processed_psm": 5,
-    "omics_protein": 4
+    "omics_protein": 6
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
