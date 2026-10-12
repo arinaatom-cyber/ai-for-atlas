@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-10-05T14:02:04.981738+00:00",
-  "pipeline_git_commit": "9ebf780aa005ee49b79569d8b67786eb1b5ff30b",
+  "generated_at": "2026-10-12T14:49:25.612294+00:00",
+  "pipeline_git_commit": "6bee2eec78b35b1c6fc86a73d64a8025a88738e3",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,17 +308,17 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 546,
-    "candidates": 22,
+    "raw_novel_repos": 671,
+    "candidates": 23,
     "manual_check": 0,
-    "rejected_material": 319,
-    "filtered_out": 735,
-    "already_in_catalog": 21
+    "rejected_material": 265,
+    "filtered_out": 742,
+    "already_in_catalog": 31
   },
   "literature_screening": {
-    "publications_scanned": 29,
+    "publications_scanned": 30,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 29,
+    "abstract_regex_only": 30,
     "abstract_exclusion_engine": 0,
     "abstract_llm_errors": {},
     "abstract_summary_sanitize": {
@@ -326,8 +326,8 @@
       "gloss_rewritten": 0
     },
     "abstract_llm_max": 25,
-    "atlas_fit_yes": 1,
-    "atlas_fit_maybe": 15,
+    "atlas_fit_yes": 2,
+    "atlas_fit_maybe": 14,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
@@ -386,15 +386,15 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "KDM3B promotes neural invasion in colorectal cancer through TrkA upregulation by inhibiting H3K9 dimethylation.",
-        "pmid": "41488357",
-        "doi": "10.1016/j.isci.2025.114262",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Targeting PTGDS Promotes ferroptosis in peripheral T cell lymphoma through regulating HMOX1-mediated iron metabolism.",
         "pmid": "39706989",
         "doi": "10.1038/s41416-024-02919-w",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "KDM3B promotes neural invasion in colorectal cancer through TrkA upregulation by inhibiting H3K9 dimethylation.",
+        "pmid": "41488357",
+        "doi": "10.1016/j.isci.2025.114262",
         "abstract_reader": "regex"
       },
       {
@@ -422,6 +422,12 @@
         "abstract_reader": "regex"
       },
       {
+        "title": "Proteomic analysis of the urothelial cancer landscape.",
+        "pmid": "38802361",
+        "doi": "10.1038/s41467-024-48096-5",
+        "abstract_reader": "regex"
+      },
+      {
         "title": "Proteome Profiling Reveals NQO2 Activity Contributing to Proteasome Inhibitor Resistance in Multiple Myeloma Cell Lines.",
         "pmid": "42362189",
         "doi": "10.1016/j.mcpro.2026.101615",
@@ -437,6 +443,12 @@
         "title": "Atractylon inhibits hepatocellular carcinoma by inducing ferroptosis with increasing SLC39A14 expression.",
         "pmid": "42156485",
         "doi": "10.1038/s41598-026-53504-5",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Migrasomes May Originate from Cilia and Represent an Alternative Ciliary Form",
+        "pmid": "PPR1336142",
+        "doi": "10.64898/2026.10.06.757022",
         "abstract_reader": "regex"
       },
       {
@@ -494,19 +506,13 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "SAA1 Promotes Ulcerative Colitis and Activating Colonic TLR4/NF-κB/NLRP3 Signaling Pathway.",
-        "pmid": "40526227",
-        "doi": "10.1007/s10753-025-02299-0",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Insights into Divergent Leishmaniasis Pathogenesis: A Quantitative Flagellar Proteomic Comparison of &lt;i&gt;L. mexicana&lt;/i&gt;, &lt;i&gt;L. amazonensis&lt;/i&gt;, and &lt;i&gt;L. infantum&lt;/i&g",
         "pmid": "42513917",
         "doi": "10.3390/microorganisms14071411",
         "abstract_reader": "regex"
       }
     ],
-    "preprints": 2,
+    "preprints": 3,
     "peer_reviewed": 27
   },
   "dedup": {
@@ -516,7 +522,7 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 78
+    "pride": 146
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
@@ -528,8 +534,8 @@
   "possible_pmid_match": [],
   "data_availability_gate": {
     "quant_table": 17,
-    "omics_unknown": 16,
-    "processed_psm": 5,
+    "omics_unknown": 17,
+    "processed_psm": 6,
     "omics_protein": 6
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
