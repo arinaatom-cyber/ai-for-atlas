@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-10-12T14:49:25.612294+00:00",
-  "pipeline_git_commit": "6bee2eec78b35b1c6fc86a73d64a8025a88738e3",
+  "generated_at": "2026-10-19T12:32:12.616698+00:00",
+  "pipeline_git_commit": "8eef0e4d800d31e24bd53fa1ea4e625014ee822f",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,17 +308,17 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 671,
+    "raw_novel_repos": 560,
     "candidates": 23,
     "manual_check": 0,
-    "rejected_material": 265,
-    "filtered_out": 742,
-    "already_in_catalog": 31
+    "rejected_material": 147,
+    "filtered_out": 436,
+    "already_in_catalog": 24
   },
   "literature_screening": {
-    "publications_scanned": 30,
+    "publications_scanned": 29,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 30,
+    "abstract_regex_only": 29,
     "abstract_exclusion_engine": 0,
     "abstract_llm_errors": {},
     "abstract_summary_sanitize": {
@@ -326,8 +326,8 @@
       "gloss_rewritten": 0
     },
     "abstract_llm_max": 25,
-    "atlas_fit_yes": 2,
-    "atlas_fit_maybe": 14,
+    "atlas_fit_yes": 1,
+    "atlas_fit_maybe": 16,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
@@ -422,12 +422,6 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Proteomic analysis of the urothelial cancer landscape.",
-        "pmid": "38802361",
-        "doi": "10.1038/s41467-024-48096-5",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Proteome Profiling Reveals NQO2 Activity Contributing to Proteasome Inhibitor Resistance in Multiple Myeloma Cell Lines.",
         "pmid": "42362189",
         "doi": "10.1016/j.mcpro.2026.101615",
@@ -446,15 +440,15 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Migrasomes May Originate from Cilia and Represent an Alternative Ciliary Form",
-        "pmid": "PPR1336142",
-        "doi": "10.64898/2026.10.06.757022",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "TMT-based proteomics analysis identifies RPLP1 as a key protein target in ursolic acid Inhibition of colorectal cancer.",
         "pmid": "40889039",
         "doi": "10.1007/s12672-025-03486-z",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Proteomic Stratification Across Human Male Vocal Fold Tissue Layers.",
+        "pmid": "42844035",
+        "doi": "10.1016/j.jvoice.2026.09.021",
         "abstract_reader": "regex"
       },
       {
@@ -512,7 +506,7 @@
         "abstract_reader": "regex"
       }
     ],
-    "preprints": 3,
+    "preprints": 2,
     "peer_reviewed": 27
   },
   "dedup": {
@@ -522,13 +516,13 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 146
+    "pride": 77
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
     "pride": 0,
     "pdc": 0,
-    "massive": 0,
+    "massive": 3,
     "iprox": 3
   },
   "possible_pmid_match": [],
