@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-10-19T12:32:12.616698+00:00",
-  "pipeline_git_commit": "8eef0e4d800d31e24bd53fa1ea4e625014ee822f",
+  "generated_at": "2026-10-26T13:18:39.514949+00:00",
+  "pipeline_git_commit": "e5784f10b10fb65f7041b7dd53e8f0cb8b691042",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,17 +308,17 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 560,
+    "raw_novel_repos": 681,
     "candidates": 23,
     "manual_check": 0,
-    "rejected_material": 147,
-    "filtered_out": 436,
-    "already_in_catalog": 24
+    "rejected_material": 445,
+    "filtered_out": 748,
+    "already_in_catalog": 31
   },
   "literature_screening": {
-    "publications_scanned": 29,
+    "publications_scanned": 31,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 29,
+    "abstract_regex_only": 31,
     "abstract_exclusion_engine": 0,
     "abstract_llm_errors": {},
     "abstract_summary_sanitize": {
@@ -327,7 +327,7 @@
     },
     "abstract_llm_max": 25,
     "atlas_fit_yes": 1,
-    "atlas_fit_maybe": 16,
+    "atlas_fit_maybe": 15,
     "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
@@ -416,6 +416,12 @@
         "abstract_reader": "regex"
       },
       {
+        "title": "Targeted proteomics for the detection of androgen receptor variants in preclinical models of castration-resistant prostate cancer.",
+        "pmid": "42437885",
+        "doi": "10.1186/s12014-026-09623-2",
+        "abstract_reader": "regex"
+      },
+      {
         "title": "Acute degradation of nucleolin reveals its novel functions in cell cycle progression and cell division in triple negative breast cancer.",
         "pmid": "40653460",
         "doi": "10.1186/s13046-025-03401-y",
@@ -476,6 +482,12 @@
         "abstract_reader": "regex"
       },
       {
+        "title": "Tubocapsenolide A Overcomes Oxaliplatin Resistance in Colorectal Cancer by Targeting PLK1 to Impair CEP55-ESCRT-Associated Vesicular Damage Clearance.",
+        "pmid": "42893509",
+        "doi": "10.1002/advs.78310",
+        "abstract_reader": "regex"
+      },
+      {
         "title": "Klebsiella pneumoniae LPS drives stromal-mediated repression of p53 and colorectal cancer chemoresistance.",
         "pmid": "42002547",
         "doi": "10.1038/s41419-026-08756-4",
@@ -500,14 +512,14 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Insights into Divergent Leishmaniasis Pathogenesis: A Quantitative Flagellar Proteomic Comparison of &lt;i&gt;L. mexicana&lt;/i&gt;, &lt;i&gt;L. amazonensis&lt;/i&gt;, and &lt;i&gt;L. infantum&lt;/i&g",
-        "pmid": "42513917",
-        "doi": "10.3390/microorganisms14071411",
+        "title": "Progesterone Modulates Protein Synthesis in Osteoarthritic Fibroblast-like Synoviocytes.",
+        "pmid": "42884142",
+        "doi": "10.3390/ijms27198899",
         "abstract_reader": "regex"
       }
     ],
     "preprints": 2,
-    "peer_reviewed": 27
+    "peer_reviewed": 29
   },
   "dedup": {
     "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
@@ -516,21 +528,21 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 77
+    "pride": 149
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
     "pride": 0,
     "pdc": 0,
-    "massive": 3,
+    "massive": 0,
     "iprox": 3
   },
   "possible_pmid_match": [],
   "data_availability_gate": {
     "quant_table": 17,
-    "omics_unknown": 17,
+    "omics_unknown": 18,
     "processed_psm": 6,
-    "omics_protein": 6
+    "omics_protein": 5
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
