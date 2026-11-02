@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-10-26T13:18:39.514949+00:00",
-  "pipeline_git_commit": "e5784f10b10fb65f7041b7dd53e8f0cb8b691042",
+  "generated_at": "2026-11-02T15:04:57.084188+00:00",
+  "pipeline_git_commit": "67f63e4ab2139b2c559a3137813288ab6f8fa9a3",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,17 +308,17 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 681,
-    "candidates": 23,
+    "raw_novel_repos": 568,
+    "candidates": 22,
     "manual_check": 0,
-    "rejected_material": 445,
-    "filtered_out": 748,
-    "already_in_catalog": 31
+    "rejected_material": 153,
+    "filtered_out": 51,
+    "already_in_catalog": 24
   },
   "literature_screening": {
-    "publications_scanned": 31,
+    "publications_scanned": 33,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 31,
+    "abstract_regex_only": 33,
     "abstract_exclusion_engine": 0,
     "abstract_llm_errors": {},
     "abstract_summary_sanitize": {
@@ -328,7 +328,7 @@
     "abstract_llm_max": 25,
     "atlas_fit_yes": 1,
     "atlas_fit_maybe": 15,
-    "literature_resolved": 0,
+    "literature_resolved": 1,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
       {
@@ -416,6 +416,12 @@
         "abstract_reader": "regex"
       },
       {
+        "title": "Profiling Amino Acid Substitutions in Proteomic Datasets of Alzheimer's Disease Reveals Biological Significance.",
+        "pmid": "42940148",
+        "doi": "10.3390/biomedicines14102342",
+        "abstract_reader": "regex"
+      },
+      {
         "title": "Targeted proteomics for the detection of androgen receptor variants in preclinical models of castration-resistant prostate cancer.",
         "pmid": "42437885",
         "doi": "10.1186/s12014-026-09623-2",
@@ -431,6 +437,12 @@
         "title": "Proteome Profiling Reveals NQO2 Activity Contributing to Proteasome Inhibitor Resistance in Multiple Myeloma Cell Lines.",
         "pmid": "42362189",
         "doi": "10.1016/j.mcpro.2026.101615",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Amino Acid Substitutomics: Profiling Amino Acid Substitutions at the Proteomic Scale Unveils Biological Implications and Escape Hypotheses in Cancer.",
+        "pmid": "42918098",
+        "doi": "10.1021/acs.jproteome.6c00455",
         "abstract_reader": "regex"
       },
       {
@@ -519,7 +531,7 @@
       }
     ],
     "preprints": 2,
-    "peer_reviewed": 29
+    "peer_reviewed": 31
   },
   "dedup": {
     "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
@@ -528,7 +540,7 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 149
+    "pride": 79
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
