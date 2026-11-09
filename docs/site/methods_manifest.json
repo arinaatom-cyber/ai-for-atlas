@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-11-02T15:04:57.084188+00:00",
-  "pipeline_git_commit": "67f63e4ab2139b2c559a3137813288ab6f8fa9a3",
+  "generated_at": "2026-11-09T16:49:27.234857+00:00",
+  "pipeline_git_commit": "91d0acfc4814420247f6b0271702bd42f6d9f687",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,17 +308,17 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 568,
-    "candidates": 22,
+    "raw_novel_repos": 103,
+    "candidates": 7,
     "manual_check": 0,
-    "rejected_material": 153,
-    "filtered_out": 51,
-    "already_in_catalog": 24
+    "rejected_material": 212,
+    "filtered_out": 426,
+    "already_in_catalog": 28
   },
   "literature_screening": {
-    "publications_scanned": 33,
+    "publications_scanned": 34,
     "abstract_llm_read": 0,
-    "abstract_regex_only": 33,
+    "abstract_regex_only": 34,
     "abstract_exclusion_engine": 0,
     "abstract_llm_errors": {},
     "abstract_summary_sanitize": {
@@ -327,8 +327,8 @@
     },
     "abstract_llm_max": 25,
     "atlas_fit_yes": 1,
-    "atlas_fit_maybe": 15,
-    "literature_resolved": 1,
+    "atlas_fit_maybe": 16,
+    "literature_resolved": 0,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
       {
@@ -452,6 +452,12 @@
         "abstract_reader": "regex"
       },
       {
+        "title": "TMT-based quantitative proteomic analysis of vitreous humor in proliferative diabetic retinopathy.",
+        "pmid": "42968080",
+        "doi": "10.1186/s12886-026-04847-0",
+        "abstract_reader": "regex"
+      },
+      {
         "title": "Atractylon inhibits hepatocellular carcinoma by inducing ferroptosis with increasing SLC39A14 expression.",
         "pmid": "42156485",
         "doi": "10.1038/s41598-026-53504-5",
@@ -531,7 +537,7 @@
       }
     ],
     "preprints": 2,
-    "peer_reviewed": 31
+    "peer_reviewed": 32
   },
   "dedup": {
     "exact_id_pmid_doi": "already_in_catalog (all PXD/PDC/MSV/IPX in the Project ID cell)",
@@ -540,21 +546,21 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 79
+    "pride": 2
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
-    "pride": 0,
+    "pride": 5,
     "pdc": 0,
     "massive": 0,
     "iprox": 3
   },
   "possible_pmid_match": [],
   "data_availability_gate": {
-    "quant_table": 17,
-    "omics_unknown": 18,
-    "processed_psm": 6,
-    "omics_protein": 5
+    "quant_table": 6,
+    "omics_protein": 3,
+    "omics_unknown": 4,
+    "processed_psm": 1
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
