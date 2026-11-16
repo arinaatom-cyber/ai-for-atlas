@@ -1,7 +1,7 @@
 {
   "pipeline_name": "Atlas Discovery Agent",
-  "generated_at": "2026-11-09T16:49:27.234857+00:00",
-  "pipeline_git_commit": "91d0acfc4814420247f6b0271702bd42f6d9f687",
+  "generated_at": "2026-11-16T15:17:51.625812+00:00",
+  "pipeline_git_commit": "959d0116542302e240632b50b4fb3e126ee78f26",
   "llm_locked": {
     "provider": "ollama",
     "model": "qwen2.5:3b",
@@ -308,12 +308,12 @@
     "strict_sample_design": true
   },
   "funnel": {
-    "raw_novel_repos": 103,
-    "candidates": 7,
+    "raw_novel_repos": 820,
+    "candidates": 23,
     "manual_check": 0,
-    "rejected_material": 212,
-    "filtered_out": 426,
-    "already_in_catalog": 28
+    "rejected_material": 397,
+    "filtered_out": 757,
+    "already_in_catalog": 27
   },
   "literature_screening": {
     "publications_scanned": 34,
@@ -327,8 +327,8 @@
     },
     "abstract_llm_max": 25,
     "atlas_fit_yes": 1,
-    "atlas_fit_maybe": 16,
-    "literature_resolved": 0,
+    "atlas_fit_maybe": 15,
+    "literature_resolved": 1,
     "semantic_from_abstract": 0,
     "regex_only_publications": [
       {
@@ -470,12 +470,6 @@
         "abstract_reader": "regex"
       },
       {
-        "title": "Proteomic Stratification Across Human Male Vocal Fold Tissue Layers.",
-        "pmid": "42844035",
-        "doi": "10.1016/j.jvoice.2026.09.021",
-        "abstract_reader": "regex"
-      },
-      {
         "title": "Proteome-wide multipoint internal calibration curves for mass spectrometry-based quantitative proteomics",
         "pmid": "PPR983979",
         "doi": "10.1101/2025.02.24.639845",
@@ -497,6 +491,12 @@
         "title": "Repair effect analysis of mesenchymal stem cell conditioned media from multiple sources on HUVECs damaged by high glucose",
         "pmid": "PPR868988",
         "doi": "10.21203/rs.3.rs-4520607/v1",
+        "abstract_reader": "regex"
+      },
+      {
+        "title": "Decoding spliceosome inhibition: Isobaric tag-based proteomic profiling of pladienolide B treated human cell lines.",
+        "pmid": "41224195",
+        "doi": "10.1016/j.jprot.2025.105565",
         "abstract_reader": "regex"
       },
       {
@@ -546,21 +546,21 @@
     "close_match_verdict": "requires_manual_check (not auto-excluded)"
   },
   "tmt_plex_unspecified_by_source": {
-    "pride": 2
+    "pride": 212
   },
   "pdc_tmt_plex_unspecified": 0,
   "failed_source_requests": {
-    "pride": 5,
+    "pride": 0,
     "pdc": 0,
-    "massive": 0,
+    "massive": 1,
     "iprox": 3
   },
   "possible_pmid_match": [],
   "data_availability_gate": {
-    "quant_table": 6,
-    "omics_protein": 3,
-    "omics_unknown": 4,
-    "processed_psm": 1
+    "quant_table": 17,
+    "omics_unknown": 18,
+    "processed_psm": 6,
+    "omics_protein": 5
   },
   "confidence_model": "Rule-based tiers A–D (not calibrated LLM probability)",
   "catalog_read_only": true,
